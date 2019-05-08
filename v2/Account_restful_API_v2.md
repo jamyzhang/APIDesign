@@ -1,6 +1,6 @@
 # Version change record
 
-  | Change Version | API Version | Change nots | Change Date | Author |
+  | Change Version | API Version | Change notes | Change Date | Author |
   | - | - | - | - | - |
   | 1.0 | v1 | Live Chat Restful API | 2018-5-5 | Allon |
   | 1.1 | v1 | Add Report API | 2018-06-06 | Roy |
