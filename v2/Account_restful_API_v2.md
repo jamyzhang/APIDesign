@@ -746,7 +746,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "groups": [ ],
     "isAdmin": true,
     "isActive": true,
-    "isLocked": false
+    "isLocked": false,
+    "ldapUserName": "LDAP User Name"
 }
 ```
 
@@ -787,7 +788,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "groups": [ ],
     "isAdmin": true,
     "isActive": true,
-    "isLocked": false
+    "isLocked": false,
+    "ldapUserName": "LDAP User Name"
 }
 ```
 
