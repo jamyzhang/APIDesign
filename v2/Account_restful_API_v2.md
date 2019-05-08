@@ -2,6 +2,10 @@
 
   | Change Version | API Version | Change nots | Change Date | Author |
   | - | - | - | - | - |
+  | 1.0 | v1 | Live Chat Restful API | 2018-5-5 | Allon |
+  | 1.1 | v1 | Add Report API | 2018-06-06 | Roy |
+  | 2.0 | v2 | Redesigned the Live Chat Restful API based on WebAPI | 2018-9-9 | Kim |
+  | 2.0.1 | v2 | Changed agent field string to array in get chat(s) response (for ITSM) | 2018-09-20 | Surey |
   | 2.0.1 | v2 | add ldapUserName for get/create/update agent endpoint (for Unima - chatserver version: 8.15.6) | 2019-05-08 | Surey |
 
 
@@ -10,11 +14,11 @@
 
 | Object | Path |
 | - | - |
-| [Site](#site) | `/account/site` |
-| [Agent](#agent) | `/account/agents` |
-| [Group](#group) | `/account/groups` |
+| [Site](#sites) | `/account/site` |
+| [Agent](#agents) | `/account/agents` |
+| [Group](#groups) | `/account/groups` |
 | [Ip Restriction](#ip-restriction) | `/account/ipRestrictions` |
-| [Audit Log](#audit-log) | `/livechat/auditLogs` |
+| [Audit Log](#audit-logs) | `/livechat/auditLogs` |
 
 
 ## Sites
