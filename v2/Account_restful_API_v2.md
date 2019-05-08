@@ -6,7 +6,7 @@
   | 1.1 | v1 | Add Report API | 2018-06-06 | Roy |
   | 2.0 | v2 | Redesigned the Live Chat Restful API based on WebAPI | 2018-9-9 | Kim |
   | 2.0.1 | v2 | Changed agent field string to array in get chat(s) response (for ITSM) | 2018-09-20 | Surey |
-  | 2.0.1 | v2 | add ldapUserName for get/create/update agent endpoint (for Unima - chatserver version: 8.15.6) | 2019-05-08 | Surey |
+  | 2.0.1 | v2 | add ldapUserName to Agent Object. Update get/create/update agent endpoint accordingly. (for Unima) | 2019-05-08 | Surey |
 
 
 
@@ -209,7 +209,7 @@ Status: 200 OK
   | isAdmin | boolean | yes | no | whether the agent is an administrator or not.
   | isActive | boolean | yes | no | whether the agent is active or not.
   | isLocked | boolean | yes | no | whether the agent is locked or not.
-  | ldapUserName | string | no | no | username of the agent, if enable LDAP, this value corresponds to the LDAP user name, if LDAP is not enabled, this value will be an empty string.
+  | ldapUserName | string | no | no | Username from LDAP server. If enable LDAP, this value corresponds to the LDAP user name. If LDAP is not enabled, it will be empty.
 
 ### Get a list of agents
 
