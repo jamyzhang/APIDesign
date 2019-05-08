@@ -1,3 +1,11 @@
+# Version change record
+
+  | Change Version | API Version | Change nots | Change Date | Author |
+  | - | - | - | - | - |
+  | 2.0.1 | v2 | add ldapUserName for get/create/update agent endpoint (for Unima - chatserver version: 8.15.6) | 2019-05-08 | Surey |
+
+
+
 # General
 
 | Object | Path |
@@ -7,6 +15,7 @@
 | [Group](#group) | `/account/groups` |
 | [Ip Restriction](#ip-restriction) | `/account/ipRestrictions` |
 | [Audit Log](#audit-log) | `/livechat/auditLogs` |
+
 
 ## Sites
 
@@ -196,6 +205,7 @@ Status: 200 OK
   | isAdmin | boolean | yes | no | whether the agent is an administrator or not.
   | isActive | boolean | yes | no | whether the agent is active or not.
   | isLocked | boolean | yes | no | whether the agent is locked or not.
+  | ldapUserName | string | no | no | username of the agent, if enable LDAP, this value corresponds to the LDAP user name, if LDAP is not enabled, this value will be an empty string.
 
 ### Get a list of agents
 
@@ -242,7 +252,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
             "groups": [],
             "isAdmin": true,
             "isActive": true,
-            "isLocked": false
+            "isLocked": false,
+            "ldapUserName": "LDAP User Name"
         }
     ]
 }
@@ -285,7 +296,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "groups": [],
     "isAdmin": true,
     "isActive": true,
-    "isLocked": false
+    "isLocked": false,
+    "ldapUserName": "LDAP User Name"
 }
 ```
 
@@ -326,7 +338,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "groups": [],
     "isAdmin": false,
     "isActive": true,
-    "isLocked": false
+    "isLocked": false,
+    "ldapUserName": "LDAP User Name"
 }
 ```
 
@@ -367,7 +380,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "groups": [ ],
     "isAdmin": true,
     "isActive": true,
-    "isLocked": false
+    "isLocked": false,
+    "ldapUserName": "LDAP User Name"
 }
 ```
 
