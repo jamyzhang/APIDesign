@@ -1,4 +1,4 @@
-# Version change record
+# Version change records
 
   | Change Version | API Version | Change notes | Change Date | Author |
   | - | - | - | - | - |
