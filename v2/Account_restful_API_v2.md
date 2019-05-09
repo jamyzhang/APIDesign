@@ -6,7 +6,7 @@
   | 1.1 | v1 | Add Report API | 2018-06-06 | Roy |
   | 2.0 | v2 | Redesigned the Live Chat Restful API based on WebAPI | 2018-9-9 | Kim |
   | 2.0.1 | v2 | Changed agent field string to array in get chat(s) response (for ITSM) | 2018-09-20 | Surey |
-  | 2.0.1 | v2 | add ldapUserName to Agent Object. Update get/create/update agent endpoint accordingly. (for Unima) | 2019-05-08 | Surey |
+  | 2.0.2 | v2 | add ldapUserName to Agent Object. Update get/create/update agent endpoint accordingly. (for Unima) | 2019-05-08 | Surey |
 
 
 
