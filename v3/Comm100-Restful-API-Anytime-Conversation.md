@@ -28,7 +28,7 @@
     | `get api/v3/anytime/portalConversations/{id}/messages` | sender | 
 
 - Sample:
-    - request: `get api/v3/anytime/conversations/{id}?include=assignedAgent,contact,createdBy,messages`
+    - request: `get api/v3/anytime/conversations/{id}?include=assignedAgent,createdBy,messages`
     - response:
 
         ``` javascript
@@ -39,11 +39,8 @@
                 "id": 1,
                 //...
             },
-            "contactId":2
-            "contact": {  //included the contact object
-                "id": 2,
-                //...
-            },
+            "relatedType": "contact",
+            "relatedId":2,
             "createdById": 3,
             "createdByType": "agent",
             "createdBy": {  //included the agent or contact object according to the createdByType.
@@ -67,20 +64,20 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Conversation](#conversations)|/api/v3/anytime/conversations| Points for agent console| 
-|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Points for portal and contacts |
+|[Conversation](#conversations)|/api/v3/anytime/conversations| EntPoints for agents | 
+|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| EndPoints for contacts |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
-|[Filter](#filters)|/api/v3/anytime/filters| Agent console filters| 
-|[RoutingRules](#RoutingRules)|/api/v3/anytime/routingRules| routting rules | 
-|[AutoAllocation](#AutoAllocation)|/api/v3/anytime/autoAllocation| Agent console filters| 
-|[Triggers](#Triggers)|/api/v3/anytime/triggers| Agent console filters| 
-|[SLAPolicies](#SLAPolicies)|/api/v3/anytime/SLAPolicies| Agent console filters| 
-|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/anytime/workingTime| Agent console filters| 
+|[View](#views)|/api/v3/anytime/views| Agent console views| 
+|[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| Routting rules | 
+|[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| Auto allocations | 
+|[Trigger](#Triggers)|/api/v3/anytime/triggers| Triggers| 
+|[SLAPolicy](#SLAPolicies)|/api/v3/anytime/SLAPolicies| SLA policies | 
+|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/anytime/workingTime| Work time and holiday | 
 |[Fields&Mapping](#fields&mapping)|/api/v3/anytime/fields| System fields and custom fields | 
-|[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
-|[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders| 
-|[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| integration accounts| 
-|[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports| 
+|[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders| Blocked email or domain | 
+|[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders | 
+|[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| Integration accounts | 
+|[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports | 
 
 # Conversations 
 ## objects 
@@ -156,7 +153,7 @@
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
-| `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
+| `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | | 
 | `sendStatus` | string | `sucess`, `sending`, `fail` |
 | `sendertId`| string | id of agent or contact | 
@@ -178,7 +175,7 @@
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `attachments` | [attachment](#attachment)[] | attachment array| 
-| `mentionedAgentIds` | integer[] | only for Note, @mentioned agents id array |
+| `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `sendertId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
 
@@ -212,7 +209,7 @@
 `get api/v3/anytime/conversations` 
 + Each request returns a maximum of 50 conversations. 
 + Parameters 
-    - filterId: string, filter id  
+    - viewId: string, view id  
     - tagId: string, tag id
     - keywords: string
     - timeFrom: DateTime, last reply time, default search the last 30 days
@@ -248,6 +245,7 @@
 + Response 
     - [conversation](#conversation) 
 + Includes
+
     | Includes | Description |
     | - | - |
     | assignedAgent | `get api/v3/anytime/conversations/{id}?include=assignedAgent` |
@@ -435,6 +433,7 @@
 - Response 
     - [message](#message) 
 - Includes
+
     | Includes | Description |
     | - | - |
     | sender | `get api/v3/anytime/deletedConversations/{id}/messages?include=sender` |
@@ -490,15 +489,15 @@
 - Response 
     - [conversation](#conversation) 
 
-### List unread conversations number for filters 
-`get api/v3/anytime/conversations/unreadCount?filterIds={filterid1}&filterIds={filterid2}&filterIds={filterid3}`
+### List unread conversations number for views 
+`get api/v3/anytime/conversations/unreadCount?viewIds={viewid1}&viewIds={viewid2}&viewIds={viewid3}`
 - Parameters 
-    - filterIds: filter id array 
+    - viewIds: view id array 
 - Response 
     - allCount: integer, all unread conversation number. 
     - array including: 
-        - filterId: string, filter id 
-        - unreadCount: integer, count unread conversations of a filter 
+        - viewId: string, view id 
+        - unreadCount: integer, count unread conversations of a view 
         - unreadMentionedCount: integer, the number of conversations which is unread and mentioned to me 
 
 # PortalConversations
@@ -645,16 +644,16 @@
     - httpStatusCode
 
 
-# Filters 
+# Views 
 ## objects 
-### filter 
+### view 
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | filter id | 
-| `name` | string | filter name | 
-| `isPrivate` | boolean | if private filter| 
+| `id` | string | view id | 
+| `name` | string | view name | 
+| `isPrivate` | boolean | if private view| 
 | `createdById` | string | agent id | 
-| `conditions` | [condition](#condition)[] | array of filter condition | 
+| `conditions` | [condition](#condition)[] | array of view condition | 
 
 ### condition 
 | Name | Type | Description | 
@@ -665,43 +664,43 @@
 | `value` | string | condition value | 
 
 ## endpoints 
-### List all public and private filters 
-`get /api/v3/anytime/filters`
+### List all public and private views 
+`get /api/v3/anytime/views`
 - Parameters 
     - no parameters 
 - Response 
-    - [filter](#filter) list, without conditions
+    - [view](#view) list, without conditions
 
-### Create a new filter 
-`post api/v3/anytime/filters`
+### Create a new view 
+`post api/v3/anytime/views`
 - Parameters 
-    - name: string, filter name, required 
-    - isPrivate: boolean, if private filter, default value: `false` 
-    - conditions: [condition](#condition)[], array of filter condition
+    - name: string, view name, required 
+    - isPrivate: boolean, if private view, default value: `false` 
+    - conditions: [condition](#condition)[], array of view condition
 - Response 
-    - [filter](#filter) list 
+    - [view](#view) list 
 
-### Get a filter and its conditions 
-`get api/v3/anytime/filters/{id}` 
+### Get a view and its conditions 
+`get api/v3/anytime/views/{id}` 
 - Parameters 
-    - id: string, filter id 
+    - id: string, view id 
 - Response 
-    - [filter](#filter) 
+    - [view](#view) 
 
-### Update a filter 
-`put api/v3/anytime/filters/{id}` 
+### Update a view 
+`put api/v3/anytime/views/{id}` 
 - Parameters 
-    - id: string, filter id 
-    - name: string, filter name, required 
-    - isPrivate: boolean, if private filter 
-    - conditions: [condition](#condition)[], array of filter condition
+    - id: string, view id 
+    - name: string, view name, required 
+    - isPrivate: boolean, if private view 
+    - conditions: [condition](#condition)[], array of view condition
 - Response 
-    - [filter](#filter) 
+    - [view](#view) 
 
-### Delete a filter 
-`delete api/v3/anytime/filters/{id}` 
+### Delete a view 
+`delete api/v3/anytime/views/{id}` 
 - Parameters 
-    - id: string, filter id 
+    - id: string, view id 
 - Response 
     - http status code 
 
@@ -827,7 +826,7 @@
 + Response
     - http status code
 
-# AutoAllocation
+# AutoAllocations
 ## objects
 ### autoAllocationSetting
 | Name | Type | Description | 
@@ -855,7 +854,7 @@
 | - | - | - | 
 | `agentId` | string | agent id |
 | `maxConcurrentCount` | integer | the maximum number of the conversations a agent can accept at the same time |
-| `ifAcceptAllocation` | boolean | if the agent accept conversations |
+| `isAcceptAllocation` | boolean | if the agent accept conversations |
 
 ## endpoints
 ### Get auto allocation settings
@@ -900,7 +899,7 @@
 | `sendEmail` | boolean | if send email |
 | `sendToContacts` | boolean | if send email |
 | `sendToAgents` | boolean | if send email |
-| `toAgents` | integer[] | send  email to agent(s) |
+| `toAgents` | string[] | send  email to agent(s) |
 | `subject` | string | subject of the email content |
 | `htmlText` | string | html body |
 | `plainText` | string | plain text |
@@ -922,7 +921,7 @@
 + Parameters 
     - no parameters
 + Response
-    - triggers: [trigger](#trigger) list
+    - [trigger](#trigger) list
 
 ### Get a trigger
 `get api/v3/anytime/triggers/{id}`
@@ -943,7 +942,7 @@
     - sendEmail, boolean, if send email
     - sendToContacts, boolean, if send email
     - sendToAgents, boolean, if send email
-    - toAgents, integer[], send  email to agent(s)
+    - toAgents, string[], send  email to agent(s)
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
@@ -965,7 +964,7 @@
     - sendEmail, boolean, if send email
     - sendToContacts, boolean, if send email
     - sendToAgents, boolean, if send email
-    - toAgents, integer[], send  email to agent(s)
+    - toAgents, string[], send  email to agent(s)
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
@@ -1017,7 +1016,7 @@
 + Parameters
     - no parameters
 + Response
-    - SLAPolicies: [SLAPolicy](#SLApolicy) list
+    - [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
 `get api/v2/anytime/SLAPolicies/{id}`
@@ -1091,7 +1090,7 @@
 + Parameters
     - no parameters
 + Response
-    - workingTimes: [workingTime](#workingTime) list
+    - [workingTime](#workingTime) list
 
 ### Update working time settings
 `put api/v3/anytime/workingTime`
@@ -1105,7 +1104,7 @@
 + Parameters
     - no parameters
 + Response
-    - holidays: [holiday](#holiday) list
+    - [holiday](#holiday) list
 
 ### Get a holiday
 `get api/v3/anytime/holidays/{id}`
@@ -1177,7 +1176,7 @@
 + Parameters
     - isSystemField: boolean, if is system field 
 + Response 
-    - fields: [field](#field) list 
+    - [field](#field) list 
 
 ### Get a field
 `get api/v3/anytime/fields/{id}`
@@ -1236,16 +1235,16 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | the id of blocked sender |
-| `email` | string | email or domain | 
+| `value` | string | email or domain | 
 | `blockType` | string | `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain` | 
 
 ## endpoints 
 ### List blocked senders 
 `get /api/v3/anytime/blockedSenders` 
 + Parameters 
-    - email: string, domain or email address 
+    - value: string, domain or email address 
 + Response 
-    - blockedSenders: [block sender](#blocked-sender) list 
+    - [block sender](#blocked-sender) list 
 
 ### Get a blocked sender
 `get /api/v3/anytime/blockedSenders/{id}`
@@ -1257,7 +1256,7 @@
 ### Add/update a blocked sender 
 `put api/v3/anytime/blockedSenders` 
 + Parameters 
-    - `email`, string, domain or email address 
+    - `value`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
 + Response 
     - [block sender](#blocked-sender) 
@@ -1265,7 +1264,7 @@
 ### Remove a blocked sender 
 `delete api/v3/anytime/blockedSenders` 
 + Parameters 
-   - email: string, domain or email address 
+   - value: string, domain or email address 
 + Response 
     - http status code
 
@@ -1311,13 +1310,14 @@
 ### Get a junk email 
 `get api/v3/anytime/junks/{id}` 
 - Parameters 
-    - id: integer, email id 
+    - id: string, email id 
 - Response 
     - [junk](#junk) 
 
 ### Update a junk 
 `put api/v3/anytime/junks/{id}` 
 - Parameters 
+    - id: string, email id 
     - isRead: boolean, 
 - Response 
     - [junk](#junk) 
@@ -1402,7 +1402,7 @@
 ### right now
 `GET /api/v3/anytime/reports/realtime/now`
 - Parameters：
-	- siteId: integer
+	- no parameter
 - Response:
  	- unassignedConversations: integer
 	- openConversations: integer
@@ -1416,7 +1416,7 @@
 ### realtime today
 - `GET /api/v3/anytime/reports/realtime/today`
 - Parameters:
-	- siteId: integer
+    - no parameter
 - Response:
  	- createdConversations: integer
 	- closedConversations: integer
@@ -1426,7 +1426,7 @@
 ### realtime department
 `GET /api/v3/anytime/reports/realtime/departments`
 - Parameters：
-	- siteId: integer
+    - no parameter
 - Response:
 	- dataList:
 		- departmentId: integer,
@@ -1443,9 +1443,8 @@
 ### realtime agent
 `GET/api/v3/anytime/reports/realtime/agents`
 - Parameters：
-	- siteId: integer,
-	- filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+	- viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
 - Response:
 	- dataList: 
 		- agentId: integer,
@@ -1462,11 +1461,10 @@
 ### export volume
 `GET /api/v3/anytime/reports/volume/export`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset： integer,
@@ -1477,11 +1475,10 @@
 ### report volume
 `GET /api/v3/anytime/reports/volume`
 - Parameters：
-    - siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
 - Response:
@@ -1511,8 +1508,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset：integer,
@@ -1522,11 +1519,10 @@
 ### report-channel
 `GET /api/v3/anytime/reports/channel`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
 - Response:
@@ -1555,11 +1551,10 @@
 ### export efficiency
 `GET /api/v3/anytime/reports/efficiency/export`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset： integer,
@@ -1569,11 +1564,10 @@
 ### report efficiency
 `GET /api/v3/anytime/reports/efficiency`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - filterType: string, `site`, `agent`, `department`, `account`, `channel`
-	- filterValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewValue: integer,
     - timeUnit: string,
     - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`
 - Response:
@@ -1595,7 +1589,6 @@
 ### export SLA report
 `GET /api/v3/anytime/reports/sla/export`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
@@ -1614,7 +1607,6 @@
 ### report SLA
 `GET /api/v3/anytime/reports/sla`
 - Parameters：
-	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
@@ -1629,3 +1621,6 @@
 		- ResolveTimeAchievedPercentage: float, 
         - avgResolveTime: fload,
         - breachedTickets: integer
+
+* * *
+
