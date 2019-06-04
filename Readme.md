@@ -82,7 +82,7 @@ Endpoint |Description
 
   - 如判断名字为`LiveChat`的Department是否存在
   
-    `HEAD api/v2/livechat/departments?name=LiveChat`
+    `HEAD api/v2/livechat/departments/name/LiveChat`
 
 ## GET
 1. 获取批量的数据, 采用GET方法获取, 参数通过queryString传递
