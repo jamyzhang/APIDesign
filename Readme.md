@@ -1,4 +1,4 @@
-<center><h1>API设计规范</h1></center>
+<center><h1>API文档规范</h1></center>
 
 # 规范说明
 - 在文档开始，建立一个Resource List表，罗列此文档所有可操作的资源。
