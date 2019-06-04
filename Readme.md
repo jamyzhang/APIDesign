@@ -4,20 +4,27 @@
 
 ## Resource List
 
-  | Resource | URL |Desc
+  | Resource | URL |Description
   | - | - | -
-  | [User](#User) | `/api/v3/users` |获取资源
-## Objects
-### User
+  | [User](#User) | `/api/v3/users` |获取用户资源
+  | [Task](#Task) | `/api/v3/tasks` |获取任务资源
+## User
+### Models
+#### UserModel
     定义用户资源格式
-Name|DataType |Desc
+Name|Type |Description
 ---|---|---
 id| int|`Read-only`<br>主键标识Id
 name | string|`Optional`<br>名称
 
-## Endpoints
-### User
-> Get a user
+### Endpoints
+Endpoint |Description
+---|---
+[*GET* `/api/v3/users/{id}`](#get-a-user)| 根据UserId获取单个用户信息
+[*GET* `/api/v3/users`](#query-all-users)| 根据指定条件，获取所有满足条件用户
+[*POST* `/api/v3/users`](#create-a-user)| 新建用户
+
+#### Get a user
 
     根据UserId获取单个用户信息
 - *GET* `/api/v3/users/{id}`
@@ -26,9 +33,9 @@ name | string|`Optional`<br>名称
         - 主键
 - **Request Body**
 - **Response Body**
-    - [User](#User)
+    - [UserModel](#UserModel)
 
->Query all users
+#### Query all users
 
     根据指定条件，获取所有满足条件用户
 -  *GET* `/api/v3/users`
@@ -37,14 +44,15 @@ name | string|`Optional`<br>名称
         - 根据名字模糊匹配
 - **Request Body**
 - **Response Body**
-    - [User](#User)[ ]
+    - [UserModel](#UserModel)[ ]
         - List of User 
->Create a user 
+#### Create a user 
 
     新建用户
 - *POST* `/api/v3/users`
 - **Path Paramters**
 - **Request Body**
-    - [User](#user)
+    - [UserModel](#userModel)
 - **Response Body**
-    - [User](#User)
+    - [UserModel](#UserModel)
+# 命名规范
