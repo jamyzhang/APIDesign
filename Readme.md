@@ -190,7 +190,7 @@ Endpoint |Description
 404 - Not Found|请求资源不存在。Response里面包含Comm100的error code和error string
 500 - Internal Error|服务器内部错误。Response里面包含Comm100的error code和error string。这个错误包含比较广泛，上述错误外，其他的错误都会在500中返回。
 
-    - Error Response, 以json格式返回具体的错误信息
+- Error Response, 以json格式返回具体的错误信息
 ```json
     {
         "code": 403003,
