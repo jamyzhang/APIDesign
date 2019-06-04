@@ -87,16 +87,16 @@ Endpoint |Description
 ## GET
 1. 获取批量的数据, 采用GET方法获取, 参数通过queryString传递
   
-  - 如获取5月份的聊天数据: `GET api/v2/livechat/chats?timeFrom=2018-05-01&timeEnd=2018-05-31`
+    - 如获取5月份的聊天数据: `GET api/v2/livechat/chats?timeFrom=2018-05-01&timeEnd=2018-05-31`
 
 2. 获取单个资源, 采用GET方式获取, 一般使用id定位资源
   
-  - 如获取id为1的聊天数据: `GET api/v2/livechat/chats/1`
+    - 如获取id为1的聊天数据: `GET api/v2/livechat/chats/1`
 
 ## POST 
 1. 创建新的资源, 采用POST方式新增资源, 参数通过JSON格式传递, 结构中描述的Mandatory为yes的属性必须有值, Read-Only的属性则不需要传
   
-  - 如新增一个Campaign: `POST api/v2/livechat/campaigns`
+    -  如新增一个Campaign: `POST api/v2/livechat/campaigns`
 
       ```json
       {
@@ -107,7 +107,7 @@ Endpoint |Description
 
 2. 其他类型的action操作, 某些操作需要在服务器执行较复杂的操作, 这个时候允许使用action作为资源的一个操作
 
-  - 如 merge ticket (将id为2的ticket merge到id为1的ticket): `POST api/v2/ticket/tickets/1/merge`
+    - 如 merge ticket (将id为2的ticket merge到id为1的ticket): `POST api/v2/ticket/tickets/1/merge`
 
       ```json
       {
