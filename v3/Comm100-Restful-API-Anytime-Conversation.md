@@ -64,11 +64,11 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Conversation](#conversations)|/api/v3/anytime/conversations| EntPoints for agents | 
-|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| EndPoints for contacts |
+|[Conversation](#conversations)|/api/v3/anytime/conversations| Conversations | 
+|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Portal conversations |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[View](#views)|/api/v3/anytime/views| Agent console views| 
-|[RoutingRule](#RoutingRules)|/api/v3/anytime/routingRules| Routting rules | 
+|[Routing](#Routing)|/api/v3/anytime/routing| Routing | 
 |[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| Auto allocations | 
 |[Trigger](#Triggers)|/api/v3/anytime/triggers| Triggers| 
 |[SLAPolicy](#SLAPolicies)|/api/v3/anytime/SLAPolicies| SLA policies | 
@@ -77,6 +77,7 @@
 |[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders| Blocked email or domain | 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders | 
 |[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| Integration accounts | 
+|[Channel](#channels)|/api/v3/anytime/channels| integrated channels | 
 |[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports | 
 
 # Conversations 
@@ -89,10 +90,10 @@
 | `relatedType` | string | `contact`, `visitor`, `agent`| 
 | `relatedId` | string | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
-| `assignedAgentId` | string | agent assignee id | 
-| `assignedDepartmentId` | string | department assignee id | 
-| `channel` | string | `portal`, `email`, `chat`, `offlinemessage`, `facebookMessenger`, `facebookWallPost`, `Tweet`, etc.| 
-| `receivedBy` | string | receiving intergrated account id | 
+| `assignedAgentId` | string | assigned agent id | 
+| `assignedDepartmentId` | string | assigned department id | 
+| `channelId` | string | channel Id | 
+| `receivedById` | string | receiving intergration account id | 
 | `originalId` | string | original id on social platform | 
 | `originalLink` | string | original link on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -103,7 +104,7 @@
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isEditable`| boolean | if the current agent can update\reply the conversation | 
 | `isActive`| boolean | if open in my active work area by agent | 
-| `lastMessage`| string | plain text of last message | 
+| `lastMessage`| string | plain text of the last message | 
 | `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
@@ -139,77 +140,87 @@
 | - | - | - | 
 | `id` | string | id of message | 
 | `conversationId` | integer | id of conversation | 
-| `type` | string | `note`, `email`, `reply`, `socialMessage`, `chat`, `offlineMessage` |
+| `type` | string | `note`, `message`, `chat`, `offlineMessage` |
 | `directType` | string | `receive`, `send` |
-| `accountId`| string | integrated account id | 
+| `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
-| `originalMessageId` | string | original message id|
+| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
+| `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |  
-| `texts` | [text](#text)[] | text of message |  
-| `quote` | string | quoted content of the message, only for email message |  
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
-| `attachments` | [attachment](#attachment)[] | attachment array| 
+| `contents` | [content](#content)[] | content array | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
-| `isRead`| boolean | | 
-| `sendStatus` | string | `sucess`, `sending`, `fail` |
-| `sendertId`| string | id of agent or contact | 
+| `isRead`| boolean | if the message read by agent| 
+| `sendStatus` | string | `success`, `sending`, `failed` |
+| `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
  
+### content
+| Name | Type | Description | 
+| - | - | - | 
+| `type` | string | content type, `text`, `htmlText`, `media`, `file`, `location` |  
+| `data` | object | [text content](#text-content) or [html text content](#html-text-content) or [file message content](#file-message-content) or [media message content](#media-message-content) or [location message content](#location-message-content) | 
+
+### text content
+| Name | Type | Description | 
+| - | - | - |  
+| `type` | string | content type, `text`| 
+| `text` | string | text | 
+
+### html text content
+| Name | Type | Description | 
+| - | - | - |  
+| `type` | string | content type, `htmlText`| 
+| `htmlText` | string | html text |
+
+### file message content
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | guid | 
+| `name` | string | file name| 
+| `url` | string | download link | 
+
+### media message content
+| Name | Type | Description |
+| - | - | - |  
+| `id` | string | guid | 
+| `type` | string | media type, `video`, `audio`, `picture`| 
+| `title` | string | media title| 
+| `url` | string | download link | 
+
+### location message content
+| Name | Type | Description |  
+| - | - | - |  
+| `latitude` | string | latitude | 
+| `longitude` | string | longitude | 
+| `scale` | string | scale for location |
+| `desc` | string | description | 
+
 ### conversation draft 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message draft | 
 | `conversationId` | integer | id of conversation | 
-| `type` | string | `note`, `email`, `reply`, `socialMessage` |
-| `accountId`| string | integrated account id | 
+| `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |  
-| `texts` | [text](#text)[] | text of message |  
-| `quote` | string | quoted content of the message, only for email message |  
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
-| `attachments` | [attachment](#attachment)[] | attachment array| 
+| `contents` | [content](#content)[] | content array | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
-| `sendertId`| string | id of agent| 
+| `senderId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
-
-### text
-| Name | Type | Description | 
-| - | - | - |
-| `id` | string | id |
-| `format` | string | `plaintext`, `html` |
-| `content` | string | plain text or html body |
-
-
-### attachment 
-| Name | Type | Description | 
-| - | - | - |
-| `id` | string | attachment unique id |
-| `messageId` | string | message id |
-| `type` | string | attachment type |
-| `mimetype` | string | attachment mime type |
-| `originalId` | string | original id |
-| `originalLink` | string | original link |
-| `text` | string | attachment text or description |
-| `fileName` | string | attachment file name| 
-| `url` | string | attachment download link | 
-| `previewUrl` | string | preview url | 
-| `size` | int | attachment size |
-| `scale` | string | scale for location |
-| `isAvailable` | boolean | if the attachment is available | 
-
+  
+ 
 ## endpoints 
 ### List conversations 
 `get api/v3/anytime/conversations` 
 + Each request returns a maximum of 50 conversations. 
 + Parameters 
-    - viewId: string, view id  
+    - viewId: string, view id
     - tagId: string, tag id
     - keywords: string
     - timeFrom: DateTime, last reply time, default search the last 30 days
@@ -259,7 +270,7 @@
 `post api/v3/anytime/conversations` 
 - Parameters 
     - subject: string, conversation subject, required
-    - channel: string, `portal`, `email`, `chat`, `facebookMessenger`, etc.  required 
+    - channelId: string, channel Id, required 
     - relatedType: string, `contact`, `visitor`
     - relatedId: string, contact id or visitor id
     - assignedAgentId: string, agent id
@@ -270,14 +281,11 @@
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
-        - type: string, `note`, `email`, `reply`, `socialMessage`, required
+        - type: string, `note`, `message`, required
         - subject: string, for email message, email subject
-        - text:
-            - format: string, `plaintext`, `html`,
-            - content: string,
         - from: string, for email type message, one of email account address 
-        - cc: string, message cc emails 
-        - attachments: [attachment](#attachment)[], attachment array
+        - cc: string, message cc emails
+        - contents: [content](#content)[],
 + Response 
     - [conversation](#conversations)
 
@@ -326,21 +334,13 @@
 ### Reply a conversation 
 `post api/v3/anytime/conversations/{id}/messages` 
 - Parameters  
-    - type: string, `note`, `email`, `reply`, `socialMessage`, required
-    - accountId: string, channel account id,
+    - type: string, `note`, `message`, required
+    - integrationAccountId: string, integration account id,
     - contactIdentityId: string, contact identity id,
     - subject: string, for email message, email subject
-    - text:
-            - format: string, `plaintext`, `html`,
-            - content: string,
-    - quote: string, quote content, only for email message
-    - from: string, for email type message, one of email account address 
     - cc: string, message cc emails 
     - parentId: string,
-    - quoteTweetId: string,
-    - sendByType: string, `agent`, 
-    - sendById: string, agent id
-    - attachments: [attachment](#attachment)[], attachment array
+    - contents: [content](#content)[]
 - Response 
     - [message](#message) 
 
@@ -392,7 +392,7 @@
     - keywords: string
     - pageIndex: integer
     - timeFrom: DateTime, last reply time, default search the last 30 days
-    - timeTo: DateTime, last reply time, defautl value is the current time
+    - timeTo: DateTime, last reply time, default value is the current time
 - Response 
     - deletedConversations: [conversation](#conversation) list 
     - total: integer, total number of conversations 
@@ -518,11 +518,10 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message | 
-| `text` | [text](#text) | text |  
+| `contents` | [content](#content)[] | content array |
 | `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | |   
-| `attachments` | [attachment](#attachment)[] | attachment array| 
 
 ## endpoints
 ### Get a portal conversation by id
@@ -560,8 +559,7 @@
     - contactId: string, id of the contact who submitted the portal conversation
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - message:  the first portal message
-        - text: [text](#text), 
-        - attachments: [attachment](#attachment)[], attachment array of message
+        contents: [content](#content)[]
 - Response: 
   - [portal conversation](#portal-conversation) 
 
@@ -599,7 +597,7 @@
 - Parameters:
     - id: integer
     - contactId: string required
-    - text: [text](#text), 
+    - contents: [content](#content)[], 
     - attachments: [attachment](#attachment)[], attachment array
 - Response: 
     - [portal conversation message](#portal-conversation-message)
@@ -619,6 +617,15 @@
     - http status code
 
 # Attachments  
+## objects
+### attachment 
+| Name | Type | Description | 
+| - | - | - |
+| `id` | string | attachment unique id |  
+| `fileName` | string | attachment file name| 
+| `url` | string | attachment download link |   
+| `isAvailable` | boolean | if the attachment is available | 
+
 ## endpoints 
 ### Upload attachment 
 `post /api/v3/anytime/attachments` 
@@ -630,7 +637,7 @@
     - [attachment](#attachment) 
     
 ### Update status of attachment
-`Put /api/v2/livechat/attachments/{guid}`
+`Put /api/v3/anytime/attachments/{guid}`
 #### Parameters:
 - isAvailable - boolean `true` or  `false`
 #### Response
@@ -664,7 +671,7 @@
 | `value` | string | condition value | 
 
 ## endpoints 
-### List all public and private views 
+### List views 
 `get /api/v3/anytime/views`
 - Parameters 
     - no parameters 
@@ -705,33 +712,33 @@
     - http status code 
 
 
-# RoutingRules
+# Routing
 ## objects
-### routingRule
+### routing
 | Name | Type | Description |
 | - | - | - |
-| `enable` | boolean |whether the routing rules is enabled or not.
-| `type` |string | the type of routing, including `simple`and `rules`. |
+| `isEnabled` | boolean | whether the routing is enabled or not.
+| `type` |string | the type of routing, including `simple`and `customRules`. |
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
-| `simpleRouteToPriority` | string | `urgent`, `high`, `normal`, `low` |
-| `rules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
-| `matchFailedType` | string | the rule of fail route  including `department` and `agent` |
+| `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
+| `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
+| `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
-| `matchFailedToPriority` | string | `urgent`, `high`, `normal`, `low` |
+| `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
 
 ### customRule
 | Name | Type | Description |
 | - | - | - |
 | `id` | string | id of the custom rule |
-| `routeId` | string | id of the routingRuleId |
-| `orderIndex` | integer | order of the custom rule |
-| `enable` | boolean | whether the custom rule is enabled or not. |
+| `routingId` | string | id of the routingId |
+| `orderNum` | integer | order of the custom rule |
+| `isEnabled` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
 | `conditions` | [conditions](#conditions)  | an trigger condition json object. |
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToId` | string |id of the route object |
-| `routeToPriority` | string | conversation priority enum number|
+| `routeWithPriority` | string | conversation priority enum number|
 
 ### Conditions 
   | Name | Type |Description |
@@ -751,60 +758,60 @@
 | `value` | string | condition value | 
 
 ## endpoints
-### List all routingRules
-`get api/v3/anytime/routingRules`
+### get routing
+`get api/v3/anytime/routing`
 + Parameters
     - no parameters
-+ Response
-    - routingRules: [routingRule](#routingRule) list
-
-### Enable/Disable routingRules
-`put api/v3/anytime/routingRules/enable`
-+ Parameters
-    - no parameters
-+ Response
-    - http status code
-
-### Update a routingRule
-`put api/v3/anytime/routingRules/{id}`
-+ Parameters
-    - id: string
-    - enable: boolean
-    - type: string, simple or custromRules
-    - simpleRouteType: string, department and agent
-    - simpleRouteToId: string
-    - simpleRoutePriority: string,
-    - matchFailedType: string, department and agent
-    - matchFailedToId: string
-    - matchFailedToPriority: string
-    - orderIndex: int, rules execute and display order
 + Response
     - [routingRule](#routingRule)
 
-### Enable/Disable a custom rule
-`put api/v3/anytime/routingRules/customRules/{id}/enable`
+### Enable/Disable routing
+`put api/v3/anytime/routing/enable`
++ Parameters
+    - isEnabled: boolean,
++ Response
+    - http status code
+
+### Update routing
+`put api/v3/anytime/routing/{id}`
 + Parameters
     - id: string
-    - enable: boolean
+    - isEnabled: boolean
+    - type: string, `simple` or `customRules`
+    - simpleRouteType: string, department and agent
+    - simpleRouteToId: string
+    - simpleRouteWithPriority: string,
+    - matchFailedType: string, department and agent
+    - matchFailedToId: string
+    - matchFailedWithPriority: string
+    - orderNum: int, rules execute and display order
++ Response
+    - [routing](#routing)
+
+### Enable/Disable a custom rule
+`put api/v3/anytime/routing/customRules/{id}/enable`
++ Parameters
+    - id: string
+    - isEnabled: boolean
 + Response
     - [customRule](#customRule) 
 
 ### Create a custom rule
-`post api/v3/anytime/routingRules/customRules`
+`post api/v3/anytime/routing/customRules`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
     - [customRule](#customRule)
 
 ### Get a custom rule
-`get api/v3/anytime/routingRules/customRules/{id}`
+`get api/v3/anytime/routing/customRules/{id}`
 + Parameters
     - id: string
 + Response
     - [customRule](#customRule)
 
 ### Update a custom rule
-`put api/v3/anytime/routingRules/customRules/{id}`
+`put api/v3/anytime/routing/customRules/{id}`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
@@ -812,14 +819,14 @@
 
 
 ### Delete a custom rule
-`put api/v3/anytime/routingRules/customRules/{id}`
+`put api/v3/anytime/routing/customRules/{id}`
 + Parameters
     - id: string
 + Response
     - http status code
 
-### Upgrade/Downgrade a custom rule
-`put api/v3/anytime/routingRules/customRules/{id}/sort`
+### update the order number of a custom rule
+`put api/v3/anytime/routing/customRules/{id}/sort`
 + Parameters
     - id: string
     - type: string, `up`, `down`
@@ -831,12 +838,12 @@
 ### autoAllocationSetting
 | Name | Type | Description | 
 | - | - | - | 
-| `enable` | boolean | if enable Auto Allocation |
+| `isEnabled` | boolean | if enabled Auto Allocation |
 | `departmentAllocationRule`| [allocationRule](#allocationRule)[] | array of department allocation rules |
 | `defaultRule`| string | `loadBalancing`, `roundRobin` |
 | `defaultPreferLastAssignee`| boolean | prefer to allocate to the last assignee |
-| `setMaxNumberForEachAgent` | boolean | if set max conversation for each agent |
-| `maxNumberForAllAgents` | integer | max conversation number for all agents |
+| `ifEnableConversationLimitForEachAgent` | boolean | if set maximum number of conversations an agent can be allocated to |
+| `conversationLimitForAllAgents` | integer | maximum number of conversations all agents can be allocated to |
 | `agentPreferences` | [agentPreference](#agentPreference)[] | agent preference for allocation |
 | `excludePendingExternal` | boolean | if exclude `Pending Extenal` status while validating if an agent has reached the max number |
 | `excludeOnHold` | boolean | if exclude `On Hold` status while validating if an agent has reached the max number |
@@ -865,22 +872,22 @@
     - [autoAllocationSetting](#autoAllocationSetting)
 
 ### Enable/Disable auto allocation
-`put api/v3/anytime/autoAllocation/enable `
+`put api/v3/anytime/autoAllocation/enable`
 + Parameters
-    - enable: boolean, if enable auto allocation
+    - isEnabled: boolean, if enabled auto allocation
 + Response
     - http status code
 
 ### Update auto allocation settings
-`put api/v3/anytime/autoAllocation `
+`put api/v3/anytime/autoAllocation`
 + Parameters
-    - enable: boolean, if enable auto allocation
+    - isEnabled: boolean, if enabled auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
-    - setMaxNumberForEachAgent: boolean, if set max conversation for each agent
-    - maxNumberForAllAgents: integer, max conversation number for all agents
+    - ifEnableConversationLimitForEachAgent: boolean, if set maximum number of conversations an agent can be allocated to
+    - conversationLimitForAllAgents: integer, maximum number of conversations all agents can be allocated to
     - allocationAgentPreferences: [allocationAgentPreference](#allocationAgentPreference)[]
-    - excludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
-    - excludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
+    - ifExcludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
+    - ifExcludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
 + Response
     - [autoAllocationSetting](#autoAllocationSetting)
 
@@ -891,21 +898,21 @@
 | - | - | - | 
 | `id` | string | id of the trigger |
 | `description` | string | description of the trigger |
-| `enable` | boolean | if enable the trigger |
+| `isEnabled` | boolean | if enabled the trigger |
 | `event` | string |  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` |
 | `conditions` | [condition](#condition)[] | conditions | 
-| `setValue` | boolean | if set value |
+| `ifSetValue` | boolean | if set value |
 | `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
-| `sendEmail` | boolean | if send email |
-| `sendToContacts` | boolean | if send email |
-| `sendToAgents` | boolean | if send email |
-| `toAgents` | string[] | send  email to agent(s) |
+| `ifSendEmail` | boolean | if send email |
+| `ifSendToContacts` | boolean | if send email to contacts|
+| `ifSendToAgents` | boolean | if send email to agents |
+| `recipientAgentIds` | string[] | agent id array of recipient |
 | `subject` | string | subject of the email content |
 | `htmlText` | string | html body |
 | `plainText` | string | plain text |
-| `attachment` | [attachment](#attachment) | attachment |
-| `showInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
-| `orderIndex` | integer | trigger execute and display order |
+| `attachments` | [attachment](#attachment)[] | attachments |
+| `ifShowInConversationCorrespondences` | boolean | if show trigger email in Conversation Correspondence |
+| `orderNum` | integer | trigger execute and display order |
 
 ### autoUpdate
 | Name | Type | Description | 
@@ -934,20 +941,20 @@
 `post api/v3/anytime/triggers`
 + Parameters
     - description, string, description of the trigger
-    - enable, boolean, if enable the trigger
+    - isEnabled, boolean, if enabled the trigger
     - event, string, `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime`
     - conditions, [condition](#condition)[], conditions 
-    - setValue, boolean, if set value
+    - ifSetValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
-    - sendEmail, boolean, if send email
-    - sendToContacts, boolean, if send email
-    - sendToAgents, boolean, if send email
-    - toAgents, string[], send  email to agent(s)
+    - ifSendEmail, boolean, if send email
+    - ifSendToContacts, boolean, if send email to contacts
+    - ifSendToAgents, boolean, if send email to agents
+    - recipientAgentIds, string[], agent id array of recipient
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
-    - attachment, [attachment](#attachment), attachment
-    - showInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
+    - attachments, [attachment](#attachment)[], attachment array
+    - ifShowInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
     - [trigger](#trigger)
 
@@ -956,20 +963,20 @@
 + Parameters
     - id, string, id of the trigger
     - description, string, description of the trigger
-    - enable, boolean, if enable the trigger
+    - isEnabled, boolean, if enabled the trigger
     - event, string,  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` 
     - conditions, [condition](#condition)[], conditions 
-    - setValue, boolean, if set value
+    - ifSetValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
-    - sendEmail, boolean, if send email
-    - sendToContacts, boolean, if send email
-    - sendToAgents, boolean, if send email
-    - toAgents, string[], send  email to agent(s)
+    - ifSendEmail, boolean, if send email
+    - ifSendToContacts, boolean, if send email to contacts
+    - ifSendToAgents, boolean, if send email to agents
+    - recipientAgentIds, string[], agent id array of recipient
     - subject, string, subject of the email content
     - htmlText, string, html body
     - plainText, string, plain text
-    - attachment, [attachment](#attachment), attachment
-    - showInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
+    - attachments, [attachment](#attachment)[], attachment array
+    - ifShowInConversationCorrespondences, boolean, if show trigger email in Conversation Correspondence
 + Response
     - [trigger](#trigger)
 
@@ -985,7 +992,7 @@
 `put api/v3/anytime/triggers/{id}`
 + Parameters
     - id: string, trigger id
-    - enable: boolean, if enable the trigger
+    - isEnabled: boolean, if enabled the trigger
 + Response
     - http status code
 
@@ -1002,46 +1009,46 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | SLA policy id |
-| `enable` | boolean | if enable this SLA policy |
+| `isEnabled` | boolean | if enabled this SLA policy |
 | `firstRespondWithin` | integer | the hours first reply within |
 | `nextRespondWithin` | integer | the hours next reply within |
 | `resolveRespondWithin` | integer | the hours a conversation should be resolved within |
-| `businessHours`| boolean | `businessHours` or `calenderHours` |
+| `isBusinessHours`| boolean | if `businessHours` or `calenderHours` |
 | `conditions` | [condition](#condition)[] | conditions | 
-| `orderIndex` | integer | SLA execute and display order |
+| `orderNum` | integer | SLA execute and display order |
 
 ## endpoints
 ### List all SLA policies
-`get api/v2/anytime/SLAPolicies`
+`get api/v3/anytime/SLAPolicies`
 + Parameters
     - no parameters
 + Response
     - [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
-`get api/v2/anytime/SLAPolicies/{id}`
+`get api/v3/anytime/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
     - [SLAPolicy](#SLApolicy)
 
 ### Create a SLA policy
-`post api/v2/anytime/SLAPolicies`
+`post api/v3/anytime/SLAPolicies`
 + Parameters
-    - enable: boolean, if enable this SLA policy 
+    - isEnabled: boolean, if enabled this SLA policy 
     - firstRespondWithin: integer, 
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer, 
-    - businessHours: boolean, `businessHours` or `calenderHours` 
+    - isBusinessHours: boolean, `businessHours` or `calenderHours` 
     - conditions: [condition](#condition)[]
 + Response
     - [SLAPolicy](#SLApolicy)
 
 ### Update a SLA policy
-`put api/v2/anytime/SLAPolicies/{id}`
+`put api/v3/anytime/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id 
-    - enable: boolean, if enable this SLA policy 
+    - isEnabled: boolean, if enabled this SLA policy 
     - firstRespondWithin: integer,  
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer,  
@@ -1051,7 +1058,7 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Delete a SLA policy
-`delete api/v2/anytime/SLAPolicies/{id}`
+`delete api/v3/anytime/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
@@ -1161,7 +1168,7 @@
 | `id` | string | option id | 
 | `name` | string | option name | 
 | `value` | string | field value | 
-| `order` | integer | option order | 
+| `orderNum` | integer | option order | 
 
 ### fieldMapping
 | Name | Type | Description | 
@@ -1171,10 +1178,10 @@
 | `offlineMessageFieldMapping` | string | offline message field id |
 
 ## endpoints 
-### List all fields and their options 
+### List fields and their options 
 `get api/v3/anytime/fields` 
 + Parameters
-    - isSystemField: boolean, if is system field 
+    - isSystemField: boolean, if is system field, optional
 + Response 
     - [field](#field) list 
 
@@ -1190,7 +1197,6 @@
 + Parameters
     - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
     - name, string, field name 
-    - isSystemField, boolean, if is system field 
     - isRequired, boolean, value if is required 
     - defaultValue, string, field default value 
     - helpText, string, field help text 
@@ -1203,9 +1209,7 @@
 `put api/v3/anytime/fields/{id}`
 + Parameters
     - id, string, field id 
-    - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
     - name, string, field name 
-    - isSystemField, boolean, if is system field 
     - isRequired, boolean, value if is required 
     - defaultValue, string, field default value 
     - helpText, string, field help text 
@@ -1274,22 +1278,19 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of junk | 
-| `type` | string | `note`, `email`, `reply`, `socialMessage` |
-| `accountId`| string | integrated account id | 
+| `integrationAccount`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage` | 
+| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
-| `quoteTweetId` | string | quote tweet id |  
-| `texts` | [text](#text)[] | text |   
+| `contents` | [content](#content)[] | contents |   
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
-| `attachments` | [attachment](#attachment)[] | attachment array| 
 | `isRead`| boolean | | 
-| `sendertId`| string | id of agent or contact | 
+| `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
-| `time` | datetime | the sent time of the message | 
+| `time` | datetime | the sent time of the junk message | 
 
 ## endpoints 
 ### List junk emails
@@ -1377,6 +1378,28 @@
     - http status code
 
 
+# Channels 
+## objects 
+### channel 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | id | 
+| `name` | string | channel name | 
+| `icon` | string | icon url |     
+| `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
+| `messageMaxLength` | int | outgoing message max length |
+| `messageCapability` | string[] | outgoing message support message type |
+| `isSupportReplyWithDiffAccount` | bool | If support reply with different integration account |  
+
+## endpoints 
+### List all integrated channels 
+`get api/v3/anytime/channels` 
+- Parameters
+    - no parameter
+- Response 
+    - [channel](#channel)[] 
+
+
 ***
 
 # Reports
@@ -1392,8 +1415,8 @@
 | [/api/v3/anytime/reports/volume](#report-volume) | GET | report of volume |
 | [/api/v3/anytime/reports/channel/export](#export-channel) | GET | export channel report data |
 | [/api/v3/anytime/reports/channel](#report-channel) | GET | channel report |
-| [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | export efficiency report |
-| [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | export efficiency report data |
+| [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | export efficiency report data|
+| [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | efficiency report |
 | [/api/v3/anytime/reports/sla/export](#export-SLA-report) | GET | export SLA report data |
 | [/api/v3/anytime/reports/sla](#report-sla) | GET | SLA report data |
 
@@ -1410,8 +1433,8 @@
 	- pendingInternalConversations: integer
 	- pendingExternalConversations: integer
 	- onHoldConversations: integer
-	- urgentConversations: integer
-	- highConversations: integer
+	- urgentPriorityConversations: integer
+	- highPriorityConversations: integer
 
 ### realtime today
 - `GET /api/v3/anytime/reports/realtime/today`
@@ -1437,8 +1460,8 @@
 		- pendingInternalConversations: integer,
 		- pendingExternalConversations: integer,
 		- onHoldConversations: integer,
-		- urgentConversations: integer,
-		- highConversations: integer,
+		- urgentPriorityConversations: integer,
+		- highPriorityConversations: integer,
 
 ### realtime agent
 `GET/api/v3/anytime/reports/realtime/agents`
@@ -1455,8 +1478,8 @@
 		- pendingInternalConversations: integer,
 		- pendingExternalConversations: integer,
 		- onHoldConversations: integer,
-		- urgentConversations: integer,
-		- highConversations: integer,
+		- urgentPriorityConversations: integer,
+		- highPriorityConversations: integer,
 	
 ### export volume
 `GET /api/v3/anytime/reports/volume/export`
@@ -1529,19 +1552,20 @@
 	- dataList: 
 	    - id: integer,
 		- name: string,
-		- channelEfficiencies, [channelEfficiencie](#channel-efficiency)[]
+		- channelEfficiencies: [channelEfficiencie](#channel-efficiency)[]
 		- startTime: string,
 		- endTime: string,
-	- channel total number, [channel total number](#Channel-totoal-messages-number)[]
+	- channel total number: [channel total number](#channel-total-messages-number)[]
 
-### Channel Efficiency
+### channel efficiency
 | Name | Type | Description | 
 | - | - | - | 
 | `channelId` | string | channel id |
 | `channelName` | string | channel name |
-| `channelPercentage` | float |  |
+| `channelMessageNumber` | integer | channel message number |
+| `channelPercentage` | float | channel percentage |
 
-### Channel totoal messages number
+### channel total messages number
 | Name | Type | Description | 
 | - | - | - | 
 | `channelId` | string | channel id |
