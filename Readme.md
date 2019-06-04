@@ -5,6 +5,12 @@
 - 每个资源的说明包含Models和Endpoints两部分。
 - Endpoints部分一开始罗列此资源的所有操作。
 - 书写格式就按下面的样例套用。
+
+# 命名规范
+- 资源以复数命名
+- 资源不进行多层嵌套
+    - 比如原来的`/api/v3/conversations/{id}/messages`来获取Message资源，这里进行了资源嵌套。建议采用`/api/v3/messages?conversationsId={id}`来获取。
+    
 # 格式样例
 
 ## Resource List
@@ -60,7 +66,3 @@ Endpoint |Description
     - [UserModel](#userModel)
 - **Response Body**
     - [UserModel](#UserModel)
-# 命名规范
-- 资源以复数命名
-- 资源不进行多层嵌套
-    - 比如原来的`/api/v3/conversations/{id}/messages`来获取Message资源，这里进行了资源嵌套。建议采用`/api/v3/messages?conversationsId={id}`来获取。
