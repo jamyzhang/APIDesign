@@ -1,5 +1,10 @@
-<center><h1>API设计格式样例</h1></center>
+<center><h1>API设计规范</h1></center>
 
+# 规范说明
+- 在文档开始，建立一个Resource List表，罗列此文档所有可操作的资源。
+- 每个资源的说明包含Models和Endpoints两部分。
+- Endpoints部分一开始罗列此资源的所有操作。
+- 书写格式就按下面的样例套用。
 # 格式样例
 
 ## Resource List
@@ -56,3 +61,6 @@ Endpoint |Description
 - **Response Body**
     - [UserModel](#UserModel)
 # 命名规范
+- 资源以复数命名
+- 资源不进行多层嵌套
+    - 比如原来的`/api/v3/conversations/{id}/messages`来获取Message资源，这里进行了资源嵌套。建议采用`/api/v3/messages?conversationsId={id}`来获取。
