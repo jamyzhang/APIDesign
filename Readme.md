@@ -12,7 +12,6 @@
     - 比如原来的`/api/v3/conversations/{id}/messages`来获取Message资源，这里进行了资源嵌套。建议采用`/api/v3/messages?conversationsId={id}`来获取。
 -	API统一使用JS推荐的驼峰来命名，包括所有的文档中的url, 对象名称，对象属性
 -	实体/属性的命名统一用名词
--	bool值统一用is开头
 -	时间格式统一使用iso 8601标准, https://en.wikipedia.org/wiki/ISO_8601
 -	唯一性检查的方法, 采用HEAD Method, 检查具体唯一性的资源
     -	HEAD intents/names/{name}
@@ -134,7 +133,7 @@ Endpoint |Description
 
   如以email地址定义资源的agent, 可以直接用put操作, 如果已经存在就修改, 如果不存在就添加
 
-  `PUST api/v2/account/agents`
+  `PUT api/v2/account/agents`
 
   ```json
   {
