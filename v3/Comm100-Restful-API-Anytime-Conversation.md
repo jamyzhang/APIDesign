@@ -845,7 +845,7 @@
 | `ifEnableConversationLimitForEachAgent` | boolean | if set maximum number of conversations an agent can be allocated to |
 | `conversationLimitForAllAgents` | integer | maximum number of conversations all agents can be allocated to |
 | `agentPreferences` | [agentPreference](#agentPreference)[] | agent preference for allocation |
-| `excludePendingExternal` | boolean | if exclude `Pending Extenal` status while validating if an agent has reached the max number |
+| `excludePendingExternal` | boolean | if exclude `Pending External` status while validating if an agent has reached the max number |
 | `excludeOnHold` | boolean | if exclude `On Hold` status while validating if an agent has reached the max number |
 
 ### allocationRule
@@ -886,7 +886,7 @@
     - ifEnableConversationLimitForEachAgent: boolean, if set maximum number of conversations an agent can be allocated to
     - conversationLimitForAllAgents: integer, maximum number of conversations all agents can be allocated to
     - allocationAgentPreferences: [allocationAgentPreference](#allocationAgentPreference)[]
-    - ifExcludePendingExternal: boolean, if exclude `Pending Extenal` status while validating if an agent has reached the max number
+    - ifExcludePendingExternal: boolean, if exclude `Pending External` status while validating if an agent has reached the max number
     - ifExcludeOnHold: boolean, if exclude `On Hold` status while validating if an agent has reached the max number
 + Response
     - [autoAllocationSetting](#autoAllocationSetting)
@@ -1552,7 +1552,7 @@
 	- dataList: 
 	    - id: integer,
 		- name: string,
-		- channelEfficiencies: [channelEfficiencie](#channel-efficiency)[]
+		- channelEfficiencies: [channelEfficiencies](#channel-efficiency)[]
 		- startTime: string,
 		- endTime: string,
 	- channel total number: [channel total number](#channel-total-messages-number)[]
