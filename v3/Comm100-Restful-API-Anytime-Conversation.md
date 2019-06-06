@@ -660,15 +660,24 @@
 | `name` | string | view name | 
 | `isPrivate` | boolean | if private view| 
 | `createdById` | string | agent id | 
-| `conditions` | [condition](#condition)[] | array of view condition | 
+| `conditions` | [conditions](#conditions) | view conditions | 
 
-### condition 
+### Conditions 
+  | Name | Type |Description |
+  | - | - | - | 
+  | `when` | string | when the rule is triggered, including `all`, `any` and `logicalExpression` |
+  | `logicExpression` | string | the logical expression of the conditions |
+  | `list` | [condition](#condition)[] | an array of condition |
+
+### condition
 | Name | Type | Description | 
 | - | - | - | 
-| `id` | string | condition id | 
+| `id` | string | id of the condition |
+| `type` | string | `view`, `trigger`, `sla`, `routingRule` |
 | `fieldId` | string | field id | 
 | `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
 | `value` | string | condition value | 
+| `orderNum` | integer | order number | 
 
 ## endpoints 
 ### List views 
@@ -683,7 +692,7 @@
 - Parameters 
     - name: string, view name, required 
     - isPrivate: boolean, if private view, default value: `false` 
-    - conditions: [condition](#condition)[], array of view condition
+    - conditions: [conditions](#conditions), view conditions
 - Response 
     - [view](#view) list 
 
@@ -700,7 +709,7 @@
     - id: string, view id 
     - name: string, view name, required 
     - isPrivate: boolean, if private view 
-    - conditions: [condition](#condition)[], array of view condition
+    - conditions: [conditions](#conditions), view conditions
 - Response 
     - [view](#view) 
 
@@ -740,22 +749,6 @@
 | `routeToId` | string |id of the route object |
 | `routeWithPriority` | string | conversation priority enum number|
 
-### Conditions 
-  | Name | Type |Description |
-  | - | - | - | 
-  | `when` | string | when the rule is triggered, including `all`, `any` and `logicalExpression` |
-  | `logicExpression` | string | the logical expression of the conditions |
-  | `list` | [condition](#condition)[] | an array of [condition](#condition) |
-
-  
-### condition
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | string | id of the condition |
-| `type` | string | `view`, `trigger`, `sla`, `routingRule` |
-| `fieldId` | string | field id | 
-| `matchType` | string | `contains`, `notContains`, `is`, `isNot`, `isMoreThan`, `isLessThan`, `before`, `after` | 
-| `value` | string | condition value | 
 
 ## endpoints
 ### get routing
@@ -900,7 +893,7 @@
 | `description` | string | description of the trigger |
 | `isEnabled` | boolean | if enabled the trigger |
 | `event` | string |  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` |
-| `conditions` | [condition](#condition)[] | conditions | 
+| `conditions` | [conditions](#conditions) | trigger conditions | 
 | `ifSetValue` | boolean | if set value |
 | `autoUpdate` | [autoUpdate](#autoUpdate)[] | auto update field value |
 | `ifSendEmail` | boolean | if send email |
@@ -943,7 +936,7 @@
     - description, string, description of the trigger
     - isEnabled, boolean, if enabled the trigger
     - event, string, `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime`
-    - conditions, [condition](#condition)[], conditions 
+    - conditions, [conditions](#conditions), conditions 
     - ifSetValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
     - ifSendEmail, boolean, if send email
@@ -965,7 +958,7 @@
     - description, string, description of the trigger
     - isEnabled, boolean, if enabled the trigger
     - event, string,  `conversationCreated`, `conversationReplyReceived`, `agentReplied`, `conversationAssigneeChanged`, `conversationStatusChanged`, ` conversationStatusLastForCertainTime` 
-    - conditions, [condition](#condition)[], conditions 
+    - conditions, [conditions](#conditions), conditions 
     - ifSetValue, boolean, if set value
     - autoUpdate, [autoUpdate](#autoUpdate)[], auto update field value
     - ifSendEmail, boolean, if send email
@@ -1014,7 +1007,7 @@
 | `nextRespondWithin` | integer | the hours next reply within |
 | `resolveRespondWithin` | integer | the hours a conversation should be resolved within |
 | `isBusinessHours`| boolean | if `businessHours` or `calenderHours` |
-| `conditions` | [condition](#condition)[] | conditions | 
+| `conditions` | [conditions](#conditions) | conditions | 
 | `orderNum` | integer | SLA execute and display order |
 
 ## endpoints
@@ -1040,7 +1033,7 @@
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer, 
     - isBusinessHours: boolean, `businessHours` or `calenderHours` 
-    - conditions: [condition](#condition)[]
+    - conditions: [conditions](#conditions)
 + Response
     - [SLAPolicy](#SLApolicy)
 
@@ -1053,7 +1046,7 @@
     - nextRespondWithin: integer, 
     - resolveRespondWithin: integer,  
     - businessHours: string, `businessHours` or `calenderHours` 
-    - conditions: [condition](#condition)[]
+    - conditions: [conditions](#conditions)
 + Response
     - [SLAPolicy](#SLApolicy)
 
@@ -1436,13 +1429,13 @@
 	- urgentPriorityConversations: integer
 	- highPriorityConversations: integer
 
-### realtime today
-- `GET /api/v3/anytime/reports/realtime/today`
+### realtime of lastest sereral days
+- `GET /api/v3/anytime/reports/realtime/bytime`
 - Parameters:
-    - no parameter
+    - days: int, days number, maximum number 15. 
 - Response:
  	- createdConversations: integer
-	- closedConversations: integer
+	- resolvedConversations: integer
 	- repliedConversations: integer
 	- reopenedConverstations: integer
 
@@ -1455,7 +1448,7 @@
 		- departmentId: integer,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
-		- todayClosedConversations: integer,
+		- todayResolvedConversations: integer,
 		- newConversations: integer,
 		- pendingInternalConversations: integer,
 		- pendingExternalConversations: integer,
@@ -1473,7 +1466,7 @@
 		- agentId: integer,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
-		- todayClosedConversations: integer,
+		- todayResolvedConversations: integer,
 		- newConversations: integer,
 		- pendingInternalConversations: integer,
 		- pendingExternalConversations: integer,
@@ -1625,7 +1618,7 @@
 		- nextRespondTimeAchievedPercentage: float,
 		- avgNextRespondTime: float,
 		- ResolveTimeAchievedPercentage: float, 
-        - avgResolveTime: fload,
+        - avgResolveTime: float,
         - breachedTickets: integer, 
 
 ### report SLA
@@ -1643,7 +1636,7 @@
 		- nextRespondTimeAchievedPercentage: float,
 		- avgNextRespondTime: float,
 		- ResolveTimeAchievedPercentage: float, 
-        - avgResolveTime: fload,
+        - avgResolveTime: float,
         - breachedTickets: integer
 
 * * *
