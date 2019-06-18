@@ -4,53 +4,99 @@
 
   | Resource | URL |Description
   | - | - | -
-|[Integration Account](#integration-account)|`/api/v3/channelapp/integrationAccounts`|Integration Account管理
-|[Message](#message)|`/api/v3/channelapp/messages`|	Message管理
-|[PublicKey](#publicKey)|`	/api/v3/channelapp/publickeys`|获取公钥
+|[Integration Account](#integration-account)|`/api/v3/channelapp/integrationAccounts`| Management of Integration Account
+|[Message](#message)|`/api/v3/channelapp/messages`|	
+|[PublicKey](#publicKey)|`	/api/v3/channelapp/publickeys`|
+|[App](#app)|`/v3/channelApp/apps`|
+|[PrivateKey](#PrivateKey)	|`/v3/channelApp/PrivateKeys`|
+|[Channel](#Channel) 	|`/v3/channelApp/channels`|
+|[ContactIdentityType](#contactIdentityType)	|`/v3/channelApp/contactIdentityTypes`|
+
 
 ## Integration Account
 ### Models
 #### IntegrationAccountModel
-    定义集成账号格式
+    The fields of a Integration Account.
 Name|Type |Description
 ---|---|---
-id| guid|`Read-only`<br>主键标识Id
-accountName | string|`Optional`<br>此账号在界面展示的名字，可识别的名字
-accountOriginalId|string|`Required`<br>此Account在Original Channel的ID。
-isEnabled|bool|`Optional`<br>是否可用
+id| guid|`Read-only`<br>Primary key
+accountName | string|`Optional`<br>The unique name of a integration account.
+accountOriginalId|string|`Required`<br>the user account id of a  orginal channel .
+isEnabled|bool|`Optional`<br>
 
 ### Endpoints
 Endpoint |Description
 ---|---
-[*GET* `/api/v3/channelapp/integrationAccounts/{id}`](#get-a-integrationAccount)| 根据id获取集成账号明细
-[*GET* `/api/v3/channelapp/integrationAccounts`](#query-all-integrationAccounts)| 根据指定条件，获取所有满足条件集成账号
-[*POST* `/api/v3/channelapp/integrationAccounts`](#create-a-integrationAccount)| 新建集成账号
-[*PUT* `/api/v3/channelapp/integrationAccounts/{id}`](#update-a-integrationAccount)| 修改集成账号
-[*DELETE* `/api/v3/channelapp/integrationAccounts/{id}`](#delete-a-integrationAccount)| 删除集成账号
+[*GET* `/api/v3/channelapp/integrationAccounts/{id}`](#get-a-integration-Account)| Retrieve a integration account by the id.
+[*POST* `/api/v3/channelapp/integrationAccounts`](#create-a-integration-Account)| create a integration account.
+[*PUT* `/api/v3/channelapp/integrationAccounts/{id}`](#update-a-integration-Account)| update the integration account.
+[*DELETE* `/api/v3/channelapp/integrationAccounts/{id}`](#delete-a-integrationAccount)| Delete the integration account.
 
-#### Get a IntegrationAccount
+#### Get a Integration Account
 - *GET* `/api/v3/channelapp/integrationAccounts/{id}`
 - **Path Paramters**
-    - id: *int* `Required` 主键
+    - id: *int* `Required` the primary key of a integaration account.
 - **Request Body**
 - **Response Body**
     - [IntegrationAccountModel](#IntegrationAccountModel)
 
-#### Query all IntegrationAccounts
--  *GET* `/api/v3/channelapp/integrationAccounts`
+#### Create a Integration Account
+-  *POST* `/api/v3/channelapp/integrationAccounts`
 - **Path Paramters**
-    - name: *string* `Optional`
-        - 根据名字模糊匹配
 - **Request Body**
+    - accountOriginalID：*string* `Required`
+    - accountName：*string* `Required`
+    - isEnable:*bool* `Optional`
 - **Response Body**
-    - [UserModel](#UserModel)[ ]
-        - List of User 
-#### Create a user 
+    - [IntegrationAccountModel](#IntegrationAccountModel)
 
-    新建用户
-- *POST* `/api/v3/users`
+#### Update a Integration Account
+-  *PUT* `/api/v3/channelapp/integrationAccounts/{id}`
 - **Path Paramters**
+   - id: *int* `Required` the primary key of a integaration account.
 - **Request Body**
-    - [UserModel](#userModel)
+    - accountOriginalID：*string* `Required`
+    - accountName：*string* `Required`
+    - isEnable:*bool* `Optional`
 - **Response Body**
-    - [UserModel](#UserModel)
+    - [IntegrationAccountModel](#IntegrationAccountModel)
+
+#### Delete a Integration Account
+-  *Delete* `/api/v3/channelapp/integrationAccounts/{id}`
+- **Path Paramters**
+   - id: *int* `Required` the primary key of a integaration account.
+- **Request Body**
+- **Response Body**
+## Message
+### Models
+#### Channel App Message
+Name|Type |Description
+---|---|---
+id| guid|`Read-only`<br>Primary key
+originalParnetId | string|`Optional`<br>The parent message id of the message
+originalConversationId|string|`Optional`<br>
+channelId|guid|`Required`<br>
+originalMessageId|string|`Optional`<br>
+orignalUrl|string|`Optional`<br>
+cc|string|`Optional`<br>
+subject|string|`Optional`<br>
+contents|[Message Content](#message-content)[]|`Required`
+createTime|time|`Required`
+
+
+
+#### Message Content
+Name|Type |Description
+---|---|---
+id| guid|`Read-only`<br>Primary key
+type  | string|`Required`<br>Text/HtmlText/File/Video/Audio/Picture/Location
+text|string|`Optional`<br> 
+htmlText|string|`Optional`<br> 
+name|string|`Optional`<br> 
+title|string|`Optional`<br> 
+url|string|`Optional`<br> 
+latitude|double|`Optional`<br> 
+longitude|double|`Optional`<br> 
+desc|string|`Optional`<br> 
+
+### Endpoints
