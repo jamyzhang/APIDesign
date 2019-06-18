@@ -92,7 +92,6 @@
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
-| `channelId` | string | channel Id | 
 | `receivedById` | string | receiving intergration account id | 
 | `originalId` | string | original id on social platform | 
 | `originalLink` | string | original link on social platform | 
@@ -104,7 +103,6 @@
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isEditable`| boolean | if the current agent can update\reply the conversation | 
 | `isActive`| boolean | if open in my active work area by agent | 
-| `lastMessage`| string | plain text of the last message | 
 | `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
@@ -140,11 +138,11 @@
 | - | - | - | 
 | `id` | string | id of message | 
 | `conversationId` | integer | id of conversation | 
-| `type` | string | `note`, `message`, `chat`, `offlineMessage` |
+| `channelId` | string | channel Id | 
+| `type` | string | `note`, `message` |
 | `directType` | string | `receive`, `send` |
 | `integrationAccountId`| string | integration account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
@@ -161,39 +159,13 @@
 ### content
 | Name | Type | Description | 
 | - | - | - | 
-| `type` | string | content type, `text`, `htmlText`, `media`, `file`, `location` |  
-| `data` | object | [text content](#text-content) or [html text content](#html-text-content) or [file message content](#file-message-content) or [media message content](#media-message-content) or [location message content](#location-message-content) | 
-
-### text content
-| Name | Type | Description | 
-| - | - | - |  
-| `type` | string | content type, `text`| 
-| `text` | string | text | 
-
-### html text content
-| Name | Type | Description | 
-| - | - | - |  
-| `type` | string | content type, `htmlText`| 
-| `htmlText` | string | html text |
-
-### file message content
-| Name | Type | Description | 
-| - | - | - | 
 | `id` | string | guid | 
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location` |  
+| `text` | string | text | 
+| `htmlText` | string | html text |
 | `name` | string | file name| 
 | `url` | string | download link | 
-
-### media message content
-| Name | Type | Description |
-| - | - | - |  
-| `id` | string | guid | 
-| `type` | string | media type, `video`, `audio`, `picture`| 
 | `title` | string | media title| 
-| `url` | string | download link | 
-
-### location message content
-| Name | Type | Description |  
-| - | - | - |  
 | `latitude` | string | latitude | 
 | `longitude` | string | longitude | 
 | `scale` | string | scale for location |
@@ -301,6 +273,19 @@
     | - | - |
     | sender | `get api/v3/anytime/conversations/{id}/messages?include=sender` |
 
+### Get a message 
+`get api/v3/anytime/conversations/messages/{id}` 
++ Parameters 
+    - id: string, message id 
++ Response 
+    - [message](#message)
++ Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v3/anytime/conversations/messages/{id}?include=sender` |
+
+
 ### Update a conversation 
 `put api/v3/anytime/conversations/{id}` 
 - Parameters 
@@ -344,6 +329,13 @@
 - Response 
     - [message](#message) 
 
+### Update send status of a message 
+`put api/v3/anytime/conversations/messages/{id}` 
+- Parameters  
+    - sendStatus: string, `success`, `sending`, `failed` 
+- Response 
+    - [message](#message) 
+
 ### Mark a conversation as read 
 `put api/v3/anytime/conversations/{id}/read` 
 + Parameters 
@@ -371,6 +363,27 @@
     - id: string, message id 
 + Response 
     - http status code
+
+### Batch mark messages as read 
+`put api/v3/anytime/conversations/messages/read` 
++ Parameters 
+    - ids: string[], message id array, 
++ Response 
+    - http status code
+
+### Batch mark messages as unread 
+`put api/v3/anytime/conversations/messages/unread` 
++ Parameters 
+    - ids: string[], message id array, 
++ Response 
+    - http status code
+
+### Get agents of openning conversation 
+`get api/v3/anytime/conversations/{id}/agents` 
++ Parameters 
+    - no parameter,
++ Response 
+    - agent list
 
 ### Delete a conversation 
 `delete api/v3/anytime/conversations/{id}` 
@@ -615,6 +628,21 @@
     - id: integer, conversation id 
 - Response 
     - http status code
+
+### event log
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | event log id | 
+| `conversationId` | integer | id of conversation | 
+| `text` | string | event log text | 
+| `time` | datetime | event time | 
+
+### List conversation event logs
+`get api/v3/anytime/conversations/{id}/eventLogs`
+- Parameters 
+    - id: integer, conversation id 
+- Response 
+    - [event log](#event-log)
 
 # Attachments  
 ## objects
