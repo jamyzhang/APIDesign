@@ -113,12 +113,13 @@
 
 # Resource List - Contact
 |Name|EndPoint|Note| 
+|---|---|---| 
 |[Contact](#contact)| /api/v3/Contact/contacts|| 
 |[Contact identities](#contact)| /api/v3/Contact/contacts/{Id}/identities|| 
 
 
 
-# Resource List - Common
+# Resource List - Global
 |Name|EndPoint|Note| 
 |---|---|---| 
 |[Visitor SSO Settings](#visitor-sso-settings)|/api/v3//Global/visitorSSO | 从realtime转移到公共模块| 
