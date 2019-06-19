@@ -2,10 +2,10 @@
 # Resource List  - RealtimeConversation 
 |Name|EndPoint|Note| 
 |---|---|---|
-|[Chats](#chats)|/api/v3/realtime/Historys/chats|  | 
-|[Offline Messages](#offline-messages)|/api/v3/realtime/Historys/offlineMessages | |
-|[Missed & Refused Chats](#get-missed-and-refused-chats-list)|/api/v3/realtime/Historys/missedAndRefusedChats | | 
-|[Agent chats](#agent-chats)|/api/v3/realtime/Historys/agentChats | |
+|[Chats](#chats)|/api/v3/realtime/historys/chats|  | 
+|[Offline Messages](#offline-messages)|/api/v3/realtime/historys/offlineMessages | |
+|[Missed & Refused Chats](#get-missed-and-refused-chats-list)|/api/v3/realtime/historys/missedAndRefusedChats | | 
+|[Agent chats](#agent-chats)|/api/v3/realtime/historys/agentChats | |
 |[Campaigns](#campaigns)|/api/v3/realtime/campaigns | | 
 |[Installation Code](#installation-code)|/api/v3/realtime/campaigns/{id}/code | | 
 |[Chat Button](#chat-button)|/api/v3/realtime/campaigns/{id}/chatButton| | 
@@ -74,7 +74,7 @@
 |[Auto Allocation](#routingrule)|/api/v3/anytime/autoAllocation||
 |[Trigger](#routingrule)|/api/v3/anytime/triggers||
 |[Working Time & Holidays](#routingrule)|/api/v3/anytime/workingTimeAndHolidays||
-|[SLA Policies](#routingrule)|/api/v3/anytime/sLAPolicies||
+|[SLA Policies](#routingrule)|/api/v3/anytime/slaPolicies||
 |[BlockedSender](#blockedsender)|/api/v3/anytime/blockedSenders|Blocked email or domain| 
 |[EmailAccount](#emailaccount)|/api/v3/anytime/emailAccounts| Email accounts|
 |[IntegrationAccount](#IntegrationAccount)|/api/v3/anytime/IntegrationAccounts| (New)? |  
@@ -96,39 +96,39 @@
 |Name|EndPoint|Note| 
 |---|---|---| 
 | [Bot](#bot) | /api/v3/aI/bots |
-| [Intent](#intent) | /api/v3/AI/bots/{bot_id}/intents |  
-| [Entity](#entity) | /api/v3/AI/bots/{bot_id}/entities |  
-| [Category](#category) | /api/v3/AI/bots/{bot_id}/categories |  
-| [Smart Trigger](#smart-trigger) | /api/v3/AI/bots/{bot_id}/smartTriggers |  
-| [Quick Reply](#quick-reply) | /api/v3/AI/bots/{bot_id}/quickReplies |  
-| [Learning Question](#learning-question) | /api/v3/AI/bots/{bot_id}/learningquestions | 
-| [Report](#report) | /api/v3/AI/bots/{bot_id}/reports | 
-| [General](#general) | /api/v3/AI/genaral |
-| [Agent Bot Setting](#agent-bot-setting) | /api/v3/aI/agentAssit/setting |
-| [Agent Bot Word Weight](#agent-bot-word-weight) | /api/v3/AI/agentBot/wordWeight |
-| [Agent Bot Synonym](#agent-bot-synonym) | /api/v3/AI/agentBot/synonyms | 
-| [Agent Bot Learning Question](#agent-bot-learing-question) | /api/v3/AI/agentBot/learningQuestions |  
-| [Agent Bot Suggestion](#agent-bot-suggestion) | /api/v3/AI/agentBot/questionSuggestions/query | 
+| [Intent](#intent) | /api/v3/ai/bots/{bot_id}/intents |  
+| [Entity](#entity) | /api/v3/ai/bots/{bot_id}/entities |  
+| [Category](#category) | /api/v3/ai/bots/{bot_id}/categories |  
+| [Smart Trigger](#smart-trigger) | /api/v3/ai/bots/{bot_id}/smartTriggers |  
+| [Quick Reply](#quick-reply) | /api/v3/ai/bots/{bot_id}/quickReplies |  
+| [Learning Question](#learning-question) | /api/v3/ai/bots/{bot_id}/learningquestions | 
+| [Report](#report) | /api/v3/ai/bots/{bot_id}/reports | 
+| [General](#general) | /api/v3/ai/genaral |
+| [Agent Bot Setting](#agent-bot-setting) | /api/v3/ai/agentAssit/setting |
+| [Agent Bot Word Weight](#agent-bot-word-weight) | /api/v3/ai/agentAssit/wordWeight |
+| [Agent Bot Synonym](#agent-bot-synonym) | /api/v3/ai/agentAssit/synonyms | 
+| [Agent Bot Learning Question](#agent-bot-learing-question) | /api/v3/ai/agentAssit/learningQuestions |  
+| [Agent Bot Suggestion](#agent-bot-suggestion) | /api/v3/ai/agentAssit/questionSuggestions/query | 
 
 
 # Resource List - Contact
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Contact](#contact)| /api/v3/Contact/contacts|| 
-|[Contact identities](#contact)| /api/v3/Contact/contacts/{Id}/identities|| 
+|[Contact](#contact)| /api/v3/contact/contacts|| 
+|[Contact identities](#contact)| /api/v3/contact/contacts/{Id}/identities|| 
 
 
 
 # Resource List - Global
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Visitor SSO Settings](#visitor-sso-settings)|/api/v3//Global/visitorSSO | 从realtime转移到公共模块| 
-|[Agent](#agent)| /api/v3/agents||
-|[Site](#site)| /api/v3/sites|Account & Billing|
-|[Tag](#tag)|/api/v3/tags|从anytime转移过来，realtime暂不实现| 
-|[Canned Messages](#agent)|/api/v3/cannedMessages|从anytime和realtime合并并转移到公共模块|
-|[Canned Message Categorys](#canned-message-categorys)|/api/v3/cannedMessageCategories|从anytime和realtime移交,需要合并数据|
-|[Departments](#departments)|/api/v3/departments|从anytime和realtime合并并转移到公共模块|
+|[Visitor SSO Settings](#visitor-sso-settings)|/api/v3/global/visitorSSO | 从realtime转移到公共模块| 
+|[Agent](#agent)| /api/v3/global/agents||
+|[Site](#site)| /api/v3/global/sites|Account & Billing|
+|[Tag](#tag)|/api/v3/global/tags|从anytime转移过来，realtime暂不实现| 
+|[Canned Messages](#agent)|/api/v3/global/cannedMessages|从anytime和realtime合并并转移到公共模块|
+|[Canned Message Categorys](#canned-message-categorys)|/api/v3/global/cannedMessageCategories|从anytime和realtime移交,需要合并数据|
+|[Departments](#departments)|/api/v3/global/departments|从anytime和realtime合并并转移到公共模块|
 |[Attachments](#attachments)|/api/v3/attachments|从anytime和realtime合并并转移到公共模块|
 |[Credit Card Masking](#credit-card-masking)|/api/v3/creditcardMasking||
 |[Password Policy](#password-policy)|/api/v3/passwordPolicys||
