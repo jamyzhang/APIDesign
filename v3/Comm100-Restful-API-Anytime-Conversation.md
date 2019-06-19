@@ -76,7 +76,7 @@
 |[Fields&Mapping](#fields&mapping)|/api/v3/anytime/fields| System fields and custom fields | 
 |[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders| Blocked email or domain | 
 |[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders | 
-|[IntegrationAccount](#integration-accounts)|/api/v3/anytime/integrationAccounts| Integration accounts | 
+|[ChannelAccount](#channel-accounts)|/api/v3/anytime/channelAccounts| Channel accounts | 
 |[Channel](#channels)|/api/v3/anytime/channels| integrated channels | 
 |[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports | 
 
@@ -141,8 +141,8 @@
 | `channelId` | string | channel Id | 
 | `type` | string | `note`, `message` |
 | `directType` | string | `receive`, `send` |
-| `integrationAccountId`| string | integration account id | 
-| `contactIdentityId`| string | id of contact identity |
+| `channelAccountId`| string | channel account id | 
+| `contactIdentity`| [contactIdentity](#contactIdentity) | contact identity |
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageLink` | string | origial message link |
 | `parentId` | string | parent id |
@@ -156,6 +156,15 @@
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
  
+### contactIdentity 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | id of contact identity | 
+| `contactIdentity` | string | contact identity, email, facebook id, twitter id, sms number... |
+| `name` | string | original channel name |
+| `avatarUrl` | string | original channel avatar url |
+| `originalContactInfoUrl` | string | original channel contact info URL | 
+
 ### content
 | Name | Type | Description | 
 | - | - | - | 
@@ -176,7 +185,7 @@
 | - | - | - | 
 | `id` | string | id of message draft | 
 | `conversationId` | integer | id of conversation | 
-| `integrationAccountId`| string | integration account id | 
+| `channelAccountId`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `parentId` | string | parent id |
 | `subject` | string | subject | 
@@ -320,7 +329,7 @@
 `post api/v3/anytime/conversations/{id}/messages` 
 - Parameters  
     - type: string, `note`, `message`, required
-    - integrationAccountId: string, integration account id,
+    - channelAccountId: string, channel account id,
     - contactIdentityId: string, contact identity id,
     - subject: string, for email message, email subject
     - cc: string, message cc emails 
@@ -1299,7 +1308,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of junk | 
-| `integrationAccount`| string | integration account id | 
+| `channelAccount`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
@@ -1358,11 +1367,11 @@
 - Response 
     - http status code 
 
-# Integration Accounts 
+# Channel Accounts 
 
 ## objects 
 
-### integrationAccount 
+### channelAccount 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
@@ -1370,29 +1379,29 @@
 | `channelId` | string | channel id |   
 
 ## endpoints 
-### List integration accounts 
-`get api/v3/anytime/integrationAccounts` 
+### List channel accounts 
+`get api/v3/anytime/channelAccounts` 
 - Parameters
     - channelId: string, optional
 - Response 
-    - [integrationAccount](#integrationAccount)[] 
+    - [channelAccount](#channelAccount)[] 
 
-### Add an integration account 
-`post api/v3/anytime/integrationAccounts` 
+### Add an channel account 
+`post api/v3/anytime/channelAccounts` 
 - Parameters
-    - integrationAccount: [integrationAccount](#integrationAccount) 
+    - channelAccount: [channelAccount](#channelAccount) 
 - Response 
-    - [integrationAccount](#integrationAccount)
+    - [channelAccount](#channelAccount)
 
-### Update an integration account 
-`put api/v3/anytime/integrationAccounts/{id}` 
+### Update an channel account 
+`put api/v3/anytime/channelAccounts/{id}` 
 - Parameters
     - name: string 
 - Response 
-    - [integrationAccount](#integrationAccount)
+    - [channelAccount](#channelAccount)
 
-### Delete an integration account 
-`delete api/v3/anytime/integrationAccounts/{id}` 
+### Delete an channel account 
+`delete api/v3/anytime/channelAccounts/{id}` 
 - Parameters
     - id: string,
 - Response 
@@ -1410,7 +1419,7 @@
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `messageMaxLength` | int | outgoing message max length |
 | `messageCapability` | string[] | outgoing message support message type |
-| `isSupportReplyWithDiffAccount` | bool | If support reply with different integration account |  
+| `isSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
 
 ## endpoints 
 ### List all integrated channels 
