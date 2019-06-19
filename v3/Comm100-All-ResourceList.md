@@ -96,26 +96,32 @@
 |Name|EndPoint|Note| 
 |---|---|---| 
 | [Bot](#bot) | /api/v3/aI/bots |
-| [Intent](#intent) | /api/v3/aI/bots/{bot_id}/intents |  
-| [Entity](#entity) | /api/v3/aI/bots/{bot_id}/entities |  
-| [Category](#category) | /api/v3/aI/bots/{bot_id}/categories |  
-| [Smart Trigger](#smart-trigger) | /api/v3/aI/bots/{bot_id}/smartTriggers |  
-| [Quick Reply](#quick-reply) | /api/v3/aI/bots/{bot_id}/quickReplies |  
-| [Learning Question](#learning-question) | /api/v3/aI/bots/{bot_id}/learningquestions | 
-| [Report](#report) | /api/v3/aI/bots/{bot_id}/reports | 
-| [General](#general) | /api/v3/aI/genaral |
-| [Agent Bot Setting](#agent-bot-setting) | /api/v3/aI/agentBot/setting |
-| [Agent Bot Word Weight](#agent-bot-word-weight) | /api/v3/aI/agentBot/wordWeight |
-| [Agent Bot Synonym](#agent-bot-synonym) | /api/v3/aI/agentBot/synonyms | 
-| [Agent Bot Learning Question](#agent-bot-learing-question) | /api/v3/aI/agentBot/learningQuestions |  
-| [Agent Bot Suggestion](#agent-bot-suggestion) | /api/v3/aI/agentBot/questionSuggestions/query | 
+| [Intent](#intent) | /api/v3/AI/bots/{bot_id}/intents |  
+| [Entity](#entity) | /api/v3/AI/bots/{bot_id}/entities |  
+| [Category](#category) | /api/v3/AI/bots/{bot_id}/categories |  
+| [Smart Trigger](#smart-trigger) | /api/v3/AI/bots/{bot_id}/smartTriggers |  
+| [Quick Reply](#quick-reply) | /api/v3/AI/bots/{bot_id}/quickReplies |  
+| [Learning Question](#learning-question) | /api/v3/AI/bots/{bot_id}/learningquestions | 
+| [Report](#report) | /api/v3/AI/bots/{bot_id}/reports | 
+| [General](#general) | /api/v3/AI/genaral |
+| [Agent Bot Setting](#agent-bot-setting) | /api/v3/aI/agentAssit/setting |
+| [Agent Bot Word Weight](#agent-bot-word-weight) | /api/v3/AI/agentBot/wordWeight |
+| [Agent Bot Synonym](#agent-bot-synonym) | /api/v3/AI/agentBot/synonyms | 
+| [Agent Bot Learning Question](#agent-bot-learing-question) | /api/v3/AI/agentBot/learningQuestions |  
+| [Agent Bot Suggestion](#agent-bot-suggestion) | /api/v3/AI/agentBot/questionSuggestions/query | 
+
+
+# Resource List - Contact
+|Name|EndPoint|Note| 
+|[Contact](#contact)| /api/v3/Contact/contacts|| 
+|[Contact identities](#contact)| /api/v3/Contact/contacts/{Id}/identities|| 
+
+
 
 # Resource List - Common
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Contact](#contact)| /api/v3/contacts|| 
-|[Contact identities](#contact)| /api/v3/contacts/{Id}/identities|| 
-|[Visitor SSO Settings](#visitor-sso-settings)|/api/v3/visitorSSO | 从realtime转移到公共模块| 
+|[Visitor SSO Settings](#visitor-sso-settings)|/api/v3//Global/visitorSSO | 从realtime转移到公共模块| 
 |[Agent](#agent)| /api/v3/agents||
 |[Site](#site)| /api/v3/sites|Account & Billing|
 |[Tag](#tag)|/api/v3/tags|从anytime转移过来，realtime暂不实现| 
