@@ -2,7 +2,7 @@
 # 概述
 
 1. API的设计文档使用markdown文件来维护
-2. 所有的API统一放到 Teams >> Research and Development >> General >> API 下面, 每一个api一份文档, 如livechat可能有如下几个api
+2. 所有的API文档统一放到https://github.com/jamyzhang/APIDesign 根据版本号存放 每一个api一份文档, 如livechat可能有如下几个api
   - livechat visitor api
   - livechat agent console api
   - livechat restful api
