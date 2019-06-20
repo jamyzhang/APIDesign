@@ -1,6 +1,5 @@
-## Note
-- //这个文档废弃了。    不需要这些接口了。 转发平台调用的接口和agent console调用一样的接口。
-- 这个API是共享平台提供给APP中心调用的，用于转发Message和回调消息发送的结果。
+## Note 
+- 这2个API是共享平台提供给APP中心调用的，用于转发Message和回调消息发送的结果。不需要开放给客户。
 
 ## Objects
 
@@ -8,10 +7,10 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message | 
-| `originalConversationId` | integer | id of conversation | 
-| `integrationAccountId`| string | integration account id | 
-| `contactIdentityId`| string | id of contact identity |
 | `channelId` | string | channel id | 
+| `channelAccountId`| string | integration account id | 
+| `contactIdentityId`| string | id of contact identity |
+| `originalConversationId` | integer | id of conversation | 
 | `originalMessageId` | string | original message id|
 | `originalMessageUrl` | string | origial message url |
 | `originalParentId` | string | parent id |
@@ -65,6 +64,10 @@
 `put api/v3/anytime/platform/conversations/messages/{id}`
 - Parameters
     - sendStatus: string, `success`, `failed`
-    - message: string, message text, for example: fail reason
+    - originalMessageId: string, 
+    - originalMessageUrl: string,
+    - content[]: 
+        - id: string
+        - url: string 
 - Response 
     - httpStatusCode
