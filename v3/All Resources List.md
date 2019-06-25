@@ -129,13 +129,14 @@
 |[Canned Messages](#agent)|/api/v3/global/cannedMessages|从anytime和realtime合并并转移到公共模块|
 |[Canned Message Categorys](#canned-message-categorys)|/api/v3/global/cannedMessageCategories|从anytime和realtime移交,需要合并数据|
 |[Departments](#departments)|/api/v3/global/departments|从anytime和realtime合并并转移到公共模块|
-|[Attachments](#attachments)|/api/v3/attachments|从anytime和realtime合并并转移到公共模块|
-|[Credit Card Masking](#credit-card-masking)|/api/v3/creditcardMasking||
-|[Password Policy](#password-policy)|/api/v3/passwordPolicys||
-|[Audit Log](#audit-log)|/api/v3/auditLogs||
-|[Agent Single Sign-On](#agent-single-sign-on)|/api/v3/agentSingleSignOn||
-|[Agent reports ](#agent-reports)|/api/v3/reports/agentReports |Availability/Canned Message  |
-|[webhooks](#webhooks)|/api/v3/webhooks |  |
+|[Attachments](#attachments)|/api/v3/global/attachments|从anytime和realtime合并并转移到公共模块|
+|[Credit Card Masking](#credit-card-masking)|/api/v3/global/creditcardMasking||
+|[Password Policy](#password-policy)|/api/v3/global/passwordPolicys||
+|[Audit Log](#audit-log)|/api/v3/global/auditLogs||
+|[Agent Single Sign-On](#agent-single-sign-on)|/api/v3/global/agentSingleSignOn||
+|[webhooks](#webhooks)|/api/v3/global/webhooks |  |
+|[Agent reports ](#agent-reports)|/api/v3/global/reports/agentReports |Availability/Canned Message  |
+
 
 
 
