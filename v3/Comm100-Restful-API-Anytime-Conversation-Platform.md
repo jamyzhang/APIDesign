@@ -8,8 +8,8 @@
 | - | - | - | 
 | `id` | string | id of message | 
 | `channelId` | string | channel id | 
-| `channelAccountId`| string | integration account id | 
-| `contactIdentityId`| string | id of contact identity |
+| `channelAccountId`| string | channel account id | 
+| `contactIdentity`| [contactIdentity](#contactIdentity) | contact identity |
 | `originalConversationId` | integer | id of conversation | 
 | `originalMessageId` | string | original message id|
 | `originalMessageUrl` | string | origial message url |
@@ -24,6 +24,15 @@
 | `senderType`| string | `contact` | 
 | `time` | datetime | the sent time of the message | 
  
+### contactIdentity 
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | id of contact identity | 
+| `contactIdentity` | string | contact identity, email, facebook id, twitter id, sms number... |
+| `name` | string | original channel name |
+| `avatarUrl` | string | original channel avatar url |
+| `originalContactInfoUrl` | string | original channel contact info URL | 
+
  ### content
 | Name | Type | Description | 
 | - | - | - | 
@@ -45,13 +54,17 @@
 `post api/v3/anytime/platform/conversations/messages` 
 - Parameters  
     - channelId： string, channel Id, required,
-    - integrationAccountId: string, channel account id,
-    - contactIdentityId: string, contact identity id,
+    - channelAccountId: string, channel account id,
+    - contactIdentity: 
+        - contactIdentity: string, 
+        - name: string,
+        - avatarUrl: string,
+        - originalContactInfoUrl: string
+    - originalParentId: string, 
+    - originalConversationId: string
     - originalMessageId: string,
     - originalMessageUrl: string,
     - subject: string, for email message, email subject,
-    - originalParentId: string, 
-    - originalConversationId: string
     - cc: string, message cc emails, 
     - contents: [content](#content)[],
     - sendByType: string, `agent`, 
