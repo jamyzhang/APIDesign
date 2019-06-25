@@ -17,11 +17,11 @@
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v3/anytime/conversations` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/conversations/{id}` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v3/anytime/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v3/anytime/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
     | `get api/v3/anytime/conversations/{id}/messages` | sender |
-    | `get api/v3/anytime/deletedConversations` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/deletedConversations/{id}` | assignedAgent, assignedDepartment, contact, createdBy, lastRepliedBy, messages |
+    | `get api/v3/anytime/deletedConversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v3/anytime/deletedConversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
     | `get api/v3/anytime/deletedConversations/{id}/messages` | sender |
     | `get api/v3/anytime/portalConversations/{id}` | contact, messages |
     | `get api/v3/anytime/portalConversations` | contact |
@@ -92,9 +92,7 @@
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
-| `receivedById` | string | receiving intergration account id | 
 | `originalId` | string | original id on social platform | 
-| `originalLink` | string | original link on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
 | `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
 | `hasDraft` | boolean | if has draft | 
@@ -142,7 +140,7 @@
 | `type` | string | `note`, `message` |
 | `directType` | string | `receive`, `send` |
 | `channelAccountId`| string | channel account id | 
-| `contactIdentity`| [contactIdentity](#contactIdentity) | contact identity |
+| `contactIdentityId`| string | contact identity id |
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
 | `originalMessageUrl` | string | origial message link |
 | `parentId` | string | parent id |
@@ -156,15 +154,6 @@
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | the sent time of the message | 
  
-### contactIdentity 
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | string | id of contact identity | 
-| `contactIdentity` | string | contact identity, email, facebook id, twitter id, sms number... |
-| `name` | string | original channel name |
-| `avatarUrl` | string | original channel avatar url |
-| `originalContactInfoUrl` | string | original channel contact info URL | 
-
 ### content
 | Name | Type | Description | 
 | - | - | - | 
@@ -226,7 +215,7 @@
     | - | - |
     | assignedAgent | `get api/v3/anytime/conversations?include=assignedAgent` |
     | assignedDepartment | `get api/v3/anytime/conversations?include=assignedDepartment` |
-    | contact | `get api/v3/anytime/conversations?include=contact` |
+    | contactOrVisitor | `get api/v3/anytime/conversations?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/conversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/conversations?include=lastRepliedBy` | 
 
@@ -242,29 +231,27 @@
     | - | - |
     | assignedAgent | `get api/v3/anytime/conversations/{id}?include=assignedAgent` |
     | assignedDepartment | `get api/v3/anytime/conversations/{id}?include=assignedDepartment` |
-    | contact | `get api/v3/anytime/conversations/{id}?include=contact` |
+    | contactOrVisitor | `get api/v3/anytime/conversations/{id}?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/conversations/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/conversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/conversations/{id}?include=messages` |
+    | eventLogs | `get api/v3/anytime/conversations/{id}?include=eventLogs` |
  
-### Submit a new conversation 
+### Submit a new conversation
 `post api/v3/anytime/conversations` 
 - Parameters 
-    - subject: string, conversation subject, required
-    - channelId: string, channel Id, required 
-    - relatedType: string, `contact`, `visitor`
-    - relatedId: string, contact id or visitor id
+    - subject: string, conversation subject, required 
     - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed`, default value: `new` 
-    - receivedBy: string,
     - customFields: [custom field value](#custom-field-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
-        - type: string, `note`, `message`, required
-        - subject: string, for email message, email subject
-        - from: string, for email type message, one of email account address 
+        - channelId: string, channel Id, required
+        - channelAccountId: string, channel account id,
+        - contactId: string, contact id,
+        - subject: string, for email message, email subject 
         - cc: string, message cc emails
         - contents: [content](#content)[],
 + Response 
@@ -313,9 +300,10 @@
     | sender | `get api/v3/anytime/conversations/{id}/messages?include=sender` |
 
 ### Get a message 
-`get api/v3/anytime/conversations/messages/{id}` 
+`get api/v3/anytime/conversations{id}/messages/{messageId}` 
 + Parameters 
-    - id: string, message id 
+    - id: string, conversation id 
+    - messageId: string, message id
 + Response 
     - [message](#message)
 + Includes
@@ -328,8 +316,8 @@
 `post api/v3/anytime/conversations/{id}/messages` 
 - Parameters  
     - type: string, `note`, `message`, required
-    - channelAccountId: string, channel account id,
-    - contactIdentityId: string, contact identity id,
+    - channelId: string, channel Id, required
+    - channelAccountId: string, channel account id, 
     - subject: string, for email message, email subject
     - cc: string, message cc emails 
     - parentId: string,
@@ -348,6 +336,14 @@
         - url: string
 - Response 
     - [message](#message) 
+
+### Resend a message 
+`put api/v3/anytime/conversations/messages/{id}/resend` 
+- Parameters  
+    - No parameter
+- Response 
+    - [message](#message) 
+
 
 ### Mark a conversation as read 
 `put api/v3/anytime/conversations/{id}/read` 
@@ -431,7 +427,7 @@
     | - | - |
     | assignedAgent | `get api/v3/anytime/deletedConversations?include=assignedAgent` |
     | assignedDepartment | `get api/v3/anytime/deletedConversations?include=assignedDepartment` |
-    | contact | `get api/v3/anytime/deletedConversations?include=contact` |
+    | contactOrVisitor | `get api/v3/anytime/deletedConversations?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/deletedConversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/deletedConversations?include=lastRepliedBy` | 
 
@@ -447,10 +443,11 @@
     | - | - |
     | assignedAgent | `get api/v3/anytime/deletedConversations/{id}?include=assignedAgent` |
     | assignedDepartment | `get api/v3/anytime/deletedConversations/{id}?include=assignedDepartment` |
-    | contact | `get api/v3/anytime/deletedConversations/{id}?include=contact` |
+    | contactOrVisitor | `get api/v3/anytime/deletedConversations/{id}?include=contactOrVisitor` |
     | createdBy | `get api/v3/anytime/deletedConversations/{id}?include=createdBy` |
     | lastRepliedBy | `get api/v3/anytime/deletedConversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/deletedConversations/{id}?include=messages` |
+    | eventLogs | `get api/v3/anytime/deletedConversations/{id}?include=eventLogs` |
 
 ### List messages of a deleted conversation
 `get api/v3/anytime/deletedConversations/{id}/messages` 
@@ -1419,11 +1416,13 @@
 | - | - | - | 
 | `id` | string | id | 
 | `name` | string | channel name | 
+| `contactIdentityType` | string | contact identity type |
 | `icon` | string | icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `messageMaxLength` | int | outgoing message max length |
 | `messageCapability` | string[] | outgoing message support message type |
 | `isSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
+| `isSupportDirectlyReply` | bool | If support directyly reply to a contact |  
 
 ## endpoints 
 ### List all integrated channels 
