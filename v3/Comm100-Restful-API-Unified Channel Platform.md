@@ -16,44 +16,44 @@
 ## Integration Account
 ### Models
 #### IntegrationAccountModel
-    The fields of a Integration Account.
+    The fields of an Integration Account.
 Name|Type |Description
 ---|---|---
 id| guid|`Read-only`<br>Primary key
-accountName | string|`Optional`<br>The unique name of a integration account.
-accountOriginalId|string|`Required`<br>the user account id of a  orginal channel .
+accountName | string|`Optional`<br>The unique name of an integration account.
+accountOriginalId|string|`Required`<br>the user account id of an  original channel .
 isEnabled|bool|`Optional`<br>
 
 ### Endpoints
 Endpoint |Description
 ---|---
-[*GET* `/api/v3/channelApp/integrationAccounts/{id}`](#get-a-integration-Account)| Retrieve a integration account by the id.
-[*POST* `/api/v3/channelApp/integrationAccounts`](#create-a-integration-Account)| create a integration account.
-[*PUT* `/api/v3/channelApp/integrationAccounts/{id}`](#update-a-integration-Account)| update the integration account.
-[*DELETE* `/api/v3/channelApp/integrationAccounts/{id}`](#delete-a-integrationAccount)| Delete the integration account.
+[*GET* `/api/v3/channelApp/integrationAccounts/{id}`](#get-a-integration-Account)| Retrieve an integration account by the id.
+[*POST* `/api/v3/channelApp/integrationAccounts`](#create-an-integration-Account)| create an integration account.
+[*PUT* `/api/v3/channelApp/integrationAccounts/{id}`](#update-an-integration-Account)| update the integration account.
+[*DELETE* `/api/v3/channelApp/integrationAccounts/{id}`](#delete-an-integrationAccount)| Delete the integration account.
 
-#### Get a Integration Account
+#### Get an Integration Account
 - *GET* `/api/v3/channelApp/integrationAccounts/{id}`
-- **URL Paramters**
-    - id: *int* `Required` the primary key of a integaration account.
+- **URL Parameters**
+    - id: *int* `Required` the primary key of an integration account.
 - **Request Body**
 - **Response Body**
     - [IntegrationAccountModel](#IntegrationAccountModel)
 
-#### Create a Integration Account
+#### Create an Integration Account
 -  *POST* `/api/v3/channelApp/integrationAccounts`
-- **URL Paramters**
+- **URL Parameters**
 - **Request Body**
     - accountOriginalID：*string* `Required`
     - accountName：*string* `Required`
     - isEnable:*bool* `Optional`
 - **Response Body**
-    - [IntegrationAccountModel](#IntegrationAccountModel)
+    - [IntegrationAccountModel](#IntegrtionAccountModel)
 
-#### Update a Integration Account
+#### Update an Integration Account
 -  *PUT* `/api/v3/channelApp/integrationAccounts/{id}`
-- **URL Paramters**
-   - id: *int* `Required` the primary key of a integaration account.
+- **URL Parameters**
+   - id: *int* `Required` the primary key of an integration account.
 - **Request Body**
     - accountOriginalID：*string* `Required`
     - accountName：*string* `Required`
@@ -61,10 +61,10 @@ Endpoint |Description
 - **Response Body**
     - [IntegrationAccountModel](#IntegrationAccountModel)
 
-#### Delete a Integration Account
+#### Delete an Integration Account
 -  *Delete* `/api/v3/channelApp/integrationAccounts/{id}`
-- **URL Paramters**
-   - id: *int* `Required` the primary key of a integaration account.
+- **URL Parameters**
+   - id: *int* `Required` the primary key of an integration account.
 - **Request Body**
 - **Response Body**
 ## Message
@@ -73,14 +73,14 @@ Endpoint |Description
 Name|Type |Description
 ---|---|---
 channelAccount| string|`Required`<br>The user account id of a visitor in original channel.
-name | string|`Optional`<br>The parent message id of the message
+name | string|`Optional`<br>
 avatarUrl|string|`Optional`<br>
 originalContactInfoUrl|string|`Optional`<br>
 #### Channel App Message
 Name|Type |Description
 ---|---|---
 id| guid|`Read-only`<br>Primary key
-originalParnetId | string|`Optional`<br>The parent message id of the message
+originalParentId | string|`Optional`<br>The parent message id of the message
 originalConversationId|string|`Optional`<br>
 channelId|guid|`Required`<br>
 originalMessageId|string|`Optional`<br>
@@ -116,7 +116,7 @@ Endpoint |Description
 [*PATCH* `/api/v3/channelApp/messages/{id}/updateResult`](#delete-a-message)| Update message processing result
 #### Create a message
 -  *POST* `/api/v3/channelApp/messages`
-- **URL Paramters**
+- **URL Parameters**
 - **Request Body**
     - IntegrationAccountId：*Guid*  `Required` The primary key of the integrated account that  receives messages.
     - ChannelAppContactIdentity：[Channel App Contact Identity](#channel-app-contact-identity)
@@ -133,14 +133,14 @@ Endpoint |Description
 
 #### Delete a message
 - *DELETE* `/api/v3/channelApp/messages/{id}`
-- **URL Paramters**
+- **URL Parameters**
    - id: *guid* `Required` the primary key of a message.
 - **Request Body**
 - **Response Body**
 
 #### Update message processing result
 - *PATCH* `/api/v3/channelApp/messages/{id}/updateResult`
-- **URL Paramters**
+- **URL Parameters**
    - id: *guid* `Required` the primary key of a message.
 - **Request Body**
     - IsSuccessful: *bool* `Required`
@@ -148,16 +148,16 @@ Endpoint |Description
         - Id: *guid* `Required`  the guid of a file.
         - Url: *string* `Required` the new url of a file.
      - OriginalMessageId: *string* `Optional`   
-     - OrignalMessageUrl: *string* `Optinal`
+     - OrignalMessageUrl: *string* `Optional`
 - **Response Body**
 ## PublicKey
 #### Retrieve public key
 - *GET* `/api/v3/channelApp/publicKeys?appid={appId}`
-- **URL Paramters**
+- **URL Parameters**
    - appId: *int* `Required` 
 - **Request Body**
 - **Response Body**
-    - key: *string* the public key of a app.
+    - key: *string* the public key of an app.
 
 ## App
 #### App Model
@@ -178,21 +178,21 @@ Endpoint |Description
 [*GET* `/api/v3/channelApp/apps/allowInstallation`](#get-allow-installation-apps)|Get the list of apps that is allowed to install at a site.
 #### Retrieve apps
 - *GET* `/api/v3/channelApp/apps?isSystem={isSystem}`
-- **URL Paramters**
+- **URL Parameters**
    - isSystem: *bool* `Optional`  if isSysetem is true, the result must be System apps.
 - **Request Body**
 - **Response Body**
     - [App Model](#app-model)[ ]
 #### Get installed apps
 - *GET* `/api/v3/channelApp/apps/installed?siteId={siteId}`
-- **URL Paramters**
+- **URL Parameters**
    - siteId: *int* `Required`  
 - **Request Body**
 - **Response Body**
     - [App Model](#app-model)[ ]
  #### Get allow installation apps
 - *GET* `/api/v3/channelApp/apps/allowInstallation?siteId={siteId}`
-- **URL Paramters**
+- **URL Parameters**
    - siteId: *int* `Required`  
 - **Request Body**
 - **Response Body**
@@ -201,7 +201,7 @@ Endpoint |Description
 ## PrivateKey
 #### Get PrivateKey
 - *GET* `/api/v3/channelApp/privateKeys?appId={appId}`
-- **URL Paramters**
+- **URL Parameters**
    - appId: *guid* `Required`  
 - **Request Body**
 - **Response Body**
@@ -218,10 +218,11 @@ messageDisplayType|int|
 outgoingMessageMaxLength|int|
 outgoingMessageCapability|string|
 IsSupportDiffAccountReply|bool|
+IsAllowActiveCreatation|bool|
 
-### Get the list of channels in a app
+### Get the list of channels in an app
 - *GET* `/api/v3/channelApp/channels?appId={appId}`
-- **URL Paramters**
+- **URL Parameters**
    - appId: *guid* `Required`  
 - **Request Body**
 - **Response Body**
@@ -230,7 +231,7 @@ IsSupportDiffAccountReply|bool|
 ### Get the list of available channels at a site
 
 - *GET* `/api/v3/channelApp/channels/bySite?siteId={siteId}`
-- **URL Paramters**
+- **URL Parameters**
    - siteId: *int* `Required`  
 - **Request Body**
 - **Response Body**
@@ -245,7 +246,7 @@ name|string|
 iconUrl|string|
 ### Get the list of Contact Identity Type at a site
 - *GET* `/api/v3/channelApp/contactIdentityType?siteId={siteId}`
-- **URL Paramters**
+- **URL Parameters**
    - siteId: *int* `Required`  
 - **Request Body**
 - **Response Body**
