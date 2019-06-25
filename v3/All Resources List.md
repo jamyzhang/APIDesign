@@ -138,5 +138,10 @@
 |[Agent reports ](#agent-reports)|/api/v3/global/reports/agentReports |Availability/Canned Message  |
 
 
+# Resource List - ChannelApp
+|Name|EndPoint|Note| 
+|---|---|---| 
+ 
+
 
 
