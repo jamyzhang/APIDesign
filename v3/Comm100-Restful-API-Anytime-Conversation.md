@@ -144,7 +144,7 @@
 | `channelAccountId`| string | channel account id | 
 | `contactIdentity`| [contactIdentity](#contactIdentity) | contact identity |
 | `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
-| `originalMessageLink` | string | origial message link |
+| `originalMessageUrl` | string | origial message link |
 | `parentId` | string | parent id |
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
@@ -270,31 +270,6 @@
 + Response 
     - [conversation](#conversations)
 
-### List messages of a conversation 
-`get api/v3/anytime/conversations/{id}/messages` 
-+ Parameters 
-    - id: integer, conversation id 
-+ Response 
-    - [message](#message) list 
-+ Includes
-
-    | Includes | Description |
-    | - | - |
-    | sender | `get api/v3/anytime/conversations/{id}/messages?include=sender` |
-
-### Get a message 
-`get api/v3/anytime/conversations/messages/{id}` 
-+ Parameters 
-    - id: string, message id 
-+ Response 
-    - [message](#message)
-+ Includes
-
-    | Includes | Description |
-    | - | - |
-    | sender | `get api/v3/anytime/conversations/messages/{id}?include=sender` |
-
-
 ### Update a conversation 
 `put api/v3/anytime/conversations/{id}` 
 - Parameters 
@@ -325,7 +300,31 @@
 + Response 
     - [conversation](#conversation) list 
 
-### Reply a conversation 
+### List messages of a conversation 
+`get api/v3/anytime/conversations/{id}/messages` 
++ Parameters 
+    - id: integer, conversation id 
++ Response 
+    - [message](#message) list 
++ Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v3/anytime/conversations/{id}/messages?include=sender` |
+
+### Get a message 
+`get api/v3/anytime/conversations/messages/{id}` 
++ Parameters 
+    - id: string, message id 
++ Response 
+    - [message](#message)
++ Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v3/anytime/conversations/messages/{id}?include=sender` |
+
+### Reply a message 
 `post api/v3/anytime/conversations/{id}/messages` 
 - Parameters  
     - type: string, `note`, `message`, required
@@ -338,10 +337,15 @@
 - Response 
     - [message](#message) 
 
-### Update send status of a message 
+### Update a message 
 `put api/v3/anytime/conversations/messages/{id}` 
 - Parameters  
     - sendStatus: string, `success`, `sending`, `failed` 
+    - originalMessageId: string, 
+    - originalMessageUrl: string,
+    - content[]: 
+        - id: string
+        - url: string
 - Response 
     - [message](#message) 
 
@@ -1312,7 +1316,7 @@
 | `contactIdentityId`| string | id of contact identity |
 | `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
-| `originalMessageLink` | string | origial message link |
+| `originalMessageUrl` | string | origial message link |
 | `parentId` | string | parent id |
 | `contents` | [content](#content)[] | contents |   
 | `subject` | string | subject | 
