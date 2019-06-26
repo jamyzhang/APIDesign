@@ -250,7 +250,7 @@
     - message: the first message of the conversation, required
         - channelId: string, channel Id, required
         - channelAccountId: string, channel account id,
-        - contactId: string, contact id,
+        - contactIdentityId: string, contact identity id,
         - subject: string, for email message, email subject 
         - cc: string, message cc emails
         - contents: [content](#content)[],
@@ -302,7 +302,7 @@
 ### Get a message 
 `get api/v3/anytime/conversations{id}/messages/{messageId}` 
 + Parameters 
-    - id: string, conversation id 
+    - id: number, conversation id 
     - messageId: string, message id
 + Response 
     - [message](#message)
@@ -326,8 +326,10 @@
     - [message](#message) 
 
 ### Update a message 
-`put api/v3/anytime/conversations/messages/{id}` 
+`put api/v3/anytime/conversations/{id}/messages/{messageId}` 
 - Parameters  
+    - id: number, conversation id,
+    - messageId: string, message id,
     - sendStatus: string, `success`, `sending`, `failed` 
     - originalMessageId: string, 
     - originalMessageUrl: string,
@@ -338,9 +340,10 @@
     - [message](#message) 
 
 ### Resend a message 
-`put api/v3/anytime/conversations/messages/{id}/resend` 
+`put api/v3/anytime/conversations/{id}/messages/{messageId}/resend` 
 - Parameters  
-    - No parameter
+    - id: number, conversation id,
+    - messageId: string, message id,
 - Response 
     - [message](#message) 
 
@@ -360,37 +363,25 @@
     - http status code
 
 ### Mark a message as read 
-`put api/v3/anytime/conversations/messages/{id}/read` 
+`put api/v3/anytime/conversations/{id}/messages/{messageId}/read` 
 + Parameters 
-    - id: string, message id 
+    - id: number, conversation id,
+    - messageId: string, message id,
 + Response 
     - http status code
 
 ### Mark a message as unread 
-`put api/v3/anytime/conversations/messages/{id}/unread` 
+`put api/v3/anytime/conversations/{id}/messages/{messageId}/unread` 
 + Parameters 
-    - id: string, message id 
-+ Response 
-    - http status code
-
-### Batch mark messages as read 
-`put api/v3/anytime/conversations/messages/read` 
-+ Parameters 
-    - ids: string[], message id array, 
-+ Response 
-    - http status code
-
-### Batch mark messages as unread 
-`put api/v3/anytime/conversations/messages/unread` 
-+ Parameters 
-    - ids: string[], message id array, 
+    - id: number, conversation id,
+    - messageId: string, message id,
 + Response 
     - http status code
 
 ### Get agents of openning conversation 
 `get api/v3/anytime/conversations/{id}/agents` 
 + Parameters 
-    - no parameter,
+    - id: number, conversation id,
 + Response 
     - agent list
 
