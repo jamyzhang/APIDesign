@@ -175,7 +175,7 @@ largeIconUrl|string|
 smallIconUrl|string|
 authorEmail|string|
 authorName|string|
-supportWebsit|string|
+supportWebsite|string|
 versionNumber|string|
 installationUrl|string|
 oauthRedirectUrl|string|
