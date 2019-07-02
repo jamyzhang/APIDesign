@@ -1,16 +1,18 @@
 # Unified Channel Platform
 
 ## Resource List
-
   | Resource | URL |Description
   | - | - | -
 |[ChannelAccounts](#channel-accounts)|`/api/v3/channelApp/channelAccounts`| Management of Channel Account
 |[Messages](#messages)|`/api/v3/channelApp/messages`|	
 |[PublicKeys](#publicKey)|`	/api/v3/channelApp/publicKeys`|
-|[Apps](#apps)|`/api/v3/channelApp/apps`|
+|[AppInfos](#appInfos)|`/api/v3/channelApp/appInfos`|
 |[PrivateKeys](#PrivateKeys)	|`/api/v3/channelApp/privateKeys`|
 |[Channels](#Channels) 	|`/api/v3/channelApp/channels`|
 |[ContactIdentityTypes](#contact-Identity-Types)	|`/api/v3/channelApp/contactIdentityTypes`|
+|[Apps](#apps)|`/api/v3/channelApp/apps`|
+|[IpWhitelists](#IpWhitelists)|`/api/v3/channelApp/apps/{appId}/ipWhitelists`|
+|[Versions](#Versions)|`/api/v3/channelApp/apps/{appId}/versions`|
 
 
 ## Channel Accounts
@@ -20,6 +22,8 @@
 Name|Type |Description
 ---|---|---
 id| guid|`Read-only`<br>Primary key
+appId| guid|`Required`<br>
+siteId| int|`Required`<br>
 accountName | string|`Optional`<br>The unique name of a channels account.
 accountOriginalId|string|`Required`<br>the user account id of an  original channel .
 isEnabled|bool|`Optional`<br>
@@ -113,7 +117,7 @@ Endpoint |Description
 ---|---
 [*POST* `/api/v3/channelApp/messages`](#create-a-messsage)| Create a message.
 [*DELETE* `/api/v3/channelApp/messages/{id}`](#delete-a-message)| Delete a message.
-[*PATCH* `/api/v3/channelApp/messages/{id}/updateResult`](#delete-a-message)| Update message processing result
+[*PUT* `/api/v3/channelApp/messages/{id}/updateResult`](#delete-a-message)| Update message processing result
 #### Create a message
 -  *POST* `/api/v3/channelApp/messages`
 - **URL Parameters**
@@ -139,7 +143,7 @@ Endpoint |Description
 - **Response Body**
 
 #### Update message processing result
-- *PATCH* `/api/v3/channelApp/messages/{id}/updateResult`
+- *PUT* `/api/v3/channelApp/messages/{id}/updateResult`
 - **URL Parameters**
    - id: *guid* `Required` the primary key of a message.
 - **Request Body**
@@ -159,8 +163,8 @@ Endpoint |Description
 - **Response Body**
     - key: *string* the public key of an app.
 
-## Apps
-#### App
+## AppInofs
+#### AppInfo
 Name|Type |Description
 ---|---|---
 id| guid|`Read-only`<br>Primary key
@@ -181,30 +185,33 @@ messageWebhookUrl|string|
 ### Endpoints
 Endpoint |Description
 ---|---
-[*GET* `/api/v3/channelApp/apps`](#retrieve-apps)| Retrieve  apps.
-[*GET* `/api/v3/channelApp/apps/installed`](#Get-installed-apps)|Get the list of apps that installed at a site.
-[*GET* `/api/v3/channelApp/apps/allowInstallation`](#get-allow-installation-apps)|Get the list of apps that is allowed to install at a site.
-#### Retrieve apps
-- *GET* `/api/v3/channelApp/apps?isSystem={isSystem}`
+[*GET* `/api/v3/channelApp/appInfos`](#retrieve-appInfos)| Retrieve  appInfos.
+[*GET* `/api/v3/channelApp/appInfos/installed`](#Get-installed-appInfos)|Get the list of appInfos that installed at a site.
+[*GET* `/api/v3/channelApp/appInfos/allowInstallation`](#get-allow-installation-appInfos)|Get the list of appInfos that is allowed to install at a site.
+#### Retrieve appInfos
+- *GET* `/api/v3/channelApp/appInfos?isSystem={isSystem}`
 - **URL Parameters**
-   - isSystem: *bool* `Optional`  if isSysetem is true, the result must be System apps.
+   - isSystem: *bool* `Optional`  if isSysetem is true, the result must be System appInfos.
 - **Request Body**
 - **Response Body**
-    - [App](#app)[ ]
-#### Get installed apps
-- *GET* `/api/v3/channelApp/apps/installed?siteId={siteId}`
-- **URL Parameters**
-   - siteId: *int* `Required`  
-- **Request Body**
-- **Response Body**
-    - [App](#app)[ ]
- #### Get allow installation apps
-- *GET* `/api/v3/channelApp/apps/allowInstallation?siteId={siteId}`
+    - [AppInfo](#appInfo)[ ]
+#### Get installed appInfos
+- *GET* `/api/v3/channelApp/appInfos/installed?siteId={siteId}`
 - **URL Parameters**
    - siteId: *int* `Required`  
 - **Request Body**
 - **Response Body**
-    - [App](#app-model)[ ]
+    - [AppInfo](#appInfo)[ ]
+ #### Get allow installation appInfos
+- *GET* `/api/v3/channelApp/appInfos/allowInstallation?siteId={siteId}`
+- **URL Parameters**
+   - siteId: *int* `Required`  
+- **Request Body**
+- **Response Body**
+    - [AppInfo](#appInfo)[ ]
+
+
+
 
 ## PrivateKey
 #### Get PrivateKey
@@ -227,24 +234,54 @@ outgoingMessageMaxLength|int|
 outgoingMessageCapability|string|
 isSupportDiffAccountReply|bool|
 isAllowActiveCreatation|bool|
+### Endpoints
 
-### Get the list of channels in an app
-- *GET* `/api/v3/channelApp/channels?appId={appId}`
+Endpoint |Description
+---|---
+[*GET* `/api/v3/channelApp/channels`](#Get-a-list-of-channels)| Get a list of channels.
+[*GET* `/api/v3/channelApp/channels/{id}`](#Get-the-channel)| Get the channel.
+[*POST* `/api/v3/channelApp/channels`](#create-a-channel)| Create a channel.
+[*PUT* `/api/v3/channelApp/channels/{id}`](#update-the-channel)| Update the channel.
+[*DELETE* `/api/v3/channelApp/channels/{id}`](#delete-the-channel)| Delete the channel.
+### Get a list of channels 
+    if the appId Parameter is not has a value,  all channels which have installed to  the siteId are returned.
+- *GET* `/api/v3/channelApp/channels`
 - **URL Parameters**
-   - appId: *guid* `Required`  
+   - appId: *guid*  
+   - versionId: *guid*
 - **Request Body**
 - **Response Body**
     - [Channel](#channel)[ ]
 
-### Get the list of available channels at a site
-
-- *GET* `/api/v3/channelApp/channels/bySite?siteId={siteId}`
+### Get the channel
+- *GET* `/api/v3/channelApp/channels/{id}`
 - **URL Parameters**
-   - siteId: *int* `Required`  
+    - id: *guid* 
 - **Request Body**
 - **Response Body**
-    - [Channel Model](#channel-model)[ ]
+    - [Channel](#channel)
 
+### Create a channel
+- *POST* `/api/v3/channelApp/channels`
+- **URL Parameters**
+- **Request Body**
+    - [Channel](#channel)
+- **Response Body**
+    - [Channel](#channel)
+### Update the channel
+- *PUT* `/api/v3/channelApp/channels/{id}`
+- **URL Parameters**
+    - id: *guid* 
+- **Request Body**
+    - [Channel](#channel)
+- **Response Body**
+    - [Channel](#channel)
+### Delete the channel
+- *DELETE* `/api/v3/channelApp/channels/{id}`
+- **URL Parameters**
+    - id: *guid* 
+- **Request Body**
+- **Response Body**
 ## Contact Identity Types
 ### Contact Identity Type
 Name|Type |Description
@@ -252,10 +289,145 @@ Name|Type |Description
 id| guid|`Read-only`<br>Primary key
 name|string|
 iconUrl|string|
+### Endpoints
+
+Endpoint |Description
+---|---
+[*GET* `/api/v3/channelApp/contactIdentityTypes`]()|
+[*GET* `/api/v3/channelApp/contactIdentityTypes/{id}`]()| Get the contact identity type.<br>*Standard Design*
+[*POST* `/api/v3/channelApp/contactIdentityTypes`]()|Create a contact identity type.<br>*Standard Design*
+[*PUT* `/api/v3/channelApp/contactIdentityTypes/{id}`]()|Update the contact identity type.<br>*Standard Design*
+[*DELETE* `/api/v3/channelApp/contactIdentityTypes/{id}`]()|Delete the contact identity type.<br>*Standard Design*
 ### Get the list of Contact Identity Type at a site
-- *GET* `/api/v3/channelApp/contactIdentityType?siteId={siteId}`
+    Get the contact Identity Types of the site
+- *GET* `/api/v3/channelApp/contactIdentityType`
 - **URL Parameters**
-   - siteId: *int* `Required`  
 - **Request Body**
 - **Response Body**
     - [Contact Identity Type](#Contact-identity-type)[ ]
+
+## Apps
+### App
+Name|Type |Description
+---|---|---
+id| guid|`Read-only`<br>Primary key
+secretKey|string|`Read-only`
+isSystem|bool|`Required`
+status|smallint|`Required`
+authorName|string|
+authorEmail|string|
+publishVersion|string|
+lastesVersion|string|`Required`
+siteId|string|`Required`
+channelAccountName|string|`Required`
+
+
+### Endpoints
+
+Endpoint |Description
+---|---
+[*GET* `/api/v3/channelApp/apps`](#Get-a-list-of-apps)| Get a list of apps.
+[*GET* `/api/v3/channelApp/apps/{id}`](#Get-the-app)| Get the app.
+[*POST* `/api/v3/channelApp/apps`](#create-an-app)| Create an app.
+[*PUT* `/api/v3/channelApp/apps/{id}`](#update-the-app)| Update the app.
+[*DELETE* `/api/v3/channelApp/apps/{id}`](#delete-the-app)| Delete the app.
+
+#### Get a list of apps
+- *GET* `/api/v3/channelApp/apps`
+- **URL Parameters**
+- **Request Body**
+- **Response Body**
+    - [App](#app)[ ]
+
+#### Get the app
+- *GET* `/api/v3/channelApp/apps/{id}`
+- **URL Parameters**
+   - id: *guid* `Required`  
+- **Request Body**
+- **Response Body**
+    - [App](#app)
+#### Create an app
+- *POST* `/api/v3/channelApp/apps`   
+- **Request Body**
+    - [App](#app)
+- **Response Body**
+    - [App](#app)
+#### Update the app
+- *PUT* `/api/v3/channelApp/apps/{id}`
+- **URL Parameters**
+   - id: *guid* `Required`  
+- **Request Body**
+    - [App](#app)
+- **Response Body**
+    - [App](#app)
+#### Delete the app
+- *DELETE* `/api/v3/channelApp/apps/{id}`
+- **URL Parameters**
+   - id: *guid* `Required`  
+- **Request Body**
+- **Response Body**
+## IpWhitelists
+### Ip Address
+Name|Type |Description
+---|---|---
+id| guid|`Read-only`<br>Primary key
+Ip|string|`Required`
+### Endpoints
+Endpoint |Description
+---|---
+[*GET* `/api/v3/channelApp/apps/{appId}/ipWhitelists`]()| Get the Ip whitelist which have created in the app.<br>*Standard Design*
+[*GET* `/api/v3/channelApp/apps/{appId}/ipWhitelists/{id}`]()| Get the ip address.<br>*Standard Design*
+[*POST* `/api/v3/channelApp/apps/{appId}/ipWhitelists`]()| Create an  ip address to the whitelist.<br>*Standard Design*
+[*PUT* `/api/v3/channelApp/apps/{appId}/ipWhitelists/{id}`]()| Update the  ip address <br>*Standard Design*
+[*DELETE* `/api/v3/channelApp/apps/{appId}/ipWhitelists/{id}`]()| Delete the  ip address <br>*Standard Design*
+## Versions
+### Version
+Name|Type |Description
+---|---|---
+id| guid|`Read-only`<br>Primary key
+number|string|the number of version
+name|string|
+description|string|
+largeIconUrl|string
+smallIconUrl|string
+installationUrl|string
+oauthRedirectUrl|string
+settingUrl|string
+messageWebhookUrl|string
+### Endpoints
+Endpoint |Description
+---|---
+[*GET* `/api/v3/channelApp/apps/{appId}/versions`]()| Get a list of version which have created in the app.<br>*Standard Design*
+[*GET* `/api/v3/channelApp/apps/{appId}/versions/{id}`]()| Get the version.<br>*Standard Design*
+[*POST* `/api/v3/channelApp/apps/{appId}/versions`]()| Create a version.<br>*Standard Design*
+[*PUT* `/api/v3/channelApp/apps/{appId}/versions/{id}`]()| Update the version <br>*Standard Design*
+[*DELETE* `/api/v3/channelApp/apps/{appId}/versions/{id}`]()| Delete the version <br>*Standard Design*
+[*DELETE* `/api/v3/channelApp/apps/{appId}/versions/{id}/removeChannel`]()| Remove the channel from the version.
+[*PATCH* `/api/v3/channelApp/apps/{appId}/versions/{id}/addChannel`]()| Add the channel to the version.
+[*POST* `/api/v3/channelApp/apps/{appId}/versions/{id}/addChannel`]()| Create a  channel to the version.
+
+#### Remove the channel from the version
+- *DELETE* `/api/v3/channelApp/apps/{appId}/versions/{id}/removeChannel?channelId={channelId}`
+- **URL Parameters**
+    - appId: *guid* `Required`  
+   - id: *guid* `Required`  
+   - channelId: *guid* `Required`
+- **Request Body**
+- **Response Body**
+####  Add the channel to the version
+- *PATCH* `/api/v3/channelApp/apps/{appId}/versions/{id}/addChannel?channelId={channelId}`
+- **URL Parameters**
+    - appId:  *guid* `Required`  
+   - id: *guid* `Required`  
+   - channelId: *guid* `Required`
+- **Request Body**
+- **Response Body**
+#### Create a  channel to the version.
+- *POST* `/api/v3/channelApp/apps/{appId}/versions/{id}/addChannel`
+- **URL Parameters**
+    - appId:  *guid* `Required`  
+   - id: *guid* `Required`   
+- **Request Body**
+    - [Channel](#channel)
+- **Response Body**
+    - [Channel](#channel)
