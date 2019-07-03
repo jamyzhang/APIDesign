@@ -11,7 +11,7 @@
 |[Channels](#Channels) 	|`/api/v3/channelApp/channels`|
 |[ContactIdentityTypes](#contact-Identity-Types)	|`/api/v3/channelApp/contactIdentityTypes`|
 |[Apps](#apps)|`/api/v3/channelApp/apps`|
-|[IpWhitelists](#IpWhitelists)|`/api/v3/channelApp/apps/{appId}/ipWhitelists`|
+|[IpAddresses](#Ip-Addresses)|`/api/v3/channelApp/apps/{appId}/ipAddresses`|
 |[Versions](#Versions)|`/api/v3/channelApp/apps/{appId}/versions`|
 |[VersionChannels](#Version-channels)|`/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels`|
 
@@ -164,7 +164,7 @@ Endpoint |Description
 - **Response Body**
     - key: *string* the public key of an app.
 
-## AppInofs
+## AppInfos
 #### AppInfo
 Name|Type |Description
 ---|---|---
@@ -300,8 +300,7 @@ Endpoint |Description
 [*POST* `/api/v3/channelApp/contactIdentityTypes`]()|Create a contact identity type.<br>*Standard Design*
 [*PUT* `/api/v3/channelApp/contactIdentityTypes/{id}`]()|Update the contact identity type.<br>*Standard Design*
 [*DELETE* `/api/v3/channelApp/contactIdentityTypes/{id}`]()|Delete the contact identity type.<br>*Standard Design*
-### Get the list of Contact Identity Type at a site
-    Get the contact Identity Types of the site
+### Get the list of Contact Identity Type 
 - *GET* `/api/v3/channelApp/contactIdentityType`
 - **URL Parameters**
 - **Request Body**
@@ -368,7 +367,7 @@ Endpoint |Description
    - id: *guid* `Required`  
 - **Request Body**
 - **Response Body**
-## IpWhitelists
+## Ip Addresses
 ### Ip Address
 Name|Type |Description
 ---|---|---
@@ -377,11 +376,11 @@ Ip|string|`Required`
 ### Endpoints
 Endpoint |Description
 ---|---
-[*GET* `/api/v3/channelApp/apps/{appId}/ipWhitelists`]()| Get the Ip whitelist which have created in the app.<br>*Standard Design*
-[*GET* `/api/v3/channelApp/apps/{appId}/ipWhitelists/{id}`]()| Get the ip address.<br>*Standard Design*
-[*POST* `/api/v3/channelApp/apps/{appId}/ipWhitelists`]()| Create an  ip address to the whitelist.<br>*Standard Design*
-[*PUT* `/api/v3/channelApp/apps/{appId}/ipWhitelists/{id}`]()| Update the  ip address <br>*Standard Design*
-[*DELETE* `/api/v3/channelApp/apps/{appId}/ipWhitelists/{id}`]()| Delete the  ip address <br>*Standard Design*
+[*GET* `/api/v3/channelApp/apps/{appId}/ipAddresses`]()| Get the Ip whitelist which have created in the app.<br>*Standard Design*
+[*GET* `/api/v3/channelApp/apps/{appId}/ipAddresses/{id}`]()| Get the ip address.<br>*Standard Design*
+[*POST* `/api/v3/channelApp/apps/{appId}/ipAddresses`]()| Create an  ip address to the whitelist.<br>*Standard Design*
+[*PUT* `/api/v3/channelApp/apps/{appId}/ipAddresses/{id}`]()| Update the  ip address <br>*Standard Design*
+[*DELETE* `/api/v3/channelApp/apps/{appId}/ipAddresses/{id}`]()| Delete the  ip address <br>*Standard Design*
 ## Versions
 ### Version
 Name|Type |Description
