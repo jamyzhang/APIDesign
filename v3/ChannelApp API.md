@@ -13,6 +13,7 @@
 |[Apps](#apps)|`/api/v3/channelApp/apps`|
 |[IpWhitelists](#IpWhitelists)|`/api/v3/channelApp/apps/{appId}/ipWhitelists`|
 |[Versions](#Versions)|`/api/v3/channelApp/apps/{appId}/versions`|
+|[VersionChannels](#Version-channels)|`/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels`|
 
 
 ## Channel Accounts
@@ -227,6 +228,7 @@ Endpoint |Description
 Name|Type |Description
 ---|---|---
 id| guid|`Read-only`<br>Primary key
+appId|guid|
 name|string|
 contactIdentityType|string|
 messageDisplayType|int|
@@ -402,31 +404,36 @@ Endpoint |Description
 [*POST* `/api/v3/channelApp/apps/{appId}/versions`]()| Create a version.<br>*Standard Design*
 [*PUT* `/api/v3/channelApp/apps/{appId}/versions/{id}`]()| Update the version <br>*Standard Design*
 [*DELETE* `/api/v3/channelApp/apps/{appId}/versions/{id}`]()| Delete the version <br>*Standard Design*
-[*DELETE* `/api/v3/channelApp/apps/{appId}/versions/{id}/removeChannel`]()| Remove the channel from the version.
-[*PATCH* `/api/v3/channelApp/apps/{appId}/versions/{id}/addChannel`]()| Add the channel to the version.
-[*POST* `/api/v3/channelApp/apps/{appId}/versions/{id}/addChannel`]()| Create a  channel to the version.
+
+## Version Channels
+### Endpoints
+Endpoint |Description
+---|---
+[*DELETE* 	`/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels/{channelId}`]()| Remove the channel from the version.
+[*PATCH* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels/{channelId}`]()| Add the channel to the version.
+[*POST* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels`]()| Create a  channel to the version.
 
 #### Remove the channel from the version
-- *DELETE* `/api/v3/channelApp/apps/{appId}/versions/{id}/removeChannel?channelId={channelId}`
+- *DELETE* 	`/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels/{channelId}`
 - **URL Parameters**
     - appId: *guid* `Required`  
-   - id: *guid* `Required`  
+   - versionId: *guid* `Required`  
    - channelId: *guid* `Required`
 - **Request Body**
 - **Response Body**
 ####  Add the channel to the version
-- *PATCH* `/api/v3/channelApp/apps/{appId}/versions/{id}/addChannel?channelId={channelId}`
+- *PATCH* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels/{channelId}`
 - **URL Parameters**
     - appId:  *guid* `Required`  
-   - id: *guid* `Required`  
+   - versionId: *guid* `Required`  
    - channelId: *guid* `Required`
 - **Request Body**
 - **Response Body**
 #### Create a  channel to the version.
-- *POST* `/api/v3/channelApp/apps/{appId}/versions/{id}/addChannel`
+- *POST* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels`
 - **URL Parameters**
     - appId:  *guid* `Required`  
-   - id: *guid* `Required`   
+   - versionId: *guid* `Required`   
 - **Request Body**
     - [Channel](#channel)
 - **Response Body**
