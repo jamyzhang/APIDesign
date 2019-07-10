@@ -1,5 +1,8 @@
 <center><h1>API文档规范</h1></center>
 
+https://github.com/Microsoft/api-guidelines/blob/master/Guidelines.md
+
+
 # 规范说明
 - 在文档开始，建立一个Resource List表，罗列此文档所有可操作的资源。
 - 每个资源的说明包含Models和Endpoints两部分。
