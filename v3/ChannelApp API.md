@@ -4,16 +4,14 @@
   | Resource | URL |Description
   | - | - | -
 |[ChannelAccounts](#channel-accounts)|`/api/v3/channelApp/channelAccounts`| Management of Channel Account
-|[Messages](#messages)|`/api/v3/channelApp/messages`|	
+|[Messages](#messages)|`/api/v3/channelApp/messages`|
 |[PublicKeys](#publicKey)|`	/api/v3/channelApp/publicKeys`|
-|[AppInfos](#appInfos)|`/api/v3/channelApp/appInfos`|
-|[PrivateKeys](#PrivateKeys)	|`/api/v3/channelApp/privateKeys`|
 |[Channels](#Channels) 	|`/api/v3/channelApp/channels`|
 |[ContactIdentityTypes](#contact-Identity-Types)	|`/api/v3/channelApp/contactIdentityTypes`|
 |[Apps](#apps)|`/api/v3/channelApp/apps`|
 |[IpAddresses](#Ip-Addresses)|`/api/v3/channelApp/apps/{appId}/ipAddresses`|
 |[Versions](#Versions)|`/api/v3/channelApp/apps/{appId}/versions`|
-|[VersionChannels](#Version-channels)|`/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels`|
+
 
 
 ## Channel Accounts
@@ -26,13 +24,14 @@ id| guid|`Read-only`<br>Primary key
 appId| guid|`Required`<br>
 siteId| int|`Required`<br>
 accountName | string|`Optional`<br>The unique name of a channels account.
-accountOriginalId|string|`Required`<br>the user account id of an  original channel .
+accountOriginalId|string|`Required`<br>the user account id of an  original channel.
 isEnabled|bool|`Optional`<br>
 
 ### Endpoints
 Endpoint |Description
 ---|---
 [*GET* `/api/v3/channelApp/channelAccounts/{id}`](#get-a-channel-Account)| Retrieve a channel account by the id.
+[*GET* `/api/v3/channelApp/channelAccounts`](#get-a-list-of-channel-Account)| Retrieve a list of channel account.
 [*POST* `/api/v3/channelApp/channelAccounts`](#create-a-channel-Account)| create a channel account.
 [*PUT* `/api/v3/channelApp/channelAccounts/{id}`](#update-a-channel-Account)| update the channel account.
 [*DELETE* `/api/v3/channelApp/channelAccounts/{id}`](#delete-a-channelAccount)| Delete the channel account.
@@ -40,11 +39,19 @@ Endpoint |Description
 #### Get a Channel Account
 - *GET* `/api/v3/channelApp/channelAccounts/{id}`
 - **URL Parameters**
-    - id: *int* `Required` the primary key of a channel account.
+    - id: *guid* `Required` the primary key of a channel account.
 - **Request Body**
 - **Response Body**
     - [ChannelAccount](#ChannelAccount)
 
+#### Get a list of channel Account
+- *GET* `/api/v3/channelApp/channelAccounts`
+- **URL Parameters**
+    - appId: *guid* `Optional`
+    - siteId: *int* `Optional` 
+- **Request Body**
+- **Response Body**
+    - [ChannelAccount](#ChannelAccount)[ ]
 #### Create a Channel Account
 -  *POST* `/api/v3/channelApp/channelAccounts`
 - **URL Parameters**
@@ -58,7 +65,7 @@ Endpoint |Description
 #### Update a Channel Account
 -  *PUT* `/api/v3/channelApp/channelAccounts/{id}`
 - **URL Parameters**
-   - id: *int* `Required` the primary key of a channel account.
+   - id: *guid* `Required` the primary key of a channel account.
 - **Request Body**
     - accountOriginalId：*string* `Required`
     - accountName：*string* `Required`
@@ -69,7 +76,7 @@ Endpoint |Description
 #### Delete a Channel Account
 -  *Delete* `/api/v3/channelApp/channelAccounts/{id}`
 - **URL Parameters**
-   - id: *int* `Required` the primary key of a channel account.
+   - id: *guid* `Required` the primary key of a channel account.
 - **Request Body**
 - **Response Body**
 ## Messages
@@ -102,23 +109,45 @@ Name|Type |Description
 ---|---|---
 id| guid|`Read-only`<br>Primary key
 type  | string|`Required`<br>Text/HtmlText/File/Video/Audio/Picture/Location
-text|string|`Optional`<br> 
-htmlText|string|`Optional`<br> 
-name|string|`Optional`<br> 
-title|string|`Optional`<br> 
-url|string|`Optional`<br> 
+data|object|<ul><li>[Text Message Cotent](#text-message-content)</li><li>[HtmlText Message Cotent](#HtmlText-message-content)</li><li>[File Message Cotent](#file-message-content)</li><li>[Media Message Cotent](#media-message-content)</li><li>[Location Message Cotent](#location-message-content)</li></ul>
+
+
+
+
+#### Text Message Content
+Name|Type |Description
+---|---|---
+text|string|
+#### HtmlText Message Content
+Name|Type |Description
+---|---|---
+htmlText|string|
+
+#### File Message Content
+Name|Type |Description
+---|---|---
+name|string|
+url|string|
+
+#### Media Message Content
+Name|Type |Description
+---|---|---
+title|string|
+url|string|
+
+#### Location Message Content
+Name|Type |Description
+---|---|---
 latitude|double|`Optional`<br> 
 longitude|double|`Optional`<br> 
 desc|string|`Optional`<br> 
-
-
 ### Endpoints
 
 Endpoint |Description
 ---|---
 [*POST* `/api/v3/channelApp/messages`](#create-a-messsage)| Create a message.
 [*DELETE* `/api/v3/channelApp/messages/{id}`](#delete-a-message)| Delete a message.
-[*PUT* `/api/v3/channelApp/messages/{id}/updateResult`](#delete-a-message)| Update message processing result
+[*PATCH* `/api/v3/channelApp/messages/{id}:result`](#delete-a-message)| Update message processing result
 #### Create a message
 -  *POST* `/api/v3/channelApp/messages`
 - **URL Parameters**
@@ -144,7 +173,7 @@ Endpoint |Description
 - **Response Body**
 
 #### Update message processing result
-- *PUT* `/api/v3/channelApp/messages/{id}/updateResult`
+- *PATCH* `/api/v3/channelApp/messages/{id}:result`
 - **URL Parameters**
    - id: *guid* `Required` the primary key of a message.
 - **Request Body**
@@ -159,69 +188,10 @@ Endpoint |Description
 #### Retrieve public key
 - *GET* `/api/v3/channelApp/publicKeys?appid={appId}`
 - **URL Parameters**
-   - appId: *int* `Required` 
+   - appId: *guid* `Required` 
 - **Request Body**
 - **Response Body**
     - key: *string* the public key of an app.
-
-## AppInfos
-#### AppInfo
-Name|Type |Description
----|---|---
-id| guid|`Read-only`<br>Primary key
-name|string|
-channelAccountName|string|
-description|string|
-largeIconUrl|string|
-smallIconUrl|string|
-authorEmail|string|
-authorName|string|
-supportWebsite|string|
-versionNumber|string|
-installationUrl|string|
-oauthRedirectUrl|string|
-settingUrl|string|
-messageWebhookUrl|string|
-
-### Endpoints
-Endpoint |Description
----|---
-[*GET* `/api/v3/channelApp/appInfos`](#retrieve-appInfos)| Retrieve  appInfos.
-[*GET* `/api/v3/channelApp/appInfos/installed`](#Get-installed-appInfos)|Get the list of appInfos that installed at a site.
-[*GET* `/api/v3/channelApp/appInfos/allowInstallation`](#get-allow-installation-appInfos)|Get the list of appInfos that is allowed to install at a site.
-#### Retrieve appInfos
-- *GET* `/api/v3/channelApp/appInfos?isSystem={isSystem}`
-- **URL Parameters**
-   - isSystem: *bool* `Optional`  if isSysetem is true, the result must be System appInfos.
-- **Request Body**
-- **Response Body**
-    - [AppInfo](#appInfo)[ ]
-#### Get installed appInfos
-- *GET* `/api/v3/channelApp/appInfos/installed?siteId={siteId}`
-- **URL Parameters**
-   - siteId: *int* `Required`  
-- **Request Body**
-- **Response Body**
-    - [AppInfo](#appInfo)[ ]
- #### Get allow installation appInfos
-- *GET* `/api/v3/channelApp/appInfos/allowInstallation?siteId={siteId}`
-- **URL Parameters**
-   - siteId: *int* `Required`  
-- **Request Body**
-- **Response Body**
-    - [AppInfo](#appInfo)[ ]
-
-
-
-
-## PrivateKey
-#### Get PrivateKey
-- *GET* `/api/v3/channelApp/privateKeys?appId={appId}`
-- **URL Parameters**
-   - appId: *guid* `Required`  
-- **Request Body**
-- **Response Body**
-    - key: *string*
 
 ## Channels
 ### Channel
@@ -230,7 +200,7 @@ Name|Type |Description
 id| guid|`Read-only`<br>Primary key
 appId|guid|
 name|string|
-contactIdentityType|string|
+contactIdentityTypeId|guid|
 messageDisplayType|int|
 outgoingMessageMaxLength|int|
 outgoingMessageCapability|string|
@@ -394,7 +364,9 @@ smallIconUrl|string
 installationUrl|string
 oauthRedirectUrl|string
 settingUrl|string
-messageWebhookUrl|string
+messageWebhookUrl|string|
+channelIds| guid[ ]
+status|smallint|`Required`
 ### Endpoints
 Endpoint |Description
 ---|---
@@ -403,37 +375,3 @@ Endpoint |Description
 [*POST* `/api/v3/channelApp/apps/{appId}/versions`]()| Create a version.<br>*Standard Design*
 [*PUT* `/api/v3/channelApp/apps/{appId}/versions/{id}`]()| Update the version <br>*Standard Design*
 [*DELETE* `/api/v3/channelApp/apps/{appId}/versions/{id}`]()| Delete the version <br>*Standard Design*
-
-## Version Channels
-### Endpoints
-Endpoint |Description
----|---
-[*DELETE* 	`/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels/{channelId}`]()| Remove the channel from the version.
-[*PATCH* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels/{channelId}`]()| Add the channel to the version.
-[*POST* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels`]()| Create a  channel to the version.
-
-#### Remove the channel from the version
-- *DELETE* 	`/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels/{channelId}`
-- **URL Parameters**
-    - appId: *guid* `Required`  
-   - versionId: *guid* `Required`  
-   - channelId: *guid* `Required`
-- **Request Body**
-- **Response Body**
-####  Add the channel to the version
-- *PATCH* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels/{channelId}`
-- **URL Parameters**
-    - appId:  *guid* `Required`  
-   - versionId: *guid* `Required`  
-   - channelId: *guid* `Required`
-- **Request Body**
-- **Response Body**
-#### Create a  channel to the version.
-- *POST* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/versionsChannels`
-- **URL Parameters**
-    - appId:  *guid* `Required`  
-   - versionId: *guid* `Required`   
-- **Request Body**
-    - [Channel](#channel)
-- **Response Body**
-    - [Channel](#channel)
