@@ -66,6 +66,7 @@
 |---|---|---| 
 |[Conversation](#conversations)|/api/v3/anytime/conversations| Conversations | 
 |[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Portal conversations |
+|[DeletedConversation](#DeletedConversation)|/api/v3/anytime/deletedConversations| Deleted conversations |
 |[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
 |[View](#views)|/api/v3/anytime/views| Agent console views| 
 |[Routing](#Routing)|/api/v3/anytime/routing| Routing | 
@@ -101,27 +102,35 @@
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isEditable`| boolean | if the current agent can update\reply the conversation | 
 | `isActive`| boolean | if open in my active work area by agent | 
+| `isMultiChannel`| boolean | if the conversation has multiple channel messages | 
 | `tagIds` | string[] | tag id array | 
 | `mentionedAgents`|[mentioned agent](#mentioned-agent)[]| mentioned agents list | 
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
 | `createdById` | string | contact id or agent id or visitor id| 
 | `createdByType` | string | agent or contact or system or visitor | 
-| `createdTime` | datetime | create time of conversation | 
-| `lastActivityTime` | datetime | last activity time of conversation | 
-| `lastStatusChangeTime` | datetime | last status change time of conversation | 
-| `lastRepliedTime` | datetime | last replied time | 
+| `createdAt` | datetime | create time of conversation | 
+| `lastUpdatedAt` | datetime | last updated time of conversation | 
+| `lastStatusChangedAt` | datetime | last status change time of conversation | 
+| `lastRepliedAt` | datetime | last replied time | 
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `slaPolicyId` | string | SLA id of this conversation matched | 
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next response is due | 
 | `resolveBreachAt` | datetime | Timestamp that denotes when the conversation is due to be resolved | 
+| `nextSLABreachAt` | datetime | Timestamp that the next sla breach time | 
 
 ### custom field value
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | the id of custom field |
 | `name` | string | the name of custom field |
+| `value` | string | the value of custom field |
+
+### custom field id and value
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | the id of custom field |
 | `value` | string | the value of custom field |
 
 ### mentioned agent 
@@ -184,7 +193,14 @@
 | `senderId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
   
- 
+ ### event log
+| Name | Type | Description | 
+| - | - | - | 
+| `id` | string | event log id | 
+| `conversationId` | integer | id of conversation | 
+| `text` | string | event log text | 
+| `time` | datetime | event time | 
+
 ## endpoints 
 |EndPoint|Note| 
 |---|---|
@@ -196,8 +212,9 @@
 | `put api/v3/anytime/conversations/{id}/read`  | [Mark a conversation as read](#Mark-a-conversation-as-read) |
 | `put api/v3/anytime/conversations/{id}/unread`  | [Mark-a-conversation-as-unread ](#) |
 | `post api/v3/anytime/conversations/{id}/merge` | [ Merge a conversation ](#Merge-a-conversation) |
-| `get api/v3/anytime/conversations/{id}/agents`  | [Get agents of openning conversation](#Get-agents-of-openning-conversation) |
+| `get api/v3/anytime/conversations/{id}/agents`  | [Get agents of openning conversation](#Get-agents-who-are-openning-the-conversation) |
 | `get api/v3/anytime/conversations/unreadCount` | [List unread conversations number for views](#List-unread-conversations-number-for-views) |
+| `get api/v3/anytime/conversations/{id}/eventLogs` | [ List conversation event logs ](#List-conversation-event-logs) |
 | `delete api/v3/anytime/conversations/{id}` | [Delete a conversation ](#Delete-a-conversation ) |
 | `delete api/v3/anytime/conversations`  | [Batch delete conversations ](#Batch-delete-conversations ) |
 | `get api/v3/anytime/conversations/{id}/messages` | [List messages of a conversation](#List-messages-of-a-conversation) |
@@ -206,12 +223,7 @@
 | `put api/v3/anytime/conversations/{id}/messages/{messageId}`  | [Update a message](#Update-a-message) |
 | `put api/v3/anytime/conversations/{id}/messages/{messageId}/resend`  | [Resend a message](#Resend-a-message) |
 | `put api/v3/anytime/conversations/{id}/messages/{messageId}/read` | [Mark a message as read](#Mark-a-message-as-read) |
-| `put api/v3/anytime/conversations/{id}/messages/{messageId}/unread`   | [Mark a message as unread ](#Mark-a-message-as-unread) |
-| `delete api/v3/anytime/deletedConversations/{id}`  | [Delete a conversation permanently ](#Delete-a-conversation-permanently) |
-| `post api/v3/anytime/deletedConversations/{id}/restore `  | [Restore a deleted conversation ](#Restore-a-deleted-conversation) |
-| `get api/v3/anytime/deletedConversations/`  | [List deleted conversations ](#List-deleted-conversations ) |
-| `get api/v3/anytime/deletedConversations/{id}`  | [Get a deleted conversation](#Get-a-deleted-conversation) |
-| `get api/v3/anytime/deletedConversations/{id}/messages`  | [List messages of a deleted conversation](#List-messages-of-a-deleted-conversation) |
+| `put api/v3/anytime/conversations/{id}/messages/{messageId}/unread`   | [Mark a message as unread ](#Mark-a-message-as-unread) | 
 | `get api/v3/anytime/conversations/{id}/draft`  | [Get a conversation draft ](#Get-a-conversation-draft) |
 | `post api/v3/anytime/conversations/{id}/draft`  | [Create a conversation draft ](#Create-a-conversation-draft) |
 | `put api/v3/anytime/conversations/{id}/draft`  | [Update a conversation draft ](#Update-a-conversation-draft) |
@@ -268,6 +280,7 @@
     | lastRepliedBy | `get api/v3/anytime/conversations/{id}?include=lastRepliedBy` |
     | messages | `get api/v3/anytime/conversations/{id}?include=messages` |
     | eventLogs | `get api/v3/anytime/conversations/{id}?include=eventLogs` |
+    | lastMessage | `get api/v3/anytime/conversations/{id}?include=lastMessage` |
  
 ### Submit a new conversation
 `post api/v3/anytime/conversations` 
@@ -277,7 +290,7 @@
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed`, default value: `new` 
-    - customFields: [custom field value](#custom-field-value)[], custom field value array
+    - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
         - channelId: string, channel Id, required
@@ -302,7 +315,7 @@
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
     - isRead: boolean
     - isActive: boolean
-    - customFields: [custom field value](#custom-field-value)[], custom field value array
+    - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: integer[], tag id array
 - Response 
     - [conversation](#conversation) 
@@ -318,6 +331,13 @@
     - isRead, boolean
 + Response 
     - [conversation](#conversation) list 
+
+### List conversation event logs
+`get api/v3/anytime/conversations/{id}/eventLogs`
+- Parameters 
+    - id: integer, conversation id 
+- Response 
+    - [event log](#event-log)
 
 ### List messages of a conversation 
 `get api/v3/anytime/conversations/{id}/messages` 
@@ -410,8 +430,8 @@
 + Response 
     - http status code
 
-### Get agents of openning conversation 
-`get api/v3/anytime/conversations/{id}/agents` 
+### Get agents who are openning the conversation 
+`get api/v3/anytime/conversations/{id}/activedAgents` 
 + Parameters 
     - id: number, conversation id,
 + Response 
@@ -429,74 +449,6 @@
 + Parameters 
     - ids: integer[], id array
 + Response 
-    - http status code 
-
-### List deleted conversations 
-`get api/v3/anytime/deletedConversations/` 
-- Parameters 
-    - keywords: string
-    - pageIndex: integer
-    - timeFrom: DateTime, last reply time, default search the last 30 days
-    - timeTo: DateTime, last reply time, default value is the current time
-- Response 
-    - deletedConversations: [conversation](#conversation) list 
-    - total: integer, total number of conversations 
-    - previousPage: string, next page uri, the first page return null. 
-    - nextPage: string, the last page return null. 
-    - currentPage: string, current page uri. 
-- Includes
-
-    | Includes | Description |
-    | - | - |
-    | assignedAgent | `get api/v3/anytime/deletedConversations?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/anytime/deletedConversations?include=assignedDepartment` |
-    | contactOrVisitor | `get api/v3/anytime/deletedConversations?include=contactOrVisitor` |
-    | createdBy | `get api/v3/anytime/deletedConversations?include=createdBy` |
-    | lastRepliedBy | `get api/v3/anytime/deletedConversations?include=lastRepliedBy` | 
-
-### Get a deleted conversation 
-`get api/v3/anytime/deletedConversations/{id}` 
-- Parameters 
-    - id: integer, conversation id 
-- Response 
-    - [conversation](#conversation) 
-- Includes
-
-    | Includes | Description |
-    | - | - |
-    | assignedAgent | `get api/v3/anytime/deletedConversations/{id}?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/anytime/deletedConversations/{id}?include=assignedDepartment` |
-    | contactOrVisitor | `get api/v3/anytime/deletedConversations/{id}?include=contactOrVisitor` |
-    | createdBy | `get api/v3/anytime/deletedConversations/{id}?include=createdBy` |
-    | lastRepliedBy | `get api/v3/anytime/deletedConversations/{id}?include=lastRepliedBy` |
-    | messages | `get api/v3/anytime/deletedConversations/{id}?include=messages` |
-    | eventLogs | `get api/v3/anytime/deletedConversations/{id}?include=eventLogs` |
-
-### List messages of a deleted conversation
-`get api/v3/anytime/deletedConversations/{id}/messages` 
-- Parameters 
-    - id: integer, conversation id
-- Response 
-    - [message](#message) 
-- Includes
-
-    | Includes | Description |
-    | - | - |
-    | sender | `get api/v3/anytime/deletedConversations/{id}/messages?include=sender` |
-
-
-### Restore a deleted conversation 
-`post api/v3/anytime/deletedConversations/{id}/restore ` 
-- Parameters 
-    - id: integer, conversation id 
-- Response 
-    - [conversation](#conversation)  
-
-### Delete a conversation permanently 
-`delete api/v3/anytime/deletedConversations/{id}` 
-- Parameters 
-    - id: integer, conversation id 
-- Response 
     - http status code 
 
 ### Get a conversation draft 
@@ -557,8 +509,8 @@
 | `isClosed` | boolean | if the portal conversation is closed |
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
-| `createdTime` | datetime | create time |
-| `closedTime` | datetime | close time |
+| `createdAt` | datetime | create time |
+| `closedAt` | datetime | close time |
 
 ### portal conversation message 
 | Name | Type | Description | 
@@ -568,8 +520,6 @@
 | `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
 | `time` | datetime | |   
-
-## endpoints
 
 ## endpoints 
 
@@ -618,7 +568,7 @@
 - Parameters: 
     - subject: string, subject, required
     - contactId: string, id of the contact who submitted the portal conversation
-    - customFields: [custom field value](#custom-field-value)[], custom field value array
+    - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - message:  the first portal message
         contents: [content](#content)[]
 - Response: 
@@ -677,21 +627,85 @@
 - Response 
     - http status code
 
-### event log
-| Name | Type | Description | 
-| - | - | - | 
-| `id` | string | event log id | 
-| `conversationId` | integer | id of conversation | 
-| `text` | string | event log text | 
-| `time` | datetime | event time | 
+# DeletedConversation
 
-### List conversation event logs
-`get api/v3/anytime/conversations/{id}/eventLogs`
+## endpoints 
+
+|EndPoint|Note| 
+|---|---|
+| `get api/v3/anytime/deletedConversations/`  | [List deleted conversations ](#List-deleted-conversations ) |
+| `get api/v3/anytime/deletedConversations/{id}`  | [Get a deleted conversation](#Get-a-deleted-conversation) |
+| `get api/v3/anytime/deletedConversations/{id}/messages`  | [List messages of a deleted conversation](#List-messages-of-a-deleted-conversation) |
+| `delete api/v3/anytime/deletedConversations/{id}`  | [Delete a conversation permanently ](#Delete-a-conversation-permanently) |
+| `post api/v3/anytime/deletedConversations/{id}/restore `  | [Restore a deleted conversation ](#Restore-a-deleted-conversation) |
+
+### List deleted conversations 
+`get api/v3/anytime/deletedConversations/` 
+- Parameters 
+    - keywords: string
+    - pageIndex: integer
+    - timeFrom: DateTime, last reply time, default search the last 30 days
+    - timeTo: DateTime, last reply time, default value is the current time
+- Response 
+    - deletedConversations: [conversation](#conversation) list 
+    - total: integer, total number of conversations 
+    - previousPage: string, next page uri, the first page return null. 
+    - nextPage: string, the last page return null. 
+    - currentPage: string, current page uri. 
+- Includes
+
+    | Includes | Description |
+    | - | - |
+    | assignedAgent | `get api/v3/anytime/deletedConversations?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/anytime/deletedConversations?include=assignedDepartment` |
+    | contactOrVisitor | `get api/v3/anytime/deletedConversations?include=contactOrVisitor` |
+    | createdBy | `get api/v3/anytime/deletedConversations?include=createdBy` |
+    | lastRepliedBy | `get api/v3/anytime/deletedConversations?include=lastRepliedBy` | 
+
+### Get a deleted conversation 
+`get api/v3/anytime/deletedConversations/{id}` 
 - Parameters 
     - id: integer, conversation id 
 - Response 
-    - [event log](#event-log)
+    - [conversation](#conversation) 
+- Includes
 
+    | Includes | Description |
+    | - | - |
+    | assignedAgent | `get api/v3/anytime/deletedConversations/{id}?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/anytime/deletedConversations/{id}?include=assignedDepartment` |
+    | contactOrVisitor | `get api/v3/anytime/deletedConversations/{id}?include=contactOrVisitor` |
+    | createdBy | `get api/v3/anytime/deletedConversations/{id}?include=createdBy` |
+    | lastRepliedBy | `get api/v3/anytime/deletedConversations/{id}?include=lastRepliedBy` |
+    | messages | `get api/v3/anytime/deletedConversations/{id}?include=messages` |
+    | eventLogs | `get api/v3/anytime/deletedConversations/{id}?include=eventLogs` |
+
+### List messages of a deleted conversation
+`get api/v3/anytime/deletedConversations/{id}/messages` 
+- Parameters 
+    - id: integer, conversation id
+- Response 
+    - [message](#message) 
+- Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v3/anytime/deletedConversations/{id}/messages?include=sender` |
+
+### Delete a conversation permanently 
+`delete api/v3/anytime/deletedConversations/{id}` 
+- Parameters 
+    - id: integer, conversation id 
+- Response 
+    - http status code 
+
+### Restore a deleted conversation 
+`post api/v3/anytime/deletedConversations/{id}/restore ` 
+- Parameters 
+    - id: integer, conversation id 
+- Response 
+    - [conversation](#conversation)  
+ 
 # Attachments  
 ## objects
 ### attachment 
