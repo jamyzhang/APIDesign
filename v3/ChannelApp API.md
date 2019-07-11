@@ -6,12 +6,11 @@
 |[ChannelAccounts](#channel-accounts)|`/api/v3/channelApp/channelAccounts`| Management of Channel Account
 |[Messages](#messages)|`/api/v3/channelApp/messages`|
 |[PublicKeys](#publicKey)|`	/api/v3/channelApp/publicKeys`|
-|[Channels](#Channels) 	|`/api/v3/channelApp/channels`|
 |[ContactIdentityTypes](#contact-Identity-Types)	|`/api/v3/channelApp/contactIdentityTypes`|
 |[Apps](#apps)|`/api/v3/channelApp/apps`|
 |[IpAddresses](#Ip-Addresses)|`/api/v3/channelApp/apps/{appId}/ipAddresses`|
 |[Versions](#Versions)|`/api/v3/channelApp/apps/{appId}/versions`|
-
+|[Channels](#Channels) 	|`/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`|
 
 
 ## Channel Accounts
@@ -147,7 +146,7 @@ Endpoint |Description
 ---|---
 [*POST* `/api/v3/channelApp/messages`](#create-a-messsage)| Create a message.
 [*DELETE* `/api/v3/channelApp/messages/{id}`](#delete-a-message)| Delete a message.
-[*PATCH* `/api/v3/channelApp/messages/{id}:result`](#delete-a-message)| Update message processing result
+[*PATCH* `/api/v3/channelApp/messages:result/{id}`](#delete-a-message)| Update message processing result
 #### Create a message
 -  *POST* `/api/v3/channelApp/messages`
 - **URL Parameters**
@@ -173,7 +172,7 @@ Endpoint |Description
 - **Response Body**
 
 #### Update message processing result
-- *PATCH* `/api/v3/channelApp/messages/{id}:result`
+- *PATCH* `/api/v3/channelApp/messages:result/{id}`
 - **URL Parameters**
    - id: *guid* `Required` the primary key of a message.
 - **Request Body**
@@ -210,14 +209,16 @@ isAllowActiveCreatation|bool|
 
 Endpoint |Description
 ---|---
-[*GET* `/api/v3/channelApp/channels`](#Get-a-list-of-channels)| Get a list of channels.
-[*GET* `/api/v3/channelApp/channels/{id}`](#Get-the-channel)| Get the channel.
-[*POST* `/api/v3/channelApp/channels`](#create-a-channel)| Create a channel.
-[*PUT* `/api/v3/channelApp/channels/{id}`](#update-the-channel)| Update the channel.
-[*DELETE* `/api/v3/channelApp/channels/{id}`](#delete-the-channel)| Delete the channel.
+[*GET* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`](#Get-a-list-of-channels)| Get a list of channels.
+[*GET* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`](#Get-the-channel)| Get the channel.
+[*POST* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`](#create-a-channel)| Create a channel.
+[*PUT* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`](#update-the-channel)| Update the channel.
+[*DELETE* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`](#delete-the-channel)| Delete the channel.
+
+
 ### Get a list of channels 
     if the appId Parameter is not has a value,  all channels which have installed to  the siteId are returned.
-- *GET* `/api/v3/channelApp/channels`
+- *GET* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`
 - **URL Parameters**
    - appId: *guid*  
    - versionId: *guid*
@@ -226,7 +227,7 @@ Endpoint |Description
     - [Channel](#channel)[ ]
 
 ### Get the channel
-- *GET* `/api/v3/channelApp/channels/{id}`
+- `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`
 - **URL Parameters**
     - id: *guid* 
 - **Request Body**
@@ -234,14 +235,14 @@ Endpoint |Description
     - [Channel](#channel)
 
 ### Create a channel
-- *POST* `/api/v3/channelApp/channels`
+- *POST* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`
 - **URL Parameters**
 - **Request Body**
     - [Channel](#channel)
 - **Response Body**
     - [Channel](#channel)
 ### Update the channel
-- *PUT* `/api/v3/channelApp/channels/{id}`
+- *PUT* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`
 - **URL Parameters**
     - id: *guid* 
 - **Request Body**
@@ -249,7 +250,7 @@ Endpoint |Description
 - **Response Body**
     - [Channel](#channel)
 ### Delete the channel
-- *DELETE* `/api/v3/channelApp/channels/{id}`
+- *DELETE* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`
 - **URL Parameters**
     - id: *guid* 
 - **Request Body**
