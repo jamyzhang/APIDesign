@@ -288,8 +288,8 @@ isSystem|bool|`Required`
 status|smallint|`Required`
 authorName|string|
 authorEmail|string|
-publishVersion|string|
-lastesVersion|string|`Required`
+publishVersionId|guid|
+lastesVersionId|guid|
 siteId|string|`Required`
 channelAccountName|string|`Required`
 
