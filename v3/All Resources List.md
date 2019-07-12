@@ -141,7 +141,14 @@
 # Resource List - ChannelApp
 |Name|EndPoint|Note| 
 |---|---|---| 
- 
+ |[ChannelAccounts](#channel-accounts)|`/api/v3/channelApp/channelAccounts`| Management of Channel Account
+|[Messages](#messages)|`/api/v3/channelApp/messages`|
+|[PublicKeys](#publicKey)|`	/api/v3/channelApp/publicKeys`|
+|[ContactIdentityTypes](#contact-Identity-Types)	|`/api/v3/channelApp/contactIdentityTypes`|
+|[Apps](#apps)|`/api/v3/channelApp/apps`|
+|[IpAddresses](#Ip-Addresses)|`/api/v3/channelApp/apps/{appId}/ipAddresses`|
+|[Versions](#Versions)|`/api/v3/channelApp/apps/{appId}/versions`|
+|[Channels](#Channels) 	|`/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`|
 
 
 
