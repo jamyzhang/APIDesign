@@ -146,7 +146,7 @@ Endpoint |Description
 ---|---
 [*POST* `/api/v3/channelApp/messages`](#create-a-messsage)| Create a message.
 [*DELETE* `/api/v3/channelApp/messages/{id}`](#delete-a-message)| Delete a message.
-[*PATCH* `/api/v3/channelApp/messages:result/{id}`](#delete-a-message)| Update message processing result
+[*PUT* `/api/v3/channelApp/messages/{id}:updateResult`](#delete-a-message)| Update message processing result
 #### Create a message
 -  *POST* `/api/v3/channelApp/messages`
 - **URL Parameters**
@@ -172,11 +172,12 @@ Endpoint |Description
 - **Response Body**
 
 #### Update message processing result
-- *PATCH* `/api/v3/channelApp/messages:result/{id}`
+- *PUT* `/api/v3/channelApp/messages/{id}:updateResult`
 - **URL Parameters**
    - id: *guid* `Required` the primary key of a message.
 - **Request Body**
     - IsSuccessful: *bool* `Required`
+    - ErrorMessage：*string* `Optional`
     - Urls: `Optional` the list of new urls for files. 
         - Id: *guid* `Required`  the guid of a file.
         - Url: *string* `Required` the new url of a file.
@@ -291,7 +292,6 @@ authorEmail|string|
 publishVersionId|guid|
 lastesVersionId|guid|
 siteId|string|`Required`
-channelAccountName|string|`Required`
 
 
 ### Endpoints
@@ -359,6 +359,7 @@ Name|Type |Description
 id| guid|`Read-only`<br>Primary key
 number|string|the number of version
 name|string|
+channelAccountName|string|`Required`
 description|string|
 largeIconUrl|string
 smallIconUrl|string
