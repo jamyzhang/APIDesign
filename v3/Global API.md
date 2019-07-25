@@ -536,7 +536,7 @@ Status: 200 OK
 
 ```json
   {
-    "realtimeConversations": {
+    "realtimeConversation": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -557,9 +557,8 @@ Status: 200 OK
       "captureVisitor": false,
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": false,
-      "viewAllAgents": false,
     },    
-    "anytimeConversations": {
+    "anytimeConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -595,20 +594,21 @@ Status: 200 OK
       "manageBillingInfo": false,
       "manageProducts": false,
       "viewBalanceHistory": false,
+      "viewAgentReports": false,
       "manageSiteProfile": false,
-      "viewAuditLog": false,
+      "viewAuditLogs": false,
       "manageSecurity": false,  
       "manageCreditCardMasking": false,
       "managePublicCannedMessages": false,
       "managePrivateCannedMessages": false,
       "manageIntegration": false,
+      "viewAllAgents": false,
       "chatWithAgents": false,
       "setOtherAgentToAway": false,
       "logOtherAgentOff": false,
       "viewAgentChatsInMyDepartment": false,
       "viewAllAgentChats": false,
       "manageTags": false,
-      "manageChannels": false,
       "viewContacts": false,
       "manageContacts": false,
     }
@@ -631,7 +631,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversations": {
+    "realtimeConversation": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -652,9 +652,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "captureVisitor": false,
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": false,
-      "viewAllAgents": false,
     },    
-    "anytimeConversations": {
+    "anytimeConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -690,20 +689,21 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageBillingInfo": false,
       "manageProducts": false,
       "viewBalanceHistory": false,
+      "viewAgentReports": false,
       "manageSiteProfile": false,
-      "viewAuditLog": false,
+      "viewAuditLogs": false,
       "manageSecurity": false,  
       "manageCreditCardMasking": false,
       "managePublicCannedMessages": false,
       "managePrivateCannedMessages": false,
       "manageIntegration": false,
+      "viewAllAgents": false,
       "chatWithAgents": false,
       "setOtherAgentToAway": false,
       "logOtherAgentOff": false,
       "viewAgentChatsInMyDepartment": false,
       "viewAllAgentChats": false,
       "manageTags": false,
-      "manageChannels": false,
       "viewContacts": false,
       "manageContacts": false,
     }
@@ -736,12 +736,12 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
       -H "content-type: application/json" -x PUT  
-     -d "{"realtimeConversations":{"acceptChats": true,"viewAllHistory": true,"viewHistoryInMyDepartment": false,
+     -d "{"realtimeConversation":{"acceptChats": true,"viewAllHistory": true,"viewHistoryInMyDepartment": false,
       "viewMyOwnAllTranscripts": false,"deleteTranscripts": false,"manageCampaigns": false,"manageSettings": false,
       "manageCustomVariables": true,"manageSecureForm": true,"manageBan": false,"viewReports": false,
       "refuseChats": false,"inviteVisitorsToChat": false,"joinChats": true,"transferChats": true,
       "monitorAllChats": false,"monitorChatsInMyDepartment": false,"captureVisitor": false,
-      "manageCustomMetrics": false,"viewAllInSiteVisitors": true,"viewAllAgents": true}}"   
+      "manageCustomMetrics": false,"viewAllInSiteVisitors": true}}"   
      https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/permissions
 ```
 
@@ -749,7 +749,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversations": {
+    "realtimeConversation": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -770,9 +770,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "captureVisitor": false,
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": true,
-      "viewAllAgents": true,
     },    
-    "anytimeConversations": {
+    "anytimeConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -808,20 +807,21 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageBillingInfo": false,
       "manageProducts": false,
       "viewBalanceHistory": false,
+      "viewAgentReports": false,
       "manageSiteProfile": false,
-      "viewAuditLog": false,
+      "viewAuditLogs": false,
       "manageSecurity": false,  
       "manageCreditCardMasking": false,
       "managePublicCannedMessages": false,
       "managePrivateCannedMessages": false,
       "manageIntegration": false,
+      "viewAllAgents": false,
       "chatWithAgents": false,
       "setOtherAgentToAway": false,
       "logOtherAgentOff": false,
       "viewAgentChatsInMyDepartment": false,
       "viewAllAgentChats": false,
       "manageTags": false,
-      "manageChannels": false,
       "viewContacts": false,
       "manageContacts": false,
     }
@@ -856,7 +856,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversations": {
+    "realtimeConversation": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -877,9 +877,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "captureVisitor": false,
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": true,
-      "viewAllAgents": true,
     },    
-    "anytimeConversations": {
+    "anytimeConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -915,20 +914,21 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageBillingInfo": false,
       "manageProducts": false,
       "viewBalanceHistory": false,
+      "viewAgentReports": false,
       "manageSiteProfile": false,
-      "viewAuditLog": false,
+      "viewAuditLogs": false,
       "manageSecurity": false,  
       "manageCreditCardMasking": false,
       "managePublicCannedMessages": false,
       "managePrivateCannedMessages": false,
       "manageIntegration": false,
+      "viewAllAgents": false,
       "chatWithAgents": false,
       "setOtherAgentToAway": false,
       "logOtherAgentOff": false,
       "viewAgentChatsInMyDepartment": false,
       "viewAllAgentChats": false,
       "manageTags": false,
-      "manageChannels": false,
       "viewContacts": false,
       "manageContacts": false,
     }
@@ -1347,7 +1347,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversations": {
+    "realtimeConversation": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -1368,9 +1368,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "captureVisitor": false,
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": true,
-      "viewAllAgents": true,
     },    
-    "anytimeConversations": {
+    "anytimeConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -1406,20 +1405,21 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageBillingInfo": false,
       "manageProducts": false,
       "viewBalanceHistory": false,
+      "viewAgentReports": false,
       "manageSiteProfile": false,
-      "viewAuditLog": false,
+      "viewAuditLogs": false,
       "manageSecurity": false,  
       "manageCreditCardMasking": false,
       "managePublicCannedMessages": false,
       "managePrivateCannedMessages": false,
       "manageIntegration": false,
+      "viewAllAgents": false,
       "chatWithAgents": false,
       "setOtherAgentToAway": false,
       "logOtherAgentOff": false,
       "viewAgentChatsInMyDepartment": false,
       "viewAllAgentChats": false,
       "manageTags": false,
-      "manageChannels": false,
       "viewContacts": false,
       "manageContacts": false,
     }
@@ -1457,7 +1457,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageCustomVariables": true,"manageSecureForm": true,"manageBan": false,"viewReports": false,
       "refuseChats": false,"inviteVisitorsToChat": false,"joinChats": true,"transferChats": true,
       "monitorAllChats": false,"monitorChatsInMyDepartment": false,"captureVisitor": false,
-      "manageCustomMetrics": false,"viewAllInSiteVisitors": true,"viewAllAgents": true}}" 
+      "manageCustomMetrics": false,"viewAllInSiteVisitors": true}}" 
      https://hosted.comm100.com/api/v3/global/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42/permissions
 ```
 
@@ -1465,7 +1465,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversations": {
+    "realtimeConversation": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -1486,9 +1486,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "captureVisitor": false,
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": true,
-      "viewAllAgents": true,
     },    
-    "anytimeConversations": {
+    "anytimeConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -1524,20 +1523,21 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageBillingInfo": false,
       "manageProducts": false,
       "viewBalanceHistory": false,
+      "viewAgentReports": false,
       "manageSiteProfile": false,
-      "viewAuditLog": false,
+      "viewAuditLogs": false,
       "manageSecurity": false,  
       "manageCreditCardMasking": false,
       "managePublicCannedMessages": false,
       "managePrivateCannedMessages": false,
       "manageIntegration": false,
+      "viewAllAgents": false,
       "chatWithAgents": false,
       "setOtherAgentToAway": false,
       "logOtherAgentOff": false,
       "viewAgentChatsInMyDepartment": false,
       "viewAllAgentChats": false,
       "manageTags": false,
-      "manageChannels": false,
       "viewContacts": false,
       "manageContacts": false,
     }
@@ -2435,7 +2435,8 @@ Sample response:
         "name": "<script>alert('dde')</script>",
         "description": "<script>alert('dde111')</script>",
         "agents": [
-            "BBEBE689-0993-461A-A820-C6D30FD3C66F"
+            "id":"BBEBE689-0993-461A-A820-C6D30FD3C66F",
+            "name":"Terry"
         ],
         "roles": [ ],
         "availableChannelIds": []
@@ -2476,7 +2477,8 @@ Sample response:
     "name": "<script>alert('dde')</script>",
     "description": "<script>alert('dde111')</script>",
     "agents": [
-        "BBEBE689-0993-461A-A820-C6D30FD3C66F"
+        "id":"BBEBE689-0993-461A-A820-C6D30FD3C66F",
+        "name":"Terry"
     ],
     "roles": [ ],
     "availableChannelIds": []
