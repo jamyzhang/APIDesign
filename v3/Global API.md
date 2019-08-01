@@ -165,6 +165,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 </div>
 </div>
+
 <div>
 
 ## Agents
@@ -209,9 +210,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
   | `roles` | array  | optional, the list of roles to which an agent belongs to.
   | `isAdmin` | boolean | optional, whether the agent is an administrator or not.
   | `isActive` | boolean | optional, whether the agent is active or not.
-  | `isLocked` | boolean | optional, whether the agent is locked or not.
+  | `isLocked` | boolean | read-only, whether the agent is locked or not.
   | `ldapUserName` | string | optional, ldap name of the agent.
-  | `availableChannelIds` | array | optional, the list of available channel id of the agent.
 
 </div>
 <div>
@@ -268,8 +268,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
             "isAdmin": true,
             "isActive": true,
             "isLocked": false,
-            "ldapUserName": "",
-            "availableChannelIds": []
+            "ldapUserName": ""
         }
     ]
 }
@@ -317,8 +316,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": true,
     "isActive": true,
     "isLocked": false,
-    "ldapUserName": "",
-    "availableChannelIds": []
+    "ldapUserName": ""
 }
 ```
 
@@ -367,8 +365,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": false,
     "isActive": true,
     "isLocked": false,
-    "ldapUserName": "",
-    "availableChannelIds": []
+    "ldapUserName": ""
 }
 ```
 
@@ -421,8 +418,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": true,
     "isActive": true,
     "isLocked": false,
-    "ldapUserName": "",
-    "availableChannelIds": []
+    "ldapUserName": ""
 }
 ```
 
@@ -977,8 +973,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": true,
     "isActive": true,
     "isLocked": false,
-    "ldapUserName": "",
-    "availableChannelIds": []
+    "ldapUserName": ""
 }
 ```
 
@@ -1027,8 +1022,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": true,
     "isActive": true,
     "isLocked": false,
-    "ldapUserName": "",
-    "availableChannelIds": []
+    "ldapUserName": ""
 }
 ```
 
@@ -1073,6 +1067,8 @@ Status: 200 OK
 ## Roles
 
   You need `Manage Agent & Agent Roles` permission to manage roles.
+- `Get /api/v3/global/roles/config` - Get roles config
+- `PUT /api/v3/global/roles/config` - Update enable or disable roles
 - `GET /api/v3/global/roles` - Get a list of roles
 - `GET /api/v3/global/roles/{id}` - Get a single roles
 - `POST /api/v3/global/roles` - Create a new role
@@ -1084,6 +1080,14 @@ Status: 200 OK
 <div>
 
 ### Model
+
+#### Role Config Json Format
+
+ Role Config is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Description |
+| - | - | - |
+| `isEnable` | string | required, whether roles are enabled or not in the site. |
 
 #### Role Json Format
 
@@ -1102,6 +1106,70 @@ Status: 200 OK
 
 ### Endpoint
 
+#### Get Roles Config
+
+  `GET /api/v3/global/roles/config`
+
+- Path Parameters:
+
+ No parameter
+
+- Response
+  
+  [Role Config](#Role-Config-Json-Format)
+
+#### Example
+
+  Sample request:
+
+```bash
+curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
+        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
+        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
+        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
+     https://hosted.comm100.com/api/v3/global/roles/config
+```
+
+  Sample response:
+
+```json
+{
+    "isEnable": false
+}
+```
+#### Update Roles Config
+
+  `PUT /api/v3/global/roles/config`
+
+- Request Parameters
+  
+  [Role Config](#Role-Config-Json-Format)
+
+- Response
+  
+  [Role Config](#Role-Config-Json-Format)
+
+#### Example
+
+  Sample request:
+
+```bash
+curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
+        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
+        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
+        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
+     -x PUT -H "Content-Type: application/json"  
+     -d "{"isEnable": true}"    
+     https://hosted.comm100.com/api/v3/global/roles/config
+```
+
+  Sample response:
+
+```json
+{
+    "isEnable": true
+}
+```
 #### Get list of Roles
 
   `GET /api/v3/global/roles`
@@ -1551,14 +1619,24 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 ## Agent SSO Settings
 
   You need `Manage Security` permission to manage agent sso settings.
-- `GET /api/v3/global/agentSignleSignOn` - Get configuration of agent sso settings
-- `PUT /api/v3/global/agentSignleSignOn` - Update configuration of agent sso settings
+- `GET /api/v3/global/agentSignleSignOn/config` - Get configuration of agent sso settings
+- `PUT /api/v3/global/agentSignleSignOn/config` - Update configuration of agent sso settings
+- `GET /api/v3/global/agentSignleSignOn` - Get agent sso settings
+- `PUT /api/v3/global/agentSignleSignOn` - Update agent sso settings
 
 <div>
 
 ### Model
 
 #### Agent SSO Settings Config Json Format
+
+ Agent SSO Settings Config is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Description |
+| - | - | - |
+| `isEnable` | string | required, whether agent sso settings are enabled or not in the site. |
+
+#### Agent SSO Settings Json Format
 
  Agent SSO Settings is represented as simple flat JSON objects with the following keys:  
 
@@ -1578,7 +1656,71 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ### Endpoint
 
-#### Get configuration of agent sso settings
+#### Get Agent SSO Settings Config
+
+  `GET /api/v3/global/agentSignleSignOn/config`
+
+- Path Parameters:
+
+ No parameter
+
+- Response
+  
+  [Agent SSO Settings Config](#Agent-SSO-Settings-Config-Json-Format)
+
+#### Example
+
+  Sample request:
+
+```bash
+curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
+        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
+        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
+        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
+     https://hosted.comm100.com/api/v3/global/agentSignleSignOn/Config
+```
+
+  Sample response:
+
+```json
+{
+    "isEnable": false
+}
+```
+#### Update Agent SSO Settings Config
+
+  `PUT /api/v3/global/agentSignleSignOn/config`
+
+- Request Parameters
+  
+  [Agent SSO Settings Config](#Agent-SSO-Settings-Config-Json-Format)
+
+- Response
+  
+  [Agent SSO Settings Config](#Agent-SSO-Settings-Config-Json-Format)
+
+#### Example
+
+  Sample request:
+
+```bash
+curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
+        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
+        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
+        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
+     -x PUT -H "Content-Type: application/json"  
+     -d "{"isEnable": true}"    
+     https://hosted.comm100.com/api/v3/global/agentSignleSignOn/config
+```
+
+  Sample response:
+
+```json
+{
+    "isEnable": true
+}
+```
+#### Get Agent SSO Settings
 
   `Get /api/v3/global/agentSignleSignOn`
 
@@ -1617,7 +1759,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 }
 ```
 
-#### Update configuration of agent sso settings
+#### Update Agent SSO Settings
 
   `PUT /api/v3/global/agentSignleSignOn`
 
@@ -2116,7 +2258,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
-     -d "{"isprivate": false,"name": 'justfortest',"parentid": '0'}"    
+     -d "{"isprivate": false,"name": 'justfortest',"parentid": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42'}"    
      https://hosted.comm100.com/api/v3/global/cannedmessagecategories
 ```
 
@@ -2157,7 +2299,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x PUT -H "Content-Type: application/json"  
-     -d "{"isprivate": false,"name": 'justfortestupdate',"parentid": '0'}"    
+     -d "{"isprivate": false,"name": 'justfortestupdate',"parentid": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42'}"    
      https://hosted.comm100.com/api/v3/global/cannedmessagecategories/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
 ```
 
@@ -2374,6 +2516,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 ## Departments
 
   You need `Manage Departments` permission to manage department.
+- `Get /api/v3/global/departments/config` - Get departments config
+- `PUT /api/v3/global/departments/config` - Update enable or disable departments
 - `GET /api/v3/global/departments` -get a list of departments
 - `GET /api/v3/global/departments/{id}`  -get a single department
 - `POST /api/v3/global/departments` -create a new department
@@ -2383,6 +2527,14 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 <div>
 
 ### Model
+
+#### Department Config Json Format
+
+ Role Config is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Description |
+| - | - | - |
+| `isEnable` | string | required, whether departments are enabled or not in the site. |
 
 #### Department JSON Format
 
@@ -2395,13 +2547,76 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
   | `description` | string | optional, description of the department. |
   | `agents` | array | optional, an array of agent in the department. |
   | `roles` | array | optional, an array of role in the department. |
-  | `availableChannelIds` | array | optional, the list of available channel id of the department.|
 
 </div>
 <div>
 
 ### Endpoint
 
+#### Get Roles Config
+
+  `GET /api/v3/global/departments/config`
+
+- Path Parameters:
+
+ No parameter
+
+- Response
+  
+  [Department Config](#Department-Config-Json-Format)
+
+#### Example
+
+  Sample request:
+
+```bash
+curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
+        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
+        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
+        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
+     https://hosted.comm100.com/api/v3/global/departments/Config
+```
+
+  Sample response:
+
+```json
+{
+    "isEnable": false
+}
+```
+#### Update Roles Config
+
+  `PUT /api/v3/global/departments/config`
+
+- Request Parameters
+  
+  [Department Config](#Department-Config-Json-Format)
+
+- Response
+  
+  [Department Config](#Department-Config-Json-Format)
+
+#### Example
+
+  Sample request:
+
+```bash
+curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
+        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
+        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
+        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
+     -x PUT -H "Content-Type: application/json"  
+     -d "{"isEnable": true}"    
+     https://hosted.comm100.com/api/v3/global/departments/config
+```
+
+  Sample response:
+
+```json
+{
+    "isEnable": true
+}
+```
 #### Get list of departments
 
   `GET /api/v3/global/departments`
@@ -2438,8 +2653,7 @@ Sample response:
             "id":"BBEBE689-0993-461A-A820-C6D30FD3C66F",
             "name":"Terry"
         ],
-        "roles": [ ],
-        "availableChannelIds": []
+        "roles": [ ]
     },
     ...
 ]
@@ -2480,8 +2694,7 @@ Sample response:
         "id":"BBEBE689-0993-461A-A820-C6D30FD3C66F",
         "name":"Terry"
     ],
-    "roles": [ ],
-    "availableChannelIds": []
+    "roles": [ ]
 }
 ```
 
@@ -2519,8 +2732,7 @@ Sample response:
     "name": "test",
     "description": "",
     "agents": [ ],
-    "roles": [ ],
-    "availableChannelIds": []
+    "roles": [ ]
 }
 ```
 
@@ -2562,8 +2774,7 @@ Sample response:
     "name": "testupdate",
     "description": "",
     "agents": [ ],
-    "roles": [ ],
-    "availableChannelIds": []
+    "roles": [ ]
 }
 ```
 
@@ -2863,6 +3074,7 @@ Status: 200 OK
 <div>
 
 ### Model
+
 
 #### Password Policy Config Json Format
 
