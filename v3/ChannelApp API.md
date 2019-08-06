@@ -210,16 +210,16 @@ isAllowActiveCreatation|bool|
 
 Endpoint |Description
 ---|---
-[*GET* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`](#Get-a-list-of-channels)| Get a list of channels.
-[*GET* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`](#Get-the-channel)| Get the channel.
-[*POST* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`](#create-a-channel)| Create a channel.
-[*PUT* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`](#update-the-channel)| Update the channel.
-[*DELETE* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`](#delete-the-channel)| Delete the channel.
+[*GET* `/api/v3/channelApp/versions/{versionId}/channels`](#Get-a-list-of-channels)| Get a list of channels.
+[*GET* `/api/v3/channelApp/versions/{versionId}/channels/{id}`](#Get-the-channel)| Get the channel.
+[*POST* `/api/v3/channelApp/versions/{versionId}/channels`](#create-a-channel)| Create a channel.
+[*PUT* `/api/v3/channelApp/versions/{versionId}/channels/{id}`](#update-the-channel)| Update the channel.
+[*DELETE* `/api/v3/channelApp/versions/{versionId}/channels/{id}`](#delete-the-channel)| Delete the channel.
 
 
 ### Get a list of channels 
     if the appId Parameter is not has a value,  all channels which have installed to  the siteId are returned.
-- *GET* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`
+- *GET* `/api/v3/channelApp/versions/{versionId}/channels`
 - **URL Parameters**
    - appId: *guid*  
    - versionId: *guid*
@@ -228,7 +228,7 @@ Endpoint |Description
     - [Channel](#channel)[ ]
 
 ### Get the channel
-- `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`
+- `/api/v3/channelApp/apps/{appId}/channels/{id}`
 - **URL Parameters**
     - id: *guid* 
 - **Request Body**
@@ -236,14 +236,14 @@ Endpoint |Description
     - [Channel](#channel)
 
 ### Create a channel
-- *POST* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`
+- *POST* `/api/v3/channelApp/versions/{versionId}/channels`
 - **URL Parameters**
 - **Request Body**
     - [Channel](#channel)
 - **Response Body**
     - [Channel](#channel)
 ### Update the channel
-- *PUT* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`
+- *PUT* `/api/v3/channelApp/versions/{versionId}/channels/{id}`
 - **URL Parameters**
     - id: *guid* 
 - **Request Body**
@@ -251,7 +251,7 @@ Endpoint |Description
 - **Response Body**
     - [Channel](#channel)
 ### Delete the channel
-- *DELETE* `/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels/{id}`
+- *DELETE* `/api/v3/channelApp/versions/{versionId}/channels/{id}`
 - **URL Parameters**
     - id: *guid* 
 - **Request Body**
