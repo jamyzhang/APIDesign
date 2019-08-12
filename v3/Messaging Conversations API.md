@@ -1,5 +1,5 @@
 # Authentication 
-- Comm100 anytime Conversation API provides 2 authentication methods: 
+- Comm100 messaging Conversation API provides 2 authentication methods: 
     - API_key Authentication 
     - OAuth Authentication 
 - [document](https://www.comm100.com/doc/api/introduction.htm#/) 
@@ -17,18 +17,18 @@
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v3/anytime/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
-    | `get api/v3/anytime/conversations/{id}/messages` | sender |
-    | `get api/v3/anytime/deletedConversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
-    | `get api/v3/anytime/deletedConversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
-    | `get api/v3/anytime/deletedConversations/{id}/messages` | sender |
-    | `get api/v3/anytime/portalConversations/{id}` | contact, messages |
-    | `get api/v3/anytime/portalConversations` | contact |
-    | `get api/v3/anytime/portalConversations/{id}/messages` | sender | 
+    | `get api/v3/messaging/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v3/messaging/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
+    | `get api/v3/messaging/conversations/{id}/messages` | sender |
+    | `get api/v3/messaging/deletedConversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v3/messaging/deletedConversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
+    | `get api/v3/messaging/deletedConversations/{id}/messages` | sender |
+    | `get api/v3/messaging/portalConversations/{id}` | contact, messages |
+    | `get api/v3/messaging/portalConversations` | contact |
+    | `get api/v3/messaging/portalConversations/{id}/messages` | sender | 
 
 - Sample:
-    - request: `get api/v3/anytime/conversations/{id}?include=assignedAgent,createdBy,messages`
+    - request: `get api/v3/messaging/conversations/{id}?include=assignedAgent,createdBy,messages`
     - response:
 
         ``` javascript
@@ -64,22 +64,22 @@
 # Resource List 
 |Name|EndPoint|Note| 
 |---|---|---| 
-|[Conversation](#conversations)|/api/v3/anytime/conversations| Conversations | 
-|[PortalConversation](#portalConversations)|/api/v3/anytime/portalConversations| Portal conversations |
-|[DeletedConversation](#DeletedConversation)|/api/v3/anytime/deletedConversations| Deleted conversations |
-|[Attachment](#attachments)|/api/v3/anytime/attachments| Upload attachment for conversations | 
-|[View](#views)|/api/v3/anytime/views| Agent console views| 
-|[Routing](#Routing)|/api/v3/anytime/routing| Routing | 
-|[AutoAllocation](#AutoAllocations)|/api/v3/anytime/autoAllocation| Auto allocations | 
-|[Trigger](#Triggers)|/api/v3/anytime/triggers| Triggers| 
-|[SLAPolicy](#SLAPolicies)|/api/v3/anytime/SLAPolicies| SLA policies | 
-|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/anytime/workingTime| Work time and holiday | 
-|[Fields&Mapping](#fields&mapping)|/api/v3/anytime/fields| System fields and custom fields | 
-|[BlockedSender](#blockedsenders)|/api/v3/anytime/blockedSenders| Blocked email or domain | 
-|[Junk](#junks)|/api/v3/anytime/junks| Emails from blocked senders | 
-|[ChannelAccount](#channel-accounts)|/api/v3/anytime/channelAccounts| Channel accounts | 
-|[Channel](#channels)|/api/v3/anytime/channels| integrated channels | 
-|[Report](#reports)|/api/v3/anytime/reports| Anytime conversation reports | 
+|[Conversation](#conversations)|/api/v3/messaging/conversations| Conversations | 
+|[PortalConversation](#portalConversations)|/api/v3/messaging/portalConversations| Portal conversations |
+|[DeletedConversation](#DeletedConversation)|/api/v3/messaging/deletedConversations| Deleted conversations |
+|[Attachment](#attachments)|/api/v3/messaging/attachments| Upload attachment for conversations | 
+|[View](#views)|/api/v3/messaging/views| Agent console views| 
+|[Routing](#Routing)|/api/v3/messaging/routing| Routing | 
+|[AutoAllocation](#AutoAllocations)|/api/v3/messaging/autoAllocation| Auto allocations | 
+|[Trigger](#Triggers)|/api/v3/messaging/triggers| Triggers| 
+|[SLAPolicy](#SLAPolicies)|/api/v3/messaging/SLAPolicies| SLA policies | 
+|[WorkingTime&Holiday](#WorkingTime&Holiday)|/api/v3/messaging/workingTime| Work time and holiday | 
+|[Fields&Mapping](#fields&mapping)|/api/v3/messaging/fields| System fields and custom fields | 
+|[BlockedSender](#blockedsenders)|/api/v3/messaging/blockedSenders| Blocked email or domain | 
+|[Junk](#junks)|/api/v3/messaging/junks| Emails from blocked senders | 
+|[ChannelAccount](#channel-accounts)|/api/v3/messaging/channelAccounts| Channel accounts | 
+|[Channel](#channels)|/api/v3/messaging/channels| integrated channels | 
+|[Report](#reports)|/api/v3/messaging/reports| Messaging conversation reports | 
 
 # Conversations 
 ## objects 
@@ -114,6 +114,9 @@
 | `lastRepliedAt` | datetime | last replied time | 
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
+| `firstMessageId` | string | the id of the first message | 
+| `lastMessageId` | string | the id of the last message | 
+| `totalReplies`| int | total replies number | 
 | `slaPolicyId` | string | SLA id of this conversation matched | 
 | `firstRespondBreachAt` | datetime | Timestamp that denotes when the first response is due | 
 | `nextRespondBreachAt` | datetime | Timestamp that denotes when the next response is due | 
@@ -183,6 +186,7 @@
 | - | - | - | 
 | `id` | string | id of message draft | 
 | `conversationId` | integer | id of conversation | 
+| `channelId` | string | channel id | 
 | `channelAccountId`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
 | `parentId` | string | parent id |
@@ -204,34 +208,34 @@
 ## endpoints 
 |EndPoint|Note| 
 |---|---|
-| `get api/v3/anytime/conversations`  |  [List conversations](#List-conversations)  |
-| `get api/v3/anytime/conversations/{id}` |  [Get a conversation](#Get-a-conversation)  |
-| `post api/v3/anytime/conversations` | [Submit a new conversation](#Submit-a-new-conversation) |
-| `put api/v3/anytime/conversations/{id}` | [Update a conversation ](#Update-a-conversation ) |
-| `put api/v3/anytime/conversations/`  | [Batch update conversations](#Batch-update-conversations) |
-| `put api/v3/anytime/conversations/{id}/read`  | [Mark a conversation as read](#Mark-a-conversation-as-read) |
-| `put api/v3/anytime/conversations/{id}/unread`  | [Mark-a-conversation-as-unread ](#) |
-| `post api/v3/anytime/conversations/{id}/merge` | [ Merge a conversation ](#Merge-a-conversation) |
-| `get api/v3/anytime/conversations/{id}/agents`  | [Get agents of openning conversation](#Get-agents-who-are-openning-the-conversation) |
-| `get api/v3/anytime/conversations/unreadCount` | [List unread conversations number for views](#List-unread-conversations-number-for-views) |
-| `get api/v3/anytime/conversations/{id}/eventLogs` | [ List conversation event logs ](#List-conversation-event-logs) |
-| `delete api/v3/anytime/conversations/{id}` | [Delete a conversation ](#Delete-a-conversation ) |
-| `delete api/v3/anytime/conversations`  | [Batch delete conversations ](#Batch-delete-conversations ) |
-| `get api/v3/anytime/conversations/{id}/messages` | [List messages of a conversation](#List-messages-of-a-conversation) |
-| `get api/v3/anytime/conversations{id}/messages/{messageId}`  | [Get a message](#Get-a-message) |
-| `post api/v3/anytime/conversations/{id}/messages` | [Reply a message](#Reply-a-message) |
-| `put api/v3/anytime/conversations/{id}/messages/{messageId}`  | [Update a message](#Update-a-message) |
-| `put api/v3/anytime/conversations/{id}/messages/{messageId}/resend`  | [Resend a message](#Resend-a-message) |
-| `put api/v3/anytime/conversations/{id}/messages/{messageId}/read` | [Mark a message as read](#Mark-a-message-as-read) |
-| `put api/v3/anytime/conversations/{id}/messages/{messageId}/unread`   | [Mark a message as unread ](#Mark-a-message-as-unread) | 
-| `get api/v3/anytime/conversations/{id}/draft`  | [Get a conversation draft ](#Get-a-conversation-draft) |
-| `post api/v3/anytime/conversations/{id}/draft`  | [Create a conversation draft ](#Create-a-conversation-draft) |
-| `put api/v3/anytime/conversations/{id}/draft`  | [Update a conversation draft ](#Update-a-conversation-draft) |
-| `delete api/v3/anytime/conversations/{id}/draft`  | [ Delete a conversation draft ](#Delete-a-conversation-draft) |
+| `get api/v3/messaging/conversations`  |  [List conversations](#List-conversations)  |
+| `get api/v3/messaging/conversations/{id}` |  [Get a conversation](#Get-a-conversation)  |
+| `post api/v3/messaging/conversations` | [Submit a new conversation](#Submit-a-new-conversation) |
+| `put api/v3/messaging/conversations/{id}` | [Update a conversation ](#Update-a-conversation ) |
+| `put api/v3/messaging/conversations/`  | [Batch update conversations](#Batch-update-conversations) |
+| `put api/v3/messaging/conversations/{id}/read`  | [Mark a conversation as read](#Mark-a-conversation-as-read) |
+| `put api/v3/messaging/conversations/{id}/unread`  | [Mark-a-conversation-as-unread ](#) |
+| `post api/v3/messaging/conversations/{id}/merge` | [ Merge a conversation ](#Merge-a-conversation) |
+| `get api/v3/messaging/conversations/{id}/agents`  | [Get agents of openning conversation](#Get-agents-who-are-openning-the-conversation) |
+| `get api/v3/messaging/conversations/unreadCount` | [List unread conversations number for views](#List-unread-conversations-number-for-views) |
+| `get api/v3/messaging/conversations/{id}/eventLogs` | [ List conversation event logs ](#List-conversation-event-logs) |
+| `delete api/v3/messaging/conversations/{id}` | [Delete a conversation ](#Delete-a-conversation ) |
+| `delete api/v3/messaging/conversations`  | [Batch delete conversations ](#Batch-delete-conversations ) |
+| `get api/v3/messaging/conversations/{id}/messages` | [List messages of a conversation](#List-messages-of-a-conversation) |
+| `get api/v3/messaging/conversations{id}/messages/{messageId}`  | [Get a message](#Get-a-message) |
+| `post api/v3/messaging/conversations/{id}/messages` | [Reply a message](#Reply-a-message) |
+| `put api/v3/messaging/conversations/{id}/messages/{messageId}`  | [Update a message](#Update-a-message) |
+| `put api/v3/messaging/conversations/{id}/messages/{messageId}/resend`  | [Resend a message](#Resend-a-message) |
+| `put api/v3/messaging/conversations/{id}/messages/{messageId}/read` | [Mark a message as read](#Mark-a-message-as-read) |
+| `put api/v3/messaging/conversations/{id}/messages/{messageId}/unread`   | [Mark a message as unread ](#Mark-a-message-as-unread) | 
+| `get api/v3/messaging/conversations/{id}/draft`  | [Get a conversation draft ](#Get-a-conversation-draft) |
+| `post api/v3/messaging/conversations/{id}/draft`  | [Create a conversation draft ](#Create-a-conversation-draft) |
+| `put api/v3/messaging/conversations/{id}/draft`  | [Update a conversation draft ](#Update-a-conversation-draft) |
+| `delete api/v3/messaging/conversations/{id}/draft`  | [ Delete a conversation draft ](#Delete-a-conversation-draft) |
 
 
 ### List conversations 
-`get api/v3/anytime/conversations` 
+`get api/v3/messaging/conversations` 
 + Each request returns a maximum of 50 conversations. 
 + Parameters 
     - viewId: string, view id
@@ -243,7 +247,7 @@
     - pageIndex: integer
     - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
     - sortOrder: string, `ascending` or `descending`, default value: `descending`
-    - conditions: parameter format: `conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=new`, fields can be conversation system fields and custom fields.
+    - conditions: parameter format: `conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, fields can be conversation system fields and custom fields.  
         - field: string, field name
         - matchType: string 
         - value: string
@@ -257,14 +261,15 @@
 
     | Includes | Description |
     | - | - |
-    | assignedAgent | `get api/v3/anytime/conversations?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/anytime/conversations?include=assignedDepartment` |
-    | contactOrVisitor | `get api/v3/anytime/conversations?include=contactOrVisitor` |
-    | createdBy | `get api/v3/anytime/conversations?include=createdBy` |
-    | lastRepliedBy | `get api/v3/anytime/conversations?include=lastRepliedBy` | 
+    | assignedAgent | `get api/v3/messaging/conversations?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/messaging/conversations?include=assignedDepartment` |
+    | contactOrVisitor | `get api/v3/messaging/conversations?include=contactOrVisitor` |
+    | createdBy | `get api/v3/messaging/conversations?include=createdBy` |
+    | lastRepliedBy | `get api/v3/messaging/conversations?include=lastRepliedBy` | 
+    | lastMessage | `get api/v3/messaging/conversations?include=lastMessage` |
 
 ### Get a conversation 
-`get api/v3/anytime/conversations/{id}` 
+`get api/v3/messaging/conversations/{id}` 
 + Parameters 
     - id: integer, conversation  
 + Response 
@@ -273,17 +278,17 @@
 
     | Includes | Description |
     | - | - |
-    | assignedAgent | `get api/v3/anytime/conversations/{id}?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/anytime/conversations/{id}?include=assignedDepartment` |
-    | contactOrVisitor | `get api/v3/anytime/conversations/{id}?include=contactOrVisitor` |
-    | createdBy | `get api/v3/anytime/conversations/{id}?include=createdBy` |
-    | lastRepliedBy | `get api/v3/anytime/conversations/{id}?include=lastRepliedBy` |
-    | messages | `get api/v3/anytime/conversations/{id}?include=messages` |
-    | eventLogs | `get api/v3/anytime/conversations/{id}?include=eventLogs` |
-    | lastMessage | `get api/v3/anytime/conversations/{id}?include=lastMessage` |
+    | assignedAgent | `get api/v3/messaging/conversations/{id}?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/messaging/conversations/{id}?include=assignedDepartment` |
+    | contactOrVisitor | `get api/v3/messaging/conversations/{id}?include=contactOrVisitor` |
+    | createdBy | `get api/v3/messaging/conversations/{id}?include=createdBy` |
+    | lastRepliedBy | `get api/v3/messaging/conversations/{id}?include=lastRepliedBy` |
+    | messages | `get api/v3/messaging/conversations/{id}?include=messages` |
+    | eventLogs | `get api/v3/messaging/conversations/{id}?include=eventLogs` |
+    | lastMessage | `get api/v3/messaging/conversations/{id}?include=lastMessage` |
  
 ### Submit a new conversation
-`post api/v3/anytime/conversations` 
+`post api/v3/messaging/conversations` 
 - Parameters 
     - subject: string, conversation subject, required 
     - assignedAgentId: string, agent id
@@ -303,7 +308,7 @@
     - [conversation](#conversations)
 
 ### Update a conversation 
-`put api/v3/anytime/conversations/{id}` 
+`put api/v3/messaging/conversations/{id}` 
 - Parameters 
     - id: integer, conversation id
     - subject: string, conversation subject
@@ -321,7 +326,7 @@
     - [conversation](#conversation) 
 
 ### Batch update conversations
-`put api/v3/anytime/conversations/` 
+`put api/v3/messaging/conversations/` 
 + Parameters 
     - ids: integer[], conversation id array
     - status, string
@@ -333,14 +338,14 @@
     - [conversation](#conversation) list 
 
 ### List conversation event logs
-`get api/v3/anytime/conversations/{id}/eventLogs`
+`get api/v3/messaging/conversations/{id}/eventLogs`
 - Parameters 
     - id: integer, conversation id 
 - Response 
     - [event log](#event-log)
 
 ### List messages of a conversation 
-`get api/v3/anytime/conversations/{id}/messages` 
+`get api/v3/messaging/conversations/{id}/messages` 
 + Parameters 
     - id: integer, conversation id 
 + Response 
@@ -349,10 +354,10 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v3/anytime/conversations/{id}/messages?include=sender` |
+    | sender | `get api/v3/messaging/conversations/{id}/messages?include=sender` |
 
 ### Get a message 
-`get api/v3/anytime/conversations{id}/messages/{messageId}` 
+`get api/v3/messaging/conversations{id}/messages/{messageId}` 
 + Parameters 
     - id: number, conversation id 
     - messageId: string, message id
@@ -362,10 +367,10 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v3/anytime/conversations/messages/{id}?include=sender` |
+    | sender | `get api/v3/messaging/conversations/messages/{id}?include=sender` |
 
 ### Reply a message 
-`post api/v3/anytime/conversations/{id}/messages` 
+`post api/v3/messaging/conversations/{id}/messages` 
 - Parameters  
     - type: string, `note`, `message`, required
     - channelId: string, channel Id, required
@@ -378,7 +383,7 @@
     - [message](#message) 
 
 ### Update a message 
-`put api/v3/anytime/conversations/{id}/messages/{messageId}` 
+`put api/v3/messaging/conversations/{id}/messages/{messageId}` 
 - Parameters  
     - id: number, conversation id,
     - messageId: string, message id,
@@ -392,7 +397,7 @@
     - [message](#message) 
 
 ### Resend a message 
-`put api/v3/anytime/conversations/{id}/messages/{messageId}/resend` 
+`put api/v3/messaging/conversations/{id}/messages/{messageId}/resend` 
 - Parameters  
     - id: number, conversation id,
     - messageId: string, message id,
@@ -401,21 +406,21 @@
 
 
 ### Mark a conversation as read 
-`put api/v3/anytime/conversations/{id}/read` 
+`put api/v3/messaging/conversations/{id}/read` 
 + Parameters 
     - id: integer, conversation id 
 + Response 
     - http status code
 
 ### Mark a conversation as unread 
-`put api/v3/anytime/conversations/{id}/unread` 
+`put api/v3/messaging/conversations/{id}/unread` 
 + Parameters 
     - id: integer, conversation id 
 + Response 
     - http status code
 
 ### Mark a message as read 
-`put api/v3/anytime/conversations/{id}/messages/{messageId}/read` 
+`put api/v3/messaging/conversations/{id}/messages/{messageId}/read` 
 + Parameters 
     - id: number, conversation id,
     - messageId: string, message id,
@@ -423,7 +428,7 @@
     - http status code
 
 ### Mark a message as unread 
-`put api/v3/anytime/conversations/{id}/messages/{messageId}/unread` 
+`put api/v3/messaging/conversations/{id}/messages/{messageId}/unread` 
 + Parameters 
     - id: number, conversation id,
     - messageId: string, message id,
@@ -431,56 +436,56 @@
     - http status code
 
 ### Get agents who are openning the conversation 
-`get api/v3/anytime/conversations/{id}/activedAgents` 
+`get api/v3/messaging/conversations/{id}/activedAgents` 
 + Parameters 
     - id: number, conversation id,
 + Response 
     - agent list
 
 ### Delete a conversation 
-`delete api/v3/anytime/conversations/{id}` 
+`delete api/v3/messaging/conversations/{id}` 
 - Parameters 
     - id: integer, conversation id
 - Response 
     - http status code 
 
 ### Batch delete conversations 
-`delete api/v3/anytime/conversations` 
+`delete api/v3/messaging/conversations` 
 + Parameters 
     - ids: integer[], id array
 + Response 
     - http status code 
 
 ### Get a conversation draft 
-`get api/v3/anytime/conversations/{id}/draft` 
+`get api/v3/messaging/conversations/{id}/draft` 
 - Parameters 
     - id: integer, conversation id 
 - Response 
     - [conversation draft](#conversation-draft) 
 
 ### Create a conversation draft 
-`post api/v3/anytime/conversations/{id}/draft` 
+`post api/v3/messaging/conversations/{id}/draft` 
 - Parameters 
     - [conversation draft](#conversation-draft) 
 - Response 
     - [conversation draft](#conversation-draft) 
 
 ### Update a conversation draft 
-`put api/v3/anytime/conversations/{id}/draft` 
+`put api/v3/messaging/conversations/{id}/draft` 
 - Parameters 
     - [conversation draft](#conversation-draft) 
 - Response 
     - [conversation draft](#conversation-draft) 
 
 ### Delete a conversation draft 
-`delete api/v3/anytime/conversations/{id}/draft` 
+`delete api/v3/messaging/conversations/{id}/draft` 
 - Parameters 
     - id: integer, conversation id 
 - Response 
     - http status code 
 
 ### Merge a conversation 
-`post api/v3/anytime/conversations/{id}/merge`
+`post api/v3/messaging/conversations/{id}/merge`
 - Parameters 
     - id: integer, target conversation id, 
     - sourceId: integer, source conversation id 
@@ -488,7 +493,7 @@
     - [conversation](#conversation) 
 
 ### List unread conversations number for views 
-`get api/v3/anytime/conversations/unreadCount?viewIds={viewid1}&viewIds={viewid2}&viewIds={viewid3}`
+`get api/v3/messaging/conversations/unreadCount?viewIds={viewid1}&viewIds={viewid2}&viewIds={viewid3}`
 - Parameters 
     - viewIds: view id array 
 - Response 
@@ -503,40 +508,70 @@
 ### portal conversation
 | Name | Type | Description |
 | - | - | - |
-| `id` | integer | id of conversation |
-| `subject` | string | subject |
-| `contactId` | string | id of the contact who submitted the portal conversation |
-| `isClosed` | boolean | if the portal conversation is closed |
+| `id` | integer | id of conversation | 
+| `guid` | string | guid of conversation | 
+| `relatedType` | string | `contact`, `visitor`, `agent`| 
+| `relatedId` | string | contact id, visitor id, agent id | 
+| `subject` | string | conversation subject | 
+| `assignedAgentId` | string | assigned agent id | 
+| `assignedDepartmentId` | string | assigned department id | 
+| `originalId` | string | original id on social platform | 
+| `priority` | string | `urgent`, `high`, `normal`, `low` | 
+| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
+| `isRead` | boolean | if the conversation is read | 
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
-| `customFields` | [custom field value](#custom-field-value)[] | custom field value array |
-| `createdAt` | datetime | create time |
-| `closedAt` | datetime | close time |
+| `isMultiChannel`| boolean | if the conversation has multiple channel messages | 
+| `customFields` | [custom field value](#custom-field-value)[] | custom field value array | 
+| `createdById` | string | contact id or agent id or visitor id| 
+| `createdByType` | string | agent or contact or system or visitor | 
+| `createdAt` | datetime | create time of conversation | 
+| `lastUpdatedAt` | datetime | last updated time of conversation | 
+| `lastStatusChangedAt` | datetime | last status change time of conversation | 
+| `lastRepliedAt` | datetime | last replied time | 
+| `lastRepliedById` | integer | contact id or agent id | 
+| `lastRepliedByType` | string | `agent` or `contact` or `system`| 
+| `firstMessageId` | string | the id of the first message | 
+| `lastMessageId` | string | the id of the last message | 
+| `totalReplies`| int | total replies number | 
 
 ### portal conversation message 
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of message | 
-| `contents` | [content](#content)[] | content array |
+| `conversationId` | integer | id of conversation | 
+| `channelId` | string | channel Id | 
+| `type` | string | `message` |
+| `directType` | string | `receive`, `send` |
+| `channelAccountId`| string | channel account id | 
+| `contactIdentityId`| string | contact identity id |
+| `originalMessageId` | string | original message id, or chat Id or offlineMessageId |
+| `originalMessageUrl` | string | origial message link |
+| `parentId` | string | parent id |
+| `subject` | string | subject | 
+| `cc` | string | cc email addresses |  
+| `contents` | [content](#content)[] | content array | 
+| `isRead`| boolean | if the message read by agent | 
+| `sendStatus` | string | `success`, `sending`, `failed` |
 | `senderId`| string | id of agent or contact | 
 | `senderType`| string | `agent` or `contact` or `system` | 
-| `time` | datetime | |   
+| `time` | datetime | the sent time of the message | 
 
 ## endpoints 
 
 |EndPoint|Note| 
 |---|---|
-| `get api/v3/anytime/portalConversations/{id}`  | [Get a portal conversation by id](#Get-a-portal-conversation-by-id)  |
-| `get api/v3/anytime/portalConversations` | [List portal conversations](#List-portal-conversations) |
-| `post api/v3/anytime/portalConversations` | [Submit a portal conversation](#Submit-a-portal-conversation) |
-| `put api/v3/anytime/portalConversations/{id}/close` | [Close a portalConversation](#Close-a-portalConversation) |
-| `put api/v3/anytime/portalConversations/{id}/reopen`  | [Reopen a portalConversation](#Reopen-a-portalConversation) |
-| `get api/v3/anytime/portalConversations/{id}/messages` | [List messages of a portal conversation ](#List-messages-of-a-portal-conversation) |
-| `post api/v3/anytime/portalConversations/{id}/messages` | [Reply a portal conversation](#Reply-a-portal-conversation) |
-| `put api/v3/anytime/portalConversations/{id}/read` | [Contact mark a portal conversation as read](#Contact-mark-a-portal-conversation-as-read) |
-| `put api/v3/anytime/portalConversations/{id}/unread` | [Contact mark a portal conversation as unread](#Contact-mark-a-portal-conversation-as-unread) |
+| `get api/v3/messaging/portalConversations/{id}`  | [Get a portal conversation by id](#Get-a-portal-conversation-by-id)  |
+| `get api/v3/messaging/portalConversations` | [List portal conversations](#List-portal-conversations) |
+| `post api/v3/messaging/portalConversations` | [Submit a portal conversation](#Submit-a-portal-conversation) |
+| `put api/v3/messaging/portalConversations/{id}/close` | [Close a portalConversation](#Close-a-portalConversation) |
+| `put api/v3/messaging/portalConversations/{id}/reopen`  | [Reopen a portalConversation](#Reopen-a-portalConversation) |
+| `get api/v3/messaging/portalConversations/{id}/messages` | [List messages of a portal conversation ](#List-messages-of-a-portal-conversation) |
+| `post api/v3/messaging/portalConversations/{id}/messages` | [Reply a portal conversation](#Reply-a-portal-conversation) |
+| `put api/v3/messaging/portalConversations/{id}/read` | [Contact mark a portal conversation as read](#Contact-mark-a-portal-conversation-as-read) |
+| `put api/v3/messaging/portalConversations/{id}/unread` | [Contact mark a portal conversation as unread](#Contact-mark-a-portal-conversation-as-unread) |
 
 ### Get a portal conversation by id
-`get api/v3/anytime/portalConversations/{id}`
+`get api/v3/messaging/portalConversations/{id}`
 - Parameters
     - id, integer, portal conversation id
     - contactId, string
@@ -546,11 +581,11 @@
 
     |Includes| Description |
     | - | - |
-    | contact | `get api/v3/anytime/portalConversations/{id}?include=contact` | 
-    | messages | `get api/v3/anytime/portalConversations/{id}?include=messages` |
+    | contact | `get api/v3/messaging/portalConversations/{id}?include=contact` | 
+    | messages | `get api/v3/messaging/portalConversations/{id}?include=messages` |
  
 ### List portal conversations
-`get api/v3/anytime/portalConversations`
+`get api/v3/messaging/portalConversations`
 - Parameters:
     - contactIds, string array, required
 - Response: 
@@ -559,12 +594,12 @@
 
     |Includes| Description |
     | - | - |
-    | contact | `get api/v3/anytime/portalConversations?include=contact` |  
+    | contact | `get api/v3/messaging/portalConversations?include=contact` |  
 - Sample
-    - `get api/v3/anytime/portalConversations?contactIds=1&contactIds=2&contactIds=3`
+    - `get api/v3/messaging/portalConversations?contactIds=1&contactIds=2&contactIds=3`
 
 ### Submit a portal conversation
-`post api/v3/anytime/portalConversations`
+`post api/v3/messaging/portalConversations`
 - Parameters: 
     - subject: string, subject, required
     - contactId: string, id of the contact who submitted the portal conversation
@@ -575,7 +610,7 @@
   - [portal conversation](#portal-conversation) 
 
 ### Close a portalConversation
-`put api/v3/anytime/portalConversations/{id}/close` 
+`put api/v3/messaging/portalConversations/{id}/close` 
 - Parameters: 
     - id, integer, portal conversation id,
     - contactId, string, required
@@ -583,7 +618,7 @@
     - [portal conversation](#portal-conversation) 
 
 ### Reopen a portalConversation
-`put api/v3/anytime/portalConversations/{id}/reopen` 
+`put api/v3/messaging/portalConversations/{id}/reopen` 
 - Parameters: 
     - id, integer, portal conversation id,
     - contactId, string, required
@@ -591,7 +626,7 @@
     - [portal conversation](#portal-conversation) 
 
 ### List messages of a portal conversation 
-`get api/v3/anytime/portalConversations/{id}/messages`
+`get api/v3/messaging/portalConversations/{id}/messages`
 - Parameters: 
     - id, integer, conversation id
     - contactId, string, contact id
@@ -601,27 +636,26 @@
 
     |Includes| Description |
     | - | - |
-    | sender| `get api/v3/anytime/portalConversations/{id}/messages?include=sender` | 
+    | sender| `get api/v3/messaging/portalConversations/{id}/messages?include=sender` | 
 
 ### Reply a portal conversation
- `post api/v3/anytime/portalConversations/{id}/messages`
+ `post api/v3/messaging/portalConversations/{id}/messages`
 - Parameters:
     - id: integer
     - contactId: string required
     - contents: [content](#content)[], 
-    - attachments: [attachment](#attachment)[], attachment array
 - Response: 
     - [portal conversation message](#portal-conversation-message)
 
 ### Contact mark a portal conversation as read
-`put api/v3/anytime/portalConversations/{id}/read`
+`put api/v3/messaging/portalConversations/{id}/read`
 - Parameters 
     - id: integer, conversation id 
 - Response 
     - http status code
 
 ### Contact mark a portal conversation as unread
-`put api/v3/anytime/portalConversations/{id}/unread`
+`put api/v3/messaging/portalConversations/{id}/unread`
 - Parameters 
     - id: integer, conversation id 
 - Response 
@@ -633,14 +667,14 @@
 
 |EndPoint|Note| 
 |---|---|
-| `get api/v3/anytime/deletedConversations/`  | [List deleted conversations ](#List-deleted-conversations ) |
-| `get api/v3/anytime/deletedConversations/{id}`  | [Get a deleted conversation](#Get-a-deleted-conversation) |
-| `get api/v3/anytime/deletedConversations/{id}/messages`  | [List messages of a deleted conversation](#List-messages-of-a-deleted-conversation) |
-| `delete api/v3/anytime/deletedConversations/{id}`  | [Delete a conversation permanently ](#Delete-a-conversation-permanently) |
-| `post api/v3/anytime/deletedConversations/{id}/restore `  | [Restore a deleted conversation ](#Restore-a-deleted-conversation) |
+| `get api/v3/messaging/deletedConversations/`  | [List deleted conversations ](#List-deleted-conversations ) |
+| `get api/v3/messaging/deletedConversations/{id}`  | [Get a deleted conversation](#Get-a-deleted-conversation) |
+| `get api/v3/messaging/deletedConversations/{id}/messages`  | [List messages of a deleted conversation](#List-messages-of-a-deleted-conversation) |
+| `delete api/v3/messaging/deletedConversations/{id}`  | [Delete a conversation permanently ](#Delete-a-conversation-permanently) |
+| `post api/v3/messaging/deletedConversations/{id}/restore `  | [Restore a deleted conversation ](#Restore-a-deleted-conversation) |
 
 ### List deleted conversations 
-`get api/v3/anytime/deletedConversations/` 
+`get api/v3/messaging/deletedConversations/` 
 - Parameters 
     - keywords: string
     - pageIndex: integer
@@ -656,14 +690,14 @@
 
     | Includes | Description |
     | - | - |
-    | assignedAgent | `get api/v3/anytime/deletedConversations?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/anytime/deletedConversations?include=assignedDepartment` |
-    | contactOrVisitor | `get api/v3/anytime/deletedConversations?include=contactOrVisitor` |
-    | createdBy | `get api/v3/anytime/deletedConversations?include=createdBy` |
-    | lastRepliedBy | `get api/v3/anytime/deletedConversations?include=lastRepliedBy` | 
+    | assignedAgent | `get api/v3/messaging/deletedConversations?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/messaging/deletedConversations?include=assignedDepartment` |
+    | contactOrVisitor | `get api/v3/messaging/deletedConversations?include=contactOrVisitor` |
+    | createdBy | `get api/v3/messaging/deletedConversations?include=createdBy` |
+    | lastRepliedBy | `get api/v3/messaging/deletedConversations?include=lastRepliedBy` | 
 
 ### Get a deleted conversation 
-`get api/v3/anytime/deletedConversations/{id}` 
+`get api/v3/messaging/deletedConversations/{id}` 
 - Parameters 
     - id: integer, conversation id 
 - Response 
@@ -672,16 +706,16 @@
 
     | Includes | Description |
     | - | - |
-    | assignedAgent | `get api/v3/anytime/deletedConversations/{id}?include=assignedAgent` |
-    | assignedDepartment | `get api/v3/anytime/deletedConversations/{id}?include=assignedDepartment` |
-    | contactOrVisitor | `get api/v3/anytime/deletedConversations/{id}?include=contactOrVisitor` |
-    | createdBy | `get api/v3/anytime/deletedConversations/{id}?include=createdBy` |
-    | lastRepliedBy | `get api/v3/anytime/deletedConversations/{id}?include=lastRepliedBy` |
-    | messages | `get api/v3/anytime/deletedConversations/{id}?include=messages` |
-    | eventLogs | `get api/v3/anytime/deletedConversations/{id}?include=eventLogs` |
+    | assignedAgent | `get api/v3/messaging/deletedConversations/{id}?include=assignedAgent` |
+    | assignedDepartment | `get api/v3/messaging/deletedConversations/{id}?include=assignedDepartment` |
+    | contactOrVisitor | `get api/v3/messaging/deletedConversations/{id}?include=contactOrVisitor` |
+    | createdBy | `get api/v3/messaging/deletedConversations/{id}?include=createdBy` |
+    | lastRepliedBy | `get api/v3/messaging/deletedConversations/{id}?include=lastRepliedBy` |
+    | messages | `get api/v3/messaging/deletedConversations/{id}?include=messages` |
+    | eventLogs | `get api/v3/messaging/deletedConversations/{id}?include=eventLogs` |
 
 ### List messages of a deleted conversation
-`get api/v3/anytime/deletedConversations/{id}/messages` 
+`get api/v3/messaging/deletedConversations/{id}/messages` 
 - Parameters 
     - id: integer, conversation id
 - Response 
@@ -690,17 +724,17 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v3/anytime/deletedConversations/{id}/messages?include=sender` |
+    | sender | `get api/v3/messaging/deletedConversations/{id}/messages?include=sender` |
 
 ### Delete a conversation permanently 
-`delete api/v3/anytime/deletedConversations/{id}` 
+`delete api/v3/messaging/deletedConversations/{id}` 
 - Parameters 
     - id: integer, conversation id 
 - Response 
     - http status code 
 
 ### Restore a deleted conversation 
-`post api/v3/anytime/deletedConversations/{id}/restore ` 
+`post api/v3/messaging/deletedConversations/{id}/restore ` 
 - Parameters 
     - id: integer, conversation id 
 - Response 
@@ -718,7 +752,7 @@
 
 ## endpoints 
 ### Upload attachment 
-`post /api/v3/anytime/attachments` 
+`post /api/v3/messaging/attachments` 
 - Content-type
     - multipart/form-data
 - Parameters 
@@ -727,14 +761,14 @@
     - [attachment](#attachment) 
     
 ### Update status of attachment
-`Put /api/v3/anytime/attachments/{guid}`
+`Put /api/v3/messaging/attachments/{guid}`
 #### Parameters:
 - isAvailable - boolean `true` or  `false`
 #### Response
 - [attachment](#attachment) 
 
 ### Delete attachment 
-`delete /api/v3/anytime/attachments/{guid}` 
+`delete /api/v3/messaging/attachments/{guid}` 
 - Parameters 
     - guid: string, the guid of the attachment
 - Response 
@@ -771,14 +805,14 @@
 
 ## endpoints 
 ### List views 
-`get /api/v3/anytime/views`
+`get /api/v3/messaging/views`
 - Parameters 
     - no parameters 
 - Response 
     - [view](#view) list, without conditions
 
 ### Create a new view 
-`post api/v3/anytime/views`
+`post api/v3/messaging/views`
 - Parameters 
     - name: string, view name, required 
     - isPrivate: boolean, if private view, default value: `false` 
@@ -787,14 +821,14 @@
     - [view](#view) list 
 
 ### Get a view and its conditions 
-`get api/v3/anytime/views/{id}` 
+`get api/v3/messaging/views/{id}` 
 - Parameters 
     - id: string, view id 
 - Response 
     - [view](#view) 
 
 ### Update a view 
-`put api/v3/anytime/views/{id}` 
+`put api/v3/messaging/views/{id}` 
 - Parameters 
     - id: string, view id 
     - name: string, view name, required 
@@ -804,7 +838,7 @@
     - [view](#view) 
 
 ### Delete a view 
-`delete api/v3/anytime/views/{id}` 
+`delete api/v3/messaging/views/{id}` 
 - Parameters 
     - id: string, view id 
 - Response 
@@ -842,21 +876,21 @@
 
 ## endpoints
 ### get routing
-`get api/v3/anytime/routing`
+`get api/v3/messaging/routing`
 + Parameters
     - no parameters
 + Response
     - [routingRule](#routingRule)
 
 ### Enable/Disable routing
-`put api/v3/anytime/routing/enable`
+`put api/v3/messaging/routing/enable`
 + Parameters
     - isEnabled: boolean,
 + Response
     - http status code
 
 ### Update routing
-`put api/v3/anytime/routing/{id}`
+`put api/v3/messaging/routing/{id}`
 + Parameters
     - id: string
     - isEnabled: boolean
@@ -872,7 +906,7 @@
     - [routing](#routing)
 
 ### Enable/Disable a custom rule
-`put api/v3/anytime/routing/customRules/{id}/enable`
+`put api/v3/messaging/routing/customRules/{id}/enable`
 + Parameters
     - id: string
     - isEnabled: boolean
@@ -880,21 +914,21 @@
     - [customRule](#customRule) 
 
 ### Create a custom rule
-`post api/v3/anytime/routing/customRules`
+`post api/v3/messaging/routing/customRules`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
     - [customRule](#customRule)
 
 ### Get a custom rule
-`get api/v3/anytime/routing/customRules/{id}`
+`get api/v3/messaging/routing/customRules/{id}`
 + Parameters
     - id: string
 + Response
     - [customRule](#customRule)
 
 ### Update a custom rule
-`put api/v3/anytime/routing/customRules/{id}`
+`put api/v3/messaging/routing/customRules/{id}`
 + Parameters
     - customRule: [customRule](#customRule)
 + Response
@@ -902,14 +936,14 @@
 
 
 ### Delete a custom rule
-`put api/v3/anytime/routing/customRules/{id}`
+`put api/v3/messaging/routing/customRules/{id}`
 + Parameters
     - id: string
 + Response
     - http status code
 
 ### update the order number of a custom rule
-`put api/v3/anytime/routing/customRules/{id}/sort`
+`put api/v3/messaging/routing/customRules/{id}/sort`
 + Parameters
     - id: string
     - type: string, `up`, `down`
@@ -948,21 +982,21 @@
 
 ## endpoints
 ### Get auto allocation settings
-`get api/v3/anytime/autoAllocation`
+`get api/v3/messaging/autoAllocation`
 + Parameters
     - no parameters
 + Response
     - [autoAllocationSetting](#autoAllocationSetting)
 
 ### Enable/Disable auto allocation
-`put api/v3/anytime/autoAllocation/enable`
+`put api/v3/messaging/autoAllocation/enable`
 + Parameters
     - isEnabled: boolean, if enabled auto allocation
 + Response
     - http status code
 
 ### Update auto allocation settings
-`put api/v3/anytime/autoAllocation`
+`put api/v3/messaging/autoAllocation`
 + Parameters
     - isEnabled: boolean, if enabled auto allocation
     - allocationRuleSettings: [allocationRuleSetting](#allocationRuleSetting)[]
@@ -1007,21 +1041,21 @@
 
 ## endpoints
 ### List all triggers
-`get api/v3/anytime/triggers`
+`get api/v3/messaging/triggers`
 + Parameters 
     - no parameters
 + Response
     - [trigger](#trigger) list
 
 ### Get a trigger
-`get api/v3/anytime/triggers/{id}`
+`get api/v3/messaging/triggers/{id}`
 + Parameters
     - id: string, trigger id
 + Response
     - [trigger](#trigger)
 
 ### Submit a trigger
-`post api/v3/anytime/triggers`
+`post api/v3/messaging/triggers`
 + Parameters
     - description, string, description of the trigger
     - isEnabled, boolean, if enabled the trigger
@@ -1042,7 +1076,7 @@
     - [trigger](#trigger)
 
  ### Update a trigger
-`put api/v3/anytime/triggers/{id}`
+`put api/v3/messaging/triggers/{id}`
 + Parameters
     - id, string, id of the trigger
     - description, string, description of the trigger
@@ -1064,7 +1098,7 @@
     - [trigger](#trigger)
 
 ### Upgrade/Downgrade a triggers
-`put api/v3/anytime/triggers/{id}/sort`
+`put api/v3/messaging/triggers/{id}/sort`
 + Parameters
     - id: string, trigger id
     - type: string, `up`, `down`
@@ -1072,7 +1106,7 @@
     - http status code
 
 ### Enable/Disable a triggers
-`put api/v3/anytime/triggers/{id}`
+`put api/v3/messaging/triggers/{id}`
 + Parameters
     - id: string, trigger id
     - isEnabled: boolean, if enabled the trigger
@@ -1080,7 +1114,7 @@
     - http status code
 
  ### Delete a trigger
-`delete api/v3/anytime/triggers/{id}`
+`delete api/v3/messaging/triggers/{id}`
 + Parameters
     - id: string, trigger id
 + Response
@@ -1102,21 +1136,21 @@
 
 ## endpoints
 ### List all SLA policies
-`get api/v3/anytime/SLAPolicies`
+`get api/v3/messaging/SLAPolicies`
 + Parameters
     - no parameters
 + Response
     - [SLAPolicy](#SLApolicy) list
 
 ### Get a SLA policy
-`get api/v3/anytime/SLAPolicies/{id}`
+`get api/v3/messaging/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
     - [SLAPolicy](#SLApolicy)
 
 ### Create a SLA policy
-`post api/v3/anytime/SLAPolicies`
+`post api/v3/messaging/SLAPolicies`
 + Parameters
     - isEnabled: boolean, if enabled this SLA policy 
     - firstRespondWithin: integer, 
@@ -1128,7 +1162,7 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Update a SLA policy
-`put api/v3/anytime/SLAPolicies/{id}`
+`put api/v3/messaging/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id 
     - isEnabled: boolean, if enabled this SLA policy 
@@ -1141,14 +1175,14 @@
     - [SLAPolicy](#SLApolicy)
 
 ### Delete a SLA policy
-`delete api/v3/anytime/SLAPolicies/{id}`
+`delete api/v3/messaging/SLAPolicies/{id}`
 + Parameters
     - id: string, SLA policy id
 + Response
     - http status code
 
 ### Upgrade/Downgrade a SLA policy
-`put api/v3/anytime/triggers/{id}/sort`
+`put api/v3/messaging/triggers/{id}/sort`
 + Parameters
     - id: string, SLA policy id
     - type: string, `up`, `down`
@@ -1176,35 +1210,35 @@
 
 ## endpoints
 ### Get working time setting
-`get api/v3/anytime/workingTime`
+`get api/v3/messaging/workingTime`
 + Parameters
     - no parameters
 + Response
     - [workingTime](#workingTime) list
 
 ### Update working time settings
-`put api/v3/anytime/workingTime`
+`put api/v3/messaging/workingTime`
 + Parameters
     - workingTimes: [workingTime](#workingTime)[]
 + Response
     - http status code
 
 ### List all holidays
-`get api/v3/anytime/holidays`
+`get api/v3/messaging/holidays`
 + Parameters
     - no parameters
 + Response
     - [holiday](#holiday) list
 
 ### Get a holiday
-`get api/v3/anytime/holidays/{id}`
+`get api/v3/messaging/holidays/{id}`
 + Parameters
     - id: string
 + Response
     - [holiday](#holiday)
 
 ### Create a holiday
-`post api/v3/anytime/holidays`
+`post api/v3/messaging/holidays`
 + Parameters
     - id: string
     - title: string, title of the holiday
@@ -1213,7 +1247,7 @@
     - [holiday](#holiday)
 
 ### Update a holiday
-`put api/v3/anytime/holidays/{id}`
+`put api/v3/messaging/holidays/{id}`
 + Parameters
     - id: string
     - title: string, title of the holiday
@@ -1222,7 +1256,7 @@
     - [holiday](#holiday)
 
 ### Delete a holiday
-`delete api/v3/anytime/holidays`
+`delete api/v3/messaging/holidays`
 + Parameters
     - id: string
 + Response
@@ -1262,21 +1296,21 @@
 
 ## endpoints 
 ### List fields and their options 
-`get api/v3/anytime/fields` 
+`get api/v3/messaging/fields` 
 + Parameters
     - isSystemField: boolean, if is system field, optional
 + Response 
     - [field](#field) list 
 
 ### Get a field
-`get api/v3/anytime/fields/{id}`
+`get api/v3/messaging/fields/{id}`
 + Parameters
     - id: string, field id
 + Response
     - [field](#field) 
 
 ### Create a field
-`post api/v3/anytime/fields`
+`post api/v3/messaging/fields`
 + Parameters
     - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
     - name, string, field name 
@@ -1289,7 +1323,7 @@
     - [field](#field) 
 
 ### Update a field
-`put api/v3/anytime/fields/{id}`
+`put api/v3/messaging/fields/{id}`
 + Parameters
     - id, string, field id 
     - name, string, field name 
@@ -1302,14 +1336,14 @@
     - [field](#field) 
 
 ### Delete a field
-`delete api/v3/anytime/fields/{id}`
+`delete api/v3/messaging/fields/{id}`
 + Parameters
     - id, string, field id 
 + Response
     - http status code
 
 ### Mapping fields
-`put api/v3/anytime/fields/mapping`
+`put api/v3/messaging/fields/mapping`
 + Parameters
     - fieldMappings: [fieldMapping](#fieldMapping) list
 + Response
@@ -1327,21 +1361,21 @@
 
 ## endpoints 
 ### List blocked senders 
-`get /api/v3/anytime/blockedSenders` 
+`get /api/v3/messaging/blockedSenders` 
 + Parameters 
     - value: string, domain or email address 
 + Response 
     - [block sender](#blocked-sender) list 
 
 ### Get a blocked sender
-`get /api/v3/anytime/blockedSenders/{id}`
+`get /api/v3/messaging/blockedSenders/{id}`
 + Parameters
     - id: string
 + Response
     - [block sender](#blocked-sender) 
 
 ### Add/update a blocked sender 
-`put api/v3/anytime/blockedSenders` 
+`put api/v3/messaging/blockedSenders` 
 + Parameters 
     - `value`, string, domain or email address 
     - `blockType`, string, `blockEmailasJunk`, `rejectEmail`, `blockDomainasJunk`, `rejectDomain`
@@ -1349,7 +1383,7 @@
     - [block sender](#blocked-sender) 
 
 ### Remove a blocked sender 
-`delete api/v3/anytime/blockedSenders` 
+`delete api/v3/messaging/blockedSenders` 
 + Parameters 
    - value: string, domain or email address 
 + Response 
@@ -1361,9 +1395,9 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id of junk | 
-| `channelAccount`| string | channel account id | 
+| `channelId` | string | channel id | 
+| `channelAccountId`| string | channel account id | 
 | `contactIdentityId`| string | id of contact identity |
-| `source` | string | `agentConsole`, `helpDesk`, `webForm`, `API`, `chat`, `offlineMessage`, etc. | 
 | `originalMessageId` | string | original message id|
 | `originalMessageUrl` | string | origial message link |
 | `parentId` | string | parent id |
@@ -1377,7 +1411,7 @@
 
 ## endpoints 
 ### List junk emails
-`get api/v3/anytime/junks` 
+`get api/v3/messaging/junks` 
 
 - Parameters 
     - keywords: string
@@ -1392,14 +1426,14 @@
     - currentPage: string
 
 ### Get a junk email 
-`get api/v3/anytime/junks/{id}` 
+`get api/v3/messaging/junks/{id}` 
 - Parameters 
     - id: string, email id 
 - Response 
     - [junk](#junk) 
 
 ### Update a junk 
-`put api/v3/anytime/junks/{id}` 
+`put api/v3/messaging/junks/{id}` 
 - Parameters 
     - id: string, email id 
     - isRead: boolean, 
@@ -1407,14 +1441,14 @@
     - [junk](#junk) 
 
 ### Restore a junk email to a normal conversation 
-`post api/v3/anytime/junks/{id}/notJunk` 
+`post api/v3/messaging/junks/{id}/notJunk` 
 - Parameters 
     - id: integer, email id 
 - Response 
     - [conversation](#conversation) 
 
 ### Delete a junk email 
-`delete api/v3/anytime/junks/{id}` 
+`delete api/v3/messaging/junks/{id}` 
 - Parameters 
     - id: integer, junk email id 
 - Response 
@@ -1433,28 +1467,28 @@
 
 ## endpoints 
 ### List channel accounts 
-`get api/v3/anytime/channelAccounts` 
+`get api/v3/messaging/channelAccounts` 
 - Parameters
     - channelId: string, optional
 - Response 
     - [channelAccount](#channelAccount)[] 
 
 ### Add an channel account 
-`post api/v3/anytime/channelAccounts` 
+`post api/v3/messaging/channelAccounts` 
 - Parameters
     - channelAccount: [channelAccount](#channelAccount) 
 - Response 
     - [channelAccount](#channelAccount)
 
 ### Update an channel account 
-`put api/v3/anytime/channelAccounts/{id}` 
+`put api/v3/messaging/channelAccounts/{id}` 
 - Parameters
     - name: string 
 - Response 
     - [channelAccount](#channelAccount)
 
 ### Delete an channel account 
-`delete api/v3/anytime/channelAccounts/{id}` 
+`delete api/v3/messaging/channelAccounts/{id}` 
 - Parameters
     - id: string,
 - Response 
@@ -1474,11 +1508,11 @@
 | `messageMaxLength` | int | outgoing message max length |
 | `messageCapability` | string[] | outgoing message support message type |
 | `isSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
-| `isSupportDirectlyReply` | bool | If support directyly reply to a contact |  
+| `isAllowActiveCreation` | bool | If allow active create message by agent |  
 
 ## endpoints 
 ### List all integrated channels 
-`get api/v3/anytime/channels` 
+`get api/v3/messaging/channels` 
 - Parameters
     - no parameter
 - Response 
@@ -1492,23 +1526,23 @@
 ## EndPoint List 
 | endpoint | type | note |
 | --- | --- | --- |
-| [/api/v3/anytime/reports/realtime/now](#right-now) | GET | real-time report of now |
-| [/api/v3/anytime/reports/realtime/today](#realtime-today) | GET | real-time report of today |
-| [/api/v3/anytime/reports/realtime/departments](#realtime-department) | GET | real-time report of departments |
-| [/api/v3/anytime/reports/realtime/agents](#realtime-agent) | GET | real-time report of agents |
-| [/api/v3/anytime/reports/volume/export](#export-volume) | GET | export volume report data |
-| [/api/v3/anytime/reports/volume](#report-volume) | GET | report of volume |
-| [/api/v3/anytime/reports/channel/export](#export-channel) | GET | export channel report data |
-| [/api/v3/anytime/reports/channel](#report-channel) | GET | channel report |
-| [/api/v3/anytime/reports/efficiency/export](#export-efficiency) | GET | export efficiency report data|
-| [/api/v3/anytime/reports/efficiency](#report-efficiency) | GET | efficiency report |
-| [/api/v3/anytime/reports/sla/export](#export-SLA-report) | GET | export SLA report data |
-| [/api/v3/anytime/reports/sla](#report-sla) | GET | SLA report data |
+| [/api/v3/messaging/reports/realtime/now](#right-now) | GET | real-time report of now |
+| [/api/v3/messaging/reports/realtime/today](#realtime-today) | GET | real-time report of today |
+| [/api/v3/messaging/reports/realtime/departments](#realtime-department) | GET | real-time report of departments |
+| [/api/v3/messaging/reports/realtime/agents](#realtime-agent) | GET | real-time report of agents |
+| [/api/v3/messaging/reports/volume/export](#export-volume) | GET | export volume report data |
+| [/api/v3/messaging/reports/volume](#report-volume) | GET | report of volume |
+| [/api/v3/messaging/reports/channel/export](#export-channel) | GET | export channel report data |
+| [/api/v3/messaging/reports/channel](#report-channel) | GET | channel report |
+| [/api/v3/messaging/reports/efficiency/export](#export-efficiency) | GET | export efficiency report data|
+| [/api/v3/messaging/reports/efficiency](#report-efficiency) | GET | efficiency report |
+| [/api/v3/messaging/reports/sla/export](#export-SLA-report) | GET | export SLA report data |
+| [/api/v3/messaging/reports/sla](#report-sla) | GET | SLA report data |
 
 ## EndPoints
 
 ### right now
-`GET /api/v3/anytime/reports/realtime/now`
+`GET /api/v3/messaging/reports/realtime/now`
 - Parameters：
 	- no parameter
 - Response:
@@ -1522,7 +1556,7 @@
 	- highPriorityConversations: integer
 
 ### realtime of lastest sereral days
-- `GET /api/v3/anytime/reports/realtime/bytime`
+- `GET /api/v3/messaging/reports/realtime/bytime`
 - Parameters:
     - days: int, days number, maximum number 15. 
 - Response:
@@ -1532,7 +1566,7 @@
 	- reopenedConverstations: integer
 
 ### realtime department
-`GET /api/v3/anytime/reports/realtime/departments`
+`GET /api/v3/messaging/reports/realtime/departments`
 - Parameters：
     - no parameter
 - Response:
@@ -1549,7 +1583,7 @@
 		- highPriorityConversations: integer,
 
 ### realtime agent
-`GET/api/v3/anytime/reports/realtime/agents`
+`GET/api/v3/messaging/reports/realtime/agents`
 - Parameters：
 	- viewType: string, `site`, `agent`, `department`, `account`, `channel`
 	- viewValue: integer,
@@ -1567,7 +1601,7 @@
 		- highPriorityConversations: integer,
 	
 ### export volume
-`GET /api/v3/anytime/reports/volume/export`
+`GET /api/v3/messaging/reports/volume/export`
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
@@ -1581,7 +1615,7 @@
 
 
 ### report volume
-`GET /api/v3/anytime/reports/volume`
+`GET /api/v3/messaging/reports/volume`
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
@@ -1611,7 +1645,7 @@
 	- totalOpenConversations: integer
 
 ### export channel
-`GET /api/v3/anytime/reports/channel/export`
+`GET /api/v3/messaging/reports/channel/export`
 - Parameters：
 	- siteId: integer,
     - startTime: Datetime,
@@ -1625,7 +1659,7 @@
 - Response:csv file
 
 ### report-channel
-`GET /api/v3/anytime/reports/channel`
+`GET /api/v3/messaging/reports/channel`
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
@@ -1658,7 +1692,7 @@
 | `totalNumber` | integer |  |
 
 ### export efficiency
-`GET /api/v3/anytime/reports/efficiency/export`
+`GET /api/v3/messaging/reports/efficiency/export`
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
@@ -1671,7 +1705,7 @@
 - Response:csv file
 
 ### report efficiency
-`GET /api/v3/anytime/reports/efficiency`
+`GET /api/v3/messaging/reports/efficiency`
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
@@ -1696,7 +1730,7 @@
 	- totalAvgAgentMessages: float
 
 ### export SLA report
-`GET /api/v3/anytime/reports/sla/export`
+`GET /api/v3/messaging/reports/sla/export`
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
@@ -1714,7 +1748,7 @@
         - breachedTickets: integer, 
 
 ### report SLA
-`GET /api/v3/anytime/reports/sla`
+`GET /api/v3/messaging/reports/sla`
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
