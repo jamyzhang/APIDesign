@@ -51,8 +51,9 @@
   | `stateOrProvince` | string | optional, state or province which the site is in
   | `postalOrZipCode` | string | optional, postal or zip code of the site
   | `country` | string | optional, country which the site's company belongs to
-  | `companySize` | string | optional, number of staff in the site's company
+  | `companySize` | string | optional, number of staff in the site's company, value should be `1-20`, `21-50`, `51-100`, `101-180`, `21-50`, `181-310`, `311-600`, `Above 600`
   | `timeZone` | string | optional, time zone which the site's company belongs to
+  | `isAutoDetectDaylightSavingTime` | boolean | optional, whether auto detect daylight saving time or not
   | `datetimeFormat` | string | optional, date/time format which the site will display
   | `subdomain` | string | optional, subdomain of the site
 
@@ -106,6 +107,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "country": "China",
     "companySize": "101-180",
     "timeZone": "71",
+    "isAutoDetectDaylightSavingTime": false,
     "datetimeFormat": "MM/dd/yyyy HH:mm:ss",
     "subdomain": "mysubdomain.comm100.io"
 }
@@ -158,6 +160,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "country": "China",
     "companySize": "101-180",
     "timeZone": "71",
+    "isAutoDetectDaylightSavingTime": false,
     "datetimeFormat": "MM/dd/yyyy HH:mm:ss",
     "subdomain": "mysubdomain.comm100.io"
 }
@@ -226,6 +229,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
     Optional:
   - `pageIndex`: integer, the page index of a query.
+  - `pageSize`: integer, the page size of a query.
 
 - Response
   - `total`: integer, total count of the list.
@@ -532,7 +536,7 @@ Status: 200 OK
 
 ```json
   {
-    "realtimeConversation": {
+    "liveChat": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -554,7 +558,7 @@ Status: 200 OK
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": false,
     },    
-    "anytimeConversation": {
+    "messagingConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -627,7 +631,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversation": {
+    "liveChat": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -649,7 +653,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": false,
     },    
-    "anytimeConversation": {
+    "messagingConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -732,7 +736,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
       -H "content-type: application/json" -x PUT  
-     -d "{"realtimeConversation":{"acceptChats": true,"viewAllHistory": true,"viewHistoryInMyDepartment": false,
+     -d "{"liveChat":{"acceptChats": true,"viewAllHistory": true,"viewHistoryInMyDepartment": false,
       "viewMyOwnAllTranscripts": false,"deleteTranscripts": false,"manageCampaigns": false,"manageSettings": false,
       "manageCustomVariables": true,"manageSecureForm": true,"manageBan": false,"viewReports": false,
       "refuseChats": false,"inviteVisitorsToChat": false,"joinChats": true,"transferChats": true,
@@ -745,7 +749,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversation": {
+    "liveChat": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -767,7 +771,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": true,
     },    
-    "anytimeConversation": {
+    "messagingConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -852,7 +856,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversation": {
+    "liveChat": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -874,7 +878,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": true,
     },    
-    "anytimeConversation": {
+    "messagingConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -1415,7 +1419,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversation": {
+    "liveChat": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -1437,7 +1441,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": true,
     },    
-    "anytimeConversation": {
+    "messagingConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -1533,7 +1537,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 ```json
 {
-    "realtimeConversation": {
+    "liveChat": {
       "acceptChats": true,
       "viewAllHistory": true,
       "viewHistoryInMyDepartment": false,
@@ -1555,7 +1559,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "manageCustomMetrics": false,
       "viewAllInSiteVisitors": true,
     },    
-    "anytimeConversation": {
+    "messagingConversation": {
       "manageAssignedToMeConversations": true,
       "viewConversationsWithNoDepartment": false, 
       "manageConversationsWithNoDepartment": false,
@@ -1845,7 +1849,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
   - `dateTo`: datetime, the date when an agent ended the action, format as `yyyy-MM-ddTHH:mm:ss`.
 
     optional：
-  - `product`: string, the product which the action belongs to, including `Real-time Conversation`, `Anytime Conversations`, `Knowledge Base`, `AI`, `Global`.
+  - `product`: string, the product which the action belongs to, including `Live Chat`, `Messaging`, `Knowledge Base`, `AI`, `Global`.
   - `type`: string, the action type.
   - `agentId`: string, id of the agent who did the action.
   - `keywords`: string, the key words associated with the action
@@ -2156,7 +2160,7 @@ Status: 200 OK
   | `id` | string | read-only, id of the canned message category. |
   | `name` | string | required, name of the canned message category. |
   | `parentId` | string | required, id of the parent category of the canned message category. |
-  | `isPrivate` | boolean | required, whether the canned message category is private or not. |
+  | `isPrivate` | boolean | optional, whether the canned message category is private or not. When a subcategory has a parent category, this attribute is determined by the parent category.  |
 
 </div>
 <div>
@@ -2365,7 +2369,7 @@ Status: 200 OK
   | - | - | - |
   | `siteId` | int | required, site id of the canned message use record. |
   | `conversationId` | string | required, conversation id of the canned message use record. |
-  | `conversationType` | string | required, conversation type the canned message use record, we now have `anytime` or `realtime`. |
+  | `conversationType` | string | required, conversation type the canned message use record, we now have `messaging` or `live chat`. |
   | `agentId` | string | required, id of the agent who added the canned message use record. |
   | `cannedMessageId` | string | required, the used canned message id. |
   | `time` | string | readonly, the time of this canned message use record. |
@@ -2397,7 +2401,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
-     -d "{"siteId": 10000,"conversationId": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42',"conversationType": 'anytime',"agentId": '909F7DCE-778E-4FA6-8B1F-4B529023747B',"cannedMessageId": '7960F944-D510-45C9-A766-836337243487'}"   
+     -d "{"siteId": 10000,"conversationId": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42',"conversationType": 'messaging',"agentId": '909F7DCE-778E-4FA6-8B1F-4B529023747B',"cannedMessageId": '7960F944-D510-45C9-A766-836337243487'}"   
      https://hosted.comm100.com/api/v3/global/cannedMessageUseRecords
 ```
 
@@ -2407,7 +2411,7 @@ Sample response:
 {
     "siteId": 10000,
     "conversationId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "conversationType": "anytime",
+    "conversationType": "messaging",
     "agentId": "909F7DCE-778E-4FA6-8B1F-4B529023747B",
     "cannedMessageId": "7960F944-D510-45C9-A766-836337243487",
     "time": "2019-08-08T10:21:44.403"
@@ -3400,7 +3404,7 @@ Webhook is represented as simple flat JSON objects with the following keys:
   | Name | Type | Description |
   | - | - | - |
   |`id`| string | read-only, id of the webhook. |
-  |`event`| string | required, event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`, `chatFileUploaded`, `offlineMessageFileUploaded`, `anytimeConversationFileUploaded`. |
+  |`event`| string | required, event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`, `chatFileUploaded`, `offlineMessageFileUploaded`, `messagingConversationFileUploaded`. |
   |`targetUrl`| string | required, target url of the webhook. |
   |`version`| string | read-only, version of the webhook. |
 
