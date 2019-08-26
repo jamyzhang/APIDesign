@@ -225,7 +225,6 @@
 | `get api/v3/messaging/conversations/{id}/messages` | [List messages of a conversation](#List-messages-of-a-conversation) |
 | `get api/v3/messaging/conversations{id}/messages/{messageId}`  | [Get a message](#Get-a-message) |
 | `post api/v3/messaging/conversations/{id}/messages` | [Reply a message](#Reply-a-message) |
-| `put api/v3/messaging/conversations/{id}/messages/{messageId}`  | [Update a message](#Update-a-message) |
 | `put api/v3/messaging/conversations/{id}/messages/{messageId}/resend`  | [Resend a message](#Resend-a-message) |
 | `put api/v3/messaging/conversations/{id}/messages/{messageId}/read` | [Mark a message as read](#Mark-a-message-as-read) |
 | `put api/v3/messaging/conversations/{id}/messages/{messageId}/unread`   | [Mark a message as unread ](#Mark-a-message-as-unread) | 
