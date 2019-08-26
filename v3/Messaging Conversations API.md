@@ -26,6 +26,7 @@
     | `get api/v3/messaging/portalConversations/{id}` | contact, messages |
     | `get api/v3/messaging/portalConversations` | contact |
     | `get api/v3/messaging/portalConversations/{id}/messages` | sender | 
+    | `get api/v3/messaging/junks/` | sender | 
 
 - Sample:
     - request: `get api/v3/messaging/conversations/{id}?include=assignedAgent,createdBy,messages`
@@ -379,20 +380,6 @@
     - cc: string, message cc emails 
     - parentId: string,
     - contents: [content](#content)[]
-- Response 
-    - [message](#message) 
-
-### Update a message 
-`put api/v3/messaging/conversations/{id}/messages/{messageId}` 
-- Parameters  
-    - id: number, conversation id,
-    - messageId: string, message id,
-    - sendStatus: string, `success`, `sending`, `failed` 
-    - originalMessageId: string, 
-    - originalMessageUrl: string,
-    - content[]: 
-        - id: string
-        - url: string
 - Response 
     - [message](#message) 
 
@@ -864,7 +851,6 @@
 | Name | Type | Description |
 | - | - | - |
 | `id` | string | id of the custom rule |
-| `routingId` | string | id of the routingId |
 | `orderNum` | integer | order of the custom rule |
 | `isEnabled` | boolean | whether the custom rule is enabled or not. |
 | `name` | string | name of the custom rule |
@@ -901,7 +887,6 @@
     - matchFailedType: string, department and agent
     - matchFailedToId: string
     - matchFailedWithPriority: string
-    - orderNum: int, rules execute and display order
 + Response
     - [routing](#routing)
 
@@ -1312,7 +1297,7 @@
 ### Create a field
 `post api/v3/messaging/fields`
 + Parameters
-    - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`,     `operator`,     `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
+    - type, string, `text`, `textarea`, `email`, `url`, `date`, `integer`, `float`, `operator`, `radio`, `checkbox`, `dropdownList`, `checkboxList`, `link`, `department`
     - name, string, field name 
     - isRequired, boolean, value if is required 
     - defaultValue, string, field default value 
@@ -1405,8 +1390,8 @@
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `isRead`| boolean | | 
-| `senderId`| string | id of agent or contact | 
-| `senderType`| string | `agent` or `contact` or `system` | 
+| `senderId`| string | id of contact or visitor | 
+| `senderType`| string | `contact` or `visitor` or `system` | 
 | `time` | datetime | the sent time of the junk message | 
 
 ## endpoints 
@@ -1424,6 +1409,12 @@
     - previousPage: string, next page uri, the first page return null
     - nextPage: string, the last page return null
     - currentPage: string
+
++ Includes
+
+    | Includes | Description |
+    | - | - |
+    | sender | `get api/v3/messaging/junks?include=sender` | 
 
 ### Get a junk email 
 `get api/v3/messaging/junks/{id}` 
