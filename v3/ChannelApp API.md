@@ -183,6 +183,15 @@ outgoingMessageMaxLength|int|
 outgoingMessageCapability|string|
 isSupportDiffAccountReply|bool|
 isAllowActiveCreatation|bool|
+ifDisplaySubject|bool|
+ifDisplayContact|bool|
+ifDisplayCc |bool|
+ifDisplayToolbarOfEditor |bool|
+ifDisplayAttachment |bool|
+ifDisplayChannelAccount |bool|
+ifEnableFullScreenReplay |bool|
+IfHasNote |bool|
+IfEnableSaveAsDraft |bool|
 ### Endpoints
 
 Endpoint |Description
