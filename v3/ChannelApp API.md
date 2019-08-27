@@ -108,38 +108,15 @@ Name|Type |Description
 ---|---|---
 id| guid|`Read-only`<br>Primary key
 type  | string|`Required`<br>Text/HtmlText/File/Video/Audio/Picture/Location
-data|object|<ul><li>[Text Message Cotent](#text-message-content)</li><li>[HtmlText Message Cotent](#HtmlText-message-content)</li><li>[File Message Cotent](#file-message-content)</li><li>[Media Message Cotent](#media-message-content)</li><li>[Location Message Cotent](#location-message-content)</li></ul>
+text| string| If the type is Text, this field is required.
+htmlText|string|If the type is HtmlText, this field is required.
+name|string|If the type is File, this field is required.
+title|string|If the type is Video, Audio or Picture, this field is required.
+url|string|If the type is File, Video, Audio or Picture, this field is required.
+latitude|double|If the type is Location, this field is required.
+longitude|double|If the type is Location, this field is required.
+desc|string| The description of a loaction.
 
-
-
-
-#### Text Message Content
-Name|Type |Description
----|---|---
-text|string|
-#### HtmlText Message Content
-Name|Type |Description
----|---|---
-htmlText|string|
-
-#### File Message Content
-Name|Type |Description
----|---|---
-name|string|
-url|string|
-
-#### Media Message Content
-Name|Type |Description
----|---|---
-title|string|
-url|string|
-
-#### Location Message Content
-Name|Type |Description
----|---|---
-latitude|double|`Optional`<br> 
-longitude|double|`Optional`<br> 
-desc|string|`Optional`<br> 
 ### Endpoints
 
 Endpoint |Description
@@ -286,6 +263,7 @@ Name|Type |Description
 id| guid|`Read-only`<br>Primary key
 secretKey|string|`Read-only`
 isSystem|bool|`Required`
+isVirtual|bool|`Required`
 status|smallint|`Required`
 authorName|string|
 authorEmail|string|
