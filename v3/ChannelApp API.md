@@ -112,6 +112,8 @@ text| string| If the type is Text, this field is required.
 htmlText|string|If the type is HtmlText, this field is required.
 name|string|If the type is File, this field is required.
 title|string|If the type is Video, Audio or Picture, this field is required.
+mime|string|If the type is File, Video, Audio or Picture, this field is required.
+previewUrl|string|If the type is  Video, this field is required.
 url|string|If the type is File, Video, Audio or Picture, this field is required.
 latitude|double|If the type is Location, this field is required.
 longitude|double|If the type is Location, this field is required.
