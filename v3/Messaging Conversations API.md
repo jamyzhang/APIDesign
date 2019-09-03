@@ -194,7 +194,6 @@
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
 | `contents` | [content](#content)[] | content array | 
-| `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `senderId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
   
@@ -1491,6 +1490,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
+| `appId` | string | channel app id | 
 | `name` | string | channel name | 
 | `contactIdentityType` | string | contact identity type |
 | `icon` | string | icon url |     
@@ -1499,6 +1499,17 @@
 | `messageCapability` | string[] | outgoing message support message type |
 | `isSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
 | `isAllowActiveCreation` | bool | If allow active create message by agent |  
+| `ifDisplaySubject` | bool | If display subject in agent console |  
+| `ifDisplayContact` | bool | If display contact in agent console |  
+| `ifDisplayCc` | bool | If display cc in agent console |  
+| `ifDisplayToolbarOfEditor` | bool | If display toolbar of editor in agent console |  
+| `ifDisplayAttachment` | bool | If display attachment |  
+| `ifDisplayChannelAccount` | bool | If display channel account |  
+| `ifEnableFullScreenReplay` | bool | If enable full screen when reply message |  
+| `ifHasNote` | bool | If has note |  
+| `ifEnableSaveAsDraft ` | bool | If enable save draft |  
+
+
 
 ## endpoints 
 ### List all integrated channels 
