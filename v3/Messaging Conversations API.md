@@ -17,7 +17,7 @@
 
     | Endpoints | Support including parameters |
     | - | - |
-    | `get api/v3/messaging/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
+    | `get api/v3/messaging/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
     | `get api/v3/messaging/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
     | `get api/v3/messaging/conversations/{id}/messages` | sender |
     | `get api/v3/messaging/deletedConversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
@@ -571,17 +571,60 @@
  
 ### List portal conversations
 `get api/v3/messaging/portalConversations`
-- Parameters:
-    - contactIds, string array, required
+- Parameters: 
+    - contactIds: guid array,
+    - keywords: string,
+    - timeFrom: DateTime, last reply time, default search the last 90 days, ISO-8601 time format,
+    - timeTo: DateTime, last reply time, default value is the current time, ISO-8601 time format,
+    - timeZoneOffset, float, time zone based on your date parameters in ticket conditions. Such date parameters might be @today, @last 7 days for example.
+    - conditions: can be ticket system field and custom fields.
+        - field: string, field name
+        - matchType: string 
+        - value: string
+
+    Here is the list of match types and values supported by ticket system field.    
+    
+    | Field | Match Type | Values |
+    | - | - | - |
+    | Conversation Id | Is, IsNot  | number |
+    | Subject | Contains, NotContains  | string |
+    | Department Assignee | Is, IsNot  | Department Id |
+    | Agent Assignee | Is, IsNot  | Agent Id |
+    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `Closed` |
+    | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
+    | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Activity Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Status Change Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Close Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
+    | @Mentioned Agent | Is, IsNot | number, agent Id |
+    
+    Here is the list of match types and values supported by ticket custom field.    
+
+    | Field DataType | Match Type | Values |
+    | - | - | - |
+    | Date | Is, IsNot，After, Before | time format: `2019-01-03` |
+    | Drop-down list | Is, IsNot | option text |
+    | Check-box list | Is, IsNot | option text |
+    | Radio button | Is, IsNot | option text |
+    | Check-box | Is, IsNot | `true` or 1, `false` or 0 |
+    | Single-line text box | Contains, NotContains | string |
+    | Multi-line text box | Contains, NotContains | string |
+    | Agent | Is, IsNot | agent id |
+    | Department | Is, IsNot | department id |
+    | Link | Contains, NotContains | string |
+    | Url | Contains, NotContains | string |
+
+
 - Response: 
-    - [portal conversation](#portal-conversation) list
+    - portalTickets: [portal ticket](#portal-ticket) list, returns a maximum of 100 records. 
 - Includes
 
     |Includes| Description |
     | - | - |
-    | contact | `get api/v3/messaging/portalConversations?include=contact` |  
+    | contact | `get api/v2/ticket/portalTickets?include=contact` |  
 - Sample
-    - `get api/v3/messaging/portalConversations?contactIds=1&contactIds=2&contactIds=3`
+    - `get api/v2/ticket/portalTickets?contactIds=1&contactIds=2&contactIds=3&conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, note: pass the option id of dropdownlist field as the value.
 
 ### Submit a portal conversation
 `post api/v3/messaging/portalConversations`
