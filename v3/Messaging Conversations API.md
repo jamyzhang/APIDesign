@@ -1540,8 +1540,8 @@
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `messageMaxLength` | int | outgoing message max length |
 | `messageCapability` | string[] | outgoing message support message type |
-| `isSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
-| `isAllowActiveCreation` | bool | If allow active create message by agent |  
+| `ifSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
+| `ifAllowActiveCreation` | bool | If allow active create message by agent |  
 | `ifDisplaySubject` | bool | If display subject in agent console |  
 | `ifDisplayContact` | bool | If display contact in agent console |  
 | `ifDisplayCc` | bool | If display cc in agent console |  
