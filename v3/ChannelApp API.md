@@ -183,8 +183,8 @@ contactIdentityTypeId|guid|
 messageDisplayType|int|
 outgoingMessageMaxLength|int|
 outgoingMessageCapability|string|
-isSupportDiffAccountReply|bool|
-isAllowActiveCreatation|bool|
+ifSupportDiffAccountReply|bool|
+ifAllowActiveCreation|bool|
 ifDisplaySubject|bool|
 ifDisplayContact|bool|
 ifDisplayCc |bool|
@@ -194,6 +194,7 @@ ifDisplayChannelAccount |bool|
 ifEnableFullScreenReplay |bool|
 IfHasNote |bool|
 IfEnableSaveAsDraft |bool|
+IfAllowAtFeature |bool|
 ### Endpoints
 
 Endpoint |Description
