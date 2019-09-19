@@ -35,26 +35,26 @@
         ``` javascript
         {
             "id": 1,
-            "assignedAgentId": 1,
+            "assignedAgentId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
             "assignedAgent": {  //included the agent object
-                "id": 1,
+                "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
                 //...
             },
             "relatedType": "contact",
-            "relatedId":2,
-            "createdById": 3,
+            "relatedId":"f9928d68-92e6-4487-a2e8-8234fc9d1f43",
+            "createdById": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
             "createdByType": "agent",
             "createdBy": {  //included the agent or contact object according to the createdByType.
-                "id": 3,
+                "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
                 //...
             },
             "messages":[    //included the messages.
                 {
-                    "id": 56, 
+                    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1fe8", 
                     //...
                 },
                 {
-                        "id": 57, 
+                        "id": "f9928d68-92e6-4487-a2e8-8234fc9d1d48", 
                     //...
                 }
             ]
@@ -89,14 +89,14 @@
 | - | - | - | 
 | `id` | integer | id of conversation | 
 | `guid` | string | guid of conversation | 
-| `relatedType` | string | `contact`, `visitor`, `agent`| 
-| `relatedId` | string | contact id, visitor id, agent id | 
+| `relatedType` | string | `contact`, `visitor`, `agent` | 
+| `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
-| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
+| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
 | `hasDraft` | boolean | if has draft | 
 | `isDeleted` | boolean | if deleted | 
 | `isRead` | boolean | if the conversation is read | 
@@ -179,8 +179,9 @@
 | `title` | string | media title| 
 | `latitude` | string | latitude | 
 | `longitude` | string | longitude | 
-| `scale` | string | scale for location |
-| `desc` | string | description | 
+| `mime` | string | mime type |
+| `previewUrl` | string | preview URL of Video |
+| `desc` | string | description |
 
 ### conversation draft 
 | Name | Type | Description | 
@@ -250,6 +251,46 @@
         - field: string, field name
         - matchType: string 
         - value: string
+
+    Here is the list of match types and values supported by ticket system field.    
+    
+    | Field | Match Type | Values |
+    | - | - | - |
+    | Conversation Id | Is, IsNot  | number |
+    | Subject | Contains, NotContains  | string |
+    | Assigned Department | Is, IsNot  | Department Id |
+    | Assigned Agent | Is, IsNot  | Agent Id |
+    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
+    | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
+    | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Updated At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Status Changed At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Closed At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
+    | @Mentioned Agent | Is, IsNot | number, agent Id |
+    | First Message Channel | Is, IsNot | guid, channel Id |
+    | First Message Channel Account | Is, IsNot | guid, channel account Id |
+    | last Message Channel | Is, IsNot | guid, channel Id |
+    | last Message Channel Account | Is, IsNot | guid, channel account Id |
+    | is Multi Channel | Is, IsNot | bool, if the conversation is multi channel conversation |
+
+    Here is the list of match types and values supported by ticket custom field.    
+
+    | Field DataType | Match Type | Values |
+    | - | - | - |
+    | Date | Is, IsNot，After, Before | time format: `2019-01-03` |
+    | Drop-down list | Is, IsNot | option text |
+    | Check-box list | Is, IsNot | option text |
+    | Radio button | Is, IsNot | option text |
+    | Check-box | Is, IsNot | `true` or 1, `false` or 0 |
+    | Single-line text box | Contains, NotContains | string |
+    | Multi-line text box | Contains, NotContains | string |
+    | Agent | Is, IsNot | agent id |
+    | Department | Is, IsNot | department id |
+    | Link | Contains, NotContains | string |
+    | Url | Contains, NotContains | string |
+
+
 + Response 
     - conversations: [conversation](#conversations) list, 
     - total: integer, total number of conversations 
@@ -293,7 +334,7 @@
     - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
-    - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed`, default value: `new` 
+    - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
     - tagIds: string[], tag id array
     - message: the first message of the conversation, required
@@ -312,11 +353,11 @@
     - id: integer, conversation id
     - subject: string, conversation subject
     - relatedType: string, `contact`, `visitor`
-    - relatedId: string, contact id or visitor id
+    - relatedId: guid, contact id or visitor id
     - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
-    - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `closed`
+    - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
     - isRead: boolean
     - isActive: boolean
     - customFields: [custom field id and value](#custom-field-id-and-value)[], custom field value array
@@ -366,7 +407,7 @@
 
     | Includes | Description |
     | - | - |
-    | sender | `get api/v3/messaging/conversations/messages/{id}?include=sender` |
+    | sender | `get api/v3/messaging/conversations/{id}/messages/{messageId}?include=sender` |
 
 ### Reply a message 
 `post api/v3/messaging/conversations/{id}/messages` 
@@ -496,13 +537,13 @@
 | `id` | integer | id of conversation | 
 | `guid` | string | guid of conversation | 
 | `relatedType` | string | `contact`, `visitor`, `agent`| 
-| `relatedId` | string | contact id, visitor id, agent id | 
+| `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedAgentId` | string | assigned agent id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
-| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `closed` | 
+| `status` | string | `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved` | 
 | `isRead` | boolean | if the conversation is read | 
 | `isReadByContact` | boolean | if the portal conversation is read by contact |
 | `isMultiChannel`| boolean | if the conversation has multiple channel messages | 
@@ -581,25 +622,30 @@
         - field: string, field name
         - matchType: string 
         - value: string
-
-    Here is the list of match types and values supported by ticket system field.    
-    
+ 
+Here is the list of match types and values supported by ticket system field.    
+  
     | Field | Match Type | Values |
     | - | - | - |
-    | Conversation Id | Is, IsNot  | number |
+       | Conversation Id | Is, IsNot  | number |
     | Subject | Contains, NotContains  | string |
-    | Department Assignee | Is, IsNot  | Department Id |
-    | Agent Assignee | Is, IsNot  | Agent Id |
-    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `Closed` |
+    | Assigned Department | Is, IsNot  | Department Id |
+    | Assigned Agent | Is, IsNot  | Agent Id |
+    | Status | Is, IsNot  | `new`, `pendingExternal`, `pendingInternal`, `onHold`, `resolved` |
     | Priority | Is, IsNot  | `urgent`, `high`, `normal`, `low` |
     | Created At | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Activity Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Last Status Change Time | Is, IsNot, Before, After | time format: `2019-01-03` |
-    | Close Time | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Updated At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Last Status Changed At | Is, IsNot, Before, After | time format: `2019-01-03` |
+    | Closed At | Is, IsNot, Before, After | time format: `2019-01-03` |
     | Total Replies | Is, IsNot, IsMoreThan, IsLessThan | number |
     | @Mentioned Agent | Is, IsNot | number, agent Id |
+    | First Message Channel | Is, IsNot | guid, channel Id |
+    | First Message Channel Account | Is, IsNot | guid, channel account Id |
+    | last Message Channel | Is, IsNot | guid, channel Id |
+    | last Message Channel Account | Is, IsNot | guid, channel account Id |
+    | is Multi Channel | Is, IsNot | bool, if the conversation is multi channel conversation |
     
-    Here is the list of match types and values supported by ticket custom field.    
+ Here is the list of match types and values supported by ticket custom field.    
 
     | Field DataType | Match Type | Values |
     | - | - | - |
@@ -1325,6 +1371,7 @@
 `get api/v3/messaging/fields` 
 + Parameters
     - isSystemField: boolean, if is system field, optional
+    - usageType: string, `all`, `views`, `routingRules`, `SLA`, `triggers`， optional, default `all`
 + Response 
     - [field](#field) list 
 
@@ -1494,14 +1541,16 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
-| `name` | string | account name |   
-| `channelId` | string | channel id |   
+| `accountName` | string | account name |   
+| `appId` | string | app id |
+| `accountOriginalId` | string | channel account original id |
+| `isEnabled` | bool | is  enabled |
+| `channelIds` | string[] | channel id array|
 
 ## endpoints 
 ### List channel accounts 
 `get api/v3/messaging/channelAccounts` 
 - Parameters
-    - channelId: string, optional
 - Response 
     - [channelAccount](#channelAccount)[] 
 
@@ -1534,13 +1583,14 @@
 | - | - | - | 
 | `id` | string | id | 
 | `appId` | string | channel app id | 
+| `channelAccountIds` | string[] | channel account id array |
 | `name` | string | channel name | 
-| `contactIdentityType` | string | contact identity type |
-| `icon` | string | icon url |     
+| `contactIdentityTypeId` | string | contact identity type |
+| `icon` | string | identity type icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
-| `messageMaxLength` | int | outgoing message max length |
-| `messageCapability` | string[] | outgoing message support message type |
-| `ifSupportReplyWithDiffAccount` | bool | If support reply with different channel account |  
+| `outgoingMessageMaxLength` | int | outgoing message max length |
+| `outgoingMessageCapability` | string[] | outgoing message support message type |
+| `ifSupportDiffAccountReply` | bool | If support reply with different channel account |  
 | `ifAllowActiveCreation` | bool | If allow active create message by agent |  
 | `ifDisplaySubject` | bool | If display subject in agent console |  
 | `ifDisplayContact` | bool | If display contact in agent console |  
@@ -1550,8 +1600,8 @@
 | `ifDisplayChannelAccount` | bool | If display channel account |  
 | `ifEnableFullScreenReplay` | bool | If enable full screen when reply message |  
 | `ifHasNote` | bool | If has note |  
-| `ifEnableSaveAsDraft ` | bool | If enable save draft |  
-
+| `ifEnableSaveAsDraft` | bool | If enable save draft |  
+| `ifAllowAtFeature` | bool | If allow @ |  
 
 
 ## endpoints 
