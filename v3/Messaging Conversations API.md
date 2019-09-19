@@ -883,7 +883,7 @@
 - Parameters 
     - no parameters 
 - Response 
-    - [view](#view) list, without conditions
+    - [view](#view) list
 
 ### Create a new view 
 `post api/v3/messaging/views`
@@ -1585,7 +1585,8 @@
 | `appId` | string | channel app id | 
 | `channelAccountIds` | string[] | channel account id array |
 | `name` | string | channel name | 
-| `contactIdentityTypeId` | string | contact identity type |
+| `contactIdentityTypeId` | string | contact identity type id |
+| `contactIdentityType` | string | contact identity type name |
 | `icon` | string | identity type icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `outgoingMessageMaxLength` | int | outgoing message max length |
