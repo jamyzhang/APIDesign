@@ -623,8 +623,8 @@
         - matchType: string 
         - value: string
  
-Here is the list of match types and values supported by ticket system field.    
-  
+    Here is the list of match types and values supported by ticket system field.    
+    
     | Field | Match Type | Values |
     | - | - | - |
        | Conversation Id | Is, IsNot  | number |
@@ -645,7 +645,7 @@ Here is the list of match types and values supported by ticket system field.
     | last Message Channel Account | Is, IsNot | guid, channel account Id |
     | is Multi Channel | Is, IsNot | bool, if the conversation is multi channel conversation |
     
- Here is the list of match types and values supported by ticket custom field.    
+    Here is the list of match types and values supported by ticket custom field.    
 
     | Field DataType | Match Type | Values |
     | - | - | - |
@@ -1541,7 +1541,7 @@ Here is the list of match types and values supported by ticket system field.
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
-| `accountName` | string | account name |   
+| `name` | string | account name |   
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | is  enabled |
