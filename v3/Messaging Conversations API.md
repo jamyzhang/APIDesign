@@ -769,6 +769,7 @@
     | contactOrVisitor | `get api/v3/messaging/deletedConversations?include=contactOrVisitor` |
     | createdBy | `get api/v3/messaging/deletedConversations?include=createdBy` |
     | lastRepliedBy | `get api/v3/messaging/deletedConversations?include=lastRepliedBy` | 
+    | lastMessage | `get api/v3/messaging/deletedConversations?include=lastMessage` | 
 
 ### Get a deleted conversation 
 `get api/v3/messaging/deletedConversations/{id}` 
@@ -1541,7 +1542,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | id | 
-| `name` | string | account name |   
+| `accountName` | string | account name |   
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | is  enabled |
@@ -1564,7 +1565,7 @@
 ### Update an channel account 
 `put api/v3/messaging/channelAccounts/{id}` 
 - Parameters
-    - name: string 
+    - accountName: string 
 - Response 
     - [channelAccount](#channelAccount)
 
