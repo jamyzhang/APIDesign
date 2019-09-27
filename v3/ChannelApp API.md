@@ -94,7 +94,7 @@ originalParentId | string|`Optional`<br>The parent message id of the message
 originalConversationId|string|`Optional`<br>
 channelId|guid|`Required`<br>
 originalMessageId|string|`Optional`<br>
-orignalUrl|string|`Optional`<br>
+originalUrl|string|`Optional`<br>
 cc|string|`Optional`<br>
 subject|string|`Optional`<br>
 contents|[Message Content](#message-content)[]|`Required`
