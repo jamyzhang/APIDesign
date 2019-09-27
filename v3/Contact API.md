@@ -52,8 +52,8 @@
 | `type` | string | required, `emailAddress`, `SSOUserId`, `externalId`, `smsNumber`, `facebookAccount`, `twitterAccount`, `weChatAccount` |
 | `value` | string | required, the value of one identity, should be unique |
 | `name` | string | required, the name of one identity |
-| `avatar` | string | required, the avatar of one identity |
-| `identityInfoUrl` | string | required, the original identity info url of one identity |
+| `avatar` | string | optional, the avatar of one identity |
+| `identityInfoUrl` | string | optional, the original identity info url of one identity |
 
  - Note: We currently only allow one for each type.
 
