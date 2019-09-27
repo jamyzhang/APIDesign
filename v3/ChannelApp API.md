@@ -12,7 +12,6 @@
 |[Versions](#Versions)|`/api/v3/channelApp/apps/{appId}/versions`|
 |[Channels](#Channels) 	|`/api/v3/channelApp/apps/{appId}/versions/{versionId}/channels`|
 
-
 ## Channel Accounts
 ### Models
 #### ChannelAccount
@@ -132,6 +131,7 @@ Endpoint |Description
 - **Request Body**
     - ChannelAccountId：*Guid*  `Required` The primary key of the integrated account that  receives messages.
     - ChannelAppContactIdentity：[Channel App Contact Identity](#channel-app-contact-identity)
+    - IsReceive: *Bool* `Optional` If ture,it means that the message is sent to a channel account by a contact , or vice versa.
     - Message：[Channel App Message](#channel-app-message)
 - **Response Body**
     - MessageId: *Guid* `Read-only`
