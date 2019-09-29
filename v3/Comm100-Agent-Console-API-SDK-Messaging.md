@@ -7,7 +7,7 @@
     id: integer,
     relatedType: string, // enum: contact, visitor or agent
     relatedId: string, // the id of contact, visitor or agent
-    contactOrVisitor: Object, // contact or visitor instance
+    contactOrVisitor: Object, // Contact or Visitor instance
     subject: string,
     assignedAgent: {
         id: string,
@@ -55,6 +55,40 @@
     resolveBreachTime: string, //eg: '2019-09-24T03:01:30.527Z'
     nextSLABreachTime: string, //eg: '2019-09-24T03:01:30.527Z'
     lastMessage: Object // message instance
+  }
+
+  // Visitor
+  const visitor = {
+    id: string,
+    name: string,
+    email: string,
+  }
+
+  // Contact
+  const contact = {
+    id: string,
+    name: string,
+    alias: string,
+    avatar: string,
+    identities: [{
+      id: string,
+      type: string, // emailAddress, SSOUserId, externalId, smsNumber, facebookAccount, twitterAccount or weChatAccount
+      value: string,
+      name: string,
+      avatar: string,
+      identityInfoUrl: string,
+    }],
+    description: string,
+    company: string,
+    title: string,
+    phoneNumber: string,
+    faxNumber: string,
+    address: string,
+    city: string,
+    stateOrProvince: string,
+    country: string,
+    postalOrZipCode: string,
+    createdTime: string,
   }
 
   // Message
