@@ -72,7 +72,7 @@
     avatar: string,
     identities: [{
       id: string,
-      type: string, // emailAddress, SSOUserId, externalId, smsNumber, facebookAccount, twitterAccount or weChatAccount
+      type: string, //contact identity type
       value: string,
       name: string,
       avatar: string,
