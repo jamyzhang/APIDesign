@@ -4,8 +4,7 @@
   ```javascript
   //Conversation
   const conversation = {
-    id: number,
-    guid: string,
+    id: integer,
     relatedType: string, // enum: contact, visitor or agent
     relatedId: string, // the id of contact, visitor or agent
     contactOrVisitor: Object, // contact or visitor instance
@@ -29,7 +28,7 @@
     isEditable: boolean,
     isActive: boolean,
     isMultiChannel: boolean,
-    tag: [{
+    tags: [{
         id: string,
         name: string,
     }], // tags
@@ -44,17 +43,17 @@
     }],
     createdById: string, // contact id, agent id or visitor id
     createdByType:  string, // agent, contact or system or visitor
-    createdAt: string,
-    lastUpdatedAt: string,
-    lastStatusChangedAt: string,
-    lastRepliedAt: string,
-    lastRepliedById: number,
+    createdTime: string, //eg: '2019-09-24T03:01:30.527Z'
+    lastUpdatedTime: string, //eg: '2019-09-24T03:01:30.527Z'
+    lastStatusChangedTime: string, //eg: '2019-09-24T03:01:30.527Z'
+    lastRepliedTime: string, //eg: '2019-09-24T03:01:30.527Z'
+    lastRepliedById: integer,
     lastRepliedByType: string, // agent, contact or system
     slaPolicyId: string,
-    firstRespondBreachAt: string,
-    nextRespondBreachAt: string,
-    resolveBreachAt: string,
-    nextSLABreachAt: string,
+    firstRespondBreachTime: string, //eg: '2019-09-24T03:01:30.527Z'
+    nextRespondBreachTime: string, //eg: '2019-09-24T03:01:30.527Z'
+    resolveBreachTime: string, //eg: '2019-09-24T03:01:30.527Z'
+    nextSLABreachTime: string, //eg: '2019-09-24T03:01:30.527Z'
     lastMessage: Object // message instance
   }
 
@@ -62,10 +61,8 @@
   const message = {
     id: string,
     conversationId: integer,
-    channelId: string,
-    type: string,
-    directType: messageDirectType,
-    channelAccountId: string,
+    type: string, // note, message
+    directType: string, // receive, send
     contactIdentityId: string,
     originalMessageId: string,
     originalMessageUrl: string,
@@ -85,12 +82,17 @@
         scale: string,
         desc: string,
     }],
-    mentionedAgentIds: string[],
+    mentionedAgent: [{
+        id: string,
+        name: string,
+        email: string,
+        isRead: boolean,
+    }], // only for Note
     isRead: boolean,
-    sendStatus: messageStatus,
+    sendStatus: string, // success, sending or system
     senderId: string,
-    senderType: messageSenderType,
-    time: string,
+    senderType: string, // agent , contact or system
+    time: string, //eg: '2019-09-24T03:01:30.527Z'
 }
 
  // Attachment
@@ -109,7 +111,7 @@
   
   // Agent
   const agent = {
-    id: number,
+    id: string,
     email: string,
     name: string,
     firstName: string,
