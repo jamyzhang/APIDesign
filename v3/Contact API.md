@@ -351,7 +351,7 @@ Status: 200 OK
 | Name | Type | Description | 
 | - | - | - |
 | `id` | string | read-only, the id of identity |
-| `type` | string | required, `emailAddress`, `SSOUserId`, `externalId`, `smsNumber`, `facebookAccount`, `twitterAccount`, `weChatAccount` |
+| `type` | string | required, contact identity type |
 | `value` | string | required, the value of one identity, should be unique |
 | `name` | string | required, the name of one identity |
 | `avatar` | string | required, the avatar of one identity |
