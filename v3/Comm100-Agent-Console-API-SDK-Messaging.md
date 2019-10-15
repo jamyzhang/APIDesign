@@ -252,7 +252,7 @@ Comm100AgentConsoleAPI.set('agentconsole.messaging.currentConversation.customFie
             newData
         }
     }
-
+Comm100AgentConsoleAPI.on('agentconsole.currentConversation.selectChanged', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentConversation.subject.changed', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentConversation.contact.changed', function(event) {});
 Comm100AgentConsoleAPI.on('agentconsole.currentConversation.departmentAssignee.changed', function(event) {});
