@@ -191,7 +191,7 @@ ifDisplayCc |bool|
 ifDisplayToolbarOfEditor |bool|
 ifDisplayAttachment |bool|
 ifDisplayChannelAccount |bool|
-ifEnableFullScreenReplay |bool|
+ifEnableFullScreenReply |bool|
 IfHasNote |bool|
 IfEnableSaveAsDraft |bool|
 IfAllowAtFeature |bool|
