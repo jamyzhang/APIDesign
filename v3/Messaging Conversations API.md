@@ -19,7 +19,7 @@
     | - | - |
     | `get api/v3/messaging/conversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, lastMessage |
     | `get api/v3/messaging/conversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages, eventLogs |
-    | `get api/v3/messaging/conversations/{id}/messages` | sender |
+    | `get api/v3/messaging/conversations/{id}/messages` | sender, messageContact |
     | `get api/v3/messaging/deletedConversations` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy |
     | `get api/v3/messaging/deletedConversations/{id}` | assignedAgent, assignedDepartment, contactOrVisitor, createdBy, lastRepliedBy, messages |
     | `get api/v3/messaging/deletedConversations/{id}/messages` | sender |
@@ -395,6 +395,7 @@
     | Includes | Description |
     | - | - |
     | sender | `get api/v3/messaging/conversations/{id}/messages?include=sender` |
+    | messagecontact | `get api/v3/messaging/conversations/{id}/messages?include=messagecontact` |
 
 ### Get a message 
 `get api/v3/messaging/conversations{id}/messages/{messageId}` 
@@ -964,9 +965,8 @@
     - http status code
 
 ### Update routing
-`put api/v3/messaging/routing/{id}`
+`put api/v3/messaging/routing/`
 + Parameters
-    - id: string
     - isEnabled: boolean
     - type: string, `simple` or `customRules`
     - simpleRouteType: string, department and agent
@@ -1349,8 +1349,8 @@
 | `helpText` | string | field help text | 
 | `length` | integer | field value max length | 
 | `options` | [field option](#fieldoption)[] | value option | 
-| `chatFieldMapping` | string | chat field id |
-| `offlineMessageFieldMapping` | string | offline message field id |
+| `chatFieldMapping` | string | chat field name |
+| `offlineMessageFieldMapping` | string | offline message field name |
 
 ### fieldOption 
 | Name | Type | Description | 
@@ -1364,8 +1364,8 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `fieldId` | string | field id | 
-| `chatFieldMapping` | string | chat field id |
-| `offlineMessageFieldMapping` | string | offline message field id |
+| `chatFieldMapping` | string | chat field name |
+| `offlineMessageFieldMapping` | string | offline message field name |
 
 ## endpoints 
 ### List fields and their options 
@@ -1545,7 +1545,8 @@
 | `accountName` | string | account name |   
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
-| `isEnabled` | bool | is  enabled |
+| `isEnabled` | bool | if is enabled |
+| `isDefault` | bool | if is default channel account |
 | `channelIds` | string[] | channel id array|
 
 ## endpoints 
@@ -1554,6 +1555,13 @@
 - Parameters
 - Response 
     - [channelAccount](#channelAccount)[] 
+
+### Get channel account by id
+`get api/v3/messaging/channelAccounts/{id}` 
+- Parameters
+    - id: string
+- Response 
+    - [channelAccount](#channelAccount) 
 
 ### Add an channel account 
 `post api/v3/messaging/channelAccounts` 
