@@ -195,6 +195,7 @@ ifEnableFullScreenReply |bool|
 IfHasNote |bool|
 IfEnableSaveAsDraft |bool|
 IfAllowAtFeature |bool|
+IfAllowActiveReply |bool|
 ### Endpoints
 
 Endpoint |Description
