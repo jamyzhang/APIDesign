@@ -161,7 +161,7 @@ Endpoint |Description
         - Id: *guid* `Required`  the guid of a file.
         - Url: *string* `Required` the new url of a file.
      - OriginalMessageId: *string* `Optional`   
-     - OrignalMessageUrl: *string* `Optional`
+     - OriginalMessageUrl: *string* `Optional`
 - **Response Body**
 ## PublicKeys
 #### Retrieve public key
