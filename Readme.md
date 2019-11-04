@@ -36,7 +36,7 @@ https://{serviceRoot}/api/{version}/{module}/{resource}
  ```http
 https://{serviceRoot}/api/{version}/{module}/{parentResource}/{parentResourceId}/{resource}
  ```
- The parent resource usually corresponds to the concept of the domain in the domain driver design.  In the case where  an object is operated by the id, for example, retrieved by id,updated by Id and deleted  by Id etc, it's not needed for  ParentResource and ParentResourceId are present in the URL.
+ The parent resource usually corresponds to the concept of the domain in the domain driver design.  In the case where  an object is operated by the id, for example, retrieved by id,updated by Id and deleted  by Id etc, it's not needed for  ParentResource and [ParentResourceId][1] are present in the URL.
 
 
 For example:
@@ -422,3 +422,4 @@ Example of "details":
 }
 ```
 
+[1]: # (This may be the most platform independent comment)
