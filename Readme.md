@@ -59,7 +59,8 @@ GET http://alpha.common100.com/api/v3/messaging/messages/1000
   If an object has multiple methods to expose, but the API verb are the same. We use the colon with the method name to append to the url to distinguish.
 
   For example:
-  EndPoint|Description
+
+EndPoint|Description
 ---|---
 `POST` api/v3/messaging/conversations | Create a new conversation
 `POST` api/v3/messaging/conversations/{id}`:read`  | Mark a conversation as read
