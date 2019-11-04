@@ -14,7 +14,6 @@
     - [Sorting](#sorting)
     - [Pagination](#pagination)
     - [Including](#including)
-
 1. [Errors & Faults](#Errors-&-Faults)
 
 # Abstract
@@ -31,11 +30,11 @@ At first , some criterion are palaced here.
 #  URL Patterns
 The independent resource api url pattern.
 ```http
-  https://{serviceRoot}/api/{version}/{module}/{resource}
+https://{serviceRoot}/api/{version}/{module}/{resource}
  ```
  The sub-resource api url pattern.
  ```http
-  https://{serviceRoot}/api/{version}/{module}/{parentResource}/{parentResourceId}/{resource}
+https://{serviceRoot}/api/{version}/{module}/{parentResource}/{parentResourceId}/{resource}
  ```
  The parent resource usually corresponds to the concept of the domain in the domain driver design.  In the case where  an object is operated by the id, for example, retrieved by id,updated by Id and deleted  by Id etc, it's not needed for  ParentResource and ParentResourceId are present in the URL.
 
@@ -43,15 +42,15 @@ The independent resource api url pattern.
 For example:
   - Get the conversation by an id of 10000.
   ```http
-   GET http://alpha.common100.com/api/v3/messaging/conversations/10000
+GET http://alpha.common100.com/api/v3/messaging/conversations/10000
   ```
   - Get the conversation created in May 2017.
   ```http
-   GET http://alpha.common100.com/api/v3/messaging/conversations?beginDate=2017-05-01&endDate=2017-05-31
+GET http://alpha.common100.com/api/v3/messaging/conversations?beginDate=2017-05-01&endDate=2017-05-31
   ```
    - Get the messages of a conversation with an id is 10000.
   ```http
-   GET http://alpha.common100.com/api/v3/messaging/conversations/10000/messages
+GET http://alpha.common100.com/api/v3/messaging/conversations/10000/messages
   ```
   - Get the message by  id of 1000.
   ```http
@@ -60,11 +59,11 @@ GET http://alpha.common100.com/api/v3/messaging/messages/1000
   If an object has multiple methods to expose, but the API verb are the same. We use the colon with the method name to append to the url to distinguish.
 
   For example:
-  |EndPoint|Description
-|---|---|
-| `POST` api/v3/messaging/conversations | Create a new conversation
-| `POST` api/v3/messaging/conversations/{id}`:read`  | Mark a conversation as read
-| `POST` api/v3/messaging/conversations/{id}`:unread`  | Mark a conversation as unread 
+  EndPoint|Description
+---|---
+`POST` api/v3/messaging/conversations | Create a new conversation
+`POST` api/v3/messaging/conversations/{id}`:read`  | Mark a conversation as read
+`POST` api/v3/messaging/conversations/{id}`:unread`  | Mark a conversation as unread 
 
 
 # Methods
@@ -359,7 +358,6 @@ Property | Type | Required | Description
 `target` | String |  | The target of the error.
 `details` | Error[] |  | An array of details about specific errors that led to this reported error.
 `innererror` | InnerError |  | An object containing more specific information than the current object about the error.
-[comments]: # "Optional Title Here"
 
 ##### InnerError : Object
 
