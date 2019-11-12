@@ -159,7 +159,9 @@
 | `parentId` | string | parent id |
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
+| `bcc` | string | bcc email addresses |  
 | `contents` | [content](#content)[] | content array | 
+| `quote` | string | quote content | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | if the message read by agent| 
 | `sendStatus` | string | `success`, `sending`, `failed` |
@@ -420,6 +422,7 @@
     - cc: string, message cc emails 
     - parentId: string,
     - contents: [content](#content)[]
+    - time: datetime, send time
 - Response 
     - [message](#message) 
 
@@ -719,6 +722,7 @@
     - id: integer
     - contactId: string required
     - contents: [content](#content)[], 
+    - time: datetime, send time
 - Response: 
     - [portal conversation message](#portal-conversation-message)
 
@@ -1546,7 +1550,7 @@
 | `appId` | string | app id |
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | if is enabled |
-| `isDefault` | bool | if is default channel account |
+| `screenName` | bool | screen name |
 | `channelIds` | string[] | channel id array|
 
 ## endpoints 
@@ -1612,6 +1616,7 @@
 | `ifHasNote` | bool | If has note |  
 | `ifEnableSaveAsDraft` | bool | If enable save draft |  
 | `ifAllowAtFeature` | bool | If allow @ |  
+| `ifAllowActiveReply` | bool | If allow active reply |  
 
 
 ## endpoints 
