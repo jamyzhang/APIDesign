@@ -1,3 +1,8 @@
+  | Change Version | API Version | Change nots | Change Date | Author |
+  | - | - | - | - | - |
+  | 3.0 | v3 | Messaging Restful API | 2019-5-1 | Frank |  
+  | 3.1 | v3 | Social bot for messaging | 2019-11-18 | Frank |  
+
 # Authentication 
 - Comm100 messaging Conversation API provides 2 authentication methods: 
     - API_key Authentication 
@@ -35,7 +40,7 @@
         ``` javascript
         {
             "id": 1,
-            "assignedAgentId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+            "assignedId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
             "assignedAgent": {  //included the agent object
                 "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
                 //...
@@ -92,7 +97,8 @@
 | `relatedType` | string | `contact`, `visitor`, `agent` | 
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
-| `assignedAgentId` | string | assigned agent id | 
+| `assignedType` | string | `agent`, `bot` | 
+| `assignedId` | string | assigned agent id or bot id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -116,6 +122,8 @@
 | `lastRepliedById` | integer | contact id or agent id | 
 | `lastRepliedByType` | string | `agent` or `contact` or `system`| 
 | `firstMessageId` | string | the id of the first message | 
+| `firstMessageChannelId` | string | the channel id of the first message | 
+| `firstMessageChannelAccountId` | string | the channel account id of the first message | 
 | `lastMessageId` | string | the id of the last message | 
 | `totalReplies`| int | total replies number | 
 | `slaPolicyId` | string | SLA id of this conversation matched | 
@@ -173,7 +181,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickreply`, `webview` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
@@ -333,7 +341,7 @@
 `post api/v3/messaging/conversations` 
 - Parameters 
     - subject: string, conversation subject, required 
-    - assignedAgentId: string, agent id
+    - assignedId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
@@ -356,7 +364,8 @@
     - subject: string, conversation subject
     - relatedType: string, `contact`, `visitor`
     - relatedId: guid, contact id or visitor id
-    - assignedAgentId: string, agent id
+    - assignedType: string, `agent`, `bot`
+    - assignedId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
@@ -373,7 +382,8 @@
     - ids: integer[], conversation id array
     - status, string
     - priority, string
-    - assignedAgentId, string
+    - assignedType: string, `agent`, `bot`
+    - assignedId: string, agent id
     - assignedDepartmentId, string
     - isRead, boolean
 + Response 
@@ -543,7 +553,8 @@
 | `relatedType` | string | `contact`, `visitor`, `agent`| 
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
-| `assignedAgentId` | string | assigned agent id | 
+| `assignedType` | string | `agent` or `bot` | 
+| `assignedId` | string | assigned agent id or bot id| 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -1680,7 +1691,7 @@
     - no parameter
 - Response:
 	- dataList:
-		- departmentId: integer,
+		- departmentId: string,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
 		- todayResolvedConversations: integer,
@@ -1694,11 +1705,11 @@
 ### realtime agent
 `GET/api/v3/messaging/reports/realtime/agents`
 - Parameters：
-	- viewType: string, `site`, `agent`, `department`, `account`, `channel`
+	- viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
 	- viewValue: integer,
 - Response:
 	- dataList: 
-		- agentId: integer,
+		- agentId: string,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
 		- todayResolvedConversations: integer,
@@ -1714,8 +1725,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
-	- viewValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset： integer,
@@ -1728,13 +1739,14 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
-	- viewValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
 - Response:
 	- dataList:
-	    - id: integer,
+	    - id: string,
+        - name: string,
     	- createdConversations: integer,
     	- createdConversationsPercentage:  float,	
     	- closedConversations: integer,
@@ -1759,8 +1771,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
-	- viewValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset：integer,
@@ -1772,13 +1784,13 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
-	- viewValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
 - Response:
 	- dataList: 
-	    - id: integer,
+	    - id: string,
 		- name: string,
 		- channelEfficiencies: [channelEfficiencies](#channel-efficiency)[]
 		- startTime: string,
@@ -1790,6 +1802,7 @@
 | - | - | - | 
 | `channelId` | string | channel id |
 | `channelName` | string | channel name |
+| `channelAppName` | string | channel App name |
 | `channelMessageNumber` | integer | channel message number |
 | `channelPercentage` | float | channel percentage |
 
@@ -1798,6 +1811,7 @@
 | - | - | - | 
 | `channelId` | string | channel id |
 | `channelName` | string | channel name |
+| `channelAppName` | string | channel App name |
 | `totalNumber` | integer |  |
 
 ### export efficiency
@@ -1805,8 +1819,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
-	- viewValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timeOffset： integer,
@@ -1818,24 +1832,25 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `account`, `channel`
-	- viewValue: integer,
+    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`
 - Response:
 	- dataList:
-	    - id: integer,
+	    - id: string,
+        - name: string,
 		- avgAgentResponseTime: string,
 		- avgFirstResponseTime: string,
 		- avgConversationTime: string,
-		- avgContactMessages: float,
+		- avgVisitorMessages: float,
 		- avgAgentMessages: float, 
 		- startTime: string,
 		- endTime: string,
 	- totalAvgAgentResponseTime: string,
 	- totalAvgFirstResponseTime: string,
 	- totalAvgConversationTime: string,
-	- totalAvgContactMessages: float,
+	- totalAvgVisitorMessages: float,
 	- totalAvgAgentMessages: float
 
 ### export SLA report
@@ -1847,13 +1862,14 @@
     - dimensionType: string, `slaPolicies`, `agent`, `department`
 - Response:
 	- dataList:
-	    - id: integer,
+	    - id: string,
+        - name: string,
 		- firstRespondTimeAchievedPercentage: float,
-		- avgFirstRespondTime: float,
+		- avgFirstRespondTime: string,
 		- nextRespondTimeAchievedPercentage: float,
-		- avgNextRespondTime: float,
+		- avgNextRespondTime: string,
 		- ResolveTimeAchievedPercentage: float, 
-        - avgResolveTime: float,
+        - avgResolveTime: string,
         - breachedTickets: integer, 
 
 ### report SLA
@@ -1865,13 +1881,14 @@
     - dimensionType: string, `slaPolicies`, `agent`, `department`
 - Response:
 	- dataList:
-	   	    - id: integer,
+	   	- id: string,
+        - name: string,
 		- firstRespondTimeAchievedPercentage: float,
-		- avgFirstRespondTime: float,
+		- avgFirstRespondTime: string,
 		- nextRespondTimeAchievedPercentage: float,
-		- avgNextRespondTime: float,
+		- avgNextRespondTime: string,
 		- ResolveTimeAchievedPercentage: float, 
-        - avgResolveTime: float,
+        - avgResolveTime: string,
         - breachedTickets: integer
 
 * * *
