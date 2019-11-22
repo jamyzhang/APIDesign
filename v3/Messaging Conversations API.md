@@ -98,7 +98,8 @@
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedType` | string | `agent`, `bot` | 
-| `assignedId` | string | assigned agent id or bot id | 
+| `assignedBotId` | string | assigned bot id | 
+| `assignedAgentId` | string | assigned agent id| 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -181,7 +182,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickreply`, `webview` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickReply` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
@@ -365,7 +366,8 @@
     - relatedType: string, `contact`, `visitor`
     - relatedId: guid, contact id or visitor id
     - assignedType: string, `agent`, `bot`
-    - assignedId: string, agent id
+    - assignedBotId: string, bot id
+    - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, priority: `urgent`, `high`, `normal`, `low`
     - status: string, `new`, `pendingInternal`, `pendingExternal,`, `onHold`, `resolved`
@@ -383,7 +385,8 @@
     - status, string
     - priority, string
     - assignedType: string, `agent`, `bot`
-    - assignedId: string, agent id
+    - assignedBotId: string, bot id
+    - assignedAgentId: string, agent id
     - assignedDepartmentId, string
     - isRead, boolean
 + Response 
@@ -554,7 +557,8 @@
 | `relatedId` | guid | contact id, visitor id, agent id | 
 | `subject` | string | conversation subject | 
 | `assignedType` | string | `agent` or `bot` | 
-| `assignedId` | string | assigned agent id or bot id| 
+| `assignedAgentId` | string | assigned agent id | 
+| `assignedBotId` | string | assigned bot id | 
 | `assignedDepartmentId` | string | assigned department id | 
 | `originalId` | string | original id on social platform | 
 | `priority` | string | `urgent`, `high`, `normal`, `low` | 
@@ -946,10 +950,14 @@
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
 | `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
+| `simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when simple routing |
+| `simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when simple routing |
 | `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
 | `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
+| `matchFailedPercentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when match failed|
+| `matchFailedPercentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when match failed |
 
 ### customRule
 | Name | Type | Description |
@@ -962,7 +970,8 @@
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToId` | string |id of the route object |
 | `routeWithPriority` | string | conversation priority enum number|
-
+| `percentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
+| `percentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
 
 ## endpoints
 ### get routing
@@ -986,10 +995,14 @@
     - type: string, `simple` or `customRules`
     - simpleRouteType: string, department and agent
     - simpleRouteToId: string
+    - simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOnline: integer
+    - simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOffline: integer
     - simpleRouteWithPriority: string,
     - matchFailedType: string, department and agent
     - matchFailedToId: string
     - matchFailedWithPriority: string
+    - matchFailedPercentageOfNewConversationToBotWhenAgentsAreOnline: integer
+    - matchFailedPercentageOfNewConversationToBotWhenAgentsAreOffline: integer 
 + Response
     - [routing](#routing)
 
@@ -1562,7 +1575,11 @@
 | `accountOriginalId` | string | channel account original id |
 | `isEnabled` | bool | if is enabled |
 | `screenName` | bool | screen name |
-| `channelIds` | string[] | channel id array|
+| `channelIds` | string[] | channel id array |
+| `isEnabledBot` | bool | if is enabled bot |
+| `selectedBot` | string | selected bot id |
+| `percentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
+| `percentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
 
 ## endpoints 
 ### List channel accounts 
@@ -1678,7 +1695,8 @@
 ### realtime of lastest sereral days
 - `GET /api/v3/messaging/reports/realtime/bytime`
 - Parameters:
-    - days: int, days number, maximum number 15. 
+    - days: integer, days number, maximum number 15
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
  	- createdConversations: integer
 	- resolvedConversations: integer
@@ -1688,10 +1706,11 @@
 ### realtime department
 `GET /api/v3/messaging/reports/realtime/departments`
 - Parameters：
-    - no parameter
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
-		- departmentId: string,
+		- id: string, department id,
+        - name: string, department name,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
 		- todayResolvedConversations: integer,
@@ -1709,7 +1728,8 @@
 	- viewValue: integer,
 - Response:
 	- dataList: 
-		- agentId: string,
+		- id: string, agent id,
+        - name: string, agent name,
 		- openConversations: integer,
 		- todayRepliedConversations: integer,
 		- todayResolvedConversations: integer,
@@ -1729,7 +1749,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset： integer,
+    - timezoneOffset： integer,
     - dateFormat: string,
 - Response:csv file
 
@@ -1743,14 +1763,15 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
 	    - id: string,
         - name: string,
     	- createdConversations: integer,
     	- createdConversationsPercentage:  float,	
-    	- closedConversations: integer,
-    	- closedConversationsPercentage: float,
+    	- resolvedConversations: integer,
+    	- resolvedConversationsPercentage: float,
     	- repliedConversations: integer,
     	- repliedConversationsPercentage: float,
     	- reopenedConversations: integer,
@@ -1760,7 +1781,7 @@
     	- startTime: string,
     	- endTime: string,
 	- totalCreatedConversations: integer,
-	- totalClosedConversations: integer,
+	- totalResolvedConversations: integer,
 	- totalRepliedConversations: integer,
 	- totalReopenedConversations: integer,
 	- totalOpenConversations: integer
@@ -1775,7 +1796,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset：integer,
+    - timezoneOffset：integer,
     - dateFormat: string,
 - Response:csv file
 
@@ -1788,6 +1809,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList: 
 	    - id: string,
@@ -1823,7 +1845,7 @@
 	- viewValue: string,
     - timeUnit: string,
     - dimensionType: string,
-    - timeOffset： integer,
+    - timezoneOffset： integer,
     - dateFormat: string,
 - Response:csv file
 
@@ -1835,7 +1857,8 @@
     - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
 	- viewValue: string,
     - timeUnit: string,
-    - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`
+    - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
 	    - id: string,
@@ -1859,7 +1882,8 @@
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
-    - dimensionType: string, `slaPolicies`, `agent`, `department`
+    - dimensionType: string, `slaPolicies`, `agent`, `department`,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
 	    - id: string,
@@ -1878,7 +1902,8 @@
     - startTime: Datetime,
     - endTime: Datetime,
     - timeUnit: string, `day`,`week`, `month`
-    - dimensionType: string, `slaPolicies`, `agent`, `department`
+    - dimensionType: string, `slaPolicies`, `agent`, `department`,
+    - timezoneOffset, integer, agent timezoneOffset
 - Response:
 	- dataList:
 	   	- id: string,
