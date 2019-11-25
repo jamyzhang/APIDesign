@@ -1728,8 +1728,8 @@
 ### realtime agent
 `GET/api/v3/messaging/reports/realtime/agents`
 - Parameters：
-	- viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: integer,
+	- filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: integer,
 - Response:
 	- dataList: 
 		- id: string, agent id,
@@ -1749,8 +1749,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset： integer,
@@ -1763,8 +1763,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset, integer, agent timezoneOffset
@@ -1796,8 +1796,8 @@
 	- siteId: integer,
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset：integer,
@@ -1809,8 +1809,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset, integer, agent timezoneOffset
@@ -1845,8 +1845,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string,
     - timezoneOffset： integer,
@@ -1858,8 +1858,8 @@
 - Parameters：
     - startTime: Datetime,
     - endTime: Datetime,
-    - viewType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
-	- viewValue: string,
+    - filterType: string, `site`, `agent`, `department`, `channelAccount`, `channel`
+	- filterValue: string,
     - timeUnit: string,
     - dimensionType: string, `byTime`, `byAgent`, `byDepartment`, `byChannel`,
     - timezoneOffset, integer, agent timezoneOffset
