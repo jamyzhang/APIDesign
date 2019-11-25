@@ -182,7 +182,7 @@
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `button`, `quickReply` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webview`, `quickReply` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
@@ -193,6 +193,9 @@
 | `mime` | string | mime type |
 | `previewUrl` | string | preview URL of Video |
 | `desc` | string | description |
+| `fallbackurl` | string | fallback url |
+| `webviewHeight` | string | webview height：compact/tall/full|
+| `payload` | string | payload data |
 
 ### conversation draft 
 | Name | Type | Description | 
@@ -205,6 +208,7 @@
 | `parentId` | string | parent id |
 | `subject` | string | subject | 
 | `cc` | string | cc email addresses |  
+| `quote` | string | email quote | 
 | `contents` | [content](#content)[] | content array | 
 | `senderId`| string | id of agent| 
 | `time` | datetime | the sent time of the message | 
@@ -342,7 +346,7 @@
 `post api/v3/messaging/conversations` 
 - Parameters 
     - subject: string, conversation subject, required 
-    - assignedId: string, agent id
+    - assignedAgentId: string, agent id
     - assignedDepartmentId: string, department id
     - priority: string, `urgent`, `high`, `normal`, `low`, default value: `normal` 
     - status: string, `new`, `pendingInternal`, `pendingExternal`, `onHold`, `resolved`, default value: `new` 
@@ -950,14 +954,14 @@
 | `simpleRouteType` | string | the rule of route ,including `department` and `agent` |
 | `simpleRouteToId` | string | id of the route object |
 | `simpleRouteWithPriority` | string | `urgent`, `high`, `normal`, `low` |
-| `simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when simple routing |
-| `simpleRoutePercentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when simple routing |
+| `percentageToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when simple routing |
+| `percentageToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when simple routing |
 | `customRules` | [customRule](#customRule)[] | an array of [customRule](#customRule) json object. |
 | `matchFailedType` | string | the rule of failed route  including `department` and `agent` |
 | `matchFailedrouteToId` | string | id of the routeobject |
 | `matchFailedWithPriority` | string | `urgent`, `high`, `normal`, `low` |
-| `matchFailedPercentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when match failed|
-| `matchFailedPercentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when match failed |
+| `matchFailedPercentageToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online when match failed|
+| `matchFailedPercentageToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline when match failed |
 
 ### customRule
 | Name | Type | Description |
@@ -970,8 +974,8 @@
 | `routeType` | string | type of the route, including `agent` and `department`, value `department` is available when config of department is open. 
 | `routeToId` | string |id of the route object |
 | `routeWithPriority` | string | conversation priority enum number|
-| `percentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
-| `percentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
+| `percentageToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
+| `percentageToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
 
 ## endpoints
 ### get routing
@@ -1577,7 +1581,7 @@
 | `screenName` | bool | screen name |
 | `channelIds` | string[] | channel id array |
 | `isEnabledBot` | bool | if is enabled bot |
-| `selectedBot` | string | selected bot id |
+| `selectedBotId` | string | selected bot id |
 | `percentageOfNewConversationToBotWhenAgentsAreOnline` | integer | Percentage of new conversation to bot when agents are online |
 | `percentageOfNewConversationToBotWhenAgentsAreOffline` | integer | Percentage of new conversation to bot when agents are offline |
 
