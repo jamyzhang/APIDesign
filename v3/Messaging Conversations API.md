@@ -1613,6 +1613,13 @@
 - Response 
     - [channelAccount](#channelAccount)
 
+### Enable/Disable bot for channel account
+`put api/v3/messaging/channelAccounts/{id}/bot/enable`
+- Parameters
+    - isEnabled: boolean 
+- Response 
+    - http status code
+
 ### Delete an channel account 
 `delete api/v3/messaging/channelAccounts/{id}` 
 - Parameters
