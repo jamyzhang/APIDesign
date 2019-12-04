@@ -174,15 +174,15 @@
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | if the message read by agent| 
 | `sendStatus` | string | `success`, `sending`, `failed` |
-| `senderId`| string | id of agent or contact | 
-| `senderType`| string | `agent` or `contact` or `system` | 
+| `senderId`| string | id of agent or contact or bot | 
+| `senderType`| string | `agent` or `contact` or `system` or `bot` | 
 | `time` | datetime | the sent time of the message | 
  
 ### content
 | Name | Type | Description | 
 | - | - | - | 
 | `id` | string | guid | 
-| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webview`, `quickReply` |  
+| `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webView`, `quickReply` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
 | `name` | string | file name| 
@@ -453,6 +453,16 @@
 - Response 
     - [message](#message) 
 
+### Reply bot response with an intent
+`post api/v3/messaging/conversations/{id}/messages/botIntent`
+- Parameters  
+    - id: number, conversation id,
+    - channelId: string, channel id, required
+    - channelAccountId: string, required
+    - botId: string, bot id, required
+    - intentId: string, bot intent id, required
+- Response 
+    - http status code
 
 ### Mark a conversation as read 
 `put api/v3/messaging/conversations/{id}/read` 
