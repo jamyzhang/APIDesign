@@ -52,7 +52,7 @@
   
 
 # Chatbot Subscription
-  - `GET /api/v3/ia/chatbot/subscription` - [Get chatbot subscription](#get-chatbot-subscription)
+  - `GET /api/v3/chatbot/subscription` - [Get chatbot subscription](#get-chatbot-subscription)
 
 ## Related Object Json Format
 
@@ -87,7 +87,7 @@
 ## Endpoints
 ### Get chatbot subscription
 
-  `GET /api/v3/ia/chatbot/subscription`
+  `GET /api/v3/chatbot/subscription`
 
 #### Parameters
   
@@ -104,7 +104,7 @@ the response is: [Chatbot Subscription](#Chatbot-Subscription-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/ia/chatbot/subscription?include=bot
+-X GET https://domain.comm100.com/api/v3/chatbot/subscription?include=bot
 ```
 Response
 ``` json
@@ -143,7 +143,7 @@ Content-Type:  application/json
 
 
 #  Chatbot Language
-  - `GET /api/v3/ia/chatbot/languages` - [Get chatbot support languages ](#get-all-languages)
+  - `GET /api/v3/chatbot/languages` - [Get chatbot support languages ](#get-all-languages)
 
 ## Language Related Objects Json Format
 ### Language Object
@@ -157,7 +157,7 @@ Content-Type:  application/json
 ## Endpoints
 ### Get all languages
 
-  `GET /api/v3/ia/chatbot/languages`
+  `GET /api/v3/chatbot/languages`
 
 #### Parameters
   
@@ -175,7 +175,7 @@ the response is: list of [Language](#Language-object) Objects
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/ia/chatbot/languages?engineType=Chloe
+-X GET https://domain.comm100.com/api/v3/chatbot/languages?engineType=Chloe
 ```
 Response
 ```json
@@ -196,15 +196,15 @@ Content-Type:  application/json
 ```
 
 # Bot
-  + `GET /api/v3/ia/chatbot/bots` - [Get all bots of a site](#get-all-bots-of-a-site)
-  + `POST /api/v3/ia/chatbot/bots` - [Create a new bot](#create-a-new-bot)
-  + `PUT /api/v3/ia/chatbot/bots/{id}` - [Update a bot](#update-a-bot)
-  + `GET /api/v3/ia/chatbot/bots/{id}` - [Get a bot by id](#get-a-bot-by-id)
-  + `DELETE /api/v3/ia/chatbot/bots/{id}` - [Remove a bot](#delete-a-bot-by-id)
-  + `GET /api/v3/ia/chatbot/bots/{id}:export` - [Export a bot](#export-a-bot)
-  + `POST /api/v3/ia/chatbot/bots/{id}:import` - [Import a bot](#import-a-bot)
-  + `POST /api/v3/ia/chatbot/bots/{id}:train` - [Train a bot](#train-a-bot)
-  + `POST /api/v3/ia/chatbot/bots/{id}:test`  - [Test a bot](#test-a-bot)
+  + `GET /api/v3/chatbot/bots` - [Get all bots of a site](#get-all-bots-of-a-site)
+  + `POST /api/v3/chatbot/bots` - [Create a new bot](#create-a-new-bot)
+  + `PUT /api/v3/chatbot/bots/{id}` - [Update a bot](#update-a-bot)
+  + `GET /api/v3/chatbot/bots/{id}` - [Get a bot by id](#get-a-bot-by-id)
+  + `DELETE /api/v3/chatbot/bots/{id}` - [Remove a bot](#delete-a-bot-by-id)
+  + `GET /api/v3/chatbot/bots/{id}:export` - [Export a bot](#export-a-bot)
+  + `POST /api/v3/chatbot/bots/{id}:import` - [Import a bot](#import-a-bot)
+  + `POST /api/v3/chatbot/bots/{id}:train` - [Train a bot](#train-a-bot)
+  + `POST /api/v3/chatbot/bots/{id}:test`  - [Test a bot](#test-a-bot)
 
 ## Bot Related Object Json Format
 
@@ -282,7 +282,7 @@ MessageAfterSeveralConsecutivePossibleAnswersInChannel is represented as simple 
 ## Bot Endpoints
 ### Get all bots of a site
 
-  `GET /api/v3/ia/chatbot/bots`
+  `GET /api/v3/chatbot/bots`
 
 #### Parameters
 Query string
@@ -298,7 +298,7 @@ the response is: list of [Bot](#bot-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots
 ```
 Response
 ```json
@@ -313,7 +313,7 @@ Content-Type:  application/json
     "language": "en",      
     "avatar": {
       "name": "bot.png",
-      "url": "https://bot.comm100.com/api/v3/ia/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
+      "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
     },
     "messageWhenNotHelpful":"",
     "ifIncludeContactAgentOptionWhenNotHelpful":true,
@@ -339,7 +339,7 @@ Content-Type:  application/json
 
 ### Create a new bot
 
-  `POST /api/v3/ia/chatbot/bots`
+  `POST /api/v3/chatbot/bots`
 
 #### Parameters
 Request body
@@ -355,7 +355,7 @@ Request body
     "avatar": {
       "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
       "name": "bot.png",
-      "url": "https://bot.comm100.com/api/v3/ia/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
+      "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
     },    
     "enabledChannels": [
       "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
@@ -376,18 +376,18 @@ curl -H "Content-Type: application/json" -d '{
     "avatar": {
       "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
       "name": "bot.png",
-      "url": "https://bot.comm100.com/api/v3/ia/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
+      "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
     },  
     "enabledChannels": [
       "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/bots/casd8d68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/chatbot/bots/casd8d68-92e6-4487-a2e8-8234fc9d1f48
 
   {
     "id": "casd8d68-92e6-4487-a2e8-8234fc9d1f48",
@@ -397,7 +397,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/bots/casd8d68-92e6-4487-a
     "avatar": {
       "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
       "name": "bot.png",
-      "url": "https://bot.comm100.com/api/v3/ia/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
+      "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
     },
     "messageWhenNotHelpful":"",
     "ifIncludeContactAgentOptionWhenNotHelpful": false,
@@ -420,7 +420,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/bots/casd8d68-92e6-4487-a
 
 ### Update a bot
 
-  `PUT /api/v3/ia/chatbot/bots/{id}`
+  `PUT /api/v3/chatbot/bots/{id}`
 
 #### Parameters
 Path Parameters
@@ -532,7 +532,7 @@ curl -H "Content-Type: application/json" -d '{
     "enabledChannels": [
       "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -590,7 +590,7 @@ Content-Type:  application/json
 
 ### Get a bot by id
 
-  `GET /api/v3/ia/chatbot/bots/{id}`
+  `GET /api/v3/chatbot/bots/{id}`
 
 #### Parameters
 Path parameters
@@ -612,7 +612,7 @@ the response is: [Bot](#bot-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48?include=intent
+-X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48?include=intent
 ```
 Response
 ```json
@@ -693,7 +693,7 @@ Content-Type:  application/json
 
 ### Delete a bot by id
 
-  `DELETE /api/v3/ia/chatbot/bots/{id}`
+  `DELETE /api/v3/chatbot/bots/{id}`
 
 #### Parameters
 Path parameters
@@ -708,7 +708,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -717,7 +717,7 @@ HTTP/1.1 204 No Content
 
 ### Export a bot
 
-  `GET /api/v3/ia/chatbot/bots/{id}:export`
+  `GET /api/v3/chatbot/bots/{id}:export`
 
 #### Parameters
 Path parameters
@@ -735,7 +735,7 @@ the response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:export
+-X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:export
 ```
 Response
 ```json
@@ -749,7 +749,7 @@ Content-Type:  application/json
 
 ### Import a bot
 
-  `POST /api/v3/ia/chatbot/bots/{id}:import`
+  `POST /api/v3/chatbot/bots/{id}:import`
 
 #### Parameters
 Path parameters
@@ -782,7 +782,7 @@ the response is:
 Using curl
 ```
 curl -F 'file=@[my bot].xml' 
--X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:import
+-X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:import
 ```
 Response
 ```json
@@ -796,7 +796,7 @@ Content-Type:  application/json
 
 ### Train a bot
 
-  `POST /api/v3/ia/chatbot/bots/{id}:train`
+  `POST /api/v3/chatbot/bots/{id}:train`
 
 #### Parameters
 Path parameters
@@ -813,7 +813,7 @@ the response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:train
+-X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:train
 ```
 Response
 ```json
@@ -827,7 +827,7 @@ Content-Type:  application/json
 
 ### Test a bot
 
-  `POST /api/v3/ia/chatbot/bots/{id}:test`
+  `POST /api/v3/chatbot/bots/{id}:test`
 
 #### Parameters
 Path parameters
@@ -861,7 +861,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "questionId": "74e29172-f383-4a2c-9c2d-fb91c3ecbb40",
     "question": "i want to buy nbn"
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:test
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:test
 ```
 Response
 ```json
@@ -900,16 +900,16 @@ Content-Type:  application/json
 
 
 # GreetingMessageInChannel  
-  + `GET /api/v3/ia/chatbot/bots/{botId}/greetingMessageInChannels` - [Get all GreetingMessageInChannels of the bot](#get-all-GreetingMessageInChannels-of-the-bot)
-  + `POST /api/v3/ia/chatbot/bots/{botId}/greetingMessageInChannels` - [Create a new GreetingMessageInChannel](#create-a-new-GreetingMessageInChannel)
-  + `PUT /api/v3/ia/chatbot/greetingMessageInChannels/{id}` - [Update a GreetingMessageInChannel](#update-a-GreetingMessageInChannel)
-  + `DELETE /api/v3/ia/chatbot/greetingMessageInChannels/{id}` - [Remove a GreetingMessageInChannel](#remove-a-GreetingMessageInChannel)
-  + `GET /api/v3/ia/chatbot/greetingMessageInChannels/{id}` - [Get a GreetingMessageInChannel by id](#get-a-GreetingMessageInChannel-by-id)
+  + `GET /api/v3/chatbot/bots/{botId}/greetingMessageInChannels` - [Get all GreetingMessageInChannels of the bot](#get-all-GreetingMessageInChannels-of-the-bot)
+  + `POST /api/v3/chatbot/bots/{botId}/greetingMessageInChannels` - [Create a new GreetingMessageInChannel](#create-a-new-GreetingMessageInChannel)
+  + `PUT /api/v3/chatbot/greetingMessageInChannels/{id}` - [Update a GreetingMessageInChannel](#update-a-GreetingMessageInChannel)
+  + `DELETE /api/v3/chatbot/greetingMessageInChannels/{id}` - [Remove a GreetingMessageInChannel](#remove-a-GreetingMessageInChannel)
+  + `GET /api/v3/chatbot/greetingMessageInChannels/{id}` - [Get a GreetingMessageInChannel by id](#get-a-GreetingMessageInChannel-by-id)
 
 ## GreetingMessageInChannel Endpoints
 ### Get all GreetingMessageInChannels of the bot
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/greetingMessageInChannels`
+  `GET /api/v3/chatbot/bots/{botId}/greetingMessageInChannels`
 
 #### Parameters
 Path parameters
@@ -931,7 +931,7 @@ the response is: list of [GreetingMessageInChannel](#GreetingMessageInChannel-ob
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/greetingMessageInChannels
+-X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/greetingMessageInChannels
 ```
 Response
 ```json
@@ -958,7 +958,7 @@ Content-Type:  application/json
 
 ### Create a new GreetingMessageInChannel
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/greetingMessageInChannels`
+  `POST /api/v3/chatbot/bots/{botId}/greetingMessageInChannels`
 
 ####  Parameters
 Path parameters
@@ -1005,13 +1005,13 @@ curl -H "Content-Type: application/json" -d '{
         "order": 0
       }
     ]
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/greetingMessageInChannels
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/greetingMessageInChannels
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/greetingMessageInChannels/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/chatbot/greetingMessageInChannels/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
   "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -1030,7 +1030,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/greetingMessageInChannels
 
 ### Update a GreetingMessageInChannel
 
-  `PUT /api/v3/ia/chatbot/greetingMessageInChannels/{id}`
+  `PUT /api/v3/chatbot/greetingMessageInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1094,7 +1094,7 @@ curl -H "Content-Type: application/json" -d '{
         "order": 0
       }
     ]
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/greetingMessageInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/greetingMessageInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1127,7 +1127,7 @@ Content-Type:  application/json
 
 ### Remove a GreetingMessageInChannel
 
-  `DELETE /api/v3/ia/chatbot/greetingMessageInChannels/{id}`
+  `DELETE /api/v3/chatbot/greetingMessageInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1143,7 +1143,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/greetingMessageInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/greetingMessageInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1152,7 +1152,7 @@ HTTP/1.1 204 No Content
 
 ### Get a GreetingMessageInChannel by id
 
-  `GET /api/v3/ia/chatbot/greetingMessageInChannels/{id}`
+  `GET /api/v3/chatbot/greetingMessageInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1174,7 +1174,7 @@ the response is:
 #### Example
 Using curl
 ```
-curl -X GET https://domain.comm100.com/api/v3/ia/chatbot/greetingMessageInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6?include=intent
+curl -X GET https://domain.comm100.com/api/v3/chatbot/greetingMessageInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6?include=intent
 ```
 Response
 ```Json
@@ -1226,16 +1226,16 @@ Response
 # NoAnswerMessageInChannel
   You need `Manage Bot` permission to manage bot NoAnswerMessageInChannels.
   - `NoAnswerMessageInChannels`
-    + `GET /api/v3/ia/chatbot/bots/{botId}/noAnswerMessageInChannels` - [Get all NoAnswerMessageInChannels of the bot](#get-all-NoAnswerMessageInChannels-of-the-bot)   
-    + `POST /api/v3/ia/chatbot/bots/{botId}/noAnswerMessageInChannels` - [Create a new NoAnswerMessageInChannel](#create-a-new-NoAnswerMessageInChannel)
-    + `PUT /api/v3/ia/chatbot/noAnswerMessageInChannels/{id}` - [Update a NoAnswerMessageInChannel](#update-a-NoAnswerMessageInChannel)
-    + `DELETE /api/v3/ia/chatbot/noAnswerMessageInChannels/{id}` - [Remove a NoAnswerMessageInChannel](#remove-a-NoAnswerMessageInChannel)
-    + `GET /api/v3/ia/chatbot/noAnswerMessageInChannels/{id}` - [Get a NoAnswerMessageInChannel by id](#get-a-NoAnswerMessageInChannel-by-id)
+    + `GET /api/v3/chatbot/bots/{botId}/noAnswerMessageInChannels` - [Get all NoAnswerMessageInChannels of the bot](#get-all-NoAnswerMessageInChannels-of-the-bot)   
+    + `POST /api/v3/chatbot/bots/{botId}/noAnswerMessageInChannels` - [Create a new NoAnswerMessageInChannel](#create-a-new-NoAnswerMessageInChannel)
+    + `PUT /api/v3/chatbot/noAnswerMessageInChannels/{id}` - [Update a NoAnswerMessageInChannel](#update-a-NoAnswerMessageInChannel)
+    + `DELETE /api/v3/chatbot/noAnswerMessageInChannels/{id}` - [Remove a NoAnswerMessageInChannel](#remove-a-NoAnswerMessageInChannel)
+    + `GET /api/v3/chatbot/noAnswerMessageInChannels/{id}` - [Get a NoAnswerMessageInChannel by id](#get-a-NoAnswerMessageInChannel-by-id)
 
 ## NoAnswerMessageInChannel Endpoints
 ### Get all NoAnswerMessageInChannels of the bot
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/noAnswerMessageInChannels`
+  `GET /api/v3/chatbot/bots/{botId}/noAnswerMessageInChannels`
 
 #### Parameters
 Path parameters
@@ -1250,7 +1250,7 @@ the response is: list of [NoAnswerMessageInChannel](#NoAnswerMessageInChannel-ob
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/noAnswerMessageInChannels
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/noAnswerMessageInChannels
 ```
 Response
 ```json
@@ -1275,7 +1275,7 @@ Content-Type:  application/json
 
 ### Create a new NoAnswerMessageInChannel
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/noAnswerMessageInChannels`
+  `POST /api/v3/chatbot/bots/{botId}/noAnswerMessageInChannels`
 
 ####  Parameters
 Path parameters
@@ -1308,13 +1308,13 @@ curl -H "Content-Type: application/json" -d '{
     "channel":"SMS",
     "message": "sorry , i can not understand.",
     "ifIncludeContactAgentOption": false
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/noAnswerMessageInChannels
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/noAnswerMessageInChannels
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/noAnswerMessageInChannels/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/chatbot/noAnswerMessageInChannels/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
   "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -1327,7 +1327,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/noAnswerMessageInChannels
 
 ### Update a NoAnswerMessageInChannel
 
-  `PUT /api/v3/ia/chatbot/noAnswerMessageInChannels/{id}`
+  `PUT /api/v3/chatbot/noAnswerMessageInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1362,7 +1362,7 @@ curl -H "Content-Type: application/json" -d '{
     "channel":"SMS",
     "message": "sorry , i can not help you.",
     "ifIncludeContactAgentOption": false
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/noAnswerMessageInChannels/1bwfe21d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/noAnswerMessageInChannels/1bwfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1379,7 +1379,7 @@ Response
 
 ### Remove a NoAnswerMessageInChannel
 
-  `DELETE /api/v3/ia/chatbot/noAnswerMessageInChannels/{id}`
+  `DELETE /api/v3/chatbot/noAnswerMessageInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1394,7 +1394,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/noAnswerMessageInChannels/1bwfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/noAnswerMessageInChannels/1bwfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1403,7 +1403,7 @@ HTTP/1.1 204 No Content
 
 ### Get a NoAnswerMessageInChannel by id
 
-  `GET /api/v3/ia/chatbot/noAnswerMessageInChannels/{id}`
+  `GET /api/v3/chatbot/noAnswerMessageInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1419,7 +1419,7 @@ the response is:
 #### Example
 Using curl
 ```
-curl -X GET https://domain.comm100.com/api/v3/ia/chatbot/noAnswerMessageInChannels/1bwfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -X GET https://domain.comm100.com/api/v3/chatbot/noAnswerMessageInChannels/1bwfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1437,16 +1437,16 @@ Response
 # MessageAfterSeveralConsecutivePossibleAnswersInChannel
   You need `Manage Bot` permission to manage bot MessageAfterSeveralConsecutivePossibleAnswersInChannels.
   - `MessageAfterSeveralConsecutivePossibleAnswersInChannels`
-    + `GET /api/v3/ia/chatbot/bots/{botId}/messageAfterSeveralConsecutivePossibleAnswersInChannels` - [Get all MessageAfterSeveralConsecutivePossibleAnswersInChannels of the bot](#get-all-MessageAfterSeveralConsecutivePossibleAnswersInChannels-of-the-bot)
-    + `POST /api/v3/ia/chatbot/bots/{botId}/messageAfterSeveralConsecutivePossibleAnswersInChannels` - [Create a new MessageAfterSeveralConsecutivePossibleAnswersInChannel](#create-a-new-MessageAfterSeveralConsecutivePossibleAnswersInChannel)
-    + `PUT /api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}` - [Update a MessageAfterSeveralConsecutivePossibleAnswersInChannel](#update-a-MessageAfterSeveralConsecutivePossibleAnswersInChannel)
-    + `DELETE /api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}` - [Remove a MessageAfterSeveralConsecutivePossibleAnswersInChannel](#remove-a-MessageAfterSeveralConsecutivePossibleAnswersInChannel)
-    + `GET /api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}` - [Get a MessageAfterSeveralConsecutivePossibleAnswersInChannel by id](#get-a-MessageAfterSeveralConsecutivePossibleAnswersInChannel-by-id)
+    + `GET /api/v3/chatbot/bots/{botId}/messageAfterSeveralConsecutivePossibleAnswersInChannels` - [Get all MessageAfterSeveralConsecutivePossibleAnswersInChannels of the bot](#get-all-MessageAfterSeveralConsecutivePossibleAnswersInChannels-of-the-bot)
+    + `POST /api/v3/chatbot/bots/{botId}/messageAfterSeveralConsecutivePossibleAnswersInChannels` - [Create a new MessageAfterSeveralConsecutivePossibleAnswersInChannel](#create-a-new-MessageAfterSeveralConsecutivePossibleAnswersInChannel)
+    + `PUT /api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}` - [Update a MessageAfterSeveralConsecutivePossibleAnswersInChannel](#update-a-MessageAfterSeveralConsecutivePossibleAnswersInChannel)
+    + `DELETE /api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}` - [Remove a MessageAfterSeveralConsecutivePossibleAnswersInChannel](#remove-a-MessageAfterSeveralConsecutivePossibleAnswersInChannel)
+    + `GET /api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}` - [Get a MessageAfterSeveralConsecutivePossibleAnswersInChannel by id](#get-a-MessageAfterSeveralConsecutivePossibleAnswersInChannel-by-id)
 
 ## MessageAfterSeveralConsecutivePossibleAnswersInChannel Endpoints
 ### Get all MessageAfterSeveralConsecutivePossibleAnswersInChannels of the bot
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/messageAfterSeveralConsecutivePossibleAnswersInChannels`
+  `GET /api/v3/chatbot/bots/{botId}/messageAfterSeveralConsecutivePossibleAnswersInChannels`
 
 #### Parameters
 Path parameters
@@ -1461,7 +1461,7 @@ the response is: list of [MessageAfterSeveralConsecutivePossibleAnswersInChannel
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/messageAfterSeveralConsecutivePossibleAnswersInChannels
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/messageAfterSeveralConsecutivePossibleAnswersInChannels
 ```
 Response
 ```Json
@@ -1486,7 +1486,7 @@ Content-Type:  application/json
 
 ### Create a new MessageAfterSeveralConsecutivePossibleAnswersInChannel
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/messageAfterSeveralConsecutivePossibleAnswersInChannels`
+  `POST /api/v3/chatbot/bots/{botId}/messageAfterSeveralConsecutivePossibleAnswersInChannels`
 
 ####  Parameters
 Path parameters
@@ -1519,13 +1519,13 @@ curl -H "Content-Type: application/json" -d '{
     "channel":"SMS",
     "message": "I think I'm not answering your question well.",
     "ifIncludeContactAgentOption": false
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/messageAfterSeveralConsecutivePossibleAnswersInChannels
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/messageAfterSeveralConsecutivePossibleAnswersInChannels
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 
   {
     "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -1537,7 +1537,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/messageAfterSeveralConsec
 
 ### Update a MessageAfterSeveralConsecutivePossibleAnswersInChannel
 
-  `PUT /api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}`
+  `PUT /api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1572,7 +1572,7 @@ curl -H "Content-Type: application/json" -d '{
     "channel":"Default",
     "message": "I think I'm not answering your question well.",
     "ifIncludeContactAgentOption": false
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1588,7 +1588,7 @@ Response
 
 ### Remove a MessageAfterSeveralConsecutivePossibleAnswersInChannel
 
-  `DELETE /api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}`
+  `DELETE /api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1604,7 +1604,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1613,7 +1613,7 @@ HTTP/1.1 204 No Content
 
 ### Get a MessageAfterSeveralConsecutivePossibleAnswersInChannel by id
 
-  `GET /api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}`
+  `GET /api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -1630,7 +1630,7 @@ the response is:
 #### Example
 Using curl
 ```
-curl -X GET https://domain.comm100.com/api/v3/ia/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X GET https://domain.comm100.com/api/v3/chatbot/messageAfterSeveralConsecutivePossibleAnswersInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1648,12 +1648,12 @@ Response
 # Category
   You need `Manage Bot` permission to manage bot category and customize the settings for a bot category.
   - `Categories` - Category Manage
-    + `GET /api/v3/ia/chatbot/bots/{botId}/categories` - [Get all categories of the bot](#get-all-categories-of-the-bot)
-    + `POST /api/v3/ia/chatbot/bots/{botId}/categories` - [Create a new category](#create-a-new-category)
-    + `PUT /api/v3/ia/chatbot/categories/{id}` - [Update a category](#update-a-category)
-    + `POST /api/v3/ia/chatbot/categories/{id}:reassign` - [Reassign the sub-categories](#reassign-the-sub-categories)
-    + `DELETE /api/v3/ia/chatbot/categories/{id}` - [Remove a category](#remove-a-category)
-    + `GET /api/v3/ia/chatbot/categories/{id}` - [Get a category by id](#get-a-category-by-id)
+    + `GET /api/v3/chatbot/bots/{botId}/categories` - [Get all categories of the bot](#get-all-categories-of-the-bot)
+    + `POST /api/v3/chatbot/bots/{botId}/categories` - [Create a new category](#create-a-new-category)
+    + `PUT /api/v3/chatbot/categories/{id}` - [Update a category](#update-a-category)
+    + `POST /api/v3/chatbot/categories/{id}:reassign` - [Reassign the sub-categories](#reassign-the-sub-categories)
+    + `DELETE /api/v3/chatbot/categories/{id}` - [Remove a category](#remove-a-category)
+    + `GET /api/v3/chatbot/categories/{id}` - [Get a category by id](#get-a-category-by-id)
 
 ## Category Related Object Json Format
 ### Category Object
@@ -1668,7 +1668,7 @@ Response
 ## Category Endpoints
 ### Get all categories of the bot
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/categories`
+  `GET /api/v3/chatbot/bots/{botId}/categories`
 
 #### Parameters
 Path parameters
@@ -1683,7 +1683,7 @@ the response is: list of  [Category](#category-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/categories
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/categories
 ```
 Response
 ```Json
@@ -1706,7 +1706,7 @@ Content-Type:  application/json
 ```
 ### Create a new category
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/categories`
+  `POST /api/v3/chatbot/bots/{botId}/categories`
 
 ####  Parameters
 Path parameters
@@ -1737,13 +1737,13 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "name":"Greeting",
     "parentId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/categories
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/categories
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/categories/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/chatbot/categories/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
   "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -1755,7 +1755,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/categories/b222qa68-92e6-
 
 ### Update a category
 
-  `PUT /api/v3/ia/chatbot/categories/{id}`
+  `PUT /api/v3/chatbot/categories/{id}`
 
 #### Parameters
 Path parameters
@@ -1787,7 +1787,7 @@ curl -H "Content-Type: application/json" -d '{
     "id":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "name":"System Rename",
     "parentId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/categories/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/categories/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```Json
@@ -1804,7 +1804,7 @@ Response
 ### Reassign the sub categories
   Delete the category and then move all sub-categories and intents to the target category
 
-  `POST /api/v3/ia/chatbot/categories/{id}:reassign`
+  `POST /api/v3/chatbot/categories/{id}:reassign`
 
 #### Parameters
 Path parameters
@@ -1825,7 +1825,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X POST https://domain.comm100.com/api/v3/ia/chatbot/categories/4487fc9d-92e6-4487-a2e8-92e68d6892e6:reassign?targetCategoryId=1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X POST https://domain.comm100.com/api/v3/chatbot/categories/4487fc9d-92e6-4487-a2e8-92e68d6892e6:reassign?targetCategoryId=1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1836,7 +1836,7 @@ HTTP/1.1 204 No Content
 ### Remove a category
   Delete the category and all sub-categories and intents
 
-  `DELETE /api/v3/ia/chatbot/categories/{id}`
+  `DELETE /api/v3/chatbot/categories/{id}`
 
 #### Parameters
 Path parameters
@@ -1851,7 +1851,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/categories/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/categories/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1860,7 +1860,7 @@ HTTP/1.1 204 No Content
 
 ### Get a category by id
 
-  `GET /api/v3/ia/chatbot/categories/{id}`
+  `GET /api/v3/chatbot/categories/{id}`
 
 #### Parameters
 Path parameters
@@ -1875,7 +1875,7 @@ the response is: [Category](#category-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/categories/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/categories/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1891,13 +1891,13 @@ Response
 
 
 # Intent
-  +  `GET /api/v3/ia/chatbot/bots/{botId}/intents` - [Get intents](#get-intents)
-  +  `GET /api/v3/ia/chatbot/bots/{botId}/intents:queryTopScore` - [Query top score intents](#query-top-score-intents)
-  +  `POST /api/v3/ia/chatbot/bots/{botId}/intents` - [Create a new intent](#create-a-new-intent)
-  +  `PUT /api/v3/ia/chatbot/intents/{id}` - [Update an intent](#update-an-intent)
-  +  `GET /api/v3/ia/chatbot/intents/{id}` - [Get an intent by id](#get-an-intent-by-id)
-  +  `DELETE /api/v3/ia/chatbot/intents/{id}` - [Remove an intent](#remove-an-intent)
-  +  `POST /api/v3/ia/chatbot/bots/{botId}/intents:import` - [Import intents](#import-intents)
+  +  `GET /api/v3/chatbot/bots/{botId}/intents` - [Get intents](#get-intents)
+  +  `GET /api/v3/chatbot/bots/{botId}/intents:queryTopScore` - [Query top score intents](#query-top-score-intents)
+  +  `POST /api/v3/chatbot/bots/{botId}/intents` - [Create a new intent](#create-a-new-intent)
+  +  `PUT /api/v3/chatbot/intents/{id}` - [Update an intent](#update-an-intent)
+  +  `GET /api/v3/chatbot/intents/{id}` - [Get an intent by id](#get-an-intent-by-id)
+  +  `DELETE /api/v3/chatbot/intents/{id}` - [Remove an intent](#remove-an-intent)
+  +  `POST /api/v3/chatbot/bots/{botId}/intents:import` - [Import intents](#import-intents)
 
 
 ## Intent Related Object Json Format
@@ -2085,7 +2085,7 @@ Button is represented as simple flat json objects with the following keys:
 ## Endpoints
 ### Get intents
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/intents`
+  `GET /api/v3/chatbot/bots/{botId}/intents`
 
 #### Parameters
 Path parameters
@@ -2109,7 +2109,7 @@ the response is: list of  [Intent](#intent-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/intents?include=category
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/intents?include=category
 ```
 Response
 ```Json
@@ -2133,7 +2133,7 @@ Content-Type:  application/json
 
 ### Query top score intents
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/intents:queryTopScore`
+  `GET /api/v3/chatbot/bots/{botId}/intents:queryTopScore`
 
 #### Parameters
 Path parameters
@@ -2155,7 +2155,7 @@ the response is: list of  [IntentScore](#IntentScore-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/intents:queryTopScore?question=test question&top=3
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/intents:queryTopScore?question=test question&top=3
 ```
 Response
 ```Json
@@ -2174,7 +2174,7 @@ Content-Type:  application/json
 
 ###  Get an intent by id
 
-   `GET /api/v3/ia/chatbot/intents/{id}`
+   `GET /api/v3/chatbot/intents/{id}`
 
 #### Parameter
 Path parameters
@@ -2196,7 +2196,7 @@ the response is: [Intent](#intent-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6?include=category
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6?include=category
 ```
 Response
 ```Json
@@ -2292,7 +2292,7 @@ Response
 
 ### Create a new intent
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/intents`
+  `POST /api/v3/chatbot/bots/{botId}/intents`
 
 #### Parameters
 Path parameters
@@ -2414,13 +2414,13 @@ curl -H "Content-Type: application/json" -d '{
       }
     ]    
   }' -X POST 
-https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/intents
+https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/intents
 ```
 Response
 ```Json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/intents/sdaw341a-92e6-4487-a2e8-f9928d681f48
+Location: https://domain.comm100.com/api/v3/chatbot/intents/sdaw341a-92e6-4487-a2e8-f9928d681f48
 
   {
     "id":"sdaw341a-92e6-4487-a2e8-f9928d681f48",
@@ -2432,7 +2432,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/intents/sdaw341a-92e6-448
 
 ### Update an intent
 
-  `PUT /api/v3/ia/chatbot/intents/{id}`
+  `PUT /api/v3/chatbot/intents/{id}`
 
 #### Parameters
 Path parameters
@@ -2571,7 +2571,7 @@ curl -H "Content-Type: application/json" -d '{
       },
     ]    
   }' -X PUT 
-https://domain.comm100.com/api/v3/ia/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+https://domain.comm100.com/api/v3/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```Json
@@ -2644,7 +2644,7 @@ Response
 ```
 ### Remove an intent
 
-  `DELETE /api/v3/ia/chatbot/intents/{id}`
+  `DELETE /api/v3/chatbot/intents/{id}`
 
 #### Parameter
 Path parameters
@@ -2659,7 +2659,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -2668,7 +2668,7 @@ HTTP/1.1 204 No Content
 
 ### Import intents
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/intents:import`
+  `POST /api/v3/chatbot/bots/{botId}/intents:import`
 
 #### Parameters
 Path parameters
@@ -2711,7 +2711,7 @@ the response is:
 #### Example
 Using curl
 ```
-curl -F 'file=@intents.xlsx' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/intents:import?mode=replace
+curl -F 'file=@intents.xlsx' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/intents:import?mode=replace
 ```
 Response
 ```json
@@ -2727,12 +2727,12 @@ Content-Type:  application/json
 # Question
 You need `Manage Bot` permission to manage Intent and customize the settings for a Intent Question.
   - `Questions` - Intent Question Manage
-    +  `GET /api/v3/ia/chatbot/intents/{intentId}/questions` - [Get questions of the intent](#get-questions-of-the-intent)
-    +  `POST /api/v3/ia/chatbot/intents/{intentId}/questions` - [Create a question for the intent](#create-a-question-for-the-intent)
-    +  `PUT /api/v3/ia/chatbot/questions/{id}` - [Update a question](#update-a-question)    
-    +  `DELETE /api/v3/ia/chatbot/questions/{id}` - [Remove a question](#remove-a-question)
-    +  `GET /api/v3/ia/chatbot/questions/{id}` - [Get a question by id](#get-a-question-by-id)
-    +  `POST /api/v3/ia/intents/{intentId}/questions:batchCreate` - [Batch add questions](#Batch-add-questions)
+    +  `GET /api/v3/chatbot/intents/{intentId}/questions` - [Get questions of the intent](#get-questions-of-the-intent)
+    +  `POST /api/v3/chatbot/intents/{intentId}/questions` - [Create a question for the intent](#create-a-question-for-the-intent)
+    +  `PUT /api/v3/chatbot/questions/{id}` - [Update a question](#update-a-question)    
+    +  `DELETE /api/v3/chatbot/questions/{id}` - [Remove a question](#remove-a-question)
+    +  `GET /api/v3/chatbot/questions/{id}` - [Get a question by id](#get-a-question-by-id)
+    +  `POST /api/v3/intents/{intentId}/questions:batchCreate` - [Batch add questions](#Batch-add-questions)
 
 ## Question Related Objects Json Format
 ### Question Object
@@ -2758,7 +2758,7 @@ Question Selected Keyword is represented as simple flat json objects with the fo
 ## Question Endpoints
 ### Get questions of the intent
 
-  `GET /api/v3/ia/chatbot/intents/{intentId}/questions`
+  `GET /api/v3/chatbot/intents/{intentId}/questions`
 
 #### Parameters
 Path parameters
@@ -2779,7 +2779,7 @@ the response is: list of [Question](#question-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/questions?include=entity
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/questions?include=entity
 ```
 Response
 ```Json
@@ -2814,7 +2814,7 @@ Response
 
 ### Create a question for the intent
 
-  `POST /api/v3/ia/chatbot/intents/{intentId}/questions`
+  `POST /api/v3/chatbot/intents/{intentId}/questions`
 
 #### Parameters
 Path parameters
@@ -2844,13 +2844,13 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "content":"what about nbn",
     "selectedKeywords":[]
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/questions
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/questions
 ```
 Response
 ```Json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/questions/vvd7fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/questions/vvd7fc9d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id":"vvd7fc9d-92e6-4487-a2e8-92e68d6892e6", 
@@ -2861,7 +2861,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/questions/vvd7fc9d-92e6-4
 
 ### Update a question
 
-  `PUT /api/v3/ia/chatbot/questions/{id}`
+  `PUT /api/v3/chatbot/questions/{id}`
 
 #### Parameters
 Path parameters
@@ -2907,7 +2907,7 @@ curl -H "Content-Type: application/json" -d '{
           "endPos":"15"
         }
       ]
-    }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/questions/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+    }' -X PUT https://domain.comm100.com/api/v3/chatbot/questions/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```Json
@@ -2931,7 +2931,7 @@ Response
 
 ### Remove a question
 
-  `DELETE /api/v3/ia/chatbot/questions/{id}`
+  `DELETE /api/v3/chatbot/questions/{id}`
 
 #### Parameters
 Path parameters
@@ -2946,7 +2946,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/questions/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/questions/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -2955,7 +2955,7 @@ HTTP/1.1 204 No Content
 
 ### Get a question by id
 
-  `GET /api/v3/ia/chatbot/questions/{id}`
+  `GET /api/v3/chatbot/questions/{id}`
 
 #### Parameters
 Path parameters
@@ -2976,7 +2976,7 @@ the response is: [Question](#question-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/questions/4487fc9d-92e6-4487-a2e8-92e68d6892e6?include=entity
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/questions/4487fc9d-92e6-4487-a2e8-92e68d6892e6?include=entity
 ```
 Response
 ```Json
@@ -3004,7 +3004,7 @@ Response
 
 ### Batch add questions
 
-  `POST /api/v3/ia/chatbot/intents/{intentId}/questions:batchCreate` 
+  `POST /api/v3/chatbot/intents/{intentId}/questions:batchCreate` 
 
 #### Parameters
 Path parameters
@@ -3046,7 +3046,7 @@ curl -H "Content-Type: application/json" -d '[
       "content":"what is nbn",
       "selectedKeywords":[]
     },
-  ]' -X POST https://domain.comm100.com/api/v3/ia/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/questions:batchCreate
+  ]' -X POST https://domain.comm100.com/api/v3/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/questions:batchCreate
 ```
 Response
 ```Json
@@ -3070,16 +3070,16 @@ Response
 # Answer in Channel
 You need `Manage Bot` permission to manage Intent.
   - `Answer in Channel` - Intent Answer Manage
-    +  `GET /api/v3/ia/chatbot/intents/{intentId}/answerInChannels` - [Get AnswerInChannels of the intent](#get-answerInChannels-of-the-intent)
-    +  `GET /api/v3/ia/chatbot/answerInChannels/{id}` - [Get AnswerInChannel of the intent by id](#get-AnswerInChannel-of-the-intent-by-id)
-    +  `POST /api/v3/ia/chatbot/intents/{intentId}/answerInChannels` - [Create a AnswerInChannel for the intent](#create-a-AnswerInChannel-for-the-intent)
-    +  `PUT /api/v3/ia/chatbot/answerInChannels/{id}` - [Update a AnswerInChannel](#update-a-AnswerInChannel)    
-    +  `DELETE /api/v3/ia/chatbot/answerInChannels/{id}` - [Remove a AnswerInChannel](#remove-a-AnswerInChannel)
+    +  `GET /api/v3/chatbot/intents/{intentId}/answerInChannels` - [Get AnswerInChannels of the intent](#get-answerInChannels-of-the-intent)
+    +  `GET /api/v3/chatbot/answerInChannels/{id}` - [Get AnswerInChannel of the intent by id](#get-AnswerInChannel-of-the-intent-by-id)
+    +  `POST /api/v3/chatbot/intents/{intentId}/answerInChannels` - [Create a AnswerInChannel for the intent](#create-a-AnswerInChannel-for-the-intent)
+    +  `PUT /api/v3/chatbot/answerInChannels/{id}` - [Update a AnswerInChannel](#update-a-AnswerInChannel)    
+    +  `DELETE /api/v3/chatbot/answerInChannels/{id}` - [Remove a AnswerInChannel](#remove-a-AnswerInChannel)
 
 ## AnswerInChannel Endpoints
 ### Get AnswerInChannels of the intent
 
-  `GET /api/v3/ia/chatbot/intents/{intentId}/answerInChannels`
+  `GET /api/v3/chatbot/intents/{intentId}/answerInChannels`
 
 #### Parameters
 Path parameters
@@ -3094,7 +3094,7 @@ the response is: list of [AnswerInChannel](#AnswerInChannel-object) objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/answerInChannels
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/answerInChannels
 ```
 Response
 ```Json
@@ -3161,7 +3161,7 @@ Response
 
 ### Get AnswerInChannel of the intent by id
 
-  `GET /api/v3/ia/chatbot/answerInChannels/{id}`
+  `GET /api/v3/chatbot/answerInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -3182,7 +3182,7 @@ the response is: [AnswerInChannel](#AnswerInChannel-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/1487fc9d-92e6-4487-a2e8-92e68d6892e6?include=intent,entity
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/answerInChannels/1487fc9d-92e6-4487-a2e8-92e68d6892e6?include=intent,entity
 ```
 Response
 ```Json
@@ -3240,7 +3240,7 @@ Response
 
 ### Create a AnswerInChannel for the intent
 
-  `POST /api/v3/ia/chatbot/intents/{intentId}/answerInChannels`
+  `POST /api/v3/chatbot/intents/{intentId}/answerInChannels`
 
 #### Parameters
 Path parameters
@@ -3288,13 +3288,13 @@ curl -H "Content-Type: application/json" -d '{
       }
     ],
     "informationCollectionType" : "none"
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/answerInChannels
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/intents/1487fc9d-92e6-4487-a2e8-92e68d6892e6/answerInChannels
 ```
 Response
 ```Json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/4c21fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/answerInChannels/4c21fc9d-92e6-4487-a2e8-92e68d6892e6
   
   {
     "id":"4c21fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -3315,7 +3315,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/4c21fc9d
 
 ### Update a AnswerInChannel
 
-  `PUT /api/v3/ia/chatbot/answerInChannels/{id}`
+  `PUT /api/v3/chatbot/answerInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -3365,7 +3365,7 @@ curl -H "Content-Type: application/json" -d '{
       }
     ],
     "informationCollectionType" : "none"
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/answerInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```Json
@@ -3391,7 +3391,7 @@ Response
 
 ### Remove a AnswerInChannel
 
-  `DELETE /api/v3/ia/chatbot/answerInChannels/{id}`
+  `DELETE /api/v3/chatbot/answerInChannels/{id}`
 
 #### Parameters
 Path parameters
@@ -3406,7 +3406,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/answerInChannels/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -3416,15 +3416,15 @@ HTTP/1.1 204 No Content
 # Authentication Request
 You need `Manage Bot` permission to manage Intent and customize the settings for a Channel.
   - `Authentication Request` - Intent Answer Manage
-    +  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/authenticationRequest` - [Get authenticationRequest of the answerInChannel](#get-authenticationRequest-of-the-answerInChannel)   
-    +  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/authenticationRequest` - [Create a authenticationRequest for the answerInChannel](#create-a-authenticationRequest-for-the-answerInChannel)
-    +  `PUT /api/v3/ia/chatbot/authenticationRequests/{id}` - [Update a authenticationRequest](#update-a-authenticationRequest)    
-    +  `DELETE /api/v3/ia/chatbot/authenticationRequests/{id}` - [Remove a authenticationRequest by id](#remove-a-authenticationRequest-by-id)
+    +  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/authenticationRequest` - [Get authenticationRequest of the answerInChannel](#get-authenticationRequest-of-the-answerInChannel)   
+    +  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/authenticationRequest` - [Create a authenticationRequest for the answerInChannel](#create-a-authenticationRequest-for-the-answerInChannel)
+    +  `PUT /api/v3/chatbot/authenticationRequests/{id}` - [Update a authenticationRequest](#update-a-authenticationRequest)    
+    +  `DELETE /api/v3/chatbot/authenticationRequests/{id}` - [Remove a authenticationRequest by id](#remove-a-authenticationRequest-by-id)
 
 ## Authentication Request Endpoints
 ### Get AuthenticationRequest of the answerInChannel
 
-  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/authenticationRequest`
+  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/authenticationRequest`
 
 #### Parameters
 Path parameters
@@ -3439,7 +3439,7 @@ the response is: [Authentication Request](#authenticationrequest-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/authenticationRequest
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/authenticationRequest
 ```
 Response
 ```json
@@ -3456,7 +3456,7 @@ Response
 
 ### Create a AuthenticationRequest for the answerInChannel
 
-  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/authenticationRequest`
+  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/authenticationRequest`
 
 #### Parameters
 Path parameters
@@ -3492,13 +3492,13 @@ curl -H "Content-Type: application/json" -d '{
       "methord": "customVariable",
       "signInURL":"https://my-domian.com/login.php",
       "customVariable":"token"
-    }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/authenticationRequest
+    }' -X POST https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/authenticationRequest
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/authenticationRequest
+Location: https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/authenticationRequest
 
   {
     "id":"dawda111-92e6-4487-a2e8-92e68d6892e6",
@@ -3512,7 +3512,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa
 
 ### Update a AuthenticationRequest
 
-  `PUT /api/v3/ia/chatbot/authenticationRequests/{id}`
+  `PUT /api/v3/chatbot/authenticationRequests/{id}`
 
 #### Parameters
 Path parameters
@@ -3550,7 +3550,7 @@ curl -H "Content-Type: application/json" -d '{
       "methord": "customVariable",
       "signInURL":"https://my-domian.com/login.php",
       "customVariable":"token"
-    }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/authenticationRequests/bbwfe21d-92e6-4487-a2e8-92e68d6892e6
+    }' -X PUT https://domain.comm100.com/api/v3/chatbot/authenticationRequests/bbwfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -3569,7 +3569,7 @@ Response
 
 ### Remove a AuthenticationRequest by id
 
-  `DELETE /api/v3/ia/chatbot/authenticationRequests/{id}`
+  `DELETE /api/v3/chatbot/authenticationRequests/{id}`
 
 #### Parameters
 Path parameters
@@ -3585,7 +3585,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/authenticationRequests/bbwfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/authenticationRequests/bbwfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -3596,15 +3596,15 @@ HTTP/1.1 204 No Content
 # Location Request
 You need `Manage Bot` permission to manage Intent and customize the settings for a Location Request.
   - `Location Request` - Intent Answer Manage
-    +  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/locationRequest` - [Get LocationRequest of the answerInChannel](#get-LocationRequest-of-the-answerInChannel)
-    +  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/locationRequest` - [Create a LocationRequest for the answerInChannel](#create-a-LocationRequest-for-the-answerInChannel)
-    +  `PUT /api/v3/ia/chatbot/locationRequests/{id}` - [Update a LocationRequest](#update-a-LocationRequest)    
-    +  `DELETE /api/v3/ia/chatbot/locationRequests/{id}` - [Remove a LocationRequest](#remove-a-LocationRequest-by-id)
+    +  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/locationRequest` - [Get LocationRequest of the answerInChannel](#get-LocationRequest-of-the-answerInChannel)
+    +  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/locationRequest` - [Create a LocationRequest for the answerInChannel](#create-a-LocationRequest-for-the-answerInChannel)
+    +  `PUT /api/v3/chatbot/locationRequests/{id}` - [Update a LocationRequest](#update-a-LocationRequest)    
+    +  `DELETE /api/v3/chatbot/locationRequests/{id}` - [Remove a LocationRequest](#remove-a-LocationRequest-by-id)
 
 ## LocationRequest Endpoints
 ### Get LocationRequest of the answerInChannel
 
-  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/locationRequest`
+  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/locationRequest`
 
 #### Parameters
 Path parameters
@@ -3619,7 +3619,7 @@ the response is: [Location Request](#LocationRequest-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/locationRequest
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/locationRequest
 ```
 Response
 ```json
@@ -3635,7 +3635,7 @@ Response
 
 ### Create a LocationRequest for the answerInChannel
 
-  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/locationRequest`
+  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/locationRequest`
 
 #### Parameters
 Path parameters
@@ -3665,13 +3665,13 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
       "message": "Please Share your location",
       "buttonText": "Share"
-    }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/locationRequest
+    }' -X POST https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/locationRequest
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/locationRequest
+Location: https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/locationRequest
 
 
   {
@@ -3684,7 +3684,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa
 
 ### Update a LocationRequest
 
-  `PUT /api/v3/ia/chatbot/locationRequests/{id}`
+  `PUT /api/v3/chatbot/locationRequests/{id}`
 
 #### Parameters
 Path parameters
@@ -3716,7 +3716,7 @@ curl -H "Content-Type: application/json" -d '{
       "id": "ccwfe21d-92e6-4487-a2e8-92e68d6892e6",
       "message": "Please Share your location",
       "buttonText": "Share"
-    }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/locationRequests/ccwfe21d-92e6-4487-a2e8-92e68d6892e6
+    }' -X PUT https://domain.comm100.com/api/v3/chatbot/locationRequests/ccwfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -3732,7 +3732,7 @@ Response
 
 ### Remove a LocationRequest by id
 
-  `DELETE /api/v3/ia/chatbot/locationRequests/{id}`
+  `DELETE /api/v3/chatbot/locationRequests/{id}`
 
 #### Parameters
 Path parameters
@@ -3748,7 +3748,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/locationRequests/ccwfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/locationRequests/ccwfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -3758,15 +3758,15 @@ HTTP/1.1 204 No Content
 # Form
 You need `Manage Bot` permission to manage Intent and customize the settings for a intent answer form.
   - `Form` - Intent Answer Form Manage
-    +  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/form` - [Get Form of the answerInChannel](#get-form-of-the-answerInChannel)
-    +  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/form` - [Create a Form for the answerInChannel](#create-a-Form-for-the-answerInChannel)
-    +  `PUT /api/v3/ia/chatbot/forms/{id}` - [Update a Form](#update-a-Form)    
-    +  `DELETE /api/v3/ia/chatbot/forms/{id}` - [Remove a Form by id](#remove-a-Form-by-id)
+    +  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/form` - [Get Form of the answerInChannel](#get-form-of-the-answerInChannel)
+    +  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/form` - [Create a Form for the answerInChannel](#create-a-Form-for-the-answerInChannel)
+    +  `PUT /api/v3/chatbot/forms/{id}` - [Update a Form](#update-a-Form)    
+    +  `DELETE /api/v3/chatbot/forms/{id}` - [Remove a Form by id](#remove-a-Form-by-id)
 
 ## Form Endpoints
 ### Get Form of the answerInChannel
 
-  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/form`
+  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/form`
 
 #### Parameters
 Path parameters
@@ -3788,7 +3788,7 @@ the response is: [Form](#form-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/form?include=entity
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/form?include=entity
 ```
 Response
 ```json
@@ -3830,7 +3830,7 @@ Response
 
 ### Create a Form for the answerInChannel
 
-  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/form`
+  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/form`
 
 #### Parameters
 Path parameters
@@ -3900,13 +3900,13 @@ curl -H "Content-Type: application/json" -d '{
         "options":["beijing", "hangzhou"],
       }
     ]
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/form
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/form
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/form
+Location: https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/form
 
   {
     "id":"ge2341sa-92e6-4487-a2e8-92e68d6892e6",
@@ -3944,7 +3944,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa
 
 ### Update a Form
 
-  `PUT /api/v3/ia/chatbot/forms/{id}`
+  `PUT /api/v3/chatbot/forms/{id}`
 
 #### Parameters
 Path parameters
@@ -4018,7 +4018,7 @@ curl -H "Content-Type: application/json" -d '{
         "options":["beijing", "hangzhou"],
       }
     ]
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/forms/ge2341sa-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/forms/ge2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -4056,7 +4056,7 @@ Response
 
 ### Remove a Form by id
 
-  `DELETE /api/v3/ia/chatbot/forms/{id}`
+  `DELETE /api/v3/chatbot/forms/{id}`
 
 #### Parameters
 Path parameters
@@ -4071,7 +4071,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/forms/ge2341sa-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/forms/ge2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -4081,16 +4081,16 @@ HTTP/1.1 204 No Content
 # Field
 You need `Manage Bot` permission to manage Intent and customize the settings for a intent answer form fields.
   - `Form Fields` - Intent Answer Manage
-    +  `GET /api/v3/ia/chatbot/forms/{formId}/fields` - [Get all fields of the form](#get-all-fields-of-the-form)
-    +  `GET /api/v3/ia/chatbot/fields/{id}` - [Get a field by id](#Get-a-field-by-id)    
-    +  `POST /api/v3/ia/chatbot/forms/{formId}/fields` - [Create a new field of the form](#create-a-new-field-of-the-form)
-    +  `PUT /api/v3/ia/chatbot/fields/{id}` - [Update a field](#update-a-field)    
-    +  `DELETE /api/v3/ia/chatbot/fields/{id}` - [Remove a field](#remove-a-field)
+    +  `GET /api/v3/chatbot/forms/{formId}/fields` - [Get all fields of the form](#get-all-fields-of-the-form)
+    +  `GET /api/v3/chatbot/fields/{id}` - [Get a field by id](#Get-a-field-by-id)    
+    +  `POST /api/v3/chatbot/forms/{formId}/fields` - [Create a new field of the form](#create-a-new-field-of-the-form)
+    +  `PUT /api/v3/chatbot/fields/{id}` - [Update a field](#update-a-field)    
+    +  `DELETE /api/v3/chatbot/fields/{id}` - [Remove a field](#remove-a-field)
 
 ## Field Endpoints
 ### Get all fields of the form
 
-  `GET /api/v3/ia/chatbot/forms/{formId}/fields`
+  `GET /api/v3/chatbot/forms/{formId}/fields`
 
 #### Parameters
 Path parameters
@@ -4112,7 +4112,7 @@ the response is: an array of [Field](#Field-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/forms/ge2341sa-92e6-4487-a2e8-92e68d6892e6/fields?include=entity
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/forms/ge2341sa-92e6-4487-a2e8-92e68d6892e6/fields?include=entity
 ```
 Response
 ```json
@@ -4148,7 +4148,7 @@ Response
 
 ### Get a field by id
 
-  `GET /api/v3/ia/chatbot/fields/{id}`
+  `GET /api/v3/chatbot/fields/{id}`
 
 #### Parameters
 Path parameters
@@ -4169,7 +4169,7 @@ the response is: [Field](#Field-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/fields/gg2341sa-92e6-4487-a2e8-92e68d6892e6?include=entity
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/fields/gg2341sa-92e6-4487-a2e8-92e68d6892e6?include=entity
 ```
 Response
 ```json
@@ -4194,7 +4194,7 @@ Response
 
 ### Create a new field of the form
 
-  `POST /api/v3/ia/chatbot/forms/{formId}/fields`
+  `POST /api/v3/chatbot/forms/{formId}/fields`
 
 #### Parameters
 Path parameters
@@ -4235,13 +4235,13 @@ curl -H "Content-Type: application/json" -d '{
   "isRequired":true,
   "isMasked":true,
   "options":["beijing", "hangzhou"],
-}' -X POST https://domain.comm100.com/api/v3/ia/chatbot/forms/ge2341sa-92e6-4487-a2e8-92e68d6892e6/fields
+}' -X POST https://domain.comm100.com/api/v3/chatbot/forms/ge2341sa-92e6-4487-a2e8-92e68d6892e6/fields
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/fields/dw2341sa-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/fields/dw2341sa-92e6-4487-a2e8-92e68d6892e6
   
   {
     "id":"dw2341sa-92e6-4487-a2e8-92e68d6892e6",
@@ -4257,7 +4257,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/fields/dw2341sa-92e6-4487
 
 ### Update a field
 
-  `PUT /api/v3/ia/chatbot/fields/{id}`
+  `PUT /api/v3/chatbot/fields/{id}`
 
 #### Parameters
 Path parameters
@@ -4300,7 +4300,7 @@ curl -H "Content-Type: application/json" -d '{
   "isRequired":true,
   "isMasked":true,
   "options":["beijing", "hangzhou", "changsha"],
-}' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/fields/gg2341sa-92e6-4487-a2e8-92e68d6892e6
+}' -X PUT https://domain.comm100.com/api/v3/chatbot/fields/gg2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -4321,7 +4321,7 @@ Response
 
 ### Remove a field
 
-  `DELETE /api/v3/ia/chatbot/fields/{id}`
+  `DELETE /api/v3/chatbot/fields/{id}`
 
 #### Parameters
 Path parameters
@@ -4337,7 +4337,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/fields/gg2341sa-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/fields/gg2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -4348,16 +4348,16 @@ HTTP/1.1 204 No Content
 # Prompt
 You need `Manage Bot` permission to manage Intent and customize the settings for a intent answer prompts.
   - `Prompts` - Intent Answer Manage
-    +  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/prompts` - [Get prompts of the answerInChannel](#get-prompts-of-the-answerInChannel)
-    +  `GET /api/v3/ia/chatbot/prompts/{id}` - [Get prompt of the intent by id](#get-prompts-of-the-answerInChannel-by-id)
-    +  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/prompts` - [Create a prompt for the answerInChannel](#create-a-prompt-for-the-answerInChannel)
-    +  `PUT /api/v3/ia/chatbot/prompts/{id}` - [Update a prompt](#update-a-prompt)    
-    +  `DELETE /api/v3/ia/chatbot/prompts/{id}` - [Remove a prompt](#remove-a-prompt)
+    +  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/prompts` - [Get prompts of the answerInChannel](#get-prompts-of-the-answerInChannel)
+    +  `GET /api/v3/chatbot/prompts/{id}` - [Get prompt of the intent by id](#get-prompts-of-the-answerInChannel-by-id)
+    +  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/prompts` - [Create a prompt for the answerInChannel](#create-a-prompt-for-the-answerInChannel)
+    +  `PUT /api/v3/chatbot/prompts/{id}` - [Update a prompt](#update-a-prompt)    
+    +  `DELETE /api/v3/chatbot/prompts/{id}` - [Remove a prompt](#remove-a-prompt)
 
 ## Prompts Endpoints
 ### Get prompts of the answerInChannel
 
-  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/prompts`
+  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/prompts`
 
 #### Parameters
 Path parameters
@@ -4378,7 +4378,7 @@ the response is: an array of [Prompt](#prompt-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/prompts?include=entity
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/prompts?include=entity
 ```
 Response
 ```json
@@ -4414,7 +4414,7 @@ Response
 
 ### Get prompt of the answerInChannel by id
 
-  `GET /api/v3/ia/chatbot/prompts/{id}`
+  `GET /api/v3/chatbot/prompts/{id}`
 
 #### Parameters
 Path parameters
@@ -4435,7 +4435,7 @@ the response is: [Prompt](#prompt-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/prompts/gg2341sa-92e6-4487-a2e8-92e68d6892e6?include=entity
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/prompts/gg2341sa-92e6-4487-a2e8-92e68d6892e6?include=entity
 ```
 Response
 ```json
@@ -4457,7 +4457,7 @@ Response
 
 ### Create a prompt for the answerInChannel
 
-  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/prompts`
+  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/prompts`
 
 #### Parameters
 Path parameters
@@ -4492,13 +4492,13 @@ curl -H "Content-Type: application/json" -d '{
     "entityLabel":"color",
     "question": "Pick a color",
     "options":["red", "blue", "white"],
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/prompts
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/answerInChannels/ge2341sa-92e6-4487-a2e8-92e68d6892e6/prompts
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/prompts/gg2341sa-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/prompts/gg2341sa-92e6-4487-a2e8-92e68d6892e6
 
     {
       "id":"gg2341sa-92e6-4487-a2e8-92e68d6892e6",      
@@ -4512,7 +4512,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/prompts/gg2341sa-92e6-448
 
 ### Update a prompt
 
-  `PUT /api/v3/ia/chatbot/prompts/{id}`
+  `PUT /api/v3/chatbot/prompts/{id}`
 
 #### Parameters
 Path parameters
@@ -4548,7 +4548,7 @@ curl -H "Content-Type: application/json" -d '{
     "entityLabel":"color",
     "question": "What color",
     "options":[],
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/prompts/gg2341sa-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/prompts/gg2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -4566,7 +4566,7 @@ Response
 
 ### Remove a prompt
 
-  `DELETE /api/v3/ia/chatbot/prompts/{id}`
+  `DELETE /api/v3/chatbot/prompts/{id}`
 
 #### Parameters
 Path parameters
@@ -4581,7 +4581,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/prompts/gg2341sa-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/prompts/gg2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -4589,18 +4589,18 @@ HTTP/1.1 204 No Content
 ```
 
 # Chatbot Response
-  +  `GET /api/v3/ia/chatbot/greetingMessageInChannels/{greetingMessageInChannelId}/responses` - [Get all responses of the greetingMessageInChannel](#get-all-responses-of-the-greetingMessageInChannel)   
-  +  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/responses` - [Get all responses of the answerInChannel](#get-all-responses-of-the-answerInChannel)   
-  +  `GET /api/v3/ia/chatbot/responses/{id}` - [Get a response by id](#get-a-response-by-id)
-  +  `POST /api/v3/ia/chatbot/greetingMessageInChannels/{greetingMessageInChannelId}/responses` - [Create a response for the greetingMessageInChannel](#create-a-response-for-the-greetingMessageInChannel)
-  +  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/responses` - [Create a response for the answerInChannel](#create-a-response-for-the-answerInChannel)
-  +  `PUT /api/v3/ia/chatbot/responses/{id}` - [Update a response](#update-a-response)    
-  +  `DELETE /api/v3/ia/chatbot/responses/{id}` - [Remove a response](#remove-a-response)
+  +  `GET /api/v3/chatbot/greetingMessageInChannels/{greetingMessageInChannelId}/responses` - [Get all responses of the greetingMessageInChannel](#get-all-responses-of-the-greetingMessageInChannel)   
+  +  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/responses` - [Get all responses of the answerInChannel](#get-all-responses-of-the-answerInChannel)   
+  +  `GET /api/v3/chatbot/responses/{id}` - [Get a response by id](#get-a-response-by-id)
+  +  `POST /api/v3/chatbot/greetingMessageInChannels/{greetingMessageInChannelId}/responses` - [Create a response for the greetingMessageInChannel](#create-a-response-for-the-greetingMessageInChannel)
+  +  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/responses` - [Create a response for the answerInChannel](#create-a-response-for-the-answerInChannel)
+  +  `PUT /api/v3/chatbot/responses/{id}` - [Update a response](#update-a-response)    
+  +  `DELETE /api/v3/chatbot/responses/{id}` - [Remove a response](#remove-a-response)
 
 ## Response Endpoints
 ### Get all responses of the greetingMessageInChannel
 
-  `GET /api/v3/ia/chatbot/greetingMessageInChannels/{greetingMessageInChannelId}/responses`
+  `GET /api/v3/chatbot/greetingMessageInChannels/{greetingMessageInChannelId}/responses`
 
 #### Parameters
 Path parameters
@@ -4621,7 +4621,7 @@ the response is: list of [Response](#response-object) objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/greetingMessageInChannels/f9928d68-92e6-4487-a2e8-8234fc9d1f48/responses?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/greetingMessageInChannels/f9928d68-92e6-4487-a2e8-8234fc9d1f48/responses?include=intent
 ```
 Response
 ```json
@@ -4682,7 +4682,7 @@ Response
 
 ### Get all responses of the answerInChannel
 
-  `GET /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/responses`
+  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/responses`
 
 #### Parameters
 Path parameters
@@ -4703,7 +4703,7 @@ the response is: an array of [Response](#response-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/1487fc9d-92e6-4487-a2e8-92e68d6892e6/responses?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/answerInChannels/1487fc9d-92e6-4487-a2e8-92e68d6892e6/responses?include=intent
 ```
 Response
 ```Json
@@ -4755,7 +4755,7 @@ Response
 
 ### Get a response by id
 
-  `GET /api/v3/ia/chatbot/responses/{id}`
+  `GET /api/v3/chatbot/responses/{id}`
 
 #### Parameters
 Path parameters
@@ -4776,7 +4776,7 @@ the response is: [Response](#response-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/responses/daw8fc9d-92e6-4487-a2e8-92e68d6892e6?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/responses/daw8fc9d-92e6-4487-a2e8-92e68d6892e6?include=intent
 ```
 Response
 ```Json
@@ -4806,7 +4806,7 @@ Response
 
 ### Create a response for the greetingMessageInChannel
 
-  `POST /api/v3/ia/chatbot/greetingMessageInChannels/{greetingMessageInChannelId}/responses`
+  `POST /api/v3/chatbot/greetingMessageInChannels/{greetingMessageInChannelId}/responses`
 
 #### Parameters
 Path parameters
@@ -4845,13 +4845,13 @@ curl -H "Content-Type: application/json" -d '{
       ],
       "order": 0
     }
-' -X POST https://domain.comm100.com/api/v3/ia/chatbot/greetingMessageInChannels/f9928d68-92e6-4487-a2e8-8234fc9d1f48/responses
+' -X POST https://domain.comm100.com/api/v3/chatbot/greetingMessageInChannels/f9928d68-92e6-4487-a2e8-8234fc9d1f48/responses
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/responses/a2e8fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/responses/a2e8fc9d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",      
@@ -4865,7 +4865,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/responses/a2e8fc9d-92e6-4
 
 ### Create a response for the answerInChannel
 
-  `POST /api/v3/ia/chatbot/answerInChannels/{answerInChannelId}/responses`
+  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/responses`
 
 #### Parameters
 Path parameters
@@ -4901,13 +4901,13 @@ curl -H "Content-Type: application/json" -d '{
         "<div>Hi, what can i do for you?</div>", "<div>hello, may i help you?</div>"
       ],
       "order": 0
-    }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/answerInChannels/1487fc9d-92e6-4487-a2e8-92e68d6892e6/responses
+    }' -X POST https://domain.comm100.com/api/v3/chatbot/answerInChannels/1487fc9d-92e6-4487-a2e8-92e68d6892e6/responses
 ```
 Response
 ```Json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/responses/a2e8fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/responses/a2e8fc9d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -4922,7 +4922,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/responses/a2e8fc9d-92e6-4
 
 ### Update a response
 
-  `PUT /api/v3/ia/chatbot/responses/{id}`
+  `PUT /api/v3/chatbot/responses/{id}`
 
 #### Parameters
 Path parameters
@@ -4959,7 +4959,7 @@ curl -H "Content-Type: application/json" -d '{
         "<div>Hi, what can i do for you?</div>", "<div>hello, may i help you?</div>"
       ],
       "order": 2
-    }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/responses/a2e8fc9d-92e6-4487-a2e8-92e68d6892e6
+    }' -X PUT https://domain.comm100.com/api/v3/chatbot/responses/a2e8fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```Json
@@ -4978,7 +4978,7 @@ Response
 
 ### Remove a response
 
-  `DELETE /api/v3/ia/chatbot/responses/{id}`
+  `DELETE /api/v3/chatbot/responses/{id}`
 
 #### Parameters
 Path parameters
@@ -4993,7 +4993,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/responses/a2e8fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/responses/a2e8fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -5003,16 +5003,16 @@ HTTP/1.1 204 No Content
 # Button
 You need `Manage Bot` permission to manage buttons in response.
   - `Buttons` - Buttons Manage
-    +  `GET /api/v3/ia/chatbot/responses/{responseId}/buttons` - [Get all buttons of the response](#get-all-buttons-of-the-response)
-    +  `GET /api/v3/ia/chatbot/buttons/{id}` - [Get a button by id](#Get-a-button-by-id)    
-    +  `POST /api/v3/ia/chatbot/responses/{responseId}/buttons` - [Create a new button of the response](#create-a-new-button-of-the-response)
-    +  `PUT /api/v3/ia/chatbot/buttons/{id}` - [Update a button](#update-a-button)    
-    +  `DELETE /api/v3/ia/chatbot/buttons/{id}` - [Remove a button](#remove-a-button)
+    +  `GET /api/v3/chatbot/responses/{responseId}/buttons` - [Get all buttons of the response](#get-all-buttons-of-the-response)
+    +  `GET /api/v3/chatbot/buttons/{id}` - [Get a button by id](#Get-a-button-by-id)    
+    +  `POST /api/v3/chatbot/responses/{responseId}/buttons` - [Create a new button of the response](#create-a-new-button-of-the-response)
+    +  `PUT /api/v3/chatbot/buttons/{id}` - [Update a button](#update-a-button)    
+    +  `DELETE /api/v3/chatbot/buttons/{id}` - [Remove a button](#remove-a-button)
 
 ## Button Endpoints
 ### Get all buttons of the response
 
-  `GET /api/v3/ia/chatbot/responses/{responseId}/buttons`
+  `GET /api/v3/chatbot/responses/{responseId}/buttons`
 
 #### Parameters
 Path parameters
@@ -5033,7 +5033,7 @@ the response is: an array of [Button](#button-object) objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/responses/1487fc9d-92e6-4487-a2e8-92e68d6892e6/buttons?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/responses/1487fc9d-92e6-4487-a2e8-92e68d6892e6/buttons?include=intent
 ```
 Response
 ```json
@@ -5064,7 +5064,7 @@ Response
 
 ### Get a button by id
 
-  `GET /api/v3/ia/chatbot/buttons/{id}`
+  `GET /api/v3/chatbot/buttons/{id}`
 
 #### Parameters
 Path parameters
@@ -5085,7 +5085,7 @@ the response is: [Button](#button-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/buttons/ge2341sa-92e6-4487-a2e8-92e68d6892e6?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/buttons/ge2341sa-92e6-4487-a2e8-92e68d6892e6?include=intent
 ```
 Response
 ```json
@@ -5106,7 +5106,7 @@ Response
 ```   
 ### Create a new button of the response
 
-  `POST /api/v3/ia/chatbot/responses/{responseId}/buttons`
+  `POST /api/v3/chatbot/responses/{responseId}/buttons`
 
 #### Parameters
 Path parameters
@@ -5140,13 +5140,13 @@ curl -H "Content-Type: application/json" -d '{
       "type": "webView",
       "url": "https://taobao.com",
       "openStyle": "full"
-    }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/responses/1487fc9d-92e6-4487-a2e8-92e68d6892e6/buttons
+    }' -X POST https://domain.comm100.com/api/v3/chatbot/responses/1487fc9d-92e6-4487-a2e8-92e68d6892e6/buttons
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/buttons/dww12345-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/buttons/dww12345-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id":"dww12345-92e6-4487-a2e8-92e68d6892e6",
@@ -5159,7 +5159,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/buttons/dww12345-92e6-448
 
 ### Update a button
 
-  `PUT /api/v3/ia/chatbot/buttons/{id}`
+  `PUT /api/v3/chatbot/buttons/{id}`
 
 #### Parameters
 Path parameters
@@ -5195,7 +5195,7 @@ curl -H "Content-Type: application/json" -d '{
     "type": "webView",
     "url": "https://taobao.com",
     "openStyle": "tall"    
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/buttons/ge2341sa-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/buttons/ge2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -5213,7 +5213,7 @@ Response
 
 ### Remove a button
 
-  `DELETE /api/v3/ia/chatbot/buttons/{id}`
+  `DELETE /api/v3/chatbot/buttons/{id}`
 
 #### Parameters
 Path parameters
@@ -5228,7 +5228,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/buttons/ge2341sa-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/buttons/ge2341sa-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -5236,17 +5236,17 @@ HTTP/1.1 204 No Content
 ```
 
 # Session
-  - `POST /api/v3/ia/chatbot/sessions/{sessionId}:detectIntent` - [Detect intent](#detect-intent)
-  - `POST /api/v3/ia/chatbot/sessions/{sessionId}:triggerAnIntent` - [Trigger an intent](#trigger-an-intent)
-  - `POST /api/v3/ia/chatbot/sessions/{sessionId}:submitForm` - [Submit Form](#Submit-Form)
-  - `POST /api/v3/ia/chatbot/sessions/{sessionId}:submitAuthentication` -  [Submit Authentication](#Submit-Authentication)
-  - `POST /api/v3/ia/chatbot/sessions/{sessionId}:submitLocation` - [Submit Location](#submit-location)
-  - `POST /api/v3/ia/chatbot/sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
+  - `POST /api/v3/chatbot/sessions/{sessionId}:detectIntent` - [Detect intent](#detect-intent)
+  - `POST /api/v3/chatbot/sessions/{sessionId}:triggerAnIntent` - [Trigger an intent](#trigger-an-intent)
+  - `POST /api/v3/chatbot/sessions/{sessionId}:submitForm` - [Submit Form](#Submit-Form)
+  - `POST /api/v3/chatbot/sessions/{sessionId}:submitAuthentication` -  [Submit Authentication](#Submit-Authentication)
+  - `POST /api/v3/chatbot/sessions/{sessionId}:submitLocation` - [Submit Location](#submit-location)
+  - `POST /api/v3/chatbot/sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
 
 ## Endpoints
 
 ### Detect intent
-`POST /api/v3/ia/chatbot/sessions/{sessionId}:detectIntent`
+`POST /api/v3/chatbot/sessions/{sessionId}:detectIntent`
 
 #### Parameters
 Path parameters
@@ -5306,7 +5306,7 @@ curl -H "Content-Type: application/json" -d '{
       "phone":"123-4355-212",
       "ip":"12.25.11.111"
     }
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:detectIntent
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:detectIntent
 ```
 Response
 ```Json
@@ -5344,7 +5344,7 @@ Response
 ```
 
 ### Trigger an intent
-`POST /api/v3/ia/chatbot/sessions/{sessionId}:triggerAnIntent`
+`POST /api/v3/chatbot/sessions/{sessionId}:triggerAnIntent`
 
 #### Parameters
 Path parameters
@@ -5397,7 +5397,7 @@ curl -H "Content-Type: application/json" -d '{
       "phone":"123-4355-212",
       "ip":"12.25.11.111"
     }
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:triggerAnIntent
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:triggerAnIntent
 ```
 Response
 ```Json
@@ -5423,7 +5423,7 @@ Response
 ```
 
 ### Submit Authentication
-`POST /api/v3/ia/chatbot/sessions/{sessionId}:submitAuthentication`
+`POST /api/v3/chatbot/sessions/{sessionId}:submitAuthentication`
 
 #### Parameters
 Path parameters
@@ -5471,7 +5471,7 @@ curl -H "Content-Type: application/json" -d '{
       "phone":"123-4355-212",
       "ip":"12.25.11.111",
     }
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitAuthentication
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitAuthentication
 ```
 Response
 ```Json
@@ -5493,7 +5493,7 @@ Response
 ```
 
 ### Submit Location
-`POST /api/v3/ia/chatbot/sessions/{sessionId}:submitLocation`
+`POST /api/v3/chatbot/sessions/{sessionId}:submitLocation`
 
 #### Parameters
 Path parameters
@@ -5541,7 +5541,7 @@ curl -H "Content-Type: application/json" -d '{
       "phone":"123-4355-212",
       "ip":"12.25.11.111",
     }
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitLocation
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitLocation
 ```
 Response
 ```Json
@@ -5579,7 +5579,7 @@ Response
 ```
 
 ### Submit Form
-`POST /api/v3/ia/chatbot/sessions/{sessionId}:submitForm`
+`POST /api/v3/chatbot/sessions/{sessionId}:submitForm`
 
 #### Parameters
 Path parameters
@@ -5645,7 +5645,7 @@ curl -H "Content-Type: application/json" -d '{
       "phone":"123-4355-212",
       "ip":"12.25.11.111",
     }
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitForm
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitForm
 ```
 Response
 ```Json
@@ -5679,7 +5679,7 @@ Response
 
 ### Rate the bot answer as helpful or not helpful
 
-  `POST /api/v3/ia/chatbot/sessions/{sessionId}:rate`
+  `POST /api/v3/chatbot/sessions/{sessionId}:rate`
 
 #### Parameters
 Path parameters
@@ -5739,7 +5739,7 @@ curl -H "Content-Type: application/json" -d '{
       "phone":"123-4355-212",
       "ip":"12.25.11.111",
     }
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/sessions/1487fc9d-92e6-4487-a2e8-92e68d6892e6:rate
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/sessions/1487fc9d-92e6-4487-a2e8-92e68d6892e6:rate
 ```
   Response
 ```Json
@@ -5775,7 +5775,7 @@ curl -H "Content-Type: application/json" -d '{
       "phone":"123-4355-212",
       "ip":"12.25.11.111",
     }
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/sessions/1487fc9d-92e6-4487-a2e8-92e68d6892e6:rate
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/sessions/1487fc9d-92e6-4487-a2e8-92e68d6892e6:rate
 ```
   Response
 ```Json
@@ -5785,12 +5785,12 @@ HTTP/1.1 204 No Content
 # Entity
   You need `Manage Bot` permission to manage bot Entity and customize the settings for a bot Entity.
   - `Entities` - Entity Manage
-    + `GET /api/v3/ia/chatbot/bots/{botId}/entities` - [Get entities by entity name/keyword/synonym](#get-entities-by-entity-name/keyword/synonym)
-    + `POST /api/v3/ia/chatbot/bots/{botId}/entities` - [Create a new entity](#create-a-new-entity)
-    + `PUT /api/v3/ia/chatbot/entities/{id}` - [Update an entity](#update-an-entity)
-    + `DELETE /api/v3/ia/chatbot/entities/{id}` - [Remove an entity](#remove-an-entity)
-    + `GET /api/v3/ia/chatbot/entities/{id}` - [Get an entity by id](#get-an-entity-by-id)
-    + `POST /api/v3/ia/chatbot/bots/{botId}/entities:import` - [Import entities](#import-entities)
+    + `GET /api/v3/chatbot/bots/{botId}/entities` - [Get entities by entity name/keyword/synonym](#get-entities-by-entity-name/keyword/synonym)
+    + `POST /api/v3/chatbot/bots/{botId}/entities` - [Create a new entity](#create-a-new-entity)
+    + `PUT /api/v3/chatbot/entities/{id}` - [Update an entity](#update-an-entity)
+    + `DELETE /api/v3/chatbot/entities/{id}` - [Remove an entity](#remove-an-entity)
+    + `GET /api/v3/chatbot/entities/{id}` - [Get an entity by id](#get-an-entity-by-id)
+    + `POST /api/v3/chatbot/bots/{botId}/entities:import` - [Import entities](#import-entities)
 
 ## Entity Related Objects Json Format
 ### Entity Object
@@ -5815,7 +5815,7 @@ HTTP/1.1 204 No Content
 ## Entity Endpoints
 ### Get entities by entity name/keyword/synonym
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/entities`
+  `GET /api/v3/chatbot/bots/{botId}/entities`
 
 #### Parameters
 Path parameters
@@ -5837,7 +5837,7 @@ the response is: list of [Entity](#entity-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities?include=keywords
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities?include=keywords
 ```
 Response
 ```Json
@@ -5878,7 +5878,7 @@ Response
   
 ### Create a new entity
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/entities`
+  `POST /api/v3/chatbot/bots/{botId}/entities`
 
 #### Parameters
 Path parameters
@@ -5927,13 +5927,13 @@ curl -H "Content-Type: application/json" -d '{
         "synonyms": ["LiveChat", "chat"]
       }
     ]    
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/entities/r2wfe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/entities/r2wfe21d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id": "r2wfe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -5943,7 +5943,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/entities/r2wfe21d-92e6-44
 
 ### Update an entity
 
-  `PUT /api/v3/ia/chatbot/entities/{id}`
+  `PUT /api/v3/chatbot/entities/{id}`
 
 #### Parameters
 Path parameters
@@ -5995,7 +5995,7 @@ curl -H "Content-Type: application/json" -d '{
         "synonyms": ["LiveChat", "chat"]
       }
     ]    
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/entities/r2wfe21d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/entities/r2wfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6022,7 +6022,7 @@ Response
 
 ### Remove an entity
 
-  `DELETE /api/v3/ia/chatbot/entities/{id}`
+  `DELETE /api/v3/chatbot/entities/{id}`
 
 #### Parameters
 Path parameters
@@ -6037,7 +6037,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/entities/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/entities/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6046,7 +6046,7 @@ HTTP/1.1 204 No Content
 
 ### Get an entity by id
 
-  `GET /api/v3/ia/chatbot/entities/{id}`
+  `GET /api/v3/chatbot/entities/{id}`
 
 #### Parameters
 Path parameters
@@ -6061,7 +6061,7 @@ the response is: [Entity](#entity-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/entities/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/entities/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6083,7 +6083,7 @@ Response
 
 ### Import entities
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/entities:import`
+  `POST /api/v3/chatbot/bots/{botId}/entities:import`
 
 #### Parameters
 Path parameters
@@ -6116,7 +6116,7 @@ the response is:
 #### Example
 Using curl
 ```
-curl -F 'file=@entities.xlsx' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities:import
+curl -F 'file=@entities.xlsx' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities:import
 ```
 Response
 ```json
@@ -6131,17 +6131,17 @@ Content-Type:  application/json
 # Entity Keyword
   You need `Manage Bot` permission to manage bot Entity Keywords.
   - `Entity Keywords` - Entity Keywords Manage
-    + `GET /api/v3/ia/chatbot/entities/{entityId}/entityKeywords` - [Get all keywords of the entity](#get-all-keywords-of-the-entity)
-    + `POST /api/v3/ia/chatbot/entities/{entityId}/entityKeywords` - [Create a new entity keyword](#create-a-new-entity-keyword)
-    + `PUT /api/v3/ia/chatbot/entityKeywords/{id}` - [Update an entity keyword](#update-an-entity-keyword)
-    + `DELETE /api/v3/ia/chatbot/entityKeywords/{id}` - [Remove an entity keyword](#remove-an-entity-keyword)
-    + `GET /api/v3/ia/chatbot/entityKeywords/{id}` - [Get an entity keyword by id](#get-an-entity-keyword-by-id)
+    + `GET /api/v3/chatbot/entities/{entityId}/entityKeywords` - [Get all keywords of the entity](#get-all-keywords-of-the-entity)
+    + `POST /api/v3/chatbot/entities/{entityId}/entityKeywords` - [Create a new entity keyword](#create-a-new-entity-keyword)
+    + `PUT /api/v3/chatbot/entityKeywords/{id}` - [Update an entity keyword](#update-an-entity-keyword)
+    + `DELETE /api/v3/chatbot/entityKeywords/{id}` - [Remove an entity keyword](#remove-an-entity-keyword)
+    + `GET /api/v3/chatbot/entityKeywords/{id}` - [Get an entity keyword by id](#get-an-entity-keyword-by-id)
 
 
 ## Entity Keyword Endpoints
 ### Get all keywords of the entity
 
-  `GET /api/v3/ia/chatbot/entities/{entityId}/entityKeywords`
+  `GET /api/v3/chatbot/entities/{entityId}/entityKeywords`
 
 #### Parameters
 Path parameters
@@ -6156,7 +6156,7 @@ the response is: list of [EntityKeyword](#entitykeyword) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/entities/s22fe21d-92e6-4487-a2e8-92e68d6892e6/entityKeywords
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/entities/s22fe21d-92e6-4487-a2e8-92e68d6892e6/entityKeywords
 ```
 Response
 ```json
@@ -6179,7 +6179,7 @@ Response
   
 ### Create a new entity keyword
 
-  `POST /api/v3/ia/chatbot/entities/{entityId}/entityKeywords`
+  `POST /api/v3/chatbot/entities/{entityId}/entityKeywords`
 
 #### Parameters
 Path parameters
@@ -6210,13 +6210,13 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "content":"ticket",
     "synonyms": ["email", "email ticket"]
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/entities/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entityKeywords
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/entities/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entityKeywords
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/entityKeywords/rd2fe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/entityKeywords/rd2fe21d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id": "rd2fe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -6227,7 +6227,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/entityKeywords/rd2fe21d-9
 
 ### Update an entity keyword
 
-  `PUT /api/v3/ia/chatbot/entityKeywords/{id}`
+  `PUT /api/v3/chatbot/entityKeywords/{id}`
 
 #### Parameters
 Path parameters
@@ -6259,7 +6259,7 @@ curl -H "Content-Type: application/json" -d '{
     "id": "rd2fe21d-92e6-4487-a2e8-92e68d6892e6",
     "content":"ticket",
     "synonyms": ["email", "email ticket", "tickets"]
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/entityKeywords/rd2fe21d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/entityKeywords/rd2fe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6275,7 +6275,7 @@ Response
 
 ### Remove an entity keyword
 
-  `DELETE /api/v3/ia/chatbot/entityKeywords/{id}`
+  `DELETE /api/v3/chatbot/entityKeywords/{id}`
 
 #### Parameters
 Path parameters
@@ -6290,7 +6290,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/entityKeywords/rd2fe21d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/entityKeywords/rd2fe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6299,7 +6299,7 @@ HTTP/1.1 204 No Content
 
 ### Get an entity keyword by id
 
-  `GET /api/v3/ia/chatbot/entityKeywords/{id}`
+  `GET /api/v3/chatbot/entityKeywords/{id}`
 
 #### Parameters
 Path parameters
@@ -6314,7 +6314,7 @@ the response is: [EntityKeyword](#entitykeyword) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/entityKeywords/rd2fe21d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/entityKeywords/rd2fe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6331,12 +6331,12 @@ Response
 # Smart Trigger
   You need `Manage Bot` permission to manage Smart Triggers.
   - `Smart Triggers` - Smart Trigger Manage
-    + `POST /api/v3/ia/chatbot/bots/{botId}/smartTriggers` -[Create a new smart trigger](#create-a-new-smart-trigger)
-    + `GET /api/v3/ia/chatbot/bots/{botId}/smartTriggers` -[Get all smart triggers of the bot](#get-all-smart-triggers-of-the-bot)
-    + `GET /api/v3/ia/chatbot/smartTriggers/{id}`  -[Get a smart trigger by id](#get-a-smart-trigger-by-id)
-    + `PUT /api/v3/ia/chatbot/smartTriggers/{id}`  -[Update a smart trigger](#update-a-smart-trigger)
-    + `DELETE /api/v3/ia/chatbot/smartTriggers/{id}`  -[Remove a smart trigger](#remove-a-smart-trigger)
-    + `POST /api/v3/ia/chatbot/bots/{botId}/smartTriggers:sort`  -[Update the order of smart triggers](#Update-the-order-of-smart-triggers)
+    + `POST /api/v3/chatbot/bots/{botId}/smartTriggers` -[Create a new smart trigger](#create-a-new-smart-trigger)
+    + `GET /api/v3/chatbot/bots/{botId}/smartTriggers` -[Get all smart triggers of the bot](#get-all-smart-triggers-of-the-bot)
+    + `GET /api/v3/chatbot/smartTriggers/{id}`  -[Get a smart trigger by id](#get-a-smart-trigger-by-id)
+    + `PUT /api/v3/chatbot/smartTriggers/{id}`  -[Update a smart trigger](#update-a-smart-trigger)
+    + `DELETE /api/v3/chatbot/smartTriggers/{id}`  -[Remove a smart trigger](#remove-a-smart-trigger)
+    + `POST /api/v3/chatbot/bots/{botId}/smartTriggers:sort`  -[Update the order of smart triggers](#Update-the-order-of-smart-triggers)
 
 ## Smart Trigger Related Object Json Format
 ### Smart Trigger
@@ -6382,7 +6382,7 @@ Response
 ## Smart Trigger Endpoints  
 ### Get all smart triggers of the bot
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/smartTriggers`
+  `GET /api/v3/chatbot/bots/{botId}/smartTriggers`
  
 #### Parameters
 Path parameters
@@ -6403,7 +6403,7 @@ the response is: list of [Smart Trigger](#Smart-Trigger) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smartTriggers
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smartTriggers
 ```
 Response
 ```json
@@ -6432,7 +6432,7 @@ Response
     
 ### Get a smart trigger by id
 
-  `GET /api/v3/ia/chatbot/smartTriggers/{id}`
+  `GET /api/v3/chatbot/smartTriggers/{id}`
 
 #### Parameters  
 Path parameters
@@ -6447,7 +6447,7 @@ the response is: [Smart Trigger](#Smart-Trigger) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/smartTriggers/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smartTriggers/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6485,7 +6485,7 @@ Response
     
 ### Create a new smart trigger
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/smartTriggers`
+  `POST /api/v3/chatbot/bots/{botId}/smartTriggers`
 
 #### Parameters
 Path parameters
@@ -6556,13 +6556,13 @@ curl -H "Content-Type: application/json" -d '{
       }
     ],
     "order": 0,
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smartTriggers
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smartTriggers
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/smartTriggers/de3fe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/smartTriggers/de3fe21d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id":"de3fe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -6576,7 +6576,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/smartTriggers/de3fe21d-92
 
 ### Update a smart trigger
 
-  `PUT /api/v3/ia/chatbot/smartTriggers/{id}`
+  `PUT /api/v3/chatbot/smartTriggers/{id}`
     
 #### Parameters  
 Path parameters
@@ -6664,7 +6664,7 @@ curl -H "Content-Type: application/json" -d '{
       }
     ],
     "order": 0,
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/smartTriggers/mm2fe21d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/smartTriggers/mm2fe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6709,7 +6709,7 @@ Response
     
 ### Remove a smart trigger
  
-  `DELETE /api/v3/ia/chatbot/smartTrigger/{id}`
+  `DELETE /api/v3/chatbot/smartTrigger/{id}`
   
 #### Parameters  
 Path parameters
@@ -6724,7 +6724,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/smartTrigger/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smartTrigger/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6733,7 +6733,7 @@ HTTP/1.1 204 No Content
 
 ### Update the order of smart triggers
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/smartTriggers:sort`
+  `POST /api/v3/chatbot/bots/{botId}/smartTriggers:sort`
     
 #### Parameters  
 Path parameters
@@ -6780,7 +6780,7 @@ curl -H "Content-Type: application/json" -d '[
       "id": "9c2d9172-f383-4a2c-9c2d-fb91c3ecbb40",
       "order": 0
     }
-  ]' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6/smartTriggers:sort
+  ]' -X POST https://domain.comm100.com/api/v3/chatbot/bots/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6/smartTriggers:sort
 ```
 Response
 ```json
@@ -6791,16 +6791,16 @@ HTTP/1.1 204 No Content
 # Smart Trigger Condition
   You need `Manage Bot` permission to manage Smart Trigger Conditions.
   - `Smart Trigger Conditions` - Smart Trigger Conditions Manage
-    + `POST /api/v3/ia/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions` -[Create a new smart trigger condition](#create-a-new-smart-trigger-condition)
-    + `GET /api/v3/ia/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions` -[Get all smart triggers conditions](#get-all-smart-trigger-conditions)
-    + `GET /api/v3/ia/chatbot/smarttriggerConditions/{id}`  -[Get a smart trigger condition by id](#get-a-smart-trigger-condition-by-id)
-    + `PUT /api/v3/ia/chatbot/smarttriggerConditions/{id}`  -[Update a smart trigger condition](#update-a-smart-trigger-condition)
-    + `DELETE /api/v3/ia/chatbot/smarttriggerConditions/{id}`  -[Remove a smart trigger condition](#remove-a-smart-trigger-condition)
+    + `POST /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions` -[Create a new smart trigger condition](#create-a-new-smart-trigger-condition)
+    + `GET /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions` -[Get all smart triggers conditions](#get-all-smart-trigger-conditions)
+    + `GET /api/v3/chatbot/smarttriggerConditions/{id}`  -[Get a smart trigger condition by id](#get-a-smart-trigger-condition-by-id)
+    + `PUT /api/v3/chatbot/smarttriggerConditions/{id}`  -[Update a smart trigger condition](#update-a-smart-trigger-condition)
+    + `DELETE /api/v3/chatbot/smarttriggerConditions/{id}`  -[Remove a smart trigger condition](#remove-a-smart-trigger-condition)
 
 ## Smart Trigger Condition Endpoints  
 ### Get all smart trigger conditions
 
-  `GET /api/v3/ia/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions`
+  `GET /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions`
  
 #### Parameters
 Path parameters
@@ -6815,7 +6815,7 @@ the response is: list of [Condition](#condition-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerConditions
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerConditions
 ```
 Response
 ```json
@@ -6835,7 +6835,7 @@ Response
     
 ### Get a smart trigger condition by id
 
-  `GET /api/v3/ia/chatbot/smarttriggerConditions/{id}`
+  `GET /api/v3/chatbot/smarttriggerConditions/{id}`
 
 #### Parameters  
 Path parameters
@@ -6850,7 +6850,7 @@ the response is: [Condition](#condition-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerConditions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6868,7 +6868,7 @@ Response
     
 ### Create a new smart trigger condition
 
-  `POST /api/v3/ia/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions`
+  `POST /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions`
 
 #### Parameters
 Path parameters
@@ -6902,13 +6902,13 @@ curl -H "Content-Type: application/json" -d '{
     "expression": "equal",
     "value": "vdfee21d-92e6-4487-a2e8-92e68d6892e6",
     "order": 0,
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerConditions
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerConditions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerConditions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -6921,7 +6921,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerConditions/da
 
 ### Update a smart trigger condition
 
-  `PUT /api/v3/ia/chatbot/smarttriggerConditions/{id}`
+  `PUT /api/v3/chatbot/smarttriggerConditions/{id}`
     
 #### Parameters  
 Path parameters
@@ -6957,7 +6957,7 @@ curl -H "Content-Type: application/json" -d '{
     "expression": "equal",
     "value": "vdfee21d-92e6-4487-a2e8-92e68d6892e6",
     "order": 0
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerConditions/dawdjtr2-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawdjtr2-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6975,7 +6975,7 @@ Response
     
 ### Remove a smart trigger condition
  
-  `DELETE /api/v3/ia/chatbot/smarttriggerConditions/{id}`
+  `DELETE /api/v3/chatbot/smarttriggerConditions/{id}`
   
 #### Parameters  
 Path parameters
@@ -6990,7 +6990,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerConditions/dawdjtr2-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawdjtr2-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7000,16 +7000,16 @@ HTTP/1.1 204 No Content
 # Smart Trigger Action
   You need `Manage Bot` permission to manage Smart Trigger Actions.
   - `Smart Trigger Actions` - Smart Trigger Actions Manage
-    + `POST /api/v3/ia/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions` -[Create a new smart trigger action](#create-a-new-smart-trigger-action)
-    + `GET /api/v3/ia/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions` -[Get all smart triggers actions](#get-all-smart-trigger-actions)
-    + `GET /api/v3/ia/chatbot/smarttriggerActions/{id}`  -[Get a smart trigger action by id](#get-a-smart-trigger-action-by-id)
-    + `PUT /api/v3/ia/chatbot/smarttriggerActions/{id}`  -[Update a smart trigger action](#update-a-smart-trigger-action)
-    + `DELETE /api/v3/ia/chatbot/smarttriggerActions/{id}`  -[Remove a smart trigger action](#remove-a-smart-trigger-action)
+    + `POST /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions` -[Create a new smart trigger action](#create-a-new-smart-trigger-action)
+    + `GET /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions` -[Get all smart triggers actions](#get-all-smart-trigger-actions)
+    + `GET /api/v3/chatbot/smarttriggerActions/{id}`  -[Get a smart trigger action by id](#get-a-smart-trigger-action-by-id)
+    + `PUT /api/v3/chatbot/smarttriggerActions/{id}`  -[Update a smart trigger action](#update-a-smart-trigger-action)
+    + `DELETE /api/v3/chatbot/smarttriggerActions/{id}`  -[Remove a smart trigger action](#remove-a-smart-trigger-action)
 
 ## Smart Trigger Action Endpoints  
 ### Get all smart trigger actions
 
-  `GET /api/v3/ia/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions`
+  `GET /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions`
  
 #### Parameters
 Path parameters
@@ -7024,7 +7024,7 @@ the response is: list of [Action](#action) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerActions
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerActions
 ```
 Response
 ```json
@@ -7045,7 +7045,7 @@ Response
     
 ### Get a smart trigger action by id
 
-  `GET /api/v3/ia/chatbot/smarttriggerActions/{id}`
+  `GET /api/v3/chatbot/smarttriggerActions/{id}`
 
 #### Parameters 
 Path parameters
@@ -7060,7 +7060,7 @@ the response is: [Action](#action) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerActions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7079,7 +7079,7 @@ Response
     
 ### Create a new smart trigger action
 
-  `POST /api/v3/ia/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions`
+  `POST /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions`
 
 #### Parameters
 Path parameters
@@ -7115,13 +7115,13 @@ curl -H "Content-Type: application/json" -d '{
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
     "selectedDepartments": ["sadwe21d-92e6-4487-a2e8-92e68d6892e6"] 
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerActions
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerActions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerActions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -7137,7 +7137,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerActions/dawfe
 
 ### Update a smart trigger action
 
-  `PUT /api/v3/ia/chatbot/smarttriggerActions/{id}`
+  `PUT /api/v3/chatbot/smarttriggerActions/{id}`
     
 #### Parameters  
 Path parameters
@@ -7175,7 +7175,7 @@ curl -H "Content-Type: application/json" -d '{
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
     "selectedDepartments": ["sadwe21d-92e6-4487-a2e8-92e68d6892e6"] 
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerActions/jjtewsdw-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/jjtewsdw-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7194,7 +7194,7 @@ Response
     
 ### Remove a smart trigger action
  
-  `DELETE /api/v3/ia/chatbot/smarttriggerActions/{id}`
+  `DELETE /api/v3/chatbot/smarttriggerActions/{id}`
   
 #### Parameters  
 Path parameters
@@ -7209,7 +7209,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/smarttriggerActions/jjtewsdw-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/jjtewsdw-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7218,11 +7218,11 @@ HTTP/1.1 204 No Content
 
 # Quick Reply
   - `Quick Replies` - Quick Reply Manage
-    + `GET /api/v3/ia/chatbot/bots/{botId}/quickreplies` - [Get all quick replies of a bot](#get-all-quick-replies-of-a-bot)
-    + `POST /api/v3/ia/chatbot/bots/{botId}/quickreplies` - [Create a new quick reply](#create-a-new-quick-reply)
-    + `GET /api/v3/ia/chatbot/quickreplies/{id}` - [GET a quick reply](#get-a-quick-reply)
-    + `PUT /api/v3/ia/chatbot/quickreplies/{id}` - [Update a quick reply](#update-a-quick-reply)
-    + `DELETE /api/v3/ia/chatbot/quickreplies/{id}` - [Remove a quick reply](#remove-a-quick-reply)
+    + `GET /api/v3/chatbot/bots/{botId}/quickreplies` - [Get all quick replies of a bot](#get-all-quick-replies-of-a-bot)
+    + `POST /api/v3/chatbot/bots/{botId}/quickreplies` - [Create a new quick reply](#create-a-new-quick-reply)
+    + `GET /api/v3/chatbot/quickreplies/{id}` - [Get a quick reply](#get-a-quick-reply)
+    + `PUT /api/v3/chatbot/quickreplies/{id}` - [Update a quick reply](#update-a-quick-reply)
+    + `DELETE /api/v3/chatbot/quickreplies/{id}` - [Remove a quick reply](#remove-a-quick-reply)
 
 ## Quick Reply Json Format
 ### Quick Reply Object
@@ -7251,7 +7251,7 @@ HTTP/1.1 204 No Content
 
 ### Get all quick replies of a bot
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/quickreplies`
+  `GET /api/v3/chatbot/bots/{botId}/quickreplies`
 
 #### Parameters
 Path parameters
@@ -7274,7 +7274,7 @@ the response is: list of [QuickReply](#quick-reply-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/quickreplies
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/quickreplies
 ```
 Response
 ```json
@@ -7293,7 +7293,7 @@ Response
 
 ### Create a new quick reply
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/quickreplies`
+  `POST /api/v3/chatbot/bots/{botId}/quickreplies`
 
 #### Parameters
 Path parameters
@@ -7352,13 +7352,13 @@ curl -H "Content-Type: application/json" -d '{
         "order":1,
       },
     ]
-  }' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/quickreplies
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/quickreplies
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/quickreplies/nm123dfe-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/quickreplies/nm123dfe-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id": "nm123dfe-92e6-4487-a2e8-92e68d6892e6",
@@ -7370,7 +7370,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/quickreplies/nm123dfe-92e
 
 ### Update a quick reply
 
-  `PUT /api/v3/ia/chatbot/quickreplies/{id}`
+  `PUT /api/v3/chatbot/quickreplies/{id}`
 
 #### Parameters
 Path parameters
@@ -7432,7 +7432,7 @@ curl -H "Content-Type: application/json" -d '{
         "order":1,
       },
     ]
-  }' -X PUT https://domain.comm100.com/api/v3/ia/chatbot/quickreplies/nm123dfe-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/quickreplies/nm123dfe-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7464,7 +7464,7 @@ Response
 
 ### Get a quick reply
 
-  `GET /api/v3/ia/chatbot/quickreplies/{id}`
+  `GET /api/v3/chatbot/quickreplies/{id}`
 
 #### Parameters
 Path parameters
@@ -7486,7 +7486,7 @@ the response is: [QuickReply](#quick-reply-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/quickreplies/dawfe21d-92e6-4487-a2e8-92e68d6892e6?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/quickreplies/dawfe21d-92e6-4487-a2e8-92e68d6892e6?include=intent
 ```
 Response
 ```json
@@ -7528,7 +7528,7 @@ Response
 
 ### Remove a quick reply
 
-  `DELETE /api/v3/ia/chatbot/quickreplies/{id}`
+  `DELETE /api/v3/chatbot/quickreplies/{id}`
 
 #### Parameters
 Path parameters
@@ -7543,7 +7543,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/quickreplies/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/quickreplies/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7552,17 +7552,17 @@ HTTP/1.1 204 No Content
 
 # QuickReplyItem 
   - `Quick Reply Items` - Quick Reply Items Manage
-    + `GET /api/v3/ia/chatbot/quickreplies/{quickreplyId}/quickreplyItems` - [Get all quick reply items of a bot](#get-all-quick-reply-items)
-    + `POST /api/v3/ia/chatbot/quickreplies/{quickreplyId}/quickreplyItems` - [Create a new quick reply item](#create-a-new-quick-reply-item)
-    + `GET /api/v3/ia/chatbot/quickreplyItems/{id}` - [GET a quick reply item](#get-a-quick-reply-item)
-    + `PUT /api/v3/ia/chatbot/quickreplyItems/{id}` - [Update a quick reply item](#update-a-quick-reply-item)
-    + `DELETE /api/v3/ia/chatbot/quickreplyItems/{id}` - [Remove a quick reply item](#remove-a-quick-reply-item)
+    + `GET /api/v3/chatbot/quickreplies/{quickreplyId}/quickreplyItems` - [Get all quick reply items of a bot](#get-all-quick-reply-items)
+    + `POST /api/v3/chatbot/quickreplies/{quickreplyId}/quickreplyItems` - [Create a new quick reply item](#create-a-new-quick-reply-item)
+    + `GET /api/v3/chatbot/quickreplyItems/{id}` - [Get a quick reply item](#get-a-quick-reply-item)
+    + `PUT /api/v3/chatbot/quickreplyItems/{id}` - [Update a quick reply item](#update-a-quick-reply-item)
+    + `DELETE /api/v3/chatbot/quickreplyItems/{id}` - [Remove a quick reply item](#remove-a-quick-reply-item)
 
 ## QuickReplyItem Endpoints
 
 ### Get all quick reply items
 
-  `GET /api/v3/ia/chatbot/quickreplies/{quickreplyId}/quickreplyItems`
+  `GET /api/v3/chatbot/quickreplies/{quickreplyId}/quickreplyItems`
 
 #### Parameters
 Path parameters
@@ -7583,7 +7583,7 @@ the response is: list of [QuickReplyItem](#QuickReplyItem-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/quickreplies/f9928d68-92e6-4487-a2e8-8234fc9d1f48/quickreplyItems?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/quickreplies/f9928d68-92e6-4487-a2e8-8234fc9d1f48/quickreplyItems?include=intent
 ```
 Response
 ```json
@@ -7620,7 +7620,7 @@ Response
 
 ### Create a new quick reply item
 
-  `POST /api/v3/ia/chatbot/quickreplies/{quickreplyId}/quickreplyItems`
+  `POST /api/v3/chatbot/quickreplies/{quickreplyId}/quickreplyItems`
 
 #### Parameters
 Path parameters
@@ -7655,13 +7655,13 @@ curl -H "Content-Type: application/json" -d '{
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
     "order":0,
   }'
--X POST https://domain.comm100.com/api/v3/ia/chatbot/quickreplies/f9928d68-92e6-4487-a2e8-8234fc9d1f48/quickreplyItems
+-X POST https://domain.comm100.com/api/v3/chatbot/quickreplies/f9928d68-92e6-4487-a2e8-8234fc9d1f48/quickreplyItems
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/quickreplyItems/sadwe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/quickreplyItems/sadwe21d-92e6-4487-a2e8-92e68d6892e6
    
   {
     "id": "sadwe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -7675,7 +7675,7 @@ Location: https://domain.comm100.com/api/v3/ia/chatbot/quickreplyItems/sadwe21d-
 
 ### Get a quick reply item
 
-  `GET /api/v3/ia/chatbot/quickreplyItems/{id}`
+  `GET /api/v3/chatbot/quickreplyItems/{id}`
 
 #### Parameters
 Path parameters
@@ -7696,7 +7696,7 @@ the response is: [QuickReplyItem](#QuickReplyItem-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/quickreplyItems/sadwe21d-92e6-4487-a2e8-92e68d6892e6?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/quickreplyItems/sadwe21d-92e6-4487-a2e8-92e68d6892e6?include=intent
 ```
 Response
 ```json
@@ -7719,7 +7719,7 @@ Response
  
 ### Update a quick reply item
 
-  `PUT /api/v3/ia/chatbot/quickreplyItems/{id}`
+  `PUT /api/v3/chatbot/quickreplyItems/{id}`
 
 #### Parameters
 Path parameters
@@ -7756,7 +7756,7 @@ curl -H "Content-Type: application/json" -d '{
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
     "order":0,
   }'
--X PUT https://domain.comm100.com/api/v3/ia/chatbot/quickreplyItems/bgtyr122e-92e6-4487-a2e8-92e68d6892e6
+-X PUT https://domain.comm100.com/api/v3/chatbot/quickreplyItems/bgtyr122e-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7773,7 +7773,7 @@ Response
 ```
 ### Remove a quick reply item
 
-  `DELETE /api/v3/ia/chatbot/quickreplyItems/{id}`
+  `DELETE /api/v3/chatbot/quickreplyItems/{id}`
 
 #### Parameters
 Path parameters
@@ -7788,7 +7788,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/quickreplyItems/bgtyr122e-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/quickreplyItems/bgtyr122e-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7797,11 +7797,11 @@ HTTP/1.1 204 No Content
 
 # Learning Question
 
-  + `GET /api/v3/ia/chatbot/bots/{botId}/learningQuestions` - [Get all learning questions of a bot](#get-all-learning-questions-of-a-bot)
-  + `DELETE /api/v3/ia/chatbot/learningQuestions/{id}` - [Remove a learning question](#remove-a-learning-question)
-  + `DELETE /api/v3/ia/chatbot/learningQuestions` - [Batch Delete learning questions](#batch-delete-learning-questions)
-  + `POST /api/v3/ia/chatbot/bots/{botId}/learningQuestions:batchCreate` - [Batch add learning questions](#batch-add-learning-questions)
-  + `GET /api/v3/ia/chatbot/learningQuestions/{id}` - [Get a learning question by id](#get-a-learning-question-by-id)
+  + `GET /api/v3/chatbot/bots/{botId}/learningQuestions` - [Get all learning questions of a bot](#get-all-learning-questions-of-a-bot)
+  + `DELETE /api/v3/chatbot/learningQuestions/{id}` - [Remove a learning question](#remove-a-learning-question)
+  + `DELETE /api/v3/chatbot/learningQuestions` - [Batch Delete learning questions](#batch-delete-learning-questions)
+  + `POST /api/v3/chatbot/bots/{botId}/learningQuestions:batchCreate` - [Batch add learning questions](#batch-add-learning-questions)
+  + `GET /api/v3/chatbot/learningQuestions/{id}` - [Get a learning question by id](#get-a-learning-question-by-id)
 
 ## Learning Question Related Objects Json Format
 ### LearningQuestion
@@ -7828,7 +7828,7 @@ LearningQuestionsResponse is represented as simple flat JSON objects with the fo
 ## Learning Question Endpoints
 ### Get all learning questions of a bot
 
-  `GET /api/v3/ia/chatbot/bots/{botId}/learningQuestions`
+  `GET /api/v3/chatbot/bots/{botId}/learningQuestions`
 
 #### Parameters
 Path parameters
@@ -7857,7 +7857,7 @@ the response is: [LearningQuestionsResponse](#learningquestionsresponse) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/learningQuestions?include=intent&timeFrom=2019-11-12 00:00&timeTo=2019-11-13 00:00
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/learningQuestions?include=intent&timeFrom=2019-11-12 00:00&timeTo=2019-11-13 00:00
 ```
 Response
 ```json
@@ -7887,7 +7887,7 @@ Response
 
 ### Remove a learning question
 
-  `DELETE /api/v3/ia/chatbot/learningQuestions/{id}`
+  `DELETE /api/v3/chatbot/learningQuestions/{id}`
 
 #### Parameters
 Path parameters
@@ -7902,7 +7902,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/learningQuestions/bgtyr122e-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/learningQuestions/bgtyr122e-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7911,7 +7911,7 @@ HTTP/1.1 204 No Content
 
 ### Batch Delete learning questions
 
-  `DELETE /api/v3/ia/chatbot/learningQuestions`
+  `DELETE /api/v3/chatbot/learningQuestions`
 
 #### Parameters
 
@@ -7937,7 +7937,7 @@ curl -d '[
     "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
     "44878d68-92e6-4487-a2e8-8234fc9d1f48"
-  ]' -X DELETE https://domain.comm100.com/api/v3/ia/chatbot/learningQuestions
+  ]' -X DELETE https://domain.comm100.com/api/v3/chatbot/learningQuestions
 ```
 Response
 ```json
@@ -7946,7 +7946,7 @@ HTTP/1.1 204 No Content
 
 ### Batch add learning questions
 
-  `POST /api/v3/ia/chatbot/bots/{botId}/learningQuestions:batchCreate`
+  `POST /api/v3/chatbot/bots/{botId}/learningQuestions:batchCreate`
 
 #### Parameters
 Path parameters
@@ -7978,7 +7978,7 @@ curl -H "Content-Type: application/json" -d '[
     "i want to do something",
     "buy asdw ",
     "test question"
-  ]' -X POST https://domain.comm100.com/api/v3/ia/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/learningQuestions:batchCreate
+  ]' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/learningQuestions:batchCreate
 ```
 Response
 ```json
@@ -7992,7 +7992,7 @@ Content-Type:  application/json
 
 ### Get a learning question by id
 
-  `Get /api/v3/ia/chatbot/learningQuestions/{id}`
+  `Get /api/v3/chatbot/learningQuestions/{id}`
 
 #### Parameters
 Path parameters
@@ -8013,7 +8013,7 @@ the response is: [LearningQuestion](#learningquestion) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/learningQuestions/dawfe21d-92e6-4487-a2e8-92e68d6892e6?include=intent
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/learningQuestions/dawfe21d-92e6-4487-a2e8-92e68d6892e6?include=intent
 ```
 Response
 ```json
@@ -8037,7 +8037,7 @@ Response
 
 # PrebuiltEntity  
   - `PrebuiltEntity`
-    + `GET /api/v3/ia/chatbot/prebuiltEntities` - [Get all prebuiltEntities ](#get-all-prebuiltEntities)   
+    + `GET /api/v3/chatbot/prebuiltEntities` - [Get all prebuiltEntities ](#get-all-prebuiltEntities)   
 
 ## PrebuiltEntity Related Objects Json Format
 ### PrebuiltEntity
@@ -8054,7 +8054,7 @@ Response
 ## PrebuiltEntity Endpoints
 ### Get all prebuiltEntities
 
-  `GET /api/v3/ia/chatbot/prebuiltEntities`
+  `GET /api/v3/chatbot/prebuiltEntities`
 
 #### Parameters
 Query string
@@ -8069,7 +8069,7 @@ the response is: list of [Prebuilt Entity](#prebuiltentity) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/prebuiltEntities?language=en
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/prebuiltEntities?language=en
 ```
 Response
 ```json
@@ -8089,7 +8089,7 @@ Response
 
 # Operation  
   - `Operation` - Get the latest state of a long-running operation
-    + `GET /api/v3/ia/chatbot/operations/{id}` - [Get operation state by id](#get-operation-by-id)   
+    + `GET /api/v3/chatbot/operations/{id}` - [Get operation state by id](#get-operation-by-id)   
 
 ## Operation Related Objects Json Format
 ### OperationState
@@ -8106,7 +8106,7 @@ Response
 ## Endpoints
 ### Get operation by id
 
-  `GET /api/v3/ia/chatbot/operations/{id}`
+  `GET /api/v3/chatbot/operations/{id}`
 
 #### Parameters
 Path parameters
@@ -8121,7 +8121,7 @@ the response is: [Operation State](#OperationState) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/operations/dawdbgh1-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/operations/dawdbgh1-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -8137,13 +8137,13 @@ Response
 ```
 
 # Image
-+ `POST /api/v3/ia/chatbot/images` - [upload an image](#upload-an-image)
-+ `GET /api/v3/ia/chatbot/images/{id}` - [get an image](#get-an-image)
++ `POST /api/v3/chatbot/images` - [upload an image](#upload-an-image)
++ `GET /api/v3/chatbot/images/{id}` - [get an image](#get-an-image)
 
 ## Endpoints  
 ### Upload an image
 
-  `POST /api/v3/ia/chatbot/images`
+  `POST /api/v3/chatbot/images`
 
 Note
 ```
@@ -8174,24 +8174,24 @@ the response is: [Image](#image-object) object
 #### Example
 Using curl
 ```
-curl -F 'file=@test.png' -X POST https://domain.comm100.com/api/v3/ia/chatbot/images
+curl -F 'file=@test.png' -X POST https://domain.comm100.com/api/v3/chatbot/images
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6
 
 {
   "id": "dawdbgh1-92e6-4487-a2e8-92e68d6892e6",
   "name": "test.png",
-  "url" : "https://bot.comm100.com/api/v3/ia/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6"
+  "url" : "https://bot.comm100.com/api/v3/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6"
 }
 ```
 
 ### Get an image
 
-  `GET /api/v3/ia/chatbot/images/{id}`
+  `GET /api/v3/chatbot/images/{id}`
 
 #### Parameters
 Path parameters
@@ -8206,7 +8206,7 @@ the response is: [Image](#image-object) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -8216,21 +8216,21 @@ Content-Type:  application/json
 {
   "id": "dawdbgh1-92e6-4487-a2e8-92e68d6892e6",
   "name": "test.png",
-  "url" : "https://bot.comm100.com/api/v3/ia/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6"
+  "url" : "https://bot.comm100.com/api/v3/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6"
 }
 ```
 
 # Report
-  + `GET /api/v3/ia/chatbot/reports/chat` - [Chat report](#chat-report)
-  + `GET /api/v3/ia/chatbot/reports/answer` - [Answer report](#answer-report)
-  + `GET /api/v3/ia/chatbot/reports/highConfidenceAnswer` - [High confidence answer report](#high-confidence-answer-report)
-  + `GET /api/v3/ia/chatbot/reports/rating` - [Rating report](#rating-report)
-  + `GET /api/v3/ia/chatbot/reports/botAgent` - [Bot versus agent report](#bot-versus-agent-report)
-  + `GET /api/v3/ia/chatbot/reports/summary` - [Summary report](#summary-report)
-  + `GET /api/v3/ia/chatbot/reports/dailyDetails` - [ Daily details report](#daily-details-report)    
-  + `GET /api/v3/ia/chatbot/reports/intentUsageByCategory`  - [Intent Usage by category](#intent-usage-by-category)
-  + `GET /api/v3/ia/chatbot/reports/intentUsageByTime`  - [Intent Usage by time](#intent-usage-by-time)
-  + `GET /api/v3/ia/chatbot/reports:export`  - [Export report](#export-report)
+  + `GET /api/v3/chatbot/reports/chat` - [Chat report](#chat-report)
+  + `GET /api/v3/chatbot/reports/answer` - [Answer report](#answer-report)
+  + `GET /api/v3/chatbot/reports/highConfidenceAnswer` - [High confidence answer report](#high-confidence-answer-report)
+  + `GET /api/v3/chatbot/reports/rating` - [Rating report](#rating-report)
+  + `GET /api/v3/chatbot/reports/botAgent` - [Bot versus agent report](#bot-versus-agent-report)
+  + `GET /api/v3/chatbot/reports/summary` - [Summary report](#summary-report)
+  + `GET /api/v3/chatbot/reports/dailyDetails` - [ Daily details report](#daily-details-report)    
+  + `GET /api/v3/chatbot/reports/intentUsageByCategory`  - [Intent Usage by category](#intent-usage-by-category)
+  + `GET /api/v3/chatbot/reports/intentUsageByTime`  - [Intent Usage by time](#intent-usage-by-time)
+  + `GET /api/v3/chatbot/reports:export`  - [Export report](#export-report)
 
 ## Report Related Object Json Format
 ### ChatReport
@@ -8430,7 +8430,7 @@ Content-Type:  application/json
 ## Report Endpoints  
 ### Chat report
 
-  `GET /api/v3/ia/chatbot/reports/chat`
+  `GET /api/v3/chatbot/reports/chat`
 
 #### Parameters
 Query string
@@ -8450,7 +8450,7 @@ the response is: [ChatReport](#chatreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/chat?channel=All Channels&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/chat?channel=All Channels&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
 ```
 Response
 ```json
@@ -8482,7 +8482,7 @@ Content-Type:  application/json
 
 ### Answer report
 
-  `GET /api/v3/ia/chatbot/reports/answer`
+  `GET /api/v3/chatbot/reports/answer`
 
 #### Parameters
 Query string
@@ -8503,7 +8503,7 @@ the response is: [AnswerReport](#answerreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/answer?channel=Twitter Direct Message&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/answer?channel=Twitter Direct Message&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
 ```
 Response
 ```json
@@ -8533,7 +8533,7 @@ Content-Type:  application/json
 
 ### High confidence answer report
 
-  `GET /api/v3/ia/chatbot/reports/highConfidenceAnswer`
+  `GET /api/v3/chatbot/reports/highConfidenceAnswer`
 
 #### Parameters
 Query string
@@ -8553,7 +8553,7 @@ the response is: [HighConfidenceReport](#highconfidencereport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/highConfidenceAnswer?timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/highConfidenceAnswer?timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
 ```
 Response
 ```json
@@ -8582,7 +8582,7 @@ Content-Type:  application/json
 
 ### Rating report
 
-  `GET /api/v3/ia/chatbot/reports/rating`
+  `GET /api/v3/chatbot/reports/rating`
 
 #### Parameters
 Query string
@@ -8601,7 +8601,7 @@ the response is: [RatingReport](#ratingreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/rating?timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/rating?timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
 ```
 Response
 ```json
@@ -8636,7 +8636,7 @@ Content-Type:  application/json
 
 ### Bot versus agent report
 
-  `GET /api/v3/ia/chatbot/reports/botAgent`
+  `GET /api/v3/chatbot/reports/botAgent`
 
 #### Parameters
 Query string
@@ -8653,7 +8653,7 @@ the response is: [BotAgentReport](#botagentreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/botAgent?timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&chatFilter=All Chats
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/botAgent?timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&chatFilter=All Chats
 ```
 Response
 ```json
@@ -8687,7 +8687,7 @@ Content-Type:  application/json
 
 ### summary report
 
-  `GET /api/v3/ia/chatbot/reports/summary`
+  `GET /api/v3/chatbot/reports/summary`
 
 #### Parameters
 Query string
@@ -8704,7 +8704,7 @@ the response is: [SummaryReport](#summaryreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/summary?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&channel=Messaging
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/summary?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&channel=Messaging
 ```
 Response
 ```json
@@ -8725,7 +8725,7 @@ Content-Type:  application/json
 
 ### daily details report
 
-  `GET /api/v3/ia/chatbot/reports/dailyDetails`
+  `GET /api/v3/chatbot/reports/dailyDetails`
 
 #### Parameters
 Query string
@@ -8742,7 +8742,7 @@ the response is: [DailyReport](#dailyreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/dailyDetails?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&channel=Messaging
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/dailyDetails?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&channel=Messaging
 ```
 Response
 ```json
@@ -8770,7 +8770,7 @@ Content-Type:  application/json
 
 ### Intent usage by category
 
-  `GET /api/v3/ia/chatbot/reports/intentUsageByCategory`
+  `GET /api/v3/chatbot/reports/intentUsageByCategory`
 
 #### Parameters
 Query string
@@ -8790,7 +8790,7 @@ the response is: list of [IntentUsageByCategory](#IntentUsageByCategory) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/intentUsageByCategory?channel=All Channels&filterType=bot&filterValue=bfa31cda-d0a5-40fc-a8a9-c7b7a12d5c18&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/intentUsageByCategory?channel=All Channels&filterType=bot&filterValue=bfa31cda-d0a5-40fc-a8a9-c7b7a12d5c18&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00
 ```
 Response
 ```json
@@ -8817,7 +8817,7 @@ Content-Type:  application/json
 
 ### Intent usage by time
 
-  `GET /api/v3/ia/chatbot/reports/intentUsageByTime`
+  `GET /api/v3/chatbot/reports/intentUsageByTime`
 
 #### Parameters
 Query string
@@ -8838,7 +8838,7 @@ the response is: [IntentUsageByTime](#IntentUsageByTime) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/chatbot/reports/intentUsageByTime?channel=All Channels&filterType=bot&filterValue=bfa31cda-d0a5-40fc-a8a9-c7b7a12d5c18&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/intentUsageByTime?channel=All Channels&filterType=bot&filterValue=bfa31cda-d0a5-40fc-a8a9-c7b7a12d5c18&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&displayBy=day
 ```
 Response
 ```json
@@ -8874,7 +8874,7 @@ Content-Type:  application/json
 
 ### Export report
 
-  `GET /api/v3/ia/chatbot/reports:export `
+  `GET /api/v3/chatbot/reports:export `
 
 #### Parameters
 Query string
@@ -8900,7 +8900,7 @@ the response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/ia/chatbot/bots/reports:export?channel=All Channels&filterType=bot&filterValue=bfa31cda-d0a5-40fc-a8a9-c7b7a12d5c18&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&reportName=intentUsageByCategory
+-X GET https://domain.comm100.com/api/v3/chatbot/bots/reports:export?channel=All Channels&filterType=bot&filterValue=bfa31cda-d0a5-40fc-a8a9-c7b7a12d5c18&timeFrom=2019-11-06 00:00&timeTo=2019-12-06 00:00&reportName=intentUsageByCategory
 ```
 Response
 ```json
@@ -8915,12 +8915,12 @@ Content-Type:  application/json
 
 # Agent Assist Language
 
-  + `GET /api/v3/ia/agentAssist/languages` - [Get Agent Assist support languages ](#get-all-languages)
+  + `GET /api/v3/agentAssist/languages` - [Get Agent Assist support languages ](#get-all-languages)
 
 ## Agent Assist Language Endpoints
 ### Get all languages
 
-  `GET /api/v3/ia/agentAssist/languages`
+  `GET /api/v3/agentAssist/languages`
 
 #### Parameters
   
@@ -8930,7 +8930,7 @@ the response is: list of [Language](#Language-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/agentAssist/languages
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/agentAssist/languages
 ```
 Response
 ```json
@@ -8950,9 +8950,9 @@ Content-Type:  application/json
 ```
 
 # Agent Assist
-  + `GET /api/v3/ia/agentAssist` - [Get setting of agent assist](#get-setting-of-a-agent-assist)
-  + `POST /api/v3/ia/agentAssist` - [Create a new setting for agent assist](#create-a-new-setting-for-agent-assist)
-  + `PUT /api/v3/ia/agentAssist` - [Update agent assist setting](#update-agent-assist-setting)
+  + `GET /api/v3/agentAssist` - [Get setting of agent assist](#get-setting-of-a-agent-assist)
+  + `POST /api/v3/agentAssist` - [Create a new setting for agent assist](#create-a-new-setting-for-agent-assist)
+  + `PUT /api/v3/agentAssist` - [Update agent assist setting](#update-agent-assist-setting)
 
 ## Agent Assist Related Object Json Format
 
@@ -8980,7 +8980,7 @@ Content-Type:  application/json
 
 ### Get setting of a agent assist
 
-  `GET /api/v3/ia/agentAssist`
+  `GET /api/v3/agentAssist`
 
 #### Parameters
 
@@ -8990,7 +8990,7 @@ the response is: [AgentAssist](#agentassist) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/agentAssist
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/agentAssist
 ```
 Response
 ```json
@@ -9016,7 +9016,7 @@ Content-Type:  application/json
 
 ### Create a new setting for agent assist
 
-  `POST /api/v3/ia/agentAssist`
+  `POST /api/v3/agentAssist`
 
 #### Parameters
 
@@ -9061,13 +9061,13 @@ curl -H "Content-Type: application/json" -d '{
     "ifAddVisitorQuestionAsSimilarQuestion":true,
     "textBeforeKBArticle":"please refer this article:",
     "ifAddUnrecognizedQuestionsToLearning":false,
-  }' -X POST https://domain.comm100.com/api/v3/ia/agentAssist
+  }' -X POST https://domain.comm100.com/api/v3/agentAssist
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/agentAssist
+Location: https://domain.comm100.com/api/v3/agentAssist
   
   {
     "id":"w124sad2-92e6-4487-a2e8-8234fc9d1f48",
@@ -9088,7 +9088,7 @@ Location: https://domain.comm100.com/api/v3/ia/agentAssist
 
 ### Update agent assist setting
 
-  `PUT /api/v3/ia/agentAssist`
+  `PUT /api/v3/agentAssist`
 
 #### Parameters
 Request body 
@@ -9134,7 +9134,7 @@ curl -H "Content-Type: application/json" -d '{
     "ifAddVisitorQuestionAsSimilarQuestion":true,
     "textBeforeKBArticle":"please refer this article:",
     "ifAddUnrecognizedQuestionsToLearning":false,
-  }' -X PUT https://domain.comm100.com/api/v3/ia/agentAssist
+  }' -X PUT https://domain.comm100.com/api/v3/agentAssist
 ```
 Response
 ```json
@@ -9159,11 +9159,11 @@ Response
 ```
 
 # Agent Assist Synonym
-  + `GET /api/v3/ia/agentAssist/synonyms` - [Get all synonyms](#get-all-synonyms)
-  + `GET /api/v3/ia/agentAssist/synonyms/{id}` - [Get a synonym by id](#get-a-synonym-by-id)
-  + `POST /api/v3/ia/agentAssist/synonyms` - [Create a new synonym](#create-a-new-synonym)
-  + `PUT /api/v3/ia/agentAssist/synonyms/{id}` - [Update a synonym](#update-a-synonym)
-  + `DELETE /api/v3/ia/agentAssist/synonyms/{id}` - [Remove a synonym](#remove-a-synonym)
+  + `GET /api/v3/agentAssist/synonyms` - [Get all synonyms](#get-all-synonyms)
+  + `GET /api/v3/agentAssist/synonyms/{id}` - [Get a synonym by id](#get-a-synonym-by-id)
+  + `POST /api/v3/agentAssist/synonyms` - [Create a new synonym](#create-a-new-synonym)
+  + `PUT /api/v3/agentAssist/synonyms/{id}` - [Update a synonym](#update-a-synonym)
+  + `DELETE /api/v3/agentAssist/synonyms/{id}` - [Remove a synonym](#remove-a-synonym)
 
 ## Synonym Objects Json Format
 ### Synonym Object
@@ -9178,7 +9178,7 @@ Response
 ## Agent Assist Synonym Endpoints
 ### Get all synonyms
 
-  `GET /api/v3/ia/agentAssist/synonyms`
+  `GET /api/v3/agentAssist/synonyms`
 
 #### Parameters
 
@@ -9188,7 +9188,7 @@ the response is: list of [Synonym](#synonym-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/agentAssist/synonyms
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/agentAssist/synonyms
 ```
 Response
 ```json
@@ -9211,7 +9211,7 @@ Content-Type:  application/json
 
 ### Get a synonym by id
 
-  `GET /api/v3/ia/agentAssist/synonyms/{id}`
+  `GET /api/v3/agentAssist/synonyms/{id}`
 
 #### Parameters
 Path parameters
@@ -9226,7 +9226,7 @@ the response is: [Synonym](#synonym-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/agentAssist/synonyms/1xs4sad2-92e6-4487-a2e8-8234fc9d1f48
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/agentAssist/synonyms/1xs4sad2-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -9243,7 +9243,7 @@ Content-Type:  application/json
 
 ### Create a new synonym
 
-  `POST /api/v3/ia/agentAssist/synonyms`
+  `POST /api/v3/agentAssist/synonyms`
 
 #### Parameters
 Request body 
@@ -9267,13 +9267,13 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "content": "en",
     "synonyms": "English"
-  }' -X POST https://domain.comm100.com/api/v3/ia/agentAssist/synonyms
+  }' -X POST https://domain.comm100.com/api/v3/agentAssist/synonyms
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/agentAssist/synonyms/w124sad2-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/agentAssist/synonyms/w124sad2-92e6-4487-a2e8-8234fc9d1f48
 
   {
     "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
@@ -9284,7 +9284,7 @@ Location: https://domain.comm100.com/api/v3/ia/agentAssist/synonyms/w124sad2-92e
 
 ### Update a synonym
 
-  `PUT /api/v3/ia/agentAssist/synonyms/{id}`
+  `PUT /api/v3/agentAssist/synonyms/{id}`
 
 #### Parameters
 Path parameters
@@ -9316,7 +9316,7 @@ curl -H "Content-Type: application/json" -d '{
     "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
     "content": "en",
     "synonyms": "English"
-  }' -X PUT https://domain.comm100.com/api/v3/ia/agentAssist/synonyms/w124sad2-92e6-4487-a2e8-8234fc9d1f48
+  }' -X PUT https://domain.comm100.com/api/v3/agentAssist/synonyms/w124sad2-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -9332,7 +9332,7 @@ Content-Type:  application/json
 
 ### Remove a synonym
 
-  `DELETE /api/v3/ia/agentAssist/synonyms/{id}`
+  `DELETE /api/v3/agentAssist/synonyms/{id}`
 
 #### Parameters
 Path parameters
@@ -9347,7 +9347,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/agentAssist/synonyms/w124sad2-92e6-4487-a2e8-8234fc9d1f48
+curl -X DELETE https://domain.comm100.com/api/v3/agentAssist/synonyms/w124sad2-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -9356,12 +9356,12 @@ HTTP/1.1 204 No Content
 
 # Agent Assist  learning Question
 
-  + `GET api/v3/ia/agentAssist/learningQuestions` - [Get agent assist learning questions by filters](#get-agent-assist-learning-questions-by-filters)
-  + `GET api/v3/ia/agentAssist/learningQuestions/{id}` - [Get an agent assist learning question by id](#get-an-agent-assist-learning-question-by-id)
-  + `POST api/v3/ia/agentAssist/learningQuestions` - [Create a new agent assist learning question](#create-a-new-agent-assist-learning-question)
-  + `DELETE api/v3/ia/agentAssist/learningQuestions/{id}` - [Remove an agent assist learning question](#remove-an-agent-assist-learning-question)
-  + `POST api/v3/ia/agentAssist/learningQuestions:batchCreate` - [Batch add agent assist learning questions](#batch-add-agent-assist-learning-questions)
-  + `DELETE api/v3/ia/agentAssist/learningQuestions` - [Batch delete agent assist learning questions](#batch-delete-agent-assist-learning-questions)
+  + `GET api/v3/agentAssist/learningQuestions` - [Get agent assist learning questions by filters](#get-agent-assist-learning-questions-by-filters)
+  + `GET api/v3/agentAssist/learningQuestions/{id}` - [Get an agent assist learning question by id](#get-an-agent-assist-learning-question-by-id)
+  + `POST api/v3/agentAssist/learningQuestions` - [Create a new agent assist learning question](#create-a-new-agent-assist-learning-question)
+  + `DELETE api/v3/agentAssist/learningQuestions/{id}` - [Remove an agent assist learning question](#remove-an-agent-assist-learning-question)
+  + `POST api/v3/agentAssist/learningQuestions:batchCreate` - [Batch add agent assist learning questions](#batch-add-agent-assist-learning-questions)
+  + `DELETE api/v3/agentAssist/learningQuestions` - [Batch delete agent assist learning questions](#batch-delete-agent-assist-learning-questions)
 
 
 ## Learning Object Json Format
@@ -9417,7 +9417,7 @@ LearningQuestionsResponse is represented as simple flat JSON objects with the fo
 ## Agent Assist  learning Question Endpoints
 ### Get agent assist learning questions by filters
 
-  `GET api/v3/ia/agentAssist/learningQuestions`
+  `GET api/v3/agentAssist/learningQuestions`
 
 #### Parameters
 Query string
@@ -9437,7 +9437,7 @@ the response is: [AgentAssistLearningQuestionsResponse](#AgentAssistLearningQues
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/agentAssist/learningQuestions?timeFrom=2019-11-12 00:00&timeTo=2019-11-13 00:00
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/agentAssist/learningQuestions?timeFrom=2019-11-12 00:00&timeTo=2019-11-13 00:00
 ```
 Response
 ```json
@@ -9468,7 +9468,7 @@ Response
 
 ### Create a new agent assist learning question
 
-  `POST api/v3/ia/agentAssist/learningQuestions`
+  `POST api/v3/agentAssist/learningQuestions`
 
 ####  Parameters
 Request body
@@ -9508,13 +9508,13 @@ curl -H "Content-Type: application/json" -d '{
       "content": "NBN is powerful, you can access http://www.nbn.com/sales to get it"
     },        
     "score": 45
-  }' -X POST https://domain.comm100.com/api/v3/ia/agentAssist/learningQuestions
+  }' -X POST https://domain.comm100.com/api/v3/agentAssist/learningQuestions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/ia/agentAssist/learningQuestions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/agentAssist/learningQuestions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -9534,7 +9534,7 @@ Location: https://domain.comm100.com/api/v3/ia/agentAssist/learningQuestions/daw
 
 ### Get an agent assist learning question by id
  
-  `GET api/v3/ia/agentAssist/learningQuestions/{id}`
+  `GET api/v3/agentAssist/learningQuestions/{id}`
 
 #### Parameters
 Path parameters
@@ -9549,7 +9549,7 @@ the response is: [AgentAssistLearningQuestion](#agent-assist-learning-question) 
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/ia/agentAssist/learningQuestions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/agentAssist/learningQuestions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -9574,7 +9574,7 @@ Response
 
 ### Remove an agent assist learning question
 
-  `DELETE api/v3/ia/agentAssist/learningQuestions/{id}`
+  `DELETE api/v3/agentAssist/learningQuestions/{id}`
 
 #### Parameters
 Path parameters
@@ -9590,7 +9590,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/ia/agentAssist/learningQuestions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/agentAssist/learningQuestions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -9599,7 +9599,7 @@ HTTP/1.1 204 No Content
 
 ### Batch add agent assist learning questions
 
-  `POST api/v3/ia/agentAssist/learningQuestions:batchCreate`
+  `POST api/v3/agentAssist/learningQuestions:batchCreate`
 
 ####  Parameters
 
@@ -9645,7 +9645,7 @@ curl -H "Content-Type: application/json" -d '[
       },        
       "score": 45
     }
-  ]' -X POST https://domain.comm100.com/api/v3/ia/agentAssist/learningQuestions:batchCreate
+  ]' -X POST https://domain.comm100.com/api/v3/agentAssist/learningQuestions:batchCreate
 ```
 Response
 ```json
@@ -9654,7 +9654,7 @@ HTTP/1.1 204 No Content
 
 ### Batch delete agent assist learning questions
 
-  `DELETE api/v3/ia/agentAssist/learningQuestions`
+  `DELETE api/v3/agentAssist/learningQuestions`
 
 #### Parameters
 
@@ -9680,7 +9680,7 @@ curl -d '[
     "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
     "44878d68-92e6-4487-a2e8-8234fc9d1f48"
-  ]' -X DELETE https://domain.comm100.com/api/v3/ia/agentAssist/learningQuestions
+  ]' -X DELETE https://domain.comm100.com/api/v3/agentAssist/learningQuestions
 ```
 Response
 ```json
@@ -9688,7 +9688,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Agent Assist Suggestion
-  + `POST /api/v3/ia/agentAssist/questionSuggestions` -[Query question suggestions by agent assist](#query-question-suggestions-by-agent-assist)
+  + `POST /api/v3/agentAssist/questionSuggestions` -[Query question suggestions by agent assist](#query-question-suggestions-by-agent-assist)
 
 ## Agent Assist Suggestion Related Object Json Format
 
@@ -9724,7 +9724,7 @@ HTTP/1.1 204 No Content
 ## Agent Assist Suggestion Endpoints
 ### Query question suggestions by agent assist
 
-  `POST /api/v3/ia/agentAssist/questionSuggestions`
+  `POST /api/v3/agentAssist/questionSuggestions`
  
 #### Parameters
 
@@ -9761,7 +9761,7 @@ curl -H "Content-Type: application/json" -d '[
       "id": "fff4sad2-92e6-4487-a2e8-8234fc9d1f48",
       "question": "what is comm100 livechat about?"
     }
-  ]' -X POST https://domain.comm100.com/api/v3/ia/agentAssist/questionSuggestions
+  ]' -X POST https://domain.comm100.com/api/v3/agentAssist/questionSuggestions
 ```
 Response
 ```json
