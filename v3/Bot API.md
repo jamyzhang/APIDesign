@@ -246,7 +246,7 @@ GreetingMessageInChannel is represented as simple flat json objects with the fol
 |`id` | Guid  | | yes | N/A | | id of the current item.  | 
 | `channel` | string  | | yes | yes | | eg:  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`responses`| [Response](#response-object)[] | yes | no | yes | | an array of [Response](#response-object) object. |
-|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
+|`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### NoAnswerMessageInChannel Object
 NoAnswerMessageInChannel is represented as simple flat json objects with the following keys:
@@ -1930,7 +1930,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
 |`locationRequest`| [LocationRequest](#LocationRequest-Object)| yes | no |no | | [LocationRequest](#LocationRequest-Object) object. |
 | `form` | [Form](#Form-Object)  | yes | no | no |  |[Form](#Form-Object) object. |
 | `prompts` | [Prompt](#Prompt-Object)[]  | yes | no | no | | an array of  [Prompt](#Prompt-Object) object. |
-|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
+|`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### AuthenticationRequest Object
 
@@ -1968,7 +1968,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
   |`entityLabel` | string | | no | yes | | label to distinguish same entity marked on one question. |
   |`question` | string | | no | yes |  | |
   |`options` | string[] | | no | no | | an array of string |
-  |`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |  
+  |`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |  
 
 ### Form Object
 Form is represented as simple flat json objects with the following keys:
@@ -1995,7 +1995,7 @@ Field is represented as simple flat json objects with the following keys:
 |`isRequired` | bool | | no | yes | false | it marks whether the field appear on the form is required or not. |
 |`isMasked` | bool | | no | yes | false | if this is true,visitor's information will replaced by anonymous symbol in chat logs. |
 |`options` | string[] | | no | no | | an array of of string when the fieldType is `dropDownList` ,`checkBoxList`|
-|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
+|`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### FieldValue Object
 FieldValue is represented as simple flat json objects with the following keys:
@@ -2053,7 +2053,7 @@ Button is represented as simple flat json objects with the following keys:
 |`intent` | [Intent](#intent-object) | yes | N/A  | N/A  | | Available only when intent is included |
 |`openIn` | string | | no | yes if channel is `LiveChat` and type is `link` | | enums contain `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
 |`openStyle` | string | | no | yes if channel is  `LiveChat` or `Facebook Messenger` and type is `webView` | full | enums contain `compact`,`tall` and `full`,it represents the size of the webview that will be opened.  |
-|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
+|`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### IntentScore Object
 
