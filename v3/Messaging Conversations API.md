@@ -170,14 +170,15 @@
 | `cc` | string | cc email addresses |  
 | `bcc` | string | bcc email addresses |  
 | `contents` | [content](#content)[] | content array | 
-| `quote` | string | quote content | 
+| `quote` | string | quote content, only for email | 
 | `mentionedAgentIds` | string[] | only for Note, @mentioned agents id array |
 | `isRead`| boolean | if the message read by agent| 
 | `sendStatus` | string | `success`, `sending`, `failed` |
 | `senderId`| string | id of agent or contact or bot | 
 | `senderType`| string | `agent` or `contact` or `system` or `bot` | 
 | `time` | datetime | the sent time of the message | 
- 
+| `errorMessage`| string | error message |  
+
 ### content
 | Name | Type | Description | 
 | - | - | - | 
@@ -185,7 +186,8 @@
 | `type` | string | content type, `text`, `htmlText`, `video`,`audio`, `picture`, `file`, `location`, `webView`, `quickReply` |  
 | `text` | string | text | 
 | `htmlText` | string | html text |
-| `name` | string | file name| 
+| `name` | string | file name | 
+| `attachmentId` | string | file key |
 | `url` | string | download link | 
 | `title` | string | media title| 
 | `latitude` | string | latitude | 
@@ -196,6 +198,7 @@
 | `fallbackurl` | string | fallback url |
 | `webviewHeight` | string | webview height：compact/tall/full|
 | `payload` | string | payload data |
+| `orderNum` | integer | order number |
 
 ### conversation draft 
 | Name | Type | Description | 
@@ -207,6 +210,7 @@
 | `contactIdentityId`| string | id of contact identity |
 | `parentId` | string | parent id |
 | `subject` | string | subject | 
+| `quote` | string | quote for email | 
 | `cc` | string | cc email addresses |  
 | `quote` | string | email quote | 
 | `contents` | [content](#content)[] | content array | 
@@ -259,7 +263,8 @@
     - timeFrom: DateTime, last reply time, default search the last 30 days
     - timeTo: DateTime, last reply time, default value is the current time
     - timeZoneOffset, float, time zone of your time parameters
-    - pageIndex: integer
+    - pageIndex: integer, default 1
+    - pageSize: integer, default 20, max value 50
     - sortBy: string, `nextSLABreach`, `lastReplyTime`, `lastActivityTime`, `priority`, `status` , default value: `lastReplyTime`
     - sortOrder: string, `ascending` or `descending`, default value: `descending`
     - conditions: parameter format: `conditions[0][field]=subject&conditions[0][matchType]=is&conditions[0][value]=hi&conditions[1][field]=status&conditions[1][matchType]=is&conditions[1][value]=1`, fields can be conversation system fields and custom fields.  
@@ -788,6 +793,7 @@
 - Parameters 
     - keywords: string
     - pageIndex: integer
+    - pageSize: integer, default 20, max value 50
     - timeFrom: DateTime, last reply time, default search the last 30 days
     - timeTo: DateTime, last reply time, default value is the current time
 - Response 
@@ -1534,6 +1540,7 @@
 - Parameters 
     - keywords: string
     - pageIndex: integer
+    - pageSize: integer, default 20, max value 50
     - timeFrom: DateTime
     - timeTo: DateTime
 - Response 
@@ -1650,11 +1657,11 @@
 | `channelAccountIds` | string[] | channel account id array |
 | `name` | string | channel name | 
 | `contactIdentityTypeId` | string | contact identity type id |
-| `contactIdentityType` | string | contact identity type name |
+| `contactIdentityType` | int | contact identity type name |
 | `icon` | string | identity type icon url |     
 | `messageDisplayType` | string | `treeView`, `flatView`, `emailView` |
 | `outgoingMessageMaxLength` | int | outgoing message max length |
-| `outgoingMessageCapability` | string[] | outgoing message support message type |
+| `outgoingMessageCapability` | int | outgoing message support message type |
 | `ifSupportDiffAccountReply` | bool | If support reply with different channel account |  
 | `ifAllowActiveCreation` | bool | If allow active create message by agent |  
 | `ifDisplaySubject` | bool | If display subject in agent console |  
@@ -1668,7 +1675,7 @@
 | `ifEnableSaveAsDraft` | bool | If enable save draft |  
 | `ifAllowAtFeature` | bool | If allow @ |  
 | `ifAllowActiveReply` | bool | If allow active reply |  
-
+| `ifSupportBot` | bool | If support bot |  
 
 ## endpoints 
 ### List all integrated channels 
