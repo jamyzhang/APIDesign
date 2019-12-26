@@ -246,7 +246,7 @@ GreetingMessageInChannel is represented as simple flat json objects with the fol
 |`id` | Guid  | | yes | N/A | | id of the current item.  | 
 | `channel` | string  | | yes | yes | | eg:  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`responses`| [Response](#response-object)[] | yes | no | yes | | an array of [Response](#response-object) object. |
-|`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
+
 
 ### NoAnswerMessageInChannel Object
 NoAnswerMessageInChannel is represented as simple flat json objects with the following keys:
@@ -257,7 +257,7 @@ NoAnswerMessageInChannel is represented as simple flat json objects with the fol
 | `channel` | string  | yes | yes | | eg :  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`message` | string | no | yes | | text of the message  | 
 |`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is LiveChat, Facebook Messenger or Twitter Direct Message. | 
-|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort | 
+
 
 ### MessageAfterSeveralConsecutivePossibleAnswersInChannel Object
 MessageAfterSeveralConsecutivePossibleAnswersInChannel is represented as simple flat json objects with the following keys:
@@ -268,7 +268,7 @@ MessageAfterSeveralConsecutivePossibleAnswersInChannel is represented as simple 
 | `channel` | string  | yes | yes | | eg :  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`message` | string | no | yes | | text of the message  | 
 |`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is LiveChat, Facebook Messenger or Twitter Direct Message. |
-|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
+
 
 ### TestBotResponse
 
@@ -1930,7 +1930,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
 |`locationRequest`| [LocationRequest](#LocationRequest-Object)| yes | no |no | | [LocationRequest](#LocationRequest-Object) object. |
 | `form` | [Form](#Form-Object)  | yes | no | no |  |[Form](#Form-Object) object. |
 | `prompts` | [Prompt](#Prompt-Object)[]  | yes | no | no | | an array of  [Prompt](#Prompt-Object) object. |
-|`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
+
 
 ### AuthenticationRequest Object
 
