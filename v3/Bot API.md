@@ -246,6 +246,7 @@ GreetingMessageInChannel is represented as simple flat json objects with the fol
 |`id` | Guid  | | yes | N/A | | id of the current item.  | 
 | `channel` | string  | | yes | yes | | eg:  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`responses`| [Response](#response-object)[] | yes | no | yes | | an array of [Response](#response-object) object. |
+|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### NoAnswerMessageInChannel Object
 NoAnswerMessageInChannel is represented as simple flat json objects with the following keys:
@@ -255,7 +256,8 @@ NoAnswerMessageInChannel is represented as simple flat json objects with the fol
 |`id` | Guid  | yes | N/A | | id of the current item.  | 
 | `channel` | string  | yes | yes | | eg :  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`message` | string | no | yes | | text of the message  | 
-|`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is LiveChat, Facebook Messenger or Twitter Direct Message. |  
+|`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is LiveChat, Facebook Messenger or Twitter Direct Message. | 
+|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort | 
 
 ### MessageAfterSeveralConsecutivePossibleAnswersInChannel Object
 MessageAfterSeveralConsecutivePossibleAnswersInChannel is represented as simple flat json objects with the following keys:
@@ -266,6 +268,7 @@ MessageAfterSeveralConsecutivePossibleAnswersInChannel is represented as simple 
 | `channel` | string  | yes | yes | | eg :  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`message` | string | no | yes | | text of the message  | 
 |`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is LiveChat, Facebook Messenger or Twitter Direct Message. |
+|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### TestBotResponse
 
@@ -1927,6 +1930,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
 |`locationRequest`| [LocationRequest](#LocationRequest-Object)| yes | no |no | | [LocationRequest](#LocationRequest-Object) object. |
 | `form` | [Form](#Form-Object)  | yes | no | no |  |[Form](#Form-Object) object. |
 | `prompts` | [Prompt](#Prompt-Object)[]  | yes | no | no | | an array of  [Prompt](#Prompt-Object) object. |
+|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### AuthenticationRequest Object
 
@@ -1963,7 +1967,8 @@ AnswerInChannel is represented as simple flat json objects with the following ke
   |`entity` | [Entity](#entity-object) | yes | N/A  | N/A  | | Available only when entity is included |
   |`entityLabel` | string | | no | yes | | label to distinguish same entity marked on one question. |
   |`question` | string | | no | yes |  | |
-  |`options` | string[] | | no | no | | an array of string |  
+  |`options` | string[] | | no | no | | an array of string |
+  |`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |  
 
 ### Form Object
 Form is represented as simple flat json objects with the following keys:
@@ -1990,6 +1995,7 @@ Field is represented as simple flat json objects with the following keys:
 |`isRequired` | bool | | no | yes | false | it marks whether the field appear on the form is required or not. |
 |`isMasked` | bool | | no | yes | false | if this is true,visitor's information will replaced by anonymous symbol in chat logs. |
 |`options` | string[] | | no | no | | an array of of string when the fieldType is `dropDownList` ,`checkBoxList`|
+|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### FieldValue Object
 FieldValue is represented as simple flat json objects with the following keys:
@@ -2045,8 +2051,9 @@ Button is represented as simple flat json objects with the following keys:
 |`url` | string | | no | yes if type is `link` or `webView`| | url of the web page you want to open.  | 
 |`intentId` | string | | no | yes if type is `triggerAnIntent` | | id of the intent you choosed.  | 
 |`intent` | [Intent](#intent-object) | yes | N/A  | N/A  | | Available only when intent is included |
-|`openIn` | string | | no | yes if channel is `LiveChat` and type is `link` or `webView` | | enums contain `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
+|`openIn` | string | | no | yes if channel is `LiveChat` and type is `link` | | enums contain `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
 |`openStyle` | string | | no | yes if channel is  `LiveChat` or `Facebook Messenger` and type is `webView` | full | enums contain `compact`,`tall` and `full`,it represents the size of the webview that will be opened.  |
+|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### IntentScore Object
 
@@ -2743,6 +2750,7 @@ Question is represented as simple flat json objects with the following keys:
 |`id` | Guid  | yes | N/A | | id of the current item.|
 |`content` | string  | no | yes | | question you can expect from users,that will trigger this intent. |
 |`selectedKeywords` | [Question Selected Keyword](#Question-Selected-Keyword-Object)[]  | no | no | | an array of [Question Selected Keyword](#Question-Selected-Keyword-Object) that you want to mark on current question. |
+|`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### Question Selected Keyword Object
 Question Selected Keyword is represented as simple flat json objects with the following keys:
@@ -8696,7 +8704,7 @@ Query string
   | - | - | - | - | - | 
   | `timeFrom` | string | yes  |  | query start time  |
   | `timeTo` | string | yes  | | query end time  |  
-  | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
+  | `type` | string | no  | LiveChat | eg: `Messaging`, `LiveChat` |
 
 #### Response
 the response is: [SummaryReport](#summaryreport) Object
@@ -8704,7 +8712,7 @@ the response is: [SummaryReport](#summaryreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/summary?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&channel=Messaging
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/summary?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&type=Messaging
 ```
 Response
 ```json
@@ -8734,7 +8742,7 @@ Query string
   | - | - | - | - | - | 
   | `timeFrom` | string | yes  |  | query start time  |
   | `timeTo` | string | yes  | | query end time  | 
-  | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
+  | `type` | string | no  | LiveChat | eg: `Messaging`, `LiveChat` |
 
 #### Response
 the response is: [DailyReport](#dailyreport) Object
@@ -8742,7 +8750,7 @@ the response is: [DailyReport](#dailyreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/dailyDetails?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&channel=Messaging
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/dailyDetails?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&type=LiveChat
 ```
 Response
 ```json
@@ -8779,8 +8787,8 @@ Query string
   | - | - | - | - | - |
   | `timeFrom` | string | yes  |  | query start time  |
   | `timeTo` | string | yes  | |  query end time  | 
-  | `filterType` | string  | no  | | Enum: `bot`, `campaign`,`channelAccount` |
-  | `filterValue` | string | no  |  | value of the filter |
+  | `filterType` | string  | yes  | bot | Enum: `bot`|
+  | `filterValue` | string | yes  |  | id of the bot |
   | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
 
 
@@ -8826,8 +8834,8 @@ Query string
   | - | - | - | - | - |
   | `timeFrom` | string | yes  |  | query start time  |
   | `timeTo` | string | yes  | |  query end time  | 
-  | `filterType` | string  | no  | | Enum: `bot`, `campaign`,`channelAccount` |
-  | `filterValue` | string | no  |  | value of the filter |
+  | `filterType` | string  | yes  | bot | Enum: `bot`|
+  | `filterValue` | string | yes  |  | id of the bot |
   | `displayBy` | string | no  |  day | Enum: `day`, `week`, `month` |
   | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
 
@@ -8886,9 +8894,9 @@ Query string
   | `filterType` | string  | no  | | Enum: `bot`, `campaign` |
   | `filterValue` | string | no  | |  value of the filter |
   | `displayBy` | string | no  | day | Enum: `day`, `week`, `month` |  
-  | `chatFilter` | string | no  | All Chats | `All Chats` or `Exclude Chats from Bot to Agents`, Only available when reportType is `botAgent` |
+  | `chatFilter` | string | no  | All Chats | `All Chats` or `Exclude Chats from Bot to Agents`, Only available when reportName is `botAgent` |
   | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
-  | `reportName` | string | yes  | | Enum value: `chat`, `answer`, `highConfidenceAnswer`, `rating`, `botAgent`, `summary`,`dailyDetails`, `intentUsageByCategory`, `intentUsageByTime` |
+  | `reportName` | string | yes  | | Enum value: `chat`, `answer`, `highConfidenceAnswer`, `rating`, `botAgent`,  `intentUsageByCategory`, `intentUsageByTime` |
 
 
 #### Response
