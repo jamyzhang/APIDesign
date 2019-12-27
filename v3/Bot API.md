@@ -1963,7 +1963,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
   | Name | Type | Include | Read-only For Put |Mandatory For Post | Default | Description |    
   | - | - | :-: |:-: | :-: | :-: | - | 
   |`id` | Guid  | | yes | N/A | | id of the current item. |
-  |`entityId` | string | | no | yes | | id of entity marked on one question. |
+  |`entityId` | Guid | | no | yes | | id of entity marked on one question. |
   |`entity` | [Entity](#entity-object) | yes | N/A  | N/A  | | Available only when entity is included |
   |`entityLabel` | string | | no | yes | | label to distinguish same entity marked on one question. |
   |`question` | string | | no | yes |  | |
@@ -1989,7 +1989,7 @@ Field is represented as simple flat json objects with the following keys:
 |`id` | Guid  | | yes | N/A | | id of the current item. |
 |`type` | string | | no | yes | text | enums: `text` ,`textArea`,`radioBox` ,`checkBox` ,`dropDownList` ,`checkBoxList`, this is the type of fields appear on the form. |
 |`name` | string | | no | yes | | this is the field's name appear on the form. |
-|`entityId` | string | | no | no | | id of entity marked on one question. |
+|`entityId` | Guid | | no | no | | id of entity marked on one question. |
 |`entity` | [Entity](#entity-object) | yes | N/A  | N/A  | | Available only when entity is included |
 |`entityLabel` | string | | no | no | | label to distinguish same entity marked on one question. |
 |`isRequired` | bool | | no | yes | false | it marks whether the field appear on the form is required or not. |
@@ -8209,7 +8209,7 @@ Path parameters
   | `id` | Guid | yes  |  the unique id of the image |
 
 #### Response
-the response is: [Image](#image-object) object
+the response is: the Image content
 
 #### Example
 Using curl
@@ -8219,13 +8219,11 @@ curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v
 Response
 ```json
 HTTP/1.1 200 OK
-Content-Type:  application/json
+Content-Length: 3262
+Content-Type: image/jpeg
 
-{
-  "id": "dawdbgh1-92e6-4487-a2e8-92e68d6892e6",
-  "name": "test.png",
-  "url" : "https://bot.comm100.com/api/v3/chatbot/images/dawdbgh1-92e6-4487-a2e8-92e68d6892e6"
-}
+image file binary data
+
 ```
 
 # Report
