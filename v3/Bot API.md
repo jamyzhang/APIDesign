@@ -8045,7 +8045,7 @@ Response
 
 # PrebuiltEntity  
   - `PrebuiltEntity`
-    + `GET /api/v3/chatbot/prebuiltEntities` - [Get all prebuiltEntities ](#get-all-prebuiltEntities)   
+    + `GET /api/v3/chatbot/bots/{botId}/prebuiltEntities` - [Get all prebuiltEntities ](#get-all-prebuiltEntities)   
 
 ## PrebuiltEntity Related Objects Json Format
 ### PrebuiltEntity
@@ -8062,15 +8062,15 @@ Response
 ## PrebuiltEntity Endpoints
 ### Get all prebuiltEntities
 
-  `GET /api/v3/chatbot/prebuiltEntities`
+  `GET /api/v3/chatbot/bots/{botId}/prebuiltEntities`
 
 #### Parameters
-Query string
+Path parameters
 
-  | Name  | Type | Required | Default | Description |     
-  | - | - | - | - | - |
-  | `language` | string | no | en |  language code |
-
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `botId` | Guid | yes  |  the unique id of the bot |
+ 
 #### Response
 the response is: list of [Prebuilt Entity](#prebuiltentity) Objects  
 
