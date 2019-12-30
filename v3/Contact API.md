@@ -44,6 +44,7 @@
 | `postalOrZipCode` | string | optional, the postal or zip code of the contact  |
 | `createdTime` | datetime | optional, the time the contact was created |
 | `tags` | [tag](#tag)[] | optional, tag array of the contact  |
+| `isDeleted` | boolean | if is deleted |
 
  ### Identity
 | Name | Type | Description | 
@@ -56,6 +57,7 @@
 | `identityInfoUrl` | string | optional, the original identity info url of one identity |
 | `originalContactPageUrl` | string | optional, the original contact page url |
 | `screenName` | string | optional, only for twitter |
+| `isDeleted` | boolean | if is deleted |
 
  - Note: We currently only allow one for each type.
 
