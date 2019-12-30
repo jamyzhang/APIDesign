@@ -54,6 +54,8 @@
 | `name` | string | required, the name of one identity |
 | `avatar` | string | optional, the avatar of one identity |
 | `identityInfoUrl` | string | optional, the original identity info url of one identity |
+| `originalContactPageUrl` | string | optional, the original contact page url |
+| `screenName` | string | optional, only for twitter |
 
  - Note: We currently only allow one for each type.
 
