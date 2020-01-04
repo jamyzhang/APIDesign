@@ -66,7 +66,7 @@
   | `startDate` | Date | N/A | N/A | | the chatbot subscription start date |
   | `nextRenewDate` | Date | N/A | N/A | | next renew date |
   | `messageQuotaPerMonth` | integer | N/A | N/A | 0 | message quota per month |
-  | `paymentPeriod` | string  | N/A | N/A | Monthly | enums: `Monthly`,`Quarterly`, `Yearly` |
+  | `paymentPeriod` | string  | N/A | N/A | Monthly | enums: `monthly`,`quarterly`, `yearly` |
   | `monthlyPrice` | float  | N/A | N/A | 0 | monthly price |
   | `quarterlyPrice` | float  | N/A | N/A | 0 | quarterly price |
   | `yearlyPrice` | float  | N/A | N/A | 0 | yearly price |
@@ -215,7 +215,7 @@ Content-Type:  application/json
   | - | - | :-: | :-: | :-: | :-: | - | 
   | `id` | Guid  | | yes | N/A | | id of the bot |
   | `name` | string  | | no | yes | | name of the bot |
-  | `engineType` | string  | | yes | yes | Dialogflow | type of the bot, enums contain `Dialogflow`,`Chloe`, `ThirdParty` |
+  | `engineType` | string  | | yes | yes | Dialogflow | type of the bot, enums contain `dialogflow`,`chloe`, `thirdParty` |
   | `language` | string  | | yes | yes | en | language code of the bot |  
   | `avatar` | [Image](#image-object)  | | no | yes | | an [Image](#image-object) Object ,the avatar of bot |  
   | `isTrained` | bool  | | N/A | N/A | false | if the bot is trained |  
@@ -1941,7 +1941,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
   | `id` | Guid  | yes | N/A | | unique id |
   | `signInMessage` | string  | no | yes | | message of the sign in |
   | `signInButtonText` | string  | no | yes | | text of the sign in link |
-  | `method` | string  | no | yes | SSO | it is a Enum string: `SSO`, `customVariable` |
+  | `method` | string  | no | yes | SSO | it is a Enum string: `sso`, `customVariable` |
   | `signInURL` | string  | no | no | | url of the sign in |
   | `customVariable` | string  | no | no | | custom variable |
 
@@ -2049,7 +2049,7 @@ Button is represented as simple flat json objects with the following keys:
 |`text` | string | | no | yes | | text on button.  | 
 |`type` | string | | no | yes | |enums contain `triggerAnIntent`,`link` and `webView` | 
 |`url` | string | | no | yes if type is `link` or `webView`| | url of the web page you want to open.  | 
-|`intentId` | string | | no | yes if type is `triggerAnIntent` | | id of the intent you choosed.  | 
+|`intentId` | Guid | | no | yes if type is `triggerAnIntent` | | id of the intent you choosed.  | 
 |`intent` | [Intent](#intent-object) | yes | N/A  | N/A  | | Available only when intent is included |
 |`openIn` | string | | no | yes if channel is `LiveChat` and type is `link` | | enums contain `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
 |`openStyle` | string | | no | yes if channel is  `LiveChat` or `Facebook Messenger` and type is `webView` | full | enums contain `compact`,`tall` and `full`,it represents the size of the webview that will be opened.  |
@@ -6356,7 +6356,7 @@ Response
   | `id` | Guid | | yes | N/A | | id of the smart trigger. |
   | `name` | string | | no | yes | |name of smart trigger. |
   | `isEnabled` | bool | | no | no | false | smartTriggers if is enabled. the default value is false.|
-  | `expressionType` | string | | no | no | | the relationship between condition.  enum: [and,or,expression]|
+  | `conditionExpressionType` | string | | no | no | | the relationship between condition.  enum: `and`,`or`,`expression`|
   | `logicalExpression` | string | | no | no | | A formula to calculate exp:(1 or 2) and 3  |
   | `conditions` |  [Condition](#condition-object)[] | yes | no | no | | Available only when conditions are included |
   | `actions` | [Action](#action)[] | yes | no | no | | Available only when actions are included |
@@ -6369,7 +6369,7 @@ Response
   | - | - | :-: | :-: | :-: | - |
   | `id` | Guid | yes | N/A | | id of the smart trigger. |
   | `variable` | string | no | yes | | value of the Condition |
-  | `expression` | string | no | yes |  | the rule of expression.enum:[equal,notEqual,contains,notContains,regularExpression,lessThan,moreThan] |
+  | `expression` | string | no | yes |  | the rule of expression.enum:`equal`,`notEqual`,`contains`,`notContains`,`regularExpression`,`lessThan`,`moreThan` |
   | `value` | string | no | yes | | a string of condition matching value |
   | `order` | integer | no | yes |  |must greater than or equal 0,the order of the condition, ascending sort  |
 
@@ -6379,13 +6379,13 @@ Response
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `id` | Guid | yes | N/A | | id of the smart trigger. |
-  | `type` | string | no | yes | | the type of the action. enum:[notification,monitor,transfer,changeAssignee,segment]|
+  | `type` | string | no | yes | | the type of the action. enum:[`notification`,`monitor`,`transfer`,`changeAssignee`,`segment`]|
   | `isEnabled` | bool | no | yes | false | action if is enabled. |  
   | `agentOfflineMessage` | string | no | no | | agent offlineMessage prompt message |
-  | `targetType` | string | no | yes | | The trigger action target type. enum: `Department`, `Agent`, `Visitor Segment`. |
+  | `targetType` | string | no | yes | | The trigger action target type. enum: `department`, `agent`, `visitorSegment`. |
   | `selectedDepartments` | Guid[] | no | no | | a string array of  department id. |
   | `selectedAgents` | Guid[] | no | no | | a string  array of  agent id. |
-  | `selectedVisitorSegmentId` | Guid  | no | no | | visitor Segment Id |
+  | `selectedVisitorSegments` | Guid[]  | no | no | | visitorSegment Id |
 
 ## Smart Trigger Endpoints  
 ### Get all smart triggers of the bot
@@ -6423,7 +6423,7 @@ Response
       "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
       "name":"Transfer to Sales", 
       "isEnabled": true,
-      "expressionType": "and",
+      "conditionExpressionType": "and",
       "logicalExpression": "",      
       "order": 0,
     },
@@ -6431,7 +6431,7 @@ Response
       "id": "sadwdw12-92e6-4487-a2e8-92e68d6892e6",
       "name":"Transfer to Customer Service", 
       "isEnabled": true,
-      "expressionType": "and",
+      "conditionExpressionType": "and",
       "logicalExpression": "",      
       "order": 1,
     }
@@ -6466,7 +6466,7 @@ Response
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Sales", 
     "isEnabled": true,
-    "expressionType": "and",
+    "conditionExpressionType": "and",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6511,7 +6511,7 @@ example:
   {
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "expressionType": "and",
+    "conditionExpressionType": "and",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6544,7 +6544,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "expressionType": "and",
+    "conditionExpressionType": "and",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6576,7 +6576,7 @@ Location: https://domain.comm100.com/api/v3/chatbot/smartTriggers/de3fe21d-92e6-
     "id":"de3fe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "expressionType": "and",
+    "conditionExpressionType": "and",
     "logicalExpression": "",    
     "order": 0,
   }
@@ -6603,7 +6603,7 @@ example:
     "id": "mm2fe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "expressionType": "or",
+    "conditionExpressionType": "or",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6644,7 +6644,7 @@ curl -H "Content-Type: application/json" -d '{
     "id": "mm2fe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "expressionType": "or",
+    "conditionExpressionType": "or",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6683,7 +6683,7 @@ Response
     "id": "mm2fe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "expressionType": "or",
+    "conditionExpressionType": "or",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6717,7 +6717,7 @@ Response
     
 ### Remove a smart trigger
  
-  `DELETE /api/v3/chatbot/smartTrigger/{id}`
+  `DELETE /api/v3/chatbot/smartTriggers/{id}`
   
 #### Parameters  
 Path parameters
@@ -6732,7 +6732,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smartTrigger/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smartTriggers/aaa8sc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6799,23 +6799,23 @@ HTTP/1.1 204 No Content
 # Smart Trigger Condition
   You need `Manage Bot` permission to manage Smart Trigger Conditions.
   - `Smart Trigger Conditions` - Smart Trigger Conditions Manage
-    + `POST /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions` -[Create a new smart trigger condition](#create-a-new-smart-trigger-condition)
-    + `GET /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions` -[Get all smart triggers conditions](#get-all-smart-trigger-conditions)
-    + `GET /api/v3/chatbot/smarttriggerConditions/{id}`  -[Get a smart trigger condition by id](#get-a-smart-trigger-condition-by-id)
-    + `PUT /api/v3/chatbot/smarttriggerConditions/{id}`  -[Update a smart trigger condition](#update-a-smart-trigger-condition)
-    + `DELETE /api/v3/chatbot/smarttriggerConditions/{id}`  -[Remove a smart trigger condition](#remove-a-smart-trigger-condition)
+    + `POST /api/v3/chatbot/smartTriggers/{smartTriggerId}/smartTriggerConditions` -[Create a new smart trigger condition](#create-a-new-smart-trigger-condition)
+    + `GET /api/v3/chatbot/smartTriggers/{smartTriggerId}/smartTriggerConditions` -[Get all smart triggers conditions](#get-all-smart-trigger-conditions)
+    + `GET /api/v3/chatbot/smartTriggerConditions/{id}`  -[Get a smart trigger condition by id](#get-a-smart-trigger-condition-by-id)
+    + `PUT /api/v3/chatbot/smartTriggerConditions/{id}`  -[Update a smart trigger condition](#update-a-smart-trigger-condition)
+    + `DELETE /api/v3/chatbot/smartTriggerConditions/{id}`  -[Remove a smart trigger condition](#remove-a-smart-trigger-condition)
 
 ## Smart Trigger Condition Endpoints  
 ### Get all smart trigger conditions
 
-  `GET /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions`
+  `GET /api/v3/chatbot/smartTriggers/{smartTriggerId}/smartTriggerConditions`
  
 #### Parameters
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `smarttriggerId` | Guid | yes  |  the unique id of the smarttrigger |
+  | `smartTriggerId` | Guid | yes  |  the unique id of the smartTrigger |
 
 #### Response    
 the response is: list of [Condition](#condition-object) Objects
@@ -6823,7 +6823,7 @@ the response is: list of [Condition](#condition-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerConditions
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smartTriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smartTriggerConditions
 ```
 Response
 ```json
@@ -6843,14 +6843,14 @@ Response
     
 ### Get a smart trigger condition by id
 
-  `GET /api/v3/chatbot/smarttriggerConditions/{id}`
+  `GET /api/v3/chatbot/smartTriggerConditions/{id}`
 
 #### Parameters  
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `id` | Guid | yes  |  the unique id of the smarttriggerCondition |
+  | `id` | Guid | yes  |  the unique id of the smartTriggerCondition |
 
 #### Response
 the response is: [Condition](#condition-object) Objects
@@ -6858,7 +6858,7 @@ the response is: [Condition](#condition-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smartTriggerConditions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6876,14 +6876,14 @@ Response
     
 ### Create a new smart trigger condition
 
-  `POST /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerConditions`
+  `POST /api/v3/chatbot/smartTriggers/{smartTriggerId}/smartTriggerConditions`
 
 #### Parameters
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `smarttriggerId` | Guid | yes  |  the unique id of the smarttrigger |
+  | `smartTriggerId` | Guid | yes  |  the unique id of the smartTrigger |
 
 Request body
 
@@ -6910,13 +6910,13 @@ curl -H "Content-Type: application/json" -d '{
     "expression": "equal",
     "value": "vdfee21d-92e6-4487-a2e8-92e68d6892e6",
     "order": 0,
-  }' -X POST https://domain.comm100.com/api/v3/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerConditions
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/smartTriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smartTriggerConditions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/smartTriggerConditions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -6929,14 +6929,14 @@ Location: https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawfe
 
 ### Update a smart trigger condition
 
-  `PUT /api/v3/chatbot/smarttriggerConditions/{id}`
+  `PUT /api/v3/chatbot/smartTriggerConditions/{id}`
     
 #### Parameters  
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `id` | Guid | yes  |  the unique id of the smarttriggerCondition |
+  | `id` | Guid | yes  |  the unique id of the smartTriggerCondition |
 
 Request body
 
@@ -6965,7 +6965,7 @@ curl -H "Content-Type: application/json" -d '{
     "expression": "equal",
     "value": "vdfee21d-92e6-4487-a2e8-92e68d6892e6",
     "order": 0
-  }' -X PUT https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawdjtr2-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/smartTriggerConditions/dawdjtr2-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -6983,14 +6983,14 @@ Response
     
 ### Remove a smart trigger condition
  
-  `DELETE /api/v3/chatbot/smarttriggerConditions/{id}`
+  `DELETE /api/v3/chatbot/smartTriggerConditions/{id}`
   
 #### Parameters  
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `id` | Guid | yes  |  the unique id of the smarttriggerCondition |
+  | `id` | Guid | yes  |  the unique id of the smartTriggerCondition |
       
 #### Response   
 HTTP/1.1 204 No Content
@@ -6998,7 +6998,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smarttriggerConditions/dawdjtr2-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smartTriggerConditions/dawdjtr2-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7008,23 +7008,23 @@ HTTP/1.1 204 No Content
 # Smart Trigger Action
   You need `Manage Bot` permission to manage Smart Trigger Actions.
   - `Smart Trigger Actions` - Smart Trigger Actions Manage
-    + `POST /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions` -[Create a new smart trigger action](#create-a-new-smart-trigger-action)
-    + `GET /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions` -[Get all smart triggers actions](#get-all-smart-trigger-actions)
-    + `GET /api/v3/chatbot/smarttriggerActions/{id}`  -[Get a smart trigger action by id](#get-a-smart-trigger-action-by-id)
-    + `PUT /api/v3/chatbot/smarttriggerActions/{id}`  -[Update a smart trigger action](#update-a-smart-trigger-action)
-    + `DELETE /api/v3/chatbot/smarttriggerActions/{id}`  -[Remove a smart trigger action](#remove-a-smart-trigger-action)
+    + `POST /api/v3/chatbot/smartTriggers/{smartTriggerId}/smartTriggerActions` -[Create a new smart trigger action](#create-a-new-smart-trigger-action)
+    + `GET /api/v3/chatbot/smartTriggers/{smartTriggerId}/smartTriggerActions` -[Get all smart triggers actions](#get-all-smart-trigger-actions)
+    + `GET /api/v3/chatbot/smartTriggerActions/{id}`  -[Get a smart trigger action by id](#get-a-smart-trigger-action-by-id)
+    + `PUT /api/v3/chatbot/smartTriggerActions/{id}`  -[Update a smart trigger action](#update-a-smart-trigger-action)
+    + `DELETE /api/v3/chatbot/smartTriggerActions/{id}`  -[Remove a smart trigger action](#remove-a-smart-trigger-action)
 
 ## Smart Trigger Action Endpoints  
 ### Get all smart trigger actions
 
-  `GET /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions`
+  `GET /api/v3/chatbot/smartTriggers/{smartTriggerId}/smartTriggerActions`
  
 #### Parameters
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `smarttriggerId` | Guid | yes  |  the unique id of the smarttrigger |
+  | `smartTriggerId` | Guid | yes  |  the unique id of the smartTrigger |
 
 #### Response  
 the response is: list of [Action](#action) Objects
@@ -7032,7 +7032,7 @@ the response is: list of [Action](#action) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerActions
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smartTriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smartTriggerActions
 ```
 Response
 ```json
@@ -7053,14 +7053,14 @@ Response
     
 ### Get a smart trigger action by id
 
-  `GET /api/v3/chatbot/smarttriggerActions/{id}`
+  `GET /api/v3/chatbot/smartTriggerActions/{id}`
 
 #### Parameters 
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `id` | Guid | yes  |  the unique id of the smarttriggerAction |
+  | `id` | Guid | yes  |  the unique id of the smartTriggerAction |
 
 #### Response  
 the response is: [Action](#action) Object
@@ -7068,7 +7068,7 @@ the response is: [Action](#action) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/smartTriggerActions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7087,14 +7087,14 @@ Response
     
 ### Create a new smart trigger action
 
-  `POST /api/v3/chatbot/smarttriggers/{smarttriggerId}/smarttriggerActions`
+  `POST /api/v3/chatbot/smartTriggers/{smartTriggerId}/smartTriggerActions`
 
 #### Parameters
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `smarttriggerId` | Guid | yes  |  the unique id of the smarttrigger |
+  | `smartTriggerId` | Guid | yes  |  the unique id of the smartTrigger |
 
 Request body 
 
@@ -7123,13 +7123,13 @@ curl -H "Content-Type: application/json" -d '{
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
     "selectedDepartments": ["sadwe21d-92e6-4487-a2e8-92e68d6892e6"] 
-  }' -X POST https://domain.comm100.com/api/v3/chatbot/smarttriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smarttriggerActions
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/smartTriggers/f9928d68-92e6-4487-a2e8-8234fc9d1f48/smartTriggerActions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/chatbot/smartTriggerActions/dawfe21d-92e6-4487-a2e8-92e68d6892e6
 
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -7145,14 +7145,14 @@ Location: https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/dawfe21d
 
 ### Update a smart trigger action
 
-  `PUT /api/v3/chatbot/smarttriggerActions/{id}`
+  `PUT /api/v3/chatbot/smartTriggerActions/{id}`
     
 #### Parameters  
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `id` | Guid | yes  |  the unique id of the smarttriggerAction |
+  | `id` | Guid | yes  |  the unique id of the smartTriggerAction |
 
 Request body 
 
@@ -7183,7 +7183,7 @@ curl -H "Content-Type: application/json" -d '{
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
     "selectedDepartments": ["sadwe21d-92e6-4487-a2e8-92e68d6892e6"] 
-  }' -X PUT https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/jjtewsdw-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://domain.comm100.com/api/v3/chatbot/smartTriggerActions/jjtewsdw-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7202,14 +7202,14 @@ Response
     
 ### Remove a smart trigger action
  
-  `DELETE /api/v3/chatbot/smarttriggerActions/{id}`
+  `DELETE /api/v3/chatbot/smartTriggerActions/{id}`
   
 #### Parameters  
 Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  | `id` | Guid | yes  |  the unique id of the smarttriggerAction |
+  | `id` | Guid | yes  |  the unique id of the smartTriggerAction |
       
 #### Response   
 HTTP/1.1 204 No Content    
@@ -7217,7 +7217,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smarttriggerActions/jjtewsdw-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/chatbot/smartTriggerActions/jjtewsdw-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7249,9 +7249,9 @@ HTTP/1.1 204 No Content
   | Name | Type | Include |  Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: |  :-: | - | 
   | `id` | Guid  | | yes | N/A | | id of Quick Reply item |
-  | `type` | string  | | no | yes | | enum value, `TriggerAnIntent` and `contactAgent` |
-  | `text` | string  | | no | yes | | Only available when Type is TriggerAnIntent |
-  | `intentId` | string  | | no | no | | when item type is TriggerAnIntent, it is the id of the intent |
+  | `type` | string  | | no | yes | | enum value, `triggerAnIntent` and `contactAgent` |
+  | `text` | string  | | no | yes | | Only available when Type is triggerAnIntent |
+  | `intentId` | string  | | no | no | | when item type is triggerAnIntent, it is the id of the intent |
   |`intent` | [Intent](#intent-object) | yes | N/A | N/A | | Available only when intent is included  | 
   | `order` | integer | | no | yes |  | must greater than or equal 0,the order of the quick reply item, ascending sort . |
 
@@ -7321,13 +7321,13 @@ example:
     "name": "Contact Agent",
     "items":[  
       {
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Sales",
         "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
         "order":0,
       },
       {
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Tech Support",
         "intentId":"345sdaws-92e6-4487-a2e8-92e68d6892e6",      
         "order":1,
@@ -7348,13 +7348,13 @@ curl -H "Content-Type: application/json" -d '{
     "name": "Contact Agent",
     "items":[  
       {
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Sales",
         "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
         "order":0,
       },
       {
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Tech Support",
         "intentId":"345sdaws-92e6-4487-a2e8-92e68d6892e6",      
         "order":1,
@@ -7400,13 +7400,13 @@ example:
     "items":[  
       {
         "id": "mnnudaw1-92e6-4487-a2e8-92e68d6892e6",  //update
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Sales",
         "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
         "order":0,
       },
       {
-        "type": "TriggerAnIntent",   //create
+        "type": "triggerAnIntent",   //create
         "text":"Tech Support",
         "intentId":"345sdaws-92e6-4487-a2e8-92e68d6892e6",      
         "order":1,
@@ -7428,13 +7428,13 @@ curl -H "Content-Type: application/json" -d '{
     "items":[  
       {
         "id": "mnnudaw1-92e6-4487-a2e8-92e68d6892e6",  //update
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Sales",
         "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
         "order":0,
       },
       {
-        "type": "TriggerAnIntent",   //create
+        "type": "triggerAnIntent",   //create
         "text":"Tech Support",
         "intentId":"345sdaws-92e6-4487-a2e8-92e68d6892e6",      
         "order":1,
@@ -7454,14 +7454,14 @@ Response
     "items":[  
       {
         "id": "mnnudaw1-92e6-4487-a2e8-92e68d6892e6", 
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Sales",
         "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
         "order":0,
       },
       {
         "id": "vsdew132-92e6-4487-a2e8-92e68d6892e6", 
-        "type": "TriggerAnIntent",  
+        "type": "triggerAnIntent",  
         "text":"Tech Support",
         "intentId":"345sdaws-92e6-4487-a2e8-92e68d6892e6",      
         "order":1,
@@ -7508,7 +7508,7 @@ Response
     "items":[
       {
         "id": "sadwe21d-92e6-4487-a2e8-92e68d6892e6",
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Sales",
         "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",
         "intent":{  //include intent
@@ -7520,7 +7520,7 @@ Response
       },
       {
         "id": "sadwe21d-92e6-4487-a2e8-92e68d6892e6",
-        "type": "TriggerAnIntent",
+        "type": "triggerAnIntent",
         "text":"Tech Support",
         "intentId":"345sdaws-92e6-4487-a2e8-92e68d6892e6",
         "intent":{  //include intent
@@ -7601,7 +7601,7 @@ Response
   [  
     {
       "id": "sadwe21d-92e6-4487-a2e8-92e68d6892e6",
-      "type": "TriggerAnIntent",
+      "type": "triggerAnIntent",
       "text":"Sales",
       "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",
       "intent":{   //include intent
@@ -7613,7 +7613,7 @@ Response
     },
     {
       "id": "sadwe21d-92e6-4487-a2e8-92e68d6892e6",
-      "type": "TriggerAnIntent",
+      "type": "triggerAnIntent",
       "text":"Tech Support",
       "intentId":"345sdaws-92e6-4487-a2e8-92e68d6892e6",
       "intent":{   //include intent
@@ -7644,7 +7644,7 @@ The request body contains data with the [QuickReplyItem](#QuickReplyItem-object)
 example:
   ```json 
   {
-    "type": "TriggerAnIntent",
+    "type": "triggerAnIntent",
     "text":"Sales",
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
     "order":0,
@@ -7658,7 +7658,7 @@ the response is: [QuickReplyItem](#QuickReplyItem-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "type": "TriggerAnIntent",
+    "type": "triggerAnIntent",
     "text":"Sales",
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
     "order":0,
@@ -7673,7 +7673,7 @@ Location: https://domain.comm100.com/api/v3/chatbot/quickreplyItems/sadwe21d-92e
    
   {
     "id": "sadwe21d-92e6-4487-a2e8-92e68d6892e6",
-    "type": "TriggerAnIntent",
+    "type": "triggerAnIntent",
     "text":"Sales",
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",      
     "order":0,
@@ -7713,7 +7713,7 @@ Response
 
   {
     "id": "sadwe21d-92e6-4487-a2e8-92e68d6892e6",
-    "type": "TriggerAnIntent",
+    "type": "triggerAnIntent",
     "text":"Sales",
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",
     "intent":{   //include intent
@@ -7744,7 +7744,7 @@ example:
   ```json 
   {
     "id": "bgtyr122e-92e6-4487-a2e8-92e68d6892e6",
-    "type": "TriggerAnIntent",
+    "type": "triggerAnIntent",
     "text":"Sales",
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
     "order":0,
@@ -7759,7 +7759,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "id": "bgtyr122e-92e6-4487-a2e8-92e68d6892e6",
-    "type": "TriggerAnIntent",
+    "type": "triggerAnIntent",
     "text":"Sales",
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
     "order":0,
@@ -7773,7 +7773,7 @@ Response
 
   {
     "id": "bgtyr122e-92e6-4487-a2e8-92e68d6892e6",
-    "type": "TriggerAnIntent",
+    "type": "triggerAnIntent",
     "text":"Sales",
     "intentId":"dawdbgh1-92e6-4487-a2e8-92e68d6892e6",       
     "order":0,
@@ -7823,7 +7823,7 @@ HTTP/1.1 204 No Content
   | `topScoreIntentId` | string  |   | N/A | N/A | | id of the intent |
   |`intent` | [Intent](#intent-object) | yes | N/A | N/A | | Available only when intent is included  | 
   | `topScore` | double   | |  N/A | N/A | 0 | match score between 0.0 and 100 |
-  | `createTime` | datetime   | |  N/A | N/A | | question asked time |
+  | `createdTime` | datetime   | |  N/A | N/A | | question asked time |
 
 ### LearningQuestionsResponse  
 LearningQuestionsResponse is represented as simple flat JSON objects with the following keys:  
@@ -7886,7 +7886,7 @@ Response
           "categoryId": "1q1dlkiu7-92e6-4487-a2e8-92e68d6892e6"
         },
         "topScore": 45,
-        "createTime":"2019-11-12 15:21:09"
+        "createdTime":"2019-11-12 15:21:09"
       },
       ...
     ]
@@ -8039,7 +8039,7 @@ Response
       "categoryId": "1q1dlkiu7-92e6-4487-a2e8-92e68d6892e6"
     },
     "topScore": 45,
-    "createTime":"2019-11-12 15:21:09"
+    "createdTime":"2019-11-12 15:21:09"
   }
 ```
 
@@ -8106,7 +8106,7 @@ Response
   | Name | Type | Read-only For Put | Mandatory For Post  | Default | Description |    
   | - | - | :-: | :-: | :-: | - | 
   | `operationId` | string  | N/A | N/A | | operation id |
-  | `status` | string  | N/A | N/A | Wait | enum values, `Wait `,`Succeeded `,`Failed `,`Processing ` |
+  | `status` | string  | N/A | N/A | Wait | enum values, `wait `,`succeeded `,`failed `,`processing ` |
   | `percent` | integer  | N/A | N/A | 0 | progress of the long-running operation  |
   | `errorMessage` | string  | N/A | N/A | | error message when operation status is Failed  |
 
@@ -8138,7 +8138,7 @@ Response
 
   {
     "operationId": "dawdbgh1-92e6-4487-a2e8-92e68d6892e6",
-    "status":"Processing", 
+    "status":"processing", 
     "percent": "25" ,
     "errorMessage":""     
   } 
@@ -8156,7 +8156,7 @@ Response
 Note
 ```
 Formats supported: GIF, JPG, JPEG, PNG or BMP
-Max file size: 100KB
+Max file size: 30MB
 ```
 
 #### Parameters
@@ -8347,8 +8347,8 @@ image file binary data
   | `avgScore` | double  | 0 |average score |
   | `avgTime` | double  | 0 | average time |
   | `chats` | integer  | 0 |chats |
-  | `agentTime` | [BotAgentReportDetail](#botagentreportdetail)[]  | |list of [BotAgentReportDetail](#botagentreportdetail) Object  |
-  | `botTime` | [BotAgentReportDetail](#botagentreportdetail)[]  | | list of [BotAgentReportDetail](#botagentreportdetail) Object  |
+  | `agent` | [BotAgentReportDetail](#botagentreportdetail)[]  | |list of [BotAgentReportDetail](#botagentreportdetail) Object  |
+  | `bot` | [BotAgentReportDetail](#botagentreportdetail)[]  | | list of [BotAgentReportDetail](#botagentreportdetail) Object  |
 
 ### BotAgentReportDetail
   BotAgentReportBotDetail is represented as simple flat JSON objects with the following keys:  
@@ -8921,10 +8921,10 @@ Content-Type:  application/json
 
 # Agent Assist Language
 
-  + `GET /api/v3/agentAssist/languages` - [Get Agent Assist support languages ](#get-all-languages)
+  + `GET /api/v3/agentAssist/languages` - [Get Agent Assist support languages ](#get-agent-assist-languages)
 
 ## Agent Assist Language Endpoints
-### Get all languages
+### Get agent assist languages
 
   `GET /api/v3/agentAssist/languages`
 
@@ -9179,7 +9179,7 @@ Response
   | - | - | :-: | :-: | :-: | - | 
   | `id` | Guid  | yes | N/A | | id of the Synonym |
   | `content` | string  | no | yes | | content of the Synonym |
-  | `synonyms` | string  | no | yes | | synonym of the Synonym |
+  | `synonyms` | string[]  | no | yes | | synonym of the Synonym |
 
 ## Agent Assist Synonym Endpoints
 ### Get all synonyms
@@ -9205,12 +9205,12 @@ Content-Type:  application/json
   {
     "id": "1xs4sad2-92e6-4487-a2e8-8234fc9d1f48",
     "content": "en",
-    "synonyms": "English"
+    "synonyms": ["English"]
   },
   {
     "id": "",
     "content": "en",
-    "synonyms": "English"
+    "synonyms": ["English"]
   }
 ]
 ```
@@ -9242,7 +9242,7 @@ Content-Type:  application/json
   {
     "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
     "content": "en",
-    "synonyms": "English"
+    "synonyms": ["English"]
   }
 ```
   
@@ -9260,7 +9260,7 @@ example:
   ```json 
   {
     "content": "en",
-    "synonyms": "English"
+    "synonyms": ["English"]
   }
 ```
 
@@ -9284,7 +9284,7 @@ Location: https://domain.comm100.com/api/v3/agentAssist/synonyms/w124sad2-92e6-4
   {
     "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
     "content": "en",
-    "synonyms": "English"
+    "synonyms": ["English"]
   }
 ```
 
@@ -9308,7 +9308,7 @@ example:
   {
     "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
     "content": "en",
-    "synonyms": "English"
+    "synonyms": ["English"]
   }
 ```
 
@@ -9321,7 +9321,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
     "content": "en",
-    "synonyms": "English"
+    "synonyms": ["English"]
   }' -X PUT https://domain.comm100.com/api/v3/agentAssist/synonyms/w124sad2-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
@@ -9332,7 +9332,7 @@ Content-Type:  application/json
   {
     "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
     "content": "en",
-    "synonyms": "English"
+    "synonyms": ["English"]
   }
 ```
 
@@ -9455,7 +9455,7 @@ Response
     "value": [
       {
         "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
-        "type":"cannedMessage", 
+        "type":"unidentified", 
         "question": "can i get nbn",
         "agentResponse": "",
         "suggestionType": "cannedMessage",
@@ -9484,7 +9484,7 @@ The request body contains data with the [AgentAssistLearningQuestion](#agent-ass
 example:
   ```json
   {
-    "type":"cannedMessage", 
+    "type":"unidentified", 
     "question": "can i get nbn",
     "agentResponse": "yes, sure!",
     "suggestionType": "cannedMessage",
@@ -9504,7 +9504,7 @@ the response is: [AgentAssistLearningQuestion](#agent-assist-learning-question) 
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "type":"cannedMessage", 
+    "type":"unidentified", 
     "question": "can i get nbn",
     "agentResponse": "yes, sure!",
     "suggestionType": "cannedMessage",
@@ -9524,7 +9524,7 @@ Location: https://domain.comm100.com/api/v3/agentAssist/learningQuestions/dawfe2
 
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
-    "type":"cannedMessage", 
+    "type":"unidentified", 
     "question": "can i get nbn",
     "agentResponse": "yes, sure!",
     "suggestionType": "cannedMessage",
@@ -9564,7 +9564,7 @@ Response
 
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
-    "type":"cannedMessage", 
+    "type":"unidentified", 
     "question": "can i get nbn",
     "agentResponse": "",
     "suggestionType": "cannedMessage",
@@ -9617,7 +9617,7 @@ example:
   ```json
   [
     {
-      "type":"cannedMessage", 
+      "type":"unidentified", 
       "question": "can i get nbn",
       "agentResponse": "yes, sure!",
       "suggestionType": "cannedMessage",
@@ -9640,7 +9640,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '[
     {
-      "type":"cannedMessage", 
+      "type":"unidentified", 
       "question": "can i get nbn",
       "agentResponse": "yes, sure!",
       "suggestionType": "cannedMessage",
@@ -9703,8 +9703,8 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | - | 
-  | `id` | string  | N/A | N/A |  | the unique id of the question |
-  | `question` | string  | N/A | N/A | | the question visitor asked. |
+  | `id` | string  | N/A | yes |  | the unique id of the question |
+  | `question` | string  | N/A | yes | | the question visitor asked. |
 
 ### Suggestion
 
@@ -9720,7 +9720,7 @@ HTTP/1.1 204 No Content
 
   QuestionSuggestion is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Default | Description |
+  | Name | Type | Read-only | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `id` | string  | N/A | N/A | | the unique id of the question |
   | `question` | string  | N/A | N/A | | the question visitor asked. |
