@@ -130,7 +130,7 @@ Content-Type:  application/json
         "bot": {  // include the bot
           "id":"f9928d68-92e6-4487-a2e8-8234fc9d1f48",
           "name": "Peely",
-          "engineType": "Chloe",
+          "engineType": "chloe",
           "language": "en",
           ...
         }
@@ -165,7 +165,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - |  - | 
-  | `engineType` | string | no  | Dialogflow | Available value: `Dialogflow`, `Chloe` |
+  | `engineType` | string | no  | dialogflow | Available value: `dialogflow`, `chloe` |
 
 
 #### Response
@@ -175,7 +175,7 @@ the response is: list of [Language](#Language-object) Objects
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/chatbot/languages?engineType=Chloe
+-X GET https://domain.comm100.com/api/v3/chatbot/languages?engineType=chloe
 ```
 Response
 ```json
@@ -215,9 +215,9 @@ Content-Type:  application/json
   | - | - | :-: | :-: | :-: | :-: | - | 
   | `id` | Guid  | | yes | N/A | | id of the bot |
   | `name` | string  | | no | yes | | name of the bot |
-  | `engineType` | string  | | yes | yes | Dialogflow | type of the bot, enums contain `dialogflow`,`chloe`, `thirdParty` |
+  | `engineType` | string  | | yes | yes | dialogflow | type of the bot, enums contain `dialogflow`,`chloe`, `thirdParty` |
   | `language` | string  | | yes | yes | en | language code of the bot |  
-  | `avatar` | [Image](#image-object)  | | no | yes | | an [Image](#image-object) Object ,the avatar of bot |  
+  | `avatar` | [Image](#image-object)  | | no | no | | an [Image](#image-object) Object ,the avatar of bot |  
   | `isTrained` | bool  | | N/A | N/A | false | if the bot is trained |  
   | `greetingMessageInChannels` | [GreetingMessageInChannel](#GreetingMessageInChannel-object)[]  | yes | no | no | | Available only when greetingMessageInChannels are included | 
   | `noAnswerMessageInChannels` | [NoAnswerMessageInChannel](#NoAnswerMessageInChannel-Object)[]  | yes | no | no | | Available only when noAnswerMessageInChannels are included |  
@@ -235,7 +235,7 @@ Content-Type:  application/json
   | `highConfidenceScore` | integer  | | no | no | 40 | When visitors send a message, Bot will match it with all of your intents. If the top matching score(matching score ranges from 0 to 100) is higher than the High Confidence Answer Score, Bot will send the answer of the top score intent to visitors |  
   | `noAnswerScore` | integer | | no | no | 20 | When visitors send a message, Bot will match it with all of your intents. If the top macthing score(matching score ranges from 0 to 100) is between the High Confidence Answer Score and No Answer Score, Bot will send the answer of the top score intent as a possible answer to visitors; if the top matching score is lower than the No Answer Score, Bot will send the message configured for When Visitor Question Is Not Recognized. |
   | `lastUpdatedTime` | datetime  | | N/A | N/A | | This attribute stores the last updated time for a chatbot. Once the chatbot or any sub attribute of the chatbot is edited, this value will be changed to the current time |
-  |`thirdPartyWebhook` | [Webhook](#Webhook-object) | | no | no | | [Webhook](#Webhook-object) object, Only available when engineType is `ThirdParty`  | 
+  |`thirdPartyWebhook` | [Webhook](#Webhook-object) | | no | no | | [Webhook](#Webhook-object) object, Only available when engineType is `thirdParty`  | 
   | `enabledChannels` | string[]  | | no | no | | list of channel, eg: [`LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`]  |  
 
 ### GreetingMessageInChannel Object
@@ -312,7 +312,7 @@ Content-Type:  application/json
   {
     "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "name": "Test Bot",
-    "engineType": "Chloe",
+    "engineType": "chloe",
     "language": "en",      
     "avatar": {
       "name": "bot.png",
@@ -353,7 +353,7 @@ Request body
   ```json
   {
     "name": "New Test Bot",
-    "engineType": "Chloe",
+    "engineType": "chloe",
     "language": "en",
     "avatar": {
       "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
@@ -374,7 +374,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "name": "New Test Bot",
-    "engineType": "Chloe",
+    "engineType": "chloe",
     "language": "en",  
     "avatar": {
       "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
@@ -395,7 +395,7 @@ Location: https://domain.comm100.com/api/v3/chatbot/bots/casd8d68-92e6-4487-a2e8
   {
     "id": "casd8d68-92e6-4487-a2e8-8234fc9d1f48",
     "name": "New Test Bot",
-    "engineType": "Chloe",
+    "engineType": "chloe",
     "language": "en",
     "avatar": {
       "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
@@ -441,7 +441,7 @@ Request Body
   {
     "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "name": "Test Bot",
-    "engineType": "Chloe",
+    "engineType": "chloe",
     "language": "en",
     "greetingMessageInChannels": [
       {
@@ -494,7 +494,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "name": "Test Bot",
-    "engineType": "Chloe",
+    "engineType": "chloe",
     "language": "en",
     "greetingMessageInChannels": [
       {
@@ -545,7 +545,7 @@ Content-Type:  application/json
   {
     "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "name": "Test Bot",
-    "engineType": "Chloe",
+    "engineType": "chloe",
     "language": "en",
     "greetingMessageInChannels": [
       {
@@ -625,7 +625,7 @@ Content-Type:  application/json
 {
   "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "name": "Test Bot",
-  "engineType": "Chloe",
+  "engineType": "chloe",
   "language": "en",
   "greetingMessageInChannels": [
     {
@@ -1941,7 +1941,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
   | `id` | Guid  | yes | N/A | | unique id |
   | `signInMessage` | string  | no | yes | | message of the sign in |
   | `signInButtonText` | string  | no | yes | | text of the sign in link |
-  | `method` | string  | no | yes | SSO | it is a Enum string: `sso`, `customVariable` |
+  | `method` | string  | no | yes | sso | it is a Enum string: `sso`, `customVariable` |
   | `signInURL` | string  | no | no | | url of the sign in |
   | `customVariable` | string  | no | no | | custom variable |
 
@@ -2233,8 +2233,8 @@ Response
             "id":"8d6sfc9d-92e6-4487-a2e8-92e68d6892e1",
             "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1",
             "entityLabel":"product",
-            "startPos":"11",
-            "endPos":"13"
+            "startPosition":"11",
+            "endPosition":"13"
           }
         ]
       }
@@ -2290,7 +2290,7 @@ Response
           "id":"bb38fc9d-92e6-4487-a2e8-92e68d6892e6",
           "signInMessage":"Please Login first",
           "signInButtonText":"Login",
-          "method": "SSO"
+          "method": "sso"
         },
       },
     ]
@@ -2328,8 +2328,8 @@ Request body
           {
             "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1",
             "entityLabel":"product",
-            "startPos":"11",
-            "endPos":"13"
+            "startPosition":"11",
+            "endPosition":"13"
           }
         ]
       }
@@ -2386,8 +2386,8 @@ curl -H "Content-Type: application/json" -d '{
           {
             "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1",
             "entityLabel":"product",
-            "startPos":"11",
-            "endPos":"13"
+            "startPosition":"11",
+            "endPosition":"13"
           }
         ]
       }
@@ -2470,8 +2470,8 @@ The request body contains data with the [Intent](#intent-object) structure
           {
             "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1",
             "entityLabel":"product",
-            "startPos":"11",
-            "endPos":"13"
+            "startPosition":"11",
+            "endPosition":"13"
           }
         ]
       }
@@ -2507,7 +2507,7 @@ The request body contains data with the [Intent](#intent-object) structure
         "authenticationRequest" : {     //create
           "signInMessage":"Please Login first",
           "signInButtonText":"Login",
-          "method": "SSO"
+          "method": "sso"
         },
       },
     ]    
@@ -2536,8 +2536,8 @@ curl -H "Content-Type: application/json" -d '{
           {
             "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1",
             "entityLabel":"product",
-            "startPos":"11",
-            "endPos":"13"
+            "startPosition":"11",
+            "endPosition":"13"
           }
         ]
       }
@@ -2573,7 +2573,7 @@ curl -H "Content-Type: application/json" -d '{
         "authenticationRequest" : {
           "signInMessage":"Please Login first",
           "signInButtonText":"Login",
-          "method": "SSO"
+          "method": "sso"
         },
       },
     ]    
@@ -2603,8 +2603,8 @@ Response
             "id":"adawsc9d-92e6-4487-a2e8-92e68d6892e6",
             "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1",
             "entityLabel":"product",
-            "startPos":"11",
-            "endPos":"13"
+            "startPosition":"11",
+            "endPosition":"13"
           }
         ]
       }
@@ -2643,7 +2643,7 @@ Response
           "id":"vbd1ec9d-92e6-4487-a2e8-92e68d6892e6",
           "signInMessage":"Please Login first",
           "signInButtonText":"Login",
-          "method": "SSO"
+          "method": "sso"
         },
       },
     ]    
@@ -2757,8 +2757,8 @@ Question Selected Keyword is represented as simple flat json objects with the fo
 
 |Name| Type| Include | Read-only For Put | Mandatory For Post | Default |Description     | 
 | - | - | :-: | :-: | :-: | :-: | - | 
-|`startPos` | integer | | no | yes | 0 | strat index  of current question you marked. |
-|`endPos` | integer | | no | yes | 0 | end index  of current question you marked. |
+|`startPosition` | integer | | no | yes | 0 | strat index  of current question you marked. |
+|`endPosition` | integer | | no | yes | 0 | end index  of current question you marked. |
 |`entityId` | Guid | | no | yes | | id of entity marked on one question. |
 |`entity` | [Entity](#entity-object) | yes | N/A  | N/A  | |  Available only when entity is included  |
 |`entityLabel` | string | | no | yes | | label to distinguish same entity marked on one question. |
@@ -2812,8 +2812,8 @@ Response
             "name": "product"           
           },
           "entityLabel":"product",
-          "startPos":"11",
-          "endPos":"13"
+          "startPosition":"11",
+          "endPosition":"13"
         }
       ]
     }
@@ -2891,8 +2891,8 @@ Request body
         {  // create
           "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1", 
           "entityLabel":"product",
-          "startPos":"13",
-          "endPos":"15"
+          "startPosition":"13",
+          "endPosition":"15"
         }
       ]
     }
@@ -2911,8 +2911,8 @@ curl -H "Content-Type: application/json" -d '{
         { 
           "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1",          
           "entityLabel":"product",
-          "startPos":"13",
-          "endPos":"15"
+          "startPosition":"13",
+          "endPosition":"15"
         }
       ]
     }' -X PUT https://domain.comm100.com/api/v3/chatbot/questions/4487fc9d-92e6-4487-a2e8-92e68d6892e6
@@ -2930,8 +2930,8 @@ Response
         "id":"892e6c9d-92e6-4487-a2e8-92e68d6892e6", 
         "entityId":"92e6fc9d-92e6-4487-a2e8-92e68d6892e1",          
         "entityLabel":"product",
-        "startPos":"13",
-        "endPos":"15"
+        "startPosition":"13",
+        "endPosition":"15"
       }
     ]
   }
@@ -3003,8 +3003,8 @@ Response
           "name": "product",          
         },
         "entityLabel":"product",
-        "startPos":"11",
-        "endPos":"13"
+        "startPosition":"11",
+        "endPosition":"13"
       }
     ]
   }  
@@ -3458,7 +3458,7 @@ Response
     "id":"dawda111-92e6-4487-a2e8-92e68d6892e6",
     "signInMessage": "Please Login",
     "signInButtonText": "Login",
-    "methord": "SSO"  
+    "methord": "sso"  
   }
 ``` 
 
@@ -5423,7 +5423,7 @@ Response
         "authenticationRequest":{
           "signInMessage": "Please Login",
           "signInButtonText": "Login",
-          "methord": "SSO"  
+          "methord": "sso"  
         }
       } 
     }
@@ -8974,8 +8974,8 @@ Content-Type:  application/json
   | `ifIncludeCannedMessage` | bool  | no | yes | true | suggestion source including canned message |
   | `ifIncludeKnowledgeBase` | bool  | no | yes | false | suggestion source including knowledge base |
   | `ifIncludeChatbot` | bool  | no | yes | false | suggestion source including ai bot |
-  | `selectedKnowledgeBase` | Guid[]  | no | yes | | id of knowledge base array |
-  | `selectedChatbot` | Guid[]  | no | yes | | id of ai bot array |
+  | `selectedKnowledgeBases` | Guid[]  | no | yes | | id of knowledge base array |
+  | `selectedChatbots` | Guid[]  | no | yes | | id of ai bot array |
   | `highConfidenceScore` | integer  | no | yes | 60 | Agent Assist will display suggestions only when the score of the suggested item is higher than this value. must between 1 and 100  |
   | `maximumSuggestionNumber` | integer  | no | yes | 3 | display at most suggestions. available value: 1, 2, 3, 4, 5 |
   | `ifAddVisitorQuestionAsSimilarQuestion` | bool  | no | yes | true | Automatically add visitor questions as similar questions of the suggested canned messages or KB articles that agents chose to send. |
@@ -9010,8 +9010,8 @@ Content-Type:  application/json
   "ifIncludeCannedMessage": true,
   "ifIncludeKnowledgeBase":false,
   "ifIncludeChatbot":true,
-  "selectedKnowledgeBase":[],
-  "selectedChatbot":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
+  "selectedKnowledgeBases":[],
+  "selectedChatbots":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
   "highConfidenceScore":60,
   "maximumSuggestionNumber":5,
   "ifAddVisitorQuestionAsSimilarQuestion":true,
@@ -9038,8 +9038,8 @@ example:
     "ifIncludeCannedMessage": true,
     "ifIncludeKnowledgeBase":false,
     "ifIncludeChatbot":true,
-    "selectedKnowledgeBase":[],
-    "selectedChatbot":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
+    "selectedKnowledgeBases":[],
+    "selectedChatbots":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
     "highConfidenceScore":60,
     "maximumSuggestionNumber":5,
     "ifAddVisitorQuestionAsSimilarQuestion":true,
@@ -9060,8 +9060,8 @@ curl -H "Content-Type: application/json" -d '{
     "ifIncludeCannedMessage": true,
     "ifIncludeKnowledgeBase":false,
     "ifIncludeChatbot":true,
-    "selectedKnowledgeBase":[],
-    "selectedChatbot":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
+    "selectedKnowledgeBases":[],
+    "selectedChatbots":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
     "highConfidenceScore":60,
     "maximumSuggestionNumber":5,
     "ifAddVisitorQuestionAsSimilarQuestion":true,
@@ -9082,8 +9082,8 @@ Location: https://domain.comm100.com/api/v3/agentAssist
     "ifIncludeCannedMessage": true,
     "ifIncludeKnowledgeBase":false,
     "ifIncludeChatbot":true,
-    "selectedKnowledgeBase":[],
-    "selectedChatbot":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
+    "selectedKnowledgeBases":[],
+    "selectedChatbots":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
     "highConfidenceScore":60,
     "maximumSuggestionNumber":5,
     "ifAddVisitorQuestionAsSimilarQuestion":true,
@@ -9110,8 +9110,8 @@ example:
     "ifIncludeCannedMessage": true,
     "ifIncludeKnowledgeBase":false,
     "ifIncludeChatbot":true,
-    "selectedKnowledgeBase":[],
-    "selectedChatbot":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
+    "selectedKnowledgeBases":[],
+    "selectedChatbots":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
     "highConfidenceScore":60,
     "maximumSuggestionNumber":5,
     "ifAddVisitorQuestionAsSimilarQuestion":true,
@@ -9133,8 +9133,8 @@ curl -H "Content-Type: application/json" -d '{
     "ifIncludeCannedMessage": true,
     "ifIncludeKnowledgeBase":false,
     "ifIncludeChatbot":true,
-    "selectedKnowledgeBase":[],
-    "selectedChatbot":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
+    "selectedKnowledgeBases":[],
+    "selectedChatbots":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
     "highConfidenceScore":60,
     "maximumSuggestionNumber":5,
     "ifAddVisitorQuestionAsSimilarQuestion":true,
@@ -9154,8 +9154,8 @@ Response
     "ifIncludeCannedMessage": true,
     "ifIncludeKnowledgeBase":false,
     "ifIncludeChatbot":true,
-    "selectedKnowledgeBase":[],
-    "selectedChatbot":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
+    "selectedKnowledgeBases":[],
+    "selectedChatbots":["f9928d68-92e6-4487-a2e8-8234fc9d1f48"],
     "highConfidenceScore":60,
     "maximumSuggestionNumber":5,
     "ifAddVisitorQuestionAsSimilarQuestion":true,
@@ -9390,8 +9390,8 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | - | 
-  | `id` | Guid  | N/A | N/A | |id of the Canned Message |
-  | `title` | string  | N/A | N/A | |title of the Canned Message |
+  | `id` | Guid  | N/A | yes | |id of the Canned Message |
+  | `title` | string  | N/A | yes | |title of the Canned Message |
   | `content` | string  | N/A | N/A | |the content of the Canned Message |
 
 ### Knowledge Base Suggestion Content
@@ -9399,18 +9399,23 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post |Default | Description |    
   | - | - | :-: | :-: | :-: | - | 
-  | `id` | Guid  | N/A | N/A | |id of the knowledge Base |
-  | `articleId` | Guid  | N/A | N/A | |articleId is the article of knowledge Base |
-  | `title` | string  | N/A | N/A | |title of the article |
+  | `id` | Guid  | N/A | yes | |id of the knowledge Base |
+  | `articleId` | Guid  | N/A | yes | |articleId is the article of knowledge Base |
+  | `title` | string  | N/A | yes | |title of the article |
+  | `content` | string  | N/A | N/A | |the content of the article |
+  | `url` | string  | N/A | N/A | |the content of the article |
+  | `textBeforeKBArticle` | string  | N/A | N/A | | the message before knowledge base article link |
 
 ### Chatbot Suggestion Content
   Chatbot Suggestion Content is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default |Description |    
   | - | - | :-: | :-: | :-: | - | 
-  | `id` | Guid  | N/A | N/A | |id of the Ai Bot |
-  | `intentId` | Guid  | N/A | N/A | |id of the intent |
-  | `intentName` | string  | N/A | N/A | |name of the intent |
+  | `id` | Guid  | N/A | yes | |id of the Bot |
+  | `intentId` | Guid  | N/A | yes | |id of the intent |
+  | `intentName` | string  | N/A | yes | |name of the intent |
+  | `content` | string  | N/A | N/A | |the content of the intent answers |
+
 
 ### AgentAssistLearningQuestionsResponse  
 LearningQuestionsResponse is represented as simple flat JSON objects with the following keys:  
@@ -9695,6 +9700,7 @@ HTTP/1.1 204 No Content
 
 # Agent Assist Suggestion
   + `POST /api/v3/agentAssist/questionSuggestions` -[Query question suggestions by agent assist](#query-question-suggestions-by-agent-assist)
+  + `POST /api/v3/agentAssist/questionSuggestions:click` -[Question suggestions clicked by agent](#question-suggestions-clicked-by-agent)
 
 ## Agent Assist Suggestion Related Object Json Format
 
@@ -9703,8 +9709,9 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | - | 
-  | `id` | string  | N/A | yes |  | the unique id of the question |
+  | `id` | Guid  | N/A | yes |  | the unique id of the question |
   | `question` | string  | N/A | yes | | the question visitor asked. |
+  | `campaignId` | Guid  | N/A | yes | | the campaign id |
 
 ### Suggestion
 
@@ -9727,6 +9734,15 @@ HTTP/1.1 204 No Content
   | `ifMatch` | bool  | N/A | N/A | false | if the suggestion score greater than highConfidenceScore then true, otherwise false |
   | `suggestions` | [Suggestion](#suggestion)[] | N/A | N/A | | array of [Suggestion](#suggestion) Object |
 
+### ClickedQuestionSuggestion
+
+  ClickedQuestionSuggestion is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `question` | string  | N/A | N/A | | the question visitor asked. |
+  | `clickedSuggestion` | [Suggestion](#suggestion) | N/A | N/A | | |
+
 ## Agent Assist Suggestion Endpoints
 ### Query question suggestions by agent assist
 
@@ -9743,11 +9759,13 @@ example:
   [ 
     {
       "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
-      "question": "how to use livechat?"
+      "question": "how to use livechat?",
+      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
     },
     {
       "id": "fff4sad2-92e6-4487-a2e8-8234fc9d1f48",
-      "question": "what is comm100 livechat about?"
+      "question": "what is comm100 livechat about?",
+      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
     }
   ]
 ```
@@ -9761,11 +9779,13 @@ Using curl
 curl -H "Content-Type: application/json" -d '[ 
     {
       "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
-      "question": "how to use livechat?"
+      "question": "how to use livechat?",
+      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
     },
     {
       "id": "fff4sad2-92e6-4487-a2e8-8234fc9d1f48",
-      "question": "what is comm100 livechat about?"
+      "question": "what is comm100 livechat about?",
+      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
     }
   ]' -X POST https://domain.comm100.com/api/v3/agentAssist/questionSuggestions
 ```
@@ -9791,11 +9811,64 @@ Content-Type:  application/json
         "content": {
           "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
           "intentId":"saw54s23-92e6-4487-a2e8-8234fc9d1f48",
-          "intentName": "comm100 livechat"
+          "intentName": "comm100 livechat",
+          "content":""
         },
         "score": 88.5
       }
     ]
   }
 ]
+```
+### Question suggestions clicked by agent
+
+  `POST /api/v3/agentAssist/questionSuggestions:click`
+ 
+#### Parameters
+
+Request body
+
+The request body contains data with the [ClickedQuestionSuggestion](#ClickedQuestionSuggestion) structure
+
+example:
+  ```json
+  {
+    "question": "what is comm100 livechat about?",
+    "clickedSuggestion": {
+      "type": "chatbot",
+      "content": {
+        "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+        "intentId":"saw54s23-92e6-4487-a2e8-8234fc9d1f48",
+        "intentName": "comm100 livechat",
+        "content":""
+      },
+      "score": 88.5
+    }    
+  }
+```
+ 
+#### Response
+HTTP/1.1 200 OK
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "question": "what is comm100 livechat about?",
+    "clickedSuggestion": {
+      "type": "chatbot",
+      "content": {
+        "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+        "intentId":"saw54s23-92e6-4487-a2e8-8234fc9d1f48",
+        "intentName": "comm100 livechat",
+        "content":""
+      },
+      "score": 88.5
+    }    
+  }' -X POST https://domain.comm100.com/api/v3/agentAssist/questionSuggestions:click
+```
+Response
+```json
+HTTP/1.1 200 OK
+
 ```
