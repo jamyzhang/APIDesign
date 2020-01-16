@@ -1994,7 +1994,7 @@ Field is represented as simple flat json objects with the following keys:
 |`entityLabel` | string | | no | no | | label to distinguish same entity marked on one question. |
 |`isRequired` | bool | | no | yes | false | it marks whether the field appear on the form is required or not. |
 |`isMasked` | bool | | no | yes | false | if this is true,visitor's information will replaced by anonymous symbol in chat logs. |
-|`options` | string[] | | no | no | | an array of of string when the fieldType is `dropDownList` ,`checkBoxList`|
+|`options` | string[] | | no | no | | an array of of string when the fieldType is `radioBox` ,`dropDownList` ,`checkBoxList`|
 |`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### FieldValue Object
@@ -7831,7 +7831,7 @@ LearningQuestionsResponse is represented as simple flat JSON objects with the fo
   |Name| Type| Read-only For Put | Mandatory For Post | Default | Description     | 
   | - | - | :-: | :-: | :-: | - | 
   | `totalCount` | integer   | N/A | N/A | | total rows of Learning Questions |
-  | `value` | [LearningQuestion](#learningquestion)[] | N/A | N/A | | list of [LearningQuestion](#learningquestion) Object |
+  | `list` | [LearningQuestion](#learningquestion)[] | N/A | N/A | | list of [LearningQuestion](#learningquestion) Object |
 
 ## Learning Question Endpoints
 ### Get all learning questions of a bot
@@ -7852,8 +7852,8 @@ Query string
   | `include` | string | no  | | Available value: `intent` |
   | `timeFrom` | string | yes  |  |  |
   | `timeTo` | string | yes  |  | |
-  | `page` | integer | no  | 0 | page number |
-  | `pageSize` | integer | no | 100 | page size  |
+  | `pageIndex` | integer | no  |  1 | page index |
+  | `pageSize` | integer | no  | 10 | page size  |
   | `keyword` | string | no  | | search by keyword |
   | `minScore` | float | no  |  | search the data if topScore >= minScore |
 
@@ -7874,7 +7874,7 @@ Response
 
   {
     "totalCount": 100,
-    "value": [
+    "list": [
       {
         "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
         "type":"noAnswer", 
@@ -9423,7 +9423,7 @@ LearningQuestionsResponse is represented as simple flat JSON objects with the fo
   |Name| Type| Read-only For Put | Mandatory For Post | Default |Description     | 
   | - | - | :-: | :-: | :-: | - | 
   | `totalCount` | integer   | N/A | N/A | |total rows of Learning Questions |
-  | `value` | [AgentAssistLearningQuestion](#agent-assist-learning-question)[] | N/A | N/A | |list of [AgentAssistLearningQuestion](#agent-assist-learning-question) Object |
+  | `list` | [AgentAssistLearningQuestion](#agent-assist-learning-question)[] | N/A | N/A | |list of [AgentAssistLearningQuestion](#agent-assist-learning-question) Object |
 
 ## Agent Assist  learning Question Endpoints
 ### Get agent assist learning questions by filters
@@ -9437,8 +9437,8 @@ Query string
   | - | - | - | - | - | 
   | `timeFrom` | string | yes  | |   |
   | `timeTo` | string | yes  | |  |  
-  | `page` | integer | no  |  0 | page number |
-  | `pageSize` | integer | no  | 100 | page size  |
+  | `pageIndex` | integer | no  |  1 | page index |
+  | `pageSize` | integer | no  | 10 | page size  |
   | `keyword` | string | no  | | search by keyword |
   | `minScore` | float | no  |  |search the data if score >= minScore |
 
@@ -9457,7 +9457,7 @@ Response
 
   {
     "totalCount": 100,
-    "value": [
+    "list": [
       {
         "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
         "type":"unidentified", 
