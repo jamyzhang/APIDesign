@@ -6356,7 +6356,7 @@ Response
   | `id` | Guid | | yes | N/A | | id of the smart trigger. |
   | `name` | string | | no | yes | |name of smart trigger. |
   | `isEnabled` | bool | | no | no | false | smartTriggers if is enabled. the default value is false.|
-  | `conditionExpressionType` | string | | no | no | | the relationship between condition.  enum: `and`,`or`,`expression`|
+  | `conditionExpressionType` | string | | no | no | | the relationship between condition.  enum: `all`,`any`,`logicalExpression`|
   | `logicalExpression` | string | | no | no | | A formula to calculate exp:(1 or 2) and 3  |
   | `conditions` |  [Condition](#condition-object)[] | yes | no | no | | Available only when conditions are included |
   | `actions` | [Action](#action)[] | yes | no | no | | Available only when actions are included |
@@ -6379,7 +6379,7 @@ Response
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `id` | Guid | yes | N/A | | id of the smart trigger. |
-  | `type` | string | no | yes | | the type of the action. enum:[`notification`,`monitor`,`transfer`,`changeAssignee`,`segment`]|
+  | `type` | string | no | yes | | the type of the action. enum:[`sendNotification`,`autoMonitor`,`transferChat`,`changeAssignee`,`addToSegment`]|
   | `isEnabled` | bool | no | yes | false | action if is enabled. |  
   | `agentOfflineMessage` | string | no | no | | agent offlineMessage prompt message |
   | `targetType` | string | no | yes | | The trigger action target type. enum: `department`, `agent`, `visitorSegment`. |
@@ -6423,7 +6423,7 @@ Response
       "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
       "name":"Transfer to Sales", 
       "isEnabled": true,
-      "conditionExpressionType": "and",
+      "conditionExpressionType": "all",
       "logicalExpression": "",      
       "order": 0,
     },
@@ -6431,7 +6431,7 @@ Response
       "id": "sadwdw12-92e6-4487-a2e8-92e68d6892e6",
       "name":"Transfer to Customer Service", 
       "isEnabled": true,
-      "conditionExpressionType": "and",
+      "conditionExpressionType": "any",
       "logicalExpression": "",      
       "order": 1,
     }
@@ -6466,7 +6466,7 @@ Response
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Sales", 
     "isEnabled": true,
-    "conditionExpressionType": "and",
+    "conditionExpressionType": "all",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6480,7 +6480,7 @@ Response
     "actions": [
       {
         "id": "22wfe21d-92e6-4487-a2e8-92e68d6892e6",
-        "type":"transfer", 
+        "type":"transferChat", 
         "isEnabled": true,
         "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
         "targetType": "department",
@@ -6511,7 +6511,7 @@ example:
   {
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "conditionExpressionType": "and",
+    "conditionExpressionType": "all",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6523,7 +6523,7 @@ example:
     ],
     "actions": [
       {
-        "type":"transfer", 
+        "type":"transferChat", 
         "isEnabled": true,
         "agentOfflineMessage": "No one on the Technical Support team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
         "targetType": "department",
@@ -6544,7 +6544,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "conditionExpressionType": "and",
+    "conditionExpressionType": "all",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6556,7 +6556,7 @@ curl -H "Content-Type: application/json" -d '{
     ],
     "actions": [
       {
-        "type":"transfer", 
+        "type":"transferChat", 
         "isEnabled": true,
         "agentOfflineMessage": "No one on the Technical Support team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
         "targetType": "department",
@@ -6576,7 +6576,7 @@ Location: https://domain.comm100.com/api/v3/chatbot/smartTriggers/de3fe21d-92e6-
     "id":"de3fe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "conditionExpressionType": "and",
+    "conditionExpressionType": "all",
     "logicalExpression": "",    
     "order": 0,
   }
@@ -6603,7 +6603,7 @@ example:
     "id": "mm2fe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "conditionExpressionType": "or",
+    "conditionExpressionType": "any",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6623,7 +6623,7 @@ example:
     "actions": [
       {
         "id":"dasvbh1-92e6-4487-a2e8-92e68d6892e6",   //update
-        "type":"transfer", 
+        "type":"transferChat", 
         "isEnabled": true,
         "agentOfflineMessage": "No one on the Technical Support team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
         "targetType": "department",
@@ -6644,7 +6644,7 @@ curl -H "Content-Type: application/json" -d '{
     "id": "mm2fe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "conditionExpressionType": "or",
+    "conditionExpressionType": "any",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6664,7 +6664,7 @@ curl -H "Content-Type: application/json" -d '{
     "actions": [
       {
         "id":"dasvbh1-92e6-4487-a2e8-92e68d6892e6",   //update
-        "type":"transfer", 
+        "type":"transferChat", 
         "isEnabled": true,
         "agentOfflineMessage": "No one on the Technical Support team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
         "targetType": "department",
@@ -6683,7 +6683,7 @@ Response
     "id": "mm2fe21d-92e6-4487-a2e8-92e68d6892e6",
     "name":"Transfer to Technical Support", 
     "isEnabled": true,
-    "conditionExpressionType": "or",
+    "conditionExpressionType": "any",
     "logicalExpression": "",
     "conditions": [
       {
@@ -6704,7 +6704,7 @@ Response
     "actions": [
       {
         "id":"dasvbh1-92e6-4487-a2e8-92e68d6892e6",
-        "type":"transfer", 
+        "type":"transferChat", 
         "isEnabled": true,
         "agentOfflineMessage": "No one on the Technical Support team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
         "targetType": "department",
@@ -7042,7 +7042,7 @@ Response
   [
     {
       "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
-      "type":"transfer", 
+      "type":"transferChat", 
       "isEnabled": true,
       "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
       "targetType": "department",
@@ -7077,7 +7077,7 @@ Response
   
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
-    "type":"transfer", 
+    "type":"transferChat", 
     "isEnabled": true,
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
@@ -7103,7 +7103,7 @@ The request body contains data with the [Action](#action) structure
 example:
   ```json 
   {
-    "type":"transfer", 
+    "type":"transferChat", 
     "isEnabled": true,
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
@@ -7118,7 +7118,7 @@ the response is: [Action](#action) Objects
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "type":"transfer", 
+    "type":"transferChat", 
     "isEnabled": true,
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
@@ -7133,7 +7133,7 @@ Location: https://domain.comm100.com/api/v3/chatbot/smartTriggerActions/dawfe21d
 
   {
     "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
-    "type":"transfer", 
+    "type":"transferChat", 
     "isEnabled": true,
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
@@ -7162,7 +7162,7 @@ example:
   ```json 
   {
     "id":"jjtewsdw-92e6-4487-a2e8-92e68d6892e6",
-    "type":"transfer", 
+    "type":"transferChat", 
     "isEnabled": true,
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
@@ -7178,7 +7178,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "id":"jjtewsdw-92e6-4487-a2e8-92e68d6892e6",
-    "type":"transfer", 
+    "type":"transferChat", 
     "isEnabled": true,
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
@@ -7192,7 +7192,7 @@ Response
   
   {
     "id":"jjtewsdw-92e6-4487-a2e8-92e68d6892e6",
-    "type":"transfer", 
+    "type":"transferChat", 
     "isEnabled": true,
     "agentOfflineMessage": "No one on the Sales team is currently online. Please leave us a message and we'll get back to you as soon as possible.",
     "targetType": "department",
