@@ -102,7 +102,7 @@ You need `Manage Settings` permission to config for a site.
 + `GET /api/v3/livechat/sessions` - [Get a list of sessions](#get-site-campaigns) include visitor, contact
 + `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-campaign) include visitor, contact
 
-## Chat
+# Chat
 
 + `GET /api/v3/livechat/chats` - [Get a list of chats](#get-site-campaigns) include department,agent , chatbot, campaign,autoInvitation
 + `GET /api/v3/livechat/sessions/{sessionId}/chats` - [Get a list of chats in a session](#get-site-campaigns)  include department,agent , chatbot, campaign,autoInvitation
@@ -110,7 +110,7 @@ You need `Manage Settings` permission to config for a site.
 + `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat by id](#get-a-campaign)
 + `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#get-a-campaign)
 
-## Offline Message
+# Offline Message
 
 + `GET /api/v3/livechat/offlineMessages` - [Get a list of offlineMessages](#get-site-campaigns)  include department,agent, campaign,autoInvitation
 + `GET /api/v3/livechat/sessions/{sessionId}/offlineMessages` - [Get a list of offlineMessages in a session](#get-site-campaigns)  include department,agent, campaign,autoInvitation
@@ -118,7 +118,7 @@ You need `Manage Settings` permission to config for a site.
 + `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offlineMessage by id](#get-a-campaign)
 + `DELETE /api/v3/livechat/offlineMessages` - [Batch Delete offlineMessages](#get-a-campaign)
 
-## Campaign
+# Campaign
 
 + `GET /api/v3/livechat/campaigns` - [Get a list of campaigns](#get-site-campaigns)
 + `GET /api/v3/livechat/campaigns/{id}` - [Get a campaign by id](#get-a-campaign)
@@ -126,46 +126,46 @@ You need `Manage Settings` permission to config for a site.
 + `PUT /api/v3/livechat/campaigns/{id}` - [Update a campaign](#update-a-campaign) 
 + `DELETE /api/v3/livechat/campaigns/{id}` - [Delete a campaign](#delete-a-campaign)
 
-## Installation Code
+# Installation Code
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/installationCode` - [Get installation code of a campaign](#get-site-info)
 
-## Chat Button
+# Chat Button
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Get settings of ChatButton for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Update settings of ChatButton for a campaign](#update-site-info)
 
-## Chat Window
+# Chat Window
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/chatWindow` - [Get settings of ChatWindow for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/chatWindow` - [Update settings of ChatWindow for a campaign](#update-site-info)
 
-## Pre-Chat
+# Pre-Chat
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/preChat` - [Get settings of Pre-Chat for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/preChat` - [Update settings of Pre-Chat for a campaign](#update-site-info)
 
-## Post Chat
+# Post Chat
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/postChat` - [Get settings of PostChat for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/postChat` - [Update settings of PostChat for a campaign](#update-site-info)
 
-## Campaign Offline Message
+# Campaign Offline Message
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage` - [Get settings of OfflineMessage for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/offlineMessage` - [Update settings of OfflineMessage for a campaign](#update-site-info)
 
-## Invitation
+# Invitation
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/invitation ` - [Get settings of invitation  for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/invitation ` - [Update settings of invitation  for a campaign](#update-site-info)
 
-## Manual Invitation
+# Manual Invitation
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation ` - [Get settings of manual invitation  for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation ` - [Update settings of manual invitation  for a campaign](#update-site-info)
 
-## Auto Invitation
+# Auto Invitation
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Get a list of auto invitations](#get-site-info)
 + `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get an auto invitation by id](#get-site-info)
@@ -173,22 +173,22 @@ You need `Manage Settings` permission to config for a site.
 + `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update an auto invitation](#update-site-info) 
 + `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete an auto invitation](#delete-a-customer-segment)
 
-## Agent Wrap-Up
+# Agent Wrap-Up
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup ` - [Get settings of agent wrap-Up  for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/agentWrapup ` - [Update settings of agent wrap-Up  for a campaign](#update-site-info)
 
-## Language
+# Language
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/language ` - [Get settings of language for a campaign](#get-site-info)
 + `PUT /api/v3/livechat/campaigns/{campaignId}/language ` - [Update settings of language for a campaign](#update-site-info)
 
-## Routing
+# Routing
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/routing ` - [Get settings of routing for a campaign](#get-site-info) include department, agent
 + `PUT /api/v3/livechat/campaigns/{campaignId}/routing ` - [Update settings of routing for a campaign](#update-site-info)
 
-## Custom Rule
+# Custom Rule
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-site-info) include department, agent
 + `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Get a custom rule by id](#get-site-info) include department, agent
@@ -196,17 +196,17 @@ You need `Manage Settings` permission to config for a site.
 + `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Update a custom rule](#update-site-info) 
 + `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Delete a custom rule](#delete-a-customer-segment)
 
-## Chatbot Integration
+# Chatbot Integration
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration ` - [Get settings of Chatbot Integration for a campaign](#get-site-info) include chatbot
 + `PUT /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration ` - [Update settings of Chatbot Integration for a campaign](#update-site-info)
 
-## KB Integration
+# KB Integration
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration ` - [Get settings of KB Integration for a campaign](#get-site-info) include knowledgeBase
 + `PUT /api/v3/livechat/campaigns/{campaignId}/kbIntegration ` - [Update settings of KB Integration for a campaign](#update-site-info)
 
-## Campaign Form Field
+# Campaign Form Field
 
 + `GET /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Get a list of form fields of Pre-Chat for a campaign](#get-site-info)
 + `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Create a form field of Pre-Chat for a campaign](#update-site-info)
@@ -220,7 +220,7 @@ You need `Manage Settings` permission to config for a site.
 + `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field) 
 + `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
-## Ban
+# Ban
 
 + `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
 + `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
@@ -228,7 +228,7 @@ You need `Manage Settings` permission to config for a site.
 + `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban) 
 + `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
 
-## Conversion Action
+# Conversion Action
 
 + `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-site-campaigns) include customVariable, agent
 + `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include customVariable, agent
@@ -236,7 +236,7 @@ You need `Manage Settings` permission to config for a site.
 + `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign) 
 + `POST /api/v3/livechat/conversionActions:achieved`[Make api conversion succesful](#make-api-conversion-succesful) 
 
-## Secure Form
+# Secure Form
 
 + `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-site-secure-forms)
 + `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
@@ -244,7 +244,7 @@ You need `Manage Settings` permission to config for a site.
 + `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form) 
 + `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
 
-## Custom Variable
+# Custom Variable
 
 + `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-site-custom-variables)
 + `GET /api/v3/livechat/campacustomVariablesigns/{id}` - [Get a custom variable by id](#get-a-custom-variable)
@@ -252,7 +252,7 @@ You need `Manage Settings` permission to config for a site.
 + `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable)
 + `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
 
-## Webhook
+# Webhook
 
 + `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-site-webhooks)
 + `GET /api/v3/livechat/webhooks/{id}` - [Get a webhook by id](#get-a-webhook)
