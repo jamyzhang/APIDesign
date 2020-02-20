@@ -87,7 +87,7 @@
 
 # Contact
 ?? 根据ssoId 查询 contact (查看 zendesk api)
-  + `GET /api/v3/globalSettings/contacts` - [Get a list of contacts in site](#get-all-contacts)
+  + `GET /api/v3/globalSettings/contacts` - [Get a list of contacts in site](#get-all-contacts)  通过 query string 来实现复杂查询
   + `GET /api/v3/globalSettings/contacts/{id}` - [Get a contact by id](#get-an-contact)
   + `POST /api/v3/globalSettings/contacts` - [create a new contact](#get-all-agents)
   + `PUT /api/v3/globalSettings/contacts/{id}` - [update a contact](#get-all-agents)
@@ -153,9 +153,8 @@
 
 # Visitor SSO  
   //ER修改: 证书不用File 用string
-  //todo: 查看最新的ER (Terry)
-  + `GET /api/v3/globalSettings/visitorSSO` - [Get Visitor SSO](#get-an-agent)  include campaign
-  + `PUT /api/v3/globalSettings/visitorSSO` - [update Visitor SSO](#get-all-agents)
+  + `GET /api/v3/globalSettings/visitorSSO` - [Get Visitor SSO](#get-visitor-sso)  include campaign
+  + `PUT /api/v3/globalSettings/visitorSSO` - [update Visitor SSO](#update-visitor-sso)
  
 # Audit Log
   + `GET /api/v3/globalSettings/auditLogs` - [Get audit logs list](#get-an-agent) include agent

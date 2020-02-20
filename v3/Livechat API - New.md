@@ -10,37 +10,37 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 # Summary
   - Live Chat      
-    - [live chat settings](#live-chat-settings) Get, PUT
-       - [auto distribution](#auto-distribution) GET PUT
-       - [auto translation](#auto-translation) GET PUT
+    - [live chat settings](#live-chat-settings)
+       - [auto distribution](#auto-distribution)
+       - [auto translation](#auto-translation)
        - [customer segmentation](#customer-segmentation)
-          - [customer segment](#customer-segment) POST GET PUT DELETE
-       - [dynamic campaign](#dynamic-campaign) GET PUT
-          - [dynamic campaign rule](#dynamic-campaign-rule) POST GET PUT DELETE
-       - [mobile push](#mobile-push) GET PUT
-       - [integration](#integration) GET PUT
-    - [session](#session) GET GetById include visitor, chat, offlinemessage 
-    - [chat](#chat) GET GetById Delete BatchDelete  include agent , campaign,autoInvitation, offlineMessage
-    - [offline message](#offline-message)  GET GetById Delete BatchDelete include department, agent, autoInvitation, campaign
-    - [campaign](#campaign) GET POST PUT DELETE
-       - [chat button](#chat-button) 1对1 GET PUT
-       - [chat window](#chat-window) 1对1  GET PUT
-       - [pre-chat](#pre-chat) 1对1 GET PUT
+          - [customer segment](#customer-segment)
+       - [dynamic campaign](#dynamic-campaign)
+          - [dynamic campaign rule](#dynamic-campaign-rule)
+       - [mobile push](#mobile-push)
+       - [integration](#integration)
+    - [session](#session)  
+    - [chat](#chat) 
+    - [offline message](#offline-message)  
+    - [campaign](#campaign) 
+       - [chat button](#chat-button) 
+       - [chat window](#chat-window) 
+       - [pre-chat](#pre-chat)
           - [campaign form field](#campaign-form-field)
-       - [post chat](#post-chat) 1对1 GET PUT
+       - [post chat](#post-chat) 
           - [campaign form field](#campaign-form-field)
-       - [offline message](#offline-message) 1对1 GET PUT
+       - [offline message](#offline-message)
           - [campaign form field](#campaign-form-field)
-       - [invitation](#invitation) 1对1 GET PUT
-          - [manual invitation](#manual-invitation) 1对1 GET PUT
-          - [auto invitation](#auto-invitation) GET POST PUT DELETE
-       - [agent wrap-up](#agent-wrap-up) 1对1 GET PUT
+       - [invitation](#invitation) 
+          - [manual invitation](#manual-invitation) 
+          - [auto invitation](#auto-invitation) 
+       - [agent wrap-up](#agent-wrap-up) 
           - [campaign form field](#campaign-form-field)
-       - [language](#language) GET PUT
-       - [routing](#routing) 1对1 GET PUT
+       - [language](#language)
+       - [routing](#routing) 
           - [custom rule](#custom-rule) 
-       - [chatbot integration](#chatbot-integration)  include chatbot GET PUT
-       - [KB integration](#kb-integration) include kb  GET PUT
+       - [chatbot integration](#chatbot-integration) 
+       - [KB integration](#kb-integration)
     - [campaign form field](#campaign-form-field) 
     - [ban](#ban)  
     - [conversion action](#conversion-action)
@@ -99,6 +99,11 @@ You need `Manage Settings` permission to config for a site.
   + `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors)
   + `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors)  
 
+# Online Agent  //修改ER
+  // 从chatserver 获取当前 visitor
+  + `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors)
+  + `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors)  
+
 
 # Session  
   ??Todo: api 和 include 如何设计， 感觉这个是多余的
@@ -126,6 +131,9 @@ You need `Manage Settings` permission to config for a site.
   + `POST /api/v3/livechat/campaigns` - [Create a campaign](#get-a-campaign)
   + `PUT /api/v3/livechat/campaigns/{id}` - [Update a campaign](#update-a-campaign) 
   + `DELETE /api/v3/livechat/campaigns/{id}` - [Delete a campaign](#delete-a-campaign)
+
+# Installation Code
+  + `GET /api/v3/livechat/campaigns/{campaignId}/installationCode` - [Get installation code of a campaign](#get-site-info)
 
 # Chat Button
   + `GET /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Get settings of ChatButton for a campaign](#get-site-info)
@@ -175,7 +183,6 @@ You need `Manage Settings` permission to config for a site.
   + `PUT /api/v3/livechat/campaigns/{campaignId}/routing ` - [Update settings of routing for a campaign](#update-site-info)
 
 # Custom Rule
- ?? todo : 需要include吗？
   + `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-site-info) include department, agent
   + `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Get a custom rule by id](#get-site-info) include department, agent
   + `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Create a custom rule](#get-site-info)
@@ -211,12 +218,10 @@ You need `Manage Settings` permission to config for a site.
   + `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
 
 # Conversion Action
-?? todo achieved api 是什么意思
   + `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-site-campaigns) include customVariable, agent
   + `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include customVariable, agent
   + `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#get-a-campaign)
   + `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign) 
-  + `DELETE /api/v3/livechat/conversionActions/{id}` - [Delete a conversion action](#delete-a-campaign)
   + `POST /api/v3/livechat/conversionActions:achieved`[Make api conversion succesful](#make-api-conversion-succesful) 
 
 # Secure Form
