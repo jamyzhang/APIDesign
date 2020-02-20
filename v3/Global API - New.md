@@ -1,4 +1,4 @@
-﻿# Global RestFUL API
+﻿# Global Restfull API
 <div>
 
   | Change Version | API Version | Change nots | Change Date | Author |
