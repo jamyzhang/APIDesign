@@ -4,7 +4,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 <div>
 
-  | Change Version | API Version | Change notesxx | Change Date | Author |
+  | Change Version | API Version | Change notes | Change Date | Author |
   | - | - | - | - | - |
   | 1.0 | v3 |  | 2020-02-17 | Michael |
 

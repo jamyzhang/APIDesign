@@ -1,7 +1,7 @@
 ﻿# Global Restfull API
 <div>
 
-  | Change Version | API Version | Change nots | Change Date | Author |
+  | Change Version | API Version | Change notes | Change Date | Author |
   | - | - | - | - | - |
   | 1.0 | v3 |  | 2020-02-17 | Hardy |
 
