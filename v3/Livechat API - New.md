@@ -1,249 +1,285 @@
-﻿# Live Chat RestFUL API
+﻿# Live Chat Restful API
 
 Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems.
 
 <div>
 
-  | Change Version | API Version | Change nots | Change Date | Author |
+  | Change Version | API Version | Change notes | Change Date | Author |
   | - | - | - | - | - |
   | 1.0 | v3 |  | 2020-02-17 | Michael |
 
-# Summary
-  - Live Chat      
-    - [live chat settings](#live-chat-settings)
-       - [auto distribution](#auto-distribution)
-       - [auto translation](#auto-translation)
-       - [customer segmentation](#customer-segmentation)
-          - [customer segment](#customer-segment)
-       - [dynamic campaign](#dynamic-campaign)
-          - [dynamic campaign rule](#dynamic-campaign-rule)
-       - [mobile push](#mobile-push)
-       - [integration](#integration)
-    - [session](#session)  
-    - [chat](#chat) 
-    - [offline message](#offline-message)  
-    - [campaign](#campaign) 
-       - [chat button](#chat-button) 
-       - [chat window](#chat-window) 
-       - [pre-chat](#pre-chat)
-          - [campaign form field](#campaign-form-field)
-       - [post chat](#post-chat) 
-          - [campaign form field](#campaign-form-field)
-       - [offline message](#offline-message)
-          - [campaign form field](#campaign-form-field)
-       - [invitation](#invitation) 
-          - [manual invitation](#manual-invitation) 
-          - [auto invitation](#auto-invitation) 
-       - [agent wrap-up](#agent-wrap-up) 
-          - [campaign form field](#campaign-form-field)
-       - [language](#language)
-       - [routing](#routing) 
-          - [custom rule](#custom-rule) 
-       - [chatbot integration](#chatbot-integration) 
-       - [KB integration](#kb-integration)
-    - [campaign form field](#campaign-form-field) 
-    - [ban](#ban)  
-    - [conversion action](#conversion-action)
-    - [secure form](#secure-form)
-    - [custom variable](#custom-variable)  
-    - [webhook](#webhook)      
+## Summary
 
-# Live Chat Settings
+- Live Chat
+  - [live chat settings](#live-chat-settings)
+    - [auto distribution](#auto-distribution)
+    - [auto translation](#auto-translation)
+    - [customer segmentation](#customer-segmentation)
+      - [customer segment](#customer-segment)
+    - [dynamic campaign](#dynamic-campaign)
+      - [dynamic campaign rule](#dynamic-campaign-rule)
+    - [mobile push](#mobile-push)
+  - [integration](#integration)
+  - [session](#session)  
+  - [chat](#chat)
+  - [offline message](#offline-message)  
+  - [campaign](#campaign)
+    - [chat button](#chat-button)
+    - [chat window](#chat-window)
+    - [pre-chat](#pre-chat)
+      - [campaign form field](#campaign-form-field)
+    - [post chat](#post-chat)
+      - [campaign form field](#campaign-form-field)
+    - [offline message](#offline-message)
+      - [campaign form field](#campaign-form-field)
+    - [invitation](#invitation)
+      - [manual invitation](#manual-invitation)
+      - [auto invitation](#auto-invitation)
+    - [agent wrap-up](#agent-wrap-up)
+    - [campaign form field](#campaign-form-field)
+    - [language](#language)
+    - [routing](#routing)
+    - [custom rule](#custom-rule)
+    - [chatbot integration](#chatbot-integration)
+    - [KB integration](#kb-integration)
+  - [campaign form field](#campaign-form-field)
+  - [ban](#ban)  
+  - [conversion action](#conversion-action)
+  - [secure form](#secure-form)
+  - [custom variable](#custom-variable)  
+  - [webhook](#webhook)
+
+## Live Chat Settings
+
 You need `Manage Settings` permission to config for a site.
-  + `GET /api/v3/livechat/liveChatSettings` - [Get livechat settings of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings` - [Update livechat settings of a site](#update-site-info)
 
-# Auto Distribution
-  + `GET /api/v3/livechat/liveChatSettings/autoDistribution` - [Get livechat auto distribution of a site](#get-site-info)  include department, agent
-  + `PUT /api/v3/livechat/liveChatSettings/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
++ `GET /api/v3/livechat/liveChatSettings` - [Get livechat settings of a site](#get-site-info)
++ `PUT /api/v3/livechat/liveChatSettings` - [Update livechat settings of a site](#update-site-info)
 
- # Auto Translation
+## Auto Distribution
+
++ `GET /api/v3/livechat/liveChatSettings/autoDistribution` - [Get livechat auto distribution of a site](#get-site-info)  include department, agent
++ `PUT /api/v3/livechat/liveChatSettings/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
+
+## Auto Translation
+
 You need `Manage Settings` permission to config for a site.
-  + `GET /api/v3/livechat/liveChatSettings/autoTranslation` - [Get livechat auto translation of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings/autoTranslation` - [Update livechat auto translation of a site](#update-site-info) 
 
-# Customer Segmentation
++ `GET /api/v3/livechat/liveChatSettings/autoTranslation` - [Get livechat auto translation of a site](#get-site-info)
++ `PUT /api/v3/livechat/liveChatSettings/autoTranslation` - [Update livechat auto translation of a site](#update-site-info) 
+
+## Customer Segmentation
+
 You need `Manage Settings` permission to config for a site.
-  + `GET /api/v3/livechat/liveChatSettings/customerSegmentation` - [Get livechat customer segmentation of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings/customerSegmentation` - [Update livechat customer segmentation of a site](#update-site-info) 
 
-# Customer Segment
- + `GET /api/v3/livechat/customerSegmentation/customerSegments` - [Get a list of customer segments](#get-site-info)
- + `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-site-info)
- + `POST /api/v3/livechat/customerSegmentation/customerSegments` - [Create a customer segment](#get-site-info)
-  + `PUT /api/v3/livechat/customerSegments/{id}` - [Update a customer segment](#update-site-info) 
-  + `DELETE /api/v3/livechat/customerSegments/{id}` - [Delete a customer segment](#delete-a-customer-segment) 
++ `GET /api/v3/livechat/liveChatSettings/customerSegmentation` - [Get livechat customer segmentation of a site](#get-site-info)
++ `PUT /api/v3/livechat/liveChatSettings/customerSegmentation` - [Update livechat customer segmentation of a site](#update-site-info) 
 
-# Dynamic Campaign
-  + `GET /api/v3/livechat/liveChatSettings/dynamicCampaign` - [Get livechat dynamic campaign of a site](#get-site-info) include campaign
-  + `PUT /api/v3/livechat/liveChatSettings/dynamicCampaign` - [Update livechat dynamic campaign of a site](#update-site-info) 
+## Customer Segment
 
-# Dynamic Campaign Rule
-  + `GET /api/v3/livechat/dynamicCampaign/dynamicCampaignRules` - [Get a list of dynamic campaign rules](#get-site-info) include campaign
-  + `GET /api/v3/livechat/dynamicCampaignRules/{id}` - [Get a dynamic campaign rule by id](#get-site-info)  include campaign
-  + `POST /api/v3/livechat/dynamicCampaign/dynamicCampaignRules` - [Create a dynamic campaign rule](#get-site-info)
-  + `PUT /api/v3/livechat/dynamicCampaignRules/{id}` - [Update a dynamic campaign rule](#update-site-info) 
-  + `DELETE /api/v3/livechat/dynamicCampaignRules/{id}` - [Delete a dynamic campaign rule](#delete-a-customer-segment)
++ `GET /api/v3/livechat/customerSegmentation/customerSegments` - [Get a list of customer segments](#get-site-info)
++ `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-site-info)
++ `POST /api/v3/livechat/customerSegmentation/customerSegments` - [Create a customer segment](#get-site-info)
++ `PUT /api/v3/livechat/customerSegments/{id}` - [Update a customer segment](#update-site-info) 
++ `DELETE /api/v3/livechat/customerSegments/{id}` - [Delete a customer segment](#delete-a-customer-segment) 
 
-# Mobile Push
-  + `GET /api/v3/livechat/liveChatSettings/mobilePush` - [Get livechat mobile push profile of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings/mobilePush` - [Update livechat mobile push profile of a site](#update-site-info)
+## Dynamic Campaign
 
-# Integration
-  + `GET /api/v3/livechat/liveChatSettings/integration` - [Get livechat integration profile of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings/integration` - [Update livechat integration profile of a site](#update-site-info)
++ `GET /api/v3/livechat/liveChatSettings/dynamicCampaign` - [Get livechat dynamic campaign of a site](#get-site-info) include campaign
++ `PUT /api/v3/livechat/liveChatSettings/dynamicCampaign` - [Update livechat dynamic campaign of a site](#update-site-info) 
 
+## Dynamic Campaign Rule
 
-# Online Visitor  //修改ER
++ `GET /api/v3/livechat/dynamicCampaign/dynamicCampaignRules` - [Get a list of dynamic campaign rules](#get-site-info) include campaign
++ `GET /api/v3/livechat/dynamicCampaignRules/{id}` - [Get a dynamic campaign rule by id](#get-site-info)  include campaign
++ `POST /api/v3/livechat/dynamicCampaign/dynamicCampaignRules` - [Create a dynamic campaign rule](#get-site-info)
++ `PUT /api/v3/livechat/dynamicCampaignRules/{id}` - [Update a dynamic campaign rule](#update-site-info) 
++ `DELETE /api/v3/livechat/dynamicCampaignRules/{id}` - [Delete a dynamic campaign rule](#delete-a-customer-segment)
+
+## Mobile Push
++ `GET /api/v3/livechat/liveChatSettings/mobilePush` - [Get livechat mobile push profile of a site](#get-site-info)
++ `PUT /api/v3/livechat/liveChatSettings/mobilePush` - [Update livechat mobile push profile of a site](#update-site-info)
+
+## Integration
++ `GET /api/v3/livechat/liveChatSettings/integration` - [Get livechat integration profile of a site](#get-site-info)
++ `PUT /api/v3/livechat/liveChatSettings/integration` - [Update livechat integration profile of a site](#update-site-info)
+
+## Online Visitor  //修改ER
+
   // 从chatserver 获取当前 visitor
-  + `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors)
-  + `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors)  
++ `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors)
++ `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors)  
 
-# Online Agent  //修改ER
+## Online Agent  //修改ER
+
   // 从chatserver 获取当前 visitor
-  + `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors)
-  + `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors)  
++ `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors)
++ `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors)  
 
+## Session
 
-# Session  
   ??Todo: api 和 include 如何设计， 感觉这个是多余的
   ??session object 不含 chat 和 offlinemessage
-  + `GET /api/v3/livechat/sessions` - [Get a list of sessions](#get-site-campaigns) include visitor, contact
-  + `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-campaign) include visitor, contact
++ `GET /api/v3/livechat/sessions` - [Get a list of sessions](#get-site-campaigns) include visitor, contact
++ `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-campaign) include visitor, contact
 
-# Chat
-  + `GET /api/v3/livechat/chats` - [Get a list of chats](#get-site-campaigns) include department,agent , chatbot, campaign,autoInvitation
-  + `GET /api/v3/livechat/sessions/{sessionId}/chats` - [Get a list of chats in a session](#get-site-campaigns)  include department,agent , chatbot, campaign,autoInvitation
-  + `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-campaign)  include department,agent , chatbot, campaign,autoInvitation
-  + `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat by id](#get-a-campaign)
-  + `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#get-a-campaign)
+## Chat
 
-# Offline Message
-  + `GET /api/v3/livechat/offlineMessages` - [Get a list of offlineMessages](#get-site-campaigns)  include department,agent, campaign,autoInvitation
-  + `GET /api/v3/livechat/sessions/{sessionId}/offlineMessages` - [Get a list of offlineMessages in a session](#get-site-campaigns)  include department,agent, campaign,autoInvitation
-  + `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offlineMessage by id](#get-a-campaign)  include department,agent, campaign,autoInvitation
-  + `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offlineMessage by id](#get-a-campaign)
-  + `DELETE /api/v3/livechat/offlineMessages` - [Batch Delete offlineMessages](#get-a-campaign)
++ `GET /api/v3/livechat/chats` - [Get a list of chats](#get-site-campaigns) include department,agent , chatbot, campaign,autoInvitation
++ `GET /api/v3/livechat/sessions/{sessionId}/chats` - [Get a list of chats in a session](#get-site-campaigns)  include department,agent , chatbot, campaign,autoInvitation
++ `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-campaign)  include department,agent , chatbot, campaign,autoInvitation
++ `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat by id](#get-a-campaign)
++ `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#get-a-campaign)
 
-# Campaign
-  + `GET /api/v3/livechat/campaigns` - [Get a list of campaigns](#get-site-campaigns)
-  + `GET /api/v3/livechat/campaigns/{id}` - [Get a campaign by id](#get-a-campaign)
-  + `POST /api/v3/livechat/campaigns` - [Create a campaign](#get-a-campaign)
-  + `PUT /api/v3/livechat/campaigns/{id}` - [Update a campaign](#update-a-campaign) 
-  + `DELETE /api/v3/livechat/campaigns/{id}` - [Delete a campaign](#delete-a-campaign)
+## Offline Message
 
-# Installation Code
-  + `GET /api/v3/livechat/campaigns/{campaignId}/installationCode` - [Get installation code of a campaign](#get-site-info)
++ `GET /api/v3/livechat/offlineMessages` - [Get a list of offlineMessages](#get-site-campaigns)  include department,agent, campaign,autoInvitation
++ `GET /api/v3/livechat/sessions/{sessionId}/offlineMessages` - [Get a list of offlineMessages in a session](#get-site-campaigns)  include department,agent, campaign,autoInvitation
++ `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offlineMessage by id](#get-a-campaign)  include department,agent, campaign,autoInvitation
++ `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offlineMessage by id](#get-a-campaign)
++ `DELETE /api/v3/livechat/offlineMessages` - [Batch Delete offlineMessages](#get-a-campaign)
 
-# Chat Button
-  + `GET /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Get settings of ChatButton for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Update settings of ChatButton for a campaign](#update-site-info)
+## Campaign
 
-# Chat Window
-  + `GET /api/v3/livechat/campaigns/{campaignId}/chatWindow` - [Get settings of ChatWindow for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/chatWindow` - [Update settings of ChatWindow for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaigns` - [Get a list of campaigns](#get-site-campaigns)
++ `GET /api/v3/livechat/campaigns/{id}` - [Get a campaign by id](#get-a-campaign)
++ `POST /api/v3/livechat/campaigns` - [Create a campaign](#get-a-campaign)
++ `PUT /api/v3/livechat/campaigns/{id}` - [Update a campaign](#update-a-campaign) 
++ `DELETE /api/v3/livechat/campaigns/{id}` - [Delete a campaign](#delete-a-campaign)
 
-# Pre-Chat
-  + `GET /api/v3/livechat/campaigns/{campaignId}/preChat` - [Get settings of Pre-Chat for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/preChat` - [Update settings of Pre-Chat for a campaign](#update-site-info)
+## Installation Code
 
-# Post Chat
-  + `GET /api/v3/livechat/campaigns/{campaignId}/postChat` - [Get settings of PostChat for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/postChat` - [Update settings of PostChat for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaigns/{campaignId}/installationCode` - [Get installation code of a campaign](#get-site-info)
 
-# Campaign Offline Message
-  + `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage` - [Get settings of OfflineMessage for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/offlineMessage` - [Update settings of OfflineMessage for a campaign](#update-site-info)
+## Chat Button
 
-# Invitation
-  + `GET /api/v3/livechat/campaigns/{campaignId}/invitation ` - [Get settings of invitation  for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/invitation ` - [Update settings of invitation  for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Get settings of ChatButton for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Update settings of ChatButton for a campaign](#update-site-info)
 
-# Manual Invitation
-  + `GET /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation ` - [Get settings of manual invitation  for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation ` - [Update settings of manual invitation  for a campaign](#update-site-info)
+## Chat Window
 
-# Auto Invitation
-  + `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Get a list of auto invitations](#get-site-info)
-  + `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get an auto invitation by id](#get-site-info)
-  + `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Create an auto invitation](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update an auto invitation](#update-site-info) 
-  + `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete an auto invitation](#delete-a-customer-segment)
++ `GET /api/v3/livechat/campaigns/{campaignId}/chatWindow` - [Get settings of ChatWindow for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/chatWindow` - [Update settings of ChatWindow for a campaign](#update-site-info)
 
-# Agent Wrap-Up
-  + `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup ` - [Get settings of agent wrap-Up  for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/agentWrapup ` - [Update settings of agent wrap-Up  for a campaign](#update-site-info)
+## Pre-Chat
 
-# Language
-  + `GET /api/v3/livechat/campaigns/{campaignId}/language ` - [Get settings of language for a campaign](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/language ` - [Update settings of language for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaigns/{campaignId}/preChat` - [Get settings of Pre-Chat for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/preChat` - [Update settings of Pre-Chat for a campaign](#update-site-info)
 
-# Routing
-  + `GET /api/v3/livechat/campaigns/{campaignId}/routing ` - [Get settings of routing for a campaign](#get-site-info) include department, agent
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/routing ` - [Update settings of routing for a campaign](#update-site-info)
+## Post Chat
 
-# Custom Rule
-  + `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-site-info) include department, agent
-  + `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Get a custom rule by id](#get-site-info) include department, agent
-  + `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Create a custom rule](#get-site-info)
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Update a custom rule](#update-site-info) 
-  + `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Delete a custom rule](#delete-a-customer-segment)
++ `GET /api/v3/livechat/campaigns/{campaignId}/postChat` - [Get settings of PostChat for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/postChat` - [Update settings of PostChat for a campaign](#update-site-info)
 
-# Chatbot Integration
-  + `GET /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration ` - [Get settings of Chatbot Integration for a campaign](#get-site-info) include chatbot
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration ` - [Update settings of Chatbot Integration for a campaign](#update-site-info)
+## Campaign Offline Message
 
-# KB Integration
-  + `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration ` - [Get settings of KB Integration for a campaign](#get-site-info) include knowledgeBase
-  + `PUT /api/v3/livechat/campaigns/{campaignId}/kbIntegration ` - [Update settings of KB Integration for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage` - [Get settings of OfflineMessage for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/offlineMessage` - [Update settings of OfflineMessage for a campaign](#update-site-info)
 
-# Campaign Form Field
-  + `GET /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Get a list of form fields of Pre-Chat for a campaign](#get-site-info)
-  + `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Create a form field of Pre-Chat for a campaign](#update-site-info)
-  + `GET /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Get a list of form fields of Post Chat for a campaign](#get-site-info)
-  + `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Create a form field of Post Chat for a campaign](#update-site-info)
-  + `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Get a list of form fields of offline message for a campaign](#get-site-info)
-  + `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a form field of offline message for a campaign](#update-site-info)
-  + `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get a list of form fields of agent wrapup for a campaign](#get-site-info)
-  + `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a form field of agent wrapup for a campaign](#update-site-info)
-  + `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field)
-  + `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field) 
-  + `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
+## Invitation
 
-# Ban
-  + `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
-  + `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
-  + `POST /api/v3/livechat/bans` - [Create a ban](#get-a-ban)
-  + `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban) 
-  + `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
++ `GET /api/v3/livechat/campaigns/{campaignId}/invitation ` - [Get settings of invitation  for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/invitation ` - [Update settings of invitation  for a campaign](#update-site-info)
 
-# Conversion Action
-  + `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-site-campaigns) include customVariable, agent
-  + `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include customVariable, agent
-  + `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#get-a-campaign)
-  + `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign) 
-  + `POST /api/v3/livechat/conversionActions:achieved`[Make api conversion succesful](#make-api-conversion-succesful) 
+## Manual Invitation
 
-# Secure Form
-  + `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-site-secure-forms)
-  + `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
-  + `POST /api/v3/livechat/secureForms` - [Create a secure form](#get-a-secure-form)
-  + `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form) 
-  + `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
++ `GET /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation ` - [Get settings of manual invitation  for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation ` - [Update settings of manual invitation  for a campaign](#update-site-info)
 
-# Custom Variable
-  + `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-site-custom-variables)
-  + `GET /api/v3/livechat/campacustomVariablesigns/{id}` - [Get a custom variable by id](#get-a-custom-variable)
-  + `POST /api/v3/livechat/customVariables` - [Create a custom variable](#get-a-custom-variable)
-  + `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable) 
-  + `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
+## Auto Invitation
 
-# Webhook
-  + `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-site-webhooks)
-  + `GET /api/v3/livechat/webhooks/{id}` - [Get a webhook by id](#get-a-webhook)
-  + `POST /api/v3/livechat/webhooks` - [Create a webhook](#get-a-webhook)
-  + `PUT /api/v3/livechat/webhooks/{id}` - [Update a webhook](#update-a-webhook) 
-  + `DELETE /api/v3/livechat/webhooks/{id}` - [Delete a webhook](#delete-a-webhook)
++ `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Get a list of auto invitations](#get-site-info)
++ `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get an auto invitation by id](#get-site-info)
++ `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Create an auto invitation](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update an auto invitation](#update-site-info) 
++ `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete an auto invitation](#delete-a-customer-segment)
+
+## Agent Wrap-Up
+
++ `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup ` - [Get settings of agent wrap-Up  for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/agentWrapup ` - [Update settings of agent wrap-Up  for a campaign](#update-site-info)
+
+## Language
+
++ `GET /api/v3/livechat/campaigns/{campaignId}/language ` - [Get settings of language for a campaign](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/language ` - [Update settings of language for a campaign](#update-site-info)
+
+## Routing
+
++ `GET /api/v3/livechat/campaigns/{campaignId}/routing ` - [Get settings of routing for a campaign](#get-site-info) include department, agent
++ `PUT /api/v3/livechat/campaigns/{campaignId}/routing ` - [Update settings of routing for a campaign](#update-site-info)
+
+## Custom Rule
+
++ `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-site-info) include department, agent
++ `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Get a custom rule by id](#get-site-info) include department, agent
++ `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Create a custom rule](#get-site-info)
++ `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Update a custom rule](#update-site-info) 
++ `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Delete a custom rule](#delete-a-customer-segment)
+
+## Chatbot Integration
+
++ `GET /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration ` - [Get settings of Chatbot Integration for a campaign](#get-site-info) include chatbot
++ `PUT /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration ` - [Update settings of Chatbot Integration for a campaign](#update-site-info)
+
+## KB Integration
+
++ `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration ` - [Get settings of KB Integration for a campaign](#get-site-info) include knowledgeBase
++ `PUT /api/v3/livechat/campaigns/{campaignId}/kbIntegration ` - [Update settings of KB Integration for a campaign](#update-site-info)
+
+## Campaign Form Field
+
++ `GET /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Get a list of form fields of Pre-Chat for a campaign](#get-site-info)
++ `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Create a form field of Pre-Chat for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Get a list of form fields of Post Chat for a campaign](#get-site-info)
++ `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Create a form field of Post Chat for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Get a list of form fields of offline message for a campaign](#get-site-info)
++ `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a form field of offline message for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get a list of form fields of agent wrapup for a campaign](#get-site-info)
++ `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a form field of agent wrapup for a campaign](#update-site-info)
++ `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field)
++ `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field) 
++ `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
+
+## Ban
+
++ `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
++ `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
++ `POST /api/v3/livechat/bans` - [Create a ban](#get-a-ban)
++ `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban) 
++ `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
+
+## Conversion Action
+
++ `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-site-campaigns) include customVariable, agent
++ `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include customVariable, agent
++ `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#get-a-campaign)
++ `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign) 
++ `POST /api/v3/livechat/conversionActions:achieved`[Make api conversion succesful](#make-api-conversion-succesful) 
+
+## Secure Form
+
++ `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-site-secure-forms)
++ `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
++ `POST /api/v3/livechat/secureForms` - [Create a secure form](#get-a-secure-form)
++ `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form) 
++ `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
+
+## Custom Variable
+
++ `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-site-custom-variables)
++ `GET /api/v3/livechat/campacustomVariablesigns/{id}` - [Get a custom variable by id](#get-a-custom-variable)
++ `POST /api/v3/livechat/customVariables` - [Create a custom variable](#get-a-custom-variable)
++ `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable)
++ `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
+
+## Webhook
+
++ `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-site-webhooks)
++ `GET /api/v3/livechat/webhooks/{id}` - [Get a webhook by id](#get-a-webhook)
++ `POST /api/v3/livechat/webhooks` - [Create a webhook](#get-a-webhook)
++ `PUT /api/v3/livechat/webhooks/{id}` - [Update a webhook](#update-a-webhook) 
++ `DELETE /api/v3/livechat/webhooks/{id}` - [Delete a webhook](#delete-a-webhook)
 
 </div>
 &#32;
