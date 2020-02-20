@@ -11,14 +11,12 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 # Summary
   - Live Chat      
     - [live chat settings](#live-chat-settings)
-       - [auto distribution](#auto-distribution)
-       - [auto translation](#auto-translation)
-       - [customer segmentation](#customer-segmentation)
-          - [customer segment](#customer-segment)
-       - [dynamic campaign](#dynamic-campaign)
-          - [dynamic campaign rule](#dynamic-campaign-rule)
-       - [mobile push](#mobile-push)
-       - [integration](#integration)
+    - [auto distribution](#auto-distribution)
+    - [translation excluded word](#translation-excluded-word)
+    - [dynamic campaign](#dynamic-campaign)
+        - [dynamic campaign rule](#dynamic-campaign-rule)
+    - [mobile push](#mobile-push)
+    - [customer segment](#customer-segment)
     - [session](#session)  
     - [chat](#chat) 
     - [offline message](#offline-message)  
@@ -50,33 +48,31 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 # Live Chat Settings
 You need `Manage Settings` permission to config for a site.
-  + `GET /api/v3/livechat/liveChatSettings` - [Get livechat settings of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings` - [Update livechat settings of a site](#update-site-info)
+  + `GET /api/v3/livechat/settings` - [Get livechat settings of a site](#get-site-info)
+  + `PUT /api/v3/livechat/settings` - [Update livechat settings of a site](#update-site-info)
 
 # Auto Distribution
-  + `GET /api/v3/livechat/liveChatSettings/autoDistribution` - [Get livechat auto distribution of a site](#get-site-info)  include department, agent
-  + `PUT /api/v3/livechat/liveChatSettings/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
+  + `GET /api/v3/livechat/autoDistribution` - [Get livechat auto distribution of a site](#get-site-info)  include department, agent
+  + `PUT /api/v3/livechat/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
 
- # Auto Translation
-You need `Manage Settings` permission to config for a site.
-  + `GET /api/v3/livechat/liveChatSettings/autoTranslation` - [Get livechat auto translation of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings/autoTranslation` - [Update livechat auto translation of a site](#update-site-info) 
-
-# Customer Segmentation
-You need `Manage Settings` permission to config for a site.
-  + `GET /api/v3/livechat/liveChatSettings/customerSegmentation` - [Get livechat customer segmentation of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings/customerSegmentation` - [Update livechat customer segmentation of a site](#update-site-info) 
+ # Translation Excluded Word
+  + `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded words](#get-site-info)
+  + `GET /api/v3/livechat/translationExcludedWords/{id}` - [Get a translation excluded word by id](#get-site-info)
+  + `POST /api/v3/livechat/translationExcludedWords` - [Create a translation excluded word](#get-site-info)
+  + `PUT /api/v3/livechat/translationExcludedWords/{id}` - [Update a translation excluded word](#update-site-info) 
+  + `DELETE /api/v3/livechat/translationExcludedWords/{id}` - [Delete a translation excluded word](#delete-a-customer-segment) 
+ 
 
 # Customer Segment
- + `GET /api/v3/livechat/customerSegmentation/customerSegments` - [Get a list of customer segments](#get-site-info)
+ + `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-site-info)
  + `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-site-info)
- + `POST /api/v3/livechat/customerSegmentation/customerSegments` - [Create a customer segment](#get-site-info)
-  + `PUT /api/v3/livechat/customerSegments/{id}` - [Update a customer segment](#update-site-info) 
-  + `DELETE /api/v3/livechat/customerSegments/{id}` - [Delete a customer segment](#delete-a-customer-segment) 
+ + `POST /api/v3/livechat/customerSegments` - [Create a customer segment](#get-site-info)
+ + `PUT /api/v3/livechat/customerSegments/{id}` - [Update a customer segment](#update-site-info) 
+ + `DELETE /api/v3/livechat/customerSegments/{id}` - [Delete a customer segment](#delete-a-customer-segment) 
 
 # Dynamic Campaign
-  + `GET /api/v3/livechat/liveChatSettings/dynamicCampaign` - [Get livechat dynamic campaign of a site](#get-site-info) include campaign
-  + `PUT /api/v3/livechat/liveChatSettings/dynamicCampaign` - [Update livechat dynamic campaign of a site](#update-site-info) 
+  + `GET /api/v3/livechat/dynamicCampaign` - [Get livechat dynamic campaign of a site](#get-site-info) include campaign
+  + `PUT /api/v3/livechat/dynamicCampaign` - [Update livechat dynamic campaign of a site](#update-site-info) 
 
 # Dynamic Campaign Rule
   + `GET /api/v3/livechat/dynamicCampaign/dynamicCampaignRules` - [Get a list of dynamic campaign rules](#get-site-info) include campaign
@@ -86,24 +82,22 @@ You need `Manage Settings` permission to config for a site.
   + `DELETE /api/v3/livechat/dynamicCampaignRules/{id}` - [Delete a dynamic campaign rule](#delete-a-customer-segment)
 
 # Mobile Push
-  + `GET /api/v3/livechat/liveChatSettings/mobilePush` - [Get livechat mobile push profile of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings/mobilePush` - [Update livechat mobile push profile of a site](#update-site-info)
+  + `GET /api/v3/livechat/mobilePush` - [Get livechat mobile push profile of a site](#get-site-info)
+  + `PUT /api/v3/livechat/mobilePush` - [Update livechat mobile push profile of a site](#update-site-info)
 
-# Integration
-  + `GET /api/v3/livechat/liveChatSettings/integration` - [Get livechat integration profile of a site](#get-site-info)
-  + `PUT /api/v3/livechat/liveChatSettings/integration` - [Update livechat integration profile of a site](#update-site-info)
+# Online Visitor  
+//修改ER
+//todo
+  + `GET /api/v3/livechat/visitors` - [Get a list of visitors in livechat](#get-all-visitors)
+  + `GET /api/v3/livechat/visitors/{id}` - [Get a visitor by id](#get-a-visitor)  
+  + `POST /api/v3/livechat/visitors/{id}/customVariables:change` - [update a visitor's custom variables](#update-a-visitor-custom-variables)   
 
-
-# Online Visitor  //修改ER
-  // 从chatserver 获取当前 visitor
-  + `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors)
-  + `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors)  
-
-# Online Agent  //修改ER
-  // 从chatserver 获取当前 visitor
-  + `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors)
-  + `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors)  
-
+# Online Agent  
+//修改ER
+//todo
+  + `GET /api/v3/livechat/agents` - [Get a list of agents in livechat](#get-all-agents)
+  + `GET /api/v3/livechat/agents/{id}` - [Get an agent by id](#get-an-agent)  
+  + `PUT /api/v3/livechat/agents/{id}` - [Update an agent](#update-an-agent)  
 
 # Session  
   ??Todo: api 和 include 如何设计， 感觉这个是多余的
