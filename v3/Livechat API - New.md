@@ -265,17 +265,132 @@ You need `Manage Settings` permission to config for a site.
 
   Webhook is represented as simple flat JSON objects with the following keys:
 
-    | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - | 
-  | `id` | string  | N/A | N/A | | code of the Language |
-  | `code` | string  | N/A | N/A | | code of the Language |
-  | `name` | string  | N/A | N/A | | name of the Language |
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `id` | guid  | N/A | N/A | | id of the webhook |
+  | `event` | string  | no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+  | `name` | string  | no | yes | | target url of the webhook. |
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  |`id` | integer  | yes | no | id of the webhook. |
-  |`event`| string  | no | yes | event of webhook, including `offlineMessageSubmitted`, `chatStarted`, `chatEnded` and `chatWrappedUp`. |
-  |`targetUrl`| string  | no | yes |  target url of the webhook. |
+## Endpoints
+
+### Get list of webhooks
+
+  `GET /api/v3/livechat/webhooks`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response is: An array of [Webhook](#webhook-object)
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/webhooks
+```
+
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+[
+    {
+        "id": 2,
+        "event": "chatWrappedUp",
+        "targetUrl": "http://www.aa.com"
+    },
+    ...
+]
+```
+
+#### Create a new webhook
+
+  `POST /api/v2/livechat/webhooks`
+
+- Parameters:
+
+    [Webhook](#webhook-json-format)
+
+- Response:
+
+    [Webhook](#webhook-json-format)
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "event=chatwrappedup&targeturl=http://www.baidu.com"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/webhooks
+```
+
+Sample response:
+
+```json
+{
+    "id": 16,
+    "event": "chatWrappedUp",
+    "targetUrl": "http://www.baidu.com"
+}
+```
+
+#### Update a webhook
+
+  `PUT /api/v2/livechat/webhooks/{id}`
+
+- Parameters:
+
+    [Webhook](#webhook-json-format)
+
+- Response:
+
+    [Webhook](#webhook-json-format)
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "event=chatwrappedup&targeturl=http://www.google.com"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/webhooks/16
+```
+
+Sample response:
+
+```json
+{
+    "id": 16,
+    "event": "chatWrappedUp",
+    "targetUrl": "http://www.google.com"
+}
+```
+
+#### Remove a webhook
+
+  `DELETE /api/v2/livechat/webhooks/{id}`
+
+- Parameters:
+
+    No parameters
+
+- Response:
+
+    Status: 200 OK  
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/webhooks/16
+```
+
+Sample response:
+
+```json
+"WebHook with id '16' has been removed."
 
 </div>
 &#32;

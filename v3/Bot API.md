@@ -93,7 +93,7 @@
   
 Query string
 
-  | Name  | Type | Required | Default | Description |     
+  | Name  | Type | Required | Default | Description |
   | - | - | :-: | :-: | - | 
   | `include` | string | no  | |  Available value: `bot` |
 
