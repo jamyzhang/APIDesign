@@ -264,11 +264,18 @@ You need `Manage Settings` permission to config for a site.
 ### Webhook Object
 
   Webhook is represented as simple flat JSON objects with the following keys:
-  
+
     | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - | 
+  | `id` | string  | N/A | N/A | | code of the Language |
   | `code` | string  | N/A | N/A | | code of the Language |
   | `name` | string  | N/A | N/A | | name of the Language |
+
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
+  |`id` | integer  | yes | no | id of the webhook. |
+  |`event`| string  | no | yes | event of webhook, including `offlineMessageSubmitted`, `chatStarted`, `chatEnded` and `chatWrappedUp`. |
+  |`targetUrl`| string  | no | yes |  target url of the webhook. |
 
 </div>
 &#32;
