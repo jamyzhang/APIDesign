@@ -253,9 +253,9 @@ You need `Manage Settings` permission to config for a site.
 
 # Webhook
 
-+ `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-site-webhooks)
-+ `GET /api/v3/livechat/webhooks/{id}` - [Get a webhook by id](#get-a-webhook)
-+ `POST /api/v3/livechat/webhooks` - [Create a webhook](#get-a-webhook)
++ `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-a-list-of-webhooks)
++ `GET /api/v3/livechat/webhooks/{id}` - [Get a webhook by id](#get-a-webhook-by-id)
++ `POST /api/v3/livechat/webhooks` - [Create a webhook](#create-a-webhook)
 + `PUT /api/v3/livechat/webhooks/{id}` - [Update a webhook](#update-a-webhook) 
 + `DELETE /api/v3/livechat/webhooks/{id}` - [Delete a webhook](#delete-a-webhook)
 
@@ -273,7 +273,7 @@ You need `Manage Settings` permission to config for a site.
 
 ## Endpoints
 
-### Get list of webhooks
+### Get a list of webhooks
 
   `GET /api/v3/livechat/webhooks`
 
@@ -294,103 +294,169 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
 
 Response
 ```Json
-  HTTP/1.1 200 OK
-  Content-Type:  application/json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
 [
-    {
-        "id": 2,
-        "event": "chatWrappedUp",
-        "targetUrl": "http://www.aa.com"
-    },
-    ...
+  {
+    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "event": "chatWrappedUp",
+    "targetUrl": "http://www.google.com"
+  },
+  ...
 ]
+```
+
+### Get a webhook by id
+
+  `GET /api/v3/livechat/webhooks/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of the webhook  |
+
+#### Response
+
+the response is: [Webhook](#webhook-object) Object.
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "event": "chatWrappedUp",
+  "targetUrl": "http://www.aa.com"
+}
 ```
 
 #### Create a new webhook
 
-  `POST /api/v2/livechat/webhooks`
+  `POST /api/v3/livechat/webhooks`
 
-- Parameters:
+#### Parameters
 
-    [Webhook](#webhook-json-format)
+Request body
+  
+  The request body contains data with the [Webhook](#webhook-object) structure
 
-- Response:
+example:
+```Json
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "event": "chatWrappedUp",
+  "targetUrl": "http://www.aa.com"
+}
+  
+```
 
-    [Webhook](#webhook-json-format)
+#### Response
+the response is: [Webhook](#webhook-object) Object.
 
 ### Example
 
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "event=chatwrappedup&targeturl=http://www.baidu.com"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/webhooks
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "event=chatwrappedup&targeturl=http://www.baidu.com"  https://hosted.comm100.com/api/v3/livechat/webhooks
 ```
 
 Sample response:
 
 ```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 {
-    "id": 16,
-    "event": "chatWrappedUp",
-    "targetUrl": "http://www.baidu.com"
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "event": "chatWrappedUp",
+  "targetUrl": "https://www.google.com"
 }
 ```
 
 #### Update a webhook
 
-  `PUT /api/v2/livechat/webhooks/{id}`
+  `PUT /api/v3/livechat/webhooks/{id}`
 
-- Parameters:
+#### Parameters
 
-    [Webhook](#webhook-json-format)
+Path parameters
 
-- Response:
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique id of the webhook|
 
-    [Webhook](#webhook-json-format)
+Request body
+  
+  The request body contains data with the [Webhook](#webhook-object) structure
 
-### Example
+example:
+```Json
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "event": "chatWrappedUp",
+  "targetUrl": "https://www.google.com"
+}
+```
+  
+#### Response
+the response is: [Webhook](#webhook-object) Object.
+
+#### Example
 
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "event=chatwrappedup&targeturl=http://www.google.com"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/webhooks/16
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "event=chatwrappedup&targeturl=http://www.google.com"  https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
-Sample response:
-
+Response
 ```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "id": 16,
-    "event": "chatWrappedUp",
-    "targetUrl": "http://www.google.com"
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
+  "event": "chatWrappedUp",
+  "targetUrl": "http://www.google.com"
 }
 ```
 
-#### Remove a webhook
+#### delete a webhook
 
-  `DELETE /api/v2/livechat/webhooks/{id}`
+  `DELETE /api/v3/livechat/webhooks/{id}`
 
-- Parameters:
+#### Parameters
 
-    No parameters
+Path parameters
 
-- Response:
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of the webhook  |
 
-    Status: 200 OK  
+#### Response
+HTTP/1.1 204 No Content
 
-### Example
+#### Example
 
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/webhooks/16
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE  https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
-
-Sample response:
-
+Response
 ```json
-"WebHook with id '16' has been removed."
-
+HTTP/1.1 204 No Content
+```
 </div>
-&#32;
