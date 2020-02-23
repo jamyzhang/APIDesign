@@ -7,30 +7,29 @@
 # Summary
 
 - Global
-  - [site](#site) Get PUT
-  - [agent](#agent) include role, permission, shift  Get ../agents
+  - [site](#site)
+  - [agent](#agent)
     - [permission](#permission)
     - [shift](#shift)
-  - [role](#role) include agent, permission
+  - [role](#role) 
     - [agent](#agent)
     - [permission](#permission)
-  - [department](#department) include agent, shift
-    - [agent](#agent)  ../departments/{depid}/agents
+  - [department](#department) 
+    - [agent](#agent)
     - [shift](#shift)
   - [contact](#contact)
     - [contact identity](#contact-identity)
-  - [visitor](#visitor)  GetList, GetbyId
+  - [visitor](#visitor)
   - [public canned message category](#public-canned-message-category)
   - [public canned message](#public-canned-message)
   - [private canned message category](#private-canned-message-category)
   - [private canned message](#private-canned-message)
   - [agent away status](#agent-away-status)
   - [whitelisted login IP range](#whitelisted-login-ip-range)
-  - [agent sso](#agent-sso) include agent Get, PUT
-  - [visitor sso](#visitor-sso) Get, PUT
+  - [agent sso](#agent-sso)
+  - [visitor sso](#visitor-sso) 
   - [shift](#shift)
-  - [oauth client](#oauth-client) Get  ? 这个接口怎么处理
-  - [audit log](#audit-log) include agent;  GetList（分页） Get
+  - [audit log](#audit-log) 
   
 
 # Site

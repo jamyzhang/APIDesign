@@ -86,15 +86,6 @@ You need `Manage Settings` permission to config for a site.
 - `GET /api/v3/livechat/mobilePush` - [Get livechat mobile push profile of a site](#get-site-info)
 - `PUT /api/v3/livechat/mobilePush` - [Update livechat mobile push profile of a site](#update-site-info)
 
-# Online Visitor  
-
-//修改ER
-//todo
-
-- `GET /api/v3/livechat/visitors` - [Get a list of visitors in livechat](#get-all-visitors)
-- `GET /api/v3/livechat/visitors/{id}` - [Get a visitor by id](#get-a-visitor)  
-- `POST /api/v3/livechat/visitors/{id}/customVariables:change` - [update a visitor's custom variables](#update-a-visitor-custom-variables)
-
 # Online Agent  
 
 //修改ER
@@ -104,6 +95,22 @@ You need `Manage Settings` permission to config for a site.
 - `GET /api/v3/livechat/agents/{id}` - [Get an agent by id](#get-an-agent)  
 - `PUT /api/v3/livechat/agents/{id}` - [Update an agent](#update-an-agent)  
 
+# Agent Chat
+
+- `GET /api/v3/livechat/agentChats` - [Get a list of agent chats](#get-site-campaigns) 
+- `GET /api/v3/livechat/agentChats/{id}` - [Get an agent chat by id](#get-a-campaign)  
+
+# Online Visitor  
+
+//修改ER
+//todo
+
+- `GET /api/v3/livechat/visitors` - [Get a list of visitors in livechat](#get-all-visitors)
+- `GET /api/v3/livechat/visitors/{id}` - [Get a visitor by id](#get-a-visitor)  
+- `POST /api/v3/livechat/visitors/{id}/customVariables:change` - [update a visitor's custom variables](#update-a-visitor-custom-variables)
+
+
+# Session 
   ??Todo: api 和 include 如何设计， 感觉这个是多余的
   ??session object 不含 chat 和 offlinemessage
 
@@ -1142,20 +1149,706 @@ the response is: [KB Integration](#KB-Integration-Object) Object
 - `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
 # Ban
-
+  You need `Manage Ban List` permission to manage ban list.
 - `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
 - `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
 - `POST /api/v3/livechat/bans` - [Create a ban](#get-a-ban)
 - `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban)
 - `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
 
-# Conversion Action
+## Related Object Json Format
 
-- `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-site-campaigns) include customVariable, agent
-- `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include customVariable, agent
+### Ban JSON Format
+
+  Ban is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
+  | - | - | - | :-: | :-: | :-: | - | 
+  | `id` | string | | yes | N/A | | id of the ban. |
+  | `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
+  | `visitorId` | Guid | | no | no | | visitor's id of the ban if `type` is `visitor`  |
+  | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | |  Available only when visitor is included  |
+  | `ip` | string  |  | no | yes | | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` |
+  | `ipRangeFrom` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
+  | `ipRangeTo` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
+  | `comment` | string | | no | no | | comment of the ban. |
+  | `lastUpdatedBy` | Guid | | N/A | N/A | | comment of the ban. |
+  | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+
+## Endpoint
+
+### Get list of bans
+
+  `GET /api/v3/livechat/bans`
+
+#### Parameters
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - | 
+  | `include` | string | no  | |  Available value: `visitor`, `agent` |
+
+#### Response
+An array of [Ban](#ban-json-format)
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/bans?include=visitor,agent
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+        "type": "visitor",
+        "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
+        "visitor": {  //include visitor
+            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+            "email": "test@comm100.com",
+            "name": "test comm100",
+            ...
+        },
+        "comment": "",
+        "lastUpdatedBy": "ae165aad-b561-145b-427c-ba89849ff3c7",
+        "lastUpdatedAgent": {  //include agent
+            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+            "email": "test@comm100.com",
+            "displayName": "test comm100",
+            "firstName": "test",
+            "lastName": "comm100",
+            ...
+        },
+    },
+    ...
+]
+```
+
+### Get a single ban
+
+  `GET /api/v3/livechat/bans/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the ban  |
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - | 
+  | `include` | string | no  | |  Available value: `visitor`, `agent` |
+
+#### Response
+
+the response is: [Ban](#ban-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor,agent
+```
+Response
+```json
+{
+    "id": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "type": "visitor",
+    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
+    "visitor": {  //include visitor
+        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "email": "test@comm100.com",
+        "name": "test comm100",
+        ...
+    },
+    "comment": "",
+    "lastUpdatedBy": "ae165aad-b561-145b-427c-ba89849ff3c7",
+    "lastUpdatedAgent": {  //include agent
+        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "email": "test@comm100.com",
+        "displayName": "test comm100",
+        "firstName": "test",
+        "lastName": "comm100",
+        ...
+    },
+}
+```
+
+### Create a new ban
+
+  `POST /api/v3/livechat/bans`
+
+#### Parameters
+Request body
+
+  The request body contains data with the [Ban](#ban-json-format) structure
+
+  example:
+```Json
+  {
+    "type": "ip",
+    "ip": "192.168.1.1",
+    "comment": "block this ip"
+  }
+```
+
+#### Response
+the response is:
+[Ban](#ban-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "type": "ip",
+    "ip": "192.168.1.1",
+    "comment": "block this ip"
+  }' -X POST https://domain.comm100.com/api/v3/livechat/bans
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/bans/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+
+{
+    "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "type": "ip",
+    "ip": "192.168.1.1",
+    "comment": "block this ip",
+    "lastUpdatedBy": "ae165aad-b561-145b-427c-ba89849ff3c7"
+}
+```
+
+### Update a ban
+
+  `PUT /api/v3/livechat/bans/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the ban  |
+
+Request body 
+  
+  The request body contains data with the [Ban](#ban-json-format) structure
+
+  example:
+```Json
+  {
+    "id": "27c48ac9-2553-4066-bf94-e30957aa390e",
+    "type": "ip",
+    "ip": "192.168.1.2",
+    "comment": ""
+  }
+```
+
+#### Response
+the response is: [Ban](#ban-json-format) Object
+
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "id": "27c48ac9-2553-4066-bf94-e30957aa390e",
+    "type": "ip",
+    "ip": "192.168.1.2",
+    "comment": ""
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/bans/27c48ac9-2553-4066-bf94-e30957aa390e
+```
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+{
+    "id": "27c48ac9-2553-4066-bf94-e30957aa390e",
+    "type": "ip",
+    "ipAddress": "192.168.1.2",
+    "comment": "",
+    "lastUpdatedBy": "ae165aad-b561-145b-427c-ba89849ff3c7"
+}
+```
+
+### Remove a ban
+
+  `DELETE /api/v3/livechat/bans/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the ban  |
+
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+# Conversion Action
+  You need `Manage Settings` permission to manage conversion action.
+
+- `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-site-campaigns) include agent
+- `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include agent
 - `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#get-a-campaign)
 - `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign)
-- `POST /api/v3/livechat/conversionActions:achieved`[Make api conversion succesful](#make-api-conversion-succesful)
+- `POST /api/v3/livechat/conversionActions:achieved` - [Make api conversion succesful](#make-api-conversion-succesful)
+
+## Related Object Json Format
+
+### Conversion Action JSON Format
+
+  Conversion Action is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
+  | - | - | - | :-: | :-: | :-: | - | 
+  | `id` | string | | yes | no | | id of the conversion action. |
+  | `name` | string | | no | yes |  | name of the conversion action. |
+  | `isEnable` | boolean | | no | no | | whether the conversion action is enabled or not. |
+  | `type` | string | | no | no | | type of the conversion action, including `url`, `customVariable` and `api`. |
+  | `customVariableUsedToDetermineConversion` | string  | | no | no |  | the name of the custom variable, available when `type` is `customVariable`. |
+  | `operator` | string | | no | no | | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
+  | `value` | string | | no | no |  | match value of the conversion action, available when `type` is `customVariable` or `url`. |
+  | `isCaseSensitive` | boolean | | no | no | | whether the conversion action is case sensitive or not, available when `type` is `url`. |
+  | `isValueAssignedToConversion` | boolean | | no | no |  | whether a value is assigned for the conversion action or not. |
+  | `valueSource` | string | | no | no |  | including `inputAValue`, `getFromCustomVariable` |
+  | `assignedValueFromInputting` | string | | no | no |  | the value assigned for the conversion action |
+  | `assignedValueFromCustomVariable` | string | | no | no |  | the value comes from the custom variable |
+  | `chatAssociatedWithConversion` | string | | no | no |  | including `theFirstChat`, `theLastChat` |
+  | `isChatInLastCertainDaysConsidered` | boolean | | no | no |  |  |
+  | `chatInLastDays` | integer | | no | no |   | between 1 and 30 |
+  | `isChatWithAtLeastCertainVisitorMessagesConsidered` | boolean | | no | no | |  |
+  | `visitorMessagesAtLeast` | integer | | no | no | |   |
+  | `isVariableIncludedInTranscript` | boolean | | no | no |  |  |
+  | `appendFieldList` | string | | no | no |  |  |
+  | `createdTime` | datetime | | N/A | N/A |  |  |
+  | `createdBy` | Guid | | N/A | N/A |  |  |
+  | `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+  | `lastUpdatedTime` | datetime | | N/A | N/A |  | |
+  | `lastUpdatedBy` | Guid | | N/A | N/A |  | |
+  | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
+
+## Endpoint
+
+### Get list of conversion actions
+
+  `GET /api/v3/livechat/conversionActions`
+
+#### Parameters
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - | 
+  | `include` | string | no  | |  Available value: `agent` |
+
+#### Response
+An array of [Conversion Action](#conversion-action-json-format)
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/conversionActions?include=agent
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "5728600f-0e75-432f-8638-db189f1e4e44",
+        "name": "justfortest2",
+        "isEnable": false,
+        "type": "url",
+        "customVariableUsedToDetermineConversion": "",
+        "operator": "is",
+        "value": "",
+        "isCaseSensitive": false,
+        "isValueAssignedToConversion": false,
+        "valueSource": "inputAValue",
+        "assignedValueFromInputting": "https://www.comm100.com",
+        "assignedValueFromCustomVariable": "",
+        "chatAssociatedWithConversion": "theFirstChat",
+        "isChatInLastCertainDaysConsidered": false,
+        "chatInLastDays": 3,
+        "isChatWithAtLeastCertainVisitorMessagesConsidered": false,
+        "visitorMessagesAtLeast": 1,
+        "isVariableIncludedInTranscript": false,
+        "appendFieldList": "",
+        "createdTime": "2020-02-20T13:12:20Z",
+        "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "createdAgent": {
+            //include agent
+            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+            "email": "test@comm100.com",
+            "displayName": "test comm100",
+            "firstName": "test",
+            "lastName": "comm100",
+            ...
+        },
+        "lastUpdatedTime": "2020-02-20T13:12:20Z",
+        "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "lastUpdatedAgent": {
+            //include agent
+            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+            "email": "test@comm100.com",
+            "displayName": "test comm100",
+            "firstName": "test",
+            "lastName": "comm100",
+            ...
+        }
+    },
+]
+```
+
+### Get a single conversion action
+
+  `GET /api/v3/livechat/conversionActions/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the conversion action  |
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - | 
+  | `include` | string | no  | |  Available value:  `agent` |
+
+#### Response
+
+the response is: [Conversion Action](#conversion-action-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/conversionActions/5728600f-0e75-432f-8638-db189f1e4e44?include=agent
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+    "id": "5728600f-0e75-432f-8638-db189f1e4e44",
+    "name": "justfortest2",
+    "isEnable": false,
+    "type": "url",
+    "customVariableUsedToDetermineConversion": "",
+    "operator": "is",
+    "value": "",
+    "isCaseSensitive": false,
+    "isValueAssignedToConversion": false,
+    "valueSource": "inputAValue",
+    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromCustomVariable": "",
+    "chatAssociatedWithConversion": "theFirstChat",
+    "isChatInLastCertainDaysConsidered": false,
+    "chatInLastDays": 3,
+    "isChatWithAtLeastCertainVisitorMessagesConsidered": false,
+    "visitorMessagesAtLeast": 1,
+    "isVariableIncludedInTranscript": false,
+    "appendFieldList": "",
+    "createdTime": "2020-02-20T13:12:20Z",
+    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "createdAgent": {
+        //include agent
+        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "email": "test@comm100.com",
+        "displayName": "test comm100",
+        "firstName": "test",
+        "lastName": "comm100",
+        ...
+    },
+    "lastUpdatedTime": "2020-02-20T13:12:20Z",
+    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "lastUpdatedAgent": {
+        //include agent
+        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "email": "test@comm100.com",
+        "displayName": "test comm100",
+        "firstName": "test",
+        "lastName": "comm100",
+        ...
+    }
+}
+```
+
+### Create a new conversion action
+
+  `POST /api/v3/livechat/conversionActions`
+
+#### Parameters
+Request body
+
+  The request body contains data with the [Conversion Action](#conversion-action-json-format) structure
+
+  example:
+```Json
+{
+    "name": "justfortest2",
+    "isEnable": false,
+    "type": "url",
+    "customVariableUsedToDetermineConversion": "",
+    "operator": "is",
+    "value": "",
+    "isCaseSensitive": false,
+    "isValueAssignedToConversion": false,
+    "valueSource": "inputAValue",
+    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromCustomVariable": "",
+    "chatAssociatedWithConversion": "theFirstChat",
+    "isChatInLastCertainDaysConsidered": false,
+    "chatInLastDays": 3,
+    "isChatWithAtLeastCertainVisitorMessagesConsidered": false,
+    "visitorMessagesAtLeast": 1,
+    "isVariableIncludedInTranscript": false,
+    "appendFieldList": ""
+}
+```
+
+#### Response
+the response is:[Conversion Action](#conversion-action-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "name": "justfortest2",
+    "isEnable": false,
+    "type": "url",
+    "customVariableUsedToDetermineConversion": "",
+    "operator": "is",
+    "value": "",
+    "isCaseSensitive": false,
+    "isValueAssignedToConversion": false,
+    "valueSource": "inputAValue",
+    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromCustomVariable": "",
+    "chatAssociatedWithConversion": "theFirstChat",
+    "isChatInLastCertainDaysConsidered": false,
+    "chatInLastDays": 3,
+    "isChatWithAtLeastCertainVisitorMessagesConsidered": false,
+    "visitorMessagesAtLeast": 1,
+    "isVariableIncludedInTranscript": false,
+    "appendFieldList": ""
+  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/conversionActions/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+
+{
+    "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "justfortest2",
+    "isEnable": false,
+    "type": "url",
+    "customVariableUsedToDetermineConversion": "",
+    "operator": "is",
+    "value": "",
+    "isCaseSensitive": false,
+    "isValueAssignedToConversion": false,
+    "valueSource": "inputAValue",
+    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromCustomVariable": "",
+    "chatAssociatedWithConversion": "theFirstChat",
+    "isChatInLastCertainDaysConsidered": false,
+    "chatInLastDays": 3,
+    "isChatWithAtLeastCertainVisitorMessagesConsidered": false,
+    "visitorMessagesAtLeast": 1,
+    "isVariableIncludedInTranscript": false,
+    "appendFieldList": "",
+    "createdTime": "2020-02-20T13:12:20Z",
+    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "lastUpdatedTime": "2020-02-20T13:12:20Z",
+    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2"
+}
+```
+
+### Update a conversion action
+
+  `PUT /api/v3/livechat/conversionActions/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the conversion action  |
+
+Request body 
+  
+  The request body contains data with the [Conversion Action](#conversion-action-json-format) structure
+
+  example:
+```Json
+  {
+    "id": "60a555fd-b5db-40ac-9043-57fcee181f78",
+    "name": "justfortest",
+    "isEnable": false,
+    "type": "url",
+    "customVariableUsedToDetermineConversion": "",
+    "operator": "is",
+    "value": "",
+    "isCaseSensitive": false,
+    "isValueAssignedToConversion": false,
+    "valueSource": "inputAValue",
+    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromCustomVariable": "",
+    "chatAssociatedWithConversion": "theFirstChat",
+    "isChatInLastCertainDaysConsidered": false,
+    "chatInLastDays": 3,
+    "isChatWithAtLeastCertainVisitorMessagesConsidered": false,
+    "visitorMessagesAtLeast": 1,
+    "isVariableIncludedInTranscript": false,
+    "appendFieldList": ""
+  }
+```
+
+#### Response
+the response is: [Conversion Action](#conversion-action-json-format) Object
+
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "id": "60a555fd-b5db-40ac-9043-57fcee181f78",
+    "name": "justfortest",
+    "isEnable": false,
+    "type": "url",
+    "customVariableUsedToDetermineConversion": "",
+    "operator": "is",
+    "value": "",
+    "isCaseSensitive": false,
+    "isValueAssignedToConversion": false,
+    "valueSource": "inputAValue",
+    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromCustomVariable": "",
+    "chatAssociatedWithConversion": "theFirstChat",
+    "isChatInLastCertainDaysConsidered": false,
+    "chatInLastDays": 3,
+    "isChatWithAtLeastCertainVisitorMessagesConsidered": false,
+    "visitorMessagesAtLeast": 1,
+    "isVariableIncludedInTranscript": false,
+    "appendFieldList": ""
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/conversionActions/60a555fd-b5db-40ac-9043-57fcee181f78
+```
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+{
+    "id": "60a555fd-b5db-40ac-9043-57fcee181f78",
+    "name": "justfortest",
+    "isEnable": false,
+    "type": "url",
+    "customVariableUsedToDetermineConversion": "",
+    "operator": "is",
+    "value": "",
+    "isCaseSensitive": false,
+    "isValueAssignedToConversion": false,
+    "valueSource": "inputAValue",
+    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromCustomVariable": "",
+    "chatAssociatedWithConversion": "theFirstChat",
+    "isChatInLastCertainDaysConsidered": false,
+    "chatInLastDays": 3,
+    "isChatWithAtLeastCertainVisitorMessagesConsidered": false,
+    "visitorMessagesAtLeast": 1,
+    "isVariableIncludedInTranscript": false,
+    "appendFieldList": "",
+    "createdTime": "2020-02-20T13:12:20Z",
+    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "lastUpdatedTime": "2020-02-20T14:12:20Z",
+    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2"
+}
+```
+
+### make api conversion succesful
+
+  `POST /api/v3/livechat/conversionActions:achieved`
+
+#### Parameters
+Request body
+
+The request body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |    
+  | - | - | :-: | :-: | - | 
+  | `conversion_name` | string | yes | |  name of the conversion action. |
+  | `visitorId` | string | yes |  | |
+  | `value` | string  | no |  |  the name of the custom variable, available when conversion action `type` is `customVariable`. |
+
+example:
+```Json 
+  {
+    "conversion_name" : "justfortestupdate", 
+    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
+  }
+```
+
+#### Response
+The response body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |    
+  | - | - | :-: | :-: | - | 
+  | `code` | string | N/A | N/A |  0: ok; 1: the conversion name does not exist; 2: the visitorId does not exist; 3: error adding conversion-related Data to system. |
+  | `message` | string | N/A | N/A | error message. |
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "conversion_name" : "justfortestupdate", 
+    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
+  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions:achieved
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "code": 0,
+    "message": "ok",
+}
+```
 
 # Secure Form
 
