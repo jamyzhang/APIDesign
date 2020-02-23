@@ -1165,14 +1165,6 @@ the response is: [KB Integration](#KB-Integration-Object) Object
 - `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form)
 - `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
 
-# Custom Variable
-
-- `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-site-custom-variables)
-- `GET /api/v3/livechat/campacustomVariablesigns/{id}` - [Get a custom variable by id](#get-a-custom-variable)
-- `POST /api/v3/livechat/customVariables` - [Create a custom variable](#get-a-custom-variable)
-- `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable)
-- `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
-
 # Webhook
 
 + `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-a-list-of-webhooks)
@@ -1264,7 +1256,7 @@ Content-Type:  application/json
 }
 ```
 
-#### Create a new webhook
+### Create a new webhook
 
   `POST /api/v3/livechat/webhooks`
 
@@ -1277,7 +1269,6 @@ Request body
 example:
 ```Json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
   "targetUrl": "http://www.aa.com"
 }
@@ -1308,7 +1299,7 @@ Location: https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487
 }
 ```
 
-#### Update a webhook
+### Update a webhook
 
   `PUT /api/v3/livechat/webhooks/{id}`
 
@@ -1381,4 +1372,224 @@ Response
 ```json
 HTTP/1.1 204 No Content
 ```
+
+# Custom Variable
+
+- `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
+- `GET /api/v3/livechat/campacustomVariablesigns/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
+- `POST /api/v3/livechat/customVariables` - [Create a custom variable](#create-a-custom-variable)
+- `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable)
+- `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
+
+## Custom Variable Related Objects Json Format
+
+### Custom Variable Object
+
+Custom Variable is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `id` | Guid  | yes | no || id of the custom variable. |
+  | `name` | string  | no | yes || name of the custom variable |.
+  | `type` | string  | no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
+  | `value` | string  | no | nos || value of the custom variable. |
+  |`hyperlink` | string  | no | no ||  hyperlink of the custom variable. |
+
+## Endpoints
+
+### Get a list of Custom Variables
+
+  `GET /api/v3/livechat/customVariables`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response is: An array of [Custom Variable](#custom-variable-object) Object.
+
+### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/customvariables
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+  {
+    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "name": "test",
+    "type": "text",
+    "value": "'lizz'",
+    "hyperlink": "{!Visitor.IP}"
+  },
+  ...
+]
+```
+
+### Get a custom variable by id
+
+  `GET /api/v3/livechat/customVariables/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of the custom variable  |
+
+#### Response
+
+the response is: [Custom Variable](#custom-variable-object) Object.
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "test",
+  "type": "text",
+  "value": "'lizz'",
+  "hyperlink": "{!Visitor.IP}"
+}
+```
+
+### Create a custom variable
+
+  `POST /api/v3/livechat/customVariables`
+
+#### Parameters
+
+Request body
+  
+The request body contains data with the [Custom Variable](#custom-variable-object) structure
+
+example:
+```Json
+{
+  "name": "test",
+  "type": "text",
+  "value": "'lizz'",
+  "hyperlink": "{!Visitor.IP}"
+}
+```
+
+#### Response
+
+the response is: [Custom Variable](#custom-variable-object) Object.
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "name=justfortest&type=text&value=aaaaa"  https://hosted.comm100.com/api/v3/livechat/customvariables
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "test",
+  "type": "text",
+  "value": "'lizz'",
+  "hyperlink": "{!Visitor.IP}"
+}
+```
+
+### Update a Custom Variable
+
+  `PUT /api/v3/livechat/customVariables/{id}`
+
+#### Parameters
+
+Path parameters
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of the custom variable  |
+
+Request body
+  
+The request body contains data with the [Custom Variable](#custom-variable-object) structure
+
+example:
+```Json
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "test",
+  "type": "text",
+  "value": "'lizz'",
+  "hyperlink": "{!Visitor.IP}"
+}
+```
+
+#### Response
+
+the response is: [Custom Variable](#custom-variable-object) Object.
+
+### Example
+
+Sample request:
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "name=justfortestupdate&type=text&value=bbbbb"  https://hosted.comm100.com/api/v3/livechat/customvariables
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "test",
+  "type": "text",
+  "value": "'lizz'",
+  "hyperlink": "{!Visitor.IP}"
+}
+```
+
+### delete a custom variable
+
+  `DELETE /api/v3/livechat/customVariables/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of the custom variable  |
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE https://hosted.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
 </div>
