@@ -42,6 +42,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
   - [ban](#ban)  
   - [conversion action](#conversion-action)
   - [secure form](#secure-form)
+    - [secure form field](#secure-form-field)
   - [custom variable](#custom-variable)  
   - [webhook](#webhook)
 
@@ -132,6 +133,168 @@ You need `Manage Settings` permission to config for a site.
 - `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offlineMessage by id](#get-a-campaign)  include department,agent, campaign,autoInvitation
 - `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offlineMessage by id](#get-a-campaign)
 - `DELETE /api/v3/livechat/offlineMessages` - [Batch Delete offlineMessages](#get-a-campaign)
+
+## Related Object Json Format
+### Offline Message JSON format
+
+ Offline Message is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |  
+  | `id` | string  | yes | yes | id of the chat. |
+  | `time` | datetime | yes | no | time of this offline message submitted. |
+  | `ssoUserId` | string | yes | no | SSO id of visitor |
+  | `name` | string | no | no | name of the visitor |
+  | `email` | string | no | no | email of the visitor |
+  | `department` | string | no | no | department of this offline message |
+  | `agent` | string | no | no | agent of this offline message |
+  | `content` | string | no | no | content of this offline message |
+  | `fields` | array | no | no | values of custom fields entered by visitors in the offline message window. An array of [Custom Field Value](#custom-field-value-json-format). |
+  | `customVariables` | array | no | no | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable Value](#custom-variable-value-json-format). |
+  | `attachment` | [Attachment](#attachment-json-foramt) | no | no | attachment submitted in the offline message |
+
+## Endpoint
+
+### Get messages list
+
+  `Get /api/v3/livechat/offlineMessages`
+
+- Parameters:
+  - `timeFrom` - the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`
+  - `timeTo` - the end of the query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`
+  - `timezone` - time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.
+  - `campaignId` - id of the campaign which the offline message
+  - `departmentId` - id of the department which the offline message belongs to
+  - `agentId` - id of the agent that this offline message belongs to
+  - `visitorSegment` - id of the visitor segment which the visitor belongs to.
+  - `keywords` - the key words of inquiring the  offline message.
+  - `pageIndex` -the page index of query.
+
+- Response
+  - `total` -total count of the list.
+  - `previousPage` -url of the previous page.
+  - `nextPage` -url of the next page.
+  - `offlineMessages` - an array of [Offline Message](#offline-message-json-format)
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x GET https://hosted.comm100.com/api/v3/livechat/offlinemessages
+```
+
+Sample response:
+
+```json
+{
+    "total": 28,
+    "previousPage": "https://hosted.comm100.com/api/v2.0/livechat/offlinemessages",
+    "nextPage": "https://hosted.comm100.com/api/v2.0/livechat/offlinemessages",
+    "offlineMessages": [
+        {
+            "id": "a2317d24-bec0-43e5-aaf5-2eae29ce948f",
+            "time": "2019-01-05T07:17:08.89",
+            "ssoUserId": "",
+            "name": "allon",
+            "email": "allon@comm100.com",
+            "department": "",
+            "agent": "",
+            "content": "cccccccc",
+            "fields": [],
+            "customVariables": [],
+            "attachment": [
+                {
+                    "name": "comm100SDK.css",
+                    "uri": "https://ent.comm100.com/api/v2.0/livechat/download?id=411&downloadtype=offlinemessage"
+                }
+            ]
+        },
+        ...
+    ]
+}
+```
+
+### Get a single messages
+
+  `Get /api/v3/livechat/offlinemessages/{id}`
+
+- Parameters:
+
+    No parameter.
+
+- Response:
+
+    [Chat](#chat-json_format)
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x GET https://hosted.comm100.com/api/v3/livechat/offlinemessages/a2317d24-bec0-43e5-aaf5-2eae29ce948f
+```
+
+Sample response:
+
+```json
+{
+    "id": "a2317d24-bec0-43e5-aaf5-2eae29ce948f",
+    "time": "2019-01-05T07:17:08.89",
+    "ssoUserId": "",
+    "name": "allon",
+    "email": "allon@comm100.com",
+    "department": "",
+    "agent": "",
+    "content": "cccccccc",
+    "fields": [],
+    "customVariables": [],
+    "attachment": [
+        {
+            "name": "comm100SDK.css",
+            "uri": "https://ent.comm100.com/api/v2.0/livechat/download?id=411&downloadtype=offlinemessage"
+        }
+    ]
+}
+```
+
+### Remove a messages
+
+  `DELETE /api/v3/livechat/offlinemessages/{id}`
+
+- Parameters
+
+    No parameters.
+
+- Response:
+
+    Status: 200 OK
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer yP7Agz9nzzpgyPTxfM6ajBgIMhuaoz_p1XvLgKyULP7SzIbCRUb3Qscheh7
+    4BceSrdZ61_LrJ4saBNJPP8NJdsrx5CbWSOfVlqHU9-dp7lVgBZbVg661SOcDM0dMYb8nOZ4rixC79j-lHw4mW
+    LEhJAtUzqsfkG3QamG0VklLNThmPvRttwyLGqzZFY3keXNw5ivxy1Mr5smAJDWPfzKKQZXJIkoUYutNz4Wt3iC
+    80BlfjLcPnYOPFbAMnDdtvKjle6gf2V1WkHA-JW9W9QZc7A" 
+    -X DELETE  https://hosted.comm100.com/api/v3/livechat/offlinemessages/a2317d24-bec0-43e5-aaf5-2eae29ce948f
+```
+
+Sample response:
+
+```json
+"Chat with id 'a2317d24-bec0-43e5-aaf5-2eae29ce948f' has been removed."
+```
 
 # Campaign
 
@@ -1852,11 +2015,658 @@ Content-Type:  application/json
 
 # Secure Form
 
-- `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-site-secure-forms)
+- `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-list-of-secure-forms)
 - `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
 - `POST /api/v3/livechat/secureForms` - [Create a secure form](#get-a-secure-form)
 - `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form)
 - `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
+
+## Related Object Json Format
+### Secure Form JSON Format
+
+Secure Form is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | - | :-: | :-: | :-: | - |
+  | `id` | string  | | yes | N/A | | id of the secure form. |
+  | `name` | string  | | no | yes | | name of the secure form. |
+  | `description` | string |  | no | no | |description of the secure form. |
+  | `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | an array of [Field](#field-json-format) |
+
+## Endpoint
+### Get list of secure forms
+
+  `GET /api/v3/livechat/secureForms`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+An array of [Secure Form](#secure-form-json-format)
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/secureForms
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "5721c1ac-f18b-43ed-9ff1-597acd9f48e2",
+        "name": "justfortest",
+        "description": "",
+        "fields": [
+            {
+                "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
+                "name": "Card Number",
+                "type": "cardNumber",
+                "displayName": "Card Number",
+                "isSystem": true,
+                "isVisible": false,
+                "isRequired": false,
+                "order": 1
+            },
+            ...
+        ]
+    },
+    ...
+]
+```
+
+### Get a single secure form
+
+  `GET /api/v3/livechat/secureForms/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the secure form  |
+
+#### Response
+
+the response is: [Secure Form](#secure-form-json-format) Object
+
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/secureforms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+    "id": "5721c1ac-f18b-43ed-9ff1-597acd9f48e2",
+    "name": "justfortest2",
+    "description": "",
+    "fields": [
+        {
+            "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
+            "order": 1
+        },
+        ...
+    ]
+}
+```
+
+### Create a new secure form
+
+  `POST /api/v3/livechat/secureForms`
+
+#### Parameters
+Request body
+
+  The request body contains data with the [Secure Form](#secure-form-json-format) structure
+
+  example:
+```Json
+  {
+    "name": "justfortest",
+    "description": "",
+    "fields": [
+        {
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
+            "order": 1
+        },
+        ...
+    ]
+  }
+```
+
+#### Response
+the response is:
+[Secure Form](#secure-form-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "name": "justfortest",
+    "description": "",
+    "fields": [
+        {
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
+            "order": 1
+        },
+        ...
+    ]
+  }' -X POST https://domain.comm100.com/api/v3/livechat/secureForms
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+
+{
+    "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "justfortest",
+    "description": "",
+    "fields": [
+        {
+            "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
+            "order": 1
+        },
+        ...
+    ]
+}
+```
+
+### Update a secure form
+
+  `PUT /api/v3/livechat/secureForms/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the secure form  |
+
+Request body
+
+  The request body contains data with the [Secure Form](#secure-form-json-format) structure
+
+  example:
+```Json
+  {
+    "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "justfortest",
+    "description": "",
+    "fields": [
+        {
+            //update
+            "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
+            "order": 1
+        },
+        {
+            //create
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":0,
+              },
+              {
+                "value": "hangzhou",
+                "order":1,
+              }],
+            "order": 2
+        }
+    ]
+  }
+```
+
+#### Response
+the response is:
+[Secure Form](#secure-form-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "justfortest",
+    "description": "",
+    "fields": [
+        {
+            //update
+            "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
+            "order": 1
+        },
+        {
+            //create
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":0,
+              },
+              {
+                "value": "hangzhou",
+                "order":1,
+              }],
+            "order": 2
+        }
+    ]
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+  {
+    "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "justfortest",
+    "description": "",
+    "fields": [
+        {
+            "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
+            "order": 1
+        },
+        {
+            "id": "vc21qa68-92e6-4487-a2e8-8234fc9d1f48",
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":0,
+              },
+              {
+                "value": "hangzhou",
+                "order":1,
+              }],
+            "order": 2
+        }
+    ]
+  }
+```
+
+### Remove a secure form
+
+  `DELETE /api/v3/livechat/secureForms/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the secure form  |
+
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureForms/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+# Secure Form Field
+
+- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-list-of-secure-form-fields)
+- `GET /api/v3/livechat/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
+- `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#ceate-a-secure-form-field)
+- `PUT /api/v3/livechat/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
+- `DELETE /api/v3/livechat/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
+
+## Related Object Json Format
+### Secure Form Field JSON Format
+
+  Secure Form Field is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | - | :-: | :-: | :-: | - |
+  | `id` | string | | yes | no | | id of the field |
+  | `name` | string | | no | yes | | name of the field |
+  | `displayName` | string | | no | yes | | name of the field |
+  | `type` | string | | no | yes | | including `text`, `textArea`, `radioBox`, `checkbox`, `dropdownList`, `checkboxList`, `datePicker` |
+  | `isSystem` | boolean | | yes | no | false | whether the field is system field or not. |
+  | `isVisible` | boolean | | no | no | false | whether the field is visible or not. |
+  | `isRequired` | boolean | | no | no | false | whether the field is required or not when submitting the form |
+  | `order` | integer | | no | no |1  | the order of the field. |
+  | `options` | string |  | no | no | | the options of the field. |
+
+## Endpoint
+### Get list of secure form fields
+
+  `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `secureFormId` | Guid | yes  |  the id of the secure form  |
+
+
+#### Response
+An array of [Secure Form Field](#secure-form-field-json-format)
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
+        "name": "Card Number",
+        "displayName": "Card Number",
+        "type": "cardNumber",
+        "isSystem": true,
+        "isVisible": false,
+        "isRequired": false,
+        "order": 1
+    },
+    {
+        "id": "vc21qa68-92e6-4487-a2e8-8234fc9d1f48",
+        "type":"dropDownList",
+        "name":"city",
+        "displayName": "City",
+        "isRequired":true,
+        "isSystem": false,
+        "isVisible": true,
+        "options":[
+            {
+            "value": "beijing",
+            "order":0,
+            },
+            {
+            "value": "hangzhou",
+            "order":1,
+            }],
+        "order": 2
+    }
+]
+```
+
+### Get a single secure form field
+
+  `GET /api/v3/livechat/secureFormFields/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the secure form field |
+
+#### Response
+
+the response is: [Secure Form Field](#secure-form-field-json-format) Object
+
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/secureFormFields/vc21qa68-92e6-4487-a2e8-8234fc9d1f48
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+    "id": "vc21qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "type":"dropDownList",
+    "name":"city",
+    "displayName": "City",
+    "isRequired":true,
+    "isSystem": false,
+    "isVisible": true,
+    "options":[
+        {
+        "value": "beijing",
+        "order":0,
+        },
+        {
+        "value": "hangzhou",
+        "order":1,
+        }],
+    "order": 2
+}
+```
+
+### Create a new secure form field
+
+  `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `secureFormId` | Guid | yes  |  the id of the secure form  |
+
+Request body
+
+  The request body contains data with the [Secure Form Field](#secure-form-field-json-format) structure
+
+  example:
+```Json
+  {
+    "name": "Card Number",
+    "displayName": "Card Number",
+    "type": "cardNumber",
+    "isSystem": true,
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1     
+  }
+```
+
+#### Response
+the response is:
+[Secure Form Field](#secure-form-field-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "name": "Card Number",
+    "displayName": "Card Number",
+    "type": "cardNumber",
+    "isSystem": true,
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1 
+  }' -X POST https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48/secureFormFields
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
+
+{
+    "id": "3222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "Card Number",
+    "displayName": "Card Number",
+    "type": "cardNumber",
+    "isSystem": true,
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1
+}
+```
+
+### Update a secure form field
+
+  `PUT /api/v3/livechat/secureFormFields/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the secure form field  |
+
+Request body
+
+  The request body contains data with the [Secure Form Field](#secure-form-field-json-format) structure
+
+  example:
+```Json
+  {
+    "id": "3222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "Card Number",
+    "displayName": "Card Number",
+    "type": "cardNumber",
+    "isSystem": true,
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1
+  }
+```
+
+#### Response
+the response is:
+[Secure Form Field](#secure-form-field-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "id": "3222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "Card Number",
+    "displayName": "Card Number",
+    "type": "cardNumber",
+    "isSystem": true,
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+  {
+    "id": "3222qa68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "Card Number",
+    "displayName": "Card Number",
+    "type": "cardNumber",
+    "isSystem": true,
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1
+  }
+```
+
+### Remove a secure form field
+
+  `DELETE /api/v3/livechat/secureFormFields/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the secure form field |
+
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureFormFields/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
 
 # Webhook
 
