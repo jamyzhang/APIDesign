@@ -275,7 +275,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | yes //都没put功能吧 | N/A | | Id of the current item.  |
   | `name` | string  | N/A | N/A | | Name of the visitor. |
   | `email` | string  | N/A | N/A | | Email of the visitor. |
   | `numberOfVisits` | integer  | N/A | N/A | | The total number of web pages the visitor viewed on your website. |
@@ -284,15 +284,16 @@ HTTP/1.1 204 No Content
 
 ## Visitor Endpoints
 
-### Get all visitors in site
+### Get all visitors in site //应该是叫get a list of visitor site 吧
 
   `GET /api/v3/globalSettings/visitors`
 
+//paramters 部分没有, 即使不需要输入值, 也应该写上No parameter
 #### Response
 
 the response is: [Visitor](#Visitor-Object) Object
 
-### Get a visitors by id
+### Get a visitors by id //是get a visitor 不是a visitors
 
   `GET /api/v3/globalSettings/visitors/{id}`
 
@@ -340,6 +341,7 @@ the response is: [Visitor](#Visitor-Object) Object
 #### Response
 
 the response is: [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+//是一个数组,是an Array of
 
 ### Get a Public Canned Message Category by id
 
@@ -423,18 +425,19 @@ HTTP/1.1 204 No Content
 
   Public Canned Message Object is represented as simple flat JSON objects with the following keys:  
 
+//有部分说明是空的. N/A, True/False 的理解都是乱的.
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | | yes | N/A | | Id of the canned message.  |
   | `name` | string | | N/A | yes | | Name of the canned message. |
   | `message` | string | | N/A | yes | | |
   | `IfSetHTMLMessageForEmail` | boolean  | | N/A | N/A | false | |
   | `HTMLMessage` | string  | | N/A | N/A | | |
   | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
-  | `createBy` | [Agent](#Agent-Object)  | | N/A | N/A | | Which agent create the current item. |
+  | `createBy` //Created by | [Agent](#Agent-Object)  | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | N/A | N/A | | Whether the custom away status is system or not. |
-  | `channel` | string  | | N/A | N/A | `email` | Include `default`,`email`. The default channel canned message works for all channel. Email channel canned message only works for Email channel. If a specific Channel is not added, use the Default Channel Canned Messages. |
-  | `similarQuestion` | [Similar Question](#Similar-Question-Object)[]  | | N/A | N/A | | Available when Agent Assist is enabled. |
+  | `channel` //这个字段文档上不是说删掉吗| string  | | N/A | N/A | `email` | Include `default`,`email`. The default channel canned message works for all channel. Email channel canned message only works for Email channel. If a specific Channel is not added, use the Default Channel Canned Messages. |
+  | `similarQuestion` //这里理解好像不对| [Similar Question](#Similar-Question-Object)[]  | | N/A | N/A | | Available when Agent Assist is enabled. |
 
 ### Similar Question Object
 
@@ -480,7 +483,7 @@ Query string
   | - | - | - | - | - |
   | `include` | string | no  |  | Available value: `publicCannedMessageCategory` |
 
-##### Response
+#### Response
 
 the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
 
@@ -768,6 +771,7 @@ HTTP/1.1 204 No Content
 
 ## Related Object Json Format
 
+// 请参看ER,应该是叫Custom Agent status
 ### Agent Away Status Object
 
   Agent Away Status Object is represented as simple flat JSON objects with the following keys:  
@@ -999,6 +1003,7 @@ Response
 
 ### Field Mapping Object
 
+//这一堆格式全部是乱的, 自己没有做过preview 吗?
 Field Mapping is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
