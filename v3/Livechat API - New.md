@@ -1892,14 +1892,14 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   | `id` | Guid | yes  |  the id of the ban  |
 
 Query string
 
   | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - | 
+  | - | - | :-: | :-: | - |
   | `include` | string | no  | |  Available value: `visitor`, `agent` |
 
 #### Response
@@ -2045,7 +2045,7 @@ Response
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
+  | Name  | Type | Required  | Description |
   | - | - | - | - | 
   | `id` | Guid | yes  |  the id of the ban  |
 
@@ -2580,8 +2580,8 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   | `id` | Guid | yes  |  the id of the secure form  |
 
 #### Response
@@ -3158,6 +3158,226 @@ curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureFormFields/f2d45
 Response
 ```json
 HTTP/1.1 204 No Content
+```
+
+## Visitor Segmentations
+
+  You need `Manage Settings` permission to manage visitor segmentation.
+- `GET /api/v2/livechat/visitorSegmentations` -get a list of visitor segments
+- `GET /api/v2/livechat/visitorSegmentations/{id}`  -get a visitor segment
+- `POST /api/v2/livechat/visitorSegmentations` -create a new visitor segment
+- `PUT /api/v2/livechat/visitorSegmentations/{id}`  -update a visitor segment
+- `DELETE /api/v2/livechat/visitorSegmentations/{id}`  -remove a visitor segment
+
+### Model
+
+#### Visitor Segmentation JSON Format
+
+Visitor Segmentation is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
+  | `id` |integer  | yes | no |id of the visitor segment.
+  | `name` |string  | no | yes | name of the visitor segment.
+  | `color` |string  | no | no | color of the visitor segment
+  | `isEnable` |boolean  | no | no | whether the visitor segment is enabled or not.
+  | `priority` |int  | no | no | priority of the visitor segment.
+  | `description` |string  | no | no | description of the visitor segment.
+  | `conditions` |[Conditions](#conditions-json-format)  | no | no | an trigger condition json object. |
+  | `notification` | string or object  | no | no | `none` or `{"agents":[1,2,3]}` or `{"agents": [1,2]"}` |
+
+### Endpoint
+
+#### Get list of visitor segmentation
+
+  `GET /api/v2/livechat/visitorSegmentations`
+
+- Parameters:
+
+    No parameters
+
+- Response:
+
+    An array of [Visitor Segmentation](#visitor-segmentation-json-format)
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations
+```
+
+Sample response:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "livechat15293908029",
+        "color": "339FD9",
+        "isEnable": false,
+        "priority": 0,
+        "description": "",
+        "conditions": {
+            "when": "All",
+            "logicalExpression": "",
+            "list": [
+                {
+                    "number": 1,
+                    "field": "CurrentPageUrl",
+                    "operator": "Include",
+                    "value": "xx"
+                }
+            ]
+        },
+        "notification": "None"
+    },
+    ...
+]
+```
+
+#### Get a single visitor segmentation
+
+  `GET /api/v2/livechat/visitorSegmentations/{id}`
+
+- Parameters:
+
+    No parameters
+
+- Response:
+
+    [Visitor Segmentation](#visitor-segmentation-json-format)
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations/2
+```
+
+Sample response:
+
+```json
+{
+    "id": 2, 
+    "name": "justfortggggeggggst2",
+    "color": "4CD9A1",
+    "isEnable": true,
+    "priority": 1,
+    "description": "fhbsh",
+    "conditions": {
+        "when": "LogicalExpression",
+        "logicalExpression": "",
+        "list": []
+    },
+    "notification": "{\"departments\": []}"
+}
+```
+
+#### Create a new visitor segmentation
+
+  `POST /api/v2/livechat/visitorSegmentations`
+
+- Parameters:
+
+    [Visitor Segmentation](#visitor-segmentation-json-format)
+
+- Response:
+
+    [Visitor Segmentation](#visitor-segmentation-json-format)
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "name=justfortest"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations
+```
+
+Sample response:
+
+```json
+{
+    "id": 6,
+    "name": "justfortest",
+    "color": "339FD9",
+    "isEnable": false,
+    "priority": 0,
+    "description": "",
+    "conditions": {
+        "when": "all",
+        "logicalExpression": "",
+        "list": []
+    },
+    "notification": null
+}
+```
+
+#### Update a visitor segmentation
+
+  `PUT /api/v2/livechat/visitorSegmentations/{id}`
+
+- Parameters:
+
+    [Visitor Segmentation](#visitor-segmentation-json-format)
+
+- Response:
+
+    [Visitor Segmentation](#visitor-segmentation-json-format)
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "name=justfortestupdate"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations/6
+```
+
+Sample response:
+
+```json
+{
+    "id": 6,
+    "name": "justfortestupdate",
+    "color": "339FD9",
+    "isEnable": false,
+    "priority": 2,
+    "description": "",
+    "conditions": {
+        "when": "LogicalExpression",
+        "logicalExpression": "",
+        "list": [ ]
+    },
+    "notification": "None"
+}
+```
+
+#### Remove a visitor segmentation
+
+  `DELETE /api/v2/livechat/visitorSegmentations/{id}`
+
+- Parameters:
+
+    No parameters
+
+- Response:
+
+    Status: 200 OK
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations/6
+```
+
+Sample response:
+
+```json
+Response: Status: 200 OK
 ```
 
 # Webhook
