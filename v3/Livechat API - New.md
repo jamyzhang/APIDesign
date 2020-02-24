@@ -98,7 +98,7 @@ You need `Manage Settings` permission to config for a site.
 
 # Agent Chat
 
-- `GET /api/v3/livechat/agentChats` - [Get a list of agent chats](#get-site-campaigns) 
+- `GET /api/v3/livechat/agentChats` - [Get a list of agent chats](#get-site-campaigns)
 - `GET /api/v3/livechat/agentChats/{id}` - [Get an agent chat by id](#get-a-campaign)  
 
 # Online Visitor  
@@ -110,8 +110,8 @@ You need `Manage Settings` permission to config for a site.
 - `GET /api/v3/livechat/visitors/{id}` - [Get a visitor by id](#get-a-visitor)  
 - `POST /api/v3/livechat/visitors/{id}/customVariables:change` - [update a visitor's custom variables](#update-a-visitor-custom-variables)
 
+# Session
 
-# Session 
   ??Todo: api 和 include 如何设计， 感觉这个是多余的
   ??session object 不含 chat 和 offlinemessage
 
@@ -135,6 +135,7 @@ You need `Manage Settings` permission to config for a site.
 - `DELETE /api/v3/livechat/offlineMessages` - [Batch Delete offlineMessages](#get-a-campaign)
 
 ## Related Object Json Format
+
 ### Offline Message JSON format
 
  Offline Message is represented as simple flat JSON objects with the following keys:  
@@ -286,7 +287,7 @@ Sample request:
 curl -H "Authorization: Bearer yP7Agz9nzzpgyPTxfM6ajBgIMhuaoz_p1XvLgKyULP7SzIbCRUb3Qscheh7
     4BceSrdZ61_LrJ4saBNJPP8NJdsrx5CbWSOfVlqHU9-dp7lVgBZbVg661SOcDM0dMYb8nOZ4rixC79j-lHw4mW
     LEhJAtUzqsfkG3QamG0VklLNThmPvRttwyLGqzZFY3keXNw5ivxy1Mr5smAJDWPfzKKQZXJIkoUYutNz4Wt3iC
-    80BlfjLcPnYOPFbAMnDdtvKjle6gf2V1WkHA-JW9W9QZc7A" 
+    80BlfjLcPnYOPFbAMnDdtvKjle6gf2V1WkHA-JW9W9QZc7A"
     -X DELETE  https://hosted.comm100.com/api/v3/livechat/offlinemessages/a2317d24-bec0-43e5-aaf5-2eae29ce948f
 ```
 
@@ -324,7 +325,7 @@ Sample response:
 
 #### Response
 
-the response is: [Campaign](#Campaign-Object) Object
+the response is: list of [Campaign](#Campaign-Object) Object
 
 ### Get a Campaign by id
 
@@ -347,12 +348,6 @@ the response is: [Campaign](#Campaign-Object) Object
   `POST /api/v3/livechat/campaigns`
 
 #### Parameters
-
-Path Parameters
-
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -961,7 +956,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+the response is: list of [Auto Invitation](#Auto-Invitation-Object) Object
 
 ### Get a Auto Invitation by id
 
@@ -991,7 +986,6 @@ Path Parameters
   | Name  | Type | Required  | Description |
   | - | - | - | - |
   | `campaignId` | Guid | yes  |  the unique Id of the campaign |
-  | `id` | Guid | yes  |  the unique Id of the auto invitation |
 
 Request Body
 
@@ -1161,16 +1155,215 @@ the response is: [Language](#Language-Object) Object
 
 # Routing
 
-- `GET /api/v3/livechat/campaigns/{campaignId}/routing` - [Get settings of routing for a campaign](#get-site-info) include department, agent
-- `PUT /api/v3/livechat/campaigns/{campaignId}/routing` - [Update settings of routing for a campaign](#update-site-info)
+- `GET /api/v3/livechat/campaigns/{campaignId}/routing` - [Get settings of routing for a campaign](#get-Routing)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/routing` - [Update settings of routing for a campaign](#update-Routing)
+
+## Related Object Json Format
+
+### Routing Object
+
+  Routing Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `isEnable` | boolean |  | N/A | N/A |  false | Whether the routing rule is enabled or not. |
+  | `type` | string |  | N/A | N/A | | Including `simple` and `customRule`. |
+  | `routeTo` | [Agent](#Agent-Object) or [Department](#Department-Object) | yes | N/A | N/A | |  |
+  | `priority` | string |  | N/A | N/A | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
+  | `percentageToBot` | integer |  | N/A | N/A | | |
+  | `customRule` | [Custom Rule](#Custom-Rule-Object)[] |  | N/A | N/A | | |
+  | `actionWhenNoRuleMatched` | string |  | N/A | N/A | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
+  | `routeToWhenNoRuleMatched` | [Agent](#Agent-Object) or [Department](#Department-Object) | yes | N/A | N/A | |  |
+  | `priorityWhenNoRuleMatched` | string |  | N/A | N/A | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
+  | `percentageToBotWhenNoRuleMatched` | integer |  | N/A | N/A | | |
+  | `emailsToReceiveOfflineMessage` | string |  | N/A | N/A | |  |
+
+## Routing Endpoints
+
+### Get Routing
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/routing`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `agent`, `department` |
+
+#### Response
+
+the response is: [Routing](#Routing-Object) Object
+
+### Update Routing
+
+  `PUT /api/v3/livechat/campaigns/{campaignId}/routing`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Request Body
+
+  The request body contains data with the [Routing](#Routing-Object) structure
+
+#### Response
+
+the response is: [Routing](#Routing-Object) Object
 
 # Custom Rule
 
-- `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-site-info) include department, agent
-- `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Get a custom rule by id](#get-site-info) include department, agent
-- `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Create a custom rule](#get-site-info)
-- `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Update a custom rule](#update-site-info)
-- `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Delete a custom rule](#delete-a-customer-segment)
+- `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-all-Custom-Rule)
+- `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Get a custom rule by id](#get-a-Custom-Rule-by-id)
+- `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Create a custom rule](#create-a-new-Custom-Rule)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Update a custom rule](#update-a-Custom-Rule)
+- `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Delete a custom rule](#delete-a-Custom-Rule)
+
+## Related Object Json Format
+
+### Custom Rule Object
+
+  Custom Rule Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `id` | Guid | yes | | N/A | | Id of the current item. |
+  | `isEnable` | boolean | | N/A | N/A | | Whether the custom rule is enabled or not. |
+  | `name` | string | | N/A | N/A | | |
+  | `order` | integer | | N/A | N/A | | |
+  | `routeTo` | [Agent](#Agent-Object) or [Department](#Department-Object) | yes | N/A | N/A | |  |
+  | `priority` | string | | N/A | N/A | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
+  | `percentageToBot` | integer | | N/A | N/A | | |
+  | `conditionMetType` | string | | N/A | N/A | | Including `all`, `any` and `logicalExpression`. |
+  | `logicalExpression` | string | | N/A | N/A | | |
+  | `condition` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | N/A | N/A | | |
+
+### Live Chat Condition Object
+
+  Live Chat Condition Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `field` | string | N/A | N/A | | |
+  | `operator` | integer | N/A | N/A | | Include `is`, `isNot`, `contains`, `doesnotcontain`, `isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan` and `regularExpression`. |
+  | `value` | string | N/A | N/A | | |
+  | `order` | integer | N/A | N/A | | |
+
+## Routing Endpoints
+
+### Get all Custom Rule
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `agent`, `department` |
+
+#### Response
+
+the response is: [Custom Rule](#Custom-Rule-Object) Object
+
+### Get a Custom Rule by id
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the custom rule |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `agent`, `department` |
+
+#### Response
+
+the response is: [Custom Rule](#Custom-Rule-Object) Object
+
+### Create a new Custom Rule
+
+  `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+
+Request Body
+
+  The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure
+
+#### Response
+
+the response is: [Custom Rule](#Custom-Rule-Object) Object
+
+### Update a Custom Rule
+
+  `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the custom rule |
+  | `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+
+Request Body
+
+  The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure
+
+#### Response
+
+the response is: [Custom Rule](#Custom-Rule-Object) Object
+
+### Delete a Custom Rule
+
+  `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the custom rule |
+  | `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+
+#### Response
+
+HTTP/1.1 204 No Content
 
 # Chatbot Integration
 
@@ -1299,20 +1492,318 @@ the response is: [KB Integration](#KB-Integration-Object) Object
 
 # Campaign Form Field
 
-- `GET /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Get a list of form fields of Pre-Chat for a campaign](#get-site-info)
-- `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Create a form field of Pre-Chat for a campaign](#update-site-info)
-- `GET /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Get a list of form fields of Post Chat for a campaign](#get-site-info)
-- `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Create a form field of Post Chat for a campaign](#update-site-info)
-- `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Get a list of form fields of offline message for a campaign](#get-site-info)
-- `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a form field of offline message for a campaign](#update-site-info)
-- `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get a list of form fields of agent wrapup for a campaign](#get-site-info)
-- `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a form field of agent wrapup for a campaign](#update-site-info)
-- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field)
-- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
-- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
+- `GET /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Get a list of form fields of Pre-Chat for a campaign](#get-all-form-fields-of-Pre-Chat-for-a-campaign)
+- `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Create a form field of Pre-Chat for a campaign](#create-a-new-form-fields-of-Pre-Chat-for-a-campaign)
+- `GET /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Get a list of form fields of Post Chat for a campaign](#get-all-form-fields-of-Post-Chat-for-a-campaign)
+- `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Create a form field of Post Chat for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
+- `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Get a list of form fields of offline message for a campaign](#get-all-form-fields-of-Offline-Message-for-a-campaign)
+- `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a form field of offline message for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
+- `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get a list of form fields of agent wrapup for a campaign](#get-all-form-fields-of-Agent-Wrap-up-for-a-campaign)
+- `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a form field of agent wrapup for a campaign](#create-a-new-form-fields-of-Agent-Wrap-up-for-a-campaign)
+- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-form-fields-by-id)
+- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-form-fields)
+- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-form-fields)
+
+## Related Object Json Format
+
+### Campaign Form Field Object
+
+  Campaign Form Field is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `id` | Guid | yes | N/A | | Id of the current item. |
+  | `field` | [type](#Live-Chat-Field-Object) | N/A | N/A | | |
+  | `isVisible` | boolean | N/A | N/A | | Whether the field is visible or not. |
+  | `isRequired` | boolean | N/A | N/A | | Whether the field is required or not when submitting the form |
+  | `order` | integer | N/A | N/A | | The order of the field. |
+  | `ratingGrade` | [type](#Rating-Grade-Object) | N/A | N/A | | |
+
+### Rating Grade Object
+
+  Rating Grade is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `id` | Guid | yes | N/A | Id of the current item. |
+  | `grade` | integer | N/A | N/A | | |
+  | `label` | string | N/A | N/A | | |
+  | `isVisible` | boolean | N/A | N/A | | |
+
+### Live Chat Field Object
+
+  Live Chat Field is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `id` | Guid | yes | N/A | | Id of the current item. |
+  | `isSystem` | boolean | N/A | N/A | | whether the field is system or not. |
+  | `name` | string | N/A | N/A | | |
+  | `type` | string | N/A | N/A | | The [Live Chat Field Type](#Live-Chat-Field-Type) of the field. |
+  | `option` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | N/A | N/A | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
+  | `leftText` | string | N/A | N/A | | Available whey Type is NPS. |
+  | `rightText` | string | N/A | N/A | | Available whey Type is NPS. |
+  | `optionGroup` | [Live Chat Field Option Group](#Live-Chat-Field-Option-Group-Object)[] | N/A | N/A | | Live Chat Field Option Group, available whey Type is `checkboxListwithOptionGroups`. |
+
+### Live Chat System Field
+
+  Live Chat System Field is one key of the following keys:
+
+  | System Field | Type | Only Available Forms | Is Required |
+  | - | - | :-: | - |
+  | `name` | `textBox` | Name field, `Pre Chat Form` or `Offline Message Form` only. | N/A |
+  | `email` | `textBox` | Email field, `Pre Chat Form` or `Offline Message Form` only. | N/A |
+  | `phone` | `textBox` | Phone field, `Pre Chat Form` or `Offline Message Form` only. | N/A |
+  | `company` | `textBox` | Company field, `Pre Chat Form` or `Offline Message Form` only. | N/A |
+  | `product service` | `dropdownList` | Product and Service field, `Pre Chat Form` only. | N/A |
+  | `department` | `dropdownList` | Department field, `Pre Chat Form` or `Offline Message Form` only. | N/A |
+  | `ticket id` | `textBox` | Ticket field, `Pre Chat Form` or `Offline Message Form` only.  | N/A |
+  | `rating` | `rating` | Rating field, `Post Chat Form` only. | N/A |
+  | `rating comment` | `textArea` | Comments field, `Post Chat Form` only. | N/A |
+  | `subject` | `textBox` | Subject field, `Offline Message Form` only. | yes |
+  | `message` | `textArea` | Content field, `Offline Message Form` only. | N/A |
+  | `attachment` | `file` | Attachment field, `Offline Message Form` only. | N/A |
+  | `category` | `dropdownList` or `checkboxListwithOptionGroups`  | category field , `agent wrap-up` only | N/A |
+  | `wrap-up comment` | `textArea` | comment field , `agent wrap-up` only | N/A |
+
+### Live Chat Field Type
+
+  Live Chat Field Type is one key of the following keys:
+
+  | Name | Available Forms |
+  | - | :-: | - |
+  | `textBox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
+  | `textArea` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
+  | `radioBox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
+  | `checkbox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
+  | `dropdownList` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up` |
+  | `checkboxList` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up` |
+  | `NPS` | `Post Chat`  |
+  | `file` | `Offline Message`   |
+  | `rating` | `Post Chat` |
+  | `checkboxListwithOptionGroups` | `Agent Wrap-Up`   |
+
+### Live Chat Field Option Object
+
+  Live Chat Field Option Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `value` | string | N/A | N/A | | |
+  | `order` | integer | N/A | N/A | | |
+
+### Live Chat Field Option Group Object
+
+  Live Chat Field Option Group Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `name` | string | N/A | N/A | | |
+  | `order` | integer | N/A | N/A | | |
+  | `option` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[]  | N/A | N/A | | |
+
+## KB Integration Endpoints
+
+### Get all form fields of Pre-Chat for a campaign
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+#### Response
+
+the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Create a new form fields of Pre-Chat for a campaign
+
+  `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Request Body
+
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+
+#### Response
+
+the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Get all form fields of Post Chat for a campaign
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+#### Response
+
+the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Create a new form fields of Post Chat for a campaign
+
+  `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Request Body
+
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+
+#### Response
+
+the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Get all form fields of Offline Message for a campaign
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+#### Response
+
+the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Create a new form fields of Offline Message for a campaign
+
+  `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Request Body
+
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+
+#### Response
+
+the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Get all form fields of Agent Wrap-up for a campaign
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+#### Response
+
+the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Create a new form fields of Agent Wrap-up for a campaign
+
+  `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Request Body
+
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+
+#### Response
+
+the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Get a form fields by id
+
+  `GET /api/v3/livechat/campaignFormFields/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+
+#### Response
+
+the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Update a form fields
+
+  `PUT /api/v3/livechat/campaignFormFields/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+
+Request Body
+
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+
+#### Response
+
+the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+### Delete a form fields
+
+  `DELETE /api/v3/livechat/campaignFormFields/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+
+#### Response
+
+HTTP/1.1 204 No Content
 
 # Ban
+
   You need `Manage Ban List` permission to manage ban list.
+
 - `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
 - `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
 - `POST /api/v3/livechat/bans` - [Create a ban](#get-a-ban)
@@ -1325,7 +1816,7 @@ the response is: [KB Integration](#KB-Integration-Object) Object
 
   Ban is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | - | :-: | :-: | :-: | - | 
   | `id` | string | | yes | N/A | | id of the ban. |
   | `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
@@ -1572,6 +2063,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Conversion Action
+
   You need `Manage Settings` permission to manage conversion action.
 
 - `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-site-campaigns) include agent
@@ -2666,7 +3158,6 @@ Response
 ```json
 HTTP/1.1 204 No Content
 ```
-
 
 # Webhook
 

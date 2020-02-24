@@ -11,10 +11,10 @@
   - [agent](#agent)
     - [permission](#permission)
     - [shift](#shift)
-  - [role](#role) 
+  - [role](#role)
     - [agent](#agent)
     - [permission](#permission)
-  - [department](#department) 
+  - [department](#department)
     - [agent](#agent)
     - [shift](#shift)
   - [contact](#contact)
@@ -27,9 +27,9 @@
   - [agent away status](#agent-away-status)
   - [whitelisted login IP range](#whitelisted-login-ip-range)
   - [agent sso](#agent-sso)
-  - [visitor sso](#visitor-sso) 
+  - [visitor sso](#visitor-sso)
   - [shift](#shift)
-  - [audit log](#audit-log) 
+  - [audit log](#audit-log)
   
 
 # Site
@@ -133,7 +133,7 @@ Query string
 
 #### Response
 
-the response is: [Shift](#Shift-Object) Object
+the response is: list of [Shift](#Shift-Object) Object
 
 ### Get a Shift by id
 
@@ -194,12 +194,6 @@ the response is: [Shift](#Shift-Object) Object
   `POST /api/v3/globalSettings/shifts`
 
 #### Parameters
-
-Path Parameters
-
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the shift |
 
 Request Body
 
@@ -290,7 +284,7 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: [Visitor](#Visitor-Object) Object
+the response is: list of [Visitor](#Visitor-Object) Object
 
 ### Get a visitors by id
 
@@ -339,7 +333,7 @@ the response is: [Visitor](#Visitor-Object) Object
 
 #### Response
 
-the response is: [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+the response is: list of [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
 
 ### Get a Public Canned Message Category by id
 
@@ -433,7 +427,6 @@ HTTP/1.1 204 No Content
   | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
   | `createBy` | [Agent](#Agent-Object)  | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | N/A | N/A | | Whether the custom away status is system or not. |
-  | `channel` | string  | | N/A | N/A | `email` | Include `default`,`email`. The default channel canned message works for all channel. Email channel canned message only works for Email channel. If a specific Channel is not added, use the Default Channel Canned Messages. |
   | `similarQuestion` | [Similar Question](#Similar-Question-Object)[]  | | N/A | N/A | | Available when Agent Assist is enabled. |
 
 ### Similar Question Object
@@ -460,7 +453,7 @@ Query string
 
 #### Response
 
-the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
+the response is: list of [Public Canned Message](#Public-Canned-Message-Object) Object
 
 ### Get a Public Canned Message by id
 
@@ -563,7 +556,7 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
+the response is: list of [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
 
 ### Get a Private Canned Message Category by id
 
@@ -655,7 +648,6 @@ HTTP/1.1 204 No Content
   | `category` | [Private Canned Message Category](#Private-Canned-Message-Category-Object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
   | `createBy` | [Agent](#Agent-Object)  | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | N/A | N/A | | Whether the custom away status is system or not. |
-  | `channel` | string  | | N/A | N/A | `email` | Include `default`,`email`. The default channel canned message works for all channel. Email channel canned message only works for Email channel. If a specific Channel is not added, use the Default Channel Canned Messages. |
   | `similarQuestion` | [Similar Question](#Similar-Question-Object)[]  | | N/A | N/A | | Available when Agent Assist is enabled. |
 
 ## Private Canned Message Endpoints
@@ -674,7 +666,7 @@ Query string
 
 #### Response
 
-the response is: [Private Canned Message](#Private-Canned-Message-Object) Object
+the response is: list of [Private Canned Message](#Private-Canned-Message-Object) Object
 
 ### Get a Private Canned Message by id
 
@@ -787,7 +779,7 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: [Agent Away Status](#Agent-Away-Status-Object) Object
+the response is: list of [Agent Away Status](#Agent-Away-Status-Object) Object
 
 ### Get a Agent Away Status by id
 
