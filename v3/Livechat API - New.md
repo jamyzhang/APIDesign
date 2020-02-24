@@ -112,10 +112,91 @@ You need `Manage Settings` permission to config for a site.
 
 
 # Session 
-  ??Todo: api 和 include 如何设计， 感觉这个是多余的
-  ??session object 不含 chat 和 offlinemessage
-  
-- `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-session) include visitor, contact
+
+- `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-session-by-id) include visitor, contact
+
+## Related Object Json Format
+### Session JSON format
+
+ Session is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `id` | string |  | N/A | N/A | | id of the session. |
+  | `startTime` | datetime | | N/A | N/A |  | time of this session start. |
+  | `ip` | string |  | N/A | N/A | |  |
+  | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
+  | `searchEngine` | string |  | N/A | N/A | |  |
+  | `keywords` | string |  | N/A | N/A | |  |
+  | `browser` | string | | N/A | N/A | |  |
+  | `flashVersion` | string |  | N/A | N/A | |  |
+  | `language` | string |  | N/A | N/A | |  |
+  | `screenResolution` | string |  | N/A | N/A | |  |
+  | `operatingSystem` | integer |  | N/A | N/A | |  |
+  | `timeZone` | string |  | N/A | N/A | |  |
+  | `landingPageURL` | string |  | N/A | N/A | |  |
+  | `landingPageTitle` | string | | N/A | N/A | |  |
+  | `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
+  | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
+  | `contactId` | Guid | | N/A | N/A | | the id of the contact  |
+  | `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
+
+## Endpoint
+
+### Get a session by id
+
+  `Get /api/v3/livechat/sessions/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the id of the ban  |
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `include` | string | no  | |  Available value: `visitor`, `contact` |
+
+#### Response
+
+the response is: [Session](#session-json-format) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/sessions/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor
+```
+Response
+```json  
+{
+    "id": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "startTime": "2020-02-20T13:12:20Z",
+    "ip": "192.168.0.201",
+    "referrerURL": "",
+    "searchEngine": "",
+    "keywords": "",
+    "browser": "Firefox",
+    "flashVersion": "10.0",
+    "language": "en",
+    "screenResolution": "1920X1680",
+    "operatingSystem": "Windows 10",
+    "timeZone": "",
+    "landingPageURL": "",
+    "landingPageTitle": "",
+    "visitorId": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "visitor": {  //include visitor
+        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "email": "test@comm100.com",
+        "name": "test comm100",
+        ...
+    }
+}
+```
 
 # Chat
 //chat对象 sessionId
@@ -125,172 +206,296 @@ You need `Manage Settings` permission to config for a site.
 - `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#get-a-campaign)
 
 # Offline Message
-//offlineMessage对象 sessionId
-- `GET /api/v3/livechat/offlineMessages` - [Get a list of offlineMessages](#get-site-campaigns)  include department,agent, campaign,autoInvitation, session
-- `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offlineMessage by id](#get-a-campaign)  include department,agent, campaign,autoInvitation
-- `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offlineMessage by id](#get-a-campaign)
-- `DELETE /api/v3/livechat/offlineMessages` - [Batch Delete offlineMessages](#get-a-campaign)
+- `GET /api/v3/livechat/offlineMessages` - [Get a list of offline messages](#get-a-list-of-offline-messages)  include department,agent, campaign,autoInvitation, session
+- `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offline message by id](#get-an-offline-message-by-id)  include department,agent, campaign,autoInvitation, session
+- `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offline message by id](#delete-an-offline-message-by-id)
+- `DELETE /api/v3/livechat/offlineMessages` - [Batch delete offline messages](#batch-delete-offline-messages)
 
 ## Related Object Json Format
 ### Offline Message JSON format
 
  Offline Message is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |  
-  | `id` | string  | yes | yes | id of the chat. |
-  | `time` | datetime | yes | no | time of this offline message submitted. |
-  | `ssoUserId` | string | yes | no | SSO id of visitor |
-  | `name` | string | no | no | name of the visitor |
-  | `email` | string | no | no | email of the visitor |
-  | `department` | string | no | no | department of this offline message |
-  | `agent` | string | no | no | agent of this offline message |
-  | `content` | string | no | no | content of this offline message |
-  | `fields` | array | no | no | values of custom fields entered by visitors in the offline message window. An array of [Custom Field Value](#custom-field-value-json-format). |
-  | `customVariables` | array | no | no | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable Value](#custom-variable-value-json-format). |
-  | `attachment` | [Attachment](#attachment-json-foramt) | no | no | attachment submitted in the offline message |
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `id` | string |  | N/A | N/A | | id of the offline message. |
+  | `createdTime` | datetime | | N/A | N/A | | time of this offline message submitted. |
+  | `name` | string | | N/A | N/A |  | name of the visitor |
+  | `email` | string | | N/A | N/A |  | email of the visitor |
+  | `phone` | string | | N/A | N/A |  | phone of the visitor |
+  | `company` | string | | N/A | N/A |  | company of the visitor |
+  | `departmentId` | Guid | | N/A | N/A |  | The Department which the Offline Message belongs to |
+  | `department` | [Department](#department) | yes | N/A | N/A |  | Available only when department is included |
+  | `agentId` | Guid | | N/A | N/A |  | The Agent whom the Offline Message belongs to |
+  | `agent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
+  | `ticketId` | integer | | N/A | N/A |  |  |
+  | `subject` | string | | N/A | N/A |  | the subject of this offline message|
+  | `message` | string | | N/A | N/A | | the content of this offline message |
+  | `requestingPageTitle` | string | | N/A | N/A |  |  |
+  | `requestingPageURL` | string | | N/A | N/A |  |  |
+  | `source` | string | | N/A | N/A |  | including `chatButton` and `autoInvitation` |
+  | `autoInvitationId` | Guid | | N/A | N/A |  | Available when source is `autoInvitation` |
+  | `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | N/A | N/A |  | Available only when autoInvitation is included |
+  | `campaignId` | Guid | | N/A | N/A |  | id of the campaign |
+  | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  | Available only when campaign is included |
+  | `sessionId` | Guid | | N/A | N/A |  | id of the session |
+  | `session` | [Session](#session) | yes | N/A | N/A |  | Available only when session is included |
+  | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | an array of [Customer Segment](#customer-segment) |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  | values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
+  | `attachment` | byte[] | | N/A | N/A |  | the attachment file data |
+  | `attachmentName` | string | | N/A | N/A |  | the attachment file name |
+
+### Field Value JSON format
+
+ Field Value is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `fieldName` | string |  | N/A | N/A | |  |
+  | `value` | string | | N/A | N/A | |  |
+  | `url` | string | | N/A | N/A |  |  |
 
 ## Endpoint
 
-### Get messages list
+### Get a list of offline messages
 
   `Get /api/v3/livechat/offlineMessages`
 
-- Parameters:
-  - `timeFrom` - the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`
-  - `timeTo` - the end of the query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`
-  - `timezone` - time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.
-  - `campaignId` - id of the campaign which the offline message
-  - `departmentId` - id of the department which the offline message belongs to
-  - `agentId` - id of the agent that this offline message belongs to
-  - `visitorSegment` - id of the visitor segment which the visitor belongs to.
-  - `keywords` - the key words of inquiring the  offline message.
-  - `pageIndex` -the page index of query.
+#### Parameters
+Query string
 
-- Response
-  - `total` -total count of the list.
-  - `previousPage` -url of the previous page.
-  - `nextPage` -url of the next page.
-  - `offlineMessages` - an array of [Offline Message](#offline-message-json-format)
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
+  | `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
+  | `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
+  | `timezone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
+  | `campaignId` | guid | no  |  | id of the campaign which the offline message |
+  | `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
+  | `agentId` | guid | no  |  | id of the agent that this offline message belongs to |
+  | `visitorSegmentId` | guid | no  |  | id of the visitor segment which the visitor belongs to |
+  | `keywords` | string | no  |  | search subject or message by keywords |
+  | `pageIndex` | integer | no  | 1 | the page index of query |
+  | `pageSize` | integer | no  | 50 | page size  |
+
+#### Response
+The response body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |    
+  | - | - | :-: | :-: | - | 
+  | `totalCount` | integer | N/A | N/A | total count of the list. |
+  | `list` | [Offline Message](#offline-message-json-format)[] | N/A | N/A | an array of [Offline Message](#offline-message-json-format) |
 
 #### Example
 
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x GET https://hosted.comm100.com/api/v3/livechat/offlinemessages
+Using curl
 ```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation, session
+```
+Response
+```json  
 
-Sample response:
-
-```json
 {
-    "total": 28,
-    "previousPage": "https://hosted.comm100.com/api/v2.0/livechat/offlinemessages",
-    "nextPage": "https://hosted.comm100.com/api/v2.0/livechat/offlinemessages",
-    "offlineMessages": [
+    "totalCount": 28,
+    "list": [
         {
             "id": "a2317d24-bec0-43e5-aaf5-2eae29ce948f",
-            "time": "2019-01-05T07:17:08.89",
-            "ssoUserId": "",
+            "createdTime": "2019-01-05T07:17:08.89",
             "name": "allon",
             "email": "allon@comm100.com",
-            "department": "",
-            "agent": "",
-            "content": "cccccccc",
-            "fields": [],
-            "customVariables": [],
-            "attachment": [
-                {
-                    "name": "comm100SDK.css",
-                    "uri": "https://ent.comm100.com/api/v2.0/livechat/download?id=411&downloadtype=offlinemessage"
-                }
-            ]
+            "phone":"",
+            "company":"",
+            "departmentId":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
+            "department": {
+                //include department
+                "id":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
+                "name": "Sales",
+                ...
+            },
+            "ticketId":0,
+            "subject": "cccccccc",
+            "message": "",
+            "requestingPageTitle":"",
+            "requestingPageURL":"",
+            "source":"autoInvitation",
+            "autoInvitationId": "d245dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+            "autoInvitation": {
+                //include autoInvitation
+                "id":"d245dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+                "name": "autoTest",
+                ...
+            },
+            "campaignId":"2d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+            "campaign":{
+                //include campaign
+                "id":"2d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+                "name": "testCampaign",
+                ...
+            },
+            "sessionId":"f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+            "session":{
+                //include session
+                "id":"f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+                "startTime": "2020-02-20T13:12:20Z",
+                "ip": "192.168.0.201",
+                "referrerURL": "",
+                "searchEngine": "",
+                "keywords": "",
+                "browser": "Firefox",
+                ...
+            },
+            "fieldValues": [],
+            "customerSegments": [],
+            "attachment": [file binary data],
+            "attachmentName": "comm100SDK.css"
         },
         ...
     ]
 }
 ```
 
-### Get a single messages
+### Get an offline message by id
 
-  `Get /api/v3/livechat/offlinemessages/{id}`
+  `Get /api/v3/livechat/offlineMessages/{id}`
 
-- Parameters:
+#### Parameters
+Path parameters
 
-    No parameter.
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the id of the offline message  |
 
-- Response:
+Query string
 
-    [Chat](#chat-json_format)
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
+
+#### Response
+
+the response is: [Offline Message](#offline-message-json-format) Object
 
 #### Example
 
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x GET https://hosted.comm100.com/api/v3/livechat/offlinemessages/a2317d24-bec0-43e5-aaf5-2eae29ce948f
+Using curl
 ```
-
-Sample response:
-
-```json
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=department,agent,campaign,autoInvitation, session
+```
+Response
+```json  
 {
     "id": "a2317d24-bec0-43e5-aaf5-2eae29ce948f",
-    "time": "2019-01-05T07:17:08.89",
-    "ssoUserId": "",
+    "createdTime": "2019-01-05T07:17:08.89",
     "name": "allon",
     "email": "allon@comm100.com",
-    "department": "",
-    "agent": "",
-    "content": "cccccccc",
-    "fields": [],
-    "customVariables": [],
-    "attachment": [
-        {
-            "name": "comm100SDK.css",
-            "uri": "https://ent.comm100.com/api/v2.0/livechat/download?id=411&downloadtype=offlinemessage"
-        }
-    ]
+    "phone":"",
+    "company":"",
+    "agentId":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
+    "agent": {
+        //include agent
+        "id":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
+        "name": "Sales",
+        ...
+    },
+    "ticketId":0,
+    "subject": "cccccccc",
+    "message": "",
+    "requestingPageTitle":"",
+    "requestingPageURL":"",
+    "source":"autoInvitation",
+    "autoInvitationId": "d245dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "autoInvitation": {
+        //include autoInvitation
+        "id":"d245dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+        "name": "autoTest",
+        ...
+    },
+    "campaignId":"2d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "campaign":{
+        //include campaign
+        "id":"2d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+        "name": "testCampaign",
+        ...
+    },
+    "sessionId":"f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "session":{
+        //include session
+        "id":"f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+        "startTime": "2020-02-20T13:12:20Z",
+        "ip": "192.168.0.201",
+        "referrerURL": "",
+        "searchEngine": "",
+        "keywords": "",
+        "browser": "Firefox",
+        ...
+    },
+    "fieldValues": [],
+    "customerSegments": [],
+    "attachment": [file binary data],
+    "attachmentName": "comm100SDK.css"
 }
 ```
 
-### Remove a messages
+### Delete an offline message by id
 
-  `DELETE /api/v3/livechat/offlinemessages/{id}`
+  `DELETE /api/v3/livechat/offlineMessages/{id}`
 
-- Parameters
+#### Parameters
+Path parameters
 
-    No parameters.
+  | Name  | Type | Required  | Description |
+  | - | - | - | - | 
+  | `id` | Guid | yes  |  the id of the offline message  |
 
-- Response:
 
-    Status: 200 OK
+#### Response
+HTTP/1.1 204 No Content
 
 #### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer yP7Agz9nzzpgyPTxfM6ajBgIMhuaoz_p1XvLgKyULP7SzIbCRUb3Qscheh7
-    4BceSrdZ61_LrJ4saBNJPP8NJdsrx5CbWSOfVlqHU9-dp7lVgBZbVg661SOcDM0dMYb8nOZ4rixC79j-lHw4mW
-    LEhJAtUzqsfkG3QamG0VklLNThmPvRttwyLGqzZFY3keXNw5ivxy1Mr5smAJDWPfzKKQZXJIkoUYutNz4Wt3iC
-    80BlfjLcPnYOPFbAMnDdtvKjle6gf2V1WkHA-JW9W9QZc7A" 
-    -X DELETE  https://hosted.comm100.com/api/v3/livechat/offlinemessages/a2317d24-bec0-43e5-aaf5-2eae29ce948f
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+```
+Response
+```json
+HTTP/1.1 204 No Content
 ```
 
-Sample response:
+### Batch delete offline messages
 
+  `DELETE /api/v3/livechat/offlineMessages`
+
+#### Parameters
+
+Request body 
+  - an array of offline message id
+
+  example:
+  ```json
+  [
+    "waw28d68-92e6-4487-a2e8-8234fc9d1f48",
+    "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
+    "44878d68-92e6-4487-a2e8-8234fc9d1f48"
+  ]
+  ```
+
+#### Response
+HTTP/1.1 204 No Content 
+
+#### Example
+Using curl
+```
+curl -d '[
+    "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
+    "44878d68-92e6-4487-a2e8-8234fc9d1f48"
+  ]' -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages
+```
+Response
 ```json
-"Chat with id 'a2317d24-bec0-43e5-aaf5-2eae29ce948f' has been removed."
+HTTP/1.1 204 No Content
 ```
 
 # Campaign
@@ -1543,7 +1748,7 @@ Response
 }
 ```
 
-### Remove a ban
+### Delete a ban
 
   `DELETE /api/v3/livechat/bans/{id}`
 
