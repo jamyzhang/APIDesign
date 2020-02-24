@@ -269,7 +269,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | yes //都没put功能吧 | N/A | | Id of the current item.  |
   | `name` | string  | N/A | N/A | | Name of the visitor. |
   | `email` | string  | N/A | N/A | | Email of the visitor. |
   | `numberOfVisits` | integer  | N/A | N/A | | The total number of web pages the visitor viewed on your website. |
@@ -278,15 +278,16 @@ HTTP/1.1 204 No Content
 
 ## Visitor Endpoints
 
-### Get all visitors in site
+### Get all visitors in site //应该是叫get a list of visitor site 吧
 
   `GET /api/v3/globalSettings/visitors`
 
+//paramters 部分没有, 即使不需要输入值, 也应该写上No parameter
 #### Response
 
 the response is: list of [Visitor](#Visitor-Object) Object
 
-### Get a visitors by id
+### Get a visitors by id //是get a visitor 不是a visitors
 
   `GET /api/v3/globalSettings/visitors/{id}`
 
@@ -417,15 +418,16 @@ HTTP/1.1 204 No Content
 
   Public Canned Message Object is represented as simple flat JSON objects with the following keys:  
 
+//有部分说明是空的. N/A, True/False 的理解都是乱的.
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | | yes | N/A | | Id of the canned message.  |
   | `name` | string | | N/A | yes | | Name of the canned message. |
   | `message` | string | | N/A | yes | | |
   | `IfSetHTMLMessageForEmail` | boolean  | | N/A | N/A | false | |
   | `HTMLMessage` | string  | | N/A | N/A | | |
   | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
-  | `createBy` | [Agent](#Agent-Object)  | | N/A | N/A | | Which agent create the current item. |
+  | `createBy` //Created by | [Agent](#Agent-Object)  | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | N/A | N/A | | Whether the custom away status is system or not. |
   | `similarQuestion` | [Similar Question](#Similar-Question-Object)[]  | | N/A | N/A | | Available when Agent Assist is enabled. |
 
@@ -473,7 +475,7 @@ Query string
   | - | - | - | - | - |
   | `include` | string | no  |  | Available value: `publicCannedMessageCategory` |
 
-##### Response
+#### Response
 
 the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
 
@@ -760,6 +762,7 @@ HTTP/1.1 204 No Content
 
 ## Related Object Json Format
 
+// 请参看ER,应该是叫Custom Agent status
 ### Agent Away Status Object
 
   Agent Away Status Object is represented as simple flat JSON objects with the following keys:  
@@ -867,21 +870,17 @@ HTTP/1.1 204 No Content
 
   Agent SSO Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `isEnabled` | boolean  | N/A | N/A | | |
-  | `protocolType` | string  | N/A | N/A | | including `SAMLSSO` and `JWTSSO`. |
-  | `SAMLSSOURL` | string  | N/A | N/A | |Only available when Type is SAML SSO. |
-  | `SAMLLogoutURL` | string  | N/A | N/A | | Only available when Type is SAML SSO. |
-  | `SAMLCertificateFile` | string  | N/A | N/A | | File key of SAML certificate file, Only available when Type is SAML SSO. |
-  | `SAMLCertificateFileName` | string  | N/A | N/A | | Only available when Type is SAML SSO. |
-  | `JWTLoginURL` | string  | N/A | N/A | | Only available when Type is JWT SSO. |
-  | `JWTLogoutURL` | string  | N/A | N/A | | Only available when Type is JWT SSO.  |
-  | `JWTSecret` | string  | N/A | N/A | | Only available when Type is JWT SSO.  |
-  | `createdTime` | datetime  | yes | N/A | | API does not need to provide it. |
-  | `createdBy` | [Agent](#Agent-Object)  | yes | N/A | | Which agent create the current item. API does not need to provide it. |
-  | `lastUpdatedTime` | datetime  | yes | N/A | | API does not need to provide it. |
-  | `lastUpdatedBy:` | [Agent](#Agent-Object)  | yes | N/A | | Which agent update the current item last time. API does not need to provide it. |
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
+  | - | - | - | :-: | :-: | :-: | - | 
+  | `isEnabled` | boolean  | | no | N/A | false | |
+  | `protocolType` | string |  | no | N/A | | including `SAMLSSO` and `JWTSSO`. |
+  | `SAMLSSOURL` | string |  | no | N/A | |Only available when Type is SAML SSO. |
+  | `SAMLLogoutURL` | string |  | no | N/A | | Only available when Type is SAML SSO. |
+  | `SAMLCertificateFile` | string |  | no | N/A | | File key of SAML certificate file, Only available when Type is SAML SSO. |
+  | `SAMLCertificateFileName` | string |  | no | N/A | | Only available when Type is SAML SSO. |
+  | `JWTLoginURL` | string |  | no | N/A | | Only available when Type is JWT SSO. |
+  | `JWTLogoutURL` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
+  | `JWTSecret` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
 
 ## Agent SSO Endpoints
 
@@ -889,9 +888,35 @@ HTTP/1.1 204 No Content
 
   `GET /api/v3/globalSettings/agentSSO`
 
+#### Parameters
+
+    no parameters
+
 #### Response
 
 the response is: [Agent SSO](#Agent-SSO-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/globalSettings/agentSSO
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+    "isEnabled": true,
+    "protocolType": "SAMLSSO",
+    "SAMLSSOURL": "",
+    "SAMLLogoutURL": "",
+    "SAMLCertificateFile": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
+    "SAMLCertificateFileName": "certi.pl",
+}
+```
 
 ### Update Agent SSO
 
@@ -903,9 +928,45 @@ Request Body
 
   The request body contains data with the [Agent SSO](#Agent-SSO-Object) structure
 
+ example:
+```Json
+  {
+    "isEnabled": true,
+    "protocolType": "JWTSSO",
+    "JWTLoginURL": "",
+    "JWTLogoutURL": "",
+    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+  }
+```
+
 #### Response
 
 the response is: [Agent SSO](#Agent-SSO-Object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "isEnabled": true,
+    "protocolType": "JWTSSO",
+    "JWTLoginURL": "",
+    "JWTLogoutURL": "",
+    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentSSO
+```
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+{
+    "isEnabled": true,
+    "protocolType": "JWTSSO",
+    "JWTLoginURL": "",
+    "JWTLogoutURL": "",
+    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+}
+```
 
 # Visitor SSO  
 
@@ -922,33 +983,35 @@ the response is: [Agent SSO](#Agent-SSO-Object) Object
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `isEnabled` | boolean  | | N/A | N/A | | |
-  | `loginURL` | string  | | N/A | N/A | | |
-  | `logoutURL` | string  | | N/A | N/A | | |
-  | `changePasswordURL` | string  | | N/A | N/A | | |
-  | `certificateFile` | string  | | N/A | N/A | | File key of certificate file. |
-  | `certificateFileName` | string  | | N/A | N/A | | |
-  | `fieldMappings` | [Agent](#Field-Mapping-Object)[]  | | N/A | N/A | | |
-  | `perCampaign` | [Agent](#Visitor-SSO-Campaign-Object)[]  | yes | N/A | N/A | | |
+  | `isEnabled` | boolean  | | no | N/A | false | |
+  | `loginURL` | string  | | no | N/A | | |
+  | `logoutURL` | string  | | no | N/A | | |
+  | `changePasswordURL` | string  | | no | N/A | | |
+  | `certificateFile` | string  | | no | N/A | | File key of certificate file. |
+  | `certificateFileName` | string  | | no | N/A | | |
+  | `fieldMappings` | [Field Mapping](#Field-Mapping-Object)[]  | | no | N/A | | |
+  | `perCampaign` | [Visitor SSO Campaign](#Visitor-SSO-Campaign-Object)[]  |  | no | N/A | | |
 
 ### Field Mapping Object
 
+//这一堆格式全部是乱的, 自己没有做过preview 吗?
 Field Mapping is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `attribute` | string  | N/A | yes | SSO attribute name. |
-  | `comm100Field` | [Live Chat Field](#Live-Chat-Field-Object) or [Custom Variable](#Custom-Variable-Object) | N/A | yes | Id of the Comm100 field. |
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `attribute` | string | | no | N/A | | SSO attribute name. |
+  | `comm100Field` | string | | no | N/A | | the Comm100 field name |
 
 ### Visitor SSO Campaign Object
 
 Visitor SSO Campaign is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | Id of the campaign. |
-  | `signInOption` | string  | N/A | N/A | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
-  | `isPrechatFromSkipped` | boolean  | N/A | N/A | Whether the pre-chat form is skipped when visitors sign in. |
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `campaignId` | Guid |  | no | N/A | | Id of the campaign. |
+  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | N/A | | Available only when campaign is included  |
+  | `signInOption` | string |  | no | N/A | | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
+  | `isPrechatFromSkipped` | boolean |  | no | N/A | false | Whether the pre-chat form is skipped when visitors sign in. |
 
 ## Visitor SSO Endpoints
 
@@ -968,6 +1031,50 @@ Query string
 
 the response is: [Visitor SSO](#Visitor-SSO-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" 
+-X GET https://domain.comm100.com/api/v3/globalSettings/visitorSSO?include=campaign
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+ 
+{
+    "isEnabled": true,
+    "loginURL": "http://www.xzcs11ffffffff1a",
+    "logoutURL": "http://www.xzcs11ffffffff1a",
+    "changePasswordURL": "http://www.xzcs11ffffffff1a",
+    "certificateFile": "amdoamdoaGdmcnRk",
+    "certificateFileName": "r.txt",
+    "fieldMappings": [
+        {
+            "attribute": "test999",
+            "comm100Field": "{!Visitor.Name}"
+        },
+        {
+            "attribute": "test666",
+            "comm100Field": "{!Prechat.Company}"
+        }
+    ],
+    "perCampaign": [
+        {
+            "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+            "campaign": { //include campaign
+                "id":"cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+                "name":"testCampaign",
+                ...
+            },
+            "signInOption": "noSignIn",
+            "isPrechatFromSkipped": false
+        }
+    ]
+}
+```
+
 ### Update Visitor SSO
 
   `PUT /api/v3/globalSettings/visitorSSO`
@@ -978,9 +1085,99 @@ Request Body
 
   The request body contains data with the [Visitor SSO](#Visitor-SSO-Object) structure
 
+example:
+```Json
+  {
+    "isEnabled": true,
+    "loginURL": "http://www.xzcs11ffffffff1a",
+    "logoutURL": "http://www.xzcs11ffffffff1a",
+    "changePasswordURL": "http://www.xzcs11ffffffff1a",
+    "certificateFile": "amdoamdoaGdmcnRk",
+    "certificateFileName": "r.txt",
+    "fieldMappings": [
+        {
+            "attribute": "test999",
+            "comm100Field": "{!Visitor.Name}"
+        },
+        {
+            "attribute": "test666",
+            "comm100Field": "{!Prechat.Company}"
+        }
+    ],
+    "perCampaign": [
+        {
+            "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+            "signInOption": "noSignIn",
+            "isPrechatFromSkipped": false
+        }
+    ]
+  }
+```
+
 #### Response
 
 the response is: [Visitor SSO](#Visitor-SSO-Object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "isEnabled": true,
+    "loginURL": "http://www.xzcs11ffffffff1a",
+    "logoutURL": "http://www.xzcs11ffffffff1a",
+    "changePasswordURL": "http://www.xzcs11ffffffff1a",
+    "certificateFile": "amdoamdoaGdmcnRk",
+    "certificateFileName": "r.txt",
+    "fieldMappings": [
+        {
+            "attribute": "test999",
+            "comm100Field": "{!Visitor.Name}"
+        },
+        {
+            "attribute": "test666",
+            "comm100Field": "{!Prechat.Company}"
+        }
+    ],
+    "perCampaign": [
+        {
+            "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+            "signInOption": "noSignIn",
+            "isPrechatFromSkipped": false
+        }
+    ]
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/visitorSSO
+```
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+  {
+    "isEnabled": true,
+    "loginURL": "http://www.xzcs11ffffffff1a",
+    "logoutURL": "http://www.xzcs11ffffffff1a",
+    "changePasswordURL": "http://www.xzcs11ffffffff1a",
+    "certificateFile": "amdoamdoaGdmcnRk",
+    "certificateFileName": "r.txt",
+    "fieldMappings": [
+        {
+            "attribute": "test999",
+            "comm100Field": "{!Visitor.Name}"
+        },
+        {
+            "attribute": "test666",
+            "comm100Field": "{!Prechat.Company}"
+        }
+    ],
+    "perCampaign": [
+        {
+            "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+            "signInOption": "noSignIn",
+            "isPrechatFromSkipped": false
+        }
+    ]
+  }
+```
 
 # Audit Log
   + `GET /api/v3/globalSettings/auditLogs` - [Get audit logs list](#get-an-agent) include agent

@@ -97,8 +97,8 @@ You need `Manage Settings` permission to config for a site.
 - `PUT /api/v3/livechat/agents/{id}` - [Update an agent](#update-an-agent)  
 
 # Agent Chat
-
-- `GET /api/v3/livechat/agentChats` - [Get a list of agent chats](#get-site-campaigns)
+//修改ER
+- `GET /api/v3/livechat/agentChats` - [Get a list of agent chats](#get-site-campaigns) 
 - `GET /api/v3/livechat/agentChats/{id}` - [Get an agent chat by id](#get-a-campaign)  
 
 # Online Visitor  
@@ -108,28 +108,25 @@ You need `Manage Settings` permission to config for a site.
 
 - `GET /api/v3/livechat/visitors` - [Get a list of visitors in livechat](#get-all-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a visitor by id](#get-a-visitor)  
-- `POST /api/v3/livechat/visitors/{id}/customVariables:change` - [update a visitor's custom variables](#update-a-visitor-custom-variables)
+- `POST /api/v3/livechat/visitors/{id}/customVariables` - [update a visitor's custom variables](#update-a-visitor-custom-variables)
 
 # Session
 
   ??Todo: api 和 include 如何设计， 感觉这个是多余的
   ??session object 不含 chat 和 offlinemessage
-
-- `GET /api/v3/livechat/sessions` - [Get a list of sessions](#get-site-campaigns) include visitor, contact
-- `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-campaign) include visitor, contact
+  
+- `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-session) include visitor, contact
 
 # Chat
-
-- `GET /api/v3/livechat/chats` - [Get a list of chats](#get-site-campaigns) include department,agent , chatbot, campaign,autoInvitation
-- `GET /api/v3/livechat/sessions/{sessionId}/chats` - [Get a list of chats in a session](#get-site-campaigns)  include department,agent , chatbot, campaign,autoInvitation
+//chat对象 sessionId
+- `GET /api/v3/livechat/chats` - [Get a list of chats](#get-site-campaigns) include department,agent , chatbot, campaign,autoInvitation, session
 - `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-campaign)  include department,agent , chatbot, campaign,autoInvitation
 - `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat by id](#get-a-campaign)
 - `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#get-a-campaign)
 
 # Offline Message
-
-- `GET /api/v3/livechat/offlineMessages` - [Get a list of offlineMessages](#get-site-campaigns)  include department,agent, campaign,autoInvitation
-- `GET /api/v3/livechat/sessions/{sessionId}/offlineMessages` - [Get a list of offlineMessages in a session](#get-site-campaigns)  include department,agent, campaign,autoInvitation
+//offlineMessage对象 sessionId
+- `GET /api/v3/livechat/offlineMessages` - [Get a list of offlineMessages](#get-site-campaigns)  include department,agent, campaign,autoInvitation, session
 - `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offlineMessage by id](#get-a-campaign)  include department,agent, campaign,autoInvitation
 - `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offlineMessage by id](#get-a-campaign)
 - `DELETE /api/v3/livechat/offlineMessages` - [Batch Delete offlineMessages](#get-a-campaign)
