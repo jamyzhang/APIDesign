@@ -65,14 +65,284 @@ You need `Manage Settings` permission to config for a site.
 - `POST /api/v3/livechat/translationExcludedWords` - [Create a translation excluded word](#get-site-info)
 - `PUT /api/v3/livechat/translationExcludedWords/{id}` - [Update a translation excluded word](#update-site-info)
 - `DELETE /api/v3/livechat/translationExcludedWords/{id}` - [Delete a translation excluded word](#delete-a-customer-segment)
-
+  
 # Customer Segment
 
-- `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-site-info)
-- `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-site-info)
-- `POST /api/v3/livechat/customerSegments` - [Create a customer segment](#get-site-info)
-- `PUT /api/v3/livechat/customerSegments/{id}` - [Update a customer segment](#update-site-info)
+- `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-list-of-customer-segments)
+- `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-a-cusomer-segment-by-id)
+- `POST /api/v3/livechat/customerSegments` - [Create a customer segment](#create-a-customer-segment)
+- `PUT /api/v3/livechat/customerSegments/{id}` - [Update a customer segment](#update-a-info-customer-segment)
 - `DELETE /api/v3/livechat/customerSegments/{id}` - [Delete a customer segment](#delete-a-customer-segment)
+
+## Customer Segment Related Objects Json Format
+
+### Customer Segment Object
+
+Customer Segment is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `id` |Guid  | yes | N/A || id of the customer segment.
+  | `name` |string  | no | yes || name of the customer segment.
+  | `color` |string  | no | no |'339FD9'| color of the customer segment
+  | `isEnable` |boolean  | no | no |false| whether the customer segment is enabled or not.
+  | `order` |int  | no | yes |maximum order + 1 | order of the customer segment.
+  | `description` |string  | no | no || description of the customer segment.
+  | `condition met type` |string  | no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
+  | `logical expression` |string  | no | no || the logical expression for conditions.
+  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  | no | yes || an array of [Live Chat Condition](#conditions-json-format) object. |
+  | `alert to`?? | [Department](#department)[] or [Agent](#Agent)[]  | no | no | |
+
+### Live Chat Condition object
+
+Live Chat Condition is represented as simple flat JSON objects with the following keys:  
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `field` |String  | no | yes || the name of visitor field.
+  | `Operator` |String  | no | yes || type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`
+  | `value` |String  | no | yes || the value of a visitor field .
+  | `order` |String  | no | no|maximum order + 1| the order of visitor field.
+
+## Endpoint
+
+### Get list of Customer Segments
+
+  `GET /api/v3/livechat/customerSegments`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+  an array of [Customer Segment](#customer-segment-object) object
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/customerSegments
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+        "name": "livechat15293908029",
+        "color": "339FD9",
+        "isEnable": false,
+        "order": 1,
+        "description": "",
+        "conditionMetType": "all",
+        "logicalExpression": "",
+        "conditions": [
+                {
+                    "field": "CurrentPageUrl",
+                    "operator": "include",
+                    "value": "live",
+                    "order": 1
+                }
+            ]
+        "alertTo":[]
+    },
+    ...
+]
+```
+
+### Get a customer segment by id
+
+  `GET /api/v3/livechat/customerSegments/{id}`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response is: [customer segment](#customer-segment-object) Object.
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/customerSegments//1487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "livechat15293908029",
+  "color": "339FD9",
+  "isEnable": false,
+  "order": 1,
+  "description": "",
+  "conditionMetType": "all",
+  "logicalExpression": "",
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ],
+  "alertTo":[]
+}
+```
+
+### Create a customer segment
+
+  `POST /api/v3/livechat/customerSegments`
+
+#### Parameters
+
+Request body
+  
+  The request body contains data with the [customer segment](#custimer-segment) structure
+
+example:
+```Json
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "livechat15293908029",
+  "color": "339FD9",
+  "isEnable": false,
+  "order": 1,
+  "description": "",
+  "conditionMetType": "all",
+  "logicalExpression": "",
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ],
+  "alertTo":[]
+}
+```
+
+#### Response
+
+the response is: [customer segment](#customer-segment-object) Object.
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "name=justfortest"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "livechat15293908029",
+  "color": "339FD9",
+  "isEnable": false,
+  "order": 1,
+  "description": "",
+  "conditionMetType": "all",
+  "logicalExpression": "",
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ],
+  "alertTo":[]
+}
+```
+
+### Update a customer segment
+
+  `PUT /api/v3/livechat/customerSegments/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of the customer segment  |
+
+#### Response
+
+the response is: [customer segment](#customer-segment-object) Object.
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "name=justfortestupdate"  https://hosted.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "livechat15293908029",
+  "color": "339FD9",
+  "isEnable": false,
+  "order": 1,
+  "description": "",
+  "conditionMetType": "all",
+  "logicalExpression": "",
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ],
+  "alertTo":[]
+```
+
+#### Delete a customer segment
+
+ `DELETE /api/v3/livechat/customerSegments/{id}`
+
+#### Parameter
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of customer segment   |
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE  https://hosted.comm100.com/api/v3/livechat/visitorsegmentations/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+
+Response
+```json
+HTTP/1.1 204 No Content
+```
 
 # Dynamic Campaign
 
@@ -2662,226 +2932,6 @@ curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureFormFields/f2d45
 Response
 ```json
 HTTP/1.1 204 No Content
-```
-
-## Visitor Segmentations
-
-  You need `Manage Settings` permission to manage visitor segmentation.
-- `GET /api/v2/livechat/visitorSegmentations` -get a list of visitor segments
-- `GET /api/v2/livechat/visitorSegmentations/{id}`  -get a visitor segment
-- `POST /api/v2/livechat/visitorSegmentations` -create a new visitor segment
-- `PUT /api/v2/livechat/visitorSegmentations/{id}`  -update a visitor segment
-- `DELETE /api/v2/livechat/visitorSegmentations/{id}`  -remove a visitor segment
-
-### Model
-
-#### Visitor Segmentation JSON Format
-
-Visitor Segmentation is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` |integer  | yes | no |id of the visitor segment.
-  | `name` |string  | no | yes | name of the visitor segment.
-  | `color` |string  | no | no | color of the visitor segment
-  | `isEnable` |boolean  | no | no | whether the visitor segment is enabled or not.
-  | `priority` |int  | no | no | priority of the visitor segment.
-  | `description` |string  | no | no | description of the visitor segment.
-  | `conditions` |[Conditions](#conditions-json-format)  | no | no | an trigger condition json object. |
-  | `notification` | string or object  | no | no | `none` or `{"agents":[1,2,3]}` or `{"agents": [1,2]"}` |
-
-### Endpoint
-
-#### Get list of visitor segmentation
-
-  `GET /api/v2/livechat/visitorSegmentations`
-
-- Parameters:
-
-    No parameters
-
-- Response:
-
-    An array of [Visitor Segmentation](#visitor-segmentation-json-format)
-
-### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations
-```
-
-Sample response:
-
-```json
-[
-    {
-        "id": 1,
-        "name": "livechat15293908029",
-        "color": "339FD9",
-        "isEnable": false,
-        "priority": 0,
-        "description": "",
-        "conditions": {
-            "when": "All",
-            "logicalExpression": "",
-            "list": [
-                {
-                    "number": 1,
-                    "field": "CurrentPageUrl",
-                    "operator": "Include",
-                    "value": "xx"
-                }
-            ]
-        },
-        "notification": "None"
-    },
-    ...
-]
-```
-
-#### Get a single visitor segmentation
-
-  `GET /api/v2/livechat/visitorSegmentations/{id}`
-
-- Parameters:
-
-    No parameters
-
-- Response:
-
-    [Visitor Segmentation](#visitor-segmentation-json-format)
-
-### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations/2
-```
-
-Sample response:
-
-```json
-{
-    "id": 2, 
-    "name": "justfortggggeggggst2",
-    "color": "4CD9A1",
-    "isEnable": true,
-    "priority": 1,
-    "description": "fhbsh",
-    "conditions": {
-        "when": "LogicalExpression",
-        "logicalExpression": "",
-        "list": []
-    },
-    "notification": "{\"departments\": []}"
-}
-```
-
-#### Create a new visitor segmentation
-
-  `POST /api/v2/livechat/visitorSegmentations`
-
-- Parameters:
-
-    [Visitor Segmentation](#visitor-segmentation-json-format)
-
-- Response:
-
-    [Visitor Segmentation](#visitor-segmentation-json-format)
-
-### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "name=justfortest"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations
-```
-
-Sample response:
-
-```json
-{
-    "id": 6,
-    "name": "justfortest",
-    "color": "339FD9",
-    "isEnable": false,
-    "priority": 0,
-    "description": "",
-    "conditions": {
-        "when": "all",
-        "logicalExpression": "",
-        "list": []
-    },
-    "notification": null
-}
-```
-
-#### Update a visitor segmentation
-
-  `PUT /api/v2/livechat/visitorSegmentations/{id}`
-
-- Parameters:
-
-    [Visitor Segmentation](#visitor-segmentation-json-format)
-
-- Response:
-
-    [Visitor Segmentation](#visitor-segmentation-json-format)
-
-### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "name=justfortestupdate"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations/6
-```
-
-Sample response:
-
-```json
-{
-    "id": 6,
-    "name": "justfortestupdate",
-    "color": "339FD9",
-    "isEnable": false,
-    "priority": 2,
-    "description": "",
-    "conditions": {
-        "when": "LogicalExpression",
-        "logicalExpression": "",
-        "list": [ ]
-    },
-    "notification": "None"
-}
-```
-
-#### Remove a visitor segmentation
-
-  `DELETE /api/v2/livechat/visitorSegmentations/{id}`
-
-- Parameters:
-
-    No parameters
-
-- Response:
-
-    Status: 200 OK
-
-### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations/6
-```
-
-Sample response:
-
-```json
-Response: Status: 200 OK
 ```
 
 # Webhook
