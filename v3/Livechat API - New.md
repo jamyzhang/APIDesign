@@ -10,11 +10,11 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 - Live Chat
   - [live chat settings](#live-chat-settings)
-  - [auto distribution](#auto-distribution)
-  - [translation excluded word](#translation-excluded-word)
-  - [dynamic campaign](#dynamic-campaign)
-    - [dynamic campaign rule](#dynamic-campaign-rule)
-  - [mobile push](#mobile-push)
+    - [auto distribution](#auto-distribution)
+    - [translation excluded word](#translation-excluded-word)
+    - [dynamic campaign](#dynamic-campaign)
+        - [dynamic campaign rule](#dynamic-campaign-rule)
+    - [mobile push](#mobile-push)
   - [customer segment](#customer-segment)
   - [session](#session)  
   - [chat](#chat)
