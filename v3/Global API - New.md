@@ -90,12 +90,12 @@
 
   | Name | Type | Include Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | N/A | | Id of the current item.  |
-  | `name` | string  | | N/A | N/A | | Name of the shift. |
-  | `timeZone` | boolean  | | N/A | N/A | | Enum. Time Zone selected for this shift. |
-  | `holiday` | [Holiday](#Holiday-Object)[]  | | N/A | N/A | | |
-  | `member` | [Agent](#Agent-Object)[] or [Department](#Department-Object)[] | yes | N/A | N/A | | |
-  | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | N/A | N/A | | |
+  |`id` | Guid | | yes | no | | Id of the current item.  |
+  | `name` | string  | | no | no | | Name of the shift. |
+  | `timeZone` | boolean  | | no | no | | Enum. Time Zone selected for this shift. |
+  | `holidays` | [Holiday](#Holiday-Object)[]  | | no | no | | |
+  | `members` | [Agent](#Agent-Object)[] or [Department](#Department-Object)[] | yes | no | no | | |
+  | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
 
 ### Holiday Object
 
@@ -103,8 +103,8 @@
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `name` | string  | N/A | N/A | | The name of holiday. |
-  | `holiday` | date  | N/A | N/A | | The date of the holiday. |
+  | `name` | string  | no | no | | The name of holiday. |
+  | `holiday` | date  | no | no | | The date of the holiday. |
 
 ### Working Hours Object
 
@@ -112,10 +112,10 @@
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `dayofWeek` | string  | N/A | N/A | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
-  | `startTime` | datetime  | N/A | N/A | | |
-  | `endTime` | datetime  | N/A | N/A | | |
-  | `awayStatus` | [Agent Away Status](#Agent-Away-Status-Object)  | N/A | N/A | | |
+  | `dayofWeek` | string  | no | no | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
+  | `startTime` | datetime  | no | no | | |
+  | `endTime` | datetime  | no | no | | |
+  | `awayStatus` | [Agent Away Status](#Agent-Away-Status-Object)  | no | no | | |
 
 ## Shift Endpoints
 
@@ -258,8 +258,8 @@ HTTP/1.1 204 No Content
 
   You need `Manage Settings` permission to manage visitor.
 
-- `GET /api/v3/globalSettings/visitors` - [Get a list of visitors in site](#get-all-visitors-in-site)
-- `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitors-by-id)  
+- `GET /api/v3/globalSettings/visitors` - [Get all visitors in site](#get-all-visitors-in-site)
+- `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitor-by-id)  
 
 ## Related Object Json Format
 
@@ -269,25 +269,54 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes //都没put功能吧 | N/A | | Id of the current item.  |
-  | `name` | string  | N/A | N/A | | Name of the visitor. |
-  | `email` | string  | N/A | N/A | | Email of the visitor. |
-  | `numberOfVisits` | integer  | N/A | N/A | | The total number of web pages the visitor viewed on your website. |
-  | `numberOfChats` | integer  | N/A | N/A | | The total times of chats a visitor has made on your website from the first time to present. |
-  | `firstVisitTime` | datetime  | N/A | N/A | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
+  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  | `name` | string  | yes | N/A | | Name of the visitor. |
+  | `email` | string  | yes | N/A | | Email of the visitor. |
+  | `numberOfVisits` | integer  | yes | N/A | | The total number of web pages the visitor viewed on your website. |
+  | `numberOfChats` | integer  | yes | N/A | | The total times of chats a visitor has made on your website from the first time to present. |
+  | `firstVisitTime` | datetime  | yes | N/A | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
 
 ## Visitor Endpoints
 
-### Get all visitors in site //应该是叫get a list of visitor site 吧
+### Get all visitors in site
 
   `GET /api/v3/globalSettings/visitors`
 
-//paramters 部分没有, 即使不需要输入值, 也应该写上No parameter
+#### Parameters
+
+    no parameters
+
 #### Response
 
 the response is: list of [Visitor](#Visitor-Object) Object
 
-### Get a visitors by id //是get a visitor 不是a visitors
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/visitors
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+        "name": "test",
+        "email": "",
+        "numberOfVisits": 4,
+        "numberOfChats": 1,
+        "firstVisitTime": "2019-06-12T07:41:40.486Z"
+    },
+    ...
+]
+```
+
+### Get a visitor by id
 
   `GET /api/v3/globalSettings/visitors/{id}`
 
@@ -303,15 +332,38 @@ Path Parameters
 
 the response is: [Visitor](#Visitor-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+  "name": "test",
+  "email": "",
+  "numberOfVisits": 4,
+  "numberOfChats": 1,
+  "firstVisitTime": "2019-06-12T07:41:40.486Z"
+}
+```
+
 # Public Canned Message Category
 
   You need `Manage Pulbic Canned Messages` permission to manage canned message category.
 
-- `GET /api/v3/globalSettings/publicCannedMessageCategories` - [Get a list of publicCannedMessageCategories in site](#get-all-Public-Canned-Message-Categories-in-site)
-- `GET /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [Get a publicCannedMessageCategory by id](#get-a-Public-Canned-Message-Category-by-id)
-- `POST /api/v3/globalSettings/publicCannedMessageCategories` - [create a new publicCannedMessageCategory](#create-a-new-Public-Canned-Message-Category)
-- `PUT /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [update a publicCannedMessageCategory](#update-a-Public-Canned-Message-Category)
-- `DELETE /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [delete a publicCannedMessageCategory](#delete-a-Public-Canned-Message-Category)
+- `GET /api/v3/globalSettings/publicCannedMessageCategories` - [Get all public canned message categories in site](#get-all-Public-Canned-Message-Categories-in-site)
+- `GET /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [Get a public canned message category by id](#get-a-Public-Canned-Message-Category-by-id)
+- `POST /api/v3/globalSettings/publicCannedMessageCategories` - [create a new public canned message category](#create-a-new-Public-Canned-Message-Category)
+- `PUT /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [update a public canned message category](#update-a-Public-Canned-Message-Category)
+- `DELETE /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [delete a public canned message category](#delete-a-Public-Canned-Message-Category)
 
 ## Related Object Json Format
 
@@ -322,9 +374,9 @@ the response is: [Visitor](#Visitor-Object) Object
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   |`id` | Guid | yes | N/A | | Id of the current item.  |
-  | `name` | string  | N/A | yes | | Name of the canned message category. |
-  | `parent` | [Public Canned Message Category](#Public-Canned-Message-Category-Object) | N/A | yes | | Parent of the canned message category. |
-  | `createBy` | [Agent](#Agent-Object)  | N/A | N/A | | Which agent create the current item. |
+  | `name` | string  | no | yes | | Name of the canned message category. |
+  | `parentId` | Guid | no | yes | | Id of the public canned message category. |
+  | `createdBy` | Guid | N/A | N/A | | Which agent create the current item. |
 
 ## Public Canned Message Endpoints
 
@@ -332,9 +384,37 @@ the response is: [Visitor](#Visitor-Object) Object
 
   `GET /api/v3/globalSettings/publicCannedMessageCategories`
 
+#### Parameters
+
+    no parameters
+
 #### Response
 
 the response is: list of [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+        "name": "puddddtresult",
+        "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
+        "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+    },
+    ...
+]
+```
 
 ### Get a Public Canned Message Category by id
 
@@ -352,6 +432,27 @@ Path Parameters
 
 the response is: [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/5A563046-374D-3C4E-4D4A-2CA3812A42C8
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "name": "puddddtresult",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+}
+```
+
 ### Create a new Public Canned Message Category
 
   `POST /api/v3/globalSettings/publicCannedMessageCategories`
@@ -362,9 +463,40 @@ Request Body
 
   The request body contains data with the [Public Canned Message Category](#Public-Canned-Message-Category-Object) structure
 
+example:
+```Json
+{
+  "name": "testtest",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+}
+```
+
 #### Response
 
 the response is: [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "testtest",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories
+```
+
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+{
+  "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
+  "name": "testtest",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+}
+```
 
 ### Update a Public Canned Message Category
 
@@ -382,9 +514,40 @@ Request Body
 
   The request body contains data with the [Public Canned Message Category](#Public-Canned-Message-Category-Object) structure
 
+example:
+```Json
+{
+  "name": "testtest22222",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+}
+```
+
 #### Response
 
 the response is: [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "testtest22222",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
+```
+
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+{
+  "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
+  "name": "testtest22222",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+}
+```
 
 ### Delete a Public Canned Message Category
 
@@ -402,15 +565,27 @@ Path Parameters
 
 HTTP/1.1 204 No Content
 
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
 # Public Canned Message
 
   You need `Manage Pulbic Canned Messages` permission to manage canned message.
 
-- `GET /api/v3/globalSettings/publicCannedMessages` - [Get a list of publicCannedMessages in site](#get-all-Public-Canned-Messages-in-site)
-- `GET /api/v3/globalSettings/publicCannedMessages/{id}` - [Get a publicCannedMessage by id](#get-a-Public-Canned-Message-by-id)
-- `POST /api/v3/globalSettings/publicCannedMessages` - [create a new publicCannedMessage](#create-a-new-Public-Canned-Message)
-- `PUT /api/v3/globalSettings/publicCannedMessages/{id}` - [update a publicCannedMessage](#update-a-Public-Canned-Message)
-- `DELETE /api/v3/globalSettings/publicCannedMessages/{id}` - [delete a publicCannedMessage](#delete-a-Public-Canned-Message)
+- `GET /api/v3/globalSettings/publicCannedMessages` - [Get all public canned messages in site](#get-all-Public-Canned-Messages-in-site)
+- `GET /api/v3/globalSettings/publicCannedMessages/{id}` - [Get a public canned message by id](#get-a-Public-Canned-Message-by-id)
+- `POST /api/v3/globalSettings/publicCannedMessages` - [create a new public canned message](#create-a-new-Public-Canned-Message)
+- `PUT /api/v3/globalSettings/publicCannedMessages/{id}` - [update a public canned message](#update-a-Public-Canned-Message)
+- `DELETE /api/v3/globalSettings/publicCannedMessages/{id}` - [delete a public canned message](#delete-a-Public-Canned-Message)
 
 ## Related Object Json Format
 
@@ -418,18 +593,18 @@ HTTP/1.1 204 No Content
 
   Public Canned Message Object is represented as simple flat JSON objects with the following keys:  
 
-//有部分说明是空的. N/A, True/False 的理解都是乱的.
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | N/A | | Id of the canned message.  |
-  | `name` | string | | N/A | yes | | Name of the canned message. |
-  | `message` | string | | N/A | yes | | |
-  | `IfSetHTMLMessageForEmail` | boolean  | | N/A | N/A | false | |
-  | `HTMLMessage` | string  | | N/A | N/A | | |
-  | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
-  | `createBy` //Created by | [Agent](#Agent-Object)  | | N/A | N/A | | Which agent create the current item. |
-  | `shortcuts` | string  | | N/A | N/A | | Whether the custom away status is system or not. |
-  | `similarQuestion` | [Similar Question](#Similar-Question-Object)[]  | | N/A | N/A | | Available when Agent Assist is enabled. |
+  | `name` | string | | no | yes | | Name of the canned message. |
+  | `message` | string | | no | yes | | |
+  | `IfSetHTMLMessageForEmail` | boolean  | | no | no | false | |
+  | `HTMLMessage` | string  | | no | no | | |
+  | `categoryId` | Guid | | no | no | | |
+  | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
+  | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
+  | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
+  | `similarQuestions` | [Similar Question](#Similar-Question-Object)[]  | | no | no | | Available when Agent Assist is enabled. |
 
 ### Similar Question Object
 
@@ -437,7 +612,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `question` | string  | N/A | N/A | | |
+  | `question` | string  | no | no | | |
 
 ## Public Canned Message Endpoints
 
@@ -456,6 +631,45 @@ Query string
 #### Response
 
 the response is: list of [Public Canned Message](#Public-Canned-Message-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages?include=publicCannedMessageCategory
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
+        "name": "publicCannedMessageCategory",
+        "message": "publicCannedMessageCategory",
+        "IfSetHTMLMessageForEmail": false,
+        "HTMLMessage": "",
+        "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+        "category":    { // include public canned message category
+          "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+          "name": "puddddtresult",
+         "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
+          "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+        },
+        "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
+        "shortcuts": "",
+        "similarQuestions": [{
+          "question": "are you ok?"
+        },
+        ...  
+        ]
+    },
+    ...
+]
+```
 
 ### Get a Public Canned Message by id
 
@@ -479,6 +693,42 @@ Query string
 
 the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/C354EA75-BAAF-9994-9307-D001FBE1882A?include=publicCannedMessageCategory
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
+  "name": "publicCannedMessageCategory",
+  "message": "publicCannedMessageCategory",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "category":    { // include public canned message category
+    "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+    "name": "puddddtresult",
+    "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
+    "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  },
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  },
+  ...  
+  ]
+}
+```
+
 ### Create a new Public Canned Message
 
   `POST /api/v3/globalSettings/publicCannedMessages`
@@ -489,9 +739,61 @@ Request Body
 
   The request body contains data with the [Public Canned Message](#Public-Canned-Message-Object) structure
 
+example:
+```Json
+{
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+}
+```
+
 #### Response
 
 the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+}
+```
 
 ### Update a Public Canned Message
 
@@ -509,9 +811,61 @@ Request Body
 
   The request body contains data with the [Public Canned Message](#Public-Canned-Message-Object) structure
 
+example:
+```Json
+{
+  "name": "test11111",
+  "message": "test11111",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+}
+```
+
 #### Response
 
 the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "test11111",
+  "message": "test11111",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
+  "name": "test11111",
+  "message": "test11111",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+}
+```
 
 ### Delete a Public Canned Message
 
@@ -529,13 +883,25 @@ Path Parameters
 
 HTTP/1.1 204 No Content
 
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
 # Private Canned Message Category
 
-- `GET /api/v3/globalSettings/privateCannedMessageCategories` - [Get a list of privateCannedMessageCategories in site](#get-all-Private-Canned-Message-Categories-in-site)
-- `GET /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [Get a privateCannedMessageCategory by id](#get-a-Private-Canned-Message-Category-by-id)
-- `POST /api/v3/globalSettings/privateCannedMessageCategories` - [create a new privateCannedMessageCategory](#create-a-new-Private-Canned-Message-Category)
-- `PUT /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [update a privateCannedMessageCategory](#update-a-Private-Canned-Message-Category)
-- `DELETE /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [delete a privateCannedMessageCategory](#delete-a-Private-Canned-Message-Category)
+- `GET /api/v3/globalSettings/privateCannedMessageCategories` - [Get all private canned message categories in site](#get-all-Private-Canned-Message-Categories-in-site)
+- `GET /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [Get a private canned message category by id](#get-a-Private-Canned-Message-Category-by-id)
+- `POST /api/v3/globalSettings/privateCannedMessageCategories` - [create a new private canned message category](#create-a-new-Private-Canned-Message-Category)
+- `PUT /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [update a private canned message category](#update-a-Private-Canned-Message-Category)
+- `DELETE /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [delete a private canned message category](#delete-a-Private-Canned-Message-Category)
 
 ## Related Object Json Format
 
@@ -546,9 +912,9 @@ HTTP/1.1 204 No Content
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   |`id` | Guid | yes | N/A | | Id of the current item.  |
-  | `name` | string  | N/A | yes | | Name of the canned message category. |
-  | `parent` | string  | N/A | yes | | Parent of the canned message category. |
-  | `createBy` | [Agent](#Agent-Object)  | N/A | N/A | | Which agent create the current item. |
+  | `name` | string  | no | yes | | Name of the canned message category. |
+  | `parentId` | Guid  | no | yes | | Parent of the canned message category. |
+  | `createdBy` | Guid | N/A | N/A | | Which agent create the current item. |
 
 ## Private Canned Message Category Endpoints
 
@@ -556,9 +922,37 @@ HTTP/1.1 204 No Content
 
   `GET /api/v3/globalSettings/privateCannedMessageCategories`
 
+#### Parameters
+
+    no parameters
+
 #### Response
 
 the response is: list of [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "119043D0-76A6-D3C1-B594-493111CE1552",
+        "name": "tstestsetsteset",
+        "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F",
+        "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+    },
+    ...
+]
+```
 
 ### Get a Private Canned Message Category by id
 
@@ -576,6 +970,27 @@ Path Parameters
 
 the response is: [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/119043D0-76A6-D3C1-B594-493111CE1552
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "119043D0-76A6-D3C1-B594-493111CE1552",
+  "name": "tstestsetsteset",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+}
+```
+
 ### Create a new Private Canned Message Category
 
   `POST /api/v3/globalSettings/privateCannedMessageCategories`
@@ -586,9 +1001,40 @@ Request Body
 
   The request body contains data with the [Private Canned Message Category](#Private-Canned-Message-Category-Object) structure
 
+example:
+```Json
+{
+  "name": "testtest111111",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+}
+```
+
 #### Response
 
 the response is: [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "testtest111111",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories
+```
+
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+{
+  "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
+  "name": "testtest111111",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+}
+```
 
 ### Update a Private Canned Message Category
 
@@ -606,13 +1052,56 @@ Request Body
 
   The request body contains data with the [Private Canned Message Category](#Private-Canned-Message-Category-Object) structure
 
+example:
+```Json
+{
+  "name": "testtest22222",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
+}
+```
+
 #### Response
 
 the response is: [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "testtest22222",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
+```
+
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+{
+  "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
+  "name": "testtest22222",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+}
+```
+
 ### Delete a Private Canned Message Category
 
   `DELETE /api/v3/globalSettings/privateCannedMessageCategories/{id}`
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
 
 #### Parameters
 
@@ -628,11 +1117,11 @@ HTTP/1.1 204 No Content
 
 # Private Canned Message
 
-- `GET /api/v3/globalSettings/privateCannedMessages` - [Get a list of privateCannedMessages in site](#get-all-Private-Canned-Messages-in-site)
-- `GET /api/v3/globalSettings/privateCannedMessages/{id}` - [Get a privateCannedMessage by id](#get-a-Private-Canned-Message-by-id)
-- `POST /api/v3/globalSettings/privateCannedMessages` - [create a new privateCannedMessage](#create-a-new-Private-Canned-Message)
-- `PUT /api/v3/globalSettings/privateCannedMessages/{id}` - [update a privateCannedMessage](#update-a-Private-Canned-Message)
-- `DELETE /api/v3/globalSettings/privateCannedMessages/{id}` - [delete a privateCannedMessage](#delete-a-Private-Canned-Message)
+- `GET /api/v3/globalSettings/privateCannedMessages` - [Get all private canned messages in site](#get-all-Private-Canned-Messages-in-site)
+- `GET /api/v3/globalSettings/privateCannedMessages/{id}` - [Get a private canned message by id](#get-a-Private-Canned-Message-by-id)
+- `POST /api/v3/globalSettings/privateCannedMessages` - [create a new private canned message](#create-a-new-Private-Canned-Message)
+- `PUT /api/v3/globalSettings/privateCannedMessages/{id}` - [update a private canned message](#update-a-Private-Canned-Message)
+- `DELETE /api/v3/globalSettings/privateCannedMessages/{id}` - [delete a private canned message](#delete-a-Private-Canned-Message)
 
 ## Related Object Json Format
 
@@ -643,14 +1132,15 @@ HTTP/1.1 204 No Content
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | N/A | | Id of the current item.  |
-  | `name` | string  | | N/A | N/A | | Name of the canned message. |
-  | `message` | string  | | N/A | N/A | | |
-  | `IfSetHTMLMessageForEmail` | boolean  | | N/A | N/A | false | |
-  | `HTMLMessage` | string  | | N/A | N/A | | |
-  | `category` | [Private Canned Message Category](#Private-Canned-Message-Category-Object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
-  | `createBy` | [Agent](#Agent-Object)  | | N/A | N/A | | Which agent create the current item. |
-  | `shortcuts` | string  | | N/A | N/A | | Whether the custom away status is system or not. |
-  | `similarQuestion` | [Similar Question](#Similar-Question-Object)[]  | | N/A | N/A | | Available when Agent Assist is enabled. |
+  | `name` | string  | | no | no | | Name of the canned message. |
+  | `message` | string  | | no | no | | |
+  | `IfSetHTMLMessageForEmail` | boolean  | | no | no | false | |
+  | `HTMLMessage` | string  | | no | no | | |
+  | `categoryId` | Guid | | no | no | | |
+  | `category` | [Private Canned Message Category](#Private-Canned-Message-Category-Object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
+  | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
+  | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
+  | `similarQuestions` | [Similar Question](#Similar-Question-Object)[]  | | no | no | | Available when Agent Assist is enabled. |
 
 ## Private Canned Message Endpoints
 
@@ -669,6 +1159,45 @@ Query string
 #### Response
 
 the response is: list of [Private Canned Message](#Private-Canned-Message-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages?include=privateCannedMessageCategory
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "AB71E95A-1FA5-E19D-9BA4-9C2144598C57",
+        "name": "privateCannedMessageCategory",
+        "message": "privateCannedMessageCategory",
+        "IfSetHTMLMessageForEmail": false,
+        "HTMLMessage": "",
+        "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+        "category":    { // include private canned message category
+          "id": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+          "name": "justfortest",
+         "parentId": "A73FA2EB-4CE3-B195-94C6-567A24F7BDDC",
+          "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+        },
+        "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
+        "shortcuts": "",
+        "similarQuestions": [{
+          "question": "are you ok?"
+        },
+        ...  
+        ]
+    },
+    ...
+]
+```
 
 ### Get a Private Canned Message by id
 
@@ -692,6 +1221,42 @@ Query string
 
 the response is: [Private Canned Message](#Private-Canned-Message-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/AB71E95A-1FA5-E19D-9BA4-9C2144598C57?include=privateCannedMessageCategory
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
+  "name": "privateCannedMessageCategory",
+  "message": "privateCannedMessageCategory",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "category":    { // include private canned message category
+    "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+    "name": "puddddtresult",
+    "parentId": "A73FA2EB-4CE3-B195-94C6-567A24F7BDDC",
+    "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  },
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  },
+  ...  
+  ]
+}
+```
+
 ### Create a new Private Canned Message
 
   `POST /api/v3/globalSettings/privateCannedMessages`
@@ -702,9 +1267,61 @@ Request Body
 
   The request body contains data with the [Private Canned Message](#Private-Canned-Message-Object) structure
 
+example:
+```Json
+{
+  "name": "privateCannedMessageCategorytest1111",
+  "message": "privateCannedMessageCategorytest1111",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+}
+```
+
 #### Response
 
 the response is: [Private Canned Message](#Private-Canned-Message-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "privateCannedMessageCategorytest1111",
+  "message": "privateCannedMessageCategorytest1111",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
+  "name": "privateCannedMessageCategorytest1111",
+  "message": "privateCannedMessageCategorytest1111",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+}
+```
 
 ### Update a Private Canned Message
 
@@ -722,9 +1339,61 @@ Request Body
 
   The request body contains data with the [Private Canned Message](#Private-Canned-Message-Object) structure
 
+example:
+```Json
+{
+  "name": "privateCannedMessageCategorytest2222",
+  "message": "privateCannedMessageCategorytest2222",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+}
+```
+
 #### Response
 
 the response is: [Private Canned Message](#Private-Canned-Message-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "privateCannedMessageCategorytest2222",
+  "message": "privateCannedMessageCategorytest2222",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
+  "name": "privateCannedMessageCategorytest2222",
+  "message": "privateCannedMessageCategorytest2222",
+  "IfSetHTMLMessageForEmail": false,
+  "HTMLMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
+  "shortcuts": "",
+  "similarQuestions": [{
+    "question": "are you ok?"
+  }]
+}
+```
 
 ### Delete a Private Canned Message
 
@@ -742,27 +1411,38 @@ Path Parameters
 
 HTTP/1.1 204 No Content
 
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
 #### Similar Question Object
 
   Similar Question Object is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `question` | string  | N/A | N/A | | |
+  | `question` | string  | no | no | | |
 
 # Agent Away Status
 
   You need `Manage Settings` permission to manage visitor.
 
-- `GET /api/v3/globalSettings/agentAwayStatuses` - [Get a list of agentAwayStatuses in site](#get-all-Agent-Away-Status-in-site)
-- `GET /api/v3/globalSettings/agentAwayStatuses/{id}` - [Get an agentAwayStatus by id](#get-a-Agent-Away-Status-by-id)
-- `POST /api/v3/globalSettings/agentAwayStatuses` - [create a new agentAwayStatus](#create-a-new-Agent-Away-Status)
-- `PUT /api/v3/globalSettings/agentAwayStatuses/{id}` - [update an agentAwayStatus](#update-a-Agent-Away-Status)
-- `DELETE /api/v3/globalSettings/agentAwayStatuses/{id}` - [delete an agentAwayStatus](#delete-a-Agent-Away-Status)
+- `GET /api/v3/globalSettings/agentAwayStatuses` - [Get all agent away statuses in site](#get-all-Agent-Away-Statuses-in-site)
+- `GET /api/v3/globalSettings/agentAwayStatuses/{id}` - [Get an agent away status by id](#get-a-Agent-Away-Status-by-id)
+- `POST /api/v3/globalSettings/agentAwayStatuses` - [create a new agent away status](#create-a-new-Agent-Away-Status)
+- `PUT /api/v3/globalSettings/agentAwayStatuses/{id}` - [update an agent away status](#update-a-Agent-Away-Status)
+- `DELETE /api/v3/globalSettings/agentAwayStatuses/{id}` - [delete an agent away status](#delete-a-Agent-Away-Status)
 
 ## Related Object Json Format
 
-// 请参看ER,应该是叫Custom Agent status
 ### Agent Away Status Object
 
   Agent Away Status Object is represented as simple flat JSON objects with the following keys:  
@@ -770,19 +1450,47 @@ HTTP/1.1 204 No Content
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   |`id` | Guid | yes | N/A | | Id of the current item.  |
-  | `name` | string  | N/A | yes | | Name of the agent away status. |
-  | `isSystem` | boolean  | N/A | N/A | | Whether the agent away status is system or not. |
-  | `order` | integer  | N/A | N/A | | The order of the agent away status. |
+  | `name` | string  | no | yes | | Name of the agent away status. |
+  | `isSystem` | boolean  | no | no | false | Whether the agent away status is system or not. |
+  | `order` | integer  | no | no | | The order of the agent away status. |
 
 ## Agent Away Status Endpoints
 
-### Get all Agent Away Status of a site
+### Get all Agent Away Statuses of a site
 
   `GET /api/v3/globalSettings/agentAwayStatuses`
+
+#### Parameters
+
+    no parameters
 
 #### Response
 
 the response is: list of [Agent Away Status](#Agent-Away-Status-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+        "name": "agentAwayStatuses",
+        "isSystem": false,
+        "order": 1
+    },
+    ...
+]
+```
 
 ### Get a Agent Away Status by id
 
@@ -800,6 +1508,27 @@ Path Parameters
 
 the response is: [Agent Away Status](#Agent-Away-Status-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/BAACB779-2E41-27C5-B23D-1C8F2058862D
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+  "name": "agentAwayStatuses",
+  "isSystem": false,
+  "order": 1
+}
+```
+
 ### Create a new Agent Away Status
 
   `POST /api/v3/globalSettings/agentAwayStatuses`
@@ -810,9 +1539,42 @@ Request Body
 
   The request body contains data with the [Agent Away Status](#Agent-Away-Status-Object) structure
 
+example:
+```Json
+{
+  "name": "agentAwayStatuses11",
+  "isSystem": false,
+  "order": 1
+}
+```
+
 #### Response
 
 the response is: [Agent Away Status](#Agent-Away-Status-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "agentAwayStatuses11",
+  "isSystem": false,
+  "order": 1
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
+  "name": "agentAwayStatuses11",
+  "isSystem": false,
+  "order": 1
+}
+```
 
 ### Update a Agent Away Status
 
@@ -830,9 +1592,42 @@ Request Body
 
   The request body contains data with the [Agent Away Status](#Agent-Away-Status-Object) structure
 
+example:
+```Json
+{
+  "name": "agentAwayStatuses22",
+  "isSystem": false,
+  "order": 1
+}
+```
+
 #### Response
 
 the response is: [Agent Away Status](#Agent-Away-Status-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "agentAwayStatuses22",
+  "isSystem": false,
+  "order": 1
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
+  "name": "agentAwayStatuses22",
+  "isSystem": false,
+  "order": 1
+}
+```
 
 ### Delete a Agent Away Status
 
@@ -849,6 +1644,18 @@ Path Parameters
 #### Response
 
 HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
 
 # Whitelisted Login IP Range
   + `GET /api/v3/globalSettings/whitelistedLoginIPRanges` - [Get a list of whitelistedLoginIPRanges in site](#get-all-contacts) 
@@ -994,7 +1801,6 @@ Response
 
 ### Field Mapping Object
 
-//这一堆格式全部是乱的, 自己没有做过preview 吗?
 Field Mapping is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |

@@ -320,6 +320,10 @@ Sample response:
 
   `GET /api/v3/livechat/campaigns`
 
+#### Parameters
+
+  no parameters
+
 #### Response
 
 the response is: list of [Campaign](#Campaign-Object) Object
@@ -616,7 +620,7 @@ the response is: [Chat Window](#Chat-Window-Object) Object
   | `isAgentAvatarDisplayed` | boolean | N/A | N/A   | | Whether the avatar of the agent is visible or not in the header. |
   | `greetingMessage` | string | N/A | N/A | | |
   | `socialMediaLogin` | string | N/A | N/A | |  Including `none` and `facebook`. |
-  | `field` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | N/A | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | N/A | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
   | `isVisitorInfoRecorded` | boolean | N/A | N/A | true | If remember visitor info collected from pre-chat form. |
   | `formFieldLayoutStyle` | string | N/A | N/A | | Including `leftofInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
@@ -672,7 +676,7 @@ the response is: [Pre-Chat](#Pre-Chat-Object) Object
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `isEnable` | boolean | N/A | yes | | Whether the pot chat is enabled or not. |
-  | `field` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | N/A | N/A | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
+  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | N/A | N/A | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
   | `greetingMessage` | string | N/A | N/A | | |
 
 ## Post Chat Endpoints
@@ -733,7 +737,7 @@ the response is: [Post Chat](#Post-Chat-Object) Object
   | `greetingMessage` | string | N/A | N/A | | |
   | `emailOfflineMessageTo` | string | N/A | N/A | | Including `allAgents` and `customEmailAddresses`, available when routing rule is disabled. |
   | `customEmailAddresses` | string | N/A | N/A | |  Available when routing rule is disabled.  |
-  | `field` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | N/A | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | N/A | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 
 ## Campaign Offline Message Endpoints
 
@@ -788,8 +792,8 @@ the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Ob
   | - | - | :-: | :-: | :-: | - |
   | `id` | Guid | yes | N/A | | Id of the current item. |
   | `style` | string | N/A | N/A | | Including `bubble`, `popup` and `chatWindow`. |
-  | `autoInvitation` | [Auto Invitation](#Auto-Invitation-Object)[] | N/A | N/A | | |
-  | `manualInvitation` | [Manual Invitation](#Manual-Invitation-Object)[] | N/A | N/A | | |
+  | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | N/A | N/A | | |
+  | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object)[] | N/A | N/A | | |
 
 ### Manual Invitation Object
 
@@ -844,7 +848,7 @@ the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Ob
   | `position` | string | N/A | N/A | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
   | `conditionMetType` | string | N/A | N/A | | Including `all`, `any` and `logicalExpression`. |
   | `logicalExpression` | string | N/A | N/A | | |
-  | `condition` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | N/A | N/A | | |
+  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | N/A | N/A | | |
 
 ## Invitation Endpoints
 
@@ -1043,7 +1047,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `field` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | N/A | N/A | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`.  |
+  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | N/A | N/A | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`.  |
 
 ## Agent Wrap-Up Endpoints
 
@@ -1100,7 +1104,7 @@ the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
   | `defaultLanguage` | string | N/A | N/A | | The languages are defined in cPanel.  |
   | `isCustomLanguageEnabled` | boolean | N/A | N/A | | |
   | `isTextDirectionRightToLeft` | boolean | N/A | N/A | | |
-  | `customLanguageItem` | [Custom Language](#Custom-Language-Object)[] | N/A | N/A | | |
+  | `customLanguageItems` | [Custom Language](#Custom-Language-Object)[] | N/A | N/A | | |
 
 ### Custom Language Object
 
@@ -1168,7 +1172,7 @@ the response is: [Language](#Language-Object) Object
   | `routeTo` | [Agent](#Agent-Object) or [Department](#Department-Object) | yes | N/A | N/A | |  |
   | `priority` | string |  | N/A | N/A | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
   | `percentageToBot` | integer |  | N/A | N/A | | |
-  | `customRule` | [Custom Rule](#Custom-Rule-Object)[] |  | N/A | N/A | | |
+  | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | N/A | N/A | | |
   | `actionWhenNoRuleMatched` | string |  | N/A | N/A | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
   | `routeToWhenNoRuleMatched` | [Agent](#Agent-Object) or [Department](#Department-Object) | yes | N/A | N/A | |  |
   | `priorityWhenNoRuleMatched` | string |  | N/A | N/A | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
@@ -1221,7 +1225,7 @@ the response is: [Routing](#Routing-Object) Object
 
 # Custom Rule
 
-- `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-all-Custom-Rule)
+- `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-all-Custom-Rules)
 - `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Get a custom rule by id](#get-a-Custom-Rule-by-id)
 - `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Create a custom rule](#create-a-new-Custom-Rule)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Update a custom rule](#update-a-Custom-Rule)
@@ -1244,7 +1248,7 @@ the response is: [Routing](#Routing-Object) Object
   | `percentageToBot` | integer | | N/A | N/A | | |
   | `conditionMetType` | string | | N/A | N/A | | Including `all`, `any` and `logicalExpression`. |
   | `logicalExpression` | string | | N/A | N/A | | |
-  | `condition` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | N/A | N/A | | |
+  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | N/A | N/A | | |
 
 ### Live Chat Condition Object
 
@@ -1259,7 +1263,7 @@ the response is: [Routing](#Routing-Object) Object
 
 ## Routing Endpoints
 
-### Get all Custom Rule
+### Get all Custom Rules
 
   `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules`
 
@@ -1537,10 +1541,10 @@ the response is: [KB Integration](#KB-Integration-Object) Object
   | `isSystem` | boolean | N/A | N/A | | whether the field is system or not. |
   | `name` | string | N/A | N/A | | |
   | `type` | string | N/A | N/A | | The [Live Chat Field Type](#Live-Chat-Field-Type) of the field. |
-  | `option` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | N/A | N/A | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
+  | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | N/A | N/A | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
   | `leftText` | string | N/A | N/A | | Available whey Type is NPS. |
   | `rightText` | string | N/A | N/A | | Available whey Type is NPS. |
-  | `optionGroup` | [Live Chat Field Option Group](#Live-Chat-Field-Option-Group-Object)[] | N/A | N/A | | Live Chat Field Option Group, available whey Type is `checkboxListwithOptionGroups`. |
+  | `optionGroups` | [Live Chat Field Option Group](#Live-Chat-Field-Option-Group-Object)[] | N/A | N/A | | Live Chat Field Option Group, available whey Type is `checkboxListwithOptionGroups`. |
 
 ### Live Chat System Field
 
@@ -1597,7 +1601,7 @@ the response is: [KB Integration](#KB-Integration-Object) Object
   | - | - | :-: | :-: | :-: | - |
   | `name` | string | N/A | N/A | | |
   | `order` | integer | N/A | N/A | | |
-  | `option` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[]  | N/A | N/A | | |
+  | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[]  | N/A | N/A | | |
 
 ## KB Integration Endpoints
 
@@ -3184,7 +3188,7 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-    No parameters
+  No parameters
 
 #### Response
 
@@ -3394,7 +3398,7 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 
 #### Parameters
 
-    No parameters
+  No parameters
 
 #### Response
 
