@@ -94,8 +94,8 @@
   | `name` | string  | | no | no | | Name of the shift. |
   | `timeZone` | timezone  | | no | no | | Enum. Time Zone selected for this shift. |
   | `holidays` | [Holiday](#Holiday-Object)[]  | | no | no | | |
-  |`agentId` | Guid | | yes | no | | |
-  |`departmentId` | Guid | | yes | no | | |
+  |`agentIds` | Guid[] | | yes | no | | |
+  |`departmentIds` | Guid[] | | yes | no | | |
   | `members` | [Agent](#Agent-Object)[] or [Department](#Department-Object)[] | yes | no | no | | |
   | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
 
@@ -161,8 +161,8 @@ Content-Type:  application/json
         },
         ...
         ],
-        "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-        "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+        "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "members": [{// include department
           "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
           "name": "departments",
@@ -239,8 +239,8 @@ Content-Type:  application/json
   },
   ...
   ],
-  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "members": [{// include department
     "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
     "name": "departments",
@@ -310,8 +310,8 @@ Content-Type:  application/json
         },
         ...
         ],
-        "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-        "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+        "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "workingHours": [{
           "dayofWeek": "sunday",
           "startTime": "2019-06-12T07:41:40.486Z",
@@ -370,8 +370,8 @@ Content-Type:  application/json
         },
         ...
         ],
-        "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-        "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+        "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "workingHours": [{
           "dayofWeek": "sunday",
           "startTime": "2019-06-12T07:41:40.486Z",
@@ -411,8 +411,8 @@ example:
   },
   ...
   ],
-  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
@@ -446,8 +446,8 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ],
-  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
@@ -466,8 +466,9 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ``` json
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
 
 {
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
@@ -479,8 +480,8 @@ Content-Type:  application/json
   },
   ...
   ],
-  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
@@ -524,8 +525,8 @@ example:
   },
   ...
   ],
-  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
@@ -559,8 +560,8 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ],
-  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
@@ -592,8 +593,8 @@ Content-Type:  application/json
   },
   ...
   ],
-  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
@@ -886,8 +887,9 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ```Json
-  HTTP/1.1 200 OK
-  Content-Type:  application/json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
 
 {
   "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
@@ -1176,8 +1178,9 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ``` json
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
 
 {
   "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
@@ -1424,8 +1427,9 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ```Json
-  HTTP/1.1 200 OK
-  Content-Type:  application/json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
 
 {
   "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
@@ -1704,8 +1708,9 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ``` json
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
 
 {
   "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
@@ -1964,8 +1969,9 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ``` json
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
 
 {
   "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
