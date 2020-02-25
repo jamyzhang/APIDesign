@@ -86,18 +86,19 @@
 
 ### Shift Object
 
+  //Mandatory for post 这列完全不对啊
   Shift Object is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | no | | Name of the shift. |
-  | `timeZone` | timezone  | | no | no | | Enum. Time Zone selected for this shift. |
-  | `holidays` | [Holiday](#Holiday-Object)[]  | | no | no | | |
+  | `timeZone` | timezone  | | no | no | | Enum. Time Zone selected for this shift. //这个time zone 应该怎么填? |
+  | `holidays` | [Holiday](#Holiday-Object)[]  | | no | no | | //这个字段我也说不清|
   |`agentId` | Guid | | yes | no | | |
   |`departmentId` | Guid | | yes | no | | |
   | `members` | [Agent](#Agent-Object)[] or [Department](#Department-Object)[] | yes | no | no | | |
-  | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
+  | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | |//这2个字段我也说不清 |
 
 ### Holiday Object
 
@@ -105,8 +106,8 @@
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `name` | string  | no | no | | The name of holiday. |
-  | `holiday` | date  | no | no | | The date of the holiday. |
+  | `name` | string  | no | no |//创建的时候应该是必填的 | The name of holiday. |
+  | `holiday` | date  | no | no | //创建的时候应该是必填的| The date of the holiday. |
 
 ### Working Hours Object
 
@@ -115,7 +116,7 @@
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `dayofWeek` | string  | no | no | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
-  | `startTime` | datetime  | no | no | | |
+  | `startTime` | datetime  | no | no | //这些字段创建的时候应该都是必填的| |
   | `endTime` | datetime  | no | no | | |
   | `awayStatus` | [Agent Away Status](#Agent-Away-Status-Object)  | no | no | | |
 
@@ -161,8 +162,8 @@ Content-Type:  application/json
         },
         ...
         ],
-        "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
-        "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+        "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2", //这里应该是数组,
+        "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E", //这里应该是数组
         "members": [{// include department
           "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
           "name": "departments",
@@ -664,6 +665,7 @@ Response
 
 ### Visitor Object
 
+  //N/A 的理解不对啊, Vistor 是不可以创建和修改的, 应该全部是N/A
   Visitor Object is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
@@ -805,13 +807,13 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 [
-    {
-        "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
-        "name": "puddddtresult",
-        "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
-        "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
-    },
-    ...
+  {
+    "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+    "name": "puddddtresult",
+    "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
+    "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  },
+  ...
 ]
 ```
 
@@ -886,8 +888,8 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ```Json
-  HTTP/1.1 200 OK
-  Content-Type:  application/json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
 {
   "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
@@ -937,8 +939,8 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ```Json
-  HTTP/1.1 200 OK
-  Content-Type:  application/json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
 {
   "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
@@ -999,11 +1001,11 @@ Response
   | `message` | string | | no | yes | | |
   | `IfSetHTMLMessageForEmail` | boolean  | | no | no | false | |
   | `HTMLMessage` | string  | | no | no | | |
-  | `categoryId` | Guid | | no | no | | |
-  | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
+  | `categoryId` | Guid | | no | no | //创建的时候可以不填categoryId吗？| |
+  | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | no | no |//这2个都是N/A吧 |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
   | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
-  | `similarQuestions` | [Similar Question](#Similar-Question-Object)[]  | | no | no | | Available when Agent Assist is enabled. |
+  | `similarQuestions` | [Similar Question](#Similar-Question-Object)[]  | | no | no | //这里昨天评审的时候记得说是用String[]| Available when Agent Assist is enabled. |
 
 ### Similar Question Object
 
@@ -2162,8 +2164,8 @@ curl -H "Content-Type: application/json" -d '{
 ```
 Response
 ```Json
-  HTTP/1.1 200 OK
-  Content-Type:  application/json
+HTTP/1.1 200 OK//创建成功好像是 Created
+Content-Type:  application/json
 
 {
     "isEnabled": true,
@@ -2204,8 +2206,8 @@ Field Mapping is represented as simple flat JSON objects with the following keys
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `attribute` | string | | no | N/A | | SSO attribute name. |
-  | `comm100Field` | string | | no | N/A | | the Comm100 field name |
+  | `attribute` | string | | no | N/A |//这里不可能是N/A | SSO attribute name. |
+  | `comm100Field` | string | | no | N/A | //这里不可能是N/A| the Comm100 field name |
 
 ### Visitor SSO Campaign Object
 
@@ -2213,8 +2215,8 @@ Visitor SSO Campaign is represented as simple flat JSON objects with the followi
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `campaignId` | Guid |  | no | N/A | | Id of the campaign. |
-  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | N/A | | Available only when campaign is included  |
+  | `campaignId` | Guid |  | no | N/A | 这几列应该都不是N/A| Id of the campaign. |
+  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | N/A | 你确定这里要Include 吗| Available only when campaign is included  |
   | `signInOption` | string |  | no | N/A | | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
   | `isPrechatFromSkipped` | boolean |  | no | N/A | false | Whether the pre-chat form is skipped when visitors sign in. |
 
