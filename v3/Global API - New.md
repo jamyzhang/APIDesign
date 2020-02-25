@@ -1537,9 +1537,9 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
 
 # Shift
 
-- `GET /api/v3/globalSettings/shifts` - [Get a list of shifts in site](#get-all-shifts-in-site)
-- `GET /api/v3/globalSettings/departments/{departmentId}/shifts` - [Get a list of shift by department id](#get-a-shift-by-department-id)
-- `GET /api/v3/globalSettings/agents/{agentId}/shifts` - [Get a list of shifts by agent id](#get-a-shift-by-agent-id)
+- `GET /api/v3/globalSettings/shifts` - [Get all shifts in site](#get-all-shifts-in-site)
+- `GET /api/v3/globalSettings/departments/{departmentId}/shifts` - [Get all shifts by department id](#get-all-shifts-by-department-id)
+- `GET /api/v3/globalSettings/agents/{agentId}/shifts` - [Get all shifts by agent id](#get-all-shifts-by-agent-id)
 - `GET /api/v3/globalSettings/shifts/{id}` - [Get a shift by id](#get-a-shift-by-id)
 - `POST /api/v3/globalSettings/shifts` - [create a new shift](#create-a-new-shift)
 - `PUT /api/v3/globalSettings/shifts/{id}` - [update a shift](#update-a-shift)
@@ -1551,12 +1551,14 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
 
   Shift Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | no | | Name of the shift. |
-  | `timeZone` | boolean  | | no | no | | Enum. Time Zone selected for this shift. |
+  | `timeZone` | timezone  | | no | no | | Enum. Time Zone selected for this shift. |
   | `holidays` | [Holiday](#Holiday-Object)[]  | | no | no | | |
+  |`agentId` | Guid | | yes | no | | |
+  |`departmentId` | Guid | | yes | no | | |
   | `members` | [Agent](#Agent-Object)[] or [Department](#Department-Object)[] | yes | no | no | | |
   | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
 
@@ -1598,6 +1600,63 @@ Query string
 
 the response is: list of [Shift](#Shift-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/shifts?include=department
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+        "name": "Shifts",
+        "timeZone": "(GMT-10:00) Hawaii",
+        "holidays": [{
+          "name": "summary",
+          "holiday": "2019-11-11"
+        },
+        ...
+        ],
+        "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+        "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+        "members": [{// include department
+          "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+          "name": "departments",
+          "siteId": "FEF12049-BF08-2CD4-C405-A5FC8AE75D0F",
+          "description": "departments",
+          "isAvailableInChat": false,
+          "isAvailableInTicketingAndMessaging": false,
+          "offlineMessageMailType": "theEmailAddress",
+          "offlineMessageEmails": "test@comm100.com",
+          "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2"
+        },
+        ...
+        ],
+        "workingHours": [{
+          "dayofWeek": "sunday",
+          "startTime": "2019-06-12T07:41:40.486Z",
+          "endTime": "2019-06-13T07:41:40.486Z",
+          "awayStatus": {
+            "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+            "name": "agentAwayStatuses",
+            "isSystem": false,
+            "order": 1
+          }
+        },
+        ...
+        ]
+    },
+    ...
+]
+```
+
 ### Get a Shift by id
 
   `GET /api/v3/livechat/shift/{id}`
@@ -1620,7 +1679,61 @@ Query string
 
 the response is: [Shift](#Shift-Object) Object
 
-### Get a Shift by department id
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED?include=department
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+  "name": "Shifts",
+  "timeZone": "(GMT-10:00) Hawaii",
+  "holidays": [{
+    "name": "summary",
+    "holiday": "2019-11-11"
+  },
+  ...
+  ],
+  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "members": [{// include department
+    "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+    "name": "departments",
+    "siteId": "FEF12049-BF08-2CD4-C405-A5FC8AE75D0F",
+    "description": "departments",
+    "isAvailableInChat": false,
+    "isAvailableInTicketingAndMessaging": false,
+    "offlineMessageMailType": "theEmailAddress",
+    "offlineMessageEmails": "test@comm100.com",
+    "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2"
+  },
+  ...
+  ],
+  "workingHours": [{
+    "dayofWeek": "sunday",
+    "startTime": "2019-06-12T07:41:40.486Z",
+    "endTime": "2019-06-13T07:41:40.486Z",
+    "awayStatus": {
+      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+      "name": "agentAwayStatuses",
+      "isSystem": false,
+      "order": 1
+    }
+    },
+    ...
+  ]
+}
+```
+
+### Get all Shifts by department id
 
   `GET /api/v3/globalSettings/departments/{departmentId}/shifts`
 
@@ -1636,7 +1749,51 @@ Path Parameters
 
 the response is: [Shift](#Shift-Object) Object
 
-### Get a Shift by agent id
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/departments/1DC43077-E36F-F9EA-C7BA-C29620102F7E/shifts
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+        "name": "Shifts",
+        "timeZone": "(GMT-10:00) Hawaii",
+        "holidays": [{
+          "name": "summary",
+          "holiday": "2019-11-11"
+        },
+        ...
+        ],
+        "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+        "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+        "workingHours": [{
+          "dayofWeek": "sunday",
+          "startTime": "2019-06-12T07:41:40.486Z",
+          "endTime": "2019-06-13T07:41:40.486Z",
+          "awayStatus": {
+            "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+            "name": "agentAwayStatuses",
+            "isSystem": false,
+            "order": 1
+          }
+        },
+        ...
+        ]
+    },
+    ...
+]
+```
+
+### Get all Shifts by agent id
 
   `GET /api/v3/globalSettings/agents/{agentId}/shifts`
 
@@ -1652,6 +1809,50 @@ Path Parameters
 
 the response is: [Shift](#Shift-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/agents/0CB71531-F8C4-92F6-E619-1989A92972F2/shifts
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+        "name": "Shifts",
+        "timeZone": "(GMT-10:00) Hawaii",
+        "holidays": [{
+          "name": "summary",
+          "holiday": "2019-11-11"
+        },
+        ...
+        ],
+        "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+        "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+        "workingHours": [{
+          "dayofWeek": "sunday",
+          "startTime": "2019-06-12T07:41:40.486Z",
+          "endTime": "2019-06-13T07:41:40.486Z",
+          "awayStatus": {
+            "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+            "name": "agentAwayStatuses",
+            "isSystem": false,
+            "order": 1
+          }
+        },
+        ...
+        ]
+    },
+    ...
+]
+```
+
 ### Create a new Shift
 
   `POST /api/v3/globalSettings/shifts`
@@ -1662,9 +1863,102 @@ Request Body
 
   The request body contains data with the [Shift](#Shift-Object) structure
 
+example:
+```Json
+{
+  "name": "Shifts1111",
+  "timeZone": "(GMT-10:00) Hawaii",
+  "holidays": [{
+    "name": "summary",
+    "holiday": "2019-11-11"
+  },
+  ...
+  ],
+  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "workingHours": [{
+    "dayofWeek": "sunday",
+    "startTime": "2019-06-12T07:41:40.486Z",
+    "endTime": "2019-06-13T07:41:40.486Z",
+    "awayStatus": {
+      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+      "name": "agentAwayStatuses",
+      "isSystem": false,
+      "order": 1
+    }
+    },
+    ...
+  ]
+}
+```
+
 #### Response
 
 the response is: [Shift](#Shift-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "Shifts1111",
+  "timeZone": "(GMT-10:00) Hawaii",
+  "holidays": [{
+    "name": "summary",
+    "holiday": "2019-11-11"
+  },
+  ...
+  ],
+  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "workingHours": [{
+    "dayofWeek": "sunday",
+    "startTime": "2019-06-12T07:41:40.486Z",
+    "endTime": "2019-06-13T07:41:40.486Z",
+    "awayStatus": {
+      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+      "name": "agentAwayStatuses",
+      "isSystem": false,
+      "order": 1
+    }
+    },
+    ...
+  ]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/shifts
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+  "name": "Shifts",
+  "timeZone": "(GMT-10:00) Hawaii",
+  "holidays": [{
+    "name": "summary",
+    "holiday": "2019-11-11"
+  },
+  ...
+  ],
+  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "workingHours": [{
+    "dayofWeek": "sunday",
+    "startTime": "2019-06-12T07:41:40.486Z",
+    "endTime": "2019-06-13T07:41:40.486Z",
+    "awayStatus": {
+      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+      "name": "agentAwayStatuses",
+      "isSystem": false,
+      "order": 1
+    }
+    },
+    ...
+  ]
+}
+```
 
 ### Update a Shift
 
@@ -1682,9 +1976,102 @@ Request Body
 
   The request body contains data with the [Shift](#Shift-Object) structure
 
+example:
+```Json
+{
+  "name": "Shifts2222",
+  "timeZone": "(GMT-10:00) Hawaii",
+  "holidays": [{
+    "name": "summary",
+    "holiday": "2019-11-11"
+  },
+  ...
+  ],
+  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "workingHours": [{
+    "dayofWeek": "sunday",
+    "startTime": "2019-06-12T07:41:40.486Z",
+    "endTime": "2019-06-13T07:41:40.486Z",
+    "awayStatus": {
+      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+      "name": "agentAwayStatuses",
+      "isSystem": false,
+      "order": 1
+    }
+    },
+    ...
+  ]
+}
+```
+
 #### Response
 
 the response is: [Shift](#Shift-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "Shifts2222",
+  "timeZone": "(GMT-10:00) Hawaii",
+  "holidays": [{
+    "name": "summary",
+    "holiday": "2019-11-11"
+  },
+  ...
+  ],
+  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "workingHours": [{
+    "dayofWeek": "sunday",
+    "startTime": "2019-06-12T07:41:40.486Z",
+    "endTime": "2019-06-13T07:41:40.486Z",
+    "awayStatus": {
+      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+      "name": "agentAwayStatuses",
+      "isSystem": false,
+      "order": 1
+    }
+    },
+    ...
+  ]
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+  "name": "Shifts2222",
+  "timeZone": "(GMT-10:00) Hawaii",
+  "holidays": [{
+    "name": "summary",
+    "holiday": "2019-11-11"
+  },
+  ...
+  ],
+  "agentId": "0CB71531-F8C4-92F6-E619-1989A92972F2",
+  "departmentId": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+  "workingHours": [{
+    "dayofWeek": "sunday",
+    "startTime": "2019-06-12T07:41:40.486Z",
+    "endTime": "2019-06-13T07:41:40.486Z",
+    "awayStatus": {
+      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+      "name": "agentAwayStatuses",
+      "isSystem": false,
+      "order": 1
+    }
+    },
+    ...
+  ]
+}
+```
 
 ### Delete a Shift
 
@@ -1701,6 +2088,18 @@ Path Parameters
 #### Response
 
 HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
 
 # Contact
  根据ssoId 查询 contact (查看 zendesk api)???
