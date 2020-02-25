@@ -48,11 +48,34 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 # Live Chat Settings
 
-You need `Manage Settings` permission to config for a site.
+- `GET /api/v3/livechat/settings` - [Get livechat settings of a site](#get-settings)
+- `PUT /api/v3/livechat/settings` - [Update livechat settings of a site](#update-settings)
 
-- `GET /api/v3/livechat/settings` - [Get livechat settings of a site](#get-site-info)
-- `PUT /api/v3/livechat/settings` - [Update livechat settings of a site](#update-site-info)
+## Settings Related Objects Json Format
 
+### Setting Object
+
+Customer Segment is represented as simple flat JSON objects with the following keys:  
+
+ | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+ | - | - | :-: | :-: | :-: | - |
+ | `siteId` |integer  | yes | N/A || id of the site which the configuration belongs to.
+ | `isMultipleCampaignEnabled` |boolean | yes | N/A || whether multiple campaigns are enabled or not in the site.
+ | `isAutoDistributionEnabled` |boolean | yes | N/A || whether auto distribution is enabled or not in the site.
+ | `isCustomAwayStatusEnabled` |boolean | yes | N/A || whether custom away status is enabled or not in the site.
+ | `isDepartmentEnabled` |boolean | yes | N/A || whether department is enabled or not in the site.
+ | `isAutoTranslationEnabled` |boolbean | yes | N/A || whether auto translation is enabled or not in the site.
+ | `isAudioAndVideoChatEnabled` |boolbean | yes | N/A ||whether audio&video chat is enabled or not in the site.
+ | `iscustomerSegmentEnabled` |boolbean | yes | N/A ||whether customer segment chat is enabled or not in the site.
+ | `isVisitorSSOtEnabled` |boolbean | yes | N/A ||whether vistor SSO is enabled or not in the site.
+ | `isCreditCardMaskingEnabled` |boolbean | yes | N/A ||whether Credit card masking is enabled or not in the site.
+ | `isCustomVariablesEnabled` |boolbean | yes | N/A ||whether custom variables are enabled or not in the site.
+ | `isSalesforceEnabled` |boolbean | yes | N/A ||whether Salesforce integration is enabled or not in the site.
+ | `isZendeskEnabled` |boolbean | yes | N/A ||whether Zendesk integration is enabled or not in the site.
+ | `isGoogleAnalyticsEnabled` |boolbean | yes | N/A || whether Google Analytics integration is enabled or not in the site.
+ | `isGotoMeetingEnabled` |boolbean | yes | N/A || whether GotoMeeting integration is enabled or not in the site.
+ | `isJoinmeEnabled` |boolbean | yes | N/A || whether Joinme integration is enabled or not in the site.
+  
 # Auto Distribution
 
 - `GET /api/v3/livechat/autoDistribution` - [Get livechat auto distribution of a site](#get-site-info)  include department, agent
