@@ -2,7 +2,7 @@
 
   | Change Version | API Version | Change notes | Change Date | Author |
   | - | - | - | - | - |
-  | 1.0 | v3 |  | 2020-02-17 | Hardy |
+  | 1.0 | v3 |  | 2020-02-17 | Hardy, Michael|
 
 # Summary
 
@@ -4265,8 +4265,8 @@ Field Mapping is represented as simple flat JSON objects with the following keys
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `attribute` | string | | no | N/A |//这里不可能是N/A | SSO attribute name. |
-  | `comm100Field` | string | | no | N/A | //这里不可能是N/A| the Comm100 field name |
+  | `attribute` | string | | no | yes | | SSO attribute name. |
+  | `comm100Field` | string | | no | yes | | the Comm100 field name |
 
 ### Visitor SSO Campaign Object
 
@@ -4274,10 +4274,10 @@ Visitor SSO Campaign is represented as simple flat JSON objects with the followi
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `campaignId` | Guid |  | no | N/A | 这几列应该都不是N/A| Id of the campaign. |
-  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | N/A | 你确定这里要Include 吗| Available only when campaign is included  |
-  | `signInOption` | string |  | no | N/A | | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
-  | `isPrechatFromSkipped` | boolean |  | no | N/A | false | Whether the pre-chat form is skipped when visitors sign in. |
+  | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
+  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | N/A | | Available only when campaign is included  |
+  | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
+  | `isPrechatFromSkipped` | boolean |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
 
 ## Visitor SSO Endpoints
 
