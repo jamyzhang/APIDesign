@@ -2,7 +2,7 @@
 
   | Change Version | API Version | Change notes | Change Date | Author |
   | - | - | - | - | - |
-  | 1.0 | v3 |  | 2020-02-17 | Hardy |
+  | 1.0 | v3 |  | 2020-02-17 | Hardy,Michael|
 
 # Summary
 

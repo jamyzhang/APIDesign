@@ -3551,7 +3551,7 @@ Location: https://domain.comm100.com/api/v3/livechat/secureFormFields/3222qa68-9
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
+  | Name  | Type | Required  | Description |
   | - | - | - | - | 
   | `id` | Guid | yes  |  the id of the secure form field  |
 
@@ -3858,10 +3858,10 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid  | yes | no || id of the custom variable. |
+  | `id` | Guid  | yes | N/A || id of the custom variable. |
   | `name` | string  | no | yes || name of the custom variable |.
   | `type` | string  | no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
-  | `value` | string  | no | nos || value of the custom variable. |
+  | `value` | string  | no | no || value of the custom variable. |
   |`hyperlink` | string  | no | no ||  hyperlink of the custom variable. |
 
 ## Endpoints
@@ -3970,7 +3970,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
 
 Response
 ```Json
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type:  application/json
 
 {
