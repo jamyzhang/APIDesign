@@ -1553,19 +1553,19 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
 
 ### Shift Object
 
-  //Mandatory for post 这列完全不对啊
   Shift Object is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | no | | Id of the current item.  |
-  | `name` | string  | | no | no | | Name of the shift. |
-  | `timeZone` | timezone  | | no | no | | Enum. Time Zone selected for this shift. //这个time zone 应该怎么填? |
-  | `holidays` | [Holiday](#Holiday-Object)[]  | | no | no | | //这个字段我也说不清|
-  |`agentIds` | Guid | | yes | no | | |
-  |`departmentIds` | Guid | | yes | no | | |
-  | `members` | [Agent](#Agent-Object)[] or [Department](#Department-Object)[] | yes | no | no | | |
-  | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | |//这2个字段我也说不清 |
+  | `name` | string  | | no | yes | | Name of the shift. |
+  | `timeZone` | string  | | no | no | | Defaults to UTC time, format as ±hh:mm. |
+  | `holidays` | [Holiday](#Holiday-Object)[]  | | no | no | | |
+  |`agentIds` | Guid[] | | yes | no | | |
+  |`departmentIds` | Guid[] | | yes | no | | |
+  | `agents` | [Agent](#Agent-Object)[] | yes | no | no | | |
+  | `departments` | [Department](#Department-Object)[] | yes | no | no | | |
+  | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
 
 ### Holiday Object
 
@@ -1573,8 +1573,8 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `name` | string  | no | no |//创建的时候应该是必填的 | The name of holiday. |
-  | `holiday` | date  | no | no | //创建的时候应该是必填的| The date of the holiday. |
+  | `name` | string  | no | yes | | The name of holiday. |
+  | `holiday` | date  | no | yes | | The date of the holiday. |
 
 ### Working Hours Object
 
@@ -1582,10 +1582,10 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `dayofWeek` | string  | no | no | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
-  | `startTime` | datetime  | no | no | //这些字段创建的时候应该都是必填的| |
-  | `endTime` | datetime  | no | no | | |
-  | `awayStatus` | [Agent Away Status](#Agent-Away-Status-Object)  | no | no | | |
+  | `dayofWeek` | string  | no | yes | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
+  | `startTime` | datetime  | no | yes | | |
+  | `endTime` | datetime  | no | yes | | |
+  | `awayStatusId` | Guid | no | no | | |
 
 ## Shift Endpoints
 
@@ -1622,7 +1622,7 @@ Content-Type:  application/json
     {
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
-        "timeZone": "(GMT-10:00) Hawaii",
+        "timeZone": "-10:00",
         "holidays": [{
           "name": "summary",
           "holiday": "2019-11-11"
@@ -1631,7 +1631,7 @@ Content-Type:  application/json
         ],
         "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
         "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
-        "members": [{// include department
+        "departments": [{// include department
           "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
           "name": "departments",
           "siteId": "FEF12049-BF08-2CD4-C405-A5FC8AE75D0F",
@@ -1648,12 +1648,7 @@ Content-Type:  application/json
           "dayofWeek": "sunday",
           "startTime": "2019-06-12T07:41:40.486Z",
           "endTime": "2019-06-13T07:41:40.486Z",
-          "awayStatus": {
-            "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-            "name": "agentAwayStatuses",
-            "isSystem": false,
-            "order": 1
-          }
+          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
         ]
@@ -1700,7 +1695,7 @@ Content-Type:  application/json
 {
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts",
-  "timeZone": "(GMT-10:00) Hawaii",
+  "timeZone": "-10:00",
   "holidays": [{
     "name": "summary",
     "holiday": "2019-11-11"
@@ -1709,7 +1704,7 @@ Content-Type:  application/json
   ],
   "agentIds": ["0CB71531-F8C4-92F6-E619-1989A92972F2"],
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
-  "members": [{// include department
+  "departments": [{// include department
     "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
     "name": "departments",
     "siteId": "FEF12049-BF08-2CD4-C405-A5FC8AE75D0F",
@@ -1726,12 +1721,7 @@ Content-Type:  application/json
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
-    "awayStatus": {
-      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-      "name": "agentAwayStatuses",
-      "isSystem": false,
-      "order": 1
-    }
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
   ]
@@ -1771,7 +1761,7 @@ Content-Type:  application/json
     {
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
-        "timeZone": "(GMT-10:00) Hawaii",
+        "timeZone": "-10:00",
         "holidays": [{
           "name": "summary",
           "holiday": "2019-11-11"
@@ -1784,12 +1774,7 @@ Content-Type:  application/json
           "dayofWeek": "sunday",
           "startTime": "2019-06-12T07:41:40.486Z",
           "endTime": "2019-06-13T07:41:40.486Z",
-          "awayStatus": {
-            "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-            "name": "agentAwayStatuses",
-            "isSystem": false,
-            "order": 1
-          }
+          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
         ]
@@ -1831,7 +1816,7 @@ Content-Type:  application/json
     {
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
-        "timeZone": "(GMT-10:00) Hawaii",
+        "timeZone": "-10:00",
         "holidays": [{
           "name": "summary",
           "holiday": "2019-11-11"
@@ -1844,12 +1829,7 @@ Content-Type:  application/json
           "dayofWeek": "sunday",
           "startTime": "2019-06-12T07:41:40.486Z",
           "endTime": "2019-06-13T07:41:40.486Z",
-          "awayStatus": {
-            "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-            "name": "agentAwayStatuses",
-            "isSystem": false,
-            "order": 1
-          }
+          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
         ]
@@ -1872,7 +1852,7 @@ example:
 ```Json
 {
   "name": "Shifts1111",
-  "timeZone": "(GMT-10:00) Hawaii",
+  "timeZone": "-10:00",
   "holidays": [{
     "name": "summary",
     "holiday": "2019-11-11"
@@ -1885,12 +1865,7 @@ example:
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
-    "awayStatus": {
-      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-      "name": "agentAwayStatuses",
-      "isSystem": false,
-      "order": 1
-    }
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
   ]
@@ -1907,7 +1882,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "name": "Shifts1111",
-  "timeZone": "(GMT-10:00) Hawaii",
+  "timeZone": "-10:00",
   "holidays": [{
     "name": "summary",
     "holiday": "2019-11-11"
@@ -1920,12 +1895,7 @@ curl -H "Content-Type: application/json" -d '{
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
-    "awayStatus": {
-      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-      "name": "agentAwayStatuses",
-      "isSystem": false,
-      "order": 1
-    }
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
   ]
@@ -1941,7 +1911,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-
 {
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts",
-  "timeZone": "(GMT-10:00) Hawaii",
+  "timeZone": "-10:00",
   "holidays": [{
     "name": "summary",
     "holiday": "2019-11-11"
@@ -1954,12 +1924,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
-    "awayStatus": {
-      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-      "name": "agentAwayStatuses",
-      "isSystem": false,
-      "order": 1
-    }
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
   ]
@@ -1986,7 +1951,7 @@ example:
 ```Json
 {
   "name": "Shifts2222",
-  "timeZone": "(GMT-10:00) Hawaii",
+  "timeZone": "-10:00",
   "holidays": [{
     "name": "summary",
     "holiday": "2019-11-11"
@@ -1999,12 +1964,7 @@ example:
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
-    "awayStatus": {
-      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-      "name": "agentAwayStatuses",
-      "isSystem": false,
-      "order": 1
-    }
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
   ]
@@ -2021,7 +1981,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "name": "Shifts2222",
-  "timeZone": "(GMT-10:00) Hawaii",
+  "timeZone": "-10:00",
   "holidays": [{
     "name": "summary",
     "holiday": "2019-11-11"
@@ -2034,12 +1994,7 @@ curl -H "Content-Type: application/json" -d '{
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
-    "awayStatus": {
-      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-      "name": "agentAwayStatuses",
-      "isSystem": false,
-      "order": 1
-    }
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
   ]
@@ -2054,7 +2009,7 @@ Content-Type:  application/json
 {
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts2222",
-  "timeZone": "(GMT-10:00) Hawaii",
+  "timeZone": "-10:00",
   "holidays": [{
     "name": "summary",
     "holiday": "2019-11-11"
@@ -2067,12 +2022,7 @@ Content-Type:  application/json
     "dayofWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
-    "awayStatus": {
-      "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
-      "name": "agentAwayStatuses",
-      "isSystem": false,
-      "order": 1
-    }
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
   ]
@@ -2637,17 +2587,16 @@ HTTP/1.1 204 No Content
 
 ### Visitor Object
 
-  //N/A 的理解不对啊, Vistor 是不可以创建和修改的, 应该全部是N/A
   Visitor Object is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
-  | `name` | string  | yes | N/A | | Name of the visitor. |
-  | `email` | string  | yes | N/A | | Email of the visitor. |
-  | `numberOfVisits` | integer  | yes | N/A | | The total number of web pages the visitor viewed on your website. |
-  | `numberOfChats` | integer  | yes | N/A | | The total times of chats a visitor has made on your website from the first time to present. |
-  | `firstVisitTime` | datetime  | yes | N/A | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
+  |`id` | Guid | N/A | N/A | | Id of the current item.  |
+  | `name` | string  | N/A | N/A | | Name of the visitor. |
+  | `email` | string  | N/A | N/A | | Email of the visitor. |
+  | `numberOfVisits` | integer  | N/A | N/A | | The total number of web pages the visitor viewed on your website. |
+  | `numberOfChats` | integer  | N/A | N/A | | The total times of chats a visitor has made on your website from the first time to present. |
+  | `firstVisitTime` | datetime  | N/A | N/A | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
 
 ## Visitor Endpoints
 
@@ -2974,19 +2923,11 @@ Response
   | `message` | string | | no | yes | | |
   | `IfSetHTMLMessageForEmail` | boolean  | | no | no | false | |
   | `HTMLMessage` | string  | | no | no | | |
-  | `categoryId` | Guid | | no | no | //创建的时候可以不填categoryId吗？| |
-  | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | no | no |//这2个都是N/A吧 |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
+  | `categoryId` | Guid | | no | yes | | |
+  | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
   | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
-  | `similarQuestions` | [Similar Question](#Similar-Question-Object)[]  | | no | no | //这里昨天评审的时候记得说是用String[]| Available when Agent Assist is enabled. |
-
-### Similar Question Object
-
-  Similar Question Object is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `question` | string  | no | no | | |
+  | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
 ## Public Canned Message Endpoints
 
@@ -3035,11 +2976,7 @@ Content-Type:  application/json
         },
         "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
         "shortcuts": "",
-        "similarQuestions": [{
-          "question": "are you ok?"
-        },
-        ...  
-        ]
+        "similarQuestions": ["are you ok?"]
     },
     ...
 ]
@@ -3095,11 +3032,7 @@ Content-Type:  application/json
   },
   "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  },
-  ...  
-  ]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3122,9 +3055,7 @@ example:
   "HTMLMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3143,9 +3074,7 @@ curl -H "Content-Type: application/json" -d '{
   "HTMLMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages
 ```
 
@@ -3164,9 +3093,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3195,9 +3122,7 @@ example:
   "HTMLMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3216,9 +3141,7 @@ curl -H "Content-Type: application/json" -d '{
   "HTMLMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
   }' -X PUT https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
 ```
 
@@ -3236,9 +3159,7 @@ Content-Type:  application/json
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3516,7 +3437,7 @@ HTTP/1.1 204 No Content
   | `category` | [Private Canned Message Category](#Private-Canned-Message-Category-Object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
   | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
-  | `similarQuestions` | [Similar Question](#Similar-Question-Object)[]  | | no | no | | Available when Agent Assist is enabled. |
+  | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
 ## Private Canned Message Endpoints
 
@@ -3565,11 +3486,7 @@ Content-Type:  application/json
         },
         "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
         "shortcuts": "",
-        "similarQuestions": [{
-          "question": "are you ok?"
-        },
-        ...  
-        ]
+        "similarQuestions": ["are you ok?"]
     },
     ...
 ]
@@ -3625,11 +3542,7 @@ Content-Type:  application/json
   },
   "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  },
-  ...  
-  ]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3652,9 +3565,7 @@ example:
   "HTMLMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3673,9 +3584,7 @@ curl -H "Content-Type: application/json" -d '{
   "HTMLMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
 ```
 
@@ -3694,9 +3603,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3725,9 +3632,7 @@ example:
   "HTMLMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -3746,9 +3651,7 @@ curl -H "Content-Type: application/json" -d '{
   "HTMLMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
   }' -X PUT https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
 ```
 
@@ -3766,9 +3669,7 @@ Content-Type:  application/json
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
-  "similarQuestions": [{
-    "question": "are you ok?"
-  }]
+  "similarQuestions": ["are you ok?"]
 }
 ```
 
@@ -4322,7 +4223,7 @@ curl -H "Content-Type: application/json" -d '{
 ```
 Response
 ```Json
-HTTP/1.1 200 OK//创建成功好像是 Created
+HTTP/1.1 200 OK
 Content-Type:  application/json
 
 {
@@ -4364,8 +4265,8 @@ Field Mapping is represented as simple flat JSON objects with the following keys
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `attribute` | string | | no | N/A |//这里不可能是N/A | SSO attribute name. |
-  | `comm100Field` | string | | no | N/A | //这里不可能是N/A| the Comm100 field name |
+  | `attribute` | string | | no | yes | | SSO attribute name. |
+  | `comm100Field` | string | | no | yes | | the Comm100 field name |
 
 ### Visitor SSO Campaign Object
 
@@ -4373,10 +4274,10 @@ Visitor SSO Campaign is represented as simple flat JSON objects with the followi
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `campaignId` | Guid |  | no | N/A | 这几列应该都不是N/A| Id of the campaign. |
-  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | N/A | 你确定这里要Include 吗| Available only when campaign is included  |
-  | `signInOption` | string |  | no | N/A | | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
-  | `isPrechatFromSkipped` | boolean |  | no | N/A | false | Whether the pre-chat form is skipped when visitors sign in. |
+  | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
+  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | N/A | | Available only when campaign is included  |
+  | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
+  | `isPrechatFromSkipped` | boolean |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
 
 ## Visitor SSO Endpoints
 
