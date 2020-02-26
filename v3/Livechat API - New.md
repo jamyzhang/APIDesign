@@ -164,7 +164,7 @@ HTTP/1.1 200 OK
   
 # Auto Distribution
 
-- `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)  include department, agent
+- `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)
 - `PUT /api/v3/livechat/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
 
 ## Auto Distribution Related Objects Json Format
@@ -189,54 +189,75 @@ HTTP/1.1 200 OK
 Department Auto Distribution Object is represented as simple flat JSON objects with the following keys:
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentId` | Guid ||  no| N/A|| id of department |
-| `department` | [Department](#department-object) ||  N/A| N/A|| [Department](#department-object) object |
-| `isLastChattedAgentPreferred` | boolean||  no| N/A|  | id of department |
-
+| `departmentId` | Guid ||  yes| N/A|| id of department |
+| `isLastChattedAgentPreferred` | boolean||  no| N/A|  | whether last-chatted agent is preferred or not |
+| `backupDepartmentId` | Guid ||  no| N/A|| id of backup department |
 
 ### Agent Auto Distribution Object
 
+Agent Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `agentId` | Guid ||  yes| N/A|| id of agent |
+| `ifAutoAcceptChat` | boolean||  no| N/A|| if agent can auto accept chat|
+| `maxConcurrentChats` | boolean ||  no| N/A|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
+
 ### Endpoint
 
-#### Get auto allocation configuration
+#### Get Auto Distribution
 
-  `GET /api/v2/livechat/autoAllocation`
+  `GET /api/v3/livechat/autoDistribution`
 
-- Parameters:
+#### Parameters
 
     No Parameters
 
-- Response:
+#### Response
 
-    [Auto Allocation](#auto-allocation-json-format)
+the response is: [Auto Distribution](#auto-distribution-object) Object.
 
 ### Example
 
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/livechatwebapi/api/v2/livechat/autoallocation
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/autoDistribution
 ```
 
-Sample response:
-
-```json
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "isEnable": true,
-    "allocationRule": "load balancing",
-    "isLastChattedPreferred": true,
-    "isAllocateChatWhenAgentInAudioVideo": false,
-    "isMaxChatForAllAgents": true,
-    "maxChatForAllAgents": 3,
-    "isAllowAgentManualAcceptChat": true
+    "autoDistributionMethod": "load balancing",
+    "isLastChattedAgentPreferred": true,
+    "isLimitMaxConcurrentChatsForAllAgents":true,
+    "maxConcurrentChatsForAllAgents": 3,
+    "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
+    "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
+    "departmentAutoDistributions":[
+      {
+        "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+        "isLastChattedAgentPreferred":"true",
+        "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
+      },
+      ...
+    ],
+    "agentAutoDistributions":[
+      {
+        "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+        "ifAutoAcceptChat":true,
+        "maxConcurrentChats":10
+      }
+    ]
 }
 ```
 
 #### Update auto allocation configuration
 
-  `PUT /api/v2/livechat/autoAllocation`
+  `PUT /api/v3/livechat/autoDistribution`
 
-- Parameters:
+#### Parameters
 
     [Auto Allocation](#auto-allocation-json-format)
 
@@ -252,15 +273,16 @@ Sample request:
 curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "isenable=false"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/autoallocation
 ```
 
-Sample response:
-
-```json
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
     "isEnable": false,
     "allocationRule": "load balancing",
     "isLastChattedPreferred": true,
     "isAllocateChatWhenAgentInAudioVideo": false,
-    "isMaxChatForAllAgents": true,
+    "maxConcurrentChatsForAllAgents":3,
     "maxChatForAllAgents": 3,
     "isAllowAgentManualAcceptChat": true
 }
