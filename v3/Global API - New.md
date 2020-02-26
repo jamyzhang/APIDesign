@@ -209,10 +209,6 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
   |`forgetPasswordTag` | string | | N/A | N/A |  | When the agent submits his email address on Forget Password Page, system will generate a new Forget Password GUID Tag and overwrite the previous value. System will check this GUID to see whether the verification link is the latest one and only the latest one can work.|
   |`forgetPasswordTagTime` | DateTime | | N/A | N/A | UTC |.|
-
-  IP Verification GUID Tag: String (32). If the site has Login IP whitelist enabled and the agent IP is blocked from login: if the agent is administrator, he can click the ‘Email me for Authentication’ to authenticate this IP. When the administrator clicks the ‘Email me’ button, there will be a new IP Verification GUID Tag generated and updated the previous value. The administrator should click the verification link in his email, if the GUID matches, system will add current Login IP into Whitelist and the administrator can login Control Panel successfully. If the agent is not administrator, he needs to contact administrator to add his IP into whitelist.
-
-
   |`ipVerificationTag` | string | | N/A | N/A | | If the site has Login IP whitelist enabled and the agent IP is blocked from login: if the agent is administrator, he can click the ‘Email me for Authentication’ to authenticate this IP. When the administrator clicks the ‘Email me’ button, there will be a new IP Verification GUID Tag generated and updated the previous value. The administrator should click the verification link in his email, if the GUID matches, system will add current Login IP into Whitelist and the administrator can login Control Panel successfully. If the agent is not administrator, he needs to contact administrator to add his IP into whitelist.|
   |`ipVerificationTagTime` | DateTime | | N/A | N/A | UTC |.|
   |`permissionIds` | string[]  |  | no | no | [] | Agent permission settings.|
@@ -544,7 +540,7 @@ HTTP/1.1 204 No Content
 ```
 
 ### Admin set an agent's password
-  `Put /api/v3/globalSettings/agents/{id}:changePassword`
+  `PUT /api/v3/globalSettings/agents/{id}:changePassword`
 
 ####  Parameters
 Path parameters
@@ -582,7 +578,7 @@ HTTP/1.1 204 No Content
 ```
 
 ### Change own password
-  `Put /api/v3/globalSettings/agents/me:changePassword`
+  `PUT /api/v3/globalSettings/agents/me:changePassword`
 
 ####  Parameters
 
@@ -691,8 +687,10 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
   `PUT /api/v3/globalSettings/agents/me`
 
 ####  Parameters
+
 Request body
-The request body contains data with the [Agent](#agent-object) structure
+
+  The request body contains data with the [Agent](#agent-object) structure
 
 example:
 ```json
@@ -1111,7 +1109,7 @@ You need `Manage departments` permission to manage departments.
   |`description` | string | | no | no | |.|
   |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
   |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the ‘Assigned Department’ field. Default: true.|
-  |`offlineMessageMailType` | string | | no | yes | | The value options: allAgentsInDepartment, emailAddress |
+  |`offlineMessageMailType` | string | | no | no | allAgentsInDepartment | The value options: allAgentsInDepartment, emailAddress |
   |`offlineMessageEmails` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
   |`memberIds` | int[] | | no | no | [] | The selected agents for this department.|
   |`member` | [Agent](#agent)[]| yes | N/A | N/A |  | . |
@@ -1208,7 +1206,8 @@ Content-Type:  application/json
 
 ####  Parameters
 
-Request body 
+Request body
+
   The request body contains data with the [Department](#department-object) structure
 
   example:
@@ -1548,8 +1547,7 @@ Request body
 
 #### Response
 the response is:
-
-  role [Permission](#permission-object) Object list
+role [Permission](#permission-object) Object list
 
 #### Example
 Using curl
