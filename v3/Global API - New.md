@@ -2380,8 +2380,8 @@ curl -H "Content-Type: application/json" -d '{
 ```
 Response
 ```json
-HTTP/1.1 201 Created
-Content-Type:  application/json
+HTTP/1.1 200 OK
+Content-Type: application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
 {
     "id": 7,
@@ -2635,8 +2635,8 @@ curl -H "Content-Type: application/json" -d ' {
 ```
 Response
 ```json
-HTTP/1.1 201 Created
-Content-Type:  application/json
+HTTP/1.1 200 OK
+Content-Type: application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
  {
     "id": 25,
