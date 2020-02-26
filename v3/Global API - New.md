@@ -46,13 +46,13 @@
 
  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
  | - | - | :-: | :-: | :-: | :-: | - | 
- |`id` | integer  | | N/A | N/A | 0 |Site ID.|
+ |`id` | integer  | | N/A | N/A |  |Site ID.|
  |`dateTimeFormat` | string| | no | N/A  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
  |`timeZone` | string| | no | N/A  |  | Time zone of site. value include all time zone options, format as ±hh:mm |
  |`company` | string | | no | N/A  | |Company name.|
  |`companySize` | string| | no | N/A  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
  |`website` | string  | | no | N/A  | |Company website. |
- |`registeredEmail` | string  | | no | N/A  | |Email used for site registration.|
+ |`registeredEmail` | string  | | yes | N/A  | |Email used for site registration.|
  |`phone` | string | | no | N/A  | |Company phone number.|
  |`fax` | string | | no | N/A  | |Company fax number.|
  |`mailingAddress` | string | | no | N/A  | |The mailing address of the company.|
@@ -137,7 +137,7 @@ curl -H "Content-Type: application/json" -d '{
     "firstName"："Jasn"，
     "lastName"："Statham"，
     ...,
-}' -X PUT https://domain.comm100.com//api/v3/globalSettings/site
+}' -X PUT https://domain.comm100.com/api/v3/globalSettings/site
 ```
 Response
 ```json
@@ -174,7 +174,6 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   + `GET /api/v3/globalSettings/departments/{departmentId}/agents` - [Get a list of agents by department id](#get-a-list-of-agents-by-department-id)
   + `GET /api/v3/globalSettings/agents/me` - [Get current agent](#get-current-agent)
   + `POST /api/v3/globalSettings/agents` - [Create a new agent](#create-a-new-agent)
-
   + `POST /api/v3/globalSettings/agents/{id}:unlock` - [Unlock the agent](#unlock-the-agent)
   + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#admin-set-an-agents-password)
   + `POST /api/v3/globalSettings/agents/me:changePassword` - [Change own password](#change-own-password)
@@ -189,9 +188,9 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer  | | N/A | N/A | 0 |.|
+  |`id` | integer  | | N/A | N/A |  |.|
   |`email` | string| | yes | yes | | Agent login email address, can not change |
-  |`displayName` | string  | | no | yes | | Different Agents can have the same Display Name.|
+  |`displayName` | string  | | no | no | | Different Agents can have the same Display Name. If not offered, will set by first name.|
   |`firstName` | string  | | no | yes | | The first name of the agent|
   |`lastName` | string  | | no | yes | | The last name of agent|
   |`isAdmin` | bool| | no | no | false | Whether the agent is an administrator or not.|
@@ -199,7 +198,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`phone` | string | | no | no | | Mobile phone number of the agent.|
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
-  |`timeZone` | string| | no | yes |  | Time zone of site. value include all time zone options, format as ±hh:mm |
+  |`timeZone` | string| | no | no |  | Time zone of agent. value include all time zone options, format as ±hh:mm, if not offered, will set by site time zone. |
   |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
   |`avatar` | string| | no | no | default avatar data | image base64 data code.|
   |`createdTime` | DateTime | | N/A | N/A | UTC | The create time of the agent.|
@@ -210,11 +209,16 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
   |`forgetPasswordTag` | string | | N/A | N/A |  | When the agent submits his email address on Forget Password Page, system will generate a new Forget Password GUID Tag and overwrite the previous value. System will check this GUID to see whether the verification link is the latest one and only the latest one can work.|
   |`forgetPasswordTagTime` | DateTime | | N/A | N/A | UTC |.|
-  |`iPVerificationTagTime` | DateTime | | N/A | N/A | UTC |.|
+
+  IP Verification GUID Tag: String (32). If the site has Login IP whitelist enabled and the agent IP is blocked from login: if the agent is administrator, he can click the ‘Email me for Authentication’ to authenticate this IP. When the administrator clicks the ‘Email me’ button, there will be a new IP Verification GUID Tag generated and updated the previous value. The administrator should click the verification link in his email, if the GUID matches, system will add current Login IP into Whitelist and the administrator can login Control Panel successfully. If the agent is not administrator, he needs to contact administrator to add his IP into whitelist.
+
+
+  |`ipVerificationTag` | string | | N/A | N/A | | If the site has Login IP whitelist enabled and the agent IP is blocked from login: if the agent is administrator, he can click the ‘Email me for Authentication’ to authenticate this IP. When the administrator clicks the ‘Email me’ button, there will be a new IP Verification GUID Tag generated and updated the previous value. The administrator should click the verification link in his email, if the GUID matches, system will add current Login IP into Whitelist and the administrator can login Control Panel successfully. If the agent is not administrator, he needs to contact administrator to add his IP into whitelist.|
+  |`ipVerificationTagTime` | DateTime | | N/A | N/A | UTC |.|
   |`permissionIds` | string[]  |  | no | no | [] | Agent permission settings.|
   |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
   |`roleIds` | string[]  |  | no | no |  | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
-  |`roles` | [Roles](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
+  |`roles` | [Role](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
   |`departmentIds` | string[]  |  | no | no | [] | The list of the department ids which the agent belongs to.|
   |`departments` | [Department](#department)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
   |`shifts` | [Shift](#shift)[]  | yes | N/A | N/A  | | The list of shifts which the agent belongs to.|
@@ -227,7 +231,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`totalCount` | string  | N/A | yes | no | | The total count of the query  |
+  |`totalCount` | integer  | N/A | yes | no | | The total count of the query  |
   |`list`|   [Agent](#agent-object)[]| N/A | yes| no | | A list of agents. |
 
 
@@ -476,7 +480,7 @@ example:
 ```
 
 #### Response
-the response is:
+The response is:
   [Agent](#agent-object) Object
 
 #### Example
@@ -499,7 +503,7 @@ Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/agents/68
+Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
 {
     "id": 68,
     "email": "Tom@gmail.com",
@@ -608,7 +612,6 @@ curl -H "Content-Type: application/json" -d ' {
 
 Response
 ```json
-#### Response
 HTTP/1.1 204 No Content
 ```
 
@@ -624,6 +627,7 @@ Path parameters
   |`id` | integer | yes  |  The id of the agent |
 
 Request body
+
   The request body contains data with the [Agent](#agent-object) structure
 
   example:
@@ -644,7 +648,7 @@ Request body
 ```
 
 #### Response
-the response is:
+The response is:
   [Agent](#agent-object) Object
 
 #### Example
@@ -667,7 +671,7 @@ Response
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/agents/68
+Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
 {
     "id": 68,
     "email": "Tom@gmail.com",
@@ -708,7 +712,7 @@ example:
 ```
 
 #### Response
-the response is: [Agent](#agent-object) Object
+The response is: [Agent](#agent-object) Object
 
 #### Example
 Using curl
@@ -732,7 +736,7 @@ Response
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/agents/me
+Location: https://domain.comm100.com/api/v3/globalSettings/agents/me
 {
     "id": 68,
     "email": "Tom@gmail.com",
@@ -765,7 +769,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com//api/v3/globalSettings/agents/68
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/agents/68
 ```
 Response
 ```json
@@ -788,10 +792,10 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
 ### Role Object
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | Guid| | yes | no | | .|
+  |`id` | Guid| | N/A | N/A | | .|
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
-  |`type` | string | | N/A | N/A | | The options: systemRole, customRole; "Site Administrator" and "All Agents" are the system roles. They cannot be deleted.|
+  |`type` | string | | no | no | customRole | The options: siteAdministrator, allAgents, customRole; siteAdministrator and allAgents are the system roles. They cannot be deleted.|
   |`memberIds` | int[] | | no | no | [] | The selected agents for this role. |
   |`members` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
   |`permissionIds` | string[] | | no | no |  | Permissions assigned to this role.|
@@ -817,7 +821,7 @@ The response is a list of [Role](#role) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles?include=Permission
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles?include=permission
 ```
 Response
 ```json
@@ -837,7 +841,7 @@ Content-Type:  application/json
       201,
       205,
       ...,
-    ],,
+    ],
     "permission" :[
       {
         "name": "Accept Chats",
@@ -867,7 +871,7 @@ Content-Type:  application/json
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no|| Available value:`agent`,`Permission` |
+  |`include`|string|no|| Available value:`agent`,`permission` |
 
 #### Response
 
@@ -906,8 +910,6 @@ Content-Type:  application/json
   `POST /api/v3/globalSettings/roles`
 
 ####  Parameters
-Path parameters
-   No Path Parameters
 
 Request body 
 
@@ -933,7 +935,7 @@ Request body
 ```
 
 #### Response
-the response is:
+The response is:
    [Role](#role-object) Object
 
 #### Example
@@ -1017,7 +1019,7 @@ Request body
 ```
 
 #### Response
-the response is:
+The response is:
   [Role](#role-object) Object
 
 #### Example
@@ -1044,7 +1046,7 @@ Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48 
+Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48 
 {
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "markting",
@@ -1071,7 +1073,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  |`id` | Guid | yes  |  the role id |
+  |`id` | Guid | yes  |  The role id |
 
 #### Response
 HTTP/1.1 204 No Content
@@ -1104,7 +1106,7 @@ You need `Manage departments` permission to manage departments.
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | Guid| | yes | no | | .|
+  |`id` | Guid| | N/A | N/A | | .|
   |`name` | string | | no | yes | |.|
   |`description` | string | | no | no | |.|
   |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
@@ -1205,7 +1207,6 @@ Content-Type:  application/json
   `POST /api/v3/globalSettings/departments`
 
 ####  Parameters
-   No Path Parameters
 
 Request body 
   The request body contains data with the [Department](#department-object) structure
@@ -1227,7 +1228,7 @@ Request body
 ```
 
 #### Response
-the response is:
+The response is:
     [Department](#department-object) Object
 
 #### Example
@@ -1298,7 +1299,7 @@ Request body
 ```
 
 #### Response
-the response is:
+The response is:
    [Department](#department-object)  Object
 
 #### Example
@@ -1321,7 +1322,7 @@ Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 {
       "name": "markting",
       "description": "markting departments",
@@ -1368,7 +1369,7 @@ HTTP/1.1 204 No Content
   + `GET /api/v3/globalSettings/permissions` - [Get all permissions](#get-all-permissions)
   + `GET /api/v3/globalSettings/roles/{roleId}/permissions` - [Get role permissions](#get-role-permissions)
   + `GET /api/v3/globalSettings/agents/{agentId}/permissions` - [Get agent permissions](#get-agent-permissions)
-  + `GET /api/v3/globalSettings/agents/{agentId}/permissions:effective` - [Get a list of agent's effective permissions](#get-agent-effective-permissions) ,including the permissions of the agent and the permissions of the roles which the agent belongs to.
+  + `GET /api/v3/globalSettings/agents/{agentId}/permissions:effective` - [Get a list of agent's effective permissions](#get-agent-effective-permissions)
   + `PUT /api/v3/globalSettings/roles/{roleId}/permissions` - [Update role permissions](#update-role-permissions)
   + `PUT /api/v3/globalSettings/agents/{agentId}/permissions` - [Update agent permissions](#update-agent-permissions)
 
@@ -1379,10 +1380,10 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer| | yes | no | 0| .|
+  |`id` | integer| | N/A | N/A |  | .|
   |`name` | string| | yes | no | |.|
   |`description` | string| | yes | no | |.|
-  |`category` | Live Chat, Ticketing & Messaging, Bot, Knowledge Base, Global Setting| | yes | no | |.|
+  |`category` | string | | yes | no | |Live Chat, Ticketing & Messaging, Bot, Knowledge Base, Global Setting|
 
 ## Permission Endpoints
 
@@ -1531,7 +1532,9 @@ Path parameters
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`roleId` | Guid | yes  |  The id of the role |
+
 Request body
+
   The request body contains data with the  [Permission](#permission-object) Id list
 
   example:
@@ -1596,7 +1599,7 @@ Request body
 ```
 
 #### Response
-the response is:
+The response is:
    agent [Permission](#permission-object) Object list
 
 #### Example
@@ -1612,7 +1615,7 @@ Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48/permissions
+Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
 [{
       "id": 201,
       "name": "Accept Chats",
@@ -2157,7 +2160,7 @@ Response
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer  | | N/A | N/A | 0 |.|
+  |`id` | integer  | | N/A | N/A |  |.|
   |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has Name and Avatar, like Facebook Account, display Name and Avatar from that Identity in Agent Console. In other situations, display Contact Name and Avatar.|
   |`description` | string | | no | no | |.|
   |`firstName` | string | | no | yes | |.|
@@ -2188,8 +2191,8 @@ Response
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`name` | string | no  |  | Contact Name. |
-  |`title`|string|no|  | The page index of the query. |
+  |`name` | string | no  |  | Contact name. |
+  |`title`|string|no|  | Contact title. |
   |`contactIdentityName` | string | no  |  | Contact identity name. |
   |`contactIdentityType` | string | no  |  | Contact identity type. |
 
@@ -2269,8 +2272,6 @@ Content-Type:  application/json
 
 ####  Parameters
 
-   No Parameters
-
 Request body 
 
   The request body contains data with the [Contact](#contact-object) structure
@@ -2292,7 +2293,7 @@ example:
 
 #### Response
 
-the response is:
+The response is:
   [Contact](#contact-object) Object
 
 #### Example
@@ -2360,7 +2361,7 @@ Request body
 ```
 
 #### Response
-the response is:
+The response is:
   [Contact](#contact-object) Object
 
 #### Example
@@ -2421,7 +2422,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Contact Identity
- + `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [Get a list of contactIdentities in a contact](#get-all-contact-identity)
+ + `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [Get a list of contact identities in a contact](#get-all-contact-identity)
  + `GET /api/v3/globalSettings/contactIdentities/{id}` - [Get an contact identity by id](#get-an-contact-identity)
  + `POST /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [create a new contact identity](#create-a-new-contact-identity)
  + `PUT /api/v3/globalSettings/contactIdentities/{id}` - [update an contact identity](#update-an-contact-identity)
@@ -2531,7 +2532,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  |`contactId` | Guid | yes  |  The id of the contact of contact Identities belong|
+  |`contactId` | integer | yes  |  The id of the contact of contact Identities belong|
 
 Request body 
 
@@ -2552,7 +2553,7 @@ Request body
 
 #### Response
 
-the response is:
+The response is:
   [Contact Identity](#contact-identity-object) Object
 
 #### Example
@@ -2617,7 +2618,7 @@ Request body
 
 #### Response
 
-the response is:
+The response is:
   [Contact Identity](#contact-identity-object) Object
 
 #### Example
@@ -2667,7 +2668,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contactIdentities/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 ```
 Response
 ```json
@@ -4051,8 +4052,8 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   |`id` | Guid | | N/A | N/A | | |
-  |`iPFrom` | string | | no | yes | | Where an IP range starts.|
-  |`iPTo` | string | | no | yes | | Where an IP range ends.|
+  |`ipFrom` | string | | no | yes | | Where an IP range starts.|
+  |`ipTo` | string | | no | yes | | Where an IP range ends.|
   |`createdTime` | DateTime | | N/A | N/A |  |.|
 
 ## Whitelisted Login IP Range Endpoints
@@ -4079,8 +4080,8 @@ HTTP/1.1 200 OK
 Content-Type:  application/json[
 {
   "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-  "iPFrom": "201.195.21.5", 
-  "iPTo": "201.195.21.8", 
+  "ipFrom": "201.195.21.5", 
+  "ipTo": "201.195.21.8", 
   "createdTime": "2020-01-01", 
 },
 ...,
@@ -4113,8 +4114,8 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
   {
   "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-  "iPFrom": "201.195.21.5", 
-  "iPTo": "201.195.21.8", 
+  "ipFrom": "201.195.21.5", 
+  "ipTo": "201.195.21.8", 
   "createdTime": "2020-01-01", 
   }
 ```
@@ -4125,23 +4126,20 @@ Content-Type:  application/json
 
 ####  Parameters
 
-No parameters
-
 Request body 
   The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure
 
   example:
 ```json
  {
-    "iPFrom": "201.195.21.5", 
-    "iPTo": "201.195.21.8", 
-    "createdTime": "2020-01-01", 
+    "ipFrom": "201.195.21.5", 
+    "ipTo": "201.195.21.8", 
   }
 ```
 
 #### Response
 
-the response is:
+The response is:
   [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
 
 #### Example
@@ -4149,9 +4147,8 @@ the response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
-      "iPFrom": "201.195.21.5", 
-      "iPTo": "201.195.21.8", 
-      "createdTime": "2020-01-01", 
+      "ipFrom": "201.195.21.5", 
+      "ipTo": "201.195.21.8", 
     }' -X POST https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges
 ```
 Response
@@ -4161,8 +4158,8 @@ Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
     "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-    "iPFrom": "201.195.21.5", 
-    "iPTo": "201.195.21.8", 
+    "ipFrom": "201.195.21.5", 
+    "ipTo": "201.195.21.8", 
     "createdTime": "2020-01-01", 
   }
 ```
@@ -4186,23 +4183,22 @@ Request body
   example:
 ```json
  {
-    "iPFrom": "201.195.21.5", 
-    "iPTo": "201.195.21.8", 
-    "createdTime": "2020-01-01", 
+    "ipFrom": "201.195.21.5", 
+    "ipTo": "201.195.21.8", 
   }
 ```
 
 #### Response
-the response is:
+
+The response is:
   [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
 
 #### Example
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
-      "iPFrom": "201.195.21.5", 
-      "iPTo": "201.195.21.8", 
-      "createdTime": "2020-01-01", 
+      "ipFrom": "201.195.21.5", 
+      "ipTo": "201.195.21.8", 
     }' -X PUT https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
@@ -4211,8 +4207,8 @@ Response
   Content-Type: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
     "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-    "iPFrom": "201.195.21.5", 
-    "iPTo": "201.195.21.8", 
+    "ipFrom": "201.195.21.5", 
+    "ipTo": "201.195.21.8", 
     "createdTime": "2020-01-01", 
   }
 ```
@@ -4576,12 +4572,12 @@ Response
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer | | N/A | N/A | | .| 
-  |`category` | string| | N/A | N/A | | the value options include: liveChat, ticketingAndMessaging, bot, myAccountGlobalSettings, knowledgeBase |
+  |`category` | string| | N/A | N/A | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
   |`createdTime` | DateTime | | N/A | N/A |  |.|
   |`actionType` | string | | N/A  | N/A  | | [action types for different applications](#action-types-for-different-applications) |
   |`actionSummary` | string| | N/A  | N/A  | |.|
   |`actionDetails` | string| | N/A  | N/A  | |.|
-  |`createdBy` | int | | N/A  | N/A  | | the id of oprator agent |
+  |`createdBy` | integer | | N/A  | N/A  | | the id of oprator agent |
   |`agent` | [Agent](#agent) | yes | N/A  | N/A  | | the oprator agent |
 
 ### Audit Log List Response Object
@@ -4590,7 +4586,7 @@ Response
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`totalCount` | int  | N/A | yes | no | | the total count of the query  |
+  |`totalCount` | integer  | N/A | yes | no | | the total count of the query  |
   |`list`| [Audit Log](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
 
 ### Action types for different applications
@@ -4628,8 +4624,8 @@ Response
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`dateFrom`|string|no||The date from which agent did the action, format as yyyy-MM-ddTHH:mm:ss. |
-  |`dateTo`|string|no||The date when an agent ended the action, format as yyyy-MM-ddTHH:mm:ss. |
+  |`dateFrom`|DateTime|no||The date from which agent did the action, format as yyyy-MM-ddTHH:mm:ss. |
+  |`dateTo`|DateTime|no||The date when an agent ended the action, format as yyyy-MM-ddTHH:mm:ss. |
   |`category`|string|no||The category which the action belongs to |
   |`actionType`|string|no||The action type. |
   |`agentId`|integer |no||id of the agent who did the action. |
