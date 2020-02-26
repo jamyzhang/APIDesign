@@ -772,7 +772,7 @@ HTTP/1.1 204 No Content
 
 - `GET /api/v3/livechat/campaigns` - [Get all campaigns in site](#get-all-campaigns-in-site)
 - `GET /api/v3/livechat/campaigns/{id}` - [Get a campaign by id](#get-a-campaign-by-id)
-- `POST /api/v3/livechat/campaigns` - [Create a campaign](#create-a-new-campaign)
+- `POST /api/v3/livechat/campaigns` - [Create a new campaign](#create-a-new-campaign)
 - `PUT /api/v3/livechat/campaigns/{id}` - [Update a campaign](#update-a-campaign)
 - `DELETE /api/v3/livechat/campaigns/{id}` - [Delete a campaign](#delete-a-campaign)
 
@@ -1597,15 +1597,15 @@ Content-Type:  application/json
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `isEnable` | boolean | no | yes | | Whether the pre-chat is enabled or not. |
-  | `isTeamNameDisplayed` | boolean | no | no | | Whether the team name is visible or not in the header. |
-  | `teamName` | string | no | no | | The team name displayed in the header. |
+  | `isEnable` | boolean | no | N/A | | Whether the pre-chat is enabled or not. |
+  | `isTeamNameDisplayed` | boolean | no | N/A | | Whether the team name is visible or not in the header. |
+  | `teamName` | string | no | N/A | | The team name displayed in the header. |
   | `isAgentAvatarDisplayed` | boolean | no | N/A   | | Whether the avatar of the agent is visible or not in the header. |
-  | `greetingMessage` | string | no | no | | |
-  | `socialMediaLogin` | string | no | no | |  Including `none` and `facebook`. |
-  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
-  | `isVisitorInfoRecorded` | boolean | no | no | true | If remember visitor info collected from pre-chat form. |
-  | `formFieldLayoutStyle` | string | no | no | | Including `leftofInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
+  | `greetingMessage` | string | no | N/A | | |
+  | `socialMediaLogin` | string | no | N/A | |  Including `none` and `facebook`. |
+  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+  | `isVisitorInfoRecorded` | boolean | no | N/A | true | If remember visitor info collected from pre-chat form. |
+  | `formFieldLayoutStyle` | string | no | N/A | | Including `leftofInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
 ## Pre-Chat Endpoints
 
@@ -1837,14 +1837,13 @@ Content-Type:  application/json
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `type` | string | no | no | | Including `systemOfflineMessageWindow` and `customOfflineMessagePage`. |
-  | `customOfflineMessagePageURL` | string | no | no | | Available when Type is `customOfflineMessagePage`. |
-  | `ifOpenCustomOfflineMessagePageInNewWindow` | boolean | no | no | | Available when Type is `customOfflineMessagePage`. |
-  | `greetingMessage` | string | no | no | | |
-  | `emailOfflineMessageTo` | string | no | no | | Including `allAgents` and `customEmailAddresses`, available when routing rule is disabled. |
-  | `customEmailAddresses` | string | no | no | |  Available when routing rule is disabled.  |
-  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+  | `type` | string | no | N/A | | Including `systemOfflineMessageWindow` and `customOfflineMessagePage`. |
+  | `customOfflineMessagePageURL` | string | no | N/A | | Available when Type is `customOfflineMessagePage`. |
+  | `ifOpenCustomOfflineMessagePageInNewWindow` | boolean | no | N/A | | Available when Type is `customOfflineMessagePage`. |
+  | `greetingMessage` | string | no | N/A | | |
+  | `emailOfflineMessageTo` | string | no | N/A | | Including `allAgents` and `customEmailAddresses`, available when routing rule is disabled. |
+  | `customEmailAddresses` | string | no | N/A | |  Available when routing rule is disabled.  |
+  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 
 ## Campaign Offline Message Endpoints
 
@@ -1864,6 +1863,29 @@ Path Parameters
 
 the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "type": "systemOfflineMessageWindow",
+  "customOfflineMessagePageURL": "",
+  "ifOpenCustomOfflineMessagePageInNewWindow":  false,
+  "greetingMessage": "",
+  "emailOfflineMessageTo": "allAgents",
+  "customEmailAddresses": "",
+  "fields":  []
+}
+```
+
 ### Update Campaign Offline Message
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/offlineMessage`
@@ -1880,9 +1902,52 @@ Request Body
 
   The request body contains data with the [Campaign Offline Message](#Campaign-Offline-Message-Object) structure
 
+example:
+```Json
+{
+  "type": "systemOfflineMessageWindow",
+  "customOfflineMessagePageURL": "",
+  "ifOpenCustomOfflineMessagePageInNewWindow":  false,
+  "greetingMessage": "",
+  "emailOfflineMessageTo": "allAgents",
+  "customEmailAddresses": "",
+  "fields":  []
+}
+```
+
 #### Response
 
 the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "type": "systemOfflineMessageWindow",
+  "customOfflineMessagePageURL": "",
+  "ifOpenCustomOfflineMessagePageInNewWindow":  false,
+  "greetingMessage": "",
+  "emailOfflineMessageTo": "allAgents",
+  "customEmailAddresses": "",
+  "fields":  []
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "type": "systemOfflineMessageWindow",
+  "customOfflineMessagePageURL": "",
+  "ifOpenCustomOfflineMessagePageInNewWindow":  false,
+  "greetingMessage": "",
+  "emailOfflineMessageTo": "allAgents",
+  "customEmailAddresses": "",
+  "fields":  []
+}
+```
 
 # Invitation
 
@@ -1897,10 +1962,278 @@ the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Ob
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
-  | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
-  | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object)[] | no | no | | |
+  | `style` | string | no | N/A | | Including `bubble`, `popup` and `chatWindow`. |
+  | `manualInvitation` | [Manual Invitation](#Manual-Invitation-Object) | no | N/A | | |
+  | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | N/A | | |
+
+## Invitation Endpoints
+
+### Get Invitation
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/invitation`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+#### Response
+
+the response is: [Invitation](#Invitation-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "style": "bubble",
+  "manualInvitation": {
+    "manualInvitationPosition": "centerWithOverlay",
+    "manualInvitationImageType": "fromGallery",
+    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+    "manualInvitationCloseAreaXOffset": 10,
+    "manualInvitationCloseAreaYOffset": 10,
+    "manualInvitationCloseAreaWidth": 10,
+    "manualInvitationCloseAreaHeight": 10,
+    "manualInvitationTextAreaXOffset": 10,
+    "manualInvitationTextAreaYOffset": 10,
+    "manualInvitationTextAreaWidth": 10,
+    "manualInvitationTextAreaHeight": 10,
+    "manualInvitationText": "",
+    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextSize": "XXSmall",
+    "isManualInvitationTextBold": false,
+    "isManualInvitationTextItalic": false,
+    "manualInvitationTextColor": "#339FD9"
+  },
+  "autoInvitations": [{
+    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+    "name": "test",
+    "isEnable": false,
+    "isDisplayedOnceInOneSession": false,
+    "order": 1,
+    "imageType": "fromGallery",
+    "closeAreaXOffset": 10,
+    "closeAreaYOffset": 10,
+    "closeAreaWidth": 10,
+    "closeAreaHeight": 10,
+    "textAreaXOffset": 10,
+    "textAreaYOffset": 10,
+    "textAreaWidth": 10,
+    "textAreaHeight": 10,
+    "text": "",
+    "textFont": "timesNewRoman",
+    "textSize": "XXSmall",
+    "isTextBold": false,
+    "isTextItalic": false,
+    "textColor": "#339FD9",
+    "position": "centerWithOverlay",
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": "",
+  },
+  ...
+  ]
+}
+```
+
+### Update Invitation
+
+  `PUT /api/v3/livechat/campaigns/{campaignId}/invitation`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Request Body
+
+  The request body contains data with the [Invitation](#Invitation-Object) structure
+
+example:
+```Json
+{
+  "style": "bubble",
+  "manualInvitation": {
+    "manualInvitationPosition": "centerWithOverlay",
+    "manualInvitationImageType": "fromGallery",
+    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+    "manualInvitationCloseAreaXOffset": 10,
+    "manualInvitationCloseAreaYOffset": 10,
+    "manualInvitationCloseAreaWidth": 10,
+    "manualInvitationCloseAreaHeight": 10,
+    "manualInvitationTextAreaXOffset": 10,
+    "manualInvitationTextAreaYOffset": 10,
+    "manualInvitationTextAreaWidth": 10,
+    "manualInvitationTextAreaHeight": 10,
+    "manualInvitationText": "",
+    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextSize": "XXSmall",
+    "isManualInvitationTextBold": false,
+    "isManualInvitationTextItalic": false,
+    "manualInvitationTextColor": "#339FD9"
+  },
+  "autoInvitations": [{
+    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+    "name": "test",
+    "isEnable": false,
+    "isDisplayedOnceInOneSession": false,
+    "order": 1,
+    "imageType": "fromGallery",
+    "closeAreaXOffset": 10,
+    "closeAreaYOffset": 10,
+    "closeAreaWidth": 10,
+    "closeAreaHeight": 10,
+    "textAreaXOffset": 10,
+    "textAreaYOffset": 10,
+    "textAreaWidth": 10,
+    "textAreaHeight": 10,
+    "text": "",
+    "textFont": "timesNewRoman",
+    "textSize": "XXSmall",
+    "isTextBold": false,
+    "isTextItalic": false,
+    "textColor": "#339FD9",
+    "position": "centerWithOverlay",
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": "",
+  }]
+}
+```
+
+#### Response
+
+the response is: [Invitation](#Invitation-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "style": "bubble",
+  "manualInvitation": {
+    "manualInvitationPosition": "centerWithOverlay",
+    "manualInvitationImageType": "fromGallery",
+    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+    "manualInvitationCloseAreaXOffset": 10,
+    "manualInvitationCloseAreaYOffset": 10,
+    "manualInvitationCloseAreaWidth": 10,
+    "manualInvitationCloseAreaHeight": 10,
+    "manualInvitationTextAreaXOffset": 10,
+    "manualInvitationTextAreaYOffset": 10,
+    "manualInvitationTextAreaWidth": 10,
+    "manualInvitationTextAreaHeight": 10,
+    "manualInvitationText": "",
+    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextSize": "XXSmall",
+    "isManualInvitationTextBold": false,
+    "isManualInvitationTextItalic": false,
+    "manualInvitationTextColor": "#339FD9"
+  },
+  "autoInvitations": [{
+    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+    "name": "test",
+    "isEnable": false,
+    "isDisplayedOnceInOneSession": false,
+    "order": 1,
+    "imageType": "fromGallery",
+    "closeAreaXOffset": 10,
+    "closeAreaYOffset": 10,
+    "closeAreaWidth": 10,
+    "closeAreaHeight": 10,
+    "textAreaXOffset": 10,
+    "textAreaYOffset": 10,
+    "textAreaWidth": 10,
+    "textAreaHeight": 10,
+    "text": "",
+    "textFont": "timesNewRoman",
+    "textSize": "XXSmall",
+    "isTextBold": false,
+    "isTextItalic": false,
+    "textColor": "#339FD9",
+    "position": "centerWithOverlay",
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": "",
+  }]
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "style": "bubble",
+  "manualInvitation": {
+    "manualInvitationPosition": "centerWithOverlay",
+    "manualInvitationImageType": "fromGallery",
+    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+    "manualInvitationCloseAreaXOffset": 10,
+    "manualInvitationCloseAreaYOffset": 10,
+    "manualInvitationCloseAreaWidth": 10,
+    "manualInvitationCloseAreaHeight": 10,
+    "manualInvitationTextAreaXOffset": 10,
+    "manualInvitationTextAreaYOffset": 10,
+    "manualInvitationTextAreaWidth": 10,
+    "manualInvitationTextAreaHeight": 10,
+    "manualInvitationText": "",
+    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextSize": "XXSmall",
+    "isManualInvitationTextBold": false,
+    "isManualInvitationTextItalic": false,
+    "manualInvitationTextColor": "#339FD9"
+  },
+  "autoInvitations": [{
+    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+    "name": "test",
+    "isEnable": false,
+    "isDisplayedOnceInOneSession": false,
+    "order": 1,
+    "imageType": "fromGallery",
+    "closeAreaXOffset": 10,
+    "closeAreaYOffset": 10,
+    "closeAreaWidth": 10,
+    "closeAreaHeight": 10,
+    "textAreaXOffset": 10,
+    "textAreaYOffset": 10,
+    "textAreaWidth": 10,
+    "textAreaHeight": 10,
+    "text": "",
+    "textFont": "timesNewRoman",
+    "textSize": "XXSmall",
+    "isTextBold": false,
+    "isTextItalic": false,
+    "textColor": "#339FD9",
+    "position": "centerWithOverlay",
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": "",
+  }]
+}
+```
+
+# Manual Invitation
+
+- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation` - [Get settings of manual invitation  for a campaign](#get-Manual-Invitation)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation` - [Update settings of manual invitation  for a campaign](#update-Manual-Invitation)
+
+## Related Object Json Format
 
 ### Manual Invitation Object
 
@@ -1908,23 +2241,177 @@ the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Ob
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `manualInvitationPosition` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
-  | `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
-  | `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
-  | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
-  | `manualInvitationCloseAreaYOffset` | integer | no | no | | |
-  | `manualInvitationCloseAreaWidth` | integer | no | no | | |
-  | `manualInvitationCloseAreaHeight` | integer | no | no | | |
-  | `manualInvitationTextAreaXOffset` | integer | no | no | | |
-  | `manualInvitationTextAreaYOffset` | integer | no | no | | |
-  | `manualInvitationTextAreaWidth` | integer | no | no | | |
-  | `manualInvitationTextAreaHeight` | integer | no | no | | |
-  | `manualInvitationText` | string | no | no | | |
-  | `manualInvitationTextFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
-  | `manualInvitationTextSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
-  | `isManualInvitationTextBold` | boolean | no | no | | |
-  | `isManualInvitationTextItalic` | boolean | no | no | | |
-  | `manualInvitationTextColor` | string | no | no | | |
+  | `manualInvitationPosition` | string | no | N/A | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
+  | `manualInvitationImageType` | string | no | N/A | | Including`fromGallery` and `fromMyComputer`.  |
+  | `manualInvitationImage` | string | no | N/A | | Image file key of Invitation.  |
+  | `manualInvitationCloseAreaXOffset` | integer | no | N/A | | |
+  | `manualInvitationCloseAreaYOffset` | integer | no | N/A | | |
+  | `manualInvitationCloseAreaWidth` | integer | no | N/A | | |
+  | `manualInvitationCloseAreaHeight` | integer | no | N/A | | |
+  | `manualInvitationTextAreaXOffset` | integer | no | N/A | | |
+  | `manualInvitationTextAreaYOffset` | integer | no | N/A | | |
+  | `manualInvitationTextAreaWidth` | integer | no | N/A | | |
+  | `manualInvitationTextAreaHeight` | integer | no | N/A | | |
+  | `manualInvitationText` | string | no | N/A | | |
+  | `manualInvitationTextFont` | string | no | N/A | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+  | `manualInvitationTextSize` | string | no | N/A | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
+  | `isManualInvitationTextBold` | boolean | no | N/A | | |
+  | `isManualInvitationTextItalic` | boolean | no | N/A | | |
+  | `manualInvitationTextColor` | string | no | N/A | | |
+
+## Manual Invitation Endpoints
+
+### Get Manual Invitation
+
+  `GET /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+#### Response
+
+the response is: [Manual Invitation](#Manual-Invitation-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/manualInvitation
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "manualInvitationPosition": "centerWithOverlay",
+  "manualInvitationImageType": "fromGallery",
+  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+  "manualInvitationCloseAreaXOffset": 10,
+  "manualInvitationCloseAreaYOffset": 10,
+  "manualInvitationCloseAreaWidth": 10,
+  "manualInvitationCloseAreaHeight": 10,
+  "manualInvitationTextAreaXOffset": 10,
+  "manualInvitationTextAreaYOffset": 10,
+  "manualInvitationTextAreaWidth": 10,
+  "manualInvitationTextAreaHeight": 10,
+  "manualInvitationText": "",
+  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextSize": "XXSmall",
+  "isManualInvitationTextBold": false,
+  "isManualInvitationTextItalic": false,
+  "manualInvitationTextColor": "#339FD9"
+}
+```
+
+### Update Manual Invitation
+
+  `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+
+Request Body
+
+  The request body contains data with the [Manual Invitation](#Manual-Invitation-Object) structure
+
+#### Response
+
+the response is: [Invitation](#Invitation-Object) Object
+
+example:
+```Json
+{
+  "manualInvitationPosition": "centerWithOverlay",
+  "manualInvitationImageType": "fromGallery",
+  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+  "manualInvitationCloseAreaXOffset": 10,
+  "manualInvitationCloseAreaYOffset": 10,
+  "manualInvitationCloseAreaWidth": 10,
+  "manualInvitationCloseAreaHeight": 10,
+  "manualInvitationTextAreaXOffset": 10,
+  "manualInvitationTextAreaYOffset": 10,
+  "manualInvitationTextAreaWidth": 10,
+  "manualInvitationTextAreaHeight": 10,
+  "manualInvitationText": "",
+  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextSize": "XXSmall",
+  "isManualInvitationTextBold": false,
+  "isManualInvitationTextItalic": false,
+  "manualInvitationTextColor": "#339FD9"
+}
+```
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "manualInvitationPosition": "centerWithOverlay",
+  "manualInvitationImageType": "fromGallery",
+  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+  "manualInvitationCloseAreaXOffset": 10,
+  "manualInvitationCloseAreaYOffset": 10,
+  "manualInvitationCloseAreaWidth": 10,
+  "manualInvitationCloseAreaHeight": 10,
+  "manualInvitationTextAreaXOffset": 10,
+  "manualInvitationTextAreaYOffset": 10,
+  "manualInvitationTextAreaWidth": 10,
+  "manualInvitationTextAreaHeight": 10,
+  "manualInvitationText": "",
+  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextSize": "XXSmall",
+  "isManualInvitationTextBold": false,
+  "isManualInvitationTextItalic": false,
+  "manualInvitationTextColor": "#339FD9"
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/manualInvitation
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "manualInvitationPosition": "centerWithOverlay",
+  "manualInvitationImageType": "fromGallery",
+  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+  "manualInvitationCloseAreaXOffset": 10,
+  "manualInvitationCloseAreaYOffset": 10,
+  "manualInvitationCloseAreaWidth": 10,
+  "manualInvitationCloseAreaHeight": 10,
+  "manualInvitationTextAreaXOffset": 10,
+  "manualInvitationTextAreaYOffset": 10,
+  "manualInvitationTextAreaWidth": 10,
+  "manualInvitationTextAreaHeight": 10,
+  "manualInvitationText": "",
+  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextSize": "XXSmall",
+  "isManualInvitationTextBold": false,
+  "isManualInvitationTextItalic": false,
+  "manualInvitationTextColor": "#339FD9"
+}
+```
+
+# Auto Invitation
+
+- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Get all auto invitations in a campaign](#get-all-Auto-Invitations-in-a-campaign)
+- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get a auto invitation by id](#get-a-Auto-Invitation-by-id)
+- `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Create a new auto invitation](#create-a-new-Auto-Invitation)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update a auto invitation](#update-a-Auto-Invitation)
+- `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete a auto invitation](#delete-a-Auto-Invitation)
+
+## Related Object Json Format
 
 ### Auto Invitation Object
 
@@ -1957,97 +2444,6 @@ the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Ob
   | `logicalExpression` | string | no | no | | |
   | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | |
 
-## Invitation Endpoints
-
-### Get Invitation
-
-  `GET /api/v3/livechat/campaigns/{campaignId}/invitation`
-
-#### Parameters
-
-Path Parameters
-
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
-
-#### Response
-
-the response is: [Invitation](#Invitation-Object) Object
-
-### Update Invitation
-
-  `PUT /api/v3/livechat/campaigns/{campaignId}/invitation`
-
-#### Parameters
-
-Path Parameters
-
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
-
-Request Body
-
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
-
-#### Response
-
-the response is: [Invitation](#Invitation-Object) Object
-
-# Manual Invitation
-
-- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation` - [Get settings of manual invitation  for a campaign](#get-Manual-Invitation)
-- `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation` - [Update settings of manual invitation  for a campaign](#update-Manual-Invitation)
-
-## Manual Invitation Endpoints
-
-### Get Manual Invitation
-
-  `GET /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation`
-
-#### Parameters
-
-Path Parameters
-
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
-
-#### Response
-
-the response is: [Manual Invitation](#Manual-Invitation-Object) Object
-
-### Update Manual Invitation
-
-  `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation`
-
-#### Parameters
-
-Path Parameters
-
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
-
-Request Body
-
-  The request body contains data with the [Manual Invitation](#Manual-Invitation-Object) structure
-
-#### Response
-
-the response is: [Invitation](#Invitation-Object) Object
-
-# Auto Invitation
-
-- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Get a list of auto invitations](#get-all-Auto-Invitations-in-a-campaign)
-- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get an auto invitation by id](#get-a-Auto-Invitation-by-id)
-- `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Create an auto invitation](#create-a-new-Auto-Invitation)
-- `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update an auto invitation](#update-a-Auto-Invitation)
-- `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete an auto invitation](#delete-a-Auto-Invitation)
-
 ## Auto Invitation Endpoints
 
 ### Get all Auto Invitations in a campaign
@@ -2066,6 +2462,49 @@ Path Parameters
 
 the response is: list of [Auto Invitation](#Auto-Invitation-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+  {
+    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+    "name": "test",
+    "isEnable": false,
+    "isDisplayedOnceInOneSession": false,
+    "order": 1,
+    "imageType": "fromGallery",
+    "closeAreaXOffset": 10,
+    "closeAreaYOffset": 10,
+    "closeAreaWidth": 10,
+    "closeAreaHeight": 10,
+    "textAreaXOffset": 10,
+    "textAreaYOffset": 10,
+    "textAreaWidth": 10,
+    "textAreaHeight": 10,
+    "text": "",
+    "textFont": "timesNewRoman",
+    "textSize": "XXSmall",
+    "isTextBold": false,
+    "isTextItalic": false,
+    "textColor": "#339FD9",
+    "position": "centerWithOverlay",
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": "",
+  },
+  ...
+  ]
+```
+
 ### Get a Auto Invitation by id
 
   `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
@@ -2083,6 +2522,49 @@ Path Parameters
 
 the response is: [Auto Invitation](#Auto-Invitation-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+  {
+    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+    "name": "test",
+    "isEnable": false,
+    "isDisplayedOnceInOneSession": false,
+    "order": 1,
+    "imageType": "fromGallery",
+    "closeAreaXOffset": 10,
+    "closeAreaYOffset": 10,
+    "closeAreaWidth": 10,
+    "closeAreaHeight": 10,
+    "textAreaXOffset": 10,
+    "textAreaYOffset": 10,
+    "textAreaWidth": 10,
+    "textAreaHeight": 10,
+    "text": "",
+    "textFont": "timesNewRoman",
+    "textSize": "XXSmall",
+    "isTextBold": false,
+    "isTextItalic": false,
+    "textColor": "#339FD9",
+    "position": "centerWithOverlay",
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": "",
+  },
+  ...
+  ]
+```
+
 ### Create a new Auto Invitation
 
   `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations`
@@ -2099,9 +2581,103 @@ Request Body
 
   The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure
 
+example:
+```Json
+{
+  "name": "test",
+  "isEnable": false,
+  "isDisplayedOnceInOneSession": false,
+  "order": 1,
+  "imageType": "fromGallery",
+  "closeAreaXOffset": 10,
+  "closeAreaYOffset": 10,
+  "closeAreaWidth": 10,
+  "closeAreaHeight": 10,
+  "textAreaXOffset": 10,
+  "textAreaYOffset": 10,
+  "textAreaWidth": 10,
+  "textAreaHeight": 10,
+  "text": "",
+  "textFont": "timesNewRoman",
+  "textSize": "XXSmall",
+  "isTextBold": false,
+  "isTextItalic": false,
+  "textColor": "#339FD9",
+  "position": "centerWithOverlay",
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": ""
+}
+```
+
 #### Response
 
 the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "test",
+  "isEnable": false,
+  "isDisplayedOnceInOneSession": false,
+  "order": 1,
+  "imageType": "fromGallery",
+  "closeAreaXOffset": 10,
+  "closeAreaYOffset": 10,
+  "closeAreaWidth": 10,
+  "closeAreaHeight": 10,
+  "textAreaXOffset": 10,
+  "textAreaYOffset": 10,
+  "textAreaWidth": 10,
+  "textAreaHeight": 10,
+  "text": "",
+  "textFont": "timesNewRoman",
+  "textSize": "XXSmall",
+  "isTextBold": false,
+  "isTextItalic": false,
+  "textColor": "#339FD9",
+  "position": "centerWithOverlay",
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": ""
+  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+
+{
+  "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+  "name": "test",
+  "isEnable": false,
+  "isDisplayedOnceInOneSession": false,
+  "order": 1,
+  "imageType": "fromGallery",
+  "closeAreaXOffset": 10,
+  "closeAreaYOffset": 10,
+  "closeAreaWidth": 10,
+  "closeAreaHeight": 10,
+  "textAreaXOffset": 10,
+  "textAreaYOffset": 10,
+  "textAreaWidth": 10,
+  "textAreaHeight": 10,
+  "text": "",
+  "textFont": "timesNewRoman",
+  "textSize": "XXSmall",
+  "isTextBold": false,
+  "isTextItalic": false,
+  "textColor": "#339FD9",
+  "position": "centerWithOverlay",
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": ""
+}
+```
 
 ### Update a Auto Invitation
 
@@ -2120,9 +2696,101 @@ Request Body
 
   The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure
 
+example:
+```Json
+{
+  "name": "test",
+  "isEnable": false,
+  "isDisplayedOnceInOneSession": false,
+  "order": 1,
+  "imageType": "fromGallery",
+  "closeAreaXOffset": 10,
+  "closeAreaYOffset": 10,
+  "closeAreaWidth": 10,
+  "closeAreaHeight": 10,
+  "textAreaXOffset": 10,
+  "textAreaYOffset": 10,
+  "textAreaWidth": 10,
+  "textAreaHeight": 10,
+  "text": "",
+  "textFont": "timesNewRoman",
+  "textSize": "XXSmall",
+  "isTextBold": false,
+  "isTextItalic": false,
+  "textColor": "#339FD9",
+  "position": "centerWithOverlay",
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": ""
+}
+```
+
 #### Response
 
 the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "test11111",
+  "isEnable": false,
+  "isDisplayedOnceInOneSession": false,
+  "order": 1,
+  "imageType": "fromGallery",
+  "closeAreaXOffset": 10,
+  "closeAreaYOffset": 10,
+  "closeAreaWidth": 10,
+  "closeAreaHeight": 10,
+  "textAreaXOffset": 10,
+  "textAreaYOffset": 10,
+  "textAreaWidth": 10,
+  "textAreaHeight": 10,
+  "text": "",
+  "textFont": "timesNewRoman",
+  "textSize": "XXSmall",
+  "isTextBold": false,
+  "isTextItalic": false,
+  "textColor": "#339FD9",
+  "position": "centerWithOverlay",
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": ""
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+  "name": "test11111",
+  "isEnable": false,
+  "isDisplayedOnceInOneSession": false,
+  "order": 1,
+  "imageType": "fromGallery",
+  "closeAreaXOffset": 10,
+  "closeAreaYOffset": 10,
+  "closeAreaWidth": 10,
+  "closeAreaHeight": 10,
+  "textAreaXOffset": 10,
+  "textAreaYOffset": 10,
+  "textAreaWidth": 10,
+  "textAreaHeight": 10,
+  "text": "",
+  "textFont": "timesNewRoman",
+  "textSize": "XXSmall",
+  "isTextBold": false,
+  "isTextItalic": false,
+  "textColor": "#339FD9",
+  "position": "centerWithOverlay",
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": ""
+}
+```
 
 ### Delete a Auto Invitation
 
@@ -2141,6 +2809,18 @@ Path Parameters
 
 HTTP/1.1 204 No Content
 
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
 # Agent Wrap-Up
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup` - [Get settings of agent wrap-Up  for a campaign](#get-Agent-Wrap-Up)
@@ -2154,7 +2834,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`.  |
+  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`.  |
 
 ## Agent Wrap-Up Endpoints
 
@@ -2174,6 +2854,23 @@ Path Parameters
 
 the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "fields":  []
+}
+```
+
 ### Update Agent Wrap-Up
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/agentWrapup`
@@ -2190,9 +2887,34 @@ Request Body
 
   The request body contains data with the [Agent Wrap-Up](#Agent-Wrap-Up-Object) structure
 
+example:
+```Json
+{
+  "fields":  []
+}
+```
+
 #### Response
 
 the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "fields":  []
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "fields":  []
+}
+```
 
 # Language
 
@@ -2207,11 +2929,10 @@ the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `defaultLanguage` | string | no | no | | The languages are defined in cPanel.  |
-  | `isCustomLanguageEnabled` | boolean | no | no | | |
-  | `isTextDirectionRightToLeft` | boolean | no | no | | |
-  | `customLanguageItems` | [Custom Language](#Custom-Language-Object)[] | no | no | | |
+  | `defaultLanguage` | string | no | N/A | | The languages are defined in cPanel.  |
+  | `isCustomLanguageEnabled` | boolean | no | N/A | | |
+  | `isTextDirectionRightToLeft` | boolean | no | N/A | | |
+  | `customLanguageItems` | [Custom Language](#Custom-Language-Object)[] | no | N/A | | |
 
 ### Custom Language Object
 
@@ -2219,9 +2940,8 @@ the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `systemName` | string | no | no | | |
-  | `customText` | string | no | no | | |
+  | `systemName` | string | no | N/A | | |
+  | `customText` | string | no | N/A | | |
 
 ## Language Endpoints
 
@@ -2241,6 +2961,29 @@ Path Parameters
 
 the response is: [Language](#Language-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/language
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "defaultLanguage": "",
+  "isCustomLanguageEnabled": false,
+  "isTextDirectionRightToLeft": false,
+  "customLanguageItems": {
+    "systemName": "chatwindow",
+    "customText": "chatwindowcustom"
+  }
+}
+```
+
 ### Update Language
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/language`
@@ -2257,9 +3000,52 @@ Request Body
 
   The request body contains data with the [Language](#Language-Object) structure
 
+example:
+```Json
+{
+  "defaultLanguage": "",
+  "isCustomLanguageEnabled": false,
+  "isTextDirectionRightToLeft": false,
+  "customLanguageItems": {
+    "systemName": "chatwindow",
+    "customText": "chatwindowcustom"
+  }
+}
+```
+
 #### Response
 
 the response is: [Language](#Language-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "defaultLanguage": "",
+  "isCustomLanguageEnabled": false,
+  "isTextDirectionRightToLeft": false,
+  "customLanguageItems": {
+    "systemName": "chatwindow",
+    "customText": "chatwindowcustom"
+  }
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/language
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "defaultLanguage": "",
+  "isCustomLanguageEnabled": false,
+  "isTextDirectionRightToLeft": false,
+  "customLanguageItems": {
+    "systemName": "chatwindow",
+    "customText": "chatwindowcustom"
+  }
+}
+```
 
 # Routing
 
@@ -2276,12 +3062,18 @@ the response is: [Language](#Language-Object) Object
   | - | - |- | :-: | :-: | :-: | - |
   | `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
   | `type` | string |  | no | no | | Including `simple` and `customRule`. |
-  | `routeTo` | [Agent](#Agent-Object) or [Department](#Department-Object) | yes | no | no | |  |
+  | `routeTo` | string | | no | no | | Including `agent` and `department`. |
+  | `routeToId` | Guid | | no | no | | AgentId or DepartmentId. |
+  | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
+  | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
   | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
   | `percentageToBot` | integer |  | no | no | | |
   | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
   | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
-  | `routeToWhenNoRuleMatched` | [Agent](#Agent-Object) or [Department](#Department-Object) | yes | no | no | |  |
+  | `routeToWhenNoRuleMatched` | string | | no | no | | Including `agent` and `department`. |
+  | `routeToIdWhenNoRuleMatched` | Guid | | no | no | | AgentId or DepartmentId. |
+  | `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
+  | `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
   | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
   | `percentageToBotWhenNoRuleMatched` | integer |  | no | no | | |
   | `emailsToReceiveOfflineMessage` | string |  | no | no | |  |
@@ -2310,6 +3102,57 @@ Query string
 
 the response is: [Routing](#Routing-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing?include=department
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "isEnable": false,
+  "type": "simple",
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "customRules": [],
+  "actionWhenNoRuleMatched": "routeToDepartment",
+  "routeToWhenNoRuleMatched": "department",
+  "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
+  "routeToDepartmentWhenNoRuleMatched": { // include department
+      "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priorityWhenNoRuleMatched": "lowest",
+  "percentageToBotWhenNoRuleMatched": 10,
+  "emailsToReceiveOfflineMessage": ""
+}
+```
+
 ### Update Routing
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/routing`
@@ -2326,15 +3169,76 @@ Request Body
 
   The request body contains data with the [Routing](#Routing-Object) structure
 
+example:
+```Json
+{
+  "isEnable": false,
+  "type": "simple",
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "customRules": [],
+  "actionWhenNoRuleMatched": "routeToDepartment",
+  "routeToWhenNoRuleMatched": "department",
+  "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
+  "priorityWhenNoRuleMatched": "lowest",
+  "percentageToBotWhenNoRuleMatched": 10,
+  "emailsToReceiveOfflineMessage": ""
+}
+```
+
 #### Response
 
 the response is: [Routing](#Routing-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "isEnable": false,
+  "type": "simple",
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "customRules": [],
+  "actionWhenNoRuleMatched": "routeToDepartment",
+  "routeToWhenNoRuleMatched": "department",
+  "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
+  "priorityWhenNoRuleMatched": "lowest",
+  "percentageToBotWhenNoRuleMatched": 10,
+  "emailsToReceiveOfflineMessage": ""
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "isEnable": false,
+  "type": "simple",
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "customRules": [],
+  "actionWhenNoRuleMatched": "routeToDepartment",
+  "routeToWhenNoRuleMatched": "department",
+  "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
+  "priorityWhenNoRuleMatched": "lowest",
+  "percentageToBotWhenNoRuleMatched": 10,
+  "emailsToReceiveOfflineMessage": ""
+}
+```
+
 # Custom Rule
 
-- `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get a list of custom rules](#get-all-Custom-Rules)
+- `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Get all custom rules](#get-all-Custom-Rules)
 - `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Get a custom rule by id](#get-a-Custom-Rule-by-id)
-- `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Create a custom rule](#create-a-new-Custom-Rule)
+- `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules` - [Create a new custom rule](#create-a-new-Custom-Rule)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Update a custom rule](#update-a-Custom-Rule)
 - `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Delete a custom rule](#delete-a-Custom-Rule)
 
@@ -2346,11 +3250,14 @@ the response is: [Routing](#Routing-Object) Object
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | | no | | Id of the current item. |
+  | `id` | Guid | yes | | N/A | | Id of the current item. |
   | `isEnable` | boolean | | no | no | | Whether the custom rule is enabled or not. |
   | `name` | string | | no | no | | |
   | `order` | integer | | no | no | | |
-  | `routeTo` | [Agent](#Agent-Object) or [Department](#Department-Object) | yes | no | no | |  |
+  | `routeTo` | string | | no | no | | Including `agent` and `department`. |
+  | `routeToId` | Guid | | no | no | | AgentId or DepartmentId. |
+  | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
+  | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
   | `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
   | `percentageToBot` | integer | | no | no | | |
   | `conditionMetType` | string | | no | no | | Including `all`, `any` and `logicalExpression`. |
@@ -2392,6 +3299,47 @@ Query string
 
 the response is: [Custom Rule](#Custom-Rule-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules?include=department
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+  {
+    "id": "02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F",
+    "isEnable": false,
+    "name": "test",
+    "order": 1,
+    "routeTo": "agent",
+    "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+    "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+    },
+    "priority": "lowest",
+    "percentageToBot": 10,
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": []
+  },
+  ...
+]
+```
+
 ### Get a Custom Rule by id
 
   `GET /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
@@ -2415,6 +3363,44 @@ Query string
 
 the response is: [Custom Rule](#Custom-Rule-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F?include=department
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F",
+  "isEnable": false,
+  "name": "test",
+  "order": 1,
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": []
+}
+```
+
 ### Create a new Custom Rule
 
   `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules`
@@ -2431,9 +3417,97 @@ Request Body
 
   The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure
 
+example:
+```Json
+{
+  "isEnable": false,
+  "name": "test",
+  "order": 1,
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": []
+}
+```
+
 #### Response
 
 the response is: [Custom Rule](#Custom-Rule-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "isEnable": false,
+  "name": "test",
+  "order": 1,
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": []
+  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+
+{
+  "id": "02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F",
+  "isEnable": false,
+  "name": "test",
+  "order": 1,
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": []
+}
+```
 
 ### Update a Custom Rule
 
@@ -2452,9 +3526,95 @@ Request Body
 
   The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure
 
+example:
+```Json
+{
+  "isEnable": false,
+  "name": "test",
+  "order": 1,
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": []
+}
+```
+
 #### Response
 
 the response is: [Custom Rule](#Custom-Rule-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "isEnable": false,
+  "name": "test",
+  "order": 1,
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": []
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F",
+  "isEnable": false,
+  "name": "test",
+  "order": 1,
+  "routeTo": "agent",
+  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToDepartment": { // include department
+    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+      "name": "markting",
+      "site": "10000",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailType": "All agents in the department",
+      "offlineMessageEmails": "",
+      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
+  },
+  "priority": "lowest",
+  "percentageToBot": 10,
+  "conditionMetType": "any",
+  "logicalExpression": "",
+  "conditions": []
+}
+```
 
 ### Delete a Custom Rule
 
@@ -2473,6 +3633,18 @@ Path Parameters
 
 HTTP/1.1 204 No Content
 
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
 # Chatbot Integration
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration` - [Get settings of Chatbot Integration for a campaign](#get-Chatbot-Integration)
@@ -2484,16 +3656,17 @@ HTTP/1.1 204 No Content
 
   Chatbot Integration Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type || Include Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `isEnable` | boolean | | no | no | | Whether the chatbot integration is enabled or not. |
-  | `selectedChatbot` | [Chatbot](#Chatbot-Object) | yes | no | no | | |
-  | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | no | | |
-  | `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
-  | `ifDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
-  | `queueLength` | integer | | no | no | | Allocate chats to Chatbot when the queue reaches the preset length. |
-  | `percentageToChatbot` | smallint | | no | no | | |
-  | `isChatbotAllocatedWhenAgentOffline` | boolean | | no | no | | |
+  | `isEnable` | boolean | | no | N/A | | Whether the chatbot integration is enabled or not. |
+  | `selectedChatbotId` | Guid | | no | N/A | | |
+  | `selectedChatbot` | [Bot](#Bot-Object) | yes | N/A | N/A | | |
+  | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | N/A | | |
+  | `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | N/A | | |
+  | `ifDistributeChatsToChatbotByPercentage` | boolean | | no | N/A | | |
+  | `queueLength` | integer | | no | N/A | | Allocate chats to Chatbot when the queue reaches the preset length. |
+  | `percentageToChatbot` | smallint | | no | N/A | | |
+  | `isChatbotAllocatedWhenAgentOffline` | boolean | | no | N/A | | |
 
 ## Chatbot Integration Endpoints
 
@@ -2519,6 +3692,57 @@ Query string
 
 the response is: [Chatbot Integration](#Chatbot-Integration-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatbotIntegration?include=chatbot
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "isEnable": false,
+  "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+  "selectedChatbot": { // include chatbot
+    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "name": "Test Bot",
+    "engineType": "chloe",
+    "language": "en",
+    "avatar": {
+      "name": "bot.png",
+      "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
+    },
+    "messageWhenNotHelpful":"",
+    "ifIncludeContactAgentOptionWhenNotHelpful":true,
+    "messageWhenProvidingPossibleAnswer":"",
+    "consecutiveTimesOfPossibleAnswers":3,
+    "messageAfterVisitorChooseToContactAgent":"",
+    "contactAgentButtonTextWhenOnline":"Contact an agent",
+    "contactAgentButtonTextWhenOffline":"Leave a message",
+    "formSubmitButtonText":"Submit",
+    "formCancelButtonText":"Cancel",
+    "formConfirmButtonText":"Confirm",
+    "highConfidenceScore":40,
+    "noAnswerScore":20,
+    "isTrained": true,
+    "lastUpdatedTime": "2019-11-19 12:12:30",
+    "enabledChannels": [
+      "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+    ]
+  },
+  "isChatbotAllocatedWhenAgentOnline": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
+  "queueLength": 1,
+  "percentageToChatbot": 1,
+  "isChatbotAllocatedWhenAgentOffline": false
+}
+```
+
 ### Update Chatbot Integration
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration`
@@ -2535,9 +3759,55 @@ Request Body
 
   The request body contains data with the [Chatbot Integration](#Chatbot-Integration-Object) structure
 
+example:
+```Json
+{
+  "isEnable": true,
+  "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+  "isChatbotAllocatedWhenAgentOnline": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
+  "queueLength": 1,
+  "percentageToChatbot": 1,
+  "isChatbotAllocatedWhenAgentOffline": false
+}
+```
+
 #### Response
 
 the response is: [Chatbot Integration](#Chatbot-Integration-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "isEnable": true,
+  "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+  "isChatbotAllocatedWhenAgentOnline": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
+  "queueLength": 1,
+  "percentageToChatbot": 1,
+  "isChatbotAllocatedWhenAgentOffline": false
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatbotIntegration
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "isEnable": true,
+  "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+  "isChatbotAllocatedWhenAgentOnline": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
+  "queueLength": 1,
+  "percentageToChatbot": 1,
+  "isChatbotAllocatedWhenAgentOffline": false
+}
+```
 
 # KB Integration
 
@@ -2552,13 +3822,13 @@ the response is: [Chatbot Integration](#Chatbot-Integration-Object) Object
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `isEnable` | boolean | no | no | | Whether the KB integration is enabled or not. |
-  | `selectedKB` | [KB](#KB-Object) | no | no | | |
-  | `isSearchAllowedBeforeChatting` | boolean | no | no | | |
-  | `greetingMessageBeforeChatting` | string | no | no | | |
-  | `isSearchAllowedBeforeOfflineMessage` | boolean | no | no | | |
-  | `greetingMessageBeforeOfflineMessage` | string | no | no | | |
-  | `articlesShowedInSearchResult` | integer | no | no | | |
+  | `isEnable` | boolean | no | N/A | | Whether the KB integration is enabled or not. |
+  | `selectedKBId` | Guid | no | N/A | | |
+  | `isSearchAllowedBeforeChatting` | boolean | no | N/A | | |
+  | `greetingMessageBeforeChatting` | string | no | N/A | | |
+  | `isSearchAllowedBeforeOfflineMessage` | boolean | no | N/A | | |
+  | `greetingMessageBeforeOfflineMessage` | string | no | N/A | | |
+  | `articlesShowedInSearchResult` | integer | no | N/A | | |
 
 ## KB Integration Endpoints
 
@@ -2578,6 +3848,29 @@ Path Parameters
 
 the response is: [KB Integration](#KB-Integration-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/KBIntegration
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "isEnable": false,
+  "selectedKBId": "7213D14D-1EAD-6ED7-EA09-D834BAB9F092",
+  "isSearchAllowedBeforeChatting": false,
+  "greetingMessageBeforeChatting": "",
+  "isSearchAllowedBeforeOfflineMessage": false,
+  "greetingMessageBeforeOfflineMessage": "",
+  "articlesShowedInSearchResult": 1
+}
+```
+
 ### Update KB Integration
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/KBIntegration`
@@ -2594,23 +3887,66 @@ Request Body
 
   The request body contains data with the [KB Integration](#KB-Integration-Object) structure
 
+example:
+```Json
+{
+  "isEnable": true,
+  "selectedKBId": "7213D14D-1EAD-6ED7-EA09-D834BAB9F092",
+  "isSearchAllowedBeforeChatting": false,
+  "greetingMessageBeforeChatting": "",
+  "isSearchAllowedBeforeOfflineMessage": false,
+  "greetingMessageBeforeOfflineMessage": "",
+  "articlesShowedInSearchResult": 1
+}
+```
+
 #### Response
 
 the response is: [KB Integration](#KB-Integration-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "isEnable": true,
+  "selectedKBId": "7213D14D-1EAD-6ED7-EA09-D834BAB9F092",
+  "isSearchAllowedBeforeChatting": false,
+  "greetingMessageBeforeChatting": "",
+  "isSearchAllowedBeforeOfflineMessage": false,
+  "greetingMessageBeforeOfflineMessage": "",
+  "articlesShowedInSearchResult": 1
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/KBIntegration
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "isEnable": true,
+  "selectedKBId": "7213D14D-1EAD-6ED7-EA09-D834BAB9F092",
+  "isSearchAllowedBeforeChatting": false,
+  "greetingMessageBeforeChatting": "",
+  "isSearchAllowedBeforeOfflineMessage": false,
+  "greetingMessageBeforeOfflineMessage": "",
+  "articlesShowedInSearchResult": 1
+}
+```
+
 # Campaign Form Field
 
-- `GET /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Get a list of form fields of Pre-Chat for a campaign](#get-all-form-fields-of-Pre-Chat-for-a-campaign)
-- `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Create a form field of Pre-Chat for a campaign](#create-a-new-form-fields-of-Pre-Chat-for-a-campaign)
-- `GET /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Get a list of form fields of Post Chat for a campaign](#get-all-form-fields-of-Post-Chat-for-a-campaign)
-- `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Create a form field of Post Chat for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
-- `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Get a list of form fields of offline message for a campaign](#get-all-form-fields-of-Offline-Message-for-a-campaign)
-- `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a form field of offline message for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
-- `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get a list of form fields of agent wrapup for a campaign](#get-all-form-fields-of-Agent-Wrap-up-for-a-campaign)
-- `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a form field of agent wrapup for a campaign](#create-a-new-form-fields-of-Agent-Wrap-up-for-a-campaign)
-- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-form-fields-by-id)
-- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-form-fields)
-- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-form-fields)
+- `GET /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Get all form fields of Pre-Chat for a campaign](#get-all-form-fields-of-Pre-Chat-for-a-campaign)
+- `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields` - [Create a new form field of Pre-Chat for a campaign](#create-a-new-form-fields-of-Pre-Chat-for-a-campaign)
+- `GET /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Get all form fields of Post Chat for a campaign](#get-all-form-fields-of-Post-Chat-for-a-campaign)
+- `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields` - [Create a new form field of Post Chat for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
+- `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Get all form fields of offline message for a campaign](#get-all-form-fields-of-Offline-Message-for-a-campaign)
+- `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a new form field of offline message for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
+- `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get all form fields of agent wrapup for a campaign](#get-all-form-fields-of-Agent-Wrap-up-for-a-campaign)
+- `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a new form field of agent wrapup for a campaign](#create-a-new-form-fields-of-Agent-Wrap-up-for-a-campaign)
+- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
+- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
+- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
 ## Related Object Json Format
 
@@ -2625,7 +3961,7 @@ the response is: [KB Integration](#KB-Integration-Object) Object
   | `isVisible` | boolean | no | no | | Whether the field is visible or not. |
   | `isRequired` | boolean | no | no | | Whether the field is required or not when submitting the form |
   | `order` | integer | no | no | | The order of the field. |
-  | `ratingGrade` | [type](#Rating-Grade-Object) | no | no | | |
+  | `ratingGrades` | [type](#Rating-Grade-Object)[] | no | no | | Always 5 grades. Available whey Type of Live Chat Field is Rating. |
 
 ### Rating Grade Object
 
@@ -2633,7 +3969,6 @@ the response is: [KB Integration](#KB-Integration-Object) Object
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | Id of the current item. |
   | `grade` | integer | no | no | | |
   | `label` | string | no | no | | |
   | `isVisible` | boolean | no | no | | |
@@ -2728,6 +4063,57 @@ Path Parameters
 
 the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat/campaignFormFields
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+  {
+    "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
+    "field": {
+      "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+      "isSystem": false,
+      "name": "teset",
+      "type": "textBox",
+      "options": [{
+        "value": "test",
+        "order": 1,
+      },
+      ...
+      ],
+      "leftText": "",
+      "rightText": "",
+      "optionGroups": [{
+        "name": "test",
+        "order": 1,
+        "options":[]
+      },
+      ...
+      ],
+    },
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1,
+    "ratingGrades": [{
+      "grade": 1,
+      "label": "",
+      "isVisible": false
+    },
+    ...
+    ]
+  },
+  ...
+]
+```
+
 ### Create a new form fields of Pre-Chat for a campaign
 
   `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields`
@@ -2744,9 +4130,127 @@ Request Body
 
   The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
 
+example:
+```Json
+{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
+
 #### Response
 
 the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat/campaignFormFields
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
+
+{
+  "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
 
 ### Get all form fields of Post Chat for a campaign
 
@@ -2764,6 +4268,57 @@ Path Parameters
 
 the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat/campaignFormFields
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+  {
+    "id": "8FD2DBE6-4653-1705-F791-F2C648A11FC7",
+    "field": {
+      "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+      "isSystem": false,
+      "name": "teset",
+      "type": "textBox",
+      "options": [{
+        "value": "test",
+        "order": 1,
+      },
+      ...
+      ],
+      "leftText": "",
+      "rightText": "",
+      "optionGroups": [{
+        "name": "test",
+        "order": 1,
+        "options":[]
+      },
+      ...
+      ],
+    },
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1,
+    "ratingGrades": [{
+      "grade": 1,
+      "label": "",
+      "isVisible": false
+    },
+    ...
+    ]
+  },
+  ...
+]
+```
+
 ### Create a new form fields of Post Chat for a campaign
 
   `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields`
@@ -2780,9 +4335,127 @@ Request Body
 
   The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
 
+example:
+```Json
+{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
+
 #### Response
 
 the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat/campaignFormFields
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
+
+{
+  "id": "8FD2DBE6-4653-1705-F791-F2C648A11FC7",
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
 
 ### Get all form fields of Offline Message for a campaign
 
@@ -2800,6 +4473,57 @@ Path Parameters
 
 the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage/campaignFormFields
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+  {
+    "id": "6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA",
+    "field": {
+      "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+      "isSystem": false,
+      "name": "teset",
+      "type": "textBox",
+      "options": [{
+        "value": "test",
+        "order": 1,
+      },
+      ...
+      ],
+      "leftText": "",
+      "rightText": "",
+      "optionGroups": [{
+        "name": "test",
+        "order": 1,
+        "options":[]
+      },
+      ...
+      ],
+    },
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1,
+    "ratingGrades": [{
+      "grade": 1,
+      "label": "",
+      "isVisible": false
+    },
+    ...
+    ]
+  },
+  ...
+]
+```
+
 ### Create a new form fields of Offline Message for a campaign
 
   `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields`
@@ -2816,9 +4540,127 @@ Request Body
 
   The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
 
+example:
+```Json
+{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
+
 #### Response
 
 the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage/campaignFormFields
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
+
+{
+  "id": "6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA",
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
 
 ### Get all form fields of Agent Wrap-up for a campaign
 
@@ -2836,6 +4678,57 @@ Path Parameters
 
 the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
 
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup/campaignFormFields
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+  {
+    "id": "5994A98C-CF88-1B8E-2909-CA81E0C1B469",
+    "field": {
+      "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+      "isSystem": false,
+      "name": "teset",
+      "type": "textBox",
+      "options": [{
+        "value": "test",
+        "order": 1,
+      },
+      ...
+      ],
+      "leftText": "",
+      "rightText": "",
+      "optionGroups": [{
+        "name": "test",
+        "order": 1,
+        "options":[]
+      },
+      ...
+      ],
+    },
+    "isVisible": false,
+    "isRequired": false,
+    "order": 1,
+    "ratingGrades": [{
+      "grade": 1,
+      "label": "",
+      "isVisible": false
+    },
+    ...
+    ]
+  },
+  ...
+]
+```
+
 ### Create a new form fields of Agent Wrap-up for a campaign
 
   `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields`
@@ -2852,11 +4745,129 @@ Request Body
 
   The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
 
+example:
+```Json
+{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
+
 #### Response
 
 the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
 
-### Get a form fields by id
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup/campaignFormFields
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
+
+{
+  "id": "5994A98C-CF88-1B8E-2909-CA81E0C1B469",
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
+
+### Get a campaign form field by id
 
   `GET /api/v3/livechat/campaignFormFields/{id}`
 
@@ -2872,7 +4883,55 @@ Path Parameters
 
 the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
 
-### Update a form fields
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "A721F271-D59C-2724-23D4-F66418676DD3",
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
+
+### Update a campaign form field
 
   `PUT /api/v3/livechat/campaignFormFields/{id}`
 
@@ -2888,11 +4947,127 @@ Request Body
 
   The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
 
+example:
+```Json
+{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
+
 #### Response
 
 the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
 
-### Delete a form fields
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "A721F271-D59C-2724-23D4-F66418676DD3",
+  "field": {
+    "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+    "isSystem": false,
+    "name": "teset",
+    "type": "textBox",
+    "options": [{
+      "value": "test",
+      "order": 1,
+    },
+    ...
+    ],
+    "leftText": "",
+    "rightText": "",
+    "optionGroups": [{
+      "name": "test",
+      "order": 1,
+      "options":[]
+    },
+    ...
+    ],
+  },
+  "isVisible": false,
+  "isRequired": false,
+  "order": 1,
+  "ratingGrades": [{
+    "grade": 1,
+    "label": "",
+    "isVisible": false
+  },
+  ...
+  ]
+}
+```
+
+### Delete a campaign form field
 
   `DELETE /api/v3/livechat/campaignFormFields/{id}`
 
@@ -2907,6 +5082,18 @@ Path Parameters
 #### Response
 
 HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
 
 # Ban
 
