@@ -748,7 +748,7 @@ Query string
   | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
   | `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
   | `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-  | `timezone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
+  | `timeZone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
   | `campaignId` | guid | no  |  | id of the campaign which the offline message |
   | `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
   | `agentId` | guid | no  |  | id of the agent that this offline message belongs to |
