@@ -9,7 +9,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 # Summary
 
 - Live Chat
-  - [live chat settings](#live-chat-settings)
+  - [settings](#settings)
     - [auto distribution](#auto-distribution)
     - [translation excluded word](#translation-excluded-word)
     - [dynamic campaign](#dynamic-campaign)
@@ -335,23 +335,204 @@ Content-Type:  application/json
 }
 ```
 
-
 # Translation Excluded Word
 
-- `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded words](#get-site-info)
-- `GET /api/v3/livechat/translationExcludedWords/{id}` - [Get a translation excluded word by id](#get-site-info)
-- `POST /api/v3/livechat/translationExcludedWords` - [Create a translation excluded word](#get-site-info)
-- `PUT /api/v3/livechat/translationExcludedWords/{id}` - [Update a translation excluded word](#update-site-info)
-- `DELETE /api/v3/livechat/translationExcludedWords/{id}` - [Delete a translation excluded word](#delete-a-customer-segment)
+- `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-list-of-translation-excluded-word)
+- `GET /api/v3/livechat/translationExcludedWords/{id}` - [Get a translation excluded word by id](#get-translation-excluded-word-by-id)
+- `POST /api/v3/livechat/translationExcludedWords` - [Create a translation excluded word](#create-a-translation-excluded-word)
+- `PUT /api/v3/livechat/translationExcludedWords/{id}` - [Update a translation excluded word](#update-a-translation-excluded-word)
+- `DELETE /api/v3/livechat/translationExcludedWords/{id}` - [Delete a translation excluded word](#delete-a-translation-excluded-word)
 
 ## Translation Excluded Word Related Objects Json Format
 
-### Excluded Word Related Object
+### Translation Excluded Word Object
 
-Excluded Word Related is represented as simple flat JSON objects with the following keys:
+Translation Excluded Word is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
+| `id` |Guid  || yes | N/A || id of the translation excluded word.
+| `content` |string  || no | yes || content of translation excluded word.
+
+## Endpoints
+
+### Get a list of translation excluded word
+
+  `GET /api/v3/livechat/translationExcludedWords`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+an array of [Translation Excluded Word](#translation-excluded-word) object
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/translationExcludedWords
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+  {
+    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "content": "hello"
+  },
+  {
+     "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
+     "content": "no"
+  }
+]
+```
+
+### Get a translation excluded word by id
+
+  `GET /api/v3/livechat/translationExcludedWords/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of translation excluded word   |
+
+#### Response
+
+the response is [Translation Excluded Word](#translation-excluded-word) object
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+     "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
+     "content": "no"
+}
+
+```
+
+### Create a translation excluded word
+
+  `POST /api/v3/livechat/translationExcludedWords`
+
+#### Parameters
+
+Request body
+  
+  The request body contains data with the [Translation Excluded Word](#translation-excluded-word) object structure
+
+example:
+```Json
+{
+  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
+  "content": "no"
+}
+```
+#### Response
+
+the response is [Translation Excluded Word](#translation-excluded-word) object
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/translationExcludedWords/
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
+  "content": "no"
+}
+
+```
+
+
+
+### Update a translation excluded word
+
+  `PUT /api/v3/livechat/translationExcludedWords`
+
+#### Parameters
+
+Request body
+  
+  The request body contains data with the [Translation Excluded Word](#translation-excluded-word) object structure
+
+example:
+```Json
+{
+  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
+  "content": "no"
+}
+```
+#### Response
+
+the response is [Translation Excluded Word](#translation-excluded-word) object
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/translationExcludedWords/
+```
+
+Response
+```Json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+{
+  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
+  "content": "no"
+}
+
+```
+
+### Delete a translation excluded word
+
+  `Delete /api/v3/livechat/translationExcludedWords/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of translation excluded word   |
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" X- DELETE https://hosted.comm100.com/api/v3/livechat/translationExcludedWord/5587fc9d-92e6-4487-a2e8-92e68d6892c4
+```
+
+Response
+```json
+HTTP/1.1 204 No Content
+```
 
 
 # Customer Segment
@@ -447,7 +628,11 @@ Content-Type:  application/json
 
 #### Parameters
 
-    No parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of customer segment   |
 
 #### Response
 
@@ -805,11 +990,145 @@ Content-Type:  application/json
 }
 ```
 
+# Mobile Push(这个接口需要提供吗?)
 
-# Mobile Push
+- `GET /api/v3/livechat/mobilePush` - [Get mobile push](#get-mobile-push)
+- `PUT /api/v3/livechat/mobilePush` - [Update mobile push](#update-mobile-push)
 
-- `GET /api/v3/livechat/mobilePush` - [Get livechat mobile push profile of a site](#get-site-info)
-- `PUT /api/v3/livechat/mobilePush` - [Update livechat mobile push profile of a site](#update-site-info)
+## Related Object Json Format
+
+### Mobile Push JSON Format
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `IOSType` | string |  | no | N/A | |type of IOS |
+  | `IOSProductionCertificateFileName` | string |  | no | N/A | | name of IOS prodution certicate file|
+  | `IOSProductionCertificateFileData` | string |  | no | N/A | | data of IOS prodution certicate file|
+  | `IOSProductionCertificatePassword` | string |  | no | N/A | | password of IOS prodution certicate|
+  | `IOSDevelopmentCertificateFileName` | string |  | no | N/A | | name of IOS development certicate file|
+  | `IOSDevelopmentCertificateFileData` | string |  | no | N/A | | data of IOS development certicate file|
+  | `IOSDevelopmentCertificatePassword` | string |  | no | N/A | | password of IOS development certicate|
+  | `IOSAPNSPayloadFormat` | string |  | no | N/A | | format of IOS APNS payload|
+  | `IOSThirdPartyURL` | string |  | no | N/A | | IOS third party URL|
+  | `IOSThirdPartyRequestHeaders` | string |  | no | N/A | | IOS third party request headers|
+  | `AndroidType` | string |  | no | N/A | |type of Andriod |
+  | `AndroidGCMAPIKey` | string |  | no | N/A | |Android GCM API key|
+  | `AndroidGCMExtraData` | string |  | no| N/A | |Android GCM extra data |
+  | `AndroidThirdPartyURL` | string |  | no | N/A | |Android third party URL |
+  | `AndroidThirdPartyRequestHeaders` | string |  | no | N/A | | Android third party request headers|
+  | `AndroidThirdPartyRequestBody` | string |  | no | N/A | |Android Third Party Request Body |
+  
+## Endpoint
+
+### Get mobile push
+
+`GET /api/v3/livechat/mobilePush`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response is: [Mobile Push](#moble-push-object) Object.
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/mobilePush
+```
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "IOSType": "APNS",
+  "IOSProductionCertificateFileName": "",
+  "IOSProductionCertificateFileData": "",
+  "IOSProductionCertificatePassword": "",
+  "IOSDevelopmentCertificateFileName": "",
+  "IOSDevelopmentCertificateFileData": "",
+  "IOSDevelopmentCertificatePassword": "",
+  "IOSAPNSPayloadFormat": "",
+  "IOSThirdPartyURL": "",
+  "IOSThirdPartyRequestHeaders": "",
+  "AndroidType": "",
+  "AndroidGCMAPIKey": "",
+  "AndroidGCMExtraData": "",
+  "AndroidThirdPartyURL": "",
+  "AndroidThirdPartyRequestHeaders": "",
+  "AndroidThirdPartyRequestBody": "",
+}
+```
+
+### update mobile push
+
+`POST /api/v3/livechat/mobilePush`
+
+#### Parameters
+
+Request body
+  
+  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) Object structure
+
+example:
+```Json
+{
+  "IOSType": "APNS",
+  "IOSProductionCertificateFileName": "",
+  "IOSProductionCertificateFileData": "",
+  "IOSProductionCertificatePassword": "",
+  "IOSDevelopmentCertificateFileName": "",
+  "IOSDevelopmentCertificateFileData": "",
+  "IOSDevelopmentCertificatePassword": "",
+  "IOSAPNSPayloadFormat": "",
+  "IOSThirdPartyURL": "",
+  "IOSThirdPartyRequestHeaders": "",
+  "AndroidType": "",
+  "AndroidGCMAPIKey": "",
+  "AndroidGCMExtraData": "",
+  "AndroidThirdPartyURL": "",
+  "AndroidThirdPartyRequestHeaders": "",
+  "AndroidThirdPartyRequestBody": "",
+}
+```
+
+#### Response
+
+the response is: [Mobile Push](#moble-push-object) Object.
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X PUT https://domain.comm100.com/api/v3/livechat/mobilePush
+```
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "IOSType": "APNS",
+  "IOSProductionCertificateFileName": "",
+  "IOSProductionCertificateFileData": "",
+  "IOSProductionCertificatePassword": "",
+  "IOSDevelopmentCertificateFileName": "",
+  "IOSDevelopmentCertificateFileData": "",
+  "IOSDevelopmentCertificatePassword": "",
+  "IOSAPNSPayloadFormat": "",
+  "IOSThirdPartyURL": "",
+  "IOSThirdPartyRequestHeaders": "",
+  "AndroidType": "",
+  "AndroidGCMAPIKey": "",
+  "AndroidGCMExtraData": "",
+  "AndroidThirdPartyURL": "",
+  "AndroidThirdPartyRequestHeaders": "",
+  "AndroidThirdPartyRequestBody": "",
+}
+```
 
 # Online Agent  
 
