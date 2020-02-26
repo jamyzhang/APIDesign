@@ -35,7 +35,7 @@
 # Site
   You need `Manage Site` permission to manage site 
 
-  + `GET /api/v3/globalSettings/site` - [Get profile of a single site](#get-profile-of-a-single-site)
+  + `GET /api/v3/globalSettings/site` - [Get profile of a site](#get-profile-of-a-site)
   + `PUT /api/v3/globalSettings/site` - [Update profile of a site](#update-profile-of-a-site)
 
 
@@ -46,7 +46,7 @@
 
  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
  | - | - | :-: | :-: | :-: | :-: | - | 
- |`id` | integer  | | N/A | N/A | 0 |Site ID will not be upgraded to GUID.|
+ |`id` | integer  | | N/A | N/A | 0 |Site ID.|
  |`dateTimeFormat` | string| | no | no | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
  |`timeZone` | string| | no | yes |  | Time zone of site. value include all time zone options, format as ±hh:mm |
  |`company` | string | | no | yes | |Company name.|
@@ -65,7 +65,7 @@
 
 ## Site Endpoints
 
-### Get profile of a single site
+### Get profile of a site
   `GET /api/v3/globalSettings/site`
 
 #### Parameters
