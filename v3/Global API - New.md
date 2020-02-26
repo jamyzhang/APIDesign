@@ -4116,6 +4116,7 @@ Content-Type:  application/json
   "createdTime": "2020-01-01", 
   }
 ```
+
 ### Create a new whitelisted Login IP Range
 
   `POST /api/v3/globalSettings/whitelistedLoginIPRanges`
@@ -4207,6 +4208,7 @@ Response
   HTTP/1.1 200 OK
   Content-Type: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
+   "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "iPFrom": "201.195.21.5", 
     "iPTo": "201.195.21.8", 
     "createdTime": "2020-01-01", 
@@ -4563,7 +4565,7 @@ Response
 # Audit Log
   You need `View Audit Log` permission to view audit logs.
 
-  + `GET /api/v3/globalSettings/auditLogs` - [Get audit logs list](#get-audit-logs-list) include agent
+  + `GET /api/v3/globalSettings/auditLogs` - [Get audit logs list](#get-audit-logs-list)
 
 ## Audit Log Object Json Format
 
@@ -4599,7 +4601,7 @@ Response
   | autoTranslationManagement | conversationManagement | imageManagement | botSettings | applicationsManagement |
   | banManagement | fieldsAndMappingsManagement | designManagement | botsManagement | billingInfoManagement |
   | campaignsManagement | routingRulesManagement | customPageManagement | entitiesManagement | cannedMessageManagement |
-  | chatsAuto-AllocationManagement | sLAPoliciesManagement | knowledgeBaseManagement | intentsManagement | customAwayStatusManagement |
+  | chatsAuto-AllocationManagement | slaPoliciesManagement | knowledgeBaseManagement | intentsManagement | customAwayStatusManagement |
   | chatSettingsManagement | triggerManagement | | quickRepliesManagement | customerAccountsManagement |
   | cobrowsingManagement | workingTimeAndHolidaysManagement | | smartTriggersManagement | departmentManagement |
   | conversionManagement | | | visitorQuestioninLearningDelete | integrationAndAPIManagement |
@@ -4615,6 +4617,7 @@ Response
 ## Audit Log Endpoints
 
 ### Get audit logs list
+
   `GET /api/v3/globalSettings/auditLogs`
 
   #### Parameters
@@ -4636,7 +4639,7 @@ Response
 
 #### Response
 
-  The response is a [Audit Log List Response](#audit-log-list-response-object) Object
+  The response is a list of [Audit Log List Response](#audit-log-list-response-object) Objects
 
   #### Example
 Using curl
