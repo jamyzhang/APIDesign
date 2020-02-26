@@ -164,8 +164,8 @@ HTTP/1.1 200 OK
   
 # Auto Distribution
 
-- `GET /api/v3/livechat/settings/autoDistribution` - [Get auto distribution](#get-auto-distribution)  include department, agent
-- `PUT /api/v3/livechat/settings/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
+- `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)  include department, agent
+- `PUT /api/v3/livechat/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
 
 ## Auto Distribution Related Objects Json Format
 
@@ -179,8 +179,22 @@ HTTP/1.1 200 OK
   | `isLastChattedAgentPreferred` | boolean || no | N/A | whether last-chatted agent is preferred or not |
   | `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | N/A | whether to set the same maximum number of chats for all agents |
   | `maxConcurrentChatsForAllAgents` | integer || no | N/A | maximum number of chats for all agents |
-  | `isAllocateChatWhenAgentInAudioVideo` | boolean | no | no | whether to allocate chats to agents who are having audio or video chats |
-  | `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | yes | whether to allow agent to manually accept chat after reaching max chats limit in agent console |
+  | `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | N/A| whether to allocate chats to agents who are having audio or video chats |
+  | `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | N/A | whether to allow agent to manually accept chat after reaching max chats limit in agent console |
+  | `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | N/A | auto distribution configuration for per department |
+  | `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | N/A | auto distribution configuration for per agent |
+  
+### Department Auto Distribution Object
+
+Department Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `departmentId` | Guid ||  no| yes|| id of department |
+| `department` | [Department](#department-object) ||  N/A| N/A|| related department object |
+| `isLastChattedAgentPreferred` | boolean||  no| no| yes | id of department |
+
+
+### Agent Auto Distribution Object
 
 ### Endpoint
 
@@ -734,7 +748,7 @@ Query string
   | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
   | `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
   | `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-  | `timezone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
+  | `timeZone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
   | `campaignId` | guid | no  |  | id of the campaign which the offline message |
   | `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
   | `agentId` | guid | no  |  | id of the agent that this offline message belongs to |

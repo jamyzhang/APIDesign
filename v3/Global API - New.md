@@ -48,7 +48,7 @@
  | - | - | :-: | :-: | :-: | :-: | - | 
  |`id` | integer  | | N/A | N/A | 0 |Site ID will not be upgraded to GUID.|
  |`dateTimeFormat` | string| | no | no | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
- |`timeZone` | string| | no | yes |  | defaults to UTC time, format as ±hh:mm. |
+ |`timeZone` | string| | no | yes |  | Time zone of site. value include all time zone options, format as ±hh:mm |
  |`company` | string | | no | yes | |Company name.|
  |`companySize` | string| | no | yes |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
  |`website` | string  | | no | yes | |Company website. |
@@ -69,9 +69,10 @@
   `GET /api/v3/globalSettings/site`
 
 #### Parameters
-  No Parameters
+    No Parameters
 #### Response
-  the response is forfile of [Site](#site-object) Object, just include base informations.
+
+  the response is [Site](#site-object) Object, just include base informations.
 
 #### Example
 Using curl
@@ -165,12 +166,13 @@ Content-Type:  application/json
 
 You need `Manage Agent & Agent Roles` permission to manage agents.
 
-  + `GET /api/v3/globalSettings/agents` - [Get a list of agents in site](#get-a-list-of-agents-in-site)  include department, role, permission
-  + `GET /api/v3/globalSettings/agents/{id}` - [Get an agent by id](#get-an-agent-by-id)  include department, role, permission
-  + `GET /api/v3/globalSettings/roles/{roleId}/agents` - [Get a list of agents by role id](#get-a-list-of-agents-by-role-id)  include department, role, permission
-  + `GET /api/v3/globalSettings/departments/{departmentId}/agents` - [Get a list of agents by department id](#get-a-list-of-agents-by-department-id)  include department, role, permission
-  + `GET /api/v3/globalSettings/agents/me` - [Get current agent](#get-current-agent)  include department, role, permission
+  + `GET /api/v3/globalSettings/agents` - [Get a list of agents in site](#get-a-list-of-agents-in-site) 
+  + `GET /api/v3/globalSettings/agents/{id}` - [Get an agent by id](#get-an-agent-by-id) 
+  + `GET /api/v3/globalSettings/roles/{roleId}/agents` - [Get a list of agents by role id](#get-a-list-of-agents-by-role-id)
+  + `GET /api/v3/globalSettings/departments/{departmentId}/agents` - [Get a list of agents by department id](#get-a-list-of-agents-by-department-id)
+  + `GET /api/v3/globalSettings/agents/me` - [Get current agent](#get-current-agent)
   + `POST /api/v3/globalSettings/agents` - [Create a new agent](#create-a-new-agent)
+
   + `POST /api/v3/globalSettings/agents/{id}:unlock` - [Unlock the agent](#unlock-the-agent)
   + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#admin-set-an-agent's-password)
   + `POST /api/v3/globalSettings/agents/me:changePassword` - [Change own password](#change-own-password)
@@ -195,7 +197,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`phone` | string | | no | no | | Mobile phone number of the agent.|
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
-  |`timeZone` | string| | no | yes | | defaults to UTC time, format as ±hh:mm.|
+  |`timeZone` | string| | no | yes |  | Time zone of site. value include all time zone options, format as ±hh:mm |
   |`datetimeFormat` | string| | no | yes | | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
   |`avatar` | string| | no | yes | | image base64 data code.|
   |`createdTime` | DateTime | | N/A | N/A | UTC | The create time of the agent.|
@@ -212,8 +214,9 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`roleIds` | string[]  |  | no | no | [id of role "All Agets"] | The list of the role ids which the agent belongs to.|
   |`roles` | [Roles](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
   |`departmentIds` | string[]  |  | no | no | [id of role "All Agets"] | The list of the department ids which the agent belongs to.|
-  |`departments` | [Department](#department)[]  |yes | yes | no | | The list of the roles which the agent belongs to.|
+  |`departments` | [Department](#department)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
   |`shifts` | [Shift](#shift)[]  | yes | N/A | N/A  | | The list of shifts which the agent belongs to.|
+
 
 
 ### Agent List Response Object
@@ -223,7 +226,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   |`totalCount` | string  | N/A | yes | no | | The total count of the query  |
-  |`agents`|   [Agent](#agent-object)[]| N/A | yes| 0 | | A list of agents. |
+  |`list`|   [Agent](#agent-object)[]| N/A | yes| no | | A list of agents. |
 
 
 ## Agent Endpoints
@@ -238,8 +241,9 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   | - | - | - | - | - |
   |`include`|string|no||Available value:`department`,`role`,`permission` |
   |`keywords` | string | no  |  | Filter by keywords in agent display name, email address. |
-  |`pageIndex`|string|no| 0 | The page index of the query. |
-  |`pageSize`|string|no| 10 | The page size of the query. |
+  |`pageIndex`|integer|no| 0 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
+
 
 #### Response
   the response is a [Agent List Response ](#agent-list-response-object) Object
@@ -325,8 +329,8 @@ Path parameters
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
   |`include`|string|no||Available value:`department`,`role`,`permission` |
-  |`pageIndex`|int|no| 0 | The page index of the query. |
-  |`pageSize`|int|no| 10 | The page size of the query. |
+  |`pageIndex`|integer|no| 0 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
 
 #### Response
 the response is a [Agent List Response](#agent-list-response-object) Object
@@ -342,7 +346,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
     "totalCount" : "100",
-    "agents": [{
+    "list": [{
         "id": "68",
         "email": "Tom@gmail.com",
         "displayName":"Tom",
@@ -360,7 +364,7 @@ Content-Type:  application/json
 ### Get a list of agents by department id
   `GET /api/v3/globalSettings/departments/{departmentId}/agents`
 
-   #### Parameters
+#### Parameters
    Path parameters
 
   | Name  | Type | Required  | Description |     
@@ -371,9 +375,10 @@ Content-Type:  application/json
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`pageIndex`| int | no | 0 |The page index of the query. |
-  |`pageSize`| int | no | 10 |The page size of the query. |
   |`include`| string | no ||Available value:`department`,`role`,`permission` |
+  |`pageIndex`| integer | no | 0 |The page index of the query. |
+  |`pageSize`| integer | no | 10 |The page size of the query. |
+
 
 #### Response
 the response is a [Agent List Response](#agent-list-response-object) Object
@@ -389,7 +394,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
     "totalCount" : "100",
-    "agents": [{
+    "list": [{
         "id": "68",
         "email": "Tom@gmail.com",
         "displayName":"Tom",
@@ -762,6 +767,7 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
   |`members` | [Agent](#agent)[] | yes | yes | no | | The selected agents for this role.|
   |`permissionIds` | string[] | | no | no | [ role of "all agents"'s permission ids ] | Permissions assigned to this role.|
   |`permissions` | [Permission](#permission)[] | yes | yes | no | | Permissions assigned to this role.|
+
 
 ## Role Endpoints
 
@@ -1615,9 +1621,9 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
   | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
   |`agentIds` | Guid[] | | yes | no | | |
   |`departmentIds` | Guid[] | | yes | no | | |
-  | `agents` | [Agent](#agent-object)[] | yes | no | no | | |
-  | `departments` | [Department](#department-object)[] | yes | no | no | | |
-  | `workingHours` | [Working Hours](#working-hours-object)[]  | | no | no | | |
+  | `agents` | [Agent](#Agent-Object)[] | yes | N/A | N/A | | |
+  | `departments` | [Department](#Department-Object)[] | yes | N/A | N/A | | |
+  | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
 
 ### Holiday Object
 
@@ -2133,7 +2139,7 @@ Response
   |`title` | string | | no | no | |.|
   |`company` | string  | | no | no | |.|
   |`fax` | string  | | no | no | |.|
-  |`phone` | string  | | no | no | | DB document is using ‘mobile’.|
+  |`phone` | string  | | no | no | | |
   |`mailingAddress` | string  | | no | no | |.|
   |`city` | string | | no | no | |.|
   |`stateOrProvince` | string  | | no | no | |.|time
@@ -4219,13 +4225,13 @@ HTTP/1.1 204 No Content
   | - | - | - | :-: | :-: | :-: | - | 
   | `isEnabled` | boolean  | | no | N/A | false | |
   | `protocolType` | string |  | no | N/A | | including `SAMLSSO` and `JWTSSO`. |
-  | `SAMLSSOURL` | string |  | no | N/A | |Only available when Type is SAML SSO. |
-  | `SAMLLogoutURL` | string |  | no | N/A | | Only available when Type is SAML SSO. |
-  | `SAMLCertificateFile` | string |  | no | N/A | | File key of SAML certificate file, Only available when Type is SAML SSO. |
-  | `SAMLCertificateFileName` | string |  | no | N/A | | Only available when Type is SAML SSO. |
-  | `JWTLoginURL` | string |  | no | N/A | | Only available when Type is JWT SSO. |
-  | `JWTLogoutURL` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
-  | `JWTSecret` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
+  | `samlSSOURL` | string |  | no | N/A | |Only available when Type is SAML SSO. |
+  | `samlLogoutURL` | string |  | no | N/A | | Only available when Type is SAML SSO. |
+  | `samlCertificateFile` | string |  | no | N/A | | File key of SAML certificate file, Only available when Type is SAML SSO. |
+  | `samlCertificateFileName` | string |  | no | N/A | | Only available when Type is SAML SSO. |
+  | `jwtLoginURL` | string |  | no | N/A | | Only available when Type is JWT SSO. |
+  | `jwtLogoutURL` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
+  | `jwtSecret` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
 
 ## Agent SSO Endpoints
 
@@ -4256,10 +4262,10 @@ Content-Type:  application/json
 {
     "isEnabled": true,
     "protocolType": "SAMLSSO",
-    "SAMLSSOURL": "",
-    "SAMLLogoutURL": "",
-    "SAMLCertificateFile": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
-    "SAMLCertificateFileName": "certi.pl",
+    "samlSSOURL": "",
+    "samlLogoutURL": "",
+    "samlCertificateFile": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
+    "samlCertificateFileName": "certi.pl",
 }
 ```
 
@@ -4278,9 +4284,9 @@ Request Body
   {
     "isEnabled": true,
     "protocolType": "JWTSSO",
-    "JWTLoginURL": "",
-    "JWTLogoutURL": "",
-    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+    "jwtLoginURL": "",
+    "jwtLogoutURL": "",
+    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
   }
 ```
 
@@ -4294,9 +4300,9 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "isEnabled": true,
     "protocolType": "JWTSSO",
-    "JWTLoginURL": "",
-    "JWTLogoutURL": "",
-    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+    "jwtLoginURL": "",
+    "jwtLogoutURL": "",
+    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
   }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentSSO
 ```
 Response
@@ -4307,9 +4313,9 @@ Content-Type:  application/json
 {
     "isEnabled": true,
     "protocolType": "JWTSSO",
-    "JWTLoginURL": "",
-    "JWTLogoutURL": "",
-    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+    "jwtLoginURL": "",
+    "jwtLogoutURL": "",
+    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
 }
 ```
 
