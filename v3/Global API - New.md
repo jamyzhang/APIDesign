@@ -174,7 +174,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   + `POST /api/v3/globalSettings/agents` - [Create a new agent](#create-a-new-agent)
 
   + `POST /api/v3/globalSettings/agents/{id}:unlock` - [Unlock the agent](#unlock-the-agent)
-  + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#admin-set-an-agent's-password)
+  + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#admin-set-an-agents-password)
   + `POST /api/v3/globalSettings/agents/me:changePassword` - [Change own password](#change-own-password)
   + `PUT /api/v3/globalSettings/agents/{id}` - [Update an agent](#update-an-agent)
   + `PUT /api/v3/globalSettings/agents/me` - [Update current agent](#update-current-agent)
@@ -210,7 +210,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`forgetPasswordTagTime` | DateTime | | N/A | N/A | UTC |.|
   |`iPVerificationTagTime` | DateTime | | N/A | N/A | UTC |.|
   |`permissionIds` | string[]  |  | no | no | [] | Agent permission settings.|
-  |`permissions` | [Permission](#permission)[]  |N/A | N/A | no | | Agent permission settings. |
+  |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
   |`roleIds` | string[]  |  | no | no | [id of role "All Agets"] | The list of the role ids which the agent belongs to.|
   |`roles` | [Roles](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
   |`departmentIds` | string[]  |  | no | no | [id of role "All Agets"] | The list of the department ids which the agent belongs to.|
