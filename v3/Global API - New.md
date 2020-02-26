@@ -4020,7 +4020,7 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | guid | | no | yes | | |
+  |`id` | guid | | N/A | N/A | | |
   |`iPFrom` | string | | no | yes | | Where an IP range starts.|
   |`iPTo` | string | | no | yes | | Where an IP range ends.|
   |`createdTime` | DateTime | | N/A | N/A | UTC |.|
@@ -4546,8 +4546,8 @@ Response
   |`actionType` | string | | N/A  | N/A  | | [action types for different applications](#action-types-for-different-applications) |
   |`actionSummary` | string| | N/A  | N/A  | |.|
   |`actionDetails` | string| | N/A  | N/A  | |.|
-  |`createdBy` | string | | N/A  | N/A  | | the id of oprator agent |
-  |`agent` | [Agent](#agent) | | N/A  | N/A  | | the oprator agent |
+  |`createdBy` | int | | N/A  | N/A  | | the id of oprator agent |
+  |`agent` | [Agent](#agent) | yes | N/A  | N/A  | | the oprator agent |
 
 ### Audit Log List Response Object
 
@@ -4555,8 +4555,8 @@ Response
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`totalCount` | string  | N/A | yes | no | | the total count of the query  |
-  |`auditLogs`| [Audit Log](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
+  |`totalCount` | int  | N/A | yes | no | | the total count of the query  |
+  |`list`| [Audit Log](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
 
 ### Action types for different applications
 
@@ -4618,7 +4618,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
     "totalCount" : "100",
-    "auditLogs": [
+    "list": [
       {
         "name": "add Agent",
         "Category": "My Account Global Settings",
