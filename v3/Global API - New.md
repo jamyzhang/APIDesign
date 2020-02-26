@@ -195,7 +195,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`firstName` | string  | | no | yes | | The first name of the agent|
   |`lastName` | string  | | no | yes | | The last name of agent|
   |`isAdmin` | bool| | no | no | false | Whether the agent is an administrator or not.|
-  |`isActive` | bool| | no | yes | | Whether the agent is active or not.|
+  |`isActive` | bool| | no | no | true | Whether the agent is active or not.|
   |`phone` | string | | no | no | | Mobile phone number of the agent.|
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
@@ -3527,7 +3527,7 @@ HTTP/1.1 204 No Content
   |`id` | Guid | | yes | N/A | | Id of the current item.  |
   | `name` | string  | | no | no | | Name of the canned message. |
   | `message` | string  | | no | no | | |
-  | `IfSetHTMLMessageForEmail` | boolean  | | no | no | false | |
+  | `IfSetHTMLMessageForEmail` | bool | | no | no | false | |
   | `HTMLMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | no | | |
   | `category` | [Private Canned Message Category](#private-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
@@ -4256,7 +4256,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | - | :-: | :-: | :-: | - | 
-  | `isEnabled` | boolean  | | no | N/A | false | |
+  | `isEnabled` | bool  | | no | N/A | false | |
   | `protocolType` | string |  | no | N/A | | including `SAMLSSO` and `JWTSSO`. |
   | `samlSSOURL` | string |  | no | N/A | |Only available when Type is SAML SSO. |
   | `samlLogoutURL` | string |  | no | N/A | | Only available when Type is SAML SSO. |
@@ -4367,7 +4367,7 @@ Content-Type:  application/json
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `isEnabled` | boolean  | | no | N/A | false | |
+  | `isEnabled` | bool  | | no | N/A | false | |
   | `loginURL` | string  | | no | N/A | | |
   | `logoutURL` | string  | | no | N/A | | |
   | `changePasswordURL` | string  | | no | N/A | | |
@@ -4394,7 +4394,7 @@ Visitor SSO Campaign is represented as simple flat JSON objects with the followi
   | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
   | `campaign` | [Campaign](#campaign-object)  | yes | N/A | N/A | | Available only when campaign is included  |
   | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
-  | `isPrechatFromSkipped` | boolean |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
+  | `isPrechatFromSkipped` | bool |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
 
 ## Visitor SSO Endpoints
 
