@@ -46,17 +46,248 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
   - [custom variable](#custom-variable)  
   - [webhook](#webhook)
 
-# Live Chat Settings
+# Settings
 
-You need `Manage Settings` permission to config for a site.
+- `GET /api/v3/livechat/settings` - [Get settings of a site](#get-settings)
+- `PUT /api/v3/livechat/settings` - [Update settings of a site](#update-settings)
 
-- `GET /api/v3/livechat/settings` - [Get livechat settings of a site](#get-site-info)
-- `PUT /api/v3/livechat/settings` - [Update livechat settings of a site](#update-site-info)
+## Settings Related Objects Json Format
 
+### Setting Object
+
+Customer Segment is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | - | :-: | :-: | :-: | - | 
+ | `siteId` |integer  || yes | N/A || id of the site which the configuration belongs to.
+ | `isMultipleCampaignEnabled` |boolean || no | N/A || whether multiple campaigns are enabled or not in the site.
+ | `isAutoDistributionEnabled` |boolean || no | N/A || whether auto distribution is enabled or not in the site.
+ | `isCustomAwayStatusEnabled` |boolean || no | N/A || whether custom away status is enabled or not in the site.
+ | `isDepartmentEnabled` |boolean || no  N/A || whether department is enabled or not in the site.
+ | `isAutoTranslationEnabled` |boolbean || no | N/A || whether auto translation is enabled or not in the site.
+ | `isAudioAndVideoChatEnabled` |boolbean || no | N/A ||whether audio&video chat is enabled or not in the site.
+ | `iscustomerSegmentEnabled` |boolbean || no | N/A ||whether customer segment chat is enabled or not in the site.
+ | `isVisitorSSOtEnabled` |boolbean || no | N/A ||whether vistor SSO is enabled or not in the site.
+ | `isCreditCardMaskingEnabled` |boolbean || no | N/A ||whether Credit card masking is enabled or not in the site.
+ | `isCustomVariablesEnabled` |boolbean || no | N/A ||whether custom variables are enabled or not in the site.
+ | `isSalesforceEnabled` |boolbean || no | N/A ||whether Salesforce integration is enabled or not in the site.
+ | `isZendeskEnabled` |boolbean || no | N/A ||whether Zendesk integration is enabled or not in the site.
+ | `isGoogleAnalyticsEnabled` |boolbean || no | N/A || whether Google Analytics integration is enabled or not in the site.
+ | `isGotoMeetingEnabled` |boolbean || no | N/A || whether GotoMeeting integration is enabled or not in the site.
+ | `isJoinmeEnabled` |boolbean || no | N/A || whether Joinme integration is enabled or not in the site.
+
+## Endpoint
+
+### Get settings of a site
+
+  `GET /api/v3/livechat/settings`
+
+#### Parameter
+
+    No parameters
+
+#### Response
+
+the response is [Settings](#settings-object) object
+
+####  Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/livechatwebapi/api/v2/livechat/configs
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+{
+    "siteId": 6000000,
+    "isMultipleCampaignEnabled": true,
+    "isAutoDistributionEnabled": false,
+    "isCustomAwayStatusEnabled": true,
+    "isDepartmentEnabled": false,
+    "isAutoTranslationEnabled": true,
+    "isAudioAndVideoChatEnabled": false,
+    "iscustomerSegmentEnabled": true,
+    "isVisitorSSOtEnabled": false,
+    "isCreditCardMaskingEnabled": true,
+    "isCustomVariablesEnabled": true,
+    "isSalesforceEnabled": false,
+    "isZendeskEnabled": true,
+    "isGoogleAnalyticsEnabled": true,
+    "isGotoMeetingEnabled": true,
+    "isJoinmeEnabled": true
+}
+```
+
+### Update settings of a site
+
+  `PUT /api/v3/livechat/settings`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response is [Settings](#settings-object) object
+
+### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "siteid=6000000&isenablesalesforce=true"  https://hosted.comm100.com/api/v3/livechat/settings
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+{
+    "siteId": 6000000,
+    "isMultipleCampaignEnabled": true,
+    "isAutoDistributionEnabled": false,
+    "isCustomAwayStatusEnabled": true,
+    "isDepartmentEnabled": false,
+    "isAutoTranslationEnabled": true,
+    "isAudioAndVideoChatEnabled": false,
+    "iscustomerSegmentEnabled": true,
+    "isVisitorSSOtEnabled": false,
+    "isCreditCardMaskingEnabled": true,
+    "isCustomVariablesEnabled": true,
+    "isSalesforceEnabled": false,
+    "isZendeskEnabled": true,
+    "isGoogleAnalyticsEnabled": true,
+    "isGotoMeetingEnabled": true,
+    "isJoinmeEnabled": true
+}
+```
+  
 # Auto Distribution
 
-- `GET /api/v3/livechat/autoDistribution` - [Get livechat auto distribution of a site](#get-site-info)  include department, agent
+- `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)
 - `PUT /api/v3/livechat/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
+
+## Auto Distribution Related Objects Json Format
+
+### Auto Distribution Object
+
+  Auto Distribution is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | - | :-: | :-: | :-: | - |
+  | `autoDistributionMethod` | string || no | N/A | method of auto distribution, including `load banlancing` , `round robin` and `capability weighted` |
+  | `isLastChattedAgentPreferred` | boolean || no | N/A | whether last-chatted agent is preferred or not |
+  | `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | N/A | whether to set the same maximum number of chats for all agents |
+  | `maxConcurrentChatsForAllAgents` | integer || no | N/A | maximum number of chats for all agents |
+  | `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | N/A| whether to allocate chats to agents who are having audio or video chats |
+  | `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | N/A | whether to allow agent to manually accept chat after reaching max chats limit in agent console |
+  | `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | N/A | auto distribution configuration for per department |
+  | `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | N/A | auto distribution configuration for per agent |
+  
+### Department Auto Distribution Object
+
+Department Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `departmentId` | Guid ||  yes| N/A|| id of department |
+| `isLastChattedAgentPreferred` | boolean||  no| N/A|  | whether last-chatted agent is preferred or not |
+| `backupDepartmentId` | Guid ||  no| N/A|| id of backup department |
+
+### Agent Auto Distribution Object
+
+Agent Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `agentId` | Guid ||  yes| N/A|| id of agent |
+| `ifAutoAcceptChat` | boolean||  no| N/A|| if agent can auto accept chat|
+| `maxConcurrentChats` | boolean ||  no| N/A|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
+
+### Endpoint
+
+#### Get Auto Distribution
+
+  `GET /api/v3/livechat/autoDistribution`
+
+#### Parameters
+
+    No Parameters
+
+#### Response
+
+the response is: [Auto Distribution](#auto-distribution-object) Object.
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/autoDistribution
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "autoDistributionMethod": "load balancing",
+    "isLastChattedAgentPreferred": true,
+    "isLimitMaxConcurrentChatsForAllAgents":true,
+    "maxConcurrentChatsForAllAgents": 3,
+    "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
+    "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
+    "departmentAutoDistributions":[
+      {
+        "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+        "isLastChattedAgentPreferred":"true",
+        "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
+      },
+      ...
+    ],
+    "agentAutoDistributions":[
+      {
+        "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+        "ifAutoAcceptChat":true,
+        "maxConcurrentChats":10
+      }
+    ]
+}
+```
+
+#### Update auto allocation configuration
+
+  `PUT /api/v3/livechat/autoDistribution`
+
+#### Parameters
+
+    [Auto Allocation](#auto-allocation-json-format)
+
+- Response:
+
+    [Auto Allocation](#auto-allocation-json-format)
+
+### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "isenable=false"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/autoallocation
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "isEnable": false,
+    "allocationRule": "load balancing",
+    "isLastChattedPreferred": true,
+    "isAllocateChatWhenAgentInAudioVideo": false,
+    "maxConcurrentChatsForAllAgents":3,
+    "maxChatForAllAgents": 3,
+    "isAllowAgentManualAcceptChat": true
+}
+```
+
 
 # Translation Excluded Word
 
@@ -80,18 +311,18 @@ You need `Manage Settings` permission to config for a site.
 
 Customer Segment is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `id` |Guid  | yes | N/A || id of the customer segment.
-  | `name` |string  | no | yes || name of the customer segment.
-  | `color` |string  | no | no |'339FD9'| color of the customer segment
-  | `isEnable` |boolean  | no | no |false| whether the customer segment is enabled or not.
-  | `order` |int  | no | yes |maximum order + 1 | order of the customer segment.
-  | `description` |string  | no | no || description of the customer segment.
-  | `condition met type` |string  | no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
-  | `logical expression` |string  | no | no || the logical expression for conditions.
-  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  | no | yes || an array of [Live Chat Condition](#conditions-json-format) object. |
-  | `alert to`?? | [Department](#department)[] or [Agent](#Agent)[]  | no | no | |
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | - | :-: | :-: | :-: | - | 
+  | `id` |Guid  || yes | N/A || id of the customer segment.
+  | `name` |string  || no | yes || name of the customer segment.
+  | `color` |string  || no | no |'339FD9'| color of the customer segment
+  | `isEnable` |boolean  || no | no |false| whether the customer segment is enabled or not.
+  | `order` |int  || no | yes |maximum order + 1 | order of the customer segment.
+  | `description` |string  || no | no || description of the customer segment.
+  | `condition met type` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
+  | `logical expression` |string  || no | no || the logical expression for conditions.
+  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#conditions-json-format) object. |
+  | `alertTo`?? | [Department](#department)[] or [Agent](#Agent)[]  || no | no | |
 
 ### Live Chat Condition object
 
@@ -368,7 +599,7 @@ HTTP/1.1 204 No Content
 
 # Agent Chat
 //修改ER
-- `GET /api/v3/livechat/agentChats` - [Get a list of agent chats](#get-site-campaigns) 
+- `GET /api/v3/livechat/agentChats` - [Get a list of agent chats](#get-site-campaigns)
 - `GET /api/v3/livechat/agentChats/{id}` - [Get an agent chat by id](#get-a-campaign)  
 
 # Online Visitor  
@@ -539,7 +770,7 @@ Query string
   | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
   | `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
   | `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-  | `timezone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
+  | `timeZone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
   | `campaignId` | guid | no  |  | id of the campaign which the offline message |
   | `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
   | `agentId` | guid | no  |  | id of the agent that this offline message belongs to |
@@ -6468,11 +6699,11 @@ HTTP/1.1 204 No Content
 
   Webhook is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `id` | guid  | N/A | N/A | | id of the webhook |
-  | `event` | string  | no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
-  | `name` | string  | no | yes | | target url of the webhook. |
+ | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | - | :-: | :-: | :-: | - | 
+  | `id` | guid  || N/A | N/A | | id of the webhook |
+  | `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+  | `name` | string  || no | yes | | target url of the webhook. |
 
 ## Endpoints
 
@@ -6676,13 +6907,13 @@ HTTP/1.1 204 No Content
 
 Custom Variable is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid  | yes | N/A || id of the custom variable. |
-  | `name` | string  | no | yes || name of the custom variable |.
-  | `type` | string  | no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
-  | `value` | string  | no | no || value of the custom variable. |
-  |`hyperlink` | string  | no | no ||  hyperlink of the custom variable. |
+ | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | - | :-: | :-: | :-: | - | 
+  | `id` | Guid  || yes | N/A || id of the custom variable. |
+  | `name` | string  || no | yes || name of the custom variable |.
+  | `type` | string  || no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
+  | `value` | string  || no | no || value of the custom variable. |
+  |`hyperlink` | string  || no | no ||  hyperlink of the custom variable. |
 
 ## Endpoints
 

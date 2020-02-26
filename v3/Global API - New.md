@@ -34,8 +34,9 @@
 
 # Site
   You need `Manage Site` permission to manage site 
-  + `GET /api/v3/globalSettings/site` - [Get profile of a single site](#Get-profile-of-a-single-site)
-  + `PUT /api/v3/globalSettings/site` - [Update profile of a site](#Update-profile-of-a-site)
+
+  + `GET /api/v3/globalSettings/site` - [Get profile of a site](#get-profile-of-a-site)
+  + `PUT /api/v3/globalSettings/site` - [Update profile of a site](#update-profile-of-a-site)
 
 
 ## Site Related Object Json Format
@@ -45,12 +46,12 @@
 
  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
  | - | - | :-: | :-: | :-: | :-: | - | 
- |`id` | integer  | | yes | no | 0 |Site ID will not be upgraded to GUID.|
- |`dateTimeFormat` | enum| | no | no | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site.|
- |`timeZone` | enum| | no | yes |  |Time zone of site.|
+ |`id` | integer  | | N/A | N/A | 0 |Site ID.|
+ |`dateTimeFormat` | string| | no | no | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
+ |`timeZone` | string| | no | yes |  | Time zone of site. value include all time zone options, format as ±hh:mm |
  |`company` | string | | no | yes | |Company name.|
- |`companySize` | enum| | no | no | 0 ??|1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. The number of staff of the company.|
- |`website` | string  | | no | yes | |Company website. cpanel 客户端的 site profile 不一致??|
+ |`companySize` | string| | no | yes |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
+ |`website` | string  | | no | yes | |Company website. |
  |`registeredEmail` | string  | | no | yes | |Email used for site registration.|
  |`phone` | string | | no | no | |Company phone number.|
  |`fax` | string | | no | no | |Company fax number.|
@@ -61,156 +62,133 @@
  |`postalOrZipCode` | string | | no | no | |Postal/Zip Code where the company located.|
  |`firstName` | string  | | no | yes | |First Name of site registrant.|
  |`lastName` | string  | | no | yes | |Last Name of site registrant.|
- |`agents` | [Agent](#Agent)[]| yes | yes | no | |.|
- |`roles` | [Role](#Role)[]| yes | yes | no | |.|
- |`contact` | [Contact](#Contact)[]| yes | yes | no | |.|
- |`visitor` | [Visitor](#Visitor)[]| yes | yes | no | |.|
- |`publicCannedMessage` | [PublicCannedMessage](#Public-Canned-Message)[]| yes | yes | no |  |.|
- |`publicCannedMessageCategory` | [PublicCannedMessageCategory](#Public-Canned-Message-Category)[]| yes | yes | no |  |.|
- |`PrivateCannedMessage` | [Private-Canned-Message](#Private-Canned-Message)[]| yes | yes | no | |.|
- |`privateCannedMessageCategory` | [PrivateCannedMessageCategory](#Private-Canned-Message-Category)[]| yes | yes | no | |.|
- |`shift` | [Shift](#Shift)[]| yes | yes | no | |.|
- |`auditLog` | [AuditLog](#Audit-Log)[]| yes | yes | no | |.|
- |`oAuthClient` | [OAuthClient](#OAuth-Client)[]| yes | yes | no | |.|
-
 
 ## Site Endpoints
 
-### Get profile of a single site
+### Get profile of a site
   `GET /api/v3/globalSettings/site`
 
 #### Parameters
-Query string
-  | Name  | Type | Required  | Default | Description |     
-  | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`agent`,`role`,`contact`
-  ,`visitor`,`publicCannedMessage`,`publicCannedMessageCategory`
-  ,`PrivateCannedMessage`,`privateCannedMessageCategory`,`shift`,`auditLog`,`oAuthClient` |
-
+    No Parameters
 #### Response
-  the response is forfile of [Site](#Site-Object) Object, just include base informations.
+
+  the response is [Site](#site-object) Object, just include base informations.
 
 #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/site?include=role
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    {
-        "id"："10000"，
-        "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
-        "timeZone"："(GMT-09:00)Alaska"，
-        "company"："BMW"，
-        "companySize"："5000"，
-        "website"："www.bwm.com"，
-        "registeredEmail"："bmw@gmail.com"，
-        "phone"："88654987"，
-        "fax"："58469215"，
-        "mailingAddress"："mail@bmw.com"，
-        "city"："Berlin"，
-        "stateOrProvince"：""，
-        "countryOrRegion"："Germany"，
-        "postalOrZipCode"："10115–14199"，
-        "firstName"："Jasn"，
-        "lastName"："Statham"，
-        ...,
-        "roles"[{
-      "Name": "markting",
-      "Description": "yyyy-MM-dd hh:mm:ss",
-      "Type": "CustomRole",
-      ...,
-    },
-        ...,]
-    }
-    ```
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/site
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "id"："10000"，
+    "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
+    "timeZone"："-09:00"，
+    "company"："BMW"，
+    "companySize"："5000"，
+    "website"："www.bwm.com"，
+    "registeredEmail"："bmw@gmail.com"，
+    "phone"："88654987"，
+    "fax"："58469215"，
+    "mailingAddress"："mail@bmw.com"，
+    "city"："Berlin"，
+    "stateOrProvince"：""，
+    "countryOrRegion"："Germany"，
+    "postalOrZipCode"："10115–14199"，
+    "firstName"："Jasn"，
+    "lastName"："Statham"，
+}
+```
 
 
 ### Update profile of a site
   `PUT /api/v3/globalSettings/site`
 
 #### Parameters
-No Parameters
 
 Request body 
-  The request body contains data with the [Site](#Site-Object) Structure
+  The request body contains data with the [Site](#site-object) Structure
 
 #### Response
-  the response is the forfile of [Site](#Site-Object) Object, just include base informations.
+  the response is the forfile of [Site](#site-object) Object, just include base informations.
 
 #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -d '{
-        "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
-        "timeZone"："(GMT-09:00)Alaska"，
-        "company"："BMW"，
-        "companySize"："5000"，
-        "website"："www.bwm.com"，
-        "registeredEmail"："bmw@gmail.com"，
-        "phone"："88654987"，
-        "fax"："58469215"，
-        "mailingAddress"："mail@bmw.com"，
-        "city"："Berlin"，
-        "stateOrProvince"：""，
-        "countryOrRegion"："Germany"，
-        "postalOrZipCode"："10115–14199"，
-        "firstName"："Jasn"，
-        "lastName"："Statham"，
-        ...,
-    }' -X PUT https://domain.comm100.com//api/v3/globalSettings/site
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    {
-        "id"："10000"，
-        "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
-        "timeZone"："(GMT-09:00)Alaska"，
-        "company"："BMW"，
-        "companySize"："5000"，
-        "website"："www.bwm.com"，
-        "registeredEmail"："bmw@gmail.com"，
-        "phone"："88654987"，
-        "fax"："58469215"，
-        "mailingAddress"："mail@bmw.com"，
-        "city"："Berlin"，
-        "stateOrProvince"：""，
-        "countryOrRegion"："Germany"，
-        "postalOrZipCode"："10115–14199"，
-        "firstName"："Jasn"，
-        "lastName"："Statham"，
-    }
-    ```
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
+    "timeZone"："-09:00"，
+    "company"："BMW"，
+    "companySize"："5000"，
+    "website"："www.bwm.com"，
+    "registeredEmail"："bmw@gmail.com"，
+    "phone"："88654987"，
+    "fax"："58469215"，
+    "mailingAddress"："mail@bmw.com"，
+    "city"："Berlin"，
+    "stateOrProvince"：""，
+    "countryOrRegion"："Germany"，
+    "postalOrZipCode"："10115–14199"，
+    "firstName"："Jasn"，
+    "lastName"："Statham"，
+    ...,
+}' -X PUT https://domain.comm100.com//api/v3/globalSettings/site
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "id"："10000"，
+    "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
+    "timeZone"："-09:00"，
+    "company"："BMW"，
+    "companySize"："5000"，
+    "website"："www.bwm.com"，
+    "registeredEmail"："bmw@gmail.com"，
+    "phone"："88654987"，
+    "fax"："58469215"，
+    "mailingAddress"："mail@bmw.com"，
+    "city"："Berlin"，
+    "stateOrProvince"：""，
+    "countryOrRegion"："Germany"，
+    "postalOrZipCode"："10115–14199"，
+    "firstName"："Jasn"，
+    "lastName"："Statham"，
+}
+```
 
 
 # Agent
 
-  + `GET /api/v3/globalSettings/agents` - [Get a list of agents in site](#Get-a-list-of-agents-in-site)  include department, role
-  + `GET /api/v3/globalSettings/agents/{id}` - [Get an agent by id](#Get-an-agent-by-id)  include department, role
-  + `GET /api/v3/globalSettings/roles/{roleId}/agents` - [Get a list of agents by role id](#Get-a-list-of-agents-by-role-id)  include department, role
-  + `GET /api/v3/globalSettings/departments/{departmentId}/agents` - [Get a list of agents by department id](#Get-a-list-of-agents-by-department-id)  include department, role
-  + `GET /api/v3/globalSettings/agents/me` - [Get current agent](#Get-current-agent)  include department, role
-  + `POST /api/v3/globalSettings/agents` - [Create a new agent](#Create-a-new-agent)
+You need `Manage Agent & Agent Roles` permission to manage agents.
+
+  + `GET /api/v3/globalSettings/agents` - [Get a list of agents in site](#get-a-list-of-agents-in-site) 
+  + `GET /api/v3/globalSettings/agents/{id}` - [Get an agent by id](#get-an-agent-by-id) 
+  + `GET /api/v3/globalSettings/roles/{roleId}/agents` - [Get a list of agents by role id](#get-a-list-of-agents-by-role-id)
+  + `GET /api/v3/globalSettings/departments/{departmentId}/agents` - [Get a list of agents by department id](#get-a-list-of-agents-by-department-id)
+  + `GET /api/v3/globalSettings/agents/me` - [Get current agent](#get-current-agent)
+  + `POST /api/v3/globalSettings/agents` - [Create a new agent](#create-a-new-agent)
+
   + `POST /api/v3/globalSettings/agents/{id}:unlock` - [Unlock the agent](#unlock-the-agent)
-  + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#Admin-set-an-agent's-password)
-  + `POST /api/v3/globalSettings/agents/me:changePassword` - [Change own password](#Change-own-password)
-  + `PUT /api/v3/globalSettings/agents/{id}` - [Update an agent](#Update-an-agent)
-  + `PUT /api/v3/globalSettings/agents/me` - [Update current agent](#Update-current-agent)
-  + `DELETE /api/v3/globalSettings/agents/{id}` - [Delete an agent](#Delete-an-agent)
+  + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#admin-set-an-agents-password)
+  + `POST /api/v3/globalSettings/agents/me:changePassword` - [Change own password](#change-own-password)
+  + `PUT /api/v3/globalSettings/agents/{id}` - [Update an agent](#update-an-agent)
+  + `PUT /api/v3/globalSettings/agents/me` - [Update current agent](#update-current-agent)
+  + `DELETE /api/v3/globalSettings/agents/{id}` - [Delete an agent](#delete-an-agent)
 
 ## Agent Related Object Json Format
 
 ### Agent Object
-  This is the entity details of the Agent. 怎么没有departments??
+  This is the entity details of the Agent.
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | Guid| | yes | no | | .|
-  |`email` | string| | yes | yes | | Agent login email address, can not change ??|
+  |`id` | integer| | yes | no | | .|
+  |`email` | string| | yes | yes | | Agent login email address, can not change |
   |`displayName` | string  | | no | yes | | Different Agents can have the same Display Name.|
   |`firstName` | string  | | no | yes | | The first name of the agent|
   |`lastName` | string  | | no | yes | | The last name of agent|
@@ -219,33 +197,36 @@ Request body
   |`phone` | string | | no | no | | Mobile phone number of the agent.|
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
-  |`timeZone` | enum| | no | yes | | The selected time of agent. Remove the Automatically use the time zone of my machine option|
-  |`datetimeFormat` | enum| | no | yes | | Date/time format selected by agent to display on the site.|
-  |`avatar` | Image| | no | yes | |.|
-  |`createdTime` | Date| | yes | no | current UTC date | The create time of the agent.|
+  |`timeZone` | string| | no | yes |  | Time zone of site. value include all time zone options, format as ±hh:mm |
+  |`datetimeFormat` | string| | no | yes | | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
+  |`avatar` | string| | no | yes | | image base64 data code.|
+  |`createdTime` | DateTime | | N/A | N/A | UTC | The create time of the agent.|
   |`isLocked` | bool| | no | no | false | Account will be locked after several failed login attempts.|
-  |`lockedTime` | Date| | yes | no | current UTC date | When the agent is locked.|
-  |`APIKey` | string | | no | yes | | API key of the agent ??|
-  |`lastLoginTime` | Date| | yes | no | current UTC date | The time of the last login to Comm100 account (Control Panel or Agent Console).|
-  |`lastLoginIP` | string  | | yes | no | | The IP address where the agent logs in from.|
-  |`forgetPasswordTag` | string | | yes | no |  | When the agent submits his email address on Forget Password Page, system will generate a new Forget Password GUID Tag and overwrite the previous value. System will check this GUID to see whether the verification link is the latest one and only the latest one can work.|
-  |`forgetPasswordTagTime` | Date| | yes | no | current UTC date |.|
-  |`iPVerificationTagTime` | Date| | yes | no | current UTC date |.|
+  |`lockedTime` | DateTime | | N/A | N/A | UTC | When the agent is locked.|
+  |`aPIKey` | string | | N/A | N/A | | API key of the agent |
+  |`lastLoginTime` | DateTime | | N/A | N/A | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
+  |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
+  |`forgetPasswordTag` | string | | N/A | N/A |  | When the agent submits his email address on Forget Password Page, system will generate a new Forget Password GUID Tag and overwrite the previous value. System will check this GUID to see whether the verification link is the latest one and only the latest one can work.|
+  |`forgetPasswordTagTime` | DateTime | | N/A | N/A | UTC |.|
+  |`iPVerificationTagTime` | DateTime | | N/A | N/A | UTC |.|
   |`permissionIds` | string[]  |  | no | no | [] | Agent permission settings.|
-  |`permission` | [Permission](#Permission)[]  |yes | yes | no | | Agent permission settings. ?? 这里是的列表对象是不是用处不大??|
-  |`roleIds` | string[]  |  | no | no | [All Agets's Id] | The list of the roles which the agent belongs to.|
-  |`roles` | [Roles](#Role)[]  |yes | yes | no | | The list of the roles which the agent belongs to.|
-  |`shift` | [Shift](#Shift)[]  | yes | yes | no  | | The list of shifts which the agent belongs to.|
+  |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
+  |`roleIds` | string[]  |  | no | no | [id of role "All Agets"] | The list of the role ids which the agent belongs to.|
+  |`roles` | [Roles](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
+  |`departmentIds` | string[]  |  | no | no | [id of role "All Agets"] | The list of the department ids which the agent belongs to.|
+  |`departments` | [Department](#department)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
+  |`shifts` | [Shift](#shift)[]  | yes | N/A | N/A  | | The list of shifts which the agent belongs to.|
+
 
 
 ### Agent List Response Object
+
   Agent List Object for agent list Response, include count and page information.
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`total` | string  | N/A | yes | 1 | | . |
-  |`previousPage` | string  | N/A | yes| 1 | | . |
-  |`nextPage` | string  | N/A | yes| 1 | | . |
-  |`agents`|   [Agent](#Agent-Object)[]| N/A | yes| 0 | | a list of agents. |
+  |`totalCount` | string  | N/A | yes | no | | The total count of the query  |
+  |`list`|   [Agent](#agent-object)[]| N/A | yes| no | | A list of agents. |
 
 
 ## Agent Endpoints
@@ -255,70 +236,74 @@ Request body
 
 #### Parameters
    Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`department`,`role`,`permission` |
-  |`keywords` | string | no  |  | filter by keywords in agent display name, email address. |
+  |`include`|string|no||Available value:`department`,`role`,`permission` |
+  |`keywords` | string | no  |  | Filter by keywords in agent display name, email address. |
+  |`pageIndex`|integer|no| 0 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
+
 
 #### Response
-  the response is a [Agent List Response ](#Agent-List-Response-Object) Object
-
-#### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    {
-        "total" : "100",
-        "previousPage": "https://domain.comm100.com/api/v3/globalSettings/agents?pageindex=1&pagesize=10",
-        "nextPage": "https://domain.comm100.com/api/v3/globalSettings/agents?pageindex=3&pagesize=10",
-        "agents": [{
-            "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
-            "email": "Tom@gmail.com",
-            "displayName":"Tom",
-            "firstName":"Tom",
-            "lastName":"Green",
-            "title":"CEO",
-            ...
-        }
-        ...
-        ]
-    }
-    ```
-
-### Get an agent by id 
-+ `GET /api/v3/globalSettings/agents/{id}`
-
-#### Parameters
-Path parameters
-| Name  | Type | Required  | Description |     
-| - | - | - | - | 
-|`id` | Guid | yes  |  the unique id of the agent |
-
-Query string
-| Name  | Type | Required  | Default | Description |     
-| - | - | - | - | - |
-|`include`|string|no||Availablevalue:`department`,`role` |
-
-#### Response
-the response is a [Agent](#Agent-Object) Object
+  the response is a [Agent List Response ](#agent-list-response-object) Object
 
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/globalSettings/agents/f9928d68-92e6-4487-a2e8-8234fc9d1f48?include=role,department
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents
 ```
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "totalCount" : "100",
+    "agents": [{
+        "id": "68",
+        "email": "Tom@gmail.com",
+        "displayName":"Tom",
+        "firstName":"Tom",
+        "lastName":"Green",
+        "title":"CEO",
+        ...
+    }
+    ...
+    ]
+}
+```
+
+### Get an agent by id 
++ `GET /api/v3/globalSettings/agents/{id}`
+
+#### Parameters
+
+Path parameters
+
+| Name  | Type | Required  | Description |     
+| - | - | - | - | 
+|`id` | Guid | yes  |  the id of the agent |
+
+Query string
+
+ | Name  | Type | Required  | Default | Description |
+ | - | - | - | - | - |
+ |`include`|string|no||Available value:`department`,`role`,`permission` |
+
+#### Response
+the response is a [Agent](#agent-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/68?include=role,department
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "id": "68",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -332,34 +317,37 @@ Content-Type:  application/json
   `GET /api/v3/globalSettings/roles/{roleId}/agents`
 
 #### Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  |`roleId` | Guid | yes  |  the unique id of the role |
+  |`roleId` | Guid | yes  |  The unique id of the role |
 
    Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`department`,`role` |
+  |`include`|string|no||Available value:`department`,`role`,`permission` |
+  |`pageIndex`|integer|no| 0 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
 
 #### Response
-the response is a [Agent List Response](#Agent-List-Response-Object) Object
+the response is a [Agent List Response](#agent-list-response-object) Object
 
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/f9928d68-92e6-4487-a2e8-8234fc9d1f48/agents
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents
 ```
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "total" : "100",
-    "previousPage": "https://domain.comm100.com/api/v3/globalSettings/roles/f9928d68-92e6-4487-a2e8-8234fc9d1f48/agents?pageindex=1&pagesize=10",
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/roles/f9928d68-92e6-4487-a2e8-8234fc9d1f48/agents?pageindex=3&pagesize=10",
-    "agents": [{
-        "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "totalCount" : "100",
+    "list": [{
+        "id": "68",
         "email": "Tom@gmail.com",
         "displayName":"Tom",
         "firstName":"Tom",
@@ -376,35 +364,38 @@ Content-Type:  application/json
 ### Get a list of agents by department id
   `GET /api/v3/globalSettings/departments/{departmentId}/agents`
 
-   #### Parameters
+#### Parameters
    Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  |`departmentId` | Guid | yes  |  the unique id of the department |
+  |`departmentId` | Guid | yes  |  The unique id of the department |
 
    Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`department`,`role` |
+  |`include`| string | no ||Available value:`department`,`role`,`permission` |
+  |`pageIndex`| integer | no | 0 |The page index of the query. |
+  |`pageSize`| integer | no | 10 |The page size of the query. |
+
 
 #### Response
-the response is a [Agent List Response](#Agent-List-Response-Object) Object
+the response is a [Agent List Response](#agent-list-response-object) Object
 
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/f9928d68-92e6-4487-a2e8-8234fc9d1f48/agents
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents
 ```
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "total" : "100",
-    "previousPage": "https://domain.comm100.com/api/v3/globalSettings/departments/f9928d68-92e6-4487-a2e8-8234fc9d1f48/agents?pageindex=1&pagesize=10",
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/departments/f9928d68-92e6-4487-a2e8-8234fc9d1f48/agents?pageindex=3&pagesize=10",
-    "agents": [{
-        "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "totalCount" : "100",
+    "list": [{
+        "id": "68",
         "email": "Tom@gmail.com",
         "displayName":"Tom",
         "firstName":"Tom",
@@ -423,12 +414,13 @@ Content-Type:  application/json
 
 #### Parameters
   Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`department`,`role` |
+  |`include`|string|no||Available value:`department`,`role`,`permission` |
 
 #### Response
-the response is a [Agent](#Agent-Object) Object
+the response is a [Agent](#agent-object) Object
 
 #### Example
 Using curl
@@ -441,7 +433,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "id": "68",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -455,17 +447,14 @@ Content-Type:  application/json
   `POST /api/v3/globalSettings/agents`
 
 ####  Parameters
-Path parameters
-   No Path Parameters
 
 Request body 
 
-  The request body contains data with the [Agent](#Agent-Object) Structure
+  The request body contains data with the [Agent](#agent-object) Structure
 
 example:
 ```json
 {
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -481,13 +470,12 @@ example:
 
 #### Response
 the response is:
-  [Agent](#Agent-Object) Object
+  [Agent](#agent-object) Object
 
 #### Example
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -504,9 +492,9 @@ Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com//api/v3/globalSettings/agents/68
 {
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "id": "68",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -526,33 +514,30 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
 
 ####  Parameters
 Path parameters
-     Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the agent |
 
-Request body 
-   No Request body
-
 #### Response
-the response is: the result of the unlock;
+HTTP/1.1 204 No Content
 
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -d '{} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48:unlock
+curl -H "Content-Type: application/json" -d '{} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68:unlock
 ```
 Response
-```string
-true 
+```json
+HTTP/1.1 204 No Content
 ```
-
 
 ### Admin set an agent's password
   `Put /api/v3/globalSettings/agents/{id}:changePassword`
 
 ####  Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the agent |
@@ -561,18 +546,16 @@ Request body
    The request body contains the string new password.
 
 #### Response
-the response is: the result of the change password:true/false;
+HTTP/1.1 204 No Content
 
 #### Example
 Using curl
 ```
-Using curl
-```
-curl -H "Content-Type: application/json" -d 'UdadncIGcing85sd ' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/f9928d68-92e6-4487-a2e8-8234fc9d1f48:changePassword
+curl -H "Content-Type: application/json" -d 'UdadncIGcing85sd ' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/68:changePassword
 ```
 Response
-```string
-true 
+```json
+HTTP/1.1 204 No Content
 ```
 
 ### Change own password
@@ -584,18 +567,18 @@ Request body
    The request body contains the string new password.
 
 #### Response
-the response is: the result of the change password:true/false;
+HTTP/1.1 204 No Content
 
 #### Example
 Using curl
 ```
-Using curl
-```
 curl -H "Content-Type: application/json" -d 'UdadncIGcing85sd ' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/me:changePassword
 ```
+
 Response
-```string
-true 
+```json
+#### Response
+HTTP/1.1 204 No Content
 ```
 
 
@@ -604,16 +587,18 @@ true
 
 ####  Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the agent |
+
 Request body
-  The request body contains data with the [Agent](#Agent-Object) Structure
+  The request body contains data with the [Agent](#agent-object) Structure
 
   example:
 ```json
 {
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "id": "68",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -629,13 +614,12 @@ Request body
 
 #### Response
 the response is:
-  [Agent](#Agent-Object) Object
+  [Agent](#agent-object) Object
 
 #### Example
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -646,15 +630,15 @@ curl -H "Content-Type: application/json" -d '{
       ...,
     ]
     ...,
-} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68
 ```
 Response
 ```json
-HTTP/1.1 201 Created
-Content-Type:  application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+HTTP/1.1 200 OK
+Content-Type: application/json
+Location: https://domain.comm100.com//api/v3/globalSettings/agents/68
 {
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "id": "68",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -673,12 +657,12 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
 
 ####  Parameters
 Request body
-The request body contains data with the [Agent](#Agent-Object) Structure
+The request body contains data with the [Agent](#agent-object) Structure
 
-  example:
+example:
 ```json
 {
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "id": "68",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -693,13 +677,13 @@ The request body contains data with the [Agent](#Agent-Object) Structure
 ```
 
 #### Response
-the response is: [Agent](#Agent-Object) Object
+the response is: [Agent](#agent-object) Object
 
 #### Example
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "id": "68",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -715,11 +699,11 @@ curl -H "Content-Type: application/json" -d '{
 
 Response
 ```json
-HTTP/1.1 201 Created
-Content-Type:  application/json
+HTTP/1.1 200 OK
+Content-Type: application/json
 Location: https://domain.comm100.com//api/v3/globalSettings/agents/me
 {
-    "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+    "id": "68",
     "email": "Tom@gmail.com",
     "displayName":"Tom",
     "firstName":"Tom",
@@ -739,6 +723,7 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/me
 
 #### Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the agent id |
@@ -758,10 +743,13 @@ HTTP/1.1 204 No Content
 
 
 
-# Roles
- This is role entity, formerly known as Groups.
-  + `GET /api/v3/globalSettings/roles` - [Get a list of roles in site](#Get-a-list-of-roles-in-site) include agent, permission
-  + `GET /api/v3/globalSettings/roles/{id}` - [Get a role by id](#Get-a-role-by-id) include agent, permission
+# Role
+You need `Manage Agent & Agent Roles` permission to manage roles.
+
+  + `GET /api/v3/globalSettings/roles` - [Get a list of roles in site](#get-a-list-of-roles-in-site) include agent, permission
+   - [public canned message category](#public-canned-message-category)
+
+  + `GET /api/v3/globalSettings/roles/{id}` - [Get a role by id](#get-a-role-by-id) include agent, permission
   + `POST /api/v3/globalSettings/roles` - [Create a new role](#create-a-new-role)
   + `PUT /api/v3/globalSettings/roles/{id}` - [Update a role](#update-a-role)
   + `DELETE /api/v3/globalSettings/roles/{id}` - [Delete a role](#delete-a-role)
@@ -774,11 +762,12 @@ HTTP/1.1 204 No Content
   |`id` | Guid| | yes | no | | .|
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
-  |`type` | Site Administrator, All Agents, Custom Role| | no | yes | |Site Administrator and All Agents are the system roles. They cannot be deleted.|
+  |`type` | string | | no | yes | | The options: systemRole, customRole; Site Administrator and All Agents are the system roles. They cannot be deleted.|
   |`memberIds` | string[] | | no | no | []| The selected agents for this role.|
-  |`member` | [Agent](#Agent)[] | yes | yes | no | | The selected agents for this role.|
-  |`permissionIds` | string[] | | no | no | [ role of all agents's permission ids ??] | Permissions assigned to this role.|
-  |`permission` | [Permission](#Permission)[] | yes | yes | no | | Permissions assigned to this role.|
+  |`members` | [Agent](#agent)[] | yes | yes | no | | The selected agents for this role.|
+  |`permissionIds` | string[] | | no | no | [ role of "all agents"'s permission ids ] | Permissions assigned to this role.|
+  |`permissions` | [Permission](#permission)[] | yes | yes | no | | Permissions assigned to this role.|
+
 
 ## Role Endpoints
 
@@ -787,92 +776,98 @@ HTTP/1.1 204 No Content
 
 #### Parameters
   Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`Member`,`Permission` |
+  |`include`|string|no||Available value:`agent`,`Permission` |
 
 #### Response
-    the response is a list of [Role](#Role) Object
+    the response is a list of [Role](#role) Object
 
 #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles?include=Permission
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    [{
-      "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "Name": "markting",
-      "Description": "yyyy-MM-dd hh:mm:ss",
-      "Type": "CustomRole",
-      "MemberIds":  [
-        "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
-        "...",
-      ],
-      "permissionIds" :
-        [
-         "201",
-         "205",
-         "...",
-        ],,
-        "permission" :[
-          {
-            "name": "Accept Chats",
-            "description": "Accept Chats",
-            "category": "Live Chat",
-          },
-          ...,
-        ]
-    },
-    ...,
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles?include=Permission
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[{
+  "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "Name": "markting",
+  "Description": "yyyy-MM-dd hh:mm:ss",
+  "Type": "CustomRole",
+  "MemberIds":  [
+    "68",
+    "...",
+  ],
+  "permissionIds" :
+    [
+      "201",
+      "205",
+      "...",
+    ],,
+    "permission" :[
+      {
+        "name": "Accept Chats",
+        "description": "Accept Chats",
+        "category": "Live Chat",
+      },
+      ...,
     ]
-    ```
+},
+...,
+]
+```
 
 ### Get a role by id
+
   `GET /api/v3/globalSettings/roles/{id}`
+
 
 #### Parameters
   Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  |`id` | Guid | yes  |  the unique id of the role |
+  |`id` | Guid | yes  |  The unique id of the role |
+
   Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`Member`,`Permission` |
+  |`include`|string|no|| Available value:`agent`,`Permission` |
 
 #### Response
-   the response is a [Role](#Role) Object
+   the response is a [Role](#role) Object
 
 #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    {
-      "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "name": "markting",
-      "description": "yyyy-MM-dd hh:mm:ss",
-      "type": "CustomRole",
-      "memberIds":  [
-        "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
-        "...",
-      ],
-      "permissionIds" :
-        [
-         "201",
-         "205",
-         "...",
-        ],
-    }
-    ```
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "markting",
+  "description": "yyyy-MM-dd hh:mm:ss",
+  "type": "CustomRole",
+  "memberIds":  [
+    "68",
+    "...",
+  ],
+  "permissionIds" :
+    [
+      "201",
+      "205",
+      "...",
+    ],
+}
+```
 
 
 ### Create a new role
@@ -885,7 +880,7 @@ Path parameters
 
 Request body 
 
-  The request body contains data with the [Role](#Role-Object) Structure
+  The request body contains data with the [Role](#role-object) Structure
 
   example:
 ```json
@@ -894,7 +889,7 @@ Request body
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "CustomRole",
       "MemberIds":  [
-        "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+        "68",
         "...",
       ],
       "permissionIds" :
@@ -908,7 +903,7 @@ Request body
 
 #### Response
 the response is:
-   [Role](#Role-Object) Object
+   [Role](#role-object) Object
 
 #### Example
 Using curl
@@ -919,7 +914,7 @@ curl -H "Content-Type: application/json" -d ' {
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "CustomRole",
       "MemberIds":  [
-        "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
+        "68",
         "...",
       ],
       "permissionIds" :
@@ -957,15 +952,18 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4
 
 
 ### Update a role
-  `PUT /api/v3/globalSettings/role/{id}`
+  `PUT /api/v3/globalSettings/roles/{id}`
 
 ####  Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the role |
+
 Request body
-  The request body contains data with the  [Role](#Role-Object) Structure
+
+  The request body contains data with the  [Role](#role-object) Structure
 
   example:
 ```json
@@ -989,7 +987,7 @@ Request body
 
 #### Response
 the response is:
-  [Role](#Role-Object) Object
+  [Role](#role-object) Object
 
 #### Example
 Using curl
@@ -1009,13 +1007,13 @@ curl -H "Content-Type: application/json" -d ' {
          "...",
         ],
     },
-    } ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+    } ' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48 
+Location: https://domain.comm100.com//api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48 
 {
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "markting",
@@ -1039,6 +1037,7 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
 
 #### Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the role id |
@@ -1058,29 +1057,32 @@ HTTP/1.1 204 No Content
 
 
 # Department
+
+You need `Manage departments` permission to manage departments.
+
   + `GET /api/v3/globalSettings/departments` - [Get a list of departments in site](#get-all-departments) include agent
   + `GET /api/v3/globalSettings/departments/{id}` - [Get a department by id](#get-a-department) include agent
   + `POST /api/v3/globalSettings/departments` - [Create a new department](#create-a-new-department)
   + `PUT /api/v3/globalSettings/departments/{id}` - [Update a department](#update-a-department)
-  + `DELETE /api/v3/globalSettings/departments/{id}` - [Delete a department](#Delete-a-department)
+  + `DELETE /api/v3/globalSettings/departments/{id}` - [Delete a department](#delete-a-department)
 
 
 ## Department Related Object Json Format
 
 ### Department Object
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   |`id` | Guid| | yes | no | | .|
   |`name` | string | | no | yes | |.|
-  |`site` | Site | | yes | no | |??.|
   |`description` | string | | no | no | |.|
   |`isAvailableInChat` | bool| | no | yes | | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
   |`isAvailableInTicketingAndMessaging` | bool| | no | yes | | When it is false, the department name will not be displayed in the ‘Assigned Department’ field. Default: true.|
   |`offlineMessageMailType` | All agents in the department, The email address(es)| | no | yes | All agents in the department | .|
   |`offlineMessageEmails` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
   |`memberIds` | string[] | | no | no | [] | The selected agents for this department.|
-  |`member` | [Agent](#Agent)[]| yes | yes | no |  | . |
-  |`shift` | [Shift](#Shift)[]| yes | yes | no |  | ??|
+  |`member` | [Agent](#agent)[]| yes | yes | no |  | . |
+  |`shift` | [Shift](#shift)[]| yes | yes | no |  | .|
 
 ## Department Endpoints
 
@@ -1089,89 +1091,93 @@ HTTP/1.1 204 No Content
 
 #### Parameters
   Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`Member` |
+  |`include`|string|no||Available value:`agent` |
 
 #### Response
-  the response is a list of [Department](#Department-Object) Object
+  the response is a list of [Department](#department-object) Object
 
 #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    [{
-      "name": "markting",
-      "site": "10000",
-      "description": "markting departments",
-      "isAvailableInChat": "yes",
-      "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "member":  [
-        "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-        "...",
-      ],
-    },
-    ...,
-    ]
-    ```
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[{
+  "name": "markting",
+  "site": "10000",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailType": "All agents in the department",
+  "offlineMessageEmails": "",
+  "member":  [
+    "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "...",
+  ],
+},
+...,
+]
+```
 
 ### get a department
   `GET /api/v3/globalSettings/departments/{id}`
 
 #### Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
-  |`id` | Guid | yes  |  the unique id of the department |
+  |`id` | Guid | yes  |  The unique id of the department |
+
 Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`Member` |
+  |`include`|string|no||Available value:`agent` |
 
   #### Response
-  the response is a [Department](#Department-Object) Object
+  the response is a [Department](#department-object) Object
 
-  #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/4487fc9d-92e6-4487-a2e8-92e68d68927777
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    {
-      "name": "markting",
-      "site": "10000",
-      "description": "markting departments",
-      "isAvailableInChat": "yes",
-      "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "memberIds":  [
-        "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-        "...",
-      ],
-    }
-    ```
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/4487fc9d-92e6-4487-a2e8-92e68d68927777
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "name": "markting",
+  "site": "10000",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailType": "All agents in the department",
+  "offlineMessageEmails": "",
+  "memberIds":  [
+    "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "...",
+  ],
+}
+```
 
 
 ### Create a new department
   `POST /api/v3/globalSettings/departments`
 
 ####  Parameters
-Path parameters
    No Path Parameters
 
 Request body 
-  The request body contains data with the [Department](#Department-Object) Structure
+  The request body contains data with the [Department](#department-object) Structure
 
   example:
 ```json
@@ -1191,7 +1197,7 @@ Request body
 
 #### Response
 the response is:
-    [Department](#Department-Object) Object
+    [Department](#department-object) Object
 
 #### Example
 Using curl
@@ -1237,11 +1243,14 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments
 
 ####  Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the department |
+
 Request body
-  The request body contains data with the  [Department](#Department-Object) Structure
+
+  The request body contains data with the  [Department](#department-object) Structure
 
   example:
 ```json
@@ -1261,7 +1270,7 @@ Request body
 
 #### Response
 the response is:
-   [Department](#Department-Object)  Object
+   [Department](#department-object)  Object
 
 #### Example
 Using curl
@@ -1304,7 +1313,9 @@ Location: https://domain.comm100.com//api/v3/globalSettings/departments/bs22qa68
   `DELETE /api/v3/globalSettings/departments/{id}`
 
 #### Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the department id |
@@ -1324,17 +1335,21 @@ HTTP/1.1 204 No Content
 
 
 # Permission
-  Permission is hard-coded.  这里跟后台是实际实现有出入，估计需要重新处理一下，添加一个获取所有权限数据的接口??
-  + `GET /api/v3/globalSettings/roles/{roleId}/permission` - [Get role permission](#Get-role-permission)
-  + `GET /api/v3/globalSettings/agents/{agentId}/permission` - [Get agent permission](#Get-agent-permission)
-  + `GET /api/v3/globalSettings/agents/{agentId}/permission:effective` - [Get a list of agent's effective permissions](#Get-agent-effective-permission) ,including the permissions of the agent and the permissions of the roles which the agent belongs to.
-  + `PUT /api/v3/globalSettings/roles/{roleId}/permission` - [Update role permission](#update-role-permission)
-  + `PUT /api/v3/globalSettings/agents/{agentId}/permission` - [Update agent permission](#update-agent-permission)
+
+  Permission is hard-coded.  
+
+  + `GET /api/v3/globalSettings/permissions` - [Get all permissions](#get-all-permissions)
+  + `GET /api/v3/globalSettings/roles/{roleId}/permissions` - [Get role permissions](#get-role-permissions)
+  + `GET /api/v3/globalSettings/agents/{agentId}/permissions` - [Get agent permissions](#get-agent-permissions)
+  + `GET /api/v3/globalSettings/agents/{agentId}/permissions:effective` - [Get a list of agent's effective permissions](#get-agent-effective-permissions) ,including the permissions of the agent and the permissions of the roles which the agent belongs to.
+  + `PUT /api/v3/globalSettings/roles/{roleId}/permissions` - [Update role permissions](#update-role-permissions)
+  + `PUT /api/v3/globalSettings/agents/{agentId}/permissions` - [Update agent permissions](#update-agent-permissions)
 
 
 ## Permission Related Object Json Format
 
 ### Permission Object
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   |`id` | integer| | yes | no | 0| .|
@@ -1344,113 +1359,152 @@ HTTP/1.1 204 No Content
 
 ## Permission Endpoints
 
-### Get role permission
-  `GET /api/v3/globalSettings/roles/{roleId}/permission`
+### Get all permission
+  `GET /api/v3/globalSettings/permissions`
+
+#### Parameters
+  No parameters
+
+#### Response
+  the response is a list of [Permission](#permission) Objects
+
+#### Example
+  Using curl
+  ```
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/permissions
+  ```
+  Response
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json[
+  {
+    "id": "201",
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
+  ]
+  ```
+
+
+
+### Get role permissions
+  `GET /api/v3/globalSettings/roles/{roleId}/permissions`
 
 #### Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`roleId` | Guid | yes  |  the unique id of the role |
 
 #### Response
-    the response is a [Permission](#Permission) Object
+
+    the response is a [Permission](#permission) Object
   
 
 #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permission
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json[
-    {
-      "id": "201",
-      "name": "Accept Chats",
-      "description": "Accept Chats",
-      "category": "Live Chat",
-    },
-    ...,
-    ]
-    ```
+  Using curl
+  ```
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
+  ```
+  Response
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json[
+  {
+    "id": "201",
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
+  ]
+  ```
 
 
-### Get agent permission
-  `GET /api/v3/globalSettings/agents/{agentId}/permission`
+### Get agent permissions
+  `GET /api/v3/globalSettings/agents/{agentId}/permissions`
 
 #### Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`agentId` | Guid | yes  |  the unique id of the agent |
 
   #### Response
-  the response is a list of [Permission](#Permission) Objects
+
+  the response is a list of [Permission](#permission) Objects
   
 
   #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/4487fc9d-92e6-4487-a2e8-92e68d68927777/permission
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json[
-    {
-      "id": "201",
-      "name": "Accept Chats",
-      "description": "Accept Chats",
-      "category": "Live Chat",
-    },
-    ...,
-    ]
-    ```
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json[
+{
+  "id": "201",
+  "name": "Accept Chats",
+  "description": "Accept Chats",
+  "category": "Live Chat",
+},
+...,
+]
+```
 
-### Get agent effective permission
-  `GET /api/v3/globalSettings/agents/{agentId}/permission:effective`
+### Get agent effective permissions
+
+  `GET /api/v3/globalSettings/agents/{agentId}/permissions:effective`
 
 #### Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`agentId` | Guid | yes  |  the unique id of the agent |
 
   #### Response
-  the response is a list of [Permission](#Permission) Objects
+
+  the response is a list of [Permission](#permission) Objects
   
 
   #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/4487fc9d-92e6-4487-a2e8-92e68d68927777/permission:effective
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json[
-    {
-      "id": "201",
-      "name": "Accept Chats",
-      "description": "Accept Chats",
-      "category": "Live Chat",
-    },
-    ...,
-    ]
-    ```
+  Using curl
+  ```
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions:effective
+  ```
+  Response
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json[
+  {
+    "id": "201",
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
+  ]
+  ```
 
-### update role permission
- `PUT /api/v3/globalSettings/roles/{roleId}/permission`
+### update role permissions
+
+ `PUT /api/v3/globalSettings/roles/{roleId}/permissions`
 
 ####  Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`roleId` | Guid | yes  |  the unique id of the role |
 Request body
-  The request body contains data with the  [Permission](#Permission-Object) Id list
+  The request body contains data with the  [Permission](#permission-object) Id list
 
   example:
 ```json
@@ -1463,7 +1517,8 @@ Request body
 
 #### Response
 the response is:
-  role [Permission](#Permission-Object) Object list
+
+  role [Permission](#permission-object) Object list
 
 #### Example
 Using curl
@@ -1472,13 +1527,13 @@ curl -H "Content-Type: application/json" -d '[
   "201",
   "205",
   "...",
-]' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permission
+]' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permission
+Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
 [{
       "id": "201",
       "name": "Accept Chats",
@@ -1489,16 +1544,19 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4
 ]
 ```
 
-### update agent permission
-`PUT /api/v3/globalSettings/agents/{agentId}/permission`
+### update agent permissions
+`PUT /api/v3/globalSettings/agents/{agentId}/permissions`
 
 ####  Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`agentId` | Guid | yes  |  the unique id of the agent |
+
 Request body
-  The request body contains data with the  [Permission](#Permission-Object) Id list
+
+  The request body contains data with the  [Permission](#permission-object) Id list
 
   example:
 ```json
@@ -1511,7 +1569,7 @@ Request body
 
 #### Response
 the response is:
-   agent [Permission](#Permission-Object) Object list
+   agent [Permission](#permission-object) Object list
 
 #### Example
 Using curl
@@ -1520,13 +1578,13 @@ curl -H "Content-Type: application/json" -d '[
   "201",
   "205",
   "...",
-]' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/4487fc9d-92e6-4487-a2e8-92e68d68927777/permission
+]' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48?include=Permission
+Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6-4487-a2e8-8234fc9d1f48/permissions
 [{
       "id": "201",
       "name": "Accept Chats",
@@ -1559,12 +1617,12 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | yes | | Name of the shift. |
-  | `timeZone` | string  | | no | no | | Defaults to UTC time, format as ±hh:mm. |
-  | `holidays` | [Holiday](#Holiday-Object)[]  | | no | no | | |
+  | `timeZone` | string  | | no | no | | defaults to UTC time, format as ±hh:mm. |
+  | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
   |`agentIds` | Guid[] | | yes | no | | |
   |`departmentIds` | Guid[] | | yes | no | | |
-  | `agents` | [Agent](#Agent-Object)[] | yes | no | no | | |
-  | `departments` | [Department](#Department-Object)[] | yes | no | no | | |
+  | `agents` | [Agent](#Agent-Object)[] | yes | N/A | N/A | | |
+  | `departments` | [Department](#Department-Object)[] | yes | N/A | N/A | | |
   | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
 
 ### Holiday Object
@@ -1574,7 +1632,8 @@ Location: https://domain.comm100.com//api/v3/globalSettings/agents/bs22qa68-92e6
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `name` | string  | no | yes | | The name of holiday. |
-  | `holiday` | date  | no | yes | | The date of the holiday. |
+  | `holiday` | DateTime  | no | yes | | The date of the holiday. |
+
 
 ### Working Hours Object
 
@@ -1603,7 +1662,7 @@ Query string
 
 #### Response
 
-the response is: list of [Shift](#Shift-Object) Object
+the response is: list of [Shift](#shift-object) Object
 
 #### Example
 
@@ -1677,7 +1736,7 @@ Query string
 
 #### Response
 
-the response is: [Shift](#Shift-Object) Object
+the response is: [Shift](#shift-object) Object
 
 #### Example
 
@@ -1742,7 +1801,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Shift](#Shift-Object) Object
+the response is: [Shift](#shift-object) Object
 
 #### Example
 
@@ -1797,7 +1856,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Shift](#Shift-Object) Object
+the response is: [Shift](#shift-object) Object
 
 #### Example
 
@@ -1846,7 +1905,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Shift](#Shift-Object) structure
+  The request body contains data with the [Shift](#shift-object) structure
 
 example:
 ```Json
@@ -1874,7 +1933,7 @@ example:
 
 #### Response
 
-the response is: [Shift](#Shift-Object) Object
+the response is: [Shift](#shift-object) Object
 
 #### Example
 
@@ -1945,7 +2004,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Shift](#Shift-Object) structure
+  The request body contains data with the [Shift](#shift-object) structure
 
 example:
 ```Json
@@ -1973,7 +2032,7 @@ example:
 
 #### Response
 
-the response is: [Shift](#Shift-Object) Object
+the response is: [Shift](#shift-object) Object
 
 #### Example
 
@@ -2058,16 +2117,16 @@ Response
 ```
 
 # Contact
- 根据ssoId 查询 contact (查看 zendesk api)???
- + `GET /api/v3/globalSettings/contacts` - [Get a list of contacts in site](#get-all-contacts)  通过 query string 来实现复杂查询
-  + `GET /api/v3/globalSettings/contacts/{id}` - [Get a contact by id](#get-an-contact)
-  + `POST /api/v3/globalSettings/contacts` - [Create a new contact](#create-a-new-contact)
-  + `PUT /api/v3/globalSettings/contacts/{id}` - [Update a contact](#update-a-contact)
-  + `DELETE /api/v3/globalSettings/contacts/{id}` - [Delete a contact](#delete-a-contact)
+ + `GET /api/v3/globalSettings/contacts` - [Get a list of contacts in site](#get-all-contacts)  
+ + `GET /api/v3/globalSettings/contacts/{id}` - [Get a contact by id](#get-an-contact)
+ + `POST /api/v3/globalSettings/contacts` - [Create a new contact](#create-a-new-contact)
+ + `PUT /api/v3/globalSettings/contacts/{id}` - [Update a contact](#update-a-contact)
+ + `DELETE /api/v3/globalSettings/contacts/{id}` - [Delete a contact](#delete-a-contact)
 
   ## Contact Related Object Json Format
 
 ### Contact Object
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   |`id` | Guid| | yes | no | | .|
@@ -2076,20 +2135,19 @@ Response
   |`firstName` | string | | no | yes | |.|
   |`lastName` | string | | no | yes | |.|
   |`alias` | string | | no | no | |.|
-  |`avatar` | Image| | no | yes | |.|
+  |`avatar` | string| | no | yes | | image base64 data code.|
   |`title` | string | | no | no | |.|
   |`company` | string  | | no | no | |.|
   |`fax` | string  | | no | no | |.|
-  |`phone` | string  | | no | no | | DB document is using ‘mobile’.|
+  |`phone` | string  | | no | no | | |
   |`mailingAddress` | string  | | no | no | |.|
   |`city` | string | | no | no | |.|
-  |`stateOrProvince` | string  | | no | no | |.|
+  |`stateOrProvince` | string  | | no | no | |.|time
   |`countryOrRegion` | string  | | no | no | |.|
   |`postalOrZipCode` | string  | | no | no | |.|
-  |`timeZone` | enum | | no | yes | |.|
-  |`createdTime` | Date | | yes | no | current date time | When the contact is created.|
-  |`lastUpdatedTime` | Date| | yes | no |current date time |.|
-  |`contactIdentity` | [Contact Identity](#Contact-Identity-Object)| yes | yes | no | |Contact Identity.|
+  |`timeZone` | string | | no | yes | | defaults to UTC time, format as ±hh:mm.|
+  |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
+  |`lastUpdatedTime` | DateTime | | N/A | N/A | |.|
 
 ## Contact Endpoints
 
@@ -2098,98 +2156,95 @@ Response
   `GET /api/v3/globalSettings/contacts`
 
 #### Parameters
- Query string
+   Query string
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`ContactIdentity` |
-   如何实现复杂查询?? 有哪些键值??
+  |`name` | string | no  |  | Contact Name. |
+  |`title`|string|no|  | The page index of the query. |
+  |`contactIdentityName` | string | no  |  | Contact identity name. |
+  |`contactIdentityType` | string | no  |  | Contact identity type. |
 
-  #### Response
-    the response is a list of [Contact](#Contact-Object) Objects
   
 
-  #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json[
-    {
-      "name": "Vincent", 
-      "description": "Accept Chats",
-      "firstName": "Vincent",
-      "lastName": "Crabbe", 
-      "alias": "", 
-      "avatar": {
-        "name": "bot.png",
-        "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
-      }, 
-      "title": "CEO", 
-      "company": "BMW", 
-      ...
-    },
-    ...,
-    ]
-    ```
+  #### Response
+    the response is a list of [Contact](#contact-object) Objects
+  
+
+#### Example
+  Using curl
+  ```
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts
+  ```
+  Response
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json[
+  {
+    "name": "Vincent", 
+    "description": "Accept Chats",
+    "firstName": "Vincent",
+    "lastName": "Crabbe", 
+    "alias": "", 
+    "avatar": "data:image/gif;base64,...", 
+    "title": "CEO", 
+    "company": "BMW", 
+    ...
+  },
+  ...,
+  ]
+  ```
 
 
 ### Get an contact
   `GET /api/v3/globalSettings/contacts/{id}`
 
 #### Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the agent |
 
- Query string
-  | Name  | Type | Required  | Default | Description |     
-  | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`ContactIdentity` |
-
 
 #### Response
-    the response is an [Contact](#Contact-Object) Object
+    the response is an [Contact](#contact-object) Object
   
- #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts/42dwdaww-92e6-4487-a2e8-92e68d6892e6
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    {
-      "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-      "name": "Vincent", 
-      "description": "Accept Chats",
-      "firstName": "Vincent",
-      "lastName": "Crabbe", 
-      "alias": "", 
-      "avatar": {
-        "name": "bot.png",
-        "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
-      }, 
-      "title": "CEO", 
-      "company": "BMW", 
-      ...
-    }
-    ```
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "name": "Vincent", 
+  "description": "Accept Chats",
+  "firstName": "Vincent",
+  "lastName": "Crabbe", 
+  "alias": "", 
+  "avatar": "data:image/gif;base64,...", 
+  "title": "CEO", 
+  "company": "BMW", 
+  ...
+}
+```
 
 ### Create a new contact
 
   `POST /api/v3/globalSettings/contacts`
 
 ####  Parameters
-Path parameters
-   No Path Parameters
+
+   No Parameters
 
 Request body 
-  The request body contains data with the [Contact](#Contact-Object) Structure
+
+  The request body contains data with the [Contact](#contact-object) Structure
 
 example:
 ```json
@@ -2200,10 +2255,7 @@ example:
       "firstName": "Vincent",
       "lastName": "Crabbe", 
       "alias": "", 
-      "avatar": {
-        "name": "bot.png",
-        "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
-      }, 
+      "avatar": "data:image/gif;base64,...", 
       "title": "CEO", 
       "company": "BMW", 
       ...
@@ -2211,8 +2263,9 @@ example:
 ```
 
 #### Response
+
 the response is:
-  [Contact](#Contact-Object) Object
+  [Contact](#contact-object) Object
 
 #### Example
 Using curl
@@ -2223,10 +2276,7 @@ curl -H "Content-Type: application/json" -d '{
       "firstName": "Vincent",
       "lastName": "Crabbe", 
       "alias": "", 
-      "avatar": {
-        "name": "bot.png",
-        "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
-      }, 
+      "avatar":"data:image/gif;base64,...", 
       "title": "CEO", 
       "company": "BMW", 
       ...
@@ -2244,10 +2294,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/42dwdaww-92e
   "firstName": "Vincent",
   "lastName": "Crabbe", 
   "alias": "", 
-  "avatar": {
-    "name": "bot.png",
-    "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
-  }, 
+  "avatar": "data:image/gif;base64,...", 
   "title": "CEO", 
   "company": "BMW", 
   ...
@@ -2258,12 +2305,16 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/42dwdaww-92e
   `PUT /api/v3/globalSettings/contacts/{id}`
 
 ####  Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the contact |
+
 Request body 
-  The request body contains data with the [Contact](#Contact-Object) Structure
+
+  The request body contains data with the [Contact](#contact-object) Structure
 
   example:
 ```json
@@ -2274,10 +2325,7 @@ Request body
   "firstName": "Vincent",
   "lastName": "Crabbe", 
   "alias": "", 
-  "avatar": {
-    "name": "bot.png",
-    "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
-  }, 
+  "avatar": "data:image/gif;base64,...", 
   "title": "CEO", 
   "company": "BMW", 
   ...
@@ -2286,7 +2334,7 @@ Request body
 
 #### Response
 the response is:
-  [Contact](#Contact-Object) Object
+  [Contact](#contact-object) Object
 
 #### Example
 Using curl
@@ -2297,10 +2345,7 @@ curl -H "Content-Type: application/json" -d '{
   "firstName": "Vincent",
   "lastName": "Crabbe", 
   "alias": "", 
-  "avatar": {
-    "name": "bot.png",
-    "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
-  }, 
+  "avatar": "data:image/gif;base64,...", 
   "title": "CEO", 
   "company": "BMW", 
   ...
@@ -2327,7 +2372,9 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/42dwdaww-92e
   `DELETE /api/v3/globalSettings/contacts/{id}`
 
 #### Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the agent id |
@@ -2340,6 +2387,7 @@ Using curl
 ```
 curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contacts/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
+
 Response
 ```json
 HTTP/1.1 204 No Content
@@ -2355,11 +2403,12 @@ HTTP/1.1 204 No Content
  ## Contact Identity Related Object Json Format
 
 ### Contact Identity Object
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   |`id` | Guid| | yes | no | | .|
   |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
-  |`type` | enum| | no | yes | | Visitor, Email Address, SMS Number, Facebook Account, Twitter Account, WeChat Account, SSO User ID, External ID, WhatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
+  |`type` | string| | no | yes | | the options of the value are:  visitor, emailAddress, SMSNumber, facebookAccount, twitterAccount, weChatAccount, SSOUserID, externalID, whatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
   |`value` | string  | | no | yes | | The value of the identity.|
   |`avatarURL` | string | | no | no | | The avatar used in a certain type, like the avatar of a user in Facebook. Not every type has avatar, for example, SMS Number doesn’t have one.|
   |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets of the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
@@ -2372,36 +2421,39 @@ HTTP/1.1 204 No Content
   `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities`
 
 #### Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`contactId` | Guid | yes  |  the unique id of the contact of contact Identities belong|
 
 
   #### Response
-    the response is a list of [Contact Identity](#Contact-Identity-Object) Objects
+
+    the response is a list of [Contact Identity](#contact-identity-object) Objects
   
-  #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts/42dwdaww-92e6-4487-a2e8-92e68d6892e6/contactIdentities
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json[
-    {
-      "name": "Vincent", 
-      "type": "Visitor", 
-      "value": "??", 
-      "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-      "infoURL": "", 
-      "screenName": "@Comm100Corp", 
-      "originalContactPageURL": "", 
-    },
-    ...,
-    ]
-    ```
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts/42dwdaww-92e6-4487-a2e8-92e68d6892e6/contactIdentities
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json[
+{
+  "name": "Vincent", 
+  "type": "Visitor", 
+  "value": "", 
+  "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
+  "infoURL": "", 
+  "screenName": "@Comm100Corp", 
+  "originalContactPageURL": "", 
+},
+...,
+]
+```
 
 
 
@@ -2410,52 +2462,58 @@ Path parameters
 
 #### Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the contact Identitie |
 
   #### Response
-    the response is an [Contact Identity](#Contact-Identity-Object) Object
+
+    the response is an [Contact Identity](#contact-identity-object) Object
   
-  #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contactIdentities/42dwdaww-92e6-4487-a2e8-92e68d6892e6
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    {
-      "name": "Vincent", 
-      "type": "Visitor", 
-      "value": "??", 
-      "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-      "infoURL": "", 
-      "screenName": "@Comm100Corp", 
-      "originalContactPageURL": "", 
-    }
-    ```
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contactIdentities/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "name": "Vincent", 
+  "type": "Visitor", 
+  "value": "", 
+  "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
+  "infoURL": "", 
+  "screenName": "@Comm100Corp", 
+  "originalContactPageURL": "", 
+}
+```
 
 
 ### create a new contactIdentity
   `POST /api/v3/globalSettings/contacts/{contactId}/contactIdentities`
 
 ####  Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`contactId` | Guid | yes  |  the unique id of the contact of contact Identities belong|
 
 Request body 
-  The request body contains data with the [Contact Identity](#Contact-Identity-Object) Structure
+
+  The request body contains data with the [Contact Identity](#contact-identity-object) Structure
 
   example:
 ```json
  {
     "name": "Vincent", 
     "type": "Visitor", 
-    "value": "??", 
+    "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
     "screenName": "@Comm100Corp", 
@@ -2464,16 +2522,18 @@ Request body
 ```
 
 #### Response
+
 the response is:
-  [Contact Identity](#Contact-Identity-Object) Object
+  [Contact Identity](#contact-identity-object) Object
 
 #### Example
+
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
     "name": "Vincent", 
     "type": "Visitor", 
-    "value": "??", 
+    "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
     "screenName": "@Comm100Corp", 
@@ -2489,7 +2549,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/42d
     "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "name": "Vincent", 
     "type": "Visitor", 
-    "value": "??", 
+    "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
     "screenName": "@Comm100Corp", 
@@ -2498,22 +2558,27 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/42d
 ```
 
 ### Update an contactIdentity
+
   `PUT /api/v3/globalSettings/contactIdentities/{id}`
 
 ####  Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the contact Identitie |
+
 Request body 
-  The request body contains data with the [Contact Identity](#Contact-Identity-Object) Structure
+
+  The request body contains data with the [Contact Identity](#contact-identity-object) Structure
 
   example:
 ```json
  {
     "name": "Vincent", 
     "type": "Visitor", 
-    "value": "??", 
+    "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
     "screenName": "@Comm100Corp", 
@@ -2522,8 +2587,9 @@ Request body
 ```
 
 #### Response
+
 the response is:
-  [Contact Identity](#Contact-Identity-Object) Object
+  [Contact Identity](#contact-identity-object) Object
 
 #### Example
 Using curl
@@ -2531,7 +2597,7 @@ Using curl
 curl -H "Content-Type: application/json" -d ' {
     "name": "Vincent", 
     "type": "Visitor", 
-    "value": "??", 
+    "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
     "screenName": "@Comm100Corp", 
@@ -2546,7 +2612,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/42d
  {
     "name": "Vincent", 
     "type": "Visitor", 
-    "value": "??", 
+    "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
     "screenName": "@Comm100Corp", 
@@ -2558,7 +2624,9 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/42d
   `DELETE /api/v3/globalSettings/contactIdentities/{id}`
 
 #### Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the contact identity id |
@@ -2610,7 +2678,7 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: list of [Visitor](#Visitor-Object) Object
+the response is: list of [Visitor](#visitor-object) Object
 
 #### Example
 
@@ -2652,7 +2720,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Visitor](#Visitor-Object) Object
+the response is: [Visitor](#visitor-object) Object
 
 #### Example
 
@@ -2752,7 +2820,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -2783,7 +2851,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Public Canned Message Category](#Public-Canned-Message-Category-Object) structure
+  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure
 
 example:
 ```Json
@@ -2795,7 +2863,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -2835,7 +2903,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Public Canned Message Category](#Public-Canned-Message-Category-Object) structure
+  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure
 
 example:
 ```Json
@@ -2847,7 +2915,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -2894,10 +2962,9 @@ Using curl
 ```
 curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
 ```
-
 Response
-```Json
-  HTTP/1.1 204 No Content
+```json
+HTTP/1.1 204 No Content
 ```
 
 # Public Canned Message
@@ -2924,7 +2991,7 @@ Response
   | `IfSetHTMLMessageForEmail` | boolean  | | no | no | false | |
   | `HTMLMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | yes | | |
-  | `category` | [Public Canned Message Category](#Public-Canned-Message-Category-Object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
+  | `category` | [Public Canned Message Category](#public-Canned-Message-Category-object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
   | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
@@ -2945,7 +3012,7 @@ Query string
 
 #### Response
 
-the response is: list of [Public Canned Message](#Public-Canned-Message-Object) Object
+the response is: list of [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3002,7 +3069,7 @@ Query string
 
 #### Response
 
-the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3044,7 +3111,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Public Canned Message](#Public-Canned-Message-Object) structure
+  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure
 
 example:
 ```Json
@@ -3061,7 +3128,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3111,7 +3178,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Public Canned Message](#Public-Canned-Message-Object) structure
+  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure
 
 example:
 ```Json
@@ -3128,7 +3195,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message](#Public-Canned-Message-Object) Object
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3224,7 +3291,7 @@ Response
 
 #### Response
 
-the response is: list of [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
+the response is: list of [Private Canned Message Category](#private-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -3264,7 +3331,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
+the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -3295,7 +3362,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Private Canned Message Category](#Private-Canned-Message-Category-Object) structure
+  The request body contains data with the [Private Canned Message Category](#private-Canned-Message-Category-object) structure
 
 example:
 ```Json
@@ -3307,7 +3374,7 @@ example:
 
 #### Response
 
-the response is: [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
+the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -3324,7 +3391,6 @@ Response
 HTTP/1.1 201 Created
 Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
-
 {
   "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
   "name": "testtest111111",
@@ -3347,7 +3413,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Private Canned Message Category](#Private-Canned-Message-Category-Object) structure
+  The request body contains data with the [Private Canned Message Category](#private-Canned-Message-Category-object) structure
 
 example:
 ```Json
@@ -3359,7 +3425,7 @@ example:
 
 #### Response
 
-the response is: [Private Canned Message Category](#Private-Canned-Message-Category-Object) Object
+the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -3434,7 +3500,7 @@ HTTP/1.1 204 No Content
   | `IfSetHTMLMessageForEmail` | boolean  | | no | no | false | |
   | `HTMLMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | no | | |
-  | `category` | [Private Canned Message Category](#Private-Canned-Message-Category-Object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
+  | `category` | [Private Canned Message Category](#private-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
   | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
@@ -3455,7 +3521,7 @@ Query string
 
 #### Response
 
-the response is: list of [Private Canned Message](#Private-Canned-Message-Object) Object
+the response is: list of [Private Canned Message](#private-Canned-Message-object) Object
 
 #### Example
 
@@ -3512,7 +3578,7 @@ Query string
 
 ##### Response
 
-the response is: [Private Canned Message](#Private-Canned-Message-Object) Object
+the response is: [Private Canned Message](#private-Canned-Message-object) Object
 
 #### Example
 
@@ -3554,7 +3620,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Private Canned Message](#Private-Canned-Message-Object) structure
+  The request body contains data with the [Private Canned Message](#private-Canned-Message-object) structure
 
 example:
 ```Json
@@ -3571,7 +3637,7 @@ example:
 
 #### Response
 
-the response is: [Private Canned Message](#Private-Canned-Message-Object) Object
+the response is: [Private Canned Message](#private-Canned-Message-object) Object
 
 #### Example
 
@@ -3621,7 +3687,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Private Canned Message](#Private-Canned-Message-Object) structure
+  The request body contains data with the [Private Canned Message](#private-Canned-Message-object) structure
 
 example:
 ```Json
@@ -3638,7 +3704,7 @@ example:
 
 #### Response
 
-the response is: [Private Canned Message](#Private-Canned-Message-Object) Object
+the response is: [Private Canned Message](#private-Canned-Message-object) Object
 
 #### Example
 
@@ -3744,7 +3810,7 @@ Response
 
 #### Response
 
-the response is: list of [Agent Away Status](#Agent-Away-Status-Object) Object
+the response is: list of [Agent Away Status](#agent-Away-Status-object) Object
 
 #### Example
 
@@ -3784,7 +3850,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Agent Away Status](#Agent-Away-Status-Object) Object
+the response is: [Agent Away Status](#agent-Away-Status-object) Object
 
 #### Example
 
@@ -3815,7 +3881,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Agent Away Status](#Agent-Away-Status-Object) structure
+  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure
 
 example:
 ```Json
@@ -3828,7 +3894,7 @@ example:
 
 #### Response
 
-the response is: [Agent Away Status](#Agent-Away-Status-Object) Object
+the response is: [Agent Away Status](#agent-Away-Status-object) Object
 
 #### Example
 
@@ -3869,7 +3935,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Agent Away Status](#Agent-Away-Status-Object) structure
+  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure
 
 example:
 ```Json
@@ -3882,7 +3948,7 @@ example:
 
 #### Response
 
-the response is: [Agent Away Status](#Agent-Away-Status-Object) Object
+the response is: [Agent Away Status](#agent-Away-Status-object) Object
 
 #### Example
 
@@ -3937,7 +4003,11 @@ Response
 ```
 
 # Whitelisted Login IP Range
+
+You need `Manage Security` permission to manage whitelisted login ip restrictions.
+
    When Login IP Whitelist is enabled, site administrator can add IP range for this site and only agents within the IP range can log in successfully.
+
    + `GET /api/v3/globalSettings/whitelistedLoginIPRanges` - [Get a list of whitelistedLoginIPRanges in site](#get-all-whitelisted-Login-IP-Ranges) 
   + `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [Get a whitelistedLoginIPRange by id](#get-a-whitelisted-Login-IP-Ranges) 
   + `POST /api/v3/globalSettings/whitelistedLoginIPRanges` - [create a new whitelistedLoginIPRange](#create-a-new-whitelisted-Login-IP-Range)
@@ -3947,11 +4017,13 @@ Response
  ## Whitelisted Login IP Range Related Object Json Format
 
 ### Whitelisted Login IP Range Object
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
+  |`id` | guid | | N/A | N/A | | |
   |`iPFrom` | string | | no | yes | | Where an IP range starts.|
   |`iPTo` | string | | no | yes | | Where an IP range ends.|
-  |`createdTime` | Date| | yes | no | current date time |.|
+  |`createdTime` | DateTime | | N/A | N/A | UTC |.|
 
 ## Whitelisted Login IP Range Endpoints
 
@@ -3962,64 +4034,67 @@ Response
   No parameters
 
   #### Response
-    the response is a list of [Whitelisted Login IP Range](#Whitelisted-Login-IP-Range-Object) Objects
+    the response is a list of [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Objects
 
-  #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json[
-    {
-      "iPFrom": "201.195.21.5", 
-      "iPTo": "201.195.21.8", 
-      "createdTime": "2020-01-01", 
-    },
-    ...,
-    ]
-    ```
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json[
+{
+  "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "iPFrom": "201.195.21.5", 
+  "iPTo": "201.195.21.8", 
+  "createdTime": "2020-01-01", 
+},
+...,
+]
+```
 
 ### Get a whitelisted Login IP Ranges
   `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}`
 
 #### Parameters
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the whitelisted Login IP Ranges |
 
 #### Response
-    the response is a [Whitelisted Login IP Range](#Whitelisted-Login-IP-Range-Object) Object
+
+    the response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
   
 #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-     {
-      "iPFrom": "201.195.21.5", 
-      "iPTo": "201.195.21.8", 
-      "createdTime": "2020-01-01", 
-    }
-    ```
-
-
-
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+  {
+  "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "iPFrom": "201.195.21.5", 
+  "iPTo": "201.195.21.8", 
+  "createdTime": "2020-01-01", 
+  }
+```
 ### Create a new whitelisted Login IP Range
+
   `POST /api/v3/globalSettings/whitelistedLoginIPRanges`
 
 ####  Parameters
+
 No parameters
 
 Request body 
-  The request body contains data with the [Whitelisted Login IP Range](#Whitelisted-Login-IP-Range-Object) Structure
+  The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Structure
 
   example:
 ```json
@@ -4031,10 +4106,12 @@ Request body
 ```
 
 #### Response
+
 the response is:
-  [Whitelisted Login IP Range](#Whitelisted-Login-IP-Range-Object) Object
+  [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
 
 #### Example
+
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
@@ -4049,6 +4126,7 @@ HTTP/1.1 201 Created
 Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
+    "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "iPFrom": "201.195.21.5", 
     "iPTo": "201.195.21.8", 
     "createdTime": "2020-01-01", 
@@ -4060,12 +4138,16 @@ Location: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRan
   `PUT /api/v3/globalSettings/whitelistedLoginIPRanges/{id}`
 
 ####  Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the unique id of the whitelisted Login IP Range |
+
 Request body 
-  The request body contains data with the [Whitelisted Login IP Range](#Whitelisted-Login-IP-Range-Object) Structure
+
+  The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Structure
 
   example:
 ```json
@@ -4078,7 +4160,7 @@ Request body
 
 #### Response
 the response is:
-  [Whitelisted Login IP Range](#Whitelisted-Login-IP-Range-Object) Object
+  [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
 
 #### Example
 Using curl
@@ -4091,21 +4173,23 @@ curl -H "Content-Type: application/json" -d ' {
 ```
 Response
 ```json
-HTTP/1.1 201 Created
-Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+  HTTP/1.1 200 OK
+  Content-Type: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
-      "iPFrom": "201.195.21.5", 
-      "iPTo": "201.195.21.8", 
-      "createdTime": "2020-01-01", 
-    }
+    "iPFrom": "201.195.21.5", 
+    "iPTo": "201.195.21.8", 
+    "createdTime": "2020-01-01", 
+  }
 ```
 
 ### Delete a whitelisted Login IP Range
+
   `DELETE /api/v3/globalSettings/whitelistedLoginIPRanges/{id}`
 
 #### Parameters
+
 Path parameters
+
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   |`id` | Guid | yes  |  the whitelisted Login IP Range id |
@@ -4141,13 +4225,13 @@ HTTP/1.1 204 No Content
   | - | - | - | :-: | :-: | :-: | - | 
   | `isEnabled` | boolean  | | no | N/A | false | |
   | `protocolType` | string |  | no | N/A | | including `SAMLSSO` and `JWTSSO`. |
-  | `SAMLSSOURL` | string |  | no | N/A | |Only available when Type is SAML SSO. |
-  | `SAMLLogoutURL` | string |  | no | N/A | | Only available when Type is SAML SSO. |
-  | `SAMLCertificateFile` | string |  | no | N/A | | File key of SAML certificate file, Only available when Type is SAML SSO. |
-  | `SAMLCertificateFileName` | string |  | no | N/A | | Only available when Type is SAML SSO. |
-  | `JWTLoginURL` | string |  | no | N/A | | Only available when Type is JWT SSO. |
-  | `JWTLogoutURL` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
-  | `JWTSecret` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
+  | `samlSSOURL` | string |  | no | N/A | |Only available when Type is SAML SSO. |
+  | `samlLogoutURL` | string |  | no | N/A | | Only available when Type is SAML SSO. |
+  | `samlCertificateFile` | string |  | no | N/A | | File key of SAML certificate file, Only available when Type is SAML SSO. |
+  | `samlCertificateFileName` | string |  | no | N/A | | Only available when Type is SAML SSO. |
+  | `jwtLoginURL` | string |  | no | N/A | | Only available when Type is JWT SSO. |
+  | `jwtLogoutURL` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
+  | `jwtSecret` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
 
 ## Agent SSO Endpoints
 
@@ -4161,7 +4245,7 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: [Agent SSO](#Agent-SSO-Object) Object
+the response is: [Agent SSO](#agent-SSO-object) Object
 
 #### Example
 
@@ -4178,10 +4262,10 @@ Content-Type:  application/json
 {
     "isEnabled": true,
     "protocolType": "SAMLSSO",
-    "SAMLSSOURL": "",
-    "SAMLLogoutURL": "",
-    "SAMLCertificateFile": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
-    "SAMLCertificateFileName": "certi.pl",
+    "samlSSOURL": "",
+    "samlLogoutURL": "",
+    "samlCertificateFile": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
+    "samlCertificateFileName": "certi.pl",
 }
 ```
 
@@ -4193,22 +4277,22 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Agent SSO](#Agent-SSO-Object) structure
+  The request body contains data with the [Agent SSO](#agent-SSO-object) structure
 
  example:
 ```Json
   {
     "isEnabled": true,
     "protocolType": "JWTSSO",
-    "JWTLoginURL": "",
-    "JWTLogoutURL": "",
-    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+    "jwtLoginURL": "",
+    "jwtLogoutURL": "",
+    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
   }
 ```
 
 #### Response
 
-the response is: [Agent SSO](#Agent-SSO-Object) Object
+the response is: [Agent SSO](#agent-SSO-object) Object
 
 #### Example
 Using curl
@@ -4216,9 +4300,9 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "isEnabled": true,
     "protocolType": "JWTSSO",
-    "JWTLoginURL": "",
-    "JWTLogoutURL": "",
-    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+    "jwtLoginURL": "",
+    "jwtLogoutURL": "",
+    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
   }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentSSO
 ```
 Response
@@ -4229,9 +4313,9 @@ Content-Type:  application/json
 {
     "isEnabled": true,
     "protocolType": "JWTSSO",
-    "JWTLoginURL": "",
-    "JWTLogoutURL": "",
-    "JWTSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+    "jwtLoginURL": "",
+    "jwtLogoutURL": "",
+    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
 }
 ```
 
@@ -4256,8 +4340,8 @@ Content-Type:  application/json
   | `changePasswordURL` | string  | | no | N/A | | |
   | `certificateFile` | string  | | no | N/A | | File key of certificate file. |
   | `certificateFileName` | string  | | no | N/A | | |
-  | `fieldMappings` | [Field Mapping](#Field-Mapping-Object)[]  | | no | N/A | | |
-  | `perCampaign` | [Visitor SSO Campaign](#Visitor-SSO-Campaign-Object)[]  |  | no | N/A | | |
+  | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | N/A | | |
+  | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | N/A | | |
 
 ### Field Mapping Object
 
@@ -4275,7 +4359,7 @@ Visitor SSO Campaign is represented as simple flat JSON objects with the followi
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
-  | `campaign` | [Campaign](#Campaign-Object)  | yes | N/A | N/A | | Available only when campaign is included  |
+  | `campaign` | [Campaign](#campaign-object)  | yes | N/A | N/A | | Available only when campaign is included  |
   | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
   | `isPrechatFromSkipped` | boolean |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
 
@@ -4295,7 +4379,7 @@ Query string
 
 #### Response
 
-the response is: [Visitor SSO](#Visitor-SSO-Object) Object
+the response is: [Visitor SSO](#visitor-SSO-object) Object
 
 #### Example
 
@@ -4349,7 +4433,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Visitor SSO](#Visitor-SSO-Object) structure
+  The request body contains data with the [Visitor SSO](#visitor-SSO-object) structure
 
 example:
 ```Json
@@ -4382,7 +4466,7 @@ example:
 
 #### Response
 
-the response is: [Visitor SSO](#Visitor-SSO-Object) Object
+the response is: [Visitor SSO](#visitor-SSO-object) Object
 
 #### Example
 Using curl
@@ -4446,29 +4530,56 @@ Response
 ```
 
 # Audit Log
-+ `GET /api/v3/globalSettings/auditLogs` - [Get audit logs list](#Get-audit-logs-list) include agent
+  You need `View Audit Log` permission to view audit logs.
+
+  + `GET /api/v3/globalSettings/auditLogs` - [Get audit logs list](#get-audit-logs-list) include agent
 
  ## Audit Log Object Json Format
 
 ### Audit Log Object
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | integer | | yes | no | | .| 
-  |`category` | Live Chat, Ticketing & Messaging, Bot, My Account Global Settings, Knowledge Base| | yes | no | |.|
-  |`createdTime` | Date| | yes | no | current date time |.|
-  |`createdBy` | Agent| | yes | no | |.|
-  |`actionType` | enum| | yes | no | |.|
-  |`actionSummary` | string| | yes | no | |.|
-  |`actionDetails` | string| | yes | no | |.|
+  |`id` | integer | | N/A | N/A | | .| 
+  |`category` | string| | N/A | N/A | | the value options include: liveChat, ticketingAndMessaging, bot, myAccountGlobalSettings, knowledgeBase |
+  |`createdTime` | DateTime | | N/A | N/A | UTC |.|
+  |`actionType` | string | | N/A  | N/A  | | [action types for different applications](#action-types-for-different-applications) |
+  |`actionSummary` | string| | N/A  | N/A  | |.|
+  |`actionDetails` | string| | N/A  | N/A  | |.|
+  |`createdBy` | int | | N/A  | N/A  | | the id of oprator agent |
+  |`agent` | [Agent](#agent) | yes | N/A  | N/A  | | the oprator agent |
 
 ### Audit Log List Response Object
+
   Agent List Object for agent list Response, include count and page information.
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`total` | string  | N/A | yes | 1 | | . |
-  |`previousPage` | string  | N/A | yes| 1 | | . |
-  |`nextPage` | string  | N/A | yes| 1 | | . |
-  |`auditLogs`| [Audit Log](#Audit-Log-Object)[]| N/A | yes| 0 | | a list of Audit Log. |
+  |`totalCount` | int  | N/A | yes | no | | the total count of the query  |
+  |`list`| [Audit Log](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
+
+### Action types for different applications
+
+  | Live Chat | Ticketing And Messaging | Knowledge Base | Bot|	Global |    
+  | - | - | - | - | - | 
+  | audioAndVideoChatManagement | autoAllocationManagement | categoryManagement | agentBotLearningManagement | accountProfileManagement |
+  | autoAcceptSetting | blockSenderManagement | articleManagement | agentBotSettingManagement | agentManagement |
+  | autoInvitationManagement | channelIntegrationManagement | tagManagement | agentBotSynonymManagement | agentRoleManagement |
+  | autoTranslationManagement | conversationManagement | imageManagement | botSettings | applicationsManagement |
+  | banManagement | fieldsAndMappingsManagement | designManagement | botsManagement | billingInfoManagement |
+  | campaignsManagement | routingRulesManagement | customPageManagement | entitiesManagement | cannedMessageManagement |
+  | chatsAuto-AllocationManagement | sLAPoliciesManagement | knowledgeBaseManagement | intentsManagement | customAwayStatusManagement |
+  | chatSettingsManagement | triggerManagement | | quickRepliesManagement | customerAccountsManagement |
+  | cobrowsingManagement | workingTimeAndHolidaysManagement | | smartTriggersManagement | departmentManagement |
+  | conversionManagement | | | visitorQuestioninLearningDelete | integrationAndAPIManagement |
+  | customVariableManage | | | | licenseManagement |
+  | dashboardCustomMetricManagement | | | | manageAccountStatusorState |
+  | routingRulesManagement | | | | manuallyChargeandActiveAccount |
+  | secureFormManagement | | | | restrictedWordsManagement |
+  | segmentationManagement | | | | securityManagement |
+  | shiftsManagement | | | | siteProfileManagement |
+  | transcriptDelete | | | |   |
+  | visitorSSOManagement | | | |   |
 
 ## Audit Log Endpoints
 
@@ -4476,39 +4587,48 @@ Response
   `GET /api/v3/globalSettings/auditLogs`
 
   #### Parameters
-   Query string
+
+   Query stringno
+
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Availablevalue:`agent` |
+  |`dateFrom`|string|no||the date from which agent did the action, format as yyyy-MM-ddTHH:mm:ss. |
+  |`dateTo`|string|no||the date when an agent ended the action, format as yyyy-MM-ddTHH:mm:ss. |
+  |`category`|string|no||the category which the action belongs to |
+  |`actionType`|string|no||the action type. |
+  |`agentId`|string|no||id of the agent who did the action. |
+  |`keywords`|string|no||the key words associated with the action. |
+  |`pageIndex`|int|no| 0 |the page index of the query. |
+  |`pageSize`|int|no| 10 |the page size of the query. |
+  |`include`|string|no||Available value:`agent` |
 
 
   #### Response
-    the response is a [Audit Log List Response](#Audit-Log-List-Response-Object) Object
+
+    the response is a [Audit Log List Response](#audit-log-list-response-object) Object
 
   #### Example
-    Using curl
-    ```
-    curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/auditLogs
-    ```
-    Response
-    ```json
-    HTTP/1.1 200 OK
-    Content-Type:  application/json
-    {
-        "total" : "100",
-        "previousPage": "https://domain.comm100.com/api/v3/globalSettings/agents?pageindex=1&pagesize=10",
-        "nextPage": "https://domain.comm100.com/api/v3/globalSettings/agents?pageindex=3&pagesize=10",
-        "auditLogs": [
-          {
-            "name": "add Agent",
-            "Category": "My Account Global Settings",
-            "CreatedTime": "2020-02-02",
-            "CreatedBy": {??},
-            "ActionType": "Add Agent",
-            "ActionSummary": "Add Agent",
-            "ActionDetails": "Add Agent for Live Chat",
-          },
-          ...,
-          ]
-    }
-    ```
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/auditLogs
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "totalCount" : "100",
+    "list": [
+      {
+        "name": "add Agent",
+        "Category": "My Account Global Settings",
+        "CreatedTime": "2020-02-02",
+        "CreatedBy": "68",
+        "ActionType": "Add Agent",
+        "ActionSummary": "Add Agent",
+        "ActionDetails": "Add Agent for Live Chat",
+      },
+      ...,
+      ]
+}
+```
