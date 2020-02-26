@@ -189,9 +189,9 @@ HTTP/1.1 200 OK
 Department Auto Distribution Object is represented as simple flat JSON objects with the following keys:
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentId` | Guid ||  no| yes|| id of department |
-| `department` | [Department](#department-object) ||  N/A| N/A|| related department object |
-| `isLastChattedAgentPreferred` | boolean||  no| no| yes | id of department |
+| `departmentId` | Guid ||  no| N/A|| id of department |
+| `department` | [Department](#department-object) ||  N/A| N/A|| [Department](#department-object) object |
+| `isLastChattedAgentPreferred` | boolean||  no| N/A|  | id of department |
 
 
 ### Agent Auto Distribution Object
