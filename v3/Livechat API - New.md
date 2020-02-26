@@ -57,8 +57,8 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 Customer Segment is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - | 
+ | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+ | - | - | - | :-: | :-: | :-: | - |
  | `siteId` |integer  || yes | N/A || id of the site which the configuration belongs to.
  | `isMultipleCampaignEnabled` |boolean || no | N/A || whether multiple campaigns are enabled or not in the site.
  | `isAutoDistributionEnabled` |boolean || no | N/A || whether auto distribution is enabled or not in the site.
@@ -75,6 +75,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
  | `isGoogleAnalyticsEnabled` |boolbean || no | N/A || whether Google Analytics integration is enabled or not in the site.
  | `isGotoMeetingEnabled` |boolbean || no | N/A || whether GotoMeeting integration is enabled or not in the site.
  | `isJoinmeEnabled` |boolbean || no | N/A || whether Joinme integration is enabled or not in the site.
+ | `isCobrowsingEnabled` |boolbean || no | N/A || whether Cobrowsing feature is enabled or not in the site.
 
 ## Endpoint
 
@@ -116,7 +117,8 @@ HTTP/1.1 200 OK
     "isZendeskEnabled": true,
     "isGoogleAnalyticsEnabled": true,
     "isGotoMeetingEnabled": true,
-    "isJoinmeEnabled": true
+    "isJoinmeEnabled": true,
+    "isCobrowsingEnabled":true
 }
 ```
 
@@ -158,10 +160,11 @@ HTTP/1.1 200 OK
     "isZendeskEnabled": true,
     "isGoogleAnalyticsEnabled": true,
     "isGotoMeetingEnabled": true,
-    "isJoinmeEnabled": true
+    "isJoinmeEnabled": true,
+    "isCobrowsingEnabled":true
 }
 ```
-  
+
 # Auto Distribution
 
 - `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)
@@ -202,9 +205,9 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 | `ifAutoAcceptChat` | boolean||  no| N/A|| if agent can auto accept chat|
 | `maxConcurrentChats` | boolean ||  no| N/A|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
 
-### Endpoint
+## Endpoint
 
-#### Get Auto Distribution
+### Get Auto Distribution
 
   `GET /api/v3/livechat/autoDistribution`
 
@@ -253,24 +256,54 @@ Content-Type:  application/json
 }
 ```
 
-#### Update auto allocation configuration
+### Update Auto Distribution
 
   `PUT /api/v3/livechat/autoDistribution`
 
 #### Parameters
 
-    [Auto Allocation](#auto-allocation-json-format)
+Request body
+  
+  The request body contains data with the [Auto Distribution](#auto-distribution-object) Object structure
 
-- Response:
+example:
+```Json
+{
+    "autoDistributionMethod": "load balancing",
+    "isLastChattedAgentPreferred": true,
+    "isLimitMaxConcurrentChatsForAllAgents":true,
+    "maxConcurrentChatsForAllAgents": 3,
+    "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
+    "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
+    "departmentAutoDistributions":[
+      {
+        "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+        "isLastChattedAgentPreferred":"true",
+        "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
+      },
+      ...
+    ],
+    "agentAutoDistributions":[
+      {
+        "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+        "ifAutoAcceptChat":true,
+        "maxConcurrentChats":10
+      },
+      ...
+    ]
+}
+```
 
-    [Auto Allocation](#auto-allocation-json-format)
+#### Response
 
-### Example
+the response is: [Auto Distribution](#auto-distribution-object) Object.
+
+#### Example
 
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "isenable=false"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/autoallocation
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "isenable=false"  https://hosted.comm100.com/api/v3/livechat/autoDistribution
 ```
 
 Response
@@ -278,13 +311,27 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "isEnable": false,
-    "allocationRule": "load balancing",
-    "isLastChattedPreferred": true,
-    "isAllocateChatWhenAgentInAudioVideo": false,
-    "maxConcurrentChatsForAllAgents":3,
-    "maxChatForAllAgents": 3,
-    "isAllowAgentManualAcceptChat": true
+    "autoDistributionMethod": "load balancing",
+    "isLastChattedAgentPreferred": true,
+    "isLimitMaxConcurrentChatsForAllAgents":true,
+    "maxConcurrentChatsForAllAgents": 3,
+    "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
+    "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
+    "departmentAutoDistributions":[
+      {
+        "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+        "isLastChattedAgentPreferred":"true",
+        "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
+      },
+      ...
+    ],
+    "agentAutoDistributions":[
+      {
+        "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+        "ifAutoAcceptChat":true,
+        "maxConcurrentChats":10
+      }
+    ]
 }
 ```
 
@@ -296,7 +343,17 @@ Content-Type:  application/json
 - `POST /api/v3/livechat/translationExcludedWords` - [Create a translation excluded word](#get-site-info)
 - `PUT /api/v3/livechat/translationExcludedWords/{id}` - [Update a translation excluded word](#update-site-info)
 - `DELETE /api/v3/livechat/translationExcludedWords/{id}` - [Delete a translation excluded word](#delete-a-customer-segment)
-  
+
+## Translation Excluded Word Related Objects Json Format
+
+### Excluded Word Related Object
+
+Excluded Word Related is represented as simple flat JSON objects with the following keys:
+
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+
+
 # Customer Segment
 
 - `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-list-of-customer-segments)
@@ -312,11 +369,11 @@ Content-Type:  application/json
 Customer Segment is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - | 
+  | - | - | - | :-: | :-: | :-: | - |
   | `id` |Guid  || yes | N/A || id of the customer segment.
   | `name` |string  || no | yes || name of the customer segment.
   | `color` |string  || no | no |'339FD9'| color of the customer segment
-  | `isEnable` |boolean  || no | no |false| whether the customer segment is enabled or not.
+  | `isEnabled` |boolean  || no | no |false| whether the customer segment is enabled or not.
   | `order` |int  || no | yes |maximum order + 1 | order of the customer segment.
   | `description` |string  || no | no || description of the customer segment.
   | `condition met type` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
@@ -361,24 +418,24 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 [
-    {
-        "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-        "name": "livechat15293908029",
-        "color": "339FD9",
-        "isEnable": false,
-        "order": 1,
-        "description": "",
-        "conditionMetType": "all",
-        "logicalExpression": "",
-        "conditions": [
-                {
-                    "field": "CurrentPageUrl",
-                    "operator": "include",
-                    "value": "live",
-                    "order": 1
-                }
-            ]
-        "alertTo":[]
+  {
+    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "name": "livechat15293908029",
+    "color": "339FD9",
+    "isEnabled": false,
+    "order": 1,
+    "description": "",
+    "conditionMetType": "all",
+    "logicalExpression": "",
+    "conditions": [
+      {
+        "field": "CurrentPageUrl",
+        "operator": "include",
+        "value": "live",
+        "order": 1
+      }
+    ],
+     "alertTo":[]
     },
     ...
 ]
@@ -519,7 +576,7 @@ the response is: [customer segment](#customer-segment-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "name=justfortestupdate"  https://hosted.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "name=justfortestupdate" https://hosted.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -577,11 +634,177 @@ HTTP/1.1 204 No Content
 
 # Dynamic Campaign
 
-- `GET /api/v3/livechat/dynamicCampaign` - [Get livechat dynamic campaign of a site](#get-site-info) include campaign
-- `PUT /api/v3/livechat/dynamicCampaign` - [Update livechat dynamic campaign of a site](#update-site-info)
+- `GET /api/v3/livechat/dynamicCampaign` - [Get dynamic campaign](#get-dynamic-campaign) include campaign
+- `PUT /api/v3/livechat/dynamicCampaign` - [Update dynamic campaign](#update-dynamic-campaign)
 
-- `GET /api/v3/livechat/liveChatSettings/dynamicCampaign` - [Get livechat dynamic campaign of a site](#get-site-info) include campaign
-- `PUT /api/v3/livechat/liveChatSettings/dynamicCampaign` - [Update livechat dynamic campaign of a site](#update-site-info)
+## Dynamic Campaign Related Objects Json Format
+
+### Dynamic Campaign Object
+
+Dynamic Campaign is represented as simple flat JSON objects with the following keys:
+
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `defaultCampaignId` |Guid || no | N/A || id of the default campaign.
+| `defaultCampaign` |[Campaign](#campaign-object)  |yes| N/A | N/A || the default [Campaign](#campaign-object).
+| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | N/A || this list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).
+
+### Dynamic Campaign Rule Object
+
+Dynamic Campaign Rule is represented as simple flat JSON objects with the following keys:
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `name` |string || no | yes || name of the dynamic campaign rule.|
+| `isEnabled` |boolean || no | yes ||if this rule is enabled.|
+| `conditionMetType` |String || no | yes ||including `all`, `any` and `logicalExpression`.|
+| `logicalExpression` |String || no | no ||the logical expression for conditions.|
+| `targetCampaignId` |integer || no | yes||the id of target [Campaign](#campaign-object).|
+| `targetCampaign` |[Campaign](#campaign-object) |yes| N/A | N/A ||the target [Campaign](#campaign-object) object.|
+| `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no ||an array of [Live Chat Condition](#conditions-json-format) object. .|
+| `order` |integer|| no | yes ||the order of this rule|
+
+## Endpoint
+
+### Get dynamic campaign
+
+  `GET /api/v3/livechat/dynamicCampaign`
+
+#### Parameter
+
+    No parameters
+
+#### Response
+
+the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "" https://hosted.comm100.com/api/v3/livechat/dynamicCampaign
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "defaultCampaign": {
+    "name":"default campaign",
+    "description":""
+  },
+  "dynamicCampaignRules":[
+    {
+      "name": "default rule",
+      "isEnabled": true,
+      "conditionMetType": "all",
+      "logicalExpression": "",
+      "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "targetCampaign":{
+        "name":"default campaign",
+        "description":""
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ]
+}
+```
+
+### update dynamic campaign
+
+  `PUT /api/v3/livechat/dynamicCampaign`
+
+#### Parameter
+
+Request body
+  
+  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) Object structure
+
+example:
+```Json
+{
+  "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "defaultCampaign": {
+    "name":"default campaign",
+    "description":""
+  },
+  "dynamicCampaignRules":[
+    {
+      "name": "default rule",
+      "isEnabled": true,
+      "conditionMetType": "all",
+      "logicalExpression": "",
+      "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "targetCampaign":{
+        "name":"default campaign",
+        "description":""
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ]
+}
+```
+
+#### Response
+
+the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/dynamicCampaign
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "defaultCampaign": {
+    "name":"default campaign",
+    "description":""
+  },
+  "dynamicCampaignRules":[
+    {
+      "name": "default rule",
+      "isEnabled": true,
+      "conditionMetType": "all",
+      "logicalExpression": "",
+      "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "targetCampaign":{
+        "name":"default campaign",
+        "description":""
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ]
+}
+```
+
 
 # Mobile Push
 
@@ -596,11 +819,6 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/livechat/agents` - [Get a list of agents in livechat](#get-all-agents)
 - `GET /api/v3/livechat/agents/{id}` - [Get an agent by id](#get-an-agent)  
 - `PUT /api/v3/livechat/agents/{id}` - [Update an agent](#update-an-agent)  
-
-# Agent Chat
-//修改ER
-- `GET /api/v3/livechat/agentChats` - [Get a list of agent chats](#get-site-campaigns)
-- `GET /api/v3/livechat/agentChats/{id}` - [Get an agent chat by id](#get-a-campaign)  
 
 # Online Visitor  
 
@@ -2186,7 +2404,7 @@ the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Ob
   | `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
   | `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
   | `logicalExpression` | string | no | no | | |
-  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | |
+  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#conditions-json-format) object. |
 
 ## Invitation Endpoints
 
@@ -2586,7 +2804,7 @@ the response is: [Routing](#Routing-Object) Object
   | `percentageToBot` | integer | | no | no | | |
   | `conditionMetType` | string | | no | no | | Including `all`, `any` and `logicalExpression`. |
   | `logicalExpression` | string | | no | no | | |
-  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | no | no | | |
+  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | no | no | |an array of [Live Chat Condition](#conditions-json-format) object.  |
 
 ### Live Chat Condition Object
 
