@@ -188,7 +188,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer  | | N/A | N/A |  |.|
+  |`id` | integer  | | N/A | N/A |  |  |
   |`email` | string| | yes | yes | | Agent login email address, can not change |
   |`displayName` | string  | | no | no | | Different Agents can have the same Display Name. If not offered, will set by first name.|
   |`firstName` | string  | | no | yes | | The first name of the agent|
@@ -208,9 +208,9 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`lastLoginTime` | DateTime | | N/A | N/A | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
   |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
   |`forgetPasswordTag` | string | | N/A | N/A |  | When the agent submits his email address on Forget Password Page, system will generate a new Forget Password GUID Tag and overwrite the previous value. System will check this GUID to see whether the verification link is the latest one and only the latest one can work.|
-  |`forgetPasswordTagTime` | DateTime | | N/A | N/A | UTC |.|
+  |`forgetPasswordTagTime` | DateTime | | N/A | N/A | UTC |  |
   |`ipVerificationTag` | string | | N/A | N/A | | If the site has Login IP whitelist enabled and the agent IP is blocked from login: if the agent is administrator, he can click the ‘Email me for Authentication’ to authenticate this IP. When the administrator clicks the ‘Email me’ button, there will be a new IP Verification GUID Tag generated and updated the previous value. The administrator should click the verification link in his email, if the GUID matches, system will add current Login IP into Whitelist and the administrator can login Control Panel successfully. If the agent is not administrator, he needs to contact administrator to add his IP into whitelist.|
-  |`ipVerificationTagTime` | DateTime | | N/A | N/A | UTC |.|
+  |`ipVerificationTagTime` | DateTime | | N/A | N/A | UTC |  |
   |`permissionIds` | string[]  |  | no | no | [] | Agent permission settings.|
   |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
   |`roleIds` | string[]  |  | no | no |  | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
@@ -790,7 +790,7 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
 ### Role Object
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | Guid| | N/A | N/A | | .|
+  |`id` | Guid| | N/A | N/A | |  |
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
   |`type` | string | | no | no | customRole | The options: siteAdministrator, allAgents, customRole; siteAdministrator and allAgents are the system roles. They cannot be deleted.|
@@ -1104,16 +1104,16 @@ You need `Manage departments` permission to manage departments.
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | Guid| | N/A | N/A | | .|
-  |`name` | string | | no | yes | |.|
-  |`description` | string | | no | no | |.|
+  |`id` | Guid| | N/A | N/A | |  |
+  |`name` | string | | no | yes | |  |
+  |`description` | string | | no | no | |  |
   |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
   |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the ‘Assigned Department’ field. Default: true.|
   |`offlineMessageMailType` | string | | no | no | allAgentsInDepartment | The value options: allAgentsInDepartment, emailAddress |
   |`offlineMessageEmails` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
   |`memberIds` | int[] | | no | no | [] | The selected agents for this department.|
-  |`member` | [Agent](#agent)[]| yes | N/A | N/A |  | . |
-  |`shift` | [Shift](#shift)[]| yes | N/A | N/A |  | .|
+  |`member` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
+  |`shift` | [Shift](#shift)[]| yes | N/A | N/A |  |  |
 
 ## Department Endpoints
 
@@ -1379,9 +1379,9 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer| | N/A | N/A |  | .|
-  |`name` | string| | yes | no | |.|
-  |`description` | string| | yes | no | |.|
+  |`id` | integer| | N/A | N/A |  |  |
+  |`name` | string| | yes | no | |  |
+  |`description` | string| | yes | no | |  |
   |`category` | string | | yes | no | |Live Chat, Ticketing & Messaging, Bot, Knowledge Base, Global Setting|
 
 ## Permission Endpoints
@@ -2158,25 +2158,25 @@ Response
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer  | | N/A | N/A |  |.|
+  |`id` | integer  | | N/A | N/A |  |  |
   |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has Name and Avatar, like Facebook Account, display Name and Avatar from that Identity in Agent Console. In other situations, display Contact Name and Avatar.|
-  |`description` | string | | no | no | |.|
-  |`firstName` | string | | no | yes | |.|
-  |`lastName` | string | | no | yes | |.|
-  |`alias` | string | | no | no | |.|
+  |`description` | string | | no | no | |  |
+  |`firstName` | string | | no | yes | |  |
+  |`lastName` | string | | no | yes | |  |
+  |`alias` | string | | no | no | |  |
   |`avatar` | string| | no | no | default avatar data | image base64 data code.|
-  |`title` | string | | no | no | |.|
-  |`company` | string  | | no | no | |.|
-  |`fax` | string  | | no | no | |.|
+  |`title` | string | | no | no | |  |
+  |`company` | string  | | no | no | |  |
+  |`fax` | string  | | no | no | |  |
   |`phone` | string  | | no | no | | |
-  |`mailingAddress` | string  | | no | no | |.|
-  |`city` | string | | no | no | |.|
-  |`stateOrProvince` | string  | | no | no | |.|time
-  |`countryOrRegion` | string  | | no | no | |.|
-  |`postalOrZipCode` | string  | | no | no | |.|
+  |`mailingAddress` | string  | | no | no | |  |
+  |`city` | string | | no | no | |  |
+  |`stateOrProvince` | string  | | no | no | |  |
+  |`countryOrRegion` | string  | | no | no | |  |
+  |`postalOrZipCode` | string  | | no | no | |  |
   |`timeZone` | string | | no | yes | | defaults to UTC time, format as ±hh:mm.|
   |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
-  |`lastUpdatedTime` | DateTime | | N/A | N/A | |.|
+  |`lastUpdatedTime` | DateTime | | N/A | N/A | |  |
 
 ## Contact Endpoints
 
@@ -2432,7 +2432,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer| | N/A | N/A | | .|
+  |`id` | integer| | N/A | N/A | |  |
   |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
   |`type` | string| | no | yes | | the options of the value are:  visitor, emailAddress, SMSNumber, facebookAccount, twitterAccount, weChatAccount, SSOUserID, externalID, whatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
   |`value` | string  | | no | yes | | The value of the identity.|
@@ -4052,7 +4052,7 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
   |`id` | Guid | | N/A | N/A | | |
   |`ipFrom` | string | | no | yes | | Where an IP range starts.|
   |`ipTo` | string | | no | yes | | Where an IP range ends.|
-  |`createdTime` | DateTime | | N/A | N/A |  |.|
+  |`createdTime` | DateTime | | N/A | N/A |  |  |
 
 ## Whitelisted Login IP Range Endpoints
 
@@ -4569,12 +4569,12 @@ Response
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | integer | | N/A | N/A | | .| 
+  |`id` | integer | | N/A | N/A | |  | 
   |`category` | string| | N/A | N/A | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
-  |`createdTime` | DateTime | | N/A | N/A |  |.|
+  |`createdTime` | DateTime | | N/A | N/A |  |  |
   |`actionType` | string | | N/A  | N/A  | | [action types for different applications](#action-types-for-different-applications) |
-  |`actionSummary` | string| | N/A  | N/A  | |.|
-  |`actionDetails` | string| | N/A  | N/A  | |.|
+  |`actionSummary` | string| | N/A  | N/A  | |  |
+  |`actionDetails` | string| | N/A  | N/A  | |  |
   |`createdBy` | integer | | N/A  | N/A  | | the id of oprator agent |
   |`agent` | [Agent](#agent) | yes | N/A  | N/A  | | the oprator agent |
 
