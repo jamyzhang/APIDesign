@@ -84,11 +84,11 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "id":10000,
+    "id": 10000,
     "dateTimeFormat":"yyyy-MM-dd hh:mm:ss",
     "timeZone":"-09:00",
     "company":"BMW",
-    "companySize":5000,
+    "companySize": 5000,
     "website":"www.bmw.com",
     "registeredEmail":"bmw@gmail.com",
     "phone":"88654987",
