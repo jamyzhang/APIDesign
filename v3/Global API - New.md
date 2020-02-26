@@ -47,21 +47,21 @@
  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
  | - | - | :-: | :-: | :-: | :-: | - | 
  |`id` | integer  | | N/A | N/A | 0 |Site ID.|
- |`dateTimeFormat` | string| | no | no | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
- |`timeZone` | string| | no | yes |  | Time zone of site. value include all time zone options, format as ±hh:mm |
- |`company` | string | | no | yes | |Company name.|
- |`companySize` | string| | no | yes |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
- |`website` | string  | | no | yes | |Company website. |
- |`registeredEmail` | string  | | no | yes | |Email used for site registration.|
- |`phone` | string | | no | no | |Company phone number.|
- |`fax` | string | | no | no | |Company fax number.|
- |`mailingAddress` | string | | no | no | |The mailing address of the company.|
- |`city` | string  | | no | no | |City where the company located.|
- |`stateOrProvince` | string  | | no | no | |State/Province where the company located.|
- |`countryOrRegion` | string | | no | no | |Country/Region where the company located.|
- |`postalOrZipCode` | string | | no | no | |Postal/Zip Code where the company located.|
- |`firstName` | string  | | no | yes | |First Name of site registrant.|
- |`lastName` | string  | | no | yes | |Last Name of site registrant.|
+ |`dateTimeFormat` | string| | no | N/A  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
+ |`timeZone` | string| | no | N/A  |  | Time zone of site. value include all time zone options, format as ±hh:mm |
+ |`company` | string | | no | N/A  | |Company name.|
+ |`companySize` | string| | no | N/A  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
+ |`website` | string  | | no | N/A  | |Company website. |
+ |`registeredEmail` | string  | | no | N/A  | |Email used for site registration.|
+ |`phone` | string | | no | N/A  | |Company phone number.|
+ |`fax` | string | | no | N/A  | |Company fax number.|
+ |`mailingAddress` | string | | no | N/A  | |The mailing address of the company.|
+ |`city` | string  | | no | N/A  | |City where the company located.|
+ |`stateOrProvince` | string  | | no | N/A  | |State/Province where the company located.|
+ |`countryOrRegion` | string | | no | N/A  | |Country/Region where the company located.|
+ |`postalOrZipCode` | string | | no | N/A  | |Postal/Zip Code where the company located.|
+ |`firstName` | string  | | no | N/A  | |First Name of site registrant.|
+ |`lastName` | string  | | no | N/A  | |Last Name of site registrant.|
 
 ## Site Endpoints
 
@@ -1091,8 +1091,8 @@ HTTP/1.1 204 No Content
 
 You need `Manage departments` permission to manage departments.
 
-  + `GET /api/v3/globalSettings/departments` - [Get a list of departments in site](#get-all-departments) include agent
-  + `GET /api/v3/globalSettings/departments/{id}` - [Get a department by id](#get-a-department) include agent
+  + `GET /api/v3/globalSettings/departments` - [Get a list of departments in site](#get-all-departments)
+  + `GET /api/v3/globalSettings/departments/{id}` - [Get a department by id](#get-a-department)
   + `POST /api/v3/globalSettings/departments` - [Create a new department](#create-a-new-department)
   + `PUT /api/v3/globalSettings/departments/{id}` - [Update a department](#update-a-department)
   + `DELETE /api/v3/globalSettings/departments/{id}` - [Delete a department](#delete-a-department)
@@ -1825,7 +1825,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `departmentId` | Guid | yes  |  the unique Id of the department |
+  | `departmentId` | Guid | yes  |  The id of the department |
 
 #### Response
 
@@ -4038,11 +4038,11 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
 
    When Login IP Whitelist is enabled, site administrator can add IP range for this site and only agents within the IP range can log in successfully.
 
-  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges` - [Get a list of whitelistedLoginIPRanges in site](#get-all-whitelisted-Login-IP-Ranges) 
-  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [Get a whitelistedLoginIPRange by id](#get-a-whitelisted-Login-IP-Ranges) 
-  + `POST /api/v3/globalSettings/whitelistedLoginIPRanges` - [create a new whitelistedLoginIPRange](#create-a-new-whitelisted-Login-IP-Range)
-  + `PUT /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [update a whitelistedLoginIPRange](#update-a-whitelisted-Login-IP-Range)
-  + `DELETE /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [delete a whitelistedLoginIPRange](#delete-a-whitelisted-Login-IP-Range)
+  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges` - [Get a list of whitelisted login IP ranges in site](#get-all-whitelisted-login-ip-ranges) 
+  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [Get a whitelisted login IP range by id](#get-a-whitelisted-login-ip-ranges) 
+  + `POST /api/v3/globalSettings/whitelistedLoginIPRanges` - [create a new whitelisted login IP range](#create-a-new-whitelisted-login-ip-range)
+  + `PUT /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [update a whitelisted login IP range](#update-a-whitelisted-login-ip-range)
+  + `DELETE /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [delete a whitelisted login IP range](#delete-a-whitelisted-login-ip-range)
 
 ## Whitelisted Login IP Range Related Object Json Format
 
@@ -4057,7 +4057,8 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
 
 ## Whitelisted Login IP Range Endpoints
 
-### Get all whitelisted Login IP Ranges
+### Get all Whitelisted Login IP Ranges
+
   `GET /api/v3/globalSettings/whitelistedLoginIPRanges`
 
   #### Parameters
@@ -4086,7 +4087,8 @@ Content-Type:  application/json[
 ]
 ```
 
-### Get a whitelisted Login IP Ranges
+### Get a Whitelisted Login IP Ranges
+
   `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}`
 
 #### Parameters
@@ -4208,7 +4210,7 @@ Response
   HTTP/1.1 200 OK
   Content-Type: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
-   "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "iPFrom": "201.195.21.5", 
     "iPTo": "201.195.21.8", 
     "createdTime": "2020-01-01", 
