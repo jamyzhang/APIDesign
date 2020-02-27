@@ -48,12 +48,12 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 # Settings
 
-- `GET /api/v3/livechat/settings` - [Get settings of a site](#get-settings)
-- `PUT /api/v3/livechat/settings` - [Update settings of a site](#update-settings)
+- `GET /api/v3/livechat/settings` - [Get settings of a site](#get-settings-of-a-site)
+- `PUT /api/v3/livechat/settings` - [Update settings of a site](#update-settings-of-a-site)
 
 ## Settings Related Objects Json Format
 
-### Setting Object
+### Settings Object
 
 Customer Segment is represented as simple flat JSON objects with the following keys:  
 
@@ -63,7 +63,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
  | `isMultipleCampaignEnabled` |boolean || no | N/A || whether multiple campaigns are enabled or not in the site.
  | `isAutoDistributionEnabled` |boolean || no | N/A || whether auto distribution is enabled or not in the site.
  | `isCustomAwayStatusEnabled` |boolean || no | N/A || whether custom away status is enabled or not in the site.
- | `isDepartmentEnabled` |boolean || no  N/A || whether department is enabled or not in the site.
+ | `isDepartmentEnabled` |boolean || no|  N/A || whether department is enabled or not in the site.
  | `isAutoTranslationEnabled` |boolbean || no | N/A || whether auto translation is enabled or not in the site.
  | `isAudioAndVideoChatEnabled` |boolbean || no | N/A ||whether audio&video chat is enabled or not in the site.
  | `iscustomerSegmentEnabled` |boolbean || no | N/A ||whether customer segment chat is enabled or not in the site.
@@ -91,34 +91,36 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 the response is [Settings](#settings-object) object
 
-####  Example
+#### Example
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/livechatwebapi/api/v2/livechat/configs
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/settings
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "siteId": 6000000,
-    "isMultipleCampaignEnabled": true,
-    "isAutoDistributionEnabled": false,
-    "isCustomAwayStatusEnabled": true,
-    "isDepartmentEnabled": false,
-    "isAutoTranslationEnabled": true,
-    "isAudioAndVideoChatEnabled": false,
-    "iscustomerSegmentEnabled": true,
-    "isVisitorSSOtEnabled": false,
-    "isCreditCardMaskingEnabled": true,
-    "isCustomVariablesEnabled": true,
-    "isSalesforceEnabled": false,
-    "isZendeskEnabled": true,
-    "isGoogleAnalyticsEnabled": true,
-    "isGotoMeetingEnabled": true,
-    "isJoinmeEnabled": true,
-    "isCobrowsingEnabled":true
+  "siteId": 6000000,
+  "isMultipleCampaignEnabled": true,
+  "isAutoDistributionEnabled": false,
+  "isCustomAwayStatusEnabled": true,
+  "isDepartmentEnabled": false,
+  "isAutoTranslationEnabled": true,
+  "isAudioAndVideoChatEnabled": false,
+  "iscustomerSegmentEnabled": true,
+  "isVisitorSSOtEnabled": false,
+  "isCreditCardMaskingEnabled": true,
+  "isCustomVariablesEnabled": true,
+  "isSalesforceEnabled": false,
+  "isZendeskEnabled": true,
+  "isGoogleAnalyticsEnabled": true,
+  "isGotoMeetingEnabled": true,
+  "isJoinmeEnabled": true,
+  "isCobrowsingEnabled":true
 }
 ```
 
@@ -138,7 +140,25 @@ the response is [Settings](#settings-object) object
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "siteid=6000000&isenablesalesforce=true"  https://hosted.comm100.com/api/v3/livechat/settings
+curl -H "Content-Type: application/json" -d '{
+    "siteId": 6000000,
+    "isMultipleCampaignEnabled": true,
+    "isAutoDistributionEnabled": false,
+    "isCustomAwayStatusEnabled": true,
+    "isDepartmentEnabled": false,
+    "isAutoTranslationEnabled": true,
+    "isAudioAndVideoChatEnabled": false,
+    "iscustomerSegmentEnabled": true,
+    "isVisitorSSOtEnabled": false,
+    "isCreditCardMaskingEnabled": true,
+    "isCustomVariablesEnabled": true,
+    "isSalesforceEnabled": false,
+    "isZendeskEnabled": true,
+    "isGoogleAnalyticsEnabled": true,
+    "isGotoMeetingEnabled": true,
+    "isJoinmeEnabled": true,
+    "isCobrowsingEnabled":true
+}' -X PUT https://domain.comm100.com/api/v3/livechat/settings
 ```
 
 Response
@@ -168,7 +188,7 @@ HTTP/1.1 200 OK
 # Auto Distribution
 
 - `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)
-- `PUT /api/v3/livechat/autoDistribution` - [Update livechat auto distribution of a site](#update-site-info)
+- `PUT /api/v3/livechat/autoDistribution` - [Update auto distribution](#update-auto-distribution)
 
 ## Auto Distribution Related Objects Json Format
 
@@ -219,12 +239,13 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 the response is: [Auto Distribution](#auto-distribution-object) Object.
 
-### Example
+#### Example
 
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/autoDistribution
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/autoDistribution
 ```
 
 Response
@@ -232,27 +253,27 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "autoDistributionMethod": "load balancing",
-    "isLastChattedAgentPreferred": true,
-    "isLimitMaxConcurrentChatsForAllAgents":true,
-    "maxConcurrentChatsForAllAgents": 3,
-    "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
-    "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
-    "departmentAutoDistributions":[
-      {
-        "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-        "isLastChattedAgentPreferred":"true",
-        "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
-      },
-      ...
-    ],
-    "agentAutoDistributions":[
-      {
-        "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
-        "ifAutoAcceptChat":true,
-        "maxConcurrentChats":10
-      }
-    ]
+  "autoDistributionMethod": "load balancing",
+  "isLastChattedAgentPreferred": true,
+  "isLimitMaxConcurrentChatsForAllAgents":true,
+  "maxConcurrentChatsForAllAgents": 3,
+  "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
+  "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
+  "departmentAutoDistributions":[
+    {
+      "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "isLastChattedAgentPreferred":"true",
+      "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
+    },
+    ...
+  ],
+  "agentAutoDistributions":[
+    {
+      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "ifAutoAcceptChat":true,
+      "maxConcurrentChats":10
+    }
+  ]
 }
 ```
 
@@ -269,28 +290,28 @@ Request body
 example:
 ```Json
 {
-    "autoDistributionMethod": "load balancing",
-    "isLastChattedAgentPreferred": true,
-    "isLimitMaxConcurrentChatsForAllAgents":true,
-    "maxConcurrentChatsForAllAgents": 3,
-    "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
-    "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
-    "departmentAutoDistributions":[
-      {
-        "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-        "isLastChattedAgentPreferred":"true",
-        "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
-      },
-      ...
-    ],
-    "agentAutoDistributions":[
-      {
-        "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
-        "ifAutoAcceptChat":true,
-        "maxConcurrentChats":10
-      },
-      ...
-    ]
+  "autoDistributionMethod": "load balancing",
+  "isLastChattedAgentPreferred": true,
+  "isLimitMaxConcurrentChatsForAllAgents":true,
+  "maxConcurrentChatsForAllAgents": 3,
+  "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
+  "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
+  "departmentAutoDistributions":[
+    {
+      "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "isLastChattedAgentPreferred":"true",
+      "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
+    },
+    ...
+  ],
+  "agentAutoDistributions":[
+    {
+      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "ifAutoAcceptChat":true,
+      "maxConcurrentChats":10
+    },
+    ...
+  ]
 }
 ```
 
@@ -303,7 +324,30 @@ the response is: [Auto Distribution](#auto-distribution-object) Object.
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "isenable=false"  https://hosted.comm100.com/api/v3/livechat/autoDistribution
+curl -H "Content-Type: application/json" -d '{
+  "autoDistributionMethod": "load balancing",
+  "isLastChattedAgentPreferred": true,
+  "isLimitMaxConcurrentChatsForAllAgents":true,
+  "maxConcurrentChatsForAllAgents": 3,
+  "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
+  "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
+  "departmentAutoDistributions":[
+    {
+      "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "isLastChattedAgentPreferred":"true",
+      "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
+    },
+    ...
+  ],
+  "agentAutoDistributions":[
+    {
+      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "ifAutoAcceptChat":true,
+      "maxConcurrentChats":10
+    },
+    ...
+  ]
+}' -X PUT https://hosted.comm100.com/api/v3/livechat/autoDistribution
 ```
 
 Response
@@ -311,33 +355,33 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "autoDistributionMethod": "load balancing",
-    "isLastChattedAgentPreferred": true,
-    "isLimitMaxConcurrentChatsForAllAgents":true,
-    "maxConcurrentChatsForAllAgents": 3,
-    "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
-    "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
-    "departmentAutoDistributions":[
-      {
-        "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-        "isLastChattedAgentPreferred":"true",
-        "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
-      },
-      ...
-    ],
-    "agentAutoDistributions":[
-      {
-        "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
-        "ifAutoAcceptChat":true,
-        "maxConcurrentChats":10
-      }
-    ]
+  "autoDistributionMethod": "load balancing",
+  "isLastChattedAgentPreferred": true,
+  "isLimitMaxConcurrentChatsForAllAgents":true,
+  "maxConcurrentChatsForAllAgents": 3,
+  "ifAutoAcceptChatWhenHavingAudioVideoChat": true,
+  "ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit": true,
+  "departmentAutoDistributions":[
+    {
+      "departmentId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "isLastChattedAgentPreferred":"true",
+      "backupDepartmentId":"2487fc9d-92e6-4487-a2e8-92e68d6892a7"
+    },
+    ...
+  ],
+  "agentAutoDistributions":[
+    {
+      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "ifAutoAcceptChat":true,
+      "maxConcurrentChats":10
+    }
+  ]
 }
 ```
 
 # Translation Excluded Word
 
-- `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-list-of-translation-excluded-word)
+- `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-a-list-of-translation-excluded-word)
 - `GET /api/v3/livechat/translationExcludedWords/{id}` - [Get a translation excluded word by id](#get-translation-excluded-word-by-id)
 - `POST /api/v3/livechat/translationExcludedWords` - [Create a translation excluded word](#create-a-translation-excluded-word)
 - `PUT /api/v3/livechat/translationExcludedWords/{id}` - [Update a translation excluded word](#update-a-translation-excluded-word)
@@ -372,14 +416,14 @@ an array of [Translation Excluded Word](#translation-excluded-word) object
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/translationExcludedWords
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/translationExcludedWords
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 [
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -412,7 +456,8 @@ the response is [Translation Excluded Word](#translation-excluded-word) object
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
 Response
@@ -420,10 +465,9 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-     "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-     "content": "no"
+  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
+  "content": "no"
 }
-
 ```
 
 ### Create a translation excluded word
@@ -439,7 +483,6 @@ Request body
 example:
 ```Json
 {
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
   "content": "no"
 }
 ```
@@ -451,21 +494,22 @@ the response is [Translation Excluded Word](#translation-excluded-word) object
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/translationExcludedWords/
+curl -H "Content-Type: application/json" -d '{
+  "content": "no"
+}' -X POST https://domain.comm100.com/api/v3/livechat/translationExcludedWords/
 ```
 
 Response
 ```Json
-HTTP/1.1 200 OK
+HTTP/1.1 201 Created
 Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/livechat/translationExcludedWords/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 {
   "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
   "content": "no"
 }
 
 ```
-
-
 
 ### Update a translation excluded word
 
@@ -492,12 +536,15 @@ the response is [Translation Excluded Word](#translation-excluded-word) object
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/translationExcludedWords/
+curl -H "Content-Type: application/json" -d '{
+  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
+  "content": "no"
+}' -X PUT https://hosted.comm100.com/api/v3/livechat/translationExcludedWords/
 ```
 
 Response
 ```Json
-HTTP/1.1 201 Created
+HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
@@ -526,14 +573,13 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" X- DELETE https://hosted.comm100.com/api/v3/livechat/translationExcludedWord/5587fc9d-92e6-4487-a2e8-92e68d6892c4
+curl -H -X DELETE https://hosted.comm100.com/api/v3/livechat/translationExcludedWord/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
 Response
 ```json
 HTTP/1.1 204 No Content
 ```
-
 
 # Customer Segment
 
@@ -560,7 +606,16 @@ Customer Segment is represented as simple flat JSON objects with the following k
   | `condition met type` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
   | `logical expression` |string  || no | no || the logical expression for conditions.
   | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#conditions-json-format) object. |
-  | `alertTo`?? | [Department](#department)[] or [Agent](#Agent)[]  || no | no | |
+  | `alertTo`| [Alert To](#alert-to)  || no | no | |an array of agent id or department Id|
+
+### Alert To Segment Object
+
+Alert To is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | - | :-: | :-: | :-: | - |
+  | `departmentIds` |Guid[]  || no | no|| an array of department id.|
+  | `agentIds` |Guid[]  || no | no || an array of agent id.|
 
 ### Live Chat Condition object
 
@@ -590,14 +645,14 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/customerSegments
+curl -H "Content-Type: application/json"
+-X GET  https://domain.comm100.com/api/v3/livechat/customerSegments
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 [
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -616,8 +671,11 @@ Content-Type:  application/json
         "order": 1
       }
     ],
-     "alertTo":[]
-    },
+    "alertTo":{
+       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "departmentIds":[]
+     }
+  },
     ...
 ]
 ```
@@ -642,14 +700,14 @@ the response is: [customer segment](#customer-segment-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/customerSegments//1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "livechat15293908029",
@@ -667,7 +725,10 @@ Content-Type:  application/json
       "order": 1
     }
   ],
-  "alertTo":[]
+  "alertTo":{
+       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "departmentIds":[]
+  }
 }
 ```
 
@@ -679,12 +740,11 @@ Content-Type:  application/json
 
 Request body
   
-  The request body contains data with the [customer segment](#custimer-segment) structure
+  The request body contains data with the [customer segment](#customer-segment) structure
 
 example:
 ```Json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "livechat15293908029",
   "color": "339FD9",
   "isEnable": false,
@@ -700,7 +760,10 @@ example:
       "order": 1
     }
   ],
-  "alertTo":[]
+  "alertTo":{
+       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "departmentIds":[]
+  }
 }
 ```
 
@@ -712,16 +775,7 @@ the response is: [customer segment](#customer-segment-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "name=justfortest"  https://hosted.comm100.com/livechatwebapi/api/v2/livechat/visitorsegmentations
-```
-
-Response
-```Json
-HTTP/1.1 200 OK
-Content-Type:  application/json
-
-{
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+curl -H "Content-Type: application/json" -d '{
   "name": "livechat15293908029",
   "color": "339FD9",
   "isEnable": false,
@@ -737,7 +791,38 @@ Content-Type:  application/json
       "order": 1
     }
   ],
-  "alertTo":[]
+  "alertTo":{
+       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "departmentIds":[]
+  }
+}' -X POST https://domain.comm100.com/api/v3/livechat/customerSegments
+```
+
+Response
+```Json
+HTTP/1.1 201 Created
+Location: https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+Content-Type:  application/json
+{
+  "name": "livechat15293908029",
+  "color": "339FD9",
+  "isEnable": false,
+  "order": 1,
+  "description": "",
+  "conditionMetType": "all",
+  "logicalExpression": "",
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ],
+  "alertTo":{
+       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "departmentIds":[]
+  }
 }
 ```
 
@@ -761,14 +846,33 @@ the response is: [customer segment](#customer-segment-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "name=justfortestupdate" https://hosted.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -d '{
+  "name": "livechat15293908029",
+  "color": "339FD9",
+  "isEnable": false,
+  "order": 1,
+  "description": "",
+  "conditionMetType": "all",
+  "logicalExpression": "",
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ],
+  "alertTo":{
+       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "departmentIds":[]
+  }
+}' -X PUT https://domain.comm100.com/api/v3/livechat/customerSegments
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "livechat15293908029",
@@ -786,7 +890,11 @@ Content-Type:  application/json
       "order": 1
     }
   ],
-  "alertTo":[]
+  "alertTo":{
+    "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+    "departmentIds":[]
+  }
+}
 ```
 
 #### Delete a customer segment
@@ -809,7 +917,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE  https://hosted.comm100.com/api/v3/livechat/visitorsegmentations/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE  https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -866,7 +974,8 @@ the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "" https://hosted.comm100.com/api/v3/livechat/dynamicCampaign
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/dynamicCampaign?include=Campaign
 ```
 
 Response
@@ -953,7 +1062,34 @@ the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/dynamicCampaign
+curl -H "Content-Type: application/json" -d '{
+  "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "defaultCampaign": {
+    "name":"default campaign",
+    "description":""
+  },
+  "dynamicCampaignRules":[
+    {
+      "name": "default rule",
+      "isEnabled": true,
+      "conditionMetType": "all",
+      "logicalExpression": "",
+      "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "targetCampaign":{
+        "name":"default campaign",
+        "description":""
+      }
+    }
+  ],
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ]
+}' -X PUT https://domain.comm100.com/api/v3/livechat/dynamicCampaign
 ```
 
 Response
@@ -998,6 +1134,8 @@ Content-Type:  application/json
 ## Related Object Json Format
 
 ### Mobile Push JSON Format
+
+Mobile Push is represented as simple flat JSON objects with the following keys:
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
@@ -1103,8 +1241,24 @@ the response is: [Mobile Push](#moble-push-object) Object.
 
 Using curl
 ```
-curl -H "Content-Type: application/json"
--X PUT https://domain.comm100.com/api/v3/livechat/mobilePush
+curl -H "Content-Type: application/json" -d '{
+  "IOSType": "APNS",
+  "IOSProductionCertificateFileName": "",
+  "IOSProductionCertificateFileData": "",
+  "IOSProductionCertificatePassword": "",
+  "IOSDevelopmentCertificateFileName": "",
+  "IOSDevelopmentCertificateFileData": "",
+  "IOSDevelopmentCertificatePassword": "",
+  "IOSAPNSPayloadFormat": "",
+  "IOSThirdPartyURL": "",
+  "IOSThirdPartyRequestHeaders": "",
+  "AndroidType": "",
+  "AndroidGCMAPIKey": "",
+  "AndroidGCMExtraData": "",
+  "AndroidThirdPartyURL": "",
+  "AndroidThirdPartyRequestHeaders": "",
+  "AndroidThirdPartyRequestBody": "",
+}' -X PUT https://domain.comm100.com/api/v3/livechat/mobilePush
 ```
 Response
 ```Json
@@ -1167,14 +1321,14 @@ the response an array of [Online Agent](#online-agent-object) object
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/onlineAgents
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/onlineAgents
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 [
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -1182,7 +1336,7 @@ Content-Type:  application/json
     "status": "online",
     "ongoingChats": 50
   },
-    ...
+  ...
 ]
 ```
 
@@ -1206,20 +1360,20 @@ the response is [Online Agent](#online-agent-object) object
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 {
-    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "name": "Grubby",
-    "status": "online",
-    "ongoingChats": 50
-  }
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "Grubby",
+  "status": "online",
+  "ongoingChats": 50
+}
 ```
 
 ### Update an online agent
@@ -1236,12 +1390,11 @@ Path parameters
 
 Request body
   
-  The request body contains data with the [Online Agents](#online-agent-object) Object structure
+  The request body contains data with the [Online Agent](#online-agent-object) Object structure
 
 example:
 ```Json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "Grubby",
   "status": "online",
   "ongoingChats": 50
@@ -1256,14 +1409,17 @@ the response is [Online Agent](#online-agent-object) object
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -d '{
+  "name": "Grubby",
+  "status": "online",
+  "ongoingChats": 50
+}' -X PUT https://hosted.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "Grubby",
@@ -1274,18 +1430,22 @@ Content-Type:  application/json
 
 # Online Visitor
 
+- `GET /api/v3/livechat/onlineVisitors` - [Get list of online visitors](#get-list-of-online-visitors)
+- `GET /api/v3/livechat/onlineVisitors/{id}` - [Get an online visitor by id](#get-an-online-visitor-by-id)  
+- `PUT /api/v3/livechat/onlineVisitors/{id}` - [Update an online visitor](#update-an-online-visitor)  
+
 ## Related Object Json Format
 
 ### Online Visitor JSON format
 
-agent is represented as simple flat JSON objects with the following keys:  
+online visitor is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid |  |  yes| N/A | | id of the online visitor. |
-  | `name` | String |  |  yes| N/A | | name of the online visitor. |
-  | `email` | String |  | no | N/A | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
-  | `status` | integer|  | yes | N/A | | total number of ongoing chats the agent has. |
+  | `id` | Guid |  |  yes| N/A | | id of the visitor. |
+  | `name` | String |  |  yes| N/A | | name of the visitor. |
+  | `email` | String |  | no | N/A | | email of the visitor.|
+  | `status` | integer|  | yes | N/A | |status of the visitor . |
 
 
 
@@ -7694,7 +7854,7 @@ HTTP/1.1 204 No Content
   Webhook is represented as simple flat JSON objects with the following keys:
 
  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - | 
+  | - | - | - | :-: | :-: | :-: | - |
   | `id` | guid  || N/A | N/A | | id of the webhook |
   | `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
   | `name` | string  || no | yes | | target url of the webhook. |
@@ -7717,14 +7877,14 @@ the response is: An array of [Webhook](#webhook-object)
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/webhooks
+curl -H "Content-Type: application/json"
+-X GET https://hosted.comm100.com/api/v3/livechat/webhooks
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 [
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -7755,14 +7915,14 @@ the response is: [Webhook](#webhook-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json"
+-X GET https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
@@ -7797,7 +7957,10 @@ the response is: [Webhook](#webhook-object) Object.
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "event=chatwrappedup&targeturl=http://www.baidu.com"  https://hosted.comm100.com/api/v3/livechat/webhooks
+curl -H "Content-Type: application/json" -d '{
+  "event": "chatWrappedUp",
+  "targetUrl": "http://www.aa.com"
+}' -X POST https://domain.comm100.com/api/v3/livechat/webhooks
 ```
 
 Sample response:
@@ -7805,7 +7968,7 @@ Sample response:
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
@@ -7846,7 +8009,10 @@ the response is: [Webhook](#webhook-object) Object.
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X PUT -d "event=chatwrappedup&targeturl=http://www.google.com"  https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -d '{
+  "event": "chatWrappedUp",
+  "targetUrl": "http://www.aa.com"
+}' -X PUSThttps://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -7880,7 +8046,7 @@ HTTP/1.1 204 No Content
 Sample request:
 
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE  https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl  -X DELETE  https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -7927,7 +8093,8 @@ the response is: An array of [Custom Variable](#custom-variable-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/customvariables
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/customvariables
 ```
 
 Response
@@ -7966,7 +8133,8 @@ the response is: [Custom Variable](#custom-variable-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8010,7 +8178,10 @@ the response is: [Custom Variable](#custom-variable-object) Object.
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "name=justfortest&type=text&value=aaaaa"  https://hosted.comm100.com/api/v3/livechat/customvariables
+curl -H "Content-Type: application/json" -d '"name": "test",
+  "type": "text",
+  "value": "'lizz'",
+  "hyperlink": "{!Visitor.IP}"' -X POST  https://domain.comm100.com/api/v3/livechat/customvariables
 ```
 
 Response
@@ -8045,7 +8216,6 @@ The request body contains data with the [Custom Variable](#custom-variable-objec
 example:
 ```Json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "test",
   "type": "text",
   "value": "'lizz'",
@@ -8063,7 +8233,12 @@ Sample request:
 
 Using curl
 ```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X POST -d "name=justfortestupdate&type=text&value=bbbbb"  https://hosted.comm100.com/api/v3/livechat/customvariables
+curl -H "Content-Type: application/json" -d '{
+  "name": "test",
+  "type": "text",
+  "value": "'lizz'",
+  "hyperlink": "{!Visitor.IP}"
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/customvariables
 ```
 
 Response
@@ -8098,12 +8273,11 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" -X DELETE https://hosted.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H -X DELETE https://hosted.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
 ```json
 HTTP/1.1 204 No Content
 ```
-
 </div>
