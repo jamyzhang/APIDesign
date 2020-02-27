@@ -1432,7 +1432,7 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/onlineVisitors` - [Get list of online visitors](#get-list-of-online-visitors)
 - `GET /api/v3/livechat/onlineVisitors/{id}` - [Get an online visitor by id](#get-an-online-visitor-by-id)  
-- `PUT /api/v3/livechat/onlineVisitors/{id}` - [Update an online visitor](#update-an-online-visitor)  
+- `PUT /api/v3/livechat/onlineVisitors/{id}` - [Update visitor custom variable](#update-visitor-custom-variable)  
 
 ## Related Object Json Format
 
@@ -1443,10 +1443,125 @@ online visitor is represented as simple flat JSON objects with the following key
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `id` | Guid |  |  yes| N/A | | id of the visitor. |
-  | `name` | String |  |  yes| N/A | | name of the visitor. |
-  | `email` | String |  | no | N/A | | email of the visitor.|
-  | `status` | integer|  | yes | N/A | |status of the visitor . |
+  | `name` | name |  |  yes| N/A | | name of the visitor. |
+  | `email` | string |  | yes | N/A | | email of the visitor.|
+  | `status` | String|  | yes | N/A | |status of the visitor . |
+  | `pageViews` | integer|  | yes | N/A | |the total number of web pages the visitor viewed on your website. |
+  | `browser` | string|  | yes | N/A | |the browser the visitor is using. |
+  | `chats` | integer|  | yes | N/A | |the total times of chats a visitor has made on your website from the first time to present. |
+  | `city` | string|  | yes | N/A | |the city of the visitor. |
+  | `country` | string|  | yes | N/A | |the country of the visitor. |
+  | `currentBrowsing` | string|  | yes | N/A | |the page the visitor is currently looking at. |
+  | `customFields` | [Custom Field](#custom-field-object)[]|  | yes | N/A | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
+  | `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | N/A | |the information of custom variables captured from the web page visitors viewed.|
+  | `departmentId` | Guid|  | yes | N/A ||the department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
+  | `firstVisitTime` | datetime|  | yes | N/A | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
+  | `flashVersion` | string|  | yes | N/A | |the flash version of the browser the visitor is using.|
+  | `ip` | string|  | yes | N/A | |the IP of the visitor.|
+  | `keywords` | string|  | yes | N/A | |the keywords the visitor used to search for your website.|
+  | `landingPage` | string|  | yes | N/A | |the title and URL of the first page of your website the visitor visited.|
+  | `language` | string|  | yes | N/A | |the language the visitor is using.|
+  | `operatingSystem` | string|  | yes | N/A | |the operating system of the visitor's device.|
+  | `phone` | string|  | yes | N/A | |the phone of the visitor.|
+  | `productService` | string|  | yes | N/A | |the product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
+  | `referrerUrl` | string|  | yes | N/A | |the URL of the page from which a visitor comes to your website.|
+  | `screenResolution` | string|  | yes | N/A | |the screen resolution of the visitor's device.|
+  | `searchEngine` | string|  | yes | N/A | |the search engine the visitor used to search for your website.|
+  | `state` | string|  | yes | N/A | |the state of the visitor.|
+  | `timeZone` | string|  | yes | N/A | |the time zone of the visitor.|
+  | `visitTime` | string|  | yes | N/A | |the starting time when this visitor visits your website this time.|
+  | `visits` | string|  | yes | N/A | |the total times of visits a visitor has made on your website from the first time to present|
 
+
+### Custom Field JSON format
+
+Custom Field is represented as simple flat JSON objects with the following keys:  
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `id` | Guid |  |  yes| N/A | | id of the custom field.|
+  | `name` | string |  |  yes| N/A | | name of the custom field.|
+  | `value` | string |  |  yes| N/A | | value of the custom field.|
+
+### Custom Variable Result JSON Format
+
+Custom variable result is represented as simple flat JSON objects with the following keys:  
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `name` | string |  |  yes| N/A | | name of the custom variable.|
+  | `value` | string |  |  no| N/A | | value of the custom variable.|
+  | `url` | string |  | no| N/A | | url of the custom variable.|
+  
+## Endpoints
+
+### Get list of online visitors
+
+`GET /api/v3/livechat/onlineVisitors`
+
+#### Parameters
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `onlyChattingViitor` | boolean | no  | false |  if only return the chatting visitor. |
+
+#### Response
+
+the response is: array of [Online Visitor](#online-visitor-object) Object.
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors?onlyChattingViitor=false
+```
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[
+    {
+        "pageViews": 1,
+        "browser": "Firefox 67.0",
+        "chats": 0,
+        "city": "Changsha",
+        "company": "",
+        "country": "China",
+        "currentBrowsing": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+        "customFields": null,
+        "customVariableResults": [
+            {
+                "name": "justfortestupdate",
+                "value": "text",
+                "url": "bbbbb"
+            }
+        ],
+        "department": "",
+        "email": "",
+        "first_visit_time": "2019-06-11T03:05:42.537Z",
+        "flash_version": "",
+        "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+        "ip": "218.76.52.108",
+        "keywords": "",
+        "landing_page": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+        "language": "zh-CN",
+        "name": "218.76.52.108",
+        "operating_system": "Windows 10",
+        "phone": "",
+        "product_service": "",
+        "referrer_url": "",
+        "screen_resolution": "1920x1080",
+        "search_engine": "",
+        "state": "Hunan",
+        "status": 3,
+        "time_zone": "GMT +08:00",
+        "visit_time": "2019-06-12T07:41:40.486Z",
+        "visits": 4
+    },
+    ...
+]
+```
 
 
 # Session
