@@ -1274,13 +1274,20 @@ Content-Type:  application/json
 
 # Online Visitor
 
+## Related Object Json Format
 
-//修改ER
-//todo
+### Online Visitor JSON format
 
-- `GET /api/v3/livechat/visitors` - [Get a list of visitors in livechat](#get-all-visitors)
-- `GET /api/v3/livechat/visitors/{id}` - [Get a visitor by id](#get-a-visitor)  
-- `POST /api/v3/livechat/visitors/{id}/customVariables` - [update a visitor's custom variables](#update-a-visitor-custom-variables)
+agent is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `id` | Guid |  |  yes| N/A | | id of the online visitor. |
+  | `name` | String |  |  yes| N/A | | name of the online visitor. |
+  | `email` | String |  | no | N/A | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
+  | `status` | integer|  | yes | N/A | | total number of ongoing chats the agent has. |
+
+
 
 # Session
 
@@ -3955,7 +3962,6 @@ Content-Type:  application/json
 ```
 
 # Language
->>>>>>> 2f418e30cf2add16d57cae0ab69664dc8685aca2
 
 Using curl
 ```
