@@ -1132,26 +1132,148 @@ Content-Type:  application/json
 
 # Online Agent
 
-- `GET /api/v3/livechat/agents` - [Get a list of agents in livechat](#get-all-agents)
-- `GET /api/v3/livechat/agents/{id}` - [Get an agent by id](#get-an-agent)  
-- `PUT /api/v3/livechat/agents/{id}` - [Update an agent](#update-an-agent)  
+- `GET /api/v3/livechat/onlineAgents` - [Get list of online agents](#get-list-of-online-agents)
+- `GET /api/v3/livechat/onlineAgents/{id}` - [Get an online agent by id](#get-an-online-agent-by-id)  
+- `PUT /api/v3/livechat/onlineAgents/{id}` - [Update an online agent](#update-an-online-agent)  
   
 ## Related Object Json Format
 
-### Agent JSON format
+### Online Agent JSON format
+
 agent is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid |  |  yes| N/A | | id of the agent. |
+  | `id` | Guid |  |  yes| N/A | | id of the online agent. |
+  | `name` | String |  |  yes| N/A | | name of the online agent. |
   | `status` | String |  | no | N/A | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
   | `ongoingChats` | integer|  | yes | N/A | | total number of ongoing chats the agent has. |
-  | `departmentIds` | Guid[] |  | yes | N/A | | an array of department id. |
-  | `maxChatsCount` | [Department](#department-object)[] | | yes | N/A | | an array of [Department](#department-object) Object. |
-  | `isAcceptAutoDistribution` | boolean | | yes | N/A | | whether the agent accept auto distribution. |
 
+## Endpoints
 
-# Online Visitor  
+### Get list of online agents
+
+`GET /api/v3/livechat/onlineAgents`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response an array of [Online Agent](#online-agent-object) object
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/onlineAgents
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+  {
+    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "name": "Grubby",
+    "status": "online",
+    "ongoingChats": 50
+  },
+    ...
+]
+```
+
+### Get an online agent by id
+
+`GET /api/v3/livechat/onlineAgents/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of online agent   |
+
+#### Response
+
+the response is [Online Agent](#online-agent-object) object
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "name": "Grubby",
+    "status": "online",
+    "ongoingChats": 50
+  }
+```
+
+### Update an online agent
+
+`POST /api/v3/livechat/onlineAgents/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of online agent   |
+
+Request body
+  
+  The request body contains data with the [Online Agents](#online-agent-object) Object structure
+
+example:
+```Json
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "Grubby",
+  "status": "online",
+  "ongoingChats": 50
+}
+```
+
+#### Response
+
+the response is [Online Agent](#online-agent-object) object
+
+#### Example
+
+Using curl
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk-aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRbfmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1xUTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ" https://hosted.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "Grubby",
+  "status": "online",
+  "ongoingChats": 50
+}
+```
+
+# Online Visitor
+
 
 //修改ER
 //todo
