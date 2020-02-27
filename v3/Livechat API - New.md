@@ -990,7 +990,7 @@ Content-Type:  application/json
 }
 ```
 
-# Mobile Push(这个接口需要提供吗?)
+# Mobile Push
 
 - `GET /api/v3/livechat/mobilePush` - [Get mobile push](#get-mobile-push)
 - `PUT /api/v3/livechat/mobilePush` - [Update mobile push](#update-mobile-push)
@@ -1130,14 +1130,26 @@ Content-Type:  application/json
 }
 ```
 
-# Online Agent  
-
-//修改ER
-//todo
+# Online Agent
 
 - `GET /api/v3/livechat/agents` - [Get a list of agents in livechat](#get-all-agents)
 - `GET /api/v3/livechat/agents/{id}` - [Get an agent by id](#get-an-agent)  
 - `PUT /api/v3/livechat/agents/{id}` - [Update an agent](#update-an-agent)  
+  
+## Related Object Json Format
+
+### Agent JSON format
+agent is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `id` | Guid |  |  yes| N/A | | id of the agent. |
+  | `status` | String |  | no | N/A | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
+  | `ongoingChats` | integer|  | yes | N/A | | total number of ongoing chats the agent has. |
+  | `departmentIds` | Guid[] |  | yes | N/A | | an array of department id. |
+  | `maxChatsCount` | [Department](#department-object)[] | | yes | N/A | | an array of [Department](#department-object) Object. |
+  | `isAcceptAutoDistribution` | boolean | | yes | N/A | | whether the agent accept auto distribution. |
+
 
 # Online Visitor  
 
@@ -1148,7 +1160,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/visitors/{id}` - [Get a visitor by id](#get-a-visitor)  
 - `POST /api/v3/livechat/visitors/{id}/customVariables` - [update a visitor's custom variables](#update-a-visitor-custom-variables)
 
-# Session 
+# Session
 
 - `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-session-by-id) include visitor, contact
 
@@ -1243,6 +1255,7 @@ Response
 - `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#get-a-campaign)
 
 # Offline Message
+
 - `GET /api/v3/livechat/offlineMessages` - [Get a list of offline messages](#get-a-list-of-offline-messages)  include department,agent, campaign,autoInvitation, session
 - `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offline message by id](#get-an-offline-message-by-id)  include department,agent, campaign,autoInvitation, session
 - `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offline message by id](#delete-an-offline-message-by-id)
@@ -3449,8 +3462,6 @@ example:
 #### Response
 
 the response is: [Auto Invitation](#Auto-Invitation-Object) Object
-<<<<<<< HEAD
-=======
 
 #### Example
 
@@ -3803,8 +3814,7 @@ example:
 the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
 
 #### Example
-<<<<<<< HEAD
-=======
+
 
 Using curl
 ```
