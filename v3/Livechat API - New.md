@@ -699,11 +699,415 @@ Response
 ```
 
 # Chat
-//chat对象 sessionId
-- `GET /api/v3/livechat/chats` - [Get a list of chats](#get-site-campaigns) include department,agent , chatbot, campaign,autoInvitation, session
-- `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-campaign)  include department,agent , chatbot, campaign,autoInvitation
-- `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat by id](#get-a-campaign)
-- `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#get-a-campaign)
+
+- `GET /api/v3/livechat/chats` - [Get all chats](#get-all-chats) include department,agent , chatbot, campaign,autoInvitation, session
+- `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-chat-by-id)  include department,agent , chatbot, campaign,autoInvitation
+- `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat](#delete-a-chat)
+- `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#Batch-delete-chats)
+
+## Related Object Json Format
+
+### Chat Object
+
+ Chat is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `id` | Guid |  | N/A | N/A | | id of the chat. |
+  | `agentIds` | Guid |  | N/A | N/A | | Maximum four agents can join a chat. |
+  | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
+  | `startTime` | datetime | | N/A | N/A | |  |
+  | `endTime` | datetime | | N/A | N/A | |  |
+  | `ifQueued` | boolean | | N/A | N/A | |  |
+  | `ifAudioChatHappened` | boolean | | N/A | N/A | false |  |
+  | `ifVideoChatHappened` | boolean | | N/A | N/A | false |  |
+  | `messages` | [Chat Message](#Chat-Message-object)[] | | N/A | N/A |  | |
+  | `status` | string | | N/A | N/A |  | Including `normal`, `refused` and `missed`. |
+  | `requestingPageTitle` | string | | N/A | N/A |  |  |
+  | `requestingPageURL` | string | | N/A | N/A |  | |
+  | `source` | string | | N/A | N/A |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
+  | `autoInvitationId` | Guid | | N/A | N/A |  | |
+  | `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | N/A | N/A |  |  |
+  | `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) | yes | N/A | N/A |  |  |
+  | `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) | yes | N/A | N/A |  |  |
+  | `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) | yes | N/A | N/A |  |  |
+  | `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) | yes | N/A | N/A |  |  |
+  | `requestedTime` | datetime | | N/A | N/A | | The time when the chat is requested. |
+  | `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | N/A | N/A |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
+  | `avgResponseTime` | float | | N/A | N/A | |  |
+  | `visitorMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Visitors. |
+  | `agentMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Agents. |
+  | `campaignId` | Guid | | N/A | N/A |  |  |
+  | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
+  | `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
+  | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | Max 3. |
+  | `sessionId` | Guid | | N/A | N/A |  |  |
+  | `session` | [Session](#session) | yes | N/A | N/A |  |  |
+
+### Chat Message Object
+
+  Chat Message Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `type` | string | N/A  | N/A | | Including `system`, `visitor`, `agent`, `chatbot` and `note`. |
+  | `senderName` | string | N/A  | N/A | |  |
+  | `sentTime` | datetime | N/A  | N/A | |  |
+  | `content` | string | N/A  | N/A | | |
+  | `translatedMessage` | string | N/A  | N/A | |  |
+  | `attachment` | byte[] | | N/A | N/A |  | The attachment file data |
+  | `attachmentName` | string | | N/A | N/A |  | The attachment file name |
+
+### Chat Pre-Chat Object
+
+  Pre-Chat Window Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `socialMediaSource` | string | N/A  | N/A | |  Including `none` and `facebook`. |
+  | `socialProfileURL` | string | N/A  | N/A | |  |
+  | `name` | string | N/A  | N/A   | |  |
+  | `email` | string | N/A  | N/A | | |
+  | `phone` | string | N/A  | N/A   | |  |
+  | `company` | string | N/A  | N/A | | |
+  | `productService` | string | N/A  | N/A   | |  |
+  | `ticketID` | string | N/A  | N/A | | |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  |  |
+
+### Chat Post Chat  Object
+
+  Chat Post Chat Window Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `ratingGrade` | string | N/A | N/A | | Including `noRating`, `level1` , `level2` , `level3` , `level4` and `level5`. |
+  | `ratingComment` | string | N/A | N/A | | |
+  | `ratingTime` | datetime | N/A  | N/A | |  |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  |  |
+
+### Chat Agent Wrap-Up Object
+
+  Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `categorys` | string[] | N/A | N/A | |   |
+  | `comment` | string | N/A | N/A | |   |
+  | `lastUpdatedTime` | datetime | N/A | N/A | |   |
+  | `lastUpdatedBy` | Guid | N/A | N/A | |  Id of the agent. |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  |  |
+
+### Chat Custom Variable Object
+
+  Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  |  |
+
+## Endpoint
+
+### Get all chats
+
+  `Get /api/v3/livechat/chats`
+
+#### Parameters
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`. |
+  | `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+  | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+  | `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
+  | `pageIndex` | integer | no  | 1 | The page index of query. |
+  | `pageSize` | integer | no  | 50 | Page size.  |
+  | `departmentId` | guid | no  |  | |
+  | `categoryId` | guid | no  |  | |
+  | `visitorId` | guid | no  |  | |
+  | `agentId` | guid | no  |  | |
+  | `keywords` | string | no  |  | |
+  | `conditions` | string | no  |  |  The condition list of inquiring the chat `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0]` |
+
+#### Response
+
+The response body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `totalCount` | integer | N/A | N/A | Total count of the list. |
+  | `previousPage` | string | N/A | N/A | Url of the previous page. |
+  | `nextPage` | string | N/A | N/A | Url of the next page. |
+  | `list` | [Chat](#Chat-Object)[] | N/A | N/A |  |
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session
+```
+Response
+```json  
+
+{
+    "totalCount": 28,
+    "previousPage": "",
+    "nextPage": "https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session&pageIndex=2",
+    "list": [
+        {
+            "id": "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
+            "agentIds": ["1224C179-8756-C50D-465F-73861413A4F8"],
+            "startTime": "2019-01-05T07:17:08.89",
+            "endTime": "2019-01-05T07:27:08.89",
+            "ifQueued": false,
+            "ifAudioChatHappened": false,
+            "ifVideoChatHappened": false,
+            "messages": [{
+              "type": "agent",
+              "senderName": "agent",
+              "sentTime": "2019-01-05T07:17:09.89",
+              "content": "test",
+              "translatedMessage": "test",
+              "attachment": [file binary data],
+              "attachmentName": "comm100SDK.css"
+            },
+            ...
+            ],
+            "status": "normal",
+            "requestingPageTitle":"",
+            "requestingPageURL":"",
+            "source":"autoInvitation",
+            "autoInvitationId": "d245dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+            "autoInvitation": {
+                //include autoInvitation
+                "id":"d245dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+                "name": "autoTest",
+                ...
+            },
+            "preChat": {
+              "socialMediaSource": "none",
+              "socialProfileURL": "",
+              "name": "test",
+              "email": "test@test.com",
+              "phone": "11111111111",
+              "company": "test",
+              "productService": "test",
+              "ticketID": "532DFB20-2A1C-BFC6-EEB5-46CACFE72EC2",
+              "fieldValues": []
+            },
+            "postChat": {
+              "ratingGrade": "noRating",
+              "ratingComment": "",
+              "ratingTime": "2019-01-05T07:17:09.89",
+              "fieldValues": []
+            },
+            "agentWrapUp": {
+              "categorys": [],
+              "comment": "test",
+              "lastUpdatedTime": "2019-01-05T07:17:09.89",
+              "lastUpdatedBy": "9C93FC96-887B-4FC7-08A2-636A42D78CBE",
+              "fieldValues": []
+            },
+            "customVariable": {
+              "fieldValues": []
+            },
+            "requestedTime": "2019-01-05T07:17:07.89",
+            "lastMessageSentBy": "agent",
+            "offlineMessage": null,
+            "avgResponseTime": 1.2,
+            "visitorMessagesCount": 11,
+            "agentMessagesCount": 16,
+            "campaignId":"2d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+            "campaign": {
+                //include campaign
+                "id":"2d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+                "name": "testCampaign",
+                ...
+            },
+            "customerSegments": [],
+            "sessionId": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+            "session": {
+                //include session
+                "id":"f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+                "startTime": "2020-02-20T13:12:20Z",
+                "ip": "192.168.0.201",
+                "referrerURL": "",
+                "searchEngine": "",
+                "keywords": "",
+                "browser": "Firefox",
+                ...
+            },
+            "fieldValues": []
+        },
+        ...
+    ]
+}
+```
+
+### Get a chat by id
+
+  `Get /api/v3/livechat/chats/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the chat. |
+
+#### Response
+
+the response is: [Chat](#Chat-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231?include=campaign,autoInvitation,session
+```
+Response
+```json  
+
+{
+  "id": "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
+  "agentIds": ["1224C179-8756-C50D-465F-73861413A4F8"],
+  "startTime": "2019-01-05T07:17:08.89",
+  "endTime": "2019-01-05T07:27:08.89",
+  "ifQueued": false,
+  "ifAudioChatHappened": false,
+  "ifVideoChatHappened": false,
+  "messages": [{
+    "type": "agent",
+    "senderName": "agent",
+    "sentTime": "2019-01-05T07:17:09.89",
+    "content": "test",
+    "translatedMessage": "test",
+    "attachment": [file binary data],
+    "attachmentName": "comm100SDK.css"
+  },
+  ...
+  ],
+  "status": "normal",
+  "requestingPageTitle":"",
+  "requestingPageURL":"",
+  "source":"autoInvitation",
+  "autoInvitationId": "d245dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+  "autoInvitation": {
+    //include autoInvitation
+    "id":"d245dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "name": "autoTest",
+    ...
+  },
+  "preChat": {
+    "socialMediaSource": "none",
+    "socialProfileURL": "",
+    "name": "test",
+    "email": "test@test.com",
+    "phone": "11111111111",
+    "company": "test",
+    "productService": "test",
+    "ticketID": "532DFB20-2A1C-BFC6-EEB5-46CACFE72EC2",
+    "fieldValues": []
+  },
+  "postChat": {
+    "ratingGrade": "noRating",
+    "ratingComment": "",
+    "ratingTime": "2019-01-05T07:17:09.89",
+    "fieldValues": []
+  },
+  "agentWrapUp": {
+    "categorys": [],
+    "comment": "test",
+    "lastUpdatedTime": "2019-01-05T07:17:09.89",
+    "lastUpdatedBy": "9C93FC96-887B-4FC7-08A2-636A42D78CBE",
+    "fieldValues": []
+  },
+  "customVariable": {
+    "fieldValues": []
+  },
+  "requestedTime": "2019-01-05T07:17:07.89",
+  "lastMessageSentBy": "agent",
+  "offlineMessage": null,
+  "avgResponseTime": 1.2,
+  "visitorMessagesCount": 11,
+  "agentMessagesCount": 16,
+  "campaignId":"2d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+  "campaign": {
+    //include campaign
+    "id":"2d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "name": "testCampaign",
+    ...
+  },
+  "customerSegments": [],
+  "sessionId": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+  "session": {
+    //include session
+    "id":"f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "startTime": "2020-02-20T13:12:20Z",
+    "ip": "192.168.0.201",
+    "referrerURL": "",
+    "searchEngine": "",
+    "keywords": "",
+    "browser": "Firefox",
+    ...
+  },
+  "fieldValues": []
+}
+```
+
+### Delete a chat
+
+  `DELETE /api/v3/livechat/chats/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the chat |
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+### Batch Delete chats
+
+  `DELETE /api/v3/livechat/chats
+
+#### Parameters
+
+  no parameters
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
 
 # Offline Message
 - `GET /api/v3/livechat/offlineMessages` - [Get a list of offline messages](#get-a-list-of-offline-messages)  include department,agent, campaign,autoInvitation, session
