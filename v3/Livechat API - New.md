@@ -13,13 +13,15 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
     - [auto distribution](#auto-distribution)
     - [translation excluded word](#translation-excluded-word)
     - [dynamic campaign](#dynamic-campaign)
-      - [dynamic campaign rule](#dynamic-campaign-rule)
     - [mobile push](#mobile-push)
   - [customer segment](#customer-segment)
+  - [online-agent](#online-agent)
+  - [online-visitor](#online-visitor)
   - [session](#session)  
   - [chat](#chat)
   - [offline message](#offline-message)  
   - [campaign](#campaign)
+    - [installation code](#installation-code)
     - [chat button](#chat-button)
     - [chat window](#chat-window)
     - [pre-chat](#pre-chat)
@@ -945,6 +947,7 @@ Dynamic Campaign is represented as simple flat JSON objects with the following k
 ### Dynamic Campaign Rule Object
 
 Dynamic Campaign Rule is represented as simple flat JSON objects with the following keys:
+
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `name` |string || no | yes || name of the dynamic campaign rule.|
@@ -1480,6 +1483,7 @@ online visitor is represented as simple flat JSON objects with the following key
 ### Custom Field JSON format
 
 Custom Field is represented as simple flat JSON objects with the following keys:  
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `id` | Guid |  |  yes| N/A | | id of the custom field.|
@@ -1488,7 +1492,8 @@ Custom Field is represented as simple flat JSON objects with the following keys:
 
 ### Custom Variable Result JSON Format
 
-Custom variable result is represented as simple flat JSON objects with the following keys:  
+Custom variable result is represented as simple flat JSON objects with the following keys: 
+ 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `name` | string |  |  yes| N/A | | name of the custom variable.|
@@ -4729,24 +4734,6 @@ the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
 
 #### Example
 
-
-Using curl
-```
-curl -H "Content-Type: application/json" -d '{
-  "fields":  []
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup
-```
-
-Response
-``` json
-HTTP/1.1 200 OK
-Content-Type:  application/json
-{
-  "fields":  []
-}
-```
-
-# Language
 
 Using curl
 ```
