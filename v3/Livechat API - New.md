@@ -1499,6 +1499,7 @@ Custom variable result is represented as simple flat JSON objects with the follo
 
 #### Parameters
 
+
 Query string
 
   | Name  | Type | Required | Default | Description |
@@ -1522,47 +1523,206 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 [
     {
-        "pageViews": 1,
-        "browser": "Firefox 67.0",
-        "chats": 0,
-        "city": "Changsha",
-        "company": "",
-        "country": "China",
-        "currentBrowsing": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
-        "customFields": null,
-        "customVariableResults": [
-            {
-                "name": "justfortestupdate",
-                "value": "text",
-                "url": "bbbbb"
-            }
-        ],
-        "department": "",
-        "email": "",
-        "first_visit_time": "2019-06-11T03:05:42.537Z",
-        "flash_version": "",
-        "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
-        "ip": "218.76.52.108",
-        "keywords": "",
-        "landing_page": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
-        "language": "zh-CN",
-        "name": "218.76.52.108",
-        "operating_system": "Windows 10",
-        "phone": "",
-        "product_service": "",
-        "referrer_url": "",
-        "screen_resolution": "1920x1080",
-        "search_engine": "",
-        "state": "Hunan",
-        "status": 3,
-        "time_zone": "GMT +08:00",
-        "visit_time": "2019-06-12T07:41:40.486Z",
-        "visits": 4
-    },
-    ...
+      "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+      "pageViews": 1,
+      "browser": "Firefox 67.0",
+      "chats": 0,
+      "city": "Changsha",
+      "company": "",
+      "country": "China",
+      "currentBrowsing": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "customFields": null,
+      "customVariableResults": [
+        {
+          "name": "justfortestupdate",
+          "value": "text",
+          "url": "bbbbb"
+        }
+      ],
+      "department": "",
+      "email": "",
+      "first_visit_time": "2019-06-11T03:05:42.537Z",
+      "flash_version": "",
+      "ip": "218.76.52.108",
+      "keywords": "",
+      "landing_page": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "language": "zh-CN",
+      "name": "218.76.52.108",
+      "operating_system": "Windows 10",
+      "phone": "",
+      "product_service": "",
+      "referrer_url": "",
+      "screen_resolution": "1920x1080",
+      "search_engine": "",
+      "state": "Hunan",
+      "status": 3,
+      "time_zone": "GMT +08:00",
+      "visit_time": "2019-06-12T07:41:40.486Z",
+      "visits": 4
+  },
+  ...
 ]
 ```
 
+### Get an online visitor by id
+
+`GET /api/v3/livechat/onlineVisitors/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of online visitor|
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `onlyChattingViitor` | boolean | no  | false |  if only return the chatting visitor. |
+
+#### Response
+
+the response is: array of [Online Visitor](#online-visitor-object) Object.
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingViitor=false
+```
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+  "pageViews": 1,
+  "browser": "Firefox 67.0",
+  "chats": 0,
+  "city": "Changsha",
+  "company": "",
+  "country": "China",
+  "currentBrowsing": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "customFields": null,
+  "customVariableResults": [
+    {
+      "name": "justfortestupdate",
+      "value": "text",
+      "url": "bbbbb"
+    }
+  ],
+  "department": "",
+  "email": "",
+  "first_visit_time": "2019-06-11T03:05:42.537Z",
+  "flash_version": "",
+  "ip": "218.76.52.108",
+  "keywords": "",
+  "landing_page": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "language": "zh-CN",
+  "name": "218.76.52.108",
+  "operating_system": "Windows 10",
+  "phone": "",
+  "product_service": "",
+  "referrer_url": "",
+  "screen_resolution": "1920x1080",
+  "search_engine": "",
+  "state": "Hunan",
+  "status": 3,
+  "time_zone": "GMT +08:00",
+  "visit_time": "2019-06-12T07:41:40.486Z",
+  "visits": 4
+}
+```
+
+### Update visitor custom variable
+
+`PUT /api/v3/livechat/onlineVisitors/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  id of online visitor|
+
+#### Response
+
+the response is: array of [Online Visitor](#online-visitor-object) Object.
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "livechat15293908029",
+  "color": "339FD9",
+  "isEnable": false,
+  "order": 1,
+  "description": "",
+  "conditionMetType": "all",
+  "logicalExpression": "",
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    }
+  ],
+  "alertTo":{
+       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "departmentIds":[]
+  }
+}' -X PUT https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+```
+
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+  "pageViews": 1,
+  "browser": "Firefox 67.0",
+  "chats": 0,
+  "city": "Changsha",
+  "company": "",
+  "country": "China",
+  "currentBrowsing": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "customFields": null,
+  "customVariableResults": [
+    {
+      "name": "justfortestupdate",
+      "value": "text",
+      "url": "bbbbb"
+    }
+  ],
+  "department": "",
+  "email": "",
+  "first_visit_time": "2019-06-11T03:05:42.537Z",
+  "flash_version": "",
+  "ip": "218.76.52.108",
+  "keywords": "",
+  "landing_page": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "language": "zh-CN",
+  "name": "218.76.52.108",
+  "operating_system": "Windows 10",
+  "phone": "",
+  "product_service": "",
+  "referrer_url": "",
+  "screen_resolution": "1920x1080",
+  "search_engine": "",
+  "state": "Hunan",
+  "status": 3,
+  "time_zone": "GMT +08:00",
+  "visit_time": "2019-06-12T07:41:40.486Z",
+  "visits": 4
+}
+```
 
 # Session
 
