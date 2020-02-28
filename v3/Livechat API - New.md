@@ -165,23 +165,23 @@ Response
 ```Json
 HTTP/1.1 200 OK
 {
-    "siteId": 6000000,
-    "isMultipleCampaignEnabled": true,
-    "isAutoDistributionEnabled": false,
-    "isCustomAwayStatusEnabled": true,
-    "isDepartmentEnabled": false,
-    "isAutoTranslationEnabled": true,
-    "isAudioAndVideoChatEnabled": false,
-    "iscustomerSegmentEnabled": true,
-    "isVisitorSSOtEnabled": false,
-    "isCreditCardMaskingEnabled": true,
-    "isCustomVariablesEnabled": true,
-    "isSalesforceEnabled": false,
-    "isZendeskEnabled": true,
-    "isGoogleAnalyticsEnabled": true,
-    "isGotoMeetingEnabled": true,
-    "isJoinmeEnabled": true,
-    "isCobrowsingEnabled":true
+  "siteId": 6000000,
+  "isMultipleCampaignEnabled": true,
+  "isAutoDistributionEnabled": false,
+  "isCustomAwayStatusEnabled": true,
+  "isDepartmentEnabled": false,
+  "isAutoTranslationEnabled": true,
+  "isAudioAndVideoChatEnabled": false,
+  "iscustomerSegmentEnabled": true,
+  "isVisitorSSOtEnabled": false,
+  "isCreditCardMaskingEnabled": true,
+  "isCustomVariablesEnabled": true,
+  "isSalesforceEnabled": false,
+  "isZendeskEnabled": true,
+  "isGoogleAnalyticsEnabled": true,
+  "isGotoMeetingEnabled": true,
+  "isJoinmeEnabled": true,
+  "isCobrowsingEnabled":true
 }
 ```
 
@@ -317,7 +317,7 @@ example:
 
 #### Response
 
-the response is: [Auto Distribution](#auto-distribution-object) Object.
+the response is: [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
@@ -347,7 +347,7 @@ curl -H "Content-Type: application/json" -d '{
     },
     ...
   ]
-}' -X PUT https://hosted.comm100.com/api/v3/livechat/autoDistribution
+}' -X PUT https://domain.comm100.com/api/v3/livechat/autoDistribution
 ```
 
 Response
@@ -396,7 +396,7 @@ Translation Excluded Word is represented as simple flat JSON objects with the fo
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `id` |Guid  || yes | N/A || id of the translation excluded word.
-| `content` |string  || no | yes || content of translation excluded word.
+| `word` |string  || no | yes || content of translation excluded word.
 
 ## Endpoints
 
@@ -427,11 +427,11 @@ Content-Type:  application/json
 [
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "content": "hello"
+    "word": "hello"
   },
   {
      "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-     "content": "no"
+     "word": "no"
   }
 ]
 ```
@@ -466,7 +466,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-  "content": "no"
+  "word": "no"
 }
 ```
 
@@ -483,7 +483,7 @@ Request body
 example:
 ```Json
 {
-  "content": "no"
+  "word": "no"
 }
 ```
 #### Response
@@ -495,7 +495,7 @@ the response is [Translation Excluded Word](#translation-excluded-word) object
 Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "content": "no"
+  "word": "no"
 }' -X POST https://domain.comm100.com/api/v3/livechat/translationExcludedWords/
 ```
 
@@ -506,7 +506,7 @@ Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/livechat/translationExcludedWords/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 {
   "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-  "content": "no"
+  "word": "no"
 }
 
 ```
@@ -525,7 +525,7 @@ example:
 ```Json
 {
   "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-  "content": "no"
+  "word": "no"
 }
 ```
 #### Response
@@ -538,8 +538,8 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
   "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-  "content": "no"
-}' -X PUT https://hosted.comm100.com/api/v3/livechat/translationExcludedWords/
+  "word": "no"
+}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/
 ```
 
 Response
@@ -548,7 +548,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-  "content": "no"
+  "word": "no"
 }
 
 ```
@@ -573,7 +573,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```shell
-curl -H -X DELETE https://hosted.comm100.com/api/v3/livechat/translationExcludedWord/5587fc9d-92e6-4487-a2e8-92e68d6892c4
+curl -H -X DELETE https://domain.comm100.com/api/v3/livechat/translationExcludedWord/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
 Response
@@ -964,7 +964,11 @@ Dynamic Campaign Rule is represented as simple flat JSON objects with the follow
 
 #### Parameter
 
-    No parameters
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `include` | string | no  | |  Available value: `campaign`|
 
 #### Response
 
@@ -1413,7 +1417,7 @@ curl -H "Content-Type: application/json" -d '{
   "name": "Grubby",
   "status": "online",
   "ongoingChats": 50
-}' -X PUT https://hosted.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+}' -X PUT https://domain.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -1530,7 +1534,7 @@ Content-Type:  application/json
       "city": "Changsha",
       "company": "",
       "country": "China",
-      "currentBrowsing": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "customFields": null,
       "customVariableResults": [
         {
@@ -1545,7 +1549,7 @@ Content-Type:  application/json
       "flash_version": "",
       "ip": "218.76.52.108",
       "keywords": "",
-      "landing_page": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "language": "zh-CN",
       "name": "218.76.52.108",
       "operating_system": "Windows 10",
@@ -1605,7 +1609,7 @@ Content-Type:  application/json
   "city": "Changsha",
   "company": "",
   "country": "China",
-  "currentBrowsing": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "customFields": null,
   "customVariableResults": [
     {
@@ -1620,7 +1624,7 @@ Content-Type:  application/json
   "flash_version": "",
   "ip": "218.76.52.108",
   "keywords": "",
-  "landing_page": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
   "operating_system": "Windows 10",
@@ -1658,26 +1662,43 @@ the response is: array of [Online Visitor](#online-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "name": "livechat15293908029",
-  "color": "339FD9",
-  "isEnable": false,
-  "order": 1,
-  "description": "",
-  "conditionMetType": "all",
-  "logicalExpression": "",
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
-    }
-  ],
-  "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
-       "departmentIds":[]
-  }
-}' -X PUT https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+      "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+      "pageViews": 1,
+      "browser": "Firefox 67.0",
+      "chats": 0,
+      "city": "Changsha",
+      "company": "",
+      "country": "China",
+      "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "customFields": null,
+      "customVariableResults": [
+        {
+          "name": "justfortestupdate",
+          "value": "text",
+          "url": "bbbbb"
+        }
+      ],
+      "department": "",
+      "email": "",
+      "first_visit_time": "2019-06-11T03:05:42.537Z",
+      "flash_version": "",
+      "ip": "218.76.52.108",
+      "keywords": "",
+      "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "language": "zh-CN",
+      "name": "218.76.52.108",
+      "operating_system": "Windows 10",
+      "phone": "",
+      "product_service": "",
+      "referrer_url": "",
+      "screen_resolution": "1920x1080",
+      "search_engine": "",
+      "state": "Hunan",
+      "status": 3,
+      "time_zone": "GMT +08:00",
+      "visit_time": "2019-06-12T07:41:40.486Z",
+      "visits": 4
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
 Response
@@ -1692,7 +1713,7 @@ Content-Type:  application/json
   "city": "Changsha",
   "company": "",
   "country": "China",
-  "currentBrowsing": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "customFields": null,
   "customVariableResults": [
     {
@@ -1707,7 +1728,7 @@ Content-Type:  application/json
   "flash_version": "",
   "ip": "218.76.52.108",
   "keywords": "",
-  "landing_page": "https://hosted.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
   "operating_system": "Windows 10",
@@ -2779,8 +2800,8 @@ Content-Type:  application/json
     <div id=\"livechat-button-1\"></div>
       <script type=\"text/javascript\">
         var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement(\"script\"),c=document.getElementsByTagName(\"script\")[0];a.type=\"text/javascript\",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:1,div_id:\"livechat-button-1\"}),t.site_id=[SiteId],t.main_code_plan=1,e(\"  
-        https://hosted.comm100.com/chatserver/livechat.ashx?siteId=\"),setTimeout(function(){t.loaded||e(\"  
-        https://hosted.comm100.com/chatserver/livechat.ashx?siteId=\")},5e3)})(Comm100API||{})
+        https://domain.comm100.com/chatserver/livechat.ashx?siteId=\"),setTimeout(function(){t.loaded||e(\"  
+        https://domain.comm100.com/chatserver/livechat.ashx?siteId=\")},5e3)})(Comm100API||{})
       </script>
     <!--End Tester Code-->"
 }
@@ -4889,10 +4910,10 @@ Content-Type:  application/json
   | - | - |- | :-: | :-: | :-: | - |
   | `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
   | `type` | string |  | no | no | | Including `simple` and `customRule`. |
-  | `routeTo` | string | | no | no | | Including `agent` and `department`. |
+  | `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
   | `routeToId` | Guid | | no | no | | AgentId or DepartmentId. |
   | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-  | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
+  | `routeToDepartment` | [Department](#Department-Object) //department 对应的链接在哪呢?| yes | no | no | |  |
   | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
   | `percentageToBot` | integer |  | no | no | | |
   | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
@@ -8320,7 +8341,7 @@ the response is: An array of [Webhook](#webhook-object)
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://hosted.comm100.com/api/v3/livechat/webhooks
+-X GET https://domain.comm100.com/api/v3/livechat/webhooks
 ```
 
 Response
@@ -8358,7 +8379,7 @@ the response is: [Webhook](#webhook-object) Object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://hosted.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8629,6 +8650,7 @@ curl -H "Content-Type: application/json" -d '"name": "test",
 Response
 ```Json
 HTTP/1.1 201 Created
+Location: https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 Content-Type:  application/json
 
 {
@@ -8715,7 +8737,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -H -X DELETE https://hosted.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H -X DELETE https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
