@@ -212,6 +212,7 @@ HTTP/1.1 200 OK
 ### Department Auto Distribution Object
 
 Department Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `departmentId` | Guid ||  yes| N/A|| id of department |
@@ -221,6 +222,7 @@ Department Auto Distribution Object is represented as simple flat JSON objects w
 ### Agent Auto Distribution Object
 
 Agent Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `agentId` | Guid ||  yes| N/A|| id of agent |
@@ -621,7 +623,8 @@ Alert To is represented as simple flat JSON objects with the following keys:
 
 ### Live Chat Condition object
 
-Live Chat Condition is represented as simple flat JSON objects with the following keys:  
+Live Chat Condition is represented as simple flat JSON objects with the following keys:
+
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `field` |String  | no | yes || the name of visitor field.
@@ -1493,7 +1496,7 @@ Custom Field is represented as simple flat JSON objects with the following keys:
 ### Custom Variable Result JSON Format
 
 Custom variable result is represented as simple flat JSON objects with the following keys: 
- 
+
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `name` | string |  |  yes| N/A | | name of the custom variable.|
@@ -2329,6 +2332,8 @@ The response body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `totalCount` | integer | N/A | N/A | total count of the list. |
+  | `previousPage` | string | N/A | N/A | Url of the previous page. |
+  | `nextPage` | string | N/A | N/A | Url of the next page. |
   | `list` | [Offline Message](#offline-message-json-format)[] | N/A | N/A | an array of [Offline Message](#offline-message-json-format) |
 
 #### Example
@@ -2336,13 +2341,15 @@ The response body contains data with the follow structure:
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation, session
+-X GET https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session
 ```
 Response
 ```json  
 
 {
     "totalCount": 28,
+    "previousPage": "",
+    "nextPage": "https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session&pageIndex=2",
     "list": [
         {
             "id": "a2317d24-bec0-43e5-aaf5-2eae29ce948f",
