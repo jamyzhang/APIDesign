@@ -1868,7 +1868,7 @@ Response
   | `sentTime` | datetime | N/A  | N/A | |  |
   | `content` | string | N/A  | N/A | | |
   | `translatedMessage` | string | N/A  | N/A | |  |
-  | `attachment` | byte[] |N/A | N/A |  |  | The attachment file data |
+  | `attachment` | byte[] | N/A | N/A | |  | The attachment file data |
   | `attachmentName` | string | N/A | N/A | |  | The attachment file name |
 
 ### Chat Pre-Chat Object
@@ -1885,7 +1885,7 @@ Response
   | `company` | string | N/A  | N/A | | |
   | `productService` | string | N/A  | N/A   | |  |
   | `ticketID` | string | N/A  | N/A | | |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  |  |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ### Chat Post Chat  Object
 
@@ -1896,7 +1896,7 @@ Response
   | `ratingGrade` | string | N/A | N/A | | Including `noRating`, `level1` , `level2` , `level3` , `level4` and `level5`. |
   | `ratingComment` | string | N/A | N/A | | |
   | `ratingTime` | datetime | N/A  | N/A | |  |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  |  |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ### Chat Agent Wrap-Up Object
 
@@ -1908,7 +1908,7 @@ Response
   | `comment` | string | N/A | N/A | |   |
   | `lastUpdatedTime` | datetime | N/A | N/A | |   |
   | `lastUpdatedBy` | Guid | N/A | N/A | |  Id of the agent. |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  |  |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ### Chat Custom Variable Object
 
@@ -1916,7 +1916,7 @@ Response
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  |  |
+  | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ## Endpoint
 
@@ -3773,9 +3773,6 @@ Content-Type:  application/json
   | `style` | string | no | N/A | | Including `bubble`, `popup` and `chatWindow`. |
   | `manualInvitation` | [Manual Invitation](#Manual-Invitation-Object) | no | N/A | | |
   | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | N/A | | |
-  | `style` | string | no | N/A | | Including `bubble`, `popup` and `chatWindow`. |
-  | `manualInvitation` | [Manual Invitation](#Manual-Invitation-Object) | no | N/A | | |
-  | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | N/A | | |
 
 ## Invitation Endpoints
 
@@ -4424,72 +4421,6 @@ example:
 #### Response
 
 the response is: [Auto Invitation](#Auto-Invitation-Object) Object
-
-#### Example
-
-Using curl
-```
-curl -H "Content-Type: application/json" -d '{
-  "name": "test",
-  "isEnable": false,
-  "isDisplayedOnceInOneSession": false,
-  "order": 1,
-  "imageType": "fromGallery",
-  "closeAreaXOffset": 10,
-  "closeAreaYOffset": 10,
-  "closeAreaWidth": 10,
-  "closeAreaHeight": 10,
-  "textAreaXOffset": 10,
-  "textAreaYOffset": 10,
-  "textAreaWidth": 10,
-  "textAreaHeight": 10,
-  "text": "",
-  "textFont": "timesNewRoman",
-  "textSize": "XXSmall",
-  "isTextBold": false,
-  "isTextItalic": false,
-  "textColor": "#339FD9",
-  "position": "centerWithOverlay",
-  "conditionMetType": "any",
-  "logicalExpression": "",
-  "conditions": ""
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations
-```
-
-Response
-``` json
-HTTP/1.1 201 Created
-Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
-
-{
-  "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
-  "name": "test",
-  "isEnable": false,
-  "isDisplayedOnceInOneSession": false,
-  "order": 1,
-  "imageType": "fromGallery",
-  "closeAreaXOffset": 10,
-  "closeAreaYOffset": 10,
-  "closeAreaWidth": 10,
-  "closeAreaHeight": 10,
-  "textAreaXOffset": 10,
-  "textAreaYOffset": 10,
-  "textAreaWidth": 10,
-  "textAreaHeight": 10,
-  "text": "",
-  "textFont": "timesNewRoman",
-  "textSize": "XXSmall",
-  "isTextBold": false,
-  "isTextItalic": false,
-  "textColor": "#339FD9",
-  "position": "centerWithOverlay",
-  "conditionMetType": "any",
-  "logicalExpression": "",
-  "conditions": ""
-}
-```
->>>>>>> 2f418e30cf2add16d57cae0ab69664dc8685aca2
 
 #### Example
 
@@ -5674,41 +5605,6 @@ example:
 the response is: [Chatbot Integration](#Chatbot-Integration-Object) Object
 
 #### Example
-
-Using curl
-```
-curl -H "Content-Type: application/json" -d '{
-  "isEnable": true,
-  "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
-  "isChatbotAllocatedWhenAgentOnline": false,
-  "ifDistributeChatsToChatbotByQueueLength": false,
-  "ifDistributeChatsToChatbotByPercentage": false,
-  "queueLength": 1,
-  "percentageToChatbot": 1,
-  "isChatbotAllocatedWhenAgentOffline": false
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatbotIntegration
-```
-
-Response
-``` json
-HTTP/1.1 200 OK
-Content-Type:  application/json
-{
-  "isEnable": true,
-  "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
-  "isChatbotAllocatedWhenAgentOnline": false,
-  "ifDistributeChatsToChatbotByQueueLength": false,
-  "ifDistributeChatsToChatbotByPercentage": false,
-  "queueLength": 1,
-  "percentageToChatbot": 1,
-  "isChatbotAllocatedWhenAgentOffline": false
-}
-```
-
-# KB Integration
-
-- `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Get settings of KB Integration for a campaign](#get-KB-Integration) include knowledgeBase
-- `PUT /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Update settings of KB Integration for a campaign](#update-KB-Integration)
 
 Using curl
 ```
