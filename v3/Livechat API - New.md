@@ -5856,7 +5856,7 @@ Content-Type:  application/json
   Live Chat Field Type is one key of the following keys:
 
   | Name | Available Forms |
-  | - | :-: | - |
+  | - | :-: |
   | `textBox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
   | `textArea` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
   | `radioBox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
@@ -5887,7 +5887,7 @@ Content-Type:  application/json
   | `order` | integer | no | no | | |
   | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[]  | no | no | | |
 
-## KB Integration Endpoints
+## Endpoints
 
 ### Get all form fields of Pre-Chat for a campaign
 
