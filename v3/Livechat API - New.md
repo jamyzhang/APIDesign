@@ -4,7 +4,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
   | Change Version | API Version | Change note | Change Date | Author |
   | - | - | - | - | - |
-  | 1.0 | v3 |  | 2020-02-17 | Michael |
+  | 1.0 | v3 |  | 2020-02-17 | Grubby,Michael,Davy |
 
 # Summary
 
@@ -1828,11 +1828,11 @@ Response
   | - | - |- | :-: | :-: | :-: | - |
   | `id` | Guid |  | N/A | N/A | | id of the chat. |
   | `agentIds` | Guid |  | N/A | N/A | | Maximum four agents can join a chat. |
-  | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
+  | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent.//这里应该是有一个chatbot字段才对 |
   | `startTime` | datetime | | N/A | N/A | |  |
   | `endTime` | datetime | | N/A | N/A | |  |
   | `ifQueued` | boolean | | N/A | N/A | |  |
-  | `ifAudioChatHappened` | boolean | | N/A | N/A | false |  |
+  | `ifAudioChatHappened` | boolean | | N/A | N/A | false //不能修改也不能创建,应该就没有默认值 |  |
   | `ifVideoChatHappened` | boolean | | N/A | N/A | false |  |
   | `messages` | [Chat Message](#Chat-Message-object)[] | | N/A | N/A |  | |
   | `status` | string | | N/A | N/A |  | Including `normal`, `refused` and `missed`. |
@@ -1853,9 +1853,9 @@ Response
   | `campaignId` | Guid | | N/A | N/A |  |  |
   | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
   | `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
-  | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | Max 3. |
-  | `sessionId` | Guid | | N/A | N/A |  |  |
-  | `session` | [Session](#session) | yes | N/A | N/A |  |  |
+  | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | Max 3. // max 3 是什么?|
+  | `sessionId` | Guid | | N/A | N/A |  | id of session |
+  | `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
 
 ### Chat Message Object
 
@@ -1868,8 +1868,8 @@ Response
   | `sentTime` | datetime | N/A  | N/A | |  |
   | `content` | string | N/A  | N/A | | |
   | `translatedMessage` | string | N/A  | N/A | |  |
-  | `attachment` | byte[] | | N/A | N/A |  | The attachment file data |
-  | `attachmentName` | string | | N/A | N/A |  | The attachment file name |
+  | `attachment` | byte[] |N/A | N/A |  |  | The attachment file data |
+  | `attachmentName` | string | N/A | N/A | |  | The attachment file name |
 
 ### Chat Pre-Chat Object
 
@@ -3393,7 +3393,7 @@ Content-Type:  application/json
   "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "socialMediaLogin": "none",
-  "fields":  [],
+  "fields":  [],//这里的数据还是举一个例子比较好.
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3711,12 +3711,10 @@ Content-Type:  application/json
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-<<<<<<< HEAD
-<<<<<<< HEAD
   | `id` | Guid | yes | N/A | | Id of the current item. |
   | `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
   | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
-  | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object)[] | no | no | | |
+  | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object)[] //不对吧,手动邀请只有一个| no | no | | |
 
 ### Manual Invitation Object
 
@@ -3772,16 +3770,12 @@ Content-Type:  application/json
   | `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
   | `logicalExpression` | string | no | no | | |
   | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#conditions-json-format) object. |
-=======
   | `style` | string | no | N/A | | Including `bubble`, `popup` and `chatWindow`. |
   | `manualInvitation` | [Manual Invitation](#Manual-Invitation-Object) | no | N/A | | |
   | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | N/A | | |
->>>>>>> 2f418e30cf2add16d57cae0ab69664dc8685aca2
-=======
   | `style` | string | no | N/A | | Including `bubble`, `popup` and `chatWindow`. |
   | `manualInvitation` | [Manual Invitation](#Manual-Invitation-Object) | no | N/A | | |
   | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | N/A | | |
->>>>>>> 2f418e30cf2add16d57cae0ab69664dc8685aca2
 
 ## Invitation Endpoints
 
@@ -4773,7 +4767,7 @@ Request Body
 example:
 ```Json
 {
-  "fields":  []
+  "fields":  [] //这个不行的,例子里面啥都没有.
 }
 ```
 
@@ -4818,7 +4812,7 @@ Content-Type:  application/json
 }
 ```
 
-# Language
+# Language //language 的看过界面, 逻辑是对的吗?
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/language` - [Get settings of language for a campaign](#get-Language)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/language` - [Update settings of language for a campaign](#update-Language)
@@ -5236,7 +5230,7 @@ Content-Type:  application/json
     "percentageToBot": 10,
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": []
+    "conditions": [] //既然是例子，还是数据还是要写全一点
   },
   ...
 ]
@@ -5351,72 +5345,6 @@ example:
 the response is: [Custom Rule](#Custom-Rule-Object) Object
 
 #### Example
-<<<<<<< HEAD
-
-Using curl
-```
-curl -H "Content-Type: application/json" -d '{
-  "isEnable": false,
-  "name": "test",
-  "order": 1,
-  "routeTo": "agent",
-  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
-  "routeToDepartment": { // include department
-    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
-      "name": "markting",
-      "site": "10000",
-      "description": "markting departments",
-      "isAvailableInChat": "yes",
-      "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
-  },
-  "priority": "lowest",
-  "percentageToBot": 10,
-  "conditionMetType": "any",
-  "logicalExpression": "",
-  "conditions": []
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules
-```
-
-Response
-``` json
-HTTP/1.1 201 Created
-Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
-
-{
-  "id": "02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F",
-  "isEnable": false,
-  "name": "test",
-  "order": 1,
-  "routeTo": "agent",
-  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
-  "routeToDepartment": { // include department
-    "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
-      "name": "markting",
-      "site": "10000",
-      "description": "markting departments",
-      "isAvailableInChat": "yes",
-      "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "memberIds":  ["4487fc9d-92e6-4487-a2e8-92e68d6892e6"]
-  },
-  "priority": "lowest",
-  "percentageToBot": 10,
-  "conditionMetType": "any",
-  "logicalExpression": "",
-  "conditions": []
-}
-```
-
-### Update a Custom Rule
-
-  `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
-=======
->>>>>>> 2f418e30cf2add16d57cae0ab69664dc8685aca2
 
 Using curl
 ```
@@ -5746,8 +5674,6 @@ example:
 the response is: [Chatbot Integration](#Chatbot-Integration-Object) Object
 
 #### Example
-<<<<<<< HEAD
-=======
 
 Using curl
 ```
@@ -5783,7 +5709,6 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Get settings of KB Integration for a campaign](#get-KB-Integration) include knowledgeBase
 - `PUT /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Update settings of KB Integration for a campaign](#update-KB-Integration)
->>>>>>> 2f418e30cf2add16d57cae0ab69664dc8685aca2
 
 Using curl
 ```
@@ -6275,64 +6200,6 @@ Path Parameters
 the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
 
 #### Example
-<<<<<<< HEAD
-
-Using curl
-```
-curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat/campaignFormFields
-```
-
-Response
-``` json
-HTTP/1.1 200 OK
-Content-Type:  application/json
-[
-  {
-    "id": "8FD2DBE6-4653-1705-F791-F2C648A11FC7",
-    "field": {
-      "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
-      "isSystem": false,
-      "name": "teset",
-      "type": "textBox",
-      "options": [{
-        "value": "test",
-        "order": 1,
-      },
-      ...
-      ],
-      "leftText": "",
-      "rightText": "",
-      "optionGroups": [{
-        "name": "test",
-        "order": 1,
-        "options":[]
-      },
-      ...
-      ],
-    },
-    "isVisible": false,
-    "isRequired": false,
-    "order": 1,
-    "ratingGrades": [{
-      "grade": 1,
-      "label": "",
-      "isVisible": false
-    },
-    ...
-    ]
-  },
-  ...
-]
-```
-
-### Create a new form fields of Post Chat for a campaign
-
-  `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields`
-
-#### Parameters
-=======
->>>>>>> 2f418e30cf2add16d57cae0ab69664dc8685aca2
 
 Using curl
 ```
