@@ -609,7 +609,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
   | `description` |string  || no | no || description of the customer segment.
   | `condition met type` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
   | `logical expression` |string  || no | no || the logical expression for conditions.
-  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#conditions-json-format) object. |
+  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
   | `alertTo`| [Alert To](#alert-to)  || no | no | |an array of agent id or department Id|
 
 ### Alert To Segment Object
@@ -959,7 +959,7 @@ Dynamic Campaign Rule is represented as simple flat JSON objects with the follow
 | `logicalExpression` |String || no | no ||the logical expression for conditions.|
 | `targetCampaignId` |integer || no | yes||the id of target [Campaign](#campaign-object).|
 | `targetCampaign` |[Campaign](#campaign-object) |yes| N/A | N/A ||the target [Campaign](#campaign-object) object.|
-| `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no ||an array of [Live Chat Condition](#conditions-json-format) object. .|
+| `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no ||an array of [Live Chat Condition](#live-chat-condition-object) object. .|
 | `order` |integer|| no | yes ||the order of this rule|
 
 ## Endpoint
@@ -1857,11 +1857,11 @@ Response
   | - | - |- | :-: | :-: | :-: | - |
   | `id` | Guid |  | N/A | N/A | | id of the chat. |
   | `agentIds` | Guid |  | N/A | N/A | | Maximum four agents can join a chat. |
-  | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent.//这里应该是有一个chatbot字段才对 |
+  | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
   | `startTime` | datetime | | N/A | N/A | |  |
   | `endTime` | datetime | | N/A | N/A | |  |
   | `ifQueued` | boolean | | N/A | N/A | |  |
-  | `ifAudioChatHappened` | boolean | | N/A | N/A | false //不能修改也不能创建,应该就没有默认值 |  |
+  | `ifAudioChatHappened` | boolean | | N/A | N/A | false |  |
   | `ifVideoChatHappened` | boolean | | N/A | N/A | false |  |
   | `messages` | [Chat Message](#Chat-Message-object)[] | | N/A | N/A |  | |
   | `status` | string | | N/A | N/A |  | Including `normal`, `refused` and `missed`. |
@@ -1882,7 +1882,7 @@ Response
   | `campaignId` | Guid | | N/A | N/A |  |  |
   | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
   | `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
-  | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | Max 3. // max 3 是什么?|
+  | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | |
   | `sessionId` | Guid | | N/A | N/A |  | id of session |
   | `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
 
@@ -3426,7 +3426,43 @@ Content-Type:  application/json
   "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "socialMediaLogin": "none",
-  "fields":  [],//这里的数据还是举一个例子比较好.
+  "fields":  [
+    {
+      "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
+      "field": {
+        "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+        "isSystem": false,
+        "name": "teset",
+        "type": "textBox",
+        "options": [{
+          "value": "test",
+          "order": 1,
+        },
+        ...
+        ],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": [{
+          "name": "test",
+          "order": 1,
+          "options":[]
+        },
+        ...
+        ],
+      },
+      "isVisible": false,
+      "isRequired": false,
+      "order": 1,
+      "ratingGrades": [{
+        "grade": 1,
+        "label": "",
+        "isVisible": false
+      },
+      ...
+      ]
+    },
+    ...
+  ],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3802,10 +3838,7 @@ Content-Type:  application/json
   | `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
   | `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
   | `logicalExpression` | string | no | no | | |
-  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#conditions-json-format) object. |
-  | `style` | string | no | N/A | | Including `bubble`, `popup` and `chatWindow`. |
-  | `manualInvitation` | [Manual Invitation](#Manual-Invitation-Object) | no | N/A | | |
-  | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | N/A | | |
+  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#live-chat-condition-object) object. |
 
 ## Invitation Endpoints
 
@@ -3882,7 +3915,15 @@ Content-Type:  application/json
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   },
   ...
   ]
@@ -3952,7 +3993,15 @@ example:
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   }]
 }
 ```
@@ -4010,7 +4059,15 @@ curl -H "Content-Type: application/json" -d '{
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   }]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
 ```
@@ -4064,7 +4121,15 @@ Content-Type:  application/json
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   }]
 }
 ```
@@ -4340,7 +4405,15 @@ Content-Type:  application/json
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   },
   ...
   ]
@@ -4400,7 +4473,15 @@ Content-Type:  application/json
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   },
   ...
   ]
@@ -4447,7 +4528,15 @@ example:
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -4482,7 +4571,15 @@ curl -H "Content-Type: application/json" -d '{
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
   }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations
 ```
 
@@ -4516,7 +4613,15 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -4562,7 +4667,15 @@ example:
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -4597,7 +4710,15 @@ curl -H "Content-Type: application/json" -d '{
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 ```
 
@@ -4629,7 +4750,15 @@ Content-Type:  application/json
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -4731,7 +4860,43 @@ Request Body
 example:
 ```Json
 {
-  "fields":  [] //这个不行的,例子里面啥都没有.
+  "fields":  [
+    {
+      "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
+      "field": {
+        "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+        "isSystem": false,
+        "name": "teset",
+        "type": "textBox",
+        "options": [{
+          "value": "test",
+          "order": 1,
+        },
+        ...
+        ],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": [{
+          "name": "test",
+          "order": 1,
+          "options":[]
+        },
+        ...
+        ],
+      },
+      "isVisible": false,
+      "isRequired": false,
+      "order": 1,
+      "ratingGrades": [{
+        "grade": 1,
+        "label": "",
+        "isVisible": false
+      },
+      ...
+      ]
+    },
+    ...
+  ]
 }
 ```
 
@@ -4758,7 +4923,7 @@ Content-Type:  application/json
 }
 ```
 
-# Language //language 的看过界面, 逻辑是对的吗?
+# Language
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/language` - [Get settings of language for a campaign](#get-Language)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/language` - [Update settings of language for a campaign](#update-Language)
@@ -5104,7 +5269,7 @@ Content-Type:  application/json
   | `percentageToBot` | integer | | no | no | | |
   | `conditionMetType` | string | | no | no | | Including `all`, `any` and `logicalExpression`. |
   | `logicalExpression` | string | | no | no | | |
-  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | no | no | |an array of [Live Chat Condition](#conditions-json-format) object.  |
+  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | no | no | |an array of [Live Chat Condition](#Live-Chat-Condition-Object) object.  |
 
 ### Live Chat Condition Object
 
@@ -5176,7 +5341,15 @@ Content-Type:  application/json
     "percentageToBot": 10,
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": [] //既然是例子，还是数据还是要写全一点
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   },
   ...
 ]
@@ -5239,7 +5412,15 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -5282,7 +5463,15 @@ example:
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
 }
 ```
 
@@ -5315,7 +5504,15 @@ curl -H "Content-Type: application/json" -d '{
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
   }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules
 ```
 
@@ -5347,7 +5544,15 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
 }
 ```
 
@@ -5391,7 +5596,15 @@ example:
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -5424,7 +5637,15 @@ curl -H "Content-Type: application/json" -d '{
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
 ```
 
@@ -5454,7 +5675,15 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 

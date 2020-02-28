@@ -48,7 +48,7 @@
  | - | - | :-: | :-: | :-: | :-: | - | 
  |`id` | integer  | | N/A | N/A |  |Site ID.|
  |`dateTimeFormat` | string| | no | N/A  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
- |`timeZone` | string| | no | N/A  |  | Time zone of site. value include all time zone options, format as ±hh:mm |
+ |`timeZone` | string| | no | N/A  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
  |`company` | string | | no | N/A  | |Company name.|
  |`companySize` | string| | no | N/A  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
  |`website` | string  | | no | N/A  | |Company website. |
@@ -86,7 +86,7 @@ Content-Type:  application/json
 {
     "id": 10000,
     "dateTimeFormat":"yyyy-MM-dd hh:mm:ss",
-    "timeZone":"-09:00",
+    "timeZone":"canadaCentralStandardTime",
     "company":"BMW",
     "companySize": 5000,
     "website":"www.bmw.com",
@@ -122,7 +122,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
-    "timeZone"："-09:00"，
+    "timeZone"："canadaCentralStandardTime"，
     "company"："BMW"，
     "companySize"："5000"，
     "website"："www.bwm.com"，
@@ -146,7 +146,7 @@ Content-Type:  application/json
 {
     "id": 10000,
     "dateTimeFormat": "yyyy-MM-dd hh:mm:ss",
-    "timeZone": "-09:00",
+    "timeZone": "canadaCentralStandardTime",
     "company": "BMW",
     "companySize": 5000,
     "website": "www.bwm.com",
@@ -198,24 +198,18 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`phone` | string | | no | no | | Mobile phone number of the agent.|
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
-  |`timeZone` | string| | no | no |  | Time zone of agent. value include all time zone options, format as ±hh:mm, if not offered, will set by site time zone. |
+  |`timeZone` | string| | no | no |  | Time zone of agent. value include all [Time Zone Option](#time-zone-options) Ids, if not offered, will set by site time zone. |
   |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
-  |`avatar` | string| | no | no | default avatar data | image base64 data code.|
   |`createdTime` | DateTime | | N/A | N/A | UTC | The create time of the agent.|
-  |`isLocked` | bool| | no | no | false | Account will be locked after several failed login attempts.|
+  |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
   |`lockedTime` | DateTime | | N/A | N/A | UTC | When the agent is locked.|
-  |`apiKey` | string | | N/A | N/A | | API key of the agent |
   |`lastLoginTime` | DateTime | | N/A | N/A | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
   |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
-  |`forgetPasswordTag` | string | | N/A | N/A |  | When the agent submits his email address on Forget Password Page, system will generate a new Forget Password GUID Tag and overwrite the previous value. System will check this GUID to see whether the verification link is the latest one and only the latest one can work.|
-  |`forgetPasswordTagTime` | DateTime | | N/A | N/A | UTC |  |
-  |`ipVerificationTag` | string | | N/A | N/A | | If the site has Login IP whitelist enabled and the agent IP is blocked from login: if the agent is administrator, he can click the ‘Email me for Authentication’ to authenticate this IP. When the administrator clicks the ‘Email me’ button, there will be a new IP Verification GUID Tag generated and updated the previous value. The administrator should click the verification link in his email, if the GUID matches, system will add current Login IP into Whitelist and the administrator can login Control Panel successfully. If the agent is not administrator, he needs to contact administrator to add his IP into whitelist.|
-  |`ipVerificationTagTime` | DateTime | | N/A | N/A | UTC |  |
-  |`permissionIds` | string[]  |  | no | no | [] | Agent permission settings.|
+  |`permissionIds` | integer[]  |  | no | no | [] | Agent permission settings.|
   |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
-  |`roleIds` | string[]  |  | no | no |  | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
+  |`roleIds` | Guid[]  |  | no | no |  | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
   |`roles` | [Role](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
-  |`departmentIds` | string[]  |  | no | no | [] | The list of the department ids which the agent belongs to.|
+  |`departmentIds` | Guid[]  |  | no | no | [] | The list of the department ids which the agent belongs to.|
   |`departments` | [Department](#department)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
   |`shifts` | [Shift](#shift)[]  | yes | N/A | N/A  | | The list of shifts which the agent belongs to.|
 
@@ -227,8 +221,11 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`totalCount` | integer  | N/A | yes | no | | The total count of the query  |
-  |`list`|   [Agent](#agent-object)[]| N/A | yes| no | | A list of agents. |
+  |`count` | integer  | N/A | yes | no | | The total count of the query  |
+  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
+  |`agents`|   [Agent](#agent-object)[]| N/A | yes| no | | A list of agents. |
+
 
 
 ## Agent Endpoints
@@ -261,7 +258,9 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "totalCount" : 100,
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/agents?pageIndex=2",
+    "previousPage": null,
     "agents": [{
         "id": 68,
         "email": "Tom@gmail.com",
@@ -350,8 +349,10 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "totalCount" : 100,
-    "list": [{
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents?pageIndex=2",
+    "previousPage": null,
+    "agents": [{
         "id": 68,
         "email": "Tom@gmail.com",
         "displayName":"Tom",
@@ -399,8 +400,10 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "totalCount" : 100,
-    "list": [{
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents?pageIndex=2",
+    "previousPage": null,
+    "agents": [{
         "id": 68,
         "email": "Tom@gmail.com",
         "displayName":"Tom",
@@ -684,6 +687,9 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
 ```
 
 ### Update current agent
+
+ Cannot modify agent's roles, departments and permissions by api: undate current agent.
+
   `PUT /api/v3/globalSettings/agents/me`
 
 ####  Parameters
@@ -701,10 +707,6 @@ example:
     "firstName":"Tom",
     "lastName":"Green",
     "title":"CEO",
-    "roleIds": [
-      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      ...,
-    ]
     ...,
 } 
 ```
@@ -722,10 +724,7 @@ curl -H "Content-Type: application/json" -d '{
     "firstName":"Tom",
     "lastName":"Green",
     "title":"CEO",
-    "roleIds": [
-      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      ...,
-    ]
+    "roleIds": NULL,
     ...,
 } ' -X PUT https://domain.comm100.com/api/v3/globalSettings/me
 ```
@@ -794,9 +793,9 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
   |`type` | string | | no | no | customRole | The options: siteAdministrator, allAgents, customRole; siteAdministrator and allAgents are the system roles. They cannot be deleted.|
-  |`memberIds` | int[] | | no | no | [] | The selected agents for this role. |
-  |`members` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
-  |`permissionIds` | string[] | | no | no |  | Permissions assigned to this role.|
+  |`agentIds` | int[] | | no | no | [] | The selected agents for this role. |
+  |`agents` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
+  |`permissionIds` | int[] | | no | no |  | Permissions assigned to this role.|
   |`permissions` | [Permission](#permission)[] | yes | N/A | N/A | | Permissions assigned to this role.|
 
 
@@ -827,10 +826,10 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 [{
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "Name": "markting",
-  "Description": "yyyy-MM-dd hh:mm:ss",
-  "Type": "CustomRole",
-  "MemberIds":  [
+  "name": "markting",
+  "description": "yyyy-MM-dd hh:mm:ss",
+  "type": "CustomRole",
+  "agentIds":  [
     68,
     ...,
   ],
@@ -889,7 +888,7 @@ Content-Type:  application/json
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "CustomRole",
-  "memberIds":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -919,7 +918,7 @@ Request body
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "CustomRole",
-      "MemberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -944,7 +943,7 @@ curl -H "Content-Type: application/json" -d ' {
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "CustomRole",
-      "MemberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -965,10 +964,10 @@ Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
  {
       "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "Name": "markting",
-      "Description": "yyyy-MM-dd hh:mm:ss",
-      "Type": "CustomRole",
-      "MemberIds":  [
+      "name": "markting",
+      "description": "yyyy-MM-dd hh:mm:ss",
+      "type": "CustomRole",
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1003,7 +1002,7 @@ Request body
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "CustomRole",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1024,10 +1023,10 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
-      "Name": "markting",
-      "Description": "yyyy-MM-dd hh:mm:ss",
-      "Type": "CustomRole",
-      "MemberIds":  [
+      "name": "markting",
+      "description": "yyyy-MM-dd hh:mm:ss",
+      "type": "CustomRole",
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1050,7 +1049,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "CustomRole",
-  "member":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -1111,8 +1110,8 @@ You need `Manage departments` permission to manage departments.
   |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the ‘Assigned Department’ field. Default: true.|
   |`offlineMessageMailType` | string | | no | no | allAgentsInDepartment | The value options: allAgentsInDepartment, emailAddress |
   |`offlineMessageEmails` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
-  |`memberIds` | int[] | | no | no | [] | The selected agents for this department.|
-  |`member` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
+  |`agentIds` | int[] | | no | no | [] | The selected agents for this department.|
+  |`agent` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
   |`shift` | [Shift](#shift)[]| yes | N/A | N/A |  |  |
 
 ## Department Endpoints
@@ -1147,7 +1146,7 @@ Content-Type:  application/json
   "isAvailableInTicketingAndMessaging": "yes",
   "offlineMessageMailType": "All agents in the department",
   "offlineMessageEmails": "",
-  "member":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -1193,7 +1192,7 @@ Content-Type:  application/json
   "isAvailableInTicketingAndMessaging": "yes",
   "offlineMessageMailType": "All agents in the department",
   "offlineMessageEmails": "",
-  "memberIds":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -1219,7 +1218,7 @@ Request body
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailType": "All agents in the department",
       "offlineMessageEmails": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1240,7 +1239,7 @@ curl -H "Content-Type: application/json" -d '{
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailType": "All agents in the department",
       "offlineMessageEmails": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1258,7 +1257,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailType": "All agents in the department",
       "offlineMessageEmails": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1290,7 +1289,7 @@ Request body
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailType": "All agents in the department",
       "offlineMessageEmails": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1305,13 +1304,13 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "Name": "markting",
-  "Description": "markting departments",
-  "IsAvailableInChat": "yes",
-  "IsAvailableInTicketingAndMessaging": "yes",
-  "OfflineMessageMailType": "All agents in the department",
-  "OfflineMessageEmails": "",
-  "memberIds":  [
+  "name": "markting",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailType": "All agents in the department",
+  "offlineMessageEmails": "",
+  "agentIds":  [
     68,
     ...,
   ],
@@ -1329,7 +1328,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailType": "All agents in the department",
       "offlineMessageEmails": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -2174,7 +2173,7 @@ Response
   |`stateOrProvince` | string  | | no | no | |  |
   |`countryOrRegion` | string  | | no | no | |  |
   |`postalOrZipCode` | string  | | no | no | |  |
-  |`timeZone` | string | | no | yes | | defaults to UTC time, format as ±hh:mm.|
+  |`timeZone` | string | | no | yes | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
   |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
   |`lastUpdatedTime` | DateTime | | N/A | N/A | |  |
 
@@ -4584,8 +4583,10 @@ Response
 
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
-  |`totalCount` | integer  | N/A | yes | no | | the total count of the query  |
-  |`list`| [Audit Log](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
+  |`count` | integer  | N/A | yes | no | | The total count of the query  |
+  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
+  |`auditLogs`| [AuditLog](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
 
 ### Action types for different applications
 
@@ -4628,7 +4629,7 @@ Response
   |`actionType`|string|no||The action type. |
   |`agentId`|integer |no||id of the agent who did the action. |
   |`keywords`|string|no||The key words associated with the action. |
-  |`pageIndex`|integer|no| 1 |The page index of the query. |
+  |`pageIndex`|integer|no| 1 | The page index of the query. |
   |`pageSize`|integer|no| 10 |The page size of the query. |
   |`include`|string|no||Available value: `agent` |
 
@@ -4647,19 +4648,171 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "totalCount" : 100,
-    "list": [
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/auditLogs?pageIndex=2",
+    "previousPage": null,
+    "auditLogs": [
       {
         "id": 201,
         "name": "add Agent",
-        "Category": "My Account Global Settings",
-        "CreatedTime": "2020-02-02",
-        "CreatedBy": 68,
-        "ActionType": "Add Agent",
-        "ActionSummary": "Add Agent",
-        "ActionDetails": "Add Agent for Live Chat",
+        "category": "My Account Global Settings",
+        "createdTime": "2020-02-02",
+        "createdBy": 68,
+        "actionType": "Add Agent",
+        "actionSummary": "Add Agent",
+        "actionDetails": "Add Agent for Live Chat",
       },
       ...,
       ]
 }
 ```
+
+
+
+
+# Time Zone Options
+
+
+  |   Id    |   Display name   |  
+  |   -   |   -   |   
+  |  datelineStandardTime  |   (UTC-12:00) International Date Line West   |  
+  |  utc-11  |   (UTC-11:00) Coordinated Universal Time-11   |  
+  |  aleutianStandardTime  |   (UTC-10:00) Aleutian Islands   |  
+  |  hawaiianStandardTime  |   (UTC-10:00) Hawaii   |  
+  |  marquesasStandardTime  |   (UTC-09:30) Marquesas Islands   |  
+  |  alaskanStandardTime  |   (UTC-09:00) Alaska   |  
+  |  utc-09  |   (UTC-09:00) Coordinated Universal Time-09   |  
+  |  pacificStandardTime(Mexico)  |   (UTC-08:00) Baja California   |  
+  |  utc-08  |   (UTC-08:00) Coordinated Universal Time-08   |  
+  |  pacificStandardTime  |   (UTC-08:00) Pacific Time (US & Canada)   |  
+  |  usMountainStandardTime  |   (UTC-07:00) Arizona   |  
+  |  mountainStandardTime(Mexico)  |   (UTC-07:00) Chihuahua, La Paz, Mazatlan   |  
+  |  mountainStandardTime  |   (UTC-07:00) Mountain Time (US & Canada)   |  
+  |  centralAmericaStandardTime  |   (UTC-06:00) Central America   |  
+  |  centralStandardTime  |   (UTC-06:00) Central Time (US & Canada)   |  
+  |  easterIslandStandardTime  |   (UTC-06:00) Easter Island   |  
+  |  centralStandardTime(Mexico)  |   (UTC-06:00) Guadalajara, Mexico City, Monterrey   |  
+  |  canadaCentralStandardTime  |   (UTC-06:00) Saskatchewan   |  
+  |  saPacificStandardTime  |   (UTC-05:00) Bogota, Lima, Quito, Rio Branco   |  
+  |  easternStandardTime(Mexico)  |   (UTC-05:00) Chetumal   |  
+  |  easternStandardTime  |   (UTC-05:00) Eastern Time (US & Canada)   |  
+  |  haitiStandardTime  |   (UTC-05:00) Haiti   |  
+  |  cubaStandardTime  |   (UTC-05:00) Havana   |  
+  |  usEasternStandardTime  |   (UTC-05:00) Indiana (East)   |  
+  |  turksAndCaicosStandardTime  |   (UTC-05:00) Turks and Caicos   |  
+  |  paraguayStandardTime  |   (UTC-04:00) Asuncion   |  
+  |  atlanticStandardTime  |   (UTC-04:00) Atlantic Time (Canada)   |  
+  |  venezuelaStandardTime  |   (UTC-04:00) Caracas   |  
+  |  centralBrazilianStandardTime  |   (UTC-04:00) Cuiaba   |  
+  |  saWesternStandardTime  |   (UTC-04:00) Georgetown, La Paz, Manaus, San Juan   |  
+  |  pacificSAStandardTime  |   (UTC-04:00) Santiago   |  
+  |  newfoundlandStandardTime  |   (UTC-03:30) Newfoundland   |  
+  |  tocantinsStandardTime  |   (UTC-03:00) Araguaina   |  
+  |  e.SouthAmericaStandardTime  |   (UTC-03:00) Brasilia   |  
+  |  saEasternStandardTime  |   (UTC-03:00) Cayenne, Fortaleza   |  
+  |  argentinaStandardTime  |   (UTC-03:00) City of Buenos Aires   |  
+  |  greenlandStandardTime  |   (UTC-03:00) Greenland   |  
+  |  montevideoStandardTime  |   (UTC-03:00) Montevideo   |  
+  |  magallanesStandardTime  |   (UTC-03:00) Punta Arenas   |  
+  |  saintPierreStandardTime  |   (UTC-03:00) Saint Pierre and Miquelon   |  
+  |  bahiaStandardTime  |   (UTC-03:00) Salvador   |  
+  |  utc-02  |   (UTC-02:00) Coordinated Universal Time-02   |  
+  |  mid-AtlanticStandardTime  |   (UTC-02:00) Mid-Atlantic - Old   |  
+  |  azoresStandardTime  |   (UTC-01:00) Azores   |  
+  |  capeVerdeStandardTime  |   (UTC-01:00) Cabo Verde Is.   |  
+  |  utc  |   (UTC) Coordinated Universal Time   |  
+  |  gmtStandardTime  |   (UTC+00:00) Dublin, Edinburgh, Lisbon, London   |  
+  |  greenwichStandardTime  |   (UTC+00:00) Monrovia, Reykjavik   |  
+  |  saoTomeStandardTime  |   (UTC+00:00) Sao Tome   |  
+  |  moroccoStandardTime  |   (UTC+01:00) Casablanca   |  
+  |  w.EuropeStandardTime  |   (UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna   |  
+  |  centralEuropeStandardTime  |   (UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague   |  
+  |  romanceStandardTime  |   (UTC+01:00) Brussels, Copenhagen, Madrid, Paris   |  
+  |  centralEuropeanStandardTime  |   (UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb   |  
+  |  w.CentralAfricaStandardTime  |   (UTC+01:00) West Central Africa   |  
+  |  jordanStandardTime  |   (UTC+02:00) Amman   |  
+  |  gtbStandardTime  |   (UTC+02:00) Athens, Bucharest   |  
+  |  middleEastStandardTime  |   (UTC+02:00) Beirut   |  
+  |  egyptStandardTime  |   (UTC+02:00) Cairo   |  
+  |  e.EuropeStandardTime  |   (UTC+02:00) Chisinau   |  
+  |  syriaStandardTime  |   (UTC+02:00) Damascus   |  
+  |  westBankStandardTime  |   (UTC+02:00) Gaza, Hebron   |  
+  |  southAfricaStandardTime  |   (UTC+02:00) Harare, Pretoria   |  
+  |  fleStandardTime  |   (UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius   |  
+  |  israelStandardTime  |   (UTC+02:00) Jerusalem   |  
+  |  kaliningradStandardTime  |   (UTC+02:00) Kaliningrad   |  
+  |  sudanStandardTime  |   (UTC+02:00) Khartoum   |  
+  |  libyaStandardTime  |   (UTC+02:00) Tripoli   |  
+  |  namibiaStandardTime  |   (UTC+02:00) Windhoek   |  
+  |  arabicStandardTime  |   (UTC+03:00) Baghdad   |  
+  |  turkeyStandardTime  |   (UTC+03:00) Istanbul   |  
+  |  arabStandardTime  |   (UTC+03:00) Kuwait, Riyadh   |  
+  |  belarusStandardTime  |   (UTC+03:00) Minsk   |  
+  |  russianStandardTime  |   (UTC+03:00) Moscow, St. Petersburg   |  
+  |  e.AfricaStandardTime  |   (UTC+03:00) Nairobi   |  
+  |  iranStandardTime  |   (UTC+03:30) Tehran   |  
+  |  arabianStandardTime  |   (UTC+04:00) Abu Dhabi, Muscat   |  
+  |  astrakhanStandardTime  |   (UTC+04:00) Astrakhan, Ulyanovsk   |  
+  |  azerbaijanStandardTime  |   (UTC+04:00) Baku   |  
+  |  russiaTimeZone3  |   (UTC+04:00) Izhevsk, Samara   |  
+  |  mauritiusStandardTime  |   (UTC+04:00) Port Louis   |  
+  |  saratovStandardTime  |   (UTC+04:00) Saratov   |  
+  |  georgianStandardTime  |   (UTC+04:00) Tbilisi   |  
+  |  volgogradStandardTime  |   (UTC+04:00) Volgograd   |  
+  |  caucasusStandardTime  |   (UTC+04:00) Yerevan   |  
+  |  afghanistanStandardTime  |   (UTC+04:30) Kabul   |  
+  |  westAsiaStandardTime  |   (UTC+05:00) Ashgabat, Tashkent   |  
+  |  ekaterinburgStandardTime  |   (UTC+05:00) Ekaterinburg   |  
+  |  pakistanStandardTime  |   (UTC+05:00) Islamabad, Karachi   |  
+  |  qyzylordaStandardTime  |   (UTC+05:00) Qyzylorda   |  
+  |  indiaStandardTime  |   (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi   |  
+  |  sriLankaStandardTime  |   (UTC+05:30) Sri Jayawardenepura   |  
+  |  nepalStandardTime  |   (UTC+05:45) Kathmandu   |  
+  |  centralAsiaStandardTime  |   (UTC+06:00) Astana   |  
+  |  bangladeshStandardTime  |   (UTC+06:00) Dhaka   |  
+  |  omskStandardTime  |   (UTC+06:00) Omsk   |  
+  |  myanmarStandardTime  |   (UTC+06:30) Yangon (Rangoon)   |  
+  |  seAsiaStandardTime  |   (UTC+07:00) Bangkok, Hanoi, Jakarta   |  
+  |  altaiStandardTime  |   (UTC+07:00) Barnaul, Gorno-Altaysk   |  
+  |  w.MongoliaStandardTime  |   (UTC+07:00) Hovd   |  
+  |  northAsiaStandardTime  |   (UTC+07:00) Krasnoyarsk   |  
+  |  n.CentralAsiaStandardTime  |   (UTC+07:00) Novosibirsk   |  
+  |  tomskStandardTime  |   (UTC+07:00) Tomsk   |  
+  |  chinaStandardTime  |   (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi   |  
+  |  northAsiaEastStandardTime  |   (UTC+08:00) Irkutsk   |  
+  |  singaporeStandardTime  |   (UTC+08:00) Kuala Lumpur, Singapore   |  
+  |  w.AustraliaStandardTime  |   (UTC+08:00) Perth   |  
+  |  taipeiStandardTime  |   (UTC+08:00) Taipei   |  
+  |  ulaanbaatarStandardTime  |   (UTC+08:00) Ulaanbaatar   |  
+  |  ausCentralW.StandardTime  |   (UTC+08:45) Eucla   |  
+  |  transbaikalStandardTime  |   (UTC+09:00) Chita   |  
+  |  tokyoStandardTime  |   (UTC+09:00) Osaka, Sapporo, Tokyo   |  
+  |  northKoreaStandardTime  |   (UTC+09:00) Pyongyang   |  
+  |  koreaStandardTime  |   (UTC+09:00) Seoul   |  
+  |  yakutskStandardTime  |   (UTC+09:00) Yakutsk   |  
+  |  cen.AustraliaStandardTime  |   (UTC+09:30) Adelaide   |  
+  |  aUSCentralStandardTime  |   (UTC+09:30) Darwin   |  
+  |  e.AustraliaStandardTime  |   (UTC+10:00) Brisbane   |  
+  |  aUSEasternStandardTime  |   (UTC+10:00) Canberra, Melbourne, Sydney   |  
+  |  westPacificStandardTime  |   (UTC+10:00) Guam, Port Moresby   |  
+  |  tasmaniaStandardTime  |   (UTC+10:00) Hobart   |  
+  |  vladivostokStandardTime  |   (UTC+10:00) Vladivostok   |  
+  |  lordHoweStandardTime  |   (UTC+10:30) Lord Howe Island   |  
+  |  bougainvilleStandardTime  |   (UTC+11:00) Bougainville Island   |  
+  |  russiaTimeZone10  |   (UTC+11:00) Chokurdakh   |  
+  |  magadanStandardTime  |   (UTC+11:00) Magadan   |  
+  |  norfolkStandardTime  |   (UTC+11:00) Norfolk Island   |  
+  |  sakhalinStandardTime  |   (UTC+11:00) Sakhalin   |  
+  |  centralPacificStandardTime  |   (UTC+11:00) Solomon Is., New Caledonia   |  
+  |  russiaTimeZone11  |   (UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky   |  
+  |  newZealandStandardTime  |   (UTC+12:00) Auckland, Wellington   |  
+  |  utc+12  |   (UTC+12:00) Coordinated Universal Time+12   |  
+  |  fijiStandardTime  |   (UTC+12:00) Fiji   |  
+  |  kamchatkaStandardTime  |   (UTC+12:00) Petropavlovsk-Kamchatsky - Old   |  
+  |  chathamIslandsStandardTime  |   (UTC+12:45) Chatham Islands   |  
+  |  utc+13  |   (UTC+13:00) Coordinated Universal Time+13   |  
+  |  tongaStandardTime  |   (UTC+13:00) Nuku'alofa   |  
+  |  samoaStandardTime  |   (UTC+13:00) Samoa   |  
+  |  lineIslandsStandardTime  |   (UTC+14:00) Kiritimati Island   |  
+
+
