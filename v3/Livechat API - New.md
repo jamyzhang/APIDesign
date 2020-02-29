@@ -132,7 +132,33 @@ Content-Type:  application/json
 
 #### Parameters
 
-    No parameters
+Request body
+
+  The request body contains data with the [Settings](#settings-object) Object structure
+
+example:
+
+```Json
+{
+    "siteId": 6000000,
+    "isMultipleCampaignEnabled": true,
+    "isAutoDistributionEnabled": false,
+    "isCustomAwayStatusEnabled": true,
+    "isDepartmentEnabled": false,
+    "isAutoTranslationEnabled": true,
+    "isAudioAndVideoChatEnabled": false,
+    "iscustomerSegmentEnabled": true,
+    "isVisitorSSOtEnabled": false,
+    "isCreditCardMaskingEnabled": true,
+    "isCustomVariablesEnabled": true,
+    "isSalesforceEnabled": false,
+    "isZendeskEnabled": true,
+    "isGoogleAnalyticsEnabled": true,
+    "isGotoMeetingEnabled": true,
+    "isJoinmeEnabled": true,
+    "isCobrowsingEnabled":true
+}
+```
 
 #### Response
 
@@ -245,7 +271,7 @@ the response is: [Auto Distribution](#auto-distribution-object) Object.
 
 #### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl -H "Content-Type: application/json"
@@ -325,7 +351,7 @@ the response is: [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl -H "Content-Type: application/json" -d '{
@@ -1516,7 +1542,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `onlyChattingViitor` | boolean | no  | false |  if only return the chatting visitor. |
+| `onlyChattingVisitor` | boolean | no  | false |  if only return the chatting visitor. |
 
 #### Response
 
@@ -1527,7 +1553,7 @@ the response is: array of [Online Visitor](#online-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors?onlyChattingViitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors?onlyChattingVisitor=false
 ```
 Response
 ```Json
@@ -1592,7 +1618,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `onlyChattingViitor` | boolean | no  | false |  if only return the chatting visitor. |
+| `onlyChattingVisitor` | boolean | no  | false |  if only return the chatting visitor. |
 
 #### Response
 
@@ -1603,7 +1629,7 @@ the response is: array of [Online Visitor](#online-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingViitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingVisitor=false
 ```
 Response
 ```Json
@@ -8640,7 +8666,7 @@ the response is: [Webhook](#webhook-object) Object.
 
 ### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl -H "Content-Type: application/json" -d '{
@@ -8692,7 +8718,7 @@ the response is: [Webhook](#webhook-object) Object.
 
 #### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl -H "Content-Type: application/json" -d '{
@@ -8729,7 +8755,7 @@ HTTP/1.1 204 No Content
 
 #### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl  -X DELETE  https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
@@ -8916,7 +8942,7 @@ the response is: [Custom Variable](#custom-variable-object) Object.
 
 #### Example
 
-Sample request:
+Using curl:
 
 Using curl
 ```shell
