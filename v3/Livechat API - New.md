@@ -1868,8 +1868,8 @@ Response
 
 # Chat
 
-- `GET /api/v3/livechat/chats` - [Get all chats](#get-all-chats) include department,agent , chatbot, campaign,autoInvitation, session
-- `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-chat-by-id)  include department,agent , chatbot, campaign,autoInvitation
+- `GET /api/v3/livechat/chats` - [Get all chats](#get-all-chats)
+- `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-chat-by-id)
 - `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat](#delete-a-chat)
 - `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#Batch-delete-chats)
 
@@ -2279,8 +2279,8 @@ HTTP/1.1 204 No Content
 
 # Offline Message
 
-- `GET /api/v3/livechat/offlineMessages` - [Get a list of offline messages](#get-a-list-of-offline-messages)  include department,agent, campaign,autoInvitation, session
-- `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offline message by id](#get-an-offline-message-by-id)  include department,agent, campaign,autoInvitation, session
+- `GET /api/v3/livechat/offlineMessages` - [Get a list of offline messages](#get-a-list-of-offline-messages)
+- `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offline message by id](#get-an-offline-message-by-id)
 - `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offline message by id](#delete-an-offline-message-by-id)
 - `DELETE /api/v3/livechat/offlineMessages` - [Batch delete offline messages](#batch-delete-offline-messages)
 
