@@ -251,7 +251,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `agentId` | Guid ||  yes| N/A|| id of agent |
+| `agentId` | integer ||  yes| N/A|| id of agent |
 | `ifAutoAcceptChat` | boolean||  no| N/A|| if agent can auto accept chat|
 | `maxConcurrentChats` | boolean ||  no| N/A|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
 
@@ -299,7 +299,7 @@ Content-Type:  application/json
   ],
   "agentAutoDistributions":[
     {
-      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "agentId":5,
       "ifAutoAcceptChat":true,
       "maxConcurrentChats":10
     }
@@ -336,7 +336,7 @@ example:
   ],
   "agentAutoDistributions":[
     {
-      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "agentId":5,
       "ifAutoAcceptChat":true,
       "maxConcurrentChats":10
     },
@@ -371,7 +371,7 @@ curl -H "Content-Type: application/json" -d '{
   ],
   "agentAutoDistributions":[
     {
-      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "agentId":5,
       "ifAutoAcceptChat":true,
       "maxConcurrentChats":10
     },
@@ -401,7 +401,7 @@ Content-Type:  application/json
   ],
   "agentAutoDistributions":[
     {
-      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "agentId":5,
       "ifAutoAcceptChat":true,
       "maxConcurrentChats":10
     }
@@ -543,7 +543,7 @@ Location: https://domain.comm100.com/api/v3/livechat/translationExcludedWords/FA
 
 ### Update a translation excluded word
 
-  `PUT /api/v3/livechat/translationExcludedWords`
+  `PUT /api/v3/livechat/translationExcludedWords/{id}`
 
 #### Parameters
 
@@ -554,7 +554,6 @@ Request body
 example:
 ```Json
 {
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
   "word": "no"
 }
 ```
@@ -567,9 +566,8 @@ the response is [Translation Excluded Word](#translation-excluded-word) object
 Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
   "word": "no"
-}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/
+}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
 Response
@@ -644,8 +642,8 @@ Alert To is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentIds` |Guid[]  || no | no|| an array of department id.|
-| `agentIds` |Guid[]  || no | no || an array of agent id.|
+| `departmentIds` |string[]  || no | no|| an array of department id.|
+| `agentIds` |string[]  || no | no || an array of agent id.|
 
 ### Live Chat Condition object
 
@@ -703,7 +701,7 @@ Content-Type:  application/json
       }
     ],
     "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
      }
   },
@@ -757,7 +755,7 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }
@@ -792,7 +790,7 @@ example:
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }
@@ -823,7 +821,7 @@ curl -H "Content-Type: application/json" -d '{
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }' -X POST https://domain.comm100.com/api/v3/livechat/customerSegments
@@ -851,7 +849,7 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }
@@ -894,7 +892,7 @@ curl -H "Content-Type: application/json" -d '{
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }' -X PUT https://domain.comm100.com/api/v3/livechat/customerSegments
@@ -922,7 +920,7 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-    "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+    "agentIds":["4","5"],
     "departmentIds":[]
   }
 }
@@ -969,9 +967,9 @@ Dynamic Campaign is represented as simple flat JSON objects with the following k
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `defaultCampaignId` |Guid || no | N/A || id of the default campaign.
-| `defaultCampaign` |[Campaign](#campaign-object)  |yes| N/A | N/A || the default [Campaign](#campaign-object).
-| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | N/A || this list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).
+| `defaultCampaignId` |Guid || no | N/A || id of the default campaign.|
+| `defaultCampaign` |[Campaign](#campaign-object)  |yes| N/A | N/A || the default [Campaign](#campaign-object).|
+| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | N/A || this list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).|
 
 ### Dynamic Campaign Rule Object
 
@@ -1024,7 +1022,8 @@ Content-Type:  application/json
     "name":"default campaign",
     "description":""
   },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
@@ -1034,15 +1033,18 @@ Content-Type:  application/json
       "targetCampaign":{
         "name":"default campaign",
         "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      },
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }
@@ -1062,29 +1064,25 @@ example:
 ```Json
 {
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "defaultCampaign": {
-    "name":"default campaign",
-    "description":""
-  },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
       "conditionMetType": "all",
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "targetCampaign":{
-        "name":"default campaign",
-        "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }
@@ -1098,31 +1096,28 @@ the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 Using curl
 ```shell
-curl -H "Content-Type: application/json" -d '{
+curl -H "Content-Type: application/json" -d '
+{
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "defaultCampaign": {
-    "name":"default campaign",
-    "description":""
-  },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
       "conditionMetType": "all",
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "targetCampaign":{
-        "name":"default campaign",
-        "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }' -X PUT https://domain.comm100.com/api/v3/livechat/dynamicCampaign
@@ -1457,10 +1452,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "name": "Grubby",
-  "status": "online",
-  "ongoingChats": 50
+  "status": "online"
 }
 ```
 
@@ -1696,42 +1688,13 @@ the response is: array of [Online Visitor](#online-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-      "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
-      "pageViews": 1,
-      "browser": "Firefox 67.0",
-      "chats": 0,
-      "city": "Changsha",
-      "company": "",
-      "country": "China",
-      "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
-      "customFields": null,
       "customVariableResults": [
         {
           "name": "justfortestupdate",
           "value": "text",
           "url": "bbbbb"
         }
-      ],
-      "department": "",
-      "email": "",
-      "first_visit_time": "2019-06-11T03:05:42.537Z",
-      "flash_version": "",
-      "ip": "218.76.52.108",
-      "keywords": "",
-      "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
-      "language": "zh-CN",
-      "name": "218.76.52.108",
-      "operating_system": "Windows 10",
-      "phone": "",
-      "product_service": "",
-      "referrer_url": "",
-      "screen_resolution": "1920x1080",
-      "search_engine": "",
-      "state": "Hunan",
-      "status": 3,
-      "time_zone": "GMT +08:00",
-      "visit_time": "2019-06-12T07:41:40.486Z",
-      "visits": 4
+      ]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
@@ -1882,7 +1845,7 @@ Response
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | N/A | N/A | | id of the chat. |
-| `agentIds` | Guid |  | N/A | N/A | | Maximum four agents can join a chat. |
+| `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
 | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
 | `startTime` | datetime | | N/A | N/A | |  |
 | `endTime` | datetime | | N/A | N/A | |  |
@@ -1994,7 +1957,7 @@ Query string
 | `departmentId` | guid | no  |  | |
 | `categoryId` | guid | no  |  | |
 | `visitorId` | guid | no  |  | |
-| `agentId` | guid | no  |  | |
+| `agentId` | integer | no  |  | |
 | `keywords` | string | no  |  | |
 | `conditions` | string | no  |  |  The condition list of inquiring the chat `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0]` |
 
@@ -2026,7 +1989,7 @@ Response
     "list": [
         {
             "id": "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
-            "agentIds": ["1224C179-8756-C50D-465F-73861413A4F8"],
+            "agentIds": [5],
             "startTime": "2019-01-05T07:17:08.89",
             "endTime": "2019-01-05T07:27:08.89",
             "ifQueued": false,
@@ -2142,7 +2105,7 @@ Response
 
 {
   "id": "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
-  "agentIds": ["1224C179-8756-C50D-465F-73861413A4F8"],
+  "agentIds": [5],
   "startTime": "2019-01-05T07:17:08.89",
   "endTime": "2019-01-05T07:27:08.89",
   "ifQueued": false,
@@ -2300,7 +2263,7 @@ HTTP/1.1 204 No Content
 | `company` | string | | N/A | N/A |  | company of the visitor |
 | `departmentId` | Guid | | N/A | N/A |  | The Department which the Offline Message belongs to |
 | `department` | [Department](#department) | yes | N/A | N/A |  | Available only when department is included |
-| `agentId` | Guid | | N/A | N/A |  | The Agent whom the Offline Message belongs to |
+| `agentId` | integer | | N/A | N/A |  | The Agent whom the Offline Message belongs to |
 | `agent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
 | `ticketId` | integer | | N/A | N/A |  |  |
 | `subject` | string | | N/A | N/A |  | the subject of this offline message|
@@ -2346,7 +2309,7 @@ Query string
 | `timeZone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
 | `campaignId` | guid | no  |  | id of the campaign which the offline message |
 | `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
-| `agentId` | guid | no  |  | id of the agent that this offline message belongs to |
+| `agentId` | integer | no  |  | id of the agent that this offline message belongs to |
 | `visitorSegmentId` | guid | no  |  | id of the visitor segment which the visitor belongs to |
 | `keywords` | string | no  |  | search subject or message by keywords |
 | `pageIndex` | integer | no  | 1 | the page index of query |
@@ -2470,10 +2433,10 @@ Response
     "email": "allon@comm100.com",
     "phone":"",
     "company":"",
-    "agentId":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
+    "agentId":5,
     "agent": {
         //include agent
-        "id":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
+        "id":5,
         "name": "Sales",
         ...
     },
@@ -5096,7 +5059,7 @@ Content-Type:  application/json
 | `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
 | `type` | string |  | no | no | | Including `simple` and `customRule`. |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
-| `routeToId` | Guid | | no | no | | AgentId or DepartmentId. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartment` | [Department](#Department-Object) //department 对应的链接在哪呢?| yes | no | no | |  |
 | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
@@ -5104,7 +5067,7 @@ Content-Type:  application/json
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
 | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
 | `routeToWhenNoRuleMatched` | string | | no | no | | Including `agent` and `department`. |
-| `routeToIdWhenNoRuleMatched` | Guid | | no | no | | AgentId or DepartmentId. |
+| `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. |
 | `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
 | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
@@ -5151,7 +5114,7 @@ Content-Type:  application/json
   "isEnable": false,
   "type": "simple",
   "routeTo": "agent",
-  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToId": "5",
   "routeToDepartment": { // include department
     "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
       "name": "markting",
@@ -5288,7 +5251,7 @@ Content-Type:  application/json
 | `name` | string | | no | no | | |
 | `order` | integer | | no | no | | |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. |
-| `routeToId` | Guid | | no | no | | AgentId or DepartmentId. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
 | `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
