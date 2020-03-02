@@ -2702,11 +2702,27 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-    No parameters
+Query string
+
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
+| `pageIndex` | integer | no  | 1 | The page index of query. |
+| `pageSize` | integer | no  | 50 | Page size.  |
+| `keywords` | string | no  |  | Filter by keywords in visitor name, email address. |
 
 #### Response
 
-the response is: list of [Visitor](#visitor-object) Object
+The response body contains data with the follow structure:
+
+| Name | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `totalCount` | integer | N/A | N/A | Total count of the list. |
+| `previousPage` | string | N/A | N/A | Url of the previous page. |
+| `nextPage` | string | N/A | N/A | Url of the next page. |
+| `list` | [Visitor](#visitor-Object)[] | N/A | N/A |  |
 
 #### Example
 
@@ -2721,8 +2737,11 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 
-[
-    {
+{
+    "totalCount": 28,
+    "previousPage": "",
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/visitors?pageIndex=2",
+    "list": [{
         "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
         "name": "test",
         "email": "",
@@ -2731,7 +2750,8 @@ Content-Type:  application/json
         "firstVisitTime": "2019-06-12T07:41:40.486Z"
     },
     ...
-]
+    ]
+}
 ```
 
 ### Get a visitor by id
