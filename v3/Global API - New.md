@@ -69,7 +69,7 @@
   `GET /api/v3/globalSettings/site`
 
 #### Parameters
-    No Parameters
+    No parameters
 #### Response
 
   the response is [Site](#site-object) Object, just include base informations.
@@ -1389,7 +1389,7 @@ HTTP/1.1 204 No Content
   `GET /api/v3/globalSettings/permissions`
 
 #### Parameters
-  No parameters
+    No parameters
 
 #### Response
 
@@ -2702,7 +2702,7 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-    no parameters
+    No parameters
 
 #### Response
 
@@ -2804,7 +2804,7 @@ Content-Type:  application/json
 
 #### Parameters
 
-    no parameters
+    No parameters
 
 #### Response
 
@@ -3315,7 +3315,7 @@ Response
 
 #### Parameters
 
-    no parameters
+    No parameters
 
 #### Response
 
@@ -3834,7 +3834,7 @@ Response
 
 #### Parameters
 
-    no parameters
+    No parameters
 
 #### Response
 
@@ -4060,7 +4060,7 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
   `GET /api/v3/globalSettings/whitelistedLoginIPRanges`
 
   #### Parameters
-  No parameters
+    No parameters
 
   #### Response
 
@@ -4269,7 +4269,7 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-    no parameters
+    No parameters
 
 #### Response
 
