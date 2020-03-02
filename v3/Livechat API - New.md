@@ -1,4 +1,4 @@
-# Live Chat Restful API
+﻿# Live Chat Restful API
 
 Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems.
 
@@ -2223,7 +2223,9 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-    No parameters
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `ids` | Guid[] | yes  |  the unique Ids of the chat |
 
 #### Response
 
@@ -2233,7 +2235,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats?ids[0]=2BCB61DA-FC7D-67D8-43A5-5EB453B63231
 ```
 Response
 ```json
