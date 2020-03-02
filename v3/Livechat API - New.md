@@ -1,4 +1,4 @@
-﻿# Live Chat Restful API
+# Live Chat Restful API
 
 Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems.
 
@@ -543,7 +543,7 @@ Location: https://domain.comm100.com/api/v3/livechat/translationExcludedWords/FA
 
 ### Update a translation excluded word
 
-  `PUT /api/v3/livechat/translationExcludedWords`
+  `PUT /api/v3/livechat/translationExcludedWords/{id}`
 
 #### Parameters
 
@@ -554,7 +554,6 @@ Request body
 example:
 ```Json
 {
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
   "word": "no"
 }
 ```
@@ -567,9 +566,8 @@ the response is [Translation Excluded Word](#translation-excluded-word) object
 Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
   "word": "no"
-}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/
+}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
 Response
@@ -969,9 +967,9 @@ Dynamic Campaign is represented as simple flat JSON objects with the following k
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `defaultCampaignId` |Guid || no | N/A || id of the default campaign.
-| `defaultCampaign` |[Campaign](#campaign-object)  |yes| N/A | N/A || the default [Campaign](#campaign-object).
-| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | N/A || this list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).
+| `defaultCampaignId` |Guid || no | N/A || id of the default campaign.|
+| `defaultCampaign` |[Campaign](#campaign-object)  |yes| N/A | N/A || the default [Campaign](#campaign-object).|
+| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | N/A || this list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).|
 
 ### Dynamic Campaign Rule Object
 
@@ -1024,7 +1022,8 @@ Content-Type:  application/json
     "name":"default campaign",
     "description":""
   },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
@@ -1034,15 +1033,18 @@ Content-Type:  application/json
       "targetCampaign":{
         "name":"default campaign",
         "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      },
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }
@@ -1062,29 +1064,25 @@ example:
 ```Json
 {
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "defaultCampaign": {
-    "name":"default campaign",
-    "description":""
-  },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
       "conditionMetType": "all",
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "targetCampaign":{
-        "name":"default campaign",
-        "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }
@@ -1098,31 +1096,28 @@ the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 Using curl
 ```shell
-curl -H "Content-Type: application/json" -d '{
+curl -H "Content-Type: application/json" -d '
+{
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "defaultCampaign": {
-    "name":"default campaign",
-    "description":""
-  },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
       "conditionMetType": "all",
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "targetCampaign":{
-        "name":"default campaign",
-        "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }' -X PUT https://domain.comm100.com/api/v3/livechat/dynamicCampaign
@@ -1457,10 +1452,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "name": "Grubby",
-  "status": "online",
-  "ongoingChats": 50
+  "status": "online"
 }
 ```
 
@@ -1696,42 +1688,13 @@ the response is: array of [Online Visitor](#online-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-      "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
-      "pageViews": 1,
-      "browser": "Firefox 67.0",
-      "chats": 0,
-      "city": "Changsha",
-      "company": "",
-      "country": "China",
-      "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
-      "customFields": null,
       "customVariableResults": [
         {
           "name": "justfortestupdate",
           "value": "text",
           "url": "bbbbb"
         }
-      ],
-      "department": "",
-      "email": "",
-      "first_visit_time": "2019-06-11T03:05:42.537Z",
-      "flash_version": "",
-      "ip": "218.76.52.108",
-      "keywords": "",
-      "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
-      "language": "zh-CN",
-      "name": "218.76.52.108",
-      "operating_system": "Windows 10",
-      "phone": "",
-      "product_service": "",
-      "referrer_url": "",
-      "screen_resolution": "1920x1080",
-      "search_engine": "",
-      "state": "Hunan",
-      "status": 3,
-      "time_zone": "GMT +08:00",
-      "visit_time": "2019-06-12T07:41:40.486Z",
-      "visits": 4
+      ]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
