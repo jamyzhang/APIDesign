@@ -237,7 +237,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 #### Parameters
 
-    No Parameters
+    No parameters
 
 #### Response
 
@@ -2230,11 +2230,11 @@ HTTP/1.1 204 No Content
 
 ### Batch Delete chats
 
-  `DELETE /api/v3/livechat/chats
+  `DELETE /api/v3/livechat/chats`
 
 #### Parameters
 
-  no parameters
+    No parameters
 
 #### Response
 
@@ -2578,7 +2578,7 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-  no parameters
+    No parameters
 
 #### Response
 
@@ -8553,7 +8553,7 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-  No parameters
+    No parameters
 
 #### Response
 
@@ -8769,7 +8769,7 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 
 #### Parameters
 
-  No parameters
+    No parameters
 
 #### Response
 
