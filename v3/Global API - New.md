@@ -2814,7 +2814,6 @@ Content-Type:  application/json
   |`id` | Guid | yes | N/A | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid | no | yes | | Id of the public canned message category. |
-  | `createdBy` | Guid | N/A | N/A | | Which agent create the current item. |
 
 ## Public Canned Message Endpoints
 
@@ -2847,8 +2846,7 @@ Content-Type:  application/json
   {
     "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
     "name": "puddddtresult",
-    "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
-    "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+    "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
   },
   ...
 ]
@@ -2886,8 +2884,7 @@ Content-Type:  application/json
 {
   "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "name": "puddddtresult",
-  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
 }
 ```
 
@@ -2932,8 +2929,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCa
 {
   "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
   "name": "testtest",
-  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
 }
 ```
 
@@ -2983,8 +2979,7 @@ Content-Type:  application/json
 {
   "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
   "name": "testtest22222",
-  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
 }
 ```
 
@@ -3040,7 +3035,6 @@ HTTP/1.1 204 No Content
   | `HTMLMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | yes | | |
   | `category` | [Public Canned Message Category](#public-Canned-Message-Category-object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
-  | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
@@ -3086,10 +3080,8 @@ Content-Type:  application/json
         "category":    { // include public canned message category
           "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
           "name": "puddddtresult",
-         "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
-          "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+         "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
         },
-        "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
         "shortcuts": "",
         "similarQuestions": ["are you ok?"]
     },
@@ -3142,10 +3134,8 @@ Content-Type:  application/json
   "category":    { // include public canned message category
     "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
     "name": "puddddtresult",
-    "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC",
-    "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+    "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
   },
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
 }
@@ -3206,7 +3196,6 @@ Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/
   "IfSetHTMLMessageForEmail": false,
   "HTMLMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
 }
@@ -3272,7 +3261,6 @@ Content-Type:  application/json
   "IfSetHTMLMessageForEmail": false,
   "HTMLMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
 }
@@ -3325,7 +3313,6 @@ Response
   |`id` | Guid | yes | N/A | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid  | no | yes | | Parent of the canned message category. |
-  | `createdBy` | Guid | N/A | N/A | | Which agent create the current item. |
 
 ## Private Canned Message Category Endpoints
 
@@ -3358,8 +3345,7 @@ Content-Type:  application/json
     {
         "id": "119043D0-76A6-D3C1-B594-493111CE1552",
         "name": "tstestsetsteset",
-        "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F",
-        "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+        "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
     },
     ...
 ]
@@ -3397,8 +3383,7 @@ Content-Type:  application/json
 {
   "id": "119043D0-76A6-D3C1-B594-493111CE1552",
   "name": "tstestsetsteset",
-  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
 }
 ```
 
@@ -3442,8 +3427,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageC
 {
   "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
   "name": "testtest111111",
-  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
 }
 ```
 
@@ -3493,8 +3477,7 @@ Response
 {
   "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
   "name": "testtest22222",
-  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
 }
 ```
 
@@ -3549,7 +3532,6 @@ HTTP/1.1 204 No Content
   | `HTMLMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | no | | |
   | `category` | [Private Canned Message Category](#private-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
-  | `createdBy` | Guid | | N/A | N/A | | Which agent create the current item. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
@@ -3595,10 +3577,8 @@ Content-Type:  application/json
         "category":    { // include private canned message category
           "id": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
           "name": "justfortest",
-         "parentId": "A73FA2EB-4CE3-B195-94C6-567A24F7BDDC",
-          "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+         "parentId": "A73FA2EB-4CE3-B195-94C6-567A24F7BDDC"
         },
-        "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
         "shortcuts": "",
         "similarQuestions": ["are you ok?"]
     },
@@ -3651,10 +3631,8 @@ Content-Type:  application/json
   "category":    { // include private canned message category
     "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
     "name": "puddddtresult",
-    "parentId": "A73FA2EB-4CE3-B195-94C6-567A24F7BDDC",
-    "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99"
+    "parentId": "A73FA2EB-4CE3-B195-94C6-567A24F7BDDC"
   },
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
 }
@@ -3715,7 +3693,6 @@ Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
   "IfSetHTMLMessageForEmail": false,
   "HTMLMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
 }
@@ -3781,7 +3758,6 @@ Content-Type:  application/json
   "IfSetHTMLMessageForEmail": false,
   "HTMLMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
-  "createdBy": "3C196E14-AC28-4831-A423-5D09D71F2B99",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
 }
