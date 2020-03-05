@@ -1,4 +1,4 @@
-# Live Chat Restful API
+﻿# Live Chat Restful API
 
 Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems.
 
@@ -2223,7 +2223,9 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-    No parameters
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `ids` | Guid[] | yes  |  the unique Ids of the chat |
 
 #### Response
 
@@ -2233,7 +2235,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats?ids[0]=2BCB61DA-FC7D-67D8-43A5-5EB453B63231
 ```
 Response
 ```json
@@ -7455,10 +7457,10 @@ HTTP/1.1 204 No Content
 | `isVariableIncludedInTranscript` | boolean | | no | no |  |  |
 | `appendFieldList` | string | | no | no |  |  |
 | `createdTime` | datetime | | N/A | N/A |  |  |
-| `createdBy` | Guid | | N/A | N/A |  |  |
+| `createdBy` | integer | | N/A | N/A |  |  |
 | `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
 | `lastUpdatedTime` | datetime | | N/A | N/A |  | |
-| `lastUpdatedBy` | Guid | | N/A | N/A |  | |
+| `lastUpdatedBy` | integer | | N/A | N/A |  | |
 | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
 
 ## Endpoint
@@ -7512,10 +7514,10 @@ Content-Type:  application/json
         "isVariableIncludedInTranscript": false,
         "appendFieldList": "",
         "createdTime": "2020-02-20T13:12:20Z",
-        "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "createdBy": 1,
         "createdAgent": {
             //include agent
-            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+            "id": 1,
             "email": "test@comm100.com",
             "displayName": "test comm100",
             "firstName": "test",
@@ -7523,10 +7525,10 @@ Content-Type:  application/json
             ...
         },
         "lastUpdatedTime": "2020-02-20T13:12:20Z",
-        "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "lastUpdatedBy": 1,
         "lastUpdatedAgent": {
             //include agent
-            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+            "id": 1,
             "email": "test@comm100.com",
             "displayName": "test comm100",
             "firstName": "test",
@@ -7591,10 +7593,10 @@ Content-Type:  application/json
     "isVariableIncludedInTranscript": false,
     "appendFieldList": "",
     "createdTime": "2020-02-20T13:12:20Z",
-    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "createdBy": 1,
     "createdAgent": {
         //include agent
-        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "id": 1,
         "email": "test@comm100.com",
         "displayName": "test comm100",
         "firstName": "test",
@@ -7602,10 +7604,10 @@ Content-Type:  application/json
         ...
     },
     "lastUpdatedTime": "2020-02-20T13:12:20Z",
-    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "lastUpdatedBy": 1,
     "lastUpdatedAgent": {
         //include agent
-        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "id": 1,
         "email": "test@comm100.com",
         "displayName": "test comm100",
         "firstName": "test",
@@ -7703,9 +7705,9 @@ Location: https://domain.comm100.com/api/v3/livechat/conversionActions/b222qa68-
     "isVariableIncludedInTranscript": false,
     "appendFieldList": "",
     "createdTime": "2020-02-20T13:12:20Z",
-    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "createdBy": 1,
     "lastUpdatedTime": "2020-02-20T13:12:20Z",
-    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2"
+    "lastUpdatedBy": 1
 }
 ```
 
@@ -7804,9 +7806,9 @@ Response
     "isVariableIncludedInTranscript": false,
     "appendFieldList": "",
     "createdTime": "2020-02-20T13:12:20Z",
-    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "createdBy": 1,
     "lastUpdatedTime": "2020-02-20T14:12:20Z",
-    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2"
+    "lastUpdatedBy": 1
 }
 ```
 
