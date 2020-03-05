@@ -3820,7 +3820,6 @@ Response
   |`id` | Guid | yes | N/A | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the agent away status. |
   | `isSystem` | boolean  | no | no | false | Whether the agent away status is system or not. |
-  | `isVisible` | boolean  | no | no | false | Whether the agent away status is visible. |
   | `order` | integer  | no | no | | The order of the agent away status. |
 
 ## Agent Away Status Endpoints
@@ -3855,7 +3854,6 @@ Content-Type:  application/json
         "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
         "name": "agentAwayStatuses",
         "isSystem": false,
-        "isVisible": true
         "order": 1
     },
     ...
@@ -3895,7 +3893,6 @@ Content-Type:  application/json
   "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
   "name": "agentAwayStatuses",
   "isSystem": false,
-  "isVisible": true,
   "order": 1
 }
 ```
@@ -3915,7 +3912,6 @@ example:
 {
   "name": "agentAwayStatuses11",
   "isSystem": false,
-  "isVisible": true,
   "order": 1
 }
 ```
@@ -3945,7 +3941,6 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F
   "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
   "name": "agentAwayStatuses11",
   "isSystem": false,
-  "isVisible": true,
   "order": 1
 }
 ```
@@ -3971,7 +3966,6 @@ example:
 {
   "name": "agentAwayStatuses22",
   "isSystem": false,
-  "isVisible": true,
   "order": 1
 }
 ```
@@ -3987,7 +3981,6 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "agentAwayStatuses22",
   "isSystem": false,
-  "isVisible": true,
   "order": 1
   }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
 ```
@@ -4001,7 +3994,6 @@ Content-Type:  application/json
   "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
   "name": "agentAwayStatuses22",
   "isSystem": false,
-  "isVisible": true,
   "order": 1
 }
 ```
