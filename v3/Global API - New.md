@@ -1645,7 +1645,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | yes | | Name of the shift. |
-  | `timeZone` | string  | | no | no | | defaults to UTC time, format as ±hh:mm. |
+  | `timeZone` | string  | | no | no | | Time zone of shift. value include all [Time Zone Option](#time-zone-options) Ids. |
   | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
   |`agentIds` | int[] | | yes | no | | |
   |`departmentIds` | Guid[] | | yes | no | | |
@@ -1660,7 +1660,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `name` | string  | no | yes | | The name of holiday. |
-  | `holiday` | DateTime  | no | yes | | The date of the holiday. |
+  | `date` | DateTime  | no | yes | | The date of the holiday. |
 
 
 ### Working Hours Object
@@ -1669,7 +1669,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `dayofWeek` | string  | no | yes | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
+  | `dayOfWeek` | string  | no | yes | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
   | `startTime` | datetime  | no | yes | | |
   | `endTime` | datetime  | no | yes | | |
   | `awayStatusId` | Guid | no | no | | |
@@ -1709,10 +1709,10 @@ Content-Type:  application/json
     {
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
-        "timeZone": "-10:00",
+        "timeZone": "(GMT) Coordinated Universal Time",
         "holidays": [{
           "name": "summary",
-          "holiday": "2019-11-11"
+          "date": "2019-11-11"
         },
         ...
         ],
@@ -1732,7 +1732,7 @@ Content-Type:  application/json
         ...
         ],
         "workingHours": [{
-          "dayofWeek": "sunday",
+          "dayOfWeek": "sunday",
           "startTime": "2019-06-12T07:41:40.486Z",
           "endTime": "2019-06-13T07:41:40.486Z",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -1782,10 +1782,10 @@ Content-Type:  application/json
 {
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts",
-  "timeZone": "-10:00",
+  "timeZone": "(GMT) Coordinated Universal Time",
   "holidays": [{
     "name": "summary",
-    "holiday": "2019-11-11"
+    "date": "2019-11-11"
   },
   ...
   ],
@@ -1805,7 +1805,7 @@ Content-Type:  application/json
   ...
   ],
   "workingHours": [{
-    "dayofWeek": "sunday",
+    "dayOfWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -1848,17 +1848,17 @@ Content-Type:  application/json
     {
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
-        "timeZone": "-10:00",
+        "timeZone": "(GMT) Coordinated Universal Time",
         "holidays": [{
           "name": "summary",
-          "holiday": "2019-11-11"
+          "date": "2019-11-11"
         },
         ...
         ],
         "agentIds": [68],
         "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "workingHours": [{
-          "dayofWeek": "sunday",
+          "dayOfWeek": "sunday",
           "startTime": "2019-06-12T07:41:40.486Z",
           "endTime": "2019-06-13T07:41:40.486Z",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -1903,17 +1903,17 @@ Content-Type:  application/json
     {
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
-        "timeZone": "-10:00",
+        "timeZone": "(GMT) Coordinated Universal Time",
         "holidays": [{
           "name": "summary",
-          "holiday": "2019-11-11"
+          "date": "2019-11-11"
         },
         ...
         ],
         "agentIds": [68],
         "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "workingHours": [{
-          "dayofWeek": "sunday",
+          "dayOfWeek": "sunday",
           "startTime": "2019-06-12T07:41:40.486Z",
           "endTime": "2019-06-13T07:41:40.486Z",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -1939,17 +1939,17 @@ example:
 ```Json
 {
   "name": "Shifts1111",
-  "timeZone": "-10:00",
+  "timeZone": "UTC",
   "holidays": [{
     "name": "summary",
-    "holiday": "2019-11-11"
+    "date": "2019-11-11"
   },
   ...
   ],
   "agentIds": [68],
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
-    "dayofWeek": "sunday",
+    "dayOfWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -1969,17 +1969,17 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "name": "Shifts1111",
-  "timeZone": "-10:00",
+  "timeZone": "UTC",
   "holidays": [{
     "name": "summary",
-    "holiday": "2019-11-11"
+    "date": "2019-11-11"
   },
   ...
   ],
   "agentIds": [68],
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
-    "dayofWeek": "sunday",
+    "dayOfWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -1998,17 +1998,17 @@ Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-
 {
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts",
-  "timeZone": "-10:00",
+  "timeZone": "(GMT) Coordinated Universal Time",
   "holidays": [{
     "name": "summary",
-    "holiday": "2019-11-11"
+    "date": "2019-11-11"
   },
   ...
   ],
   "agentIds": [68],
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
-    "dayofWeek": "sunday",
+    "dayOfWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -2038,17 +2038,17 @@ example:
 ```Json
 {
   "name": "Shifts2222",
-  "timeZone": "-10:00",
+  "timeZone": "UTC",
   "holidays": [{
     "name": "summary",
-    "holiday": "2019-11-11"
+    "date": "2019-11-11"
   },
   ...
   ],
   "agentIds": [68],
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
-    "dayofWeek": "sunday",
+    "dayOfWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -2068,17 +2068,17 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "name": "Shifts2222",
-  "timeZone": "-10:00",
+  "timeZone": "UTC",
   "holidays": [{
     "name": "summary",
-    "holiday": "2019-11-11"
+    "date": "2019-11-11"
   },
   ...
   ],
   "agentIds": [68],
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
-    "dayofWeek": "sunday",
+    "dayOfWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -2096,17 +2096,17 @@ Content-Type:  application/json
 {
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts2222",
-  "timeZone": "-10:00",
+  "timeZone": "(GMT) Coordinated Universal Time",
   "holidays": [{
     "name": "summary",
-    "holiday": "2019-11-11"
+    "date": "2019-11-11"
   },
   ...
   ],
   "agentIds": [68],
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
-    "dayofWeek": "sunday",
+    "dayOfWeek": "sunday",
     "startTime": "2019-06-12T07:41:40.486Z",
     "endTime": "2019-06-13T07:41:40.486Z",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
@@ -2708,7 +2708,6 @@ Query string
 | - | - | :-: | :-: | - |
 | `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
 | `keywords` | string | no  |  | Filter by keywords in visitor name, email address. |
@@ -3017,6 +3016,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/globalSettings/publicCannedMessages` - [Get all public canned messages in site](#get-all-Public-Canned-Messages-in-site)
 - `GET /api/v3/globalSettings/publicCannedMessages/{id}` - [Get a public canned message by id](#get-a-Public-Canned-Message-by-id)
 - `POST /api/v3/globalSettings/publicCannedMessages` - [create a new public canned message](#create-a-new-Public-Canned-Message)
+- `POST /api/v3/globalSettings/publicCannedMessages/{id}/similarQuestions`  - [create a new public similar questions](#create-a-new-public-similar-questions)
 - `PUT /api/v3/globalSettings/publicCannedMessages/{id}` - [update a public canned message](#update-a-Public-Canned-Message)
 - `DELETE /api/v3/globalSettings/publicCannedMessages/{id}` - [delete a public canned message](#delete-a-Public-Canned-Message)
 
@@ -3031,8 +3031,8 @@ HTTP/1.1 204 No Content
   |`id` | Guid | | yes | N/A | | Id of the canned message.  |
   | `name` | string | | no | yes | | Name of the canned message. |
   | `message` | string | | no | yes | | |
-  | `IfSetHTMLMessageForEmail` | boolean  | | no | no | false | |
-  | `HTMLMessage` | string  | | no | no | | |
+  | `IfSetHtmlMessageForEmail` | boolean  | | no | no | false | |
+  | `htmlMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | yes | | |
   | `category` | [Public Canned Message Category](#public-Canned-Message-Category-object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
@@ -3074,8 +3074,8 @@ Content-Type:  application/json
         "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
         "name": "publicCannedMessageCategory",
         "message": "publicCannedMessageCategory",
-        "IfSetHTMLMessageForEmail": false,
-        "HTMLMessage": "",
+        "IfSetHtmlMessageForEmail": false,
+        "htmlMessage": "",
         "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
         "category":    { // include public canned message category
           "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
@@ -3128,8 +3128,8 @@ Content-Type:  application/json
   "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
   "name": "publicCannedMessageCategory",
   "message": "publicCannedMessageCategory",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "category":    { // include public canned message category
     "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
@@ -3156,8 +3156,8 @@ example:
 {
   "name": "publicCannedMessageCategorytest",
   "message": "publicCannedMessageCategorytest",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3175,8 +3175,8 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "publicCannedMessageCategorytest",
   "message": "publicCannedMessageCategorytest",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3193,11 +3193,63 @@ Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/
   "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
   "name": "publicCannedMessageCategorytest",
   "message": "publicCannedMessageCategorytest",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
+}
+```
+
+### Create a new public similar questions
+
+  `POST /api/v3/globalSettings/publicCannedMessages/{id}/similarQuestions`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the SimilarQuestions structure
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `similarQuestions` | string[]  | | N/A | yes | | Available when Agent Assist is enabled. |
+
+example:
+```Json
+{
+  "similarQuestions": ["not ok?"]
+}
+```
+
+#### Response
+
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "similarQuestions": ["are you ok?"]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
+
+{
+  "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?","not ok?"]
 }
 ```
 
@@ -3222,8 +3274,8 @@ example:
 {
   "name": "test11111",
   "message": "test11111",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3241,8 +3293,8 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "test11111",
   "message": "test11111",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3258,8 +3310,8 @@ Content-Type:  application/json
   "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
   "name": "test11111",
   "message": "test11111",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3514,6 +3566,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/globalSettings/privateCannedMessages` - [Get all private canned messages in site](#get-all-Private-Canned-Messages-in-site)
 - `GET /api/v3/globalSettings/privateCannedMessages/{id}` - [Get a private canned message by id](#get-a-Private-Canned-Message-by-id)
 - `POST /api/v3/globalSettings/privateCannedMessages` - [create a new private canned message](#create-a-new-Private-Canned-Message)
+- `POST /api/v3/globalSettings/publicCannedMessages/{id}/similarQuestions`  - [create a new private similar questions](#create-a-new-private-similar-questions)
 - `PUT /api/v3/globalSettings/privateCannedMessages/{id}` - [update a private canned message](#update-a-Private-Canned-Message)
 - `DELETE /api/v3/globalSettings/privateCannedMessages/{id}` - [delete a private canned message](#delete-a-Private-Canned-Message)
 
@@ -3528,8 +3581,8 @@ HTTP/1.1 204 No Content
   |`id` | Guid | | yes | N/A | | Id of the current item.  |
   | `name` | string  | | no | no | | Name of the canned message. |
   | `message` | string  | | no | no | | |
-  | `IfSetHTMLMessageForEmail` | bool | | no | no | false | |
-  | `HTMLMessage` | string  | | no | no | | |
+  | `IfSetHtmlMessageForEmail` | bool | | no | no | false | |
+  | `htmlMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | no | | |
   | `category` | [Private Canned Message Category](#private-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
@@ -3571,8 +3624,8 @@ Content-Type:  application/json
         "id": "AB71E95A-1FA5-E19D-9BA4-9C2144598C57",
         "name": "privateCannedMessageCategory",
         "message": "privateCannedMessageCategory",
-        "IfSetHTMLMessageForEmail": false,
-        "HTMLMessage": "",
+        "IfSetHtmlMessageForEmail": false,
+        "htmlMessage": "",
         "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
         "category":    { // include private canned message category
           "id": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
@@ -3625,8 +3678,8 @@ Content-Type:  application/json
   "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
   "name": "privateCannedMessageCategory",
   "message": "privateCannedMessageCategory",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "category":    { // include private canned message category
     "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
@@ -3653,8 +3706,8 @@ example:
 {
   "name": "privateCannedMessageCategorytest1111",
   "message": "privateCannedMessageCategorytest1111",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3672,8 +3725,8 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "privateCannedMessageCategorytest1111",
   "message": "privateCannedMessageCategorytest1111",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3690,14 +3743,65 @@ Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
   "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
   "name": "privateCannedMessageCategorytest1111",
   "message": "privateCannedMessageCategorytest1111",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
 }
 ```
 
+### Create a new private similar questions
+
+  `POST /api/v3/globalSettings/privateCannedMessages/{id}/similarQuestions`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the SimilarQuestions structure
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `similarQuestions` | string[]  | | N/A | yes | | Available when Agent Assist is enabled. |
+
+example:
+```Json
+{
+  "similarQuestions": ["not ok?"]
+}
+```
+
+#### Response
+
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "similarQuestions": ["are you ok?"]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
+
+{
+  "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?","not ok?"]
+}
+```
 ### Update a Private Canned Message
 
   `PUT /api/v3/globalSettings/privateCannedMessages/{id}`
@@ -3719,8 +3823,8 @@ example:
 {
   "name": "privateCannedMessageCategorytest2222",
   "message": "privateCannedMessageCategorytest2222",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3738,8 +3842,8 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "privateCannedMessageCategorytest2222",
   "message": "privateCannedMessageCategorytest2222",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -3755,8 +3859,8 @@ Content-Type:  application/json
   "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
   "name": "privateCannedMessageCategorytest2222",
   "message": "privateCannedMessageCategorytest2222",
-  "IfSetHTMLMessageForEmail": false,
-  "HTMLMessage": "",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
@@ -4362,7 +4466,7 @@ Content-Type:  application/json
   | `loginURL` | string  | | no | N/A | | |
   | `logoutURL` | string  | | no | N/A | | |
   | `changePasswordURL` | string  | | no | N/A | | |
-  | `certificateFile` | string  | | no | N/A | | File key of certificate file. |
+  | `certificate` | string  | | no | N/A | | Base64 data of certificate file. |
   | `certificateFileName` | string  | | no | N/A | | |
   | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | N/A | | |
   | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | N/A | | |
@@ -4422,7 +4526,7 @@ Content-Type:  application/json
     "loginURL": "http://www.xzcs11ffffffff1a",
     "logoutURL": "http://www.xzcs11ffffffff1a",
     "changePasswordURL": "http://www.xzcs11ffffffff1a",
-    "certificateFile": "amdoamdoaGdmcnRk",
+    "certificate": "amdoamdoaGdmcnRk",
     "certificateFileName": "r.txt",
     "fieldMappings": [
         {
@@ -4466,7 +4570,7 @@ example:
     "loginURL": "http://www.xzcs11ffffffff1a",
     "logoutURL": "http://www.xzcs11ffffffff1a",
     "changePasswordURL": "http://www.xzcs11ffffffff1a",
-    "certificateFile": "amdoamdoaGdmcnRk",
+    "certificate": "amdoamdoaGdmcnRk",
     "certificateFileName": "r.txt",
     "fieldMappings": [
         {
@@ -4500,7 +4604,7 @@ curl -H "Content-Type: application/json" -d '{
     "loginURL": "http://www.xzcs11ffffffff1a",
     "logoutURL": "http://www.xzcs11ffffffff1a",
     "changePasswordURL": "http://www.xzcs11ffffffff1a",
-    "certificateFile": "amdoamdoaGdmcnRk",
+    "certificate": "amdoamdoaGdmcnRk",
     "certificateFileName": "r.txt",
     "fieldMappings": [
         {
@@ -4531,7 +4635,7 @@ Response
     "loginURL": "http://www.xzcs11ffffffff1a",
     "logoutURL": "http://www.xzcs11ffffffff1a",
     "changePasswordURL": "http://www.xzcs11ffffffff1a",
-    "certificateFile": "amdoamdoaGdmcnRk",
+    "certificate": "amdoamdoaGdmcnRk",
     "certificateFileName": "r.txt",
     "fieldMappings": [
         {
