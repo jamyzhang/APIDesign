@@ -2706,8 +2706,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `requestedTime` | datetime | no  | today |  The time range of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
 | `keywords` | string | no  |  | Filter by keywords in visitor name, email address. |
@@ -2721,7 +2720,7 @@ The response body contains data with the follow structure:
 | `totalCount` | integer | N/A | N/A | Total count of the list. |
 | `previousPage` | string | N/A | N/A | Url of the previous page. |
 | `nextPage` | string | N/A | N/A | Url of the next page. |
-| `list` | [Visitor](#visitor-Object)[] | N/A | N/A |  |
+| `visitors` | [Visitor](#visitor-Object)[] | N/A | N/A |  |
 
 #### Example
 
@@ -2740,7 +2739,7 @@ Content-Type:  application/json
     "totalCount": 28,
     "previousPage": "",
     "nextPage": "https://domain.comm100.com/api/v3/globalSettings/visitors?pageIndex=2",
-    "list": [{
+    "visitors": [{
         "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
         "name": "test",
         "email": "",
