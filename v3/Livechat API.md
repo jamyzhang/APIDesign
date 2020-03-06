@@ -1,6 +1,6 @@
-﻿# LivechatRestfulAPI
+# LivechatRestfulAPI
 
-Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems.
+Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems
 
 <div>
 
@@ -51,12 +51,12 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
   Campaign is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string  | yes | no | id of the campaign |
-  | `name` | string  | no | yes | name of the campaign |
-  | `description` | string  | no | no | description of the campaign |
-  | `language` | string  | no | yes | language of the campaign |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | no | id of the campaign |
+| `name` | string  | no | yes | name of the campaign |
+| `description` | string  | no | no | description of the campaign |
+| `language` | string  | no | yes | language of the campaign |
 
 </div>
 <div>
@@ -124,7 +124,7 @@ Sample response:
 - Response:
 
     [Campaign](#campaign-json-format)
-  
+
 #### Example
 
 Sample request:
@@ -149,7 +149,7 @@ Sample response:
 ```
 
 #### Create a new campaign
-  
+
   `POST /api/v3/livechat/campaigns`
 
 - Parameters:
@@ -159,7 +159,7 @@ Sample response:
 - Response:
 
     [Campaign](#campaign-json-format)
-  
+
 #### Example
 
 Sample request:
@@ -183,7 +183,7 @@ Sample response:
     "description": "grubby",
     "language": "English"
 }
-```  
+```
 
 #### Update a campaign
 
@@ -223,7 +223,7 @@ Sample response:
 ```
 
 #### Remove a campaign
-  
+
   `DELETE /api/v3/livechat/campaigns/{id}`
 
 - Parameters
@@ -263,7 +263,7 @@ Sample response:
 ### Endpoint
 
 #### Get installation code of a campaign
-  
+
   `GET /api/v3/livechat/campaigns/{id}/code`
 
 - Parameters:
@@ -313,29 +313,29 @@ Sample response:
 
   Chat Button is represented as simple flat JSON objects with the following keys:  
 
-  | NameN| Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `type` | string | no | yes | type of the button, including `adaptive`, `image` and `textLink`. |
-  | `isHideOffline` | boolean | no | no | whether the chat button is visible when no agent is online.`true` means that button is invisible. |
-  | `isUseDomainRestriction` | boolean | no | no | whether the domain restriction is enabled or not. |
-  | `allowedDomains` | array | no | no | an array of domains/urls, on which the chat button is visible. |
-  | `adaptive.themeColor` | string | no | no | the theme color of the chat button, available when `type` is `adaptive`. |
-  | `adaptive.icon` | string | no | no | icon of the chat button, available when `type` is `adaptive`. |
-  | `image.type` | string | no | no |  `gallery` or `custom` |
-  | `image.onlineImageId` | int | no | no | id of the image when any agents is online, available when `type` is `image`. |
-  | `image.offlineImageId` | int | no | no | id of the image when no agent is online, available when `type` is `image`. |
-  | `image.isFloat` | boolean | no | no |    whether the chat button is float or not, available when `type` is `image`. |
-  | `image.position.type` | string | no | no | position of the chat button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
-  | `image.position.x` | string | no | no | vertical axis of the button, allowed as a number or percentage like `10` or `10%`, available when `type` is `image`. |
-  | `image.position.y` | string | no | no | horizontal axis of the button, allowed as a number or percentage like `10` or `10%`, available when `type` is `image`. |
-  | `image.mobile.type` | string | no | no | the type of button on mobile device, including `text` and `image`, available when `type` is `image`. |
-  | `image.mobile.onlineText` | string | no | no | the content of text on mobile device when online, available when `image.mobile.type` is `text` and `type` is `image`. |
-  | `image.mobile.offlineText` | string | no | no | the content of text on mobile device when no agent is online, available when `image.mobile.type` is `text` and `type` is `image`. |
-  | `image.mobile.themeColor` | string | no | no | the theme color of chatbutton on mobile device, available when `image.mobile.type` is `text` and `type` is `image`. |
-  | `image.mobile.onlineImageId` | string | no | no | the id of image on mobile device when any agents is online, available when `image.mobile.type` is `image` and `type` is `image`. |
-  | `image.mobile.offlineImageId` | string | no | no | the id of image on mobile device when no agent is online, available when `image.mobile.type` is `image` and `type` is `image`. |
-  | `image.mobile.position` | string | no | no | position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`, available when `image.mobile.type` is `image` and `type` is `image`. |
-  | `textLink.text` | string | no | no | the content of the text link, available when `type` is `textLink`. |
+| NameN| Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `type` | string | no | yes | type of the button, including `adaptive`, `image` and `textLink`. |
+| `isHideOffline` | boolean | no | no | whether the chat button is visible when no agent is online.`true` means that button is invisible. |
+| `isUseDomainRestriction` | boolean | no | no | whether the domain restriction is enabled or not. |
+| `allowedDomains` | array | no | no | an array of domains/urls, on which the chat button is visible. |
+| `adaptive.themeColor` | string | no | no | the theme color of the chat button, available when `type` is `adaptive`. |
+| `adaptive.icon` | string | no | no | icon of the chat button, available when `type` is `adaptive`. |
+| `image.type` | string | no | no |  `gallery` or `custom` |
+| `image.onlineImageId` | int | no | no | id of the image when any agents is online, available when `type` is `image`. |
+| `image.offlineImageId` | int | no | no | id of the image when no agent is online, available when `type` is `image`. |
+| `image.isFloat` | boolean | no | no |    whether the chat button is float or not, available when `type` is `image`. |
+| `image.position.type` | string | no | no | position of the chat button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
+| `image.position.x` | string | no | no | vertical axis of the button, allowed as a number or percentage like `10` or `10%`, available when `type` is `image`. |
+| `image.position.y` | string | no | no | horizontal axis of the button, allowed as a number or percentage like `10` or `10%`, available when `type` is `image`. |
+| `image.mobile.type` | string | no | no | the type of button on mobile device, including `text` and `image`, available when `type` is `image`. |
+| `image.mobile.onlineText` | string | no | no | the content of text on mobile device when online, available when `image.mobile.type` is `text` and `type` is `image`. |
+| `image.mobile.offlineText` | string | no | no | the content of text on mobile device when no agent is online, available when `image.mobile.type` is `text` and `type` is `image`. |
+| `image.mobile.themeColor` | string | no | no | the theme color of chatbutton on mobile device, available when `image.mobile.type` is `text` and `type` is `image`. |
+| `image.mobile.onlineImageId` | string | no | no | the id of image on mobile device when any agents is online, available when `image.mobile.type` is `image` and `type` is `image`. |
+| `image.mobile.offlineImageId` | string | no | no | the id of image on mobile device when no agent is online, available when `image.mobile.type` is `image` and `type` is `image`. |
+| `image.mobile.position` | string | no | no | position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`, available when `image.mobile.type` is `image` and `type` is `image`. |
+| `textLink.text` | string | no | no | the content of the text link, available when `type` is `textLink`. |
 
 </div>
 <div>
@@ -343,7 +343,7 @@ Sample response:
 ### Endpoint
 
 #### Get ChatButton configuration of a campaign
-  
+
   `GET /api/v3/livechat/campaigns/{id}/chatButton`
 
 - Parameters:
@@ -481,44 +481,44 @@ Sample response:
 
   Chat Window is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `style` | string | no | yes | style of the window's theme, including `classic`, `simple` and `bubble`. |
-  | `color` | string | no | yes | color of the window's theme. |
-  | `type` | string | no | yes | type of the chat window, including `embedded` and `popup`. |
-  | `customCSS` | string | no | no | the content of custom css. |
-  | `popup.title` | string | no | no | title of the chat window, available when `type` is `popup`. |
-  | `options.isCanPrintTranscript` | boolean | no | no | chat details can be printed |
-  | `options.isCanEmailTranscript` | boolean | no | no | chat transcripts can be emailed to visitors |
-  | `options.email.isFromAgent` | boolean | no | no | whether email is set from agent email or from a specified address. |
-  | `options.email.fromEmail` | string | no | no | a specified email for from address. |
-  | `options.email.fromName` | string | no | no | a specified name for from address. |
-  | `options.isCanSwitchToOffline` | boolean | no | no | allow visitors to switch to Offline Message Window while waiting for chat. |
-  | `options.isCanSendFile` | boolean | no | no | whether the agent can send file or not. |
-  | `options.isCanAudioChat` | boolean | no | no | whether the agent can use audio chat. |
-  | `options.isCanVideoChat` | boolean | no | no | whether the agent can use video chat. |
-  | `options.isCanSentSeen`  | boolean | no | no | whether there is read receipt for message on the visitor side. |
-  | `options.isCanDownloadPDF` | boolean | no | no | whether the visitor can download the chat transcript in PDF format. |
-  | `advanced.isAutoEndChatWhenVisitorInactivity` | boolean | no | no | whether chat ends automatically if visitors don't respond. |
-  | `advanced.timeAutoEndChatWhenVisitorInactivity` | integer | no | no | the time the chat will be ended after visitor inactivity, the unit is minute. |
-  | `advanced.isAutoSendTranscriptToEmail` | boolean | no | no | whether the agent can send transcript email after chat ending. |
-  | `advanced.transcriptEmailAddress` | string | no | no | the email address for sending transcript email. |
-  | `advanced.transcriptEmailSubject` | string | no | no | the subject address for sending transcript email. |
-  | `advanced.greetingMessage` | string | no | no | the content of greeting message. |
-  | `advanced.isUseCustomJS` | boolean | no | no | whether the agent can add custom js to chat window or not. |
-  | `advanced.customJS` | string | no | no | the content of custom javascript. |
-  | `header.type` | string | no | no | type of the header, including `agentInfo`, `bannerImage` and `avatarAndLogo` when `style` is `classic`, including `agentInfo` `bannerImage` when `style` is `simple`. |
-  | `header.agentInfo.isShowAvatar` | boolean | no | no | whether the avatar of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo` or `avatarAndLogo`. |
-  | `header.agentInfo.isShowTitle` | boolean | no | no | whether the title of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo`. |
-  | `header.agentInfo.isShowBio` | boolean | no | no | whether the bio of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo`. |
-  | `header.banner.imageType` | string | no | no | `custom` or `gallery` |
-  | `header.banner.imageId` | int | no | no | id of the image in the header of chat window, available when `style` is `classic`or `simple` and `header.type` is `bannerImage`. |
-  | `header.avatarAndLogo.isShowAvatar` | boolean | no | no | whether the agent avatar is visible or not, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
-  | `header.avatarAndLogo.isShowLogo` | boolean | no | no | whether the logo of the company is visible or not, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
-  | `header.avatarAndLogo.logoImageId` | int | no | no | id of the company logo image in the header of chat window, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
-  | `body.isShowAvatar` | boolean | no | no | whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
-  | `body.isShowBackground` | boolean | no | no | whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
-  | `body.backgroudImageId` | int | no | no | id of the company image in the message body, available when `style` is `classic`or `simple`. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `style` | string | no | yes | style of the window's theme, including `classic`, `simple` and `bubble`. |
+| `color` | string | no | yes | color of the window's theme. |
+| `type` | string | no | yes | type of the chat window, including `embedded` and `popup`. |
+| `customCSS` | string | no | no | the content of custom css. |
+| `popup.title` | string | no | no | title of the chat window, available when `type` is `popup`. |
+| `options.isCanPrintTranscript` | boolean | no | no | chat details can be printed |
+| `options.isCanEmailTranscript` | boolean | no | no | chat transcripts can be emailed to visitors |
+| `options.email.isFromAgent` | boolean | no | no | whether email is set from agent email or from a specified address. |
+| `options.email.fromEmail` | string | no | no | a specified email for from address. |
+| `options.email.fromName` | string | no | no | a specified name for from address. |
+| `options.isCanSwitchToOffline` | boolean | no | no | allow visitors to switch to Offline Message Window while waiting for chat. |
+| `options.isCanSendFile` | boolean | no | no | whether the agent can send file or not. |
+| `options.isCanAudioChat` | boolean | no | no | whether the agent can use audio chat. |
+| `options.isCanVideoChat` | boolean | no | no | whether the agent can use video chat. |
+| `options.isCanSentSeen`  | boolean | no | no | whether there is read receipt for message on the visitor side. |
+| `options.isCanDownloadPDF` | boolean | no | no | whether the visitor can download the chat transcript in PDF format. |
+| `advanced.isAutoEndChatWhenVisitorInactivity` | boolean | no | no | whether chat ends automatically if visitors don't respond. |
+| `advanced.timeAutoEndChatWhenVisitorInactivity` | integer | no | no | the time the chat will be ended after visitor inactivity, the unit is minute. |
+| `advanced.isAutoSendTranscriptToEmail` | boolean | no | no | whether the agent can send transcript email after chat ending. |
+| `advanced.transcriptEmailAddress` | string | no | no | the email address for sending transcript email. |
+| `advanced.transcriptEmailSubject` | string | no | no | the subject address for sending transcript email. |
+| `advanced.greetingMessage` | string | no | no | the content of greeting message. |
+| `advanced.isUseCustomJS` | boolean | no | no | whether the agent can add custom js to chat window or not. |
+| `advanced.customJS` | string | no | no | the content of custom javascript. |
+| `header.type` | string | no | no | type of the header, including `agentInfo`, `bannerImage` and `avatarAndLogo` when `style` is `classic`, including `agentInfo` `bannerImage` when `style` is `simple`. |
+| `header.agentInfo.isShowAvatar` | boolean | no | no | whether the avatar of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo` or `avatarAndLogo`. |
+| `header.agentInfo.isShowTitle` | boolean | no | no | whether the title of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo`. |
+| `header.agentInfo.isShowBio` | boolean | no | no | whether the bio of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo`. |
+| `header.banner.imageType` | string | no | no | `custom` or `gallery` |
+| `header.banner.imageId` | int | no | no | id of the image in the header of chat window, available when `style` is `classic`or `simple` and `header.type` is `bannerImage`. |
+| `header.avatarAndLogo.isShowAvatar` | boolean | no | no | whether the agent avatar is visible or not, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
+| `header.avatarAndLogo.isShowLogo` | boolean | no | no | whether the logo of the company is visible or not, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
+| `header.avatarAndLogo.logoImageId` | int | no | no | id of the company logo image in the header of chat window, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
+| `body.isShowAvatar` | boolean | no | no | whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
+| `body.isShowBackground` | boolean | no | no | whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
+| `body.backgroudImageId` | int | no | no | id of the company image in the message body, available when `style` is `classic`or `simple`. |
 
 </div>
 <div>
@@ -711,62 +711,62 @@ Sample response:
 
   Pre-Chat is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `isEnable` | boolean | no | yes | whether the pre-chat is enabled or not. |
-  | `header.isShowTeamName` | boolean | no | no | whether the team name is visible or not in the header. |
-  | `header.teamName` | string | no | no | the team name displayed in the header. |
-  | `header.isShowAvatars` | boolean | no | no | whether the avatar of the agent is visible or not in the header. |
-  | `greetingMessage` | string | no | no | content of the greeting message. |
-  | `socialLogin.isUseFacebook` | boolean | no | no | whether Facebook is enabled or not in social login. |
-  | `isRememberVisitorInfo` | boolean | no | no | whether visitor info is remembered or not from pre-chat form. |
-  | `fieldLayout` | string | no | no | the layout style of the field display, supporting `vertical` or `horizontal`. |
-  | `fields` | Array | no | no | an array of [field](#field-json-format) object |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `isEnable` | boolean | no | yes | whether the pre-chat is enabled or not. |
+| `header.isShowTeamName` | boolean | no | no | whether the team name is visible or not in the header. |
+| `header.teamName` | string | no | no | the team name displayed in the header. |
+| `header.isShowAvatars` | boolean | no | no | whether the avatar of the agent is visible or not in the header. |
+| `greetingMessage` | string | no | no | content of the greeting message. |
+| `socialLogin.isUseFacebook` | boolean | no | no | whether Facebook is enabled or not in social login. |
+| `isRememberVisitorInfo` | boolean | no | no | whether visitor info is remembered or not from pre-chat form. |
+| `fieldLayout` | string | no | no | the layout style of the field display, supporting `vertical` or `horizontal`. |
+| `fields` | Array | no | no | an array of [field](#field-json-format) object |
 
 #### Field JSON Format
 
   Field is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string | yes | no | id of the field |
-  | `name` | string | no | yes | name of the field |
-  | `type` | string | no | yes | the [type](#field-type) of the field |
-  | `isSystem` | boolean | yes | no | whether the field is system field or not. |
-  | `isVisible` | boolean | no | no | whether the field is visible or not. |
-  | `isRequired` | boolean | no | no | whether the field is required or not when submitting the form |
-  | `options` | string | no | no | the options of the field. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string | yes | no | id of the field |
+| `name` | string | no | yes | name of the field |
+| `type` | string | no | yes | the [type](#field-type) of the field |
+| `isSystem` | boolean | yes | no | whether the field is system field or not. |
+| `isVisible` | boolean | no | no | whether the field is visible or not. |
+| `isRequired` | boolean | no | no | whether the field is required or not when submitting the form |
+| `options` | string | no | no | the options of the field. |
 
 #### Field Type
 
   Field Type is one key of the following keys:
 
-  | Name | isSystem | Description |
-  | - | :-: | - |
-  | `name` | yes | Name field, `Pre Chat Form` or `Offline Message Form` only. |
-  | `email` | yes | Email field, `Pre Chat Form` or `Offline Message Form` only. |
-  | `phone` | yes | Phone field, `Pre Chat Form` or `Offline Message Form` only. |
-  | `company` | yes | Company field, `Pre Chat Form` or `Offline Message Form` only. |
-  | `product service` | yes | Product and Service field, `Pre Chat Form` only. |
-  | `department` | yes | Department field, `Pre Chat Form` or `Offline Message Form` only. |
-  | `ticket id` | yes | Ticket field, `Pre Chat Form` or `Offline Message Form` only.  |
-  | `rating` | yes | Rating field, `Post Chat Form` only. |
-  | `comments` | yes | Comments field, `Post Chat Form` only. |
-  | `subject` | yes | Subject field, `Offline Message Form` only. |
-  | `message` | yes | Content field, `Offline Message Form` only. |
-  | `attachment` | yes | Attachment field, `Offline Message Form` only. |
-  | `cardNumber` | yes | card number field , `Secure Form` only. |
-  | `expirationDate` | yes | expiration date field, `Secure Form` only |
-  | `cscOrCvv` | yes | csc/cvv field , `Secure Form` only |
-  | `nameOnCard` | yes | name on card field , `Secure Form` only |
-  | `category` | yes | category field , `agent wrap-up` only |
-  | `comment` | yes | comment field , `agent wrap-up` only |
-  | `text` | no | Text field.  |
-  | `textarea` | no | Textarea field.  |
-  | `radio` | no | Radio Box field.  |
-  | `checkbox` | no | Check Box field.  |
-  | `select` | no | Drop Down List field.  |
-  | `checkboxList` | no | Check Box List field.  |
+| Name | isSystem | Description |
+| - | :-: | - |
+| `name` | yes | Name field, `Pre Chat Form` or `Offline Message Form` only. |
+| `email` | yes | Email field, `Pre Chat Form` or `Offline Message Form` only. |
+| `phone` | yes | Phone field, `Pre Chat Form` or `Offline Message Form` only. |
+| `company` | yes | Company field, `Pre Chat Form` or `Offline Message Form` only. |
+| `product service` | yes | Product and Service field, `Pre Chat Form` only. |
+| `department` | yes | Department field, `Pre Chat Form` or `Offline Message Form` only. |
+| `ticket id` | yes | Ticket field, `Pre Chat Form` or `Offline Message Form` only.  |
+| `rating` | yes | Rating field, `Post Chat Form` only. |
+| `comments` | yes | Comments field, `Post Chat Form` only. |
+| `subject` | yes | Subject field, `Offline Message Form` only. |
+| `message` | yes | Content field, `Offline Message Form` only. |
+| `attachment` | yes | Attachment field, `Offline Message Form` only. |
+| `cardNumber` | yes | card number field , `Secure Form` only. |
+| `expirationDate` | yes | expiration date field, `Secure Form` only |
+| `cscOrCvv` | yes | csc/cvv field , `Secure Form` only |
+| `nameOnCard` | yes | name on card field , `Secure Form` only |
+| `category` | yes | category field , `agent wrap-up` only |
+| `comment` | yes | comment field , `agent wrap-up` only |
+| `text` | no | Text field.  |
+| `textarea` | no | Textarea field.  |
+| `radio` | no | Radio Box field.  |
+| `checkbox` | no | Check Box field.  |
+| `select` | no | Drop Down List field.  |
+| `checkboxList` | no | Check Box List field.  |
 
 </div>
 <div>
@@ -888,11 +888,11 @@ Sample response:
 
   Post-Chat is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `isEnable` | boolean | no | yes | whether the post-chat is enabled or not. |
-  | `greetingMessage` | string | no | no | content of the greeting message. |
-  | `fieldLayout` | string | no | no | the layout style of the field, supporting `vertical` or `horizontal` style. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `isEnable` | boolean | no | yes | whether the post-chat is enabled or not. |
+| `greetingMessage` | string | no | no | content of the greeting message. |
+| `fieldLayout` | string | no | no | the layout style of the field, supporting `vertical` or `horizontal` style. |
   | `fields` | Array | no | no | an array of [field](#field-json-format) object
 
 </div>
@@ -997,11 +997,11 @@ Sample response:
 
   Offline Message is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `isUseOwnPage`| boolean | no | yes | whether the custom offline message page is used or not. |
-  | `page.url`| string | no | no | url of custom offline message page. |
-  | `page.isOpenInNewWindow` | boolean | no | no | whether to open the custom offline message page in a new window or not. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `isUseOwnPage`| boolean | no | yes | whether the custom offline message page is used or not. |
+| `page.url`| string | no | no | url of custom offline message page. |
+| `page.isOpenInNewWindow` | boolean | no | no | whether to open the custom offline message page in a new window or not. |
   | `greetingMessage` | string | no | no | content of the greeting message.
   | `header.isShowTeamName` | boolean | no | no | whether the name of the agent is visible or not in the header. |
   | `header.isShowAvatar` | boolean | no | no | whether the avatar of the agent is visible or not in the header. |
@@ -1129,59 +1129,59 @@ Sample response:
 
   Invitation Window is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `message.content` |string  | no | no | content of the invitation message. |
-  | `message.font` |string  | no | no | the font of the text, including `times new roman`, `tahoma`, `verdana`, `arial`, `comic sans ms` and `courier`. |
-  | `message.bold` | boolean  | no | no | whether the text is bold or not. |
-  | `message.fontsize` |string  | no | no | the size of text, including `xx-small`, `x-small`, `small`, `medium`, `large`, `x-large` and `xx-large`. |
-  | `message.italic` | boolean  | no | no | whether the text is italic or not. |
-  | `message.color` |string  | no | no | the color of text. |
-  | `popup.position` |string  | no | no | the position of invitation window, including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`. |
-  | `popup.imageType` | string | no | no | `custom` or `gallery` |
-  | `popup.imageId` | int  | no | no | id of the invitation image. |
-  | `popup.messageFrame.x` |int  | no | no | coordinate x of the text area |
-  | `popup.messageFrame.y` |int  | no | no | coordinate y of the text area |
-  | `popup.messageFrame.width` |int  | no | no | width of the text area |
-  | `popup.messageFrame.height` |int  | no | no | height of the text area |
-  | `popup.closeFrame.x` |int  | no | no | coordinate x of the close area |
-  | `popup.closeFrame.y` |int  | no | no | coordinate y of the close area |
-  | `popup.closeFrame.width` |int  | no | no | width of the close area |
-  | `popup.closeFrame.height` |int  | no | no | height of the close area |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `message.content` |string  | no | no | content of the invitation message. |
+| `message.font` |string  | no | no | the font of the text, including `times new roman`, `tahoma`, `verdana`, `arial`, `comic sans ms` and `courier`. |
+| `message.bold` | boolean  | no | no | whether the text is bold or not. |
+| `message.fontsize` |string  | no | no | the size of text, including `xx-small`, `x-small`, `small`, `medium`, `large`, `x-large` and `xx-large`. |
+| `message.italic` | boolean  | no | no | whether the text is italic or not. |
+| `message.color` |string  | no | no | the color of text. |
+| `popup.position` |string  | no | no | the position of invitation window, including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`. |
+| `popup.imageType` | string | no | no | `custom` or `gallery` |
+| `popup.imageId` | int  | no | no | id of the invitation image. |
+| `popup.messageFrame.x` |int  | no | no | coordinate x of the text area |
+| `popup.messageFrame.y` |int  | no | no | coordinate y of the text area |
+| `popup.messageFrame.width` |int  | no | no | width of the text area |
+| `popup.messageFrame.height` |int  | no | no | height of the text area |
+| `popup.closeFrame.x` |int  | no | no | coordinate x of the close area |
+| `popup.closeFrame.y` |int  | no | no | coordinate y of the close area |
+| `popup.closeFrame.width` |int  | no | no | width of the close area |
+| `popup.closeFrame.height` |int  | no | no | height of the close area |
 
 #### Auto Invitation JSON Format
 
   Auto Invitation is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string | yes | no | id of the auto invitation. |
-  | `name` | string | no | yes | name of auto invitation. |
-  | `isEnable` | boolean | no | no | whether the auto invitation is enabled or not. |
-  | `isPopupOnlyOneTime` | boolean | no | no | whether to pop up only once during one visit |
-  | `invitationWindow` | [InvitationWindow](#invitation-window-json-format) | no | no | an invitation window json object. |
-  | `conditions` | [Conditions](#conditions-json-format) | no | no | an trigger condition json object. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string | yes | no | id of the auto invitation. |
+| `name` | string | no | yes | name of auto invitation. |
+| `isEnable` | boolean | no | no | whether the auto invitation is enabled or not. |
+| `isPopupOnlyOneTime` | boolean | no | no | whether to pop up only once during one visit |
+| `invitationWindow` | [InvitationWindow](#invitation-window-json-format) | no | no | an invitation window json object. |
+| `conditions` | [Conditions](#conditions-json-format) | no | no | an trigger condition json object. |
 
 #### Conditions JSON Format
 
   Conditions is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `when` | string | no | no | when the rule is triggered, including `all`, `any` and `logicalExpression` |
-  | `logicalExpression` | string | no | no | the logical expression of the conditions |
-  | `list` | array | no | no |an array of [condition](#condition-json-format) |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `when` | string | no | no | when the rule is triggered, including `all`, `any` and `logicalExpression` |
+| `logicalExpression` | string | no | no | the logical expression of the conditions |
+| `list` | array | no | no |an array of [condition](#condition-json-format) |
 
 #### Condition JSON Format
 
   Condition is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `number` | int | no | yes | the number of the condition, used in logic expression |
-  | `field` | string  | no | yes | the name of the visitor field |
-  | `operator` | string  | no | yes | a comparison operator |
-  | `value` | string  | no | yes | the value of a visitor field |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `number` | int | no | yes | the number of the condition, used in logic expression |
+| `field` | string  | no | yes | the name of the visitor field |
+| `operator` | string  | no | yes | a comparison operator |
+| `value` | string  | no | yes | the value of a visitor field |
 
 </div>
 <div>
@@ -1540,7 +1540,7 @@ Sample response:
     }
 }
 ```
-  
+
 #### Create a new auto invitation for a campaign
 
   `POST /api/v3/livechat/campaigns/{id}/invitation/autoInvitations`
@@ -1620,7 +1620,7 @@ Sample response:
 ```
 
 #### Update an auto invitation for a campaign
-  
+
   `PUT /api/v3/livechat/campaigns/{id}/invitation/autoInvitations/{autoInvitation_id}`
 
 - Parameters:
@@ -1747,7 +1747,7 @@ Sample response:
 - Response:
 
     an array of [Field](#field-json-format)
-  
+
 #### Example
 
 Sample request:
@@ -1855,17 +1855,17 @@ Sample response:
 
   Custom Rule is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string | yes | no | id of the custom rule |
-  | `order` | integer | no | no | order of the custom rule |
-  | `isEnable` | boolean | no | yes |whether the custom rule is enabled or not. |
-  | `name` | string | no | yes |name of the custom rule |
-  | `conditions` | [Conditions](#conditions-json-format)  | no | no | an trigger condition json object. |
-  | `routeToObject` | string | no | yes | type of the route, including `agent` and `department`, value `department` is available when config of department is open. |
-  | `routeToId` | string | no | yes | id of the route object |
-  | `routePriority` | string | no | no | the priority of the route object, including `lowest`, `low`, `normal`, `high` and `highest`. |
-  
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string | yes | no | id of the custom rule |
+| `order` | integer | no | no | order of the custom rule |
+| `isEnable` | boolean | no | yes |whether the custom rule is enabled or not. |
+| `name` | string | no | yes |name of the custom rule |
+| `conditions` | [Conditions](#conditions-json-format)  | no | no | an trigger condition json object. |
+| `routeToObject` | string | no | yes | type of the route, including `agent` and `department`, value `department` is available when config of department is open. |
+| `routeToId` | string | no | yes | id of the route object |
+| `routePriority` | string | no | no | the priority of the route object, including `lowest`, `low`, `normal`, `high` and `highest`. |
+
 </div>
 <div>
 
@@ -2054,7 +2054,7 @@ Sample response:
 #### Update a custom rule for a campaign
 
   `PUT /api/v3/livechat/campaigns/{id}/routingrule/customrules/{custom_rule_id}`
-  
+
 - Parameters:
 
     [Custom Rule](#custom-rule-json-format)
@@ -2140,23 +2140,23 @@ Sample response:
 
   Language is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `isUseDefaultLanguageText` | boolean | no | yes | whether use default language text or not. |
-  | `isRTL` | boolean | no | no | whether the language is from right to left. |
-  | `languageTexts` | array | no | no | an array of [Language Text](#language-text-json-format) |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `isUseDefaultLanguageText` | boolean | no | yes | whether use default language text or not. |
+| `isRTL` | boolean | no | no | whether the language is from right to left. |
+| `languageTexts` | array | no | no | an array of [Language Text](#language-text-json-format) |
 
 #### Language Text JSON Format
 
   Language Text is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `category` | string | yes | yes | the module of custom language, including `buttons`, `fields`, `prompts`, `system messages`, `audio chat`, `video chat`, `cobrowsing`, `screen sharing`, `transcript email to visitors`, `text on mobile browsers`, `embedded window` and `bot`. |
-  | `name` | string | yes | yes | the name of the language item |
-  | `defaultText` | string | yes | no | the default text of field in the custom language. |
-  | `currentText` | string | no | no | current text of field in the custom language. |
-  | `macros` | string | yes | no | macros used for the field in the custom language. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `category` | string | yes | yes | the module of custom language, including `buttons`, `fields`, `prompts`, `system messages`, `audio chat`, `video chat`, `cobrowsing`, `screen sharing`, `transcript email to visitors`, `text on mobile browsers`, `embedded window` and `bot`. |
+| `name` | string | yes | yes | the name of the language item |
+| `defaultText` | string | yes | no | the default text of field in the custom language. |
+| `currentText` | string | no | no | current text of field in the custom language. |
+| `macros` | string | yes | no | macros used for the field in the custom language. |
 
 </div>
 <div>
@@ -2265,13 +2265,13 @@ Sample response:
 
   Ban is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string  | yes | no |id of the ban. |
-  | `type` | string  | no | yes | type of ban, including `visitor` and `ip` |
-  | `visitorId` | string | no | no | visitor's id of the ban if `type` is `visitor`  |
-  | `ipAddress` | string  | no | yes | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` or ip range `192.168.8.0/24` or `192.168.8.0-192.168.8.255` |
-  | `comment` | string  | no | no | comment of the ban. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | no |id of the ban. |
+| `type` | string  | no | yes | type of ban, including `visitor` and `ip` |
+| `visitorId` | string | no | no | visitor's id of the ban if `type` is `visitor`  |
+| `ipAddress` | string  | no | yes | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` or ip range `192.168.8.0/24` or `192.168.8.0-192.168.8.255` |
+| `comment` | string  | no | no | comment of the ban. |
 
 </div>
 <div>
@@ -2481,39 +2481,39 @@ Sample response:
 
   Conversion Action is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string | yes | no |id of the conversion action. |
-  | `name` | string | no | yes |  name of the conversion action. |
-  | `isEnable` | boolean | no | no | whether the conversion action is enabled or not. |
-  | `type` | string | no | no | type of the conversion action, including `url`, `customVariable` and `livechatapi`. |
-  | `customVariable` | string  | no | no |  the name of the custom variable, available when `type` is `customVariable`. |
-  | `matchType` | string | no | no |  match type of the conversion action, available when `type` is `customVariable` or `url`. |
-  | `matchValue` | string | no | no |  match value of the conversion action, available when `type` is `customVariable` or `url`. |
-  | `isCaseSensitive` | boolean | no | no |  whether the conversion action is case sensitive or not, available when `type` is `url`. |
-  | `isAssignValue` | boolean | no | no |  whether a value is assigned for the conversion action or not. |
-  | `isAssignValueFromCustomVariable` | boolean | no | no |  whether the value for assigning to the conversion action comes from an assigned value or a custom variable, `true` means from custom variable |
-  | `assignValue` | string | no | no |  the value assigned for the conversion action |
-  | `customVariableForAssignValue` | string | no | no |  the value comes from the custom variable |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string | yes | no |id of the conversion action. |
+| `name` | string | no | yes |  name of the conversion action. |
+| `isEnable` | boolean | no | no | whether the conversion action is enabled or not. |
+| `type` | string | no | no | type of the conversion action, including `url`, `customVariable` and `livechatapi`. |
+| `customVariable` | string  | no | no |  the name of the custom variable, available when `type` is `customVariable`. |
+| `matchType` | string | no | no |  match type of the conversion action, available when `type` is `customVariable` or `url`. |
+| `matchValue` | string | no | no |  match value of the conversion action, available when `type` is `customVariable` or `url`. |
+| `isCaseSensitive` | boolean | no | no |  whether the conversion action is case sensitive or not, available when `type` is `url`. |
+| `isAssignValue` | boolean | no | no |  whether a value is assigned for the conversion action or not. |
+| `isAssignValueFromCustomVariable` | boolean | no | no |  whether the value for assigning to the conversion action comes from an assigned value or a custom variable, `true` means from custom variable |
+| `assignValue` | string | no | no |  the value assigned for the conversion action |
+| `customVariableForAssignValue` | string | no | no |  the value comes from the custom variable |
 
 #### Api Conversion JSON Format
 
   Api Conversion is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `conversion_name` | string | no | yes |  name of the conversion action. |
-  | `visitorId` | string | no | no | type of the conversion action, including `url`, `customVariable` and `livechatapi`. |
-  | `value` | string  | no | no |  the name of the custom variable, available when `type` is `customVariable`. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `conversion_name` | string | no | yes |  name of the conversion action. |
+| `visitorId` | string | no | no | type of the conversion action, including `url`, `customVariable` and `livechatapi`. |
+| `value` | string  | no | no |  the name of the custom variable, available when `type` is `customVariable`. |
 
 #### Api Conversion Action Result JSON Format
 
   Api Conversion is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `error_code` | string | no | yes |  0: ok; 1: the conversion name does not exist; 2: the visitorId does not exist; 3: error adding conversion-related Data to system. |
-  | `error_message` | string | no | no | error message. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `error_code` | string | no | yes |  0: ok; 1: the conversion name does not exist; 2: the visitorId does not exist; 3: error adding conversion-related Data to system. |
+| `error_message` | string | no | no | error message. |
 
 
 </div>
@@ -3009,34 +3009,34 @@ Response: Status: 200 OK
 
 Data Mapping is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `ssoAttribute` |string  | no | yes | SSO attribute name |
-  | `comm100Field` |string  | no | yes | Comm100 field name |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `ssoAttribute` |string  | no | yes | SSO attribute name |
+| `comm100Field` |string  | no | yes | Comm100 field name |
 
 #### Campaign SSO Options JSON Format
 
 SignIn Options is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `campaignId` |string  | yes | no |id of the campaign. |
-  | `signInType` |string  | no | no | type of the sign in, including `no`, `optional` and `required`. |
-  | `isSkipPrechat` |boolean  | no | no | whether the pre-chat form is skipped when visitors sign in. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `campaignId` |string  | yes | no |id of the campaign. |
+| `signInType` |string  | no | no | type of the sign in, including `no`, `optional` and `required`. |
+| `isSkipPrechat` |boolean  | no | no | whether the pre-chat form is skipped when visitors sign in. |
 
 #### Visitor SSO Settings JSON Format
 
 Visitor SSO Settings is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `siteId` |integer  | yes | no |id of the site which the visitor SSO belongs to. |
-  | `isEnable` |boolean  | no | yes |  whether visitor SSO is enabled or not. |
-  | `signInUrl` |string  | no | no | url for visitor to sign in |
-  | `idpCertificate` | string  | no | no | base64 of the Identity Provider Verification Certificate content. |
-  | `idpCertificateFileName` |string  | no | no |  file name of the certificate. |
-  | `dataMappings` |array  | no | no |  an array of [SSO Data mapping](#sso-data-mapping-json-format) |
-  | `campaignSSOOptions` |array  | no | no |  an array of [SignIn Options](#singin-options-json-format) |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `siteId` |integer  | yes | no |id of the site which the visitor SSO belongs to. |
+| `isEnable` |boolean  | no | yes |  whether visitor SSO is enabled or not. |
+| `signInUrl` |string  | no | no | url for visitor to sign in |
+| `idpCertificate` | string  | no | no | base64 of the Identity Provider Verification Certificate content. |
+| `idpCertificateFileName` |string  | no | no |  file name of the certificate. |
+| `dataMappings` |array  | no | no |  an array of [SSO Data mapping](#sso-data-mapping-json-format) |
+| `campaignSSOOptions` |array  | no | no |  an array of [SignIn Options](#singin-options-json-format) |
 
 </div>
 <div>
@@ -3208,21 +3208,21 @@ Visitor is represented as simple flat JSON objects with the following keys:
 
  Custom field is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string  | yes | no | id of the custom field. |
-  | `name` | string | no | yes | name of the custom field. |
-  | `value` | string | no | no | value of the custom field. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | no | id of the custom field. |
+| `name` | string | no | yes | name of the custom field. |
+| `value` | string | no | no | value of the custom field. |
 
 #### Custom Variable Result JSON Format
 
  Custom variable is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `name` | string | no | yes | name of the custom variable. |
-  | `value` | string | no | no | value of the custom variable. |
-  | `url` | string | no | no | url of the custom variable. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `name` | string | no | yes | name of the custom variable. |
+| `value` | string | no | no | value of the custom variable. |
+| `url` | string | no | no | url of the custom variable. |
 
 </div>
 <div>
@@ -3525,15 +3525,15 @@ Sample response:
 
   Auto Allocation is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `isEnable` | boolean | no | yes | whether the auto allocation is enabled or not. |
-  | `allocationRule` | string | no | no | rule of chat allocation, including `load balancing` , `round robin` and `capability weighted` |
-  | `isLastChattedPreferred` | boolean | no | no | whether last-chatted agent is preferred or not |
-  | `isMaxChatForAllAgents` | boolean | no | no | whether to set the same maximum number of chats for all agents |
-  | `maxChatForAllAgents` | integer | no | no | maximum number of chats for all agents |
-  | `isAllocateChatWhenAgentInAudioVideo` | boolean | no | no | whether to allocate chats to agents who are having audio or video chats |
-  | `isAllowAgentManualAcceptChat` | boolean | no | no | whether to allow agent to manually accept chat in agent console |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `isEnable` | boolean | no | yes | whether the auto allocation is enabled or not. |
+| `allocationRule` | string | no | no | rule of chat allocation, including `load balancing` , `round robin` and `capability weighted` |
+| `isLastChattedPreferred` | boolean | no | no | whether last-chatted agent is preferred or not |
+| `isMaxChatForAllAgents` | boolean | no | no | whether to set the same maximum number of chats for all agents |
+| `maxChatForAllAgents` | integer | no | no | maximum number of chats for all agents |
+| `isAllocateChatWhenAgentInAudioVideo` | boolean | no | no | whether to allocate chats to agents who are having audio or video chats |
+| `isAllowAgentManualAcceptChat` | boolean | no | no | whether to allow agent to manually accept chat in agent console |
 
 </div>
 <div>
@@ -3636,18 +3636,18 @@ Sample response:
 
   Live Chat Config is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `siteId` | integer  | yes | no |id of the site which the configuration belongs to. |
-  | `isEnableMultipleCampaigns` | boolean  | no | no |  whether multiple campaigns are enabled or not in the site. |
-  | `isEnableAutoAllocation` | boolean  | no | no | whether auto allocation is enabled or not in the site. |
-  | `isEnableCustomAwayStatus` | boolean  | no | no | whether custom away status is enabled or not in the site. |
-  | `isEnableDepartment` | boolean  | no | no | whether department is enabled or not in the site. |
-  | `isEnableAutoTranslation` | boolean  | no | no |  whether auto translation is enabled or not in the site. |
-  | `isEnableAudioAndVideoChat` | boolean  | no | no |  whether audio&video chat is enabled or not in the site. |
-  | `isEnableVisitorSegmentation` | boolean  | no | no |  whether visitor segmentation is enabled or not in the site. |
-  | `isEnableVisitorSSO` | boolean  | no | no |  whether visitor SSO is enabled or not in the site. |
-  | `isEnableCreditCardMasking` | boolean  | no | no |  whether Credit card masking is enabled or not in the site. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `siteId` | integer  | yes | no |id of the site which the configuration belongs to. |
+| `isEnableMultipleCampaigns` | boolean  | no | no |  whether multiple campaigns are enabled or not in the site. |
+| `isEnableAutoAllocation` | boolean  | no | no | whether auto allocation is enabled or not in the site. |
+| `isEnableCustomAwayStatus` | boolean  | no | no | whether custom away status is enabled or not in the site. |
+| `isEnableDepartment` | boolean  | no | no | whether department is enabled or not in the site. |
+| `isEnableAutoTranslation` | boolean  | no | no |  whether auto translation is enabled or not in the site. |
+| `isEnableAudioAndVideoChat` | boolean  | no | no |  whether audio&video chat is enabled or not in the site. |
+| `isEnableVisitorSegmentation` | boolean  | no | no |  whether visitor segmentation is enabled or not in the site. |
+| `isEnableVisitorSSO` | boolean  | no | no |  whether visitor SSO is enabled or not in the site. |
+| `isEnableCreditCardMasking` | boolean  | no | no |  whether Credit card masking is enabled or not in the site. |
   | `isEnableCustomVariables` | boolean  | no | no |  whether custom variables are enabled or not in the site.
   | `isEnableSalesforce` | boolean  | no | no |  whether Salesforce integration is enabled or not in the site.
   | `isEnableZendesk` | boolean  | no | no |  whether Zendesk integration is enabled or not in the site.
@@ -3776,12 +3776,12 @@ Sample response:
 
 Secure Form is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string  | yes | no | id of the secure form. |
-  | `name` | string  | no | yes | name of the secure form. |
-  | `description` | string  | no | no | description of the secure form. |
-  | `fields` | array | no | no | an array of [Field](#field-json-format) |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | no | id of the secure form. |
+| `name` | string  | no | yes | name of the secure form. |
+| `description` | string  | no | no | description of the secure form. |
+| `fields` | array | no | no | an array of [Field](#field-json-format) |
 
 </div>
 <div>
@@ -4028,11 +4028,11 @@ Sample response:
 
 Webhook is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  |`id` | string  | yes | no | id of the webhook. |
-  |`event`| string  | no | yes | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
-  |`targetUrl`| string  | no | yes |  target url of the webhook. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+|`id` | string  | yes | no | id of the webhook. |
+|`event`| string  | no | yes | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+|`targetUrl`| string  | no | yes |  target url of the webhook. |
 
 </div>
 <div>
@@ -4197,9 +4197,9 @@ Sample response:
 
 Custom Variable is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string  | yes | no | id of the custom variable. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | no | id of the custom variable. |
   | `name` | string  | no | yes | name of the custom variable |.
   | `type` | string  | no | yes | type of the custom variable., including `text`, `integer` and `decimal`. |
   | `value` | string  | no | no | value of the custom variable. |
@@ -4487,85 +4487,85 @@ Sample response:
 
  Custom Variable is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string  | yes | no | id of the custom variable. |
-  | `name` | string | no | yes | name of the custom variable. |
-  | `value` | string | no | no | value of the custom variable. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | no | id of the custom variable. |
+| `name` | string | no | yes | name of the custom variable. |
+| `value` | string | no | no | value of the custom variable. |
 
 #### Attachment Json Foramt
 
  Attachment is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `name` | string | no | yes | name of the attachment. |
-  | `uri` | string | no | no | uri of the attachment. |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `name` | string | no | yes | name of the attachment. |
+| `uri` | string | no | no | uri of the attachment. |
 
 #### Chat Message Json Format
 
   Chat Message is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `time` | datetime  | no | no | the time of this message sent |
-  | `sender` | string | no | no | name of this message's sender |
-  | `type` | stirng | no | no | type of this message, maybe `agent` or `visitor` or `system` |
-  | `content` | string | no | no | content of this message's sender |
-  | `isNoteMessage` | boolean | no | no | Whether the message is a note message |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `time` | datetime  | no | no | the time of this message sent |
+| `sender` | string | no | no | name of this message's sender |
+| `type` | stirng | no | no | type of this message, maybe `agent` or `visitor` or `system` |
+| `content` | string | no | no | content of this message's sender |
+| `isNoteMessage` | boolean | no | no | Whether the message is a note message |
 
 #### Chat Wrapup Json Format
 
   Chat Wrapup is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `category` | string | no | no | category of this chat's wrapup |
-  | `comment` | string | no | no | comment of this chat's wrapup |
-  | `fields` | array | no | no | array of [Custom Field Value](#custom-field-value-json-format) |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `category` | string | no | no | category of this chat's wrapup |
+| `comment` | string | no | no | comment of this chat's wrapup |
+| `fields` | array | no | no | array of [Custom Field Value](#custom-field-value-json-format) |
 
 #### Post-Chat Survey Json Format
 
   Post Chat Survey is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `ratingGrade` | string | no | no | rating grade of this chat's survey |
-  | `ratingComment` | string | no | no | rating comment of this chat's survey |
-  | `fields` | array | no | no | array of [Custom Field Value](#custom-field-value-json-format) |
-  
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `ratingGrade` | string | no | no | rating grade of this chat's survey |
+| `ratingComment` | string | no | no | rating comment of this chat's survey |
+| `fields` | array | no | no | array of [Custom Field Value](#custom-field-value-json-format) |
+
 #### Agent Json Format
 
   Agent is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |
-  | `id` | string  | yes | yes | id of the agent |
-  | `name` | string  | no | no | name of the agent |
-  | `email` | string  | yes | no | email of the agent |
-  
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | yes | id of the agent |
+| `name` | string  | no | no | name of the agent |
+| `email` | string  | yes | no | email of the agent |
+
 #### Chat JSON Format
 
  Chat is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |  
-  | `id` | string  | yes | yes | id of the chat. |
-  | `ssoUserId` | string | yes | no | SSO id of visitor |
-  | `name` | string | no | no | name of the visitor |
-  | `email` | string | no | no | email of the visitor |
-  | `department` | string | no | no | department the visitor selected in the pre-chat window. Agent can also update the value while chatting with visitors. |
-  | `agents` | array | no | no | array of [Agent](#Agent-Chat-Json-Format) |
-  | `prechatFields` | array | no | no | values of custom fields entered by visitors in the pre-chat window. An array of [Custom Field Value](#custom-field-value-json-format). |
-  | `customVariables` | array | no | no | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable Value](#custom-variable-value-json-format). |
-  | `requestTime` | datetime | no | no | time when the chat is requested |
-  | `waitingTime` | string | no | no | amount of time a visitor waits for before his/her chat request gets accepted |
-  | `endTime` | datetime | no | no | time when the chat ends |
-  | `chatTranscript` | array | no | no | array of [Chat Message](#chat-message-json-format) |
-  | `attachments` | array | no | no | files the operator sends to the visitor or vice versa as well as the screenshots sent to the operator by the visitor through Comm100 Screen  Capture. An array of [Attachment](#attachment-json-foramt) |
-  | `noteAttachments` | array | no | no | files the operator sends as the note attachment. An array of [Attachment](#attachment-json-foramt) |
-  | `postChat` | [Post-Chat Survey](#post-chat-survey-json-format) | no | no | post chat survey of this chat |
-  | `wrapup` | [Chat Wrapup](#chat-wrapup-json-format) | no | no | agent wrapup for this chat |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | yes | id of the chat. |
+| `ssoUserId` | string | yes | no | SSO id of visitor |
+| `name` | string | no | no | name of the visitor |
+| `email` | string | no | no | email of the visitor |
+| `department` | string | no | no | department the visitor selected in the pre-chat window. Agent can also update the value while chatting with visitors. |
+| `agents` | array | no | no | array of [Agent](#Agent-Chat-Json-Format) |
+| `prechatFields` | array | no | no | values of custom fields entered by visitors in the pre-chat window. An array of [Custom Field Value](#custom-field-value-json-format). |
+| `customVariables` | array | no | no | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable Value](#custom-variable-value-json-format). |
+| `requestTime` | datetime | no | no | time when the chat is requested |
+| `waitingTime` | string | no | no | amount of time a visitor waits for before his/her chat request gets accepted |
+| `endTime` | datetime | no | no | time when the chat ends |
+| `chatTranscript` | array | no | no | array of [Chat Message](#chat-message-json-format) |
+| `attachments` | array | no | no | files the operator sends to the visitor or vice versa as well as the screenshots sent to the operator by the visitor through Comm100 Screen  Capture. An array of [Attachment](#attachment-json-foramt) |
+| `noteAttachments` | array | no | no | files the operator sends as the note attachment. An array of [Attachment](#attachment-json-foramt) |
+| `postChat` | [Post-Chat Survey](#post-chat-survey-json-format) | no | no | post chat survey of this chat |
+| `wrapup` | [Chat Wrapup](#chat-wrapup-json-format) | no | no | agent wrapup for this chat |
 
 </div>
 <div>
@@ -4817,19 +4817,19 @@ Sample response:
 
  Offline Message is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only | Mandatory | Description |
-  | - | - | :-: | :-: | - |  
-  | `id` | string  | yes | yes | id of the chat. |
-  | `time` | datetime | yes | no | time of this offline message submitted. |
-  | `ssoUserId` | string | yes | no | SSO id of visitor |
-  | `name` | string | no | no | name of the visitor |
-  | `email` | string | no | no | email of the visitor |
-  | `department` | string | no | no | department of this offline message |
-  | `agent` | string | no | no | agent of this offline message |
-  | `content` | string | no | no | content of this offline message |
-  | `fields` | array | no | no | values of custom fields entered by visitors in the offline message window. An array of [Custom Field Value](#custom-field-value-json-format). |
-  | `customVariables` | array | no | no | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable Value](#custom-variable-value-json-format). |
-  | `attachment` | [Attachment](#attachment-json-foramt) | no | no | attachment submitted in the offline message |
+| Name | Type | Read-only | Mandatory | Description |
+| - | - | :-: | :-: | - |
+| `id` | string  | yes | yes | id of the chat. |
+| `time` | datetime | yes | no | time of this offline message submitted. |
+| `ssoUserId` | string | yes | no | SSO id of visitor |
+| `name` | string | no | no | name of the visitor |
+| `email` | string | no | no | email of the visitor |
+| `department` | string | no | no | department of this offline message |
+| `agent` | string | no | no | agent of this offline message |
+| `content` | string | no | no | content of this offline message |
+| `fields` | array | no | no | values of custom fields entered by visitors in the offline message window. An array of [Custom Field Value](#custom-field-value-json-format). |
+| `customVariables` | array | no | no | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable Value](#custom-variable-value-json-format). |
+| `attachment` | [Attachment](#attachment-json-foramt) | no | no | attachment submitted in the offline message |
 
 </div>
 <div>

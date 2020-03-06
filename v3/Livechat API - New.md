@@ -2,9 +2,9 @@
 
 Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems.
 
-  | Change Version | API Version | Change note | Change Date | Author |
-  | - | - | - | - | - |
-  | 1.0 | v3 |  | 2020-02-17 | Grubby,Michael,Davy |
+| Change Version | API Version | Change note | Change Date | Author |
+| - | - | - | - | - |
+| 1.0 | v3 |  | 2020-02-17 | Grubby,Michael,Davy |
 
 # Summary
 
@@ -59,25 +59,25 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 Customer Segment is represented as simple flat JSON objects with the following keys:  
 
- | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
- | - | - | - | :-: | :-: | :-: | - |
- | `siteId` |integer  || yes | N/A || id of the site which the configuration belongs to.
- | `isMultipleCampaignEnabled` |boolean || no | N/A || whether multiple campaigns are enabled or not in the site.
- | `isAutoDistributionEnabled` |boolean || no | N/A || whether auto distribution is enabled or not in the site.
- | `isCustomAwayStatusEnabled` |boolean || no | N/A || whether custom away status is enabled or not in the site.
- | `isDepartmentEnabled` |boolean || no|  N/A || whether department is enabled or not in the site.
- | `isAutoTranslationEnabled` |boolbean || no | N/A || whether auto translation is enabled or not in the site.
- | `isAudioAndVideoChatEnabled` |boolbean || no | N/A ||whether audio&video chat is enabled or not in the site.
- | `iscustomerSegmentEnabled` |boolbean || no | N/A ||whether customer segment chat is enabled or not in the site.
- | `isVisitorSSOtEnabled` |boolbean || no | N/A ||whether vistor SSO is enabled or not in the site.
- | `isCreditCardMaskingEnabled` |boolbean || no | N/A ||whether Credit card masking is enabled or not in the site.
- | `isCustomVariablesEnabled` |boolbean || no | N/A ||whether custom variables are enabled or not in the site.
- | `isSalesforceEnabled` |boolbean || no | N/A ||whether Salesforce integration is enabled or not in the site.
- | `isZendeskEnabled` |boolbean || no | N/A ||whether Zendesk integration is enabled or not in the site.
- | `isGoogleAnalyticsEnabled` |boolbean || no | N/A || whether Google Analytics integration is enabled or not in the site.
- | `isGotoMeetingEnabled` |boolbean || no | N/A || whether GotoMeeting integration is enabled or not in the site.
- | `isJoinmeEnabled` |boolbean || no | N/A || whether Joinme integration is enabled or not in the site.
- | `isCobrowsingEnabled` |boolbean || no | N/A || whether Cobrowsing feature is enabled or not in the site.
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `siteId` |integer  || yes | N/A || id of the site which the configuration belongs to.|
+| `isMultipleCampaignEnabled` |boolean || no | N/A || whether multiple campaigns are enabled or not in the site.|
+|`isAutoDistributionEnabled` |boolean || no | N/A || whether auto distribution is enabled or not in the site.|
+| `isCustomAwayStatusEnabled` |boolean || no | N/A || whether custom away status is enabled or not in the site.|
+| `isDepartmentEnabled` |boolean || no|  N/A || whether department is enabled or not in the site.|
+| `isAutoTranslationEnabled` |boolbean || no | N/A || whether auto translation is enabled or not in the site.|
+| `isAudioAndVideoChatEnabled` |boolbean || no | N/A ||whether audio&video chat is enabled or not in the site.|
+| `iscustomerSegmentEnabled` |boolbean || no | N/A ||whether customer segment chat is enabled or not in the site.|
+| `isVisitorSSOtEnabled` |boolbean || no | N/A ||whether vistor SSO is enabled or not in the site.|
+| `isCreditCardMaskingEnabled` |boolbean || no | N/A ||whether Credit card masking is enabled or not in the site.|
+| `isCustomVariablesEnabled` |boolbean || no | N/A ||whether custom variables are enabled or not in the site.|
+| `isSalesforceEnabled` |boolbean || no | N/A ||whether Salesforce integration is enabled or not in the site.|
+| `isZendeskEnabled` |boolbean || no | N/A ||whether Zendesk integration is enabled or not in the site.|
+| `isGoogleAnalyticsEnabled` |boolbean || no | N/A || whether Google Analytics integration is enabled or not in the site.|
+| `isGotoMeetingEnabled` |boolbean || no | N/A || whether GotoMeeting integration is enabled or not in the site.|
+| `isJoinmeEnabled` |boolbean || no | N/A || whether Joinme integration is enabled or not in the site.|
+| `isCobrowsingEnabled` |boolbean || no | N/A || whether Cobrowsing feature is enabled or not in the site.|
 
 ## Endpoint
 
@@ -132,13 +132,39 @@ Content-Type:  application/json
 
 #### Parameters
 
-    No parameters
+Request body
+
+  The request body contains data with the [Settings](#settings-object) Object structure
+
+example:
+
+```Json
+{
+    "siteId": 6000000,
+    "isMultipleCampaignEnabled": true,
+    "isAutoDistributionEnabled": false,
+    "isCustomAwayStatusEnabled": true,
+    "isDepartmentEnabled": false,
+    "isAutoTranslationEnabled": true,
+    "isAudioAndVideoChatEnabled": false,
+    "iscustomerSegmentEnabled": true,
+    "isVisitorSSOtEnabled": false,
+    "isCreditCardMaskingEnabled": true,
+    "isCustomVariablesEnabled": true,
+    "isSalesforceEnabled": false,
+    "isZendeskEnabled": true,
+    "isGoogleAnalyticsEnabled": true,
+    "isGotoMeetingEnabled": true,
+    "isJoinmeEnabled": true,
+    "isCobrowsingEnabled":true
+}
+```
 
 #### Response
 
 the response is [Settings](#settings-object) object
 
-### Example
+#### Example
 
 Using curl
 ```shell
@@ -198,17 +224,17 @@ HTTP/1.1 200 OK
 
   Auto Distribution is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - |
-  | `autoDistributionMethod` | string || no | N/A | method of auto distribution, including `load banlancing` , `round robin` and `capability weighted` |
-  | `isLastChattedAgentPreferred` | boolean || no | N/A | whether last-chatted agent is preferred or not |
-  | `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | N/A | whether to set the same maximum number of chats for all agents |
-  | `maxConcurrentChatsForAllAgents` | integer || no | N/A | maximum number of chats for all agents |
-  | `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | N/A| whether to allocate chats to agents who are having audio or video chats |
-  | `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | N/A | whether to allow agent to manually accept chat after reaching max chats limit in agent console |
-  | `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | N/A | auto distribution configuration for per department |
-  | `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | N/A | auto distribution configuration for per agent |
-  
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `autoDistributionMethod` | string || no | N/A | method of auto distribution, including `load banlancing` , `round robin` and `capability weighted` |
+| `isLastChattedAgentPreferred` | boolean || no | N/A | whether last-chatted agent is preferred or not |
+| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | N/A | whether to set the same maximum number of chats for all agents |
+| `maxConcurrentChatsForAllAgents` | integer || no | N/A | maximum number of chats for all agents |
+| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | N/A| whether to allocate chats to agents who are having audio or video chats |
+| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | N/A | whether to allow agent to manually accept chat after reaching max chats limit in agent console |
+| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | N/A | auto distribution configuration for per department |
+| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | N/A | auto distribution configuration for per agent |
+
 ### Department Auto Distribution Object
 
 Department Auto Distribution Object is represented as simple flat JSON objects with the following keys:
@@ -225,7 +251,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `agentId` | Guid ||  yes| N/A|| id of agent |
+| `agentId` | integer ||  yes| N/A|| id of agent |
 | `ifAutoAcceptChat` | boolean||  no| N/A|| if agent can auto accept chat|
 | `maxConcurrentChats` | boolean ||  no| N/A|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
 
@@ -237,7 +263,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 #### Parameters
 
-    No Parameters
+    No parameters
 
 #### Response
 
@@ -245,7 +271,7 @@ the response is: [Auto Distribution](#auto-distribution-object) Object.
 
 #### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl -H "Content-Type: application/json"
@@ -273,7 +299,7 @@ Content-Type:  application/json
   ],
   "agentAutoDistributions":[
     {
-      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "agentId":5,
       "ifAutoAcceptChat":true,
       "maxConcurrentChats":10
     }
@@ -288,7 +314,7 @@ Content-Type:  application/json
 #### Parameters
 
 Request body
-  
+
   The request body contains data with the [Auto Distribution](#auto-distribution-object) Object structure
 
 example:
@@ -310,7 +336,7 @@ example:
   ],
   "agentAutoDistributions":[
     {
-      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "agentId":5,
       "ifAutoAcceptChat":true,
       "maxConcurrentChats":10
     },
@@ -325,7 +351,7 @@ the response is: [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl -H "Content-Type: application/json" -d '{
@@ -345,7 +371,7 @@ curl -H "Content-Type: application/json" -d '{
   ],
   "agentAutoDistributions":[
     {
-      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "agentId":5,
       "ifAutoAcceptChat":true,
       "maxConcurrentChats":10
     },
@@ -375,7 +401,7 @@ Content-Type:  application/json
   ],
   "agentAutoDistributions":[
     {
-      "agentId":"4487fc9d-92e6-4487-a2e8-92e68d6892a7",
+      "agentId":5,
       "ifAutoAcceptChat":true,
       "maxConcurrentChats":10
     }
@@ -448,9 +474,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of translation excluded word   |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of translation excluded word   |
 
 #### Response
 
@@ -481,7 +507,7 @@ Content-Type:  application/json
 #### Parameters
 
 Request body
-  
+
   The request body contains data with the [Translation Excluded Word](#translation-excluded-word) object structure
 
 example:
@@ -517,18 +543,17 @@ Location: https://domain.comm100.com/api/v3/livechat/translationExcludedWords/FA
 
 ### Update a translation excluded word
 
-  `PUT /api/v3/livechat/translationExcludedWords`
+  `PUT /api/v3/livechat/translationExcludedWords/{id}`
 
 #### Parameters
 
 Request body
-  
+
   The request body contains data with the [Translation Excluded Word](#translation-excluded-word) object structure
 
 example:
 ```Json
 {
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
   "word": "no"
 }
 ```
@@ -541,9 +566,8 @@ the response is [Translation Excluded Word](#translation-excluded-word) object
 Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
   "word": "no"
-}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/
+}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
 Response
@@ -565,9 +589,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of translation excluded word   |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of translation excluded word   |
 
 #### Response
 
@@ -609,17 +633,17 @@ Customer Segment is represented as simple flat JSON objects with the following k
   | `description` |string  || no | no || description of the customer segment.
   | `condition met type` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
   | `logical expression` |string  || no | no || the logical expression for conditions.
-  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#conditions-json-format) object. |
+  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
   | `alertTo`| [Alert To](#alert-to)  || no | no | |an array of agent id or department Id|
 
 ### Alert To Segment Object
 
 Alert To is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - |
-  | `departmentIds` |Guid[]  || no | no|| an array of department id.|
-  | `agentIds` |Guid[]  || no | no || an array of agent id.|
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `departmentIds` |string[]  || no | no|| an array of department id.|
+| `agentIds` |string[]  || no | no || an array of agent id.|
 
 ### Live Chat Condition object
 
@@ -677,7 +701,7 @@ Content-Type:  application/json
       }
     ],
     "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
      }
   },
@@ -693,9 +717,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of customer segment   |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of customer segment   |
 
 #### Response
 
@@ -731,7 +755,7 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }
@@ -744,7 +768,7 @@ Content-Type:  application/json
 #### Parameters
 
 Request body
-  
+
   The request body contains data with the [customer segment](#customer-segment) structure
 
 example:
@@ -766,7 +790,7 @@ example:
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }
@@ -797,7 +821,7 @@ curl -H "Content-Type: application/json" -d '{
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }' -X POST https://domain.comm100.com/api/v3/livechat/customerSegments
@@ -825,7 +849,7 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }
@@ -839,9 +863,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of the customer segment  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of the customer segment  |
 
 #### Response
 
@@ -868,7 +892,7 @@ curl -H "Content-Type: application/json" -d '{
     }
   ],
   "alertTo":{
-       "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+       "agentIds":["4","5"],
        "departmentIds":[]
   }
 }' -X PUT https://domain.comm100.com/api/v3/livechat/customerSegments
@@ -896,13 +920,13 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-    "agentIds":["5487fc9d-92e6-4487-a2e8-92e68d6892c7","6557fc9d-92e6-4487-a2e8-92e68d6892f4"],
+    "agentIds":["4","5"],
     "departmentIds":[]
   }
 }
 ```
 
-#### Delete a customer segment
+### Delete a customer segment
 
  `DELETE /api/v3/livechat/customerSegments/{id}`
 
@@ -910,9 +934,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of customer segment   |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of customer segment   |
 
 #### Response
 
@@ -943,9 +967,9 @@ Dynamic Campaign is represented as simple flat JSON objects with the following k
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `defaultCampaignId` |Guid || no | N/A || id of the default campaign.
-| `defaultCampaign` |[Campaign](#campaign-object)  |yes| N/A | N/A || the default [Campaign](#campaign-object).
-| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | N/A || this list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).
+| `defaultCampaignId` |Guid || no | N/A || id of the default campaign.|
+| `defaultCampaign` |[Campaign](#campaign-object)  |yes| N/A | N/A || the default [Campaign](#campaign-object).|
+| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | N/A || this list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).|
 
 ### Dynamic Campaign Rule Object
 
@@ -959,7 +983,7 @@ Dynamic Campaign Rule is represented as simple flat JSON objects with the follow
 | `logicalExpression` |String || no | no ||the logical expression for conditions.|
 | `targetCampaignId` |integer || no | yes||the id of target [Campaign](#campaign-object).|
 | `targetCampaign` |[Campaign](#campaign-object) |yes| N/A | N/A ||the target [Campaign](#campaign-object) object.|
-| `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no ||an array of [Live Chat Condition](#conditions-json-format) object. .|
+| `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no ||an array of [Live Chat Condition](#live-chat-condition-object) object. .|
 | `order` |integer|| no | yes ||the order of this rule|
 
 ## Endpoint
@@ -972,9 +996,9 @@ Dynamic Campaign Rule is represented as simple flat JSON objects with the follow
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `include` | string | no  | |  Available value: `campaign`|
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value: `campaign`|
 
 #### Response
 
@@ -998,7 +1022,8 @@ Content-Type:  application/json
     "name":"default campaign",
     "description":""
   },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
@@ -1008,15 +1033,18 @@ Content-Type:  application/json
       "targetCampaign":{
         "name":"default campaign",
         "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      },
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }
@@ -1029,36 +1057,32 @@ Content-Type:  application/json
 #### Parameter
 
 Request body
-  
+
   The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) Object structure
 
 example:
 ```Json
 {
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "defaultCampaign": {
-    "name":"default campaign",
-    "description":""
-  },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
       "conditionMetType": "all",
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "targetCampaign":{
-        "name":"default campaign",
-        "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }
@@ -1072,31 +1096,28 @@ the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 Using curl
 ```shell
-curl -H "Content-Type: application/json" -d '{
+curl -H "Content-Type: application/json" -d '
+{
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "defaultCampaign": {
-    "name":"default campaign",
-    "description":""
-  },
-  "dynamicCampaignRules":[
+  "dynamicCampaignRules":
+  [
     {
       "name": "default rule",
       "isEnabled": true,
       "conditionMetType": "all",
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "targetCampaign":{
-        "name":"default campaign",
-        "description":""
-      }
-    }
-  ],
-  "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
+      "conditions":
+      [
+        {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
+          "field": "CurrentPageUrl",
+          "operator": "include",
+          "value": "live",
+          "order": 1
+        }
+      ],
+      "order":1
     }
   ]
 }' -X PUT https://domain.comm100.com/api/v3/livechat/dynamicCampaign
@@ -1147,25 +1168,25 @@ Content-Type:  application/json
 
 Mobile Push is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `IOSType` | string |  | no | N/A | |type of IOS |
-  | `IOSProductionCertificateFileName` | string |  | no | N/A | | name of IOS prodution certicate file|
-  | `IOSProductionCertificateFileData` | string |  | no | N/A | | data of IOS prodution certicate file|
-  | `IOSProductionCertificatePassword` | string |  | no | N/A | | password of IOS prodution certicate|
-  | `IOSDevelopmentCertificateFileName` | string |  | no | N/A | | name of IOS development certicate file|
-  | `IOSDevelopmentCertificateFileData` | string |  | no | N/A | | data of IOS development certicate file|
-  | `IOSDevelopmentCertificatePassword` | string |  | no | N/A | | password of IOS development certicate|
-  | `IOSAPNSPayloadFormat` | string |  | no | N/A | | format of IOS APNS payload|
-  | `IOSThirdPartyURL` | string |  | no | N/A | | IOS third party URL|
-  | `IOSThirdPartyRequestHeaders` | string |  | no | N/A | | IOS third party request headers|
-  | `AndroidType` | string |  | no | N/A | |type of Andriod |
-  | `AndroidGCMAPIKey` | string |  | no | N/A | |Android GCM API key|
-  | `AndroidGCMExtraData` | string |  | no| N/A | |Android GCM extra data |
-  | `AndroidThirdPartyURL` | string |  | no | N/A | |Android third party URL |
-  | `AndroidThirdPartyRequestHeaders` | string |  | no | N/A | | Android third party request headers|
-  | `AndroidThirdPartyRequestBody` | string |  | no | N/A | |Android Third Party Request Body |
-  
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `IOSType` | string |  | no | N/A | |type of IOS |
+| `IOSProductionCertificateFileName` | string |  | no | N/A | | name of IOS prodution certicate file|
+| `IOSProductionCertificateFileData` | string |  | no | N/A | | data of IOS prodution certicate file|
+| `IOSProductionCertificatePassword` | string |  | no | N/A | | password of IOS prodution certicate|
+| `IOSDevelopmentCertificateFileName` | string |  | no | N/A | | name of IOS development certicate file|
+| `IOSDevelopmentCertificateFileData` | string |  | no | N/A | | data of IOS development certicate file|
+| `IOSDevelopmentCertificatePassword` | string |  | no | N/A | | password of IOS development certicate|
+| `IOSAPNSPayloadFormat` | string |  | no | N/A | | format of IOS APNS payload|
+| `IOSThirdPartyURL` | string |  | no | N/A | | IOS third party URL|
+| `IOSThirdPartyRequestHeaders` | string |  | no | N/A | | IOS third party request headers|
+| `AndroidType` | string |  | no | N/A | |type of Andriod |
+| `AndroidGCMAPIKey` | string |  | no | N/A | |Android GCM API key|
+| `AndroidGCMExtraData` | string |  | no| N/A | |Android GCM extra data |
+| `AndroidThirdPartyURL` | string |  | no | N/A | |Android third party URL |
+| `AndroidThirdPartyRequestHeaders` | string |  | no | N/A | | Android third party request headers|
+| `AndroidThirdPartyRequestBody` | string |  | no | N/A | |Android Third Party Request Body |
+
 ## Endpoint
 
 ### Get mobile push
@@ -1218,7 +1239,7 @@ Content-Type:  application/json
 #### Parameters
 
 Request body
-  
+
   The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) Object structure
 
 example:
@@ -1306,12 +1327,12 @@ Content-Type:  application/json
 
 agent is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid |  |  yes| N/A | | id of the online agent. |
-  | `name` | String |  |  yes| N/A | | name of the online agent. |
-  | `status` | String |  | no | N/A | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
-  | `ongoingChats` | integer|  | yes | N/A | | total number of ongoing chats the agent has. |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `id` | Guid |  |  yes| N/A | | id of the online agent. |
+| `name` | String |  |  yes| N/A | | name of the online agent. |
+| `status` | String |  | no | N/A | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
+| `ongoingChats` | integer|  | yes | N/A | | total number of ongoing chats the agent has. |
 
 ## Endpoints
 
@@ -1358,9 +1379,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of online agent   |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of online agent   |
 
 #### Response
 
@@ -1394,12 +1415,12 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of online agent   |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of online agent   |
 
 Request body
-  
+
   The request body contains data with the [Online Agent](#online-agent-object) Object structure
 
 example:
@@ -1431,10 +1452,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "name": "Grubby",
-  "status": "online",
-  "ongoingChats": 50
+  "status": "online"
 }
 ```
 
@@ -1444,65 +1462,65 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/onlineVisitors/{id}` - [Get an online visitor by id](#get-an-online-visitor-by-id)  
 - `PUT /api/v3/livechat/onlineVisitors/{id}` - [Update visitor custom variable](#update-visitor-custom-variable)  
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Online Visitor JSON format
 
 online visitor is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid |  |  yes| N/A | | id of the visitor. |
-  | `name` | name |  |  yes| N/A | | name of the visitor. |
-  | `email` | string |  | yes | N/A | | email of the visitor.|
-  | `status` | String|  | yes | N/A | |status of the visitor . |
-  | `pageViews` | integer|  | yes | N/A | |the total number of web pages the visitor viewed on your website. |
-  | `browser` | string|  | yes | N/A | |the browser the visitor is using. |
-  | `chats` | integer|  | yes | N/A | |the total times of chats a visitor has made on your website from the first time to present. |
-  | `city` | string|  | yes | N/A | |the city of the visitor. |
-  | `country` | string|  | yes | N/A | |the country of the visitor. |
-  | `currentBrowsing` | string|  | yes | N/A | |the page the visitor is currently looking at. |
-  | `customFields` | [Custom Field](#custom-field-object)[]|  | yes | N/A | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
-  | `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | N/A | |the information of custom variables captured from the web page visitors viewed.|
-  | `departmentId` | Guid|  | yes | N/A ||the department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
-  | `firstVisitTime` | datetime|  | yes | N/A | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
-  | `flashVersion` | string|  | yes | N/A | |the flash version of the browser the visitor is using.|
-  | `ip` | string|  | yes | N/A | |the IP of the visitor.|
-  | `keywords` | string|  | yes | N/A | |the keywords the visitor used to search for your website.|
-  | `landingPage` | string|  | yes | N/A | |the title and URL of the first page of your website the visitor visited.|
-  | `language` | string|  | yes | N/A | |the language the visitor is using.|
-  | `operatingSystem` | string|  | yes | N/A | |the operating system of the visitor's device.|
-  | `phone` | string|  | yes | N/A | |the phone of the visitor.|
-  | `productService` | string|  | yes | N/A | |the product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
-  | `referrerUrl` | string|  | yes | N/A | |the URL of the page from which a visitor comes to your website.|
-  | `screenResolution` | string|  | yes | N/A | |the screen resolution of the visitor's device.|
-  | `searchEngine` | string|  | yes | N/A | |the search engine the visitor used to search for your website.|
-  | `state` | string|  | yes | N/A | |the state of the visitor.|
-  | `timeZone` | string|  | yes | N/A | |the time zone of the visitor.|
-  | `visitTime` | string|  | yes | N/A | |the starting time when this visitor visits your website this time.|
-  | `visits` | string|  | yes | N/A | |the total times of visits a visitor has made on your website from the first time to present|
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `id` | Guid |  |  yes| N/A | | id of the visitor. |
+| `name` | name |  |  yes| N/A | | name of the visitor. |
+| `email` | string |  | yes | N/A | | email of the visitor.|
+| `status` | String|  | yes | N/A | |status of the visitor . |
+| `pageViews` | integer|  | yes | N/A | |the total number of web pages the visitor viewed on your website. |
+| `browser` | string|  | yes | N/A | |the browser the visitor is using. |
+| `chats` | integer|  | yes | N/A | |the total times of chats a visitor has made on your website from the first time to present. |
+| `city` | string|  | yes | N/A | |the city of the visitor. |
+| `country` | string|  | yes | N/A | |the country of the visitor. |
+| `currentBrowsing` | string|  | yes | N/A | |the page the visitor is currently looking at. |
+| `customFields` | [Custom Field](#custom-field-object)[]|  | yes | N/A | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
+| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | N/A | |the information of custom variables captured from the web page visitors viewed.|
+| `departmentId` | Guid|  | yes | N/A ||the department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
+| `firstVisitTime` | datetime|  | yes | N/A | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
+| `flashVersion` | string|  | yes | N/A | |the flash version of the browser the visitor is using.|
+| `ip` | string|  | yes | N/A | |the IP of the visitor.|
+| `keywords` | string|  | yes | N/A | |the keywords the visitor used to search for your website.|
+| `landingPage` | string|  | yes | N/A | |the title and URL of the first page of your website the visitor visited.|
+| `language` | string|  | yes | N/A | |the language the visitor is using.|
+| `operatingSystem` | string|  | yes | N/A | |the operating system of the visitor's device.|
+| `phone` | string|  | yes | N/A | |the phone of the visitor.|
+| `productService` | string|  | yes | N/A | |the product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
+| `referrerUrl` | string|  | yes | N/A | |the URL of the page from which a visitor comes to your website.|
+| `screenResolution` | string|  | yes | N/A | |the screen resolution of the visitor's device.|
+| `searchEngine` | string|  | yes | N/A | |the search engine the visitor used to search for your website.|
+| `state` | string|  | yes | N/A | |the state of the visitor.|
+| `timeZone` | string|  | yes | N/A | |the time zone of the visitor.|
+| `visitTime` | string|  | yes | N/A | |the starting time when this visitor visits your website this time.|
+| `visits` | string|  | yes | N/A | |the total times of visits a visitor has made on your website from the first time to present|
 
 
 ### Custom Field JSON format
 
 Custom Field is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid |  |  yes| N/A | | id of the custom field.|
-  | `name` | string |  |  yes| N/A | | name of the custom field.|
-  | `value` | string |  |  yes| N/A | | value of the custom field.|
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `id` | Guid |  |  yes| N/A | | id of the custom field.|
+| `name` | string |  |  yes| N/A | | name of the custom field.|
+| `value` | string |  |  yes| N/A | | value of the custom field.|
 
 ### Custom Variable Result JSON Format
 
 Custom variable result is represented as simple flat JSON objects with the following keys: 
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `name` | string |  |  yes| N/A | | name of the custom variable.|
-  | `value` | string |  |  no| N/A | | value of the custom variable.|
-  | `url` | string |  | no| N/A | | url of the custom variable.|
-  
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `name` | string |  |  yes| N/A | | name of the custom variable.|
+| `value` | string |  |  no| N/A | | value of the custom variable.|
+| `url` | string |  | no| N/A | | url of the custom variable.|
+
 ## Endpoints
 
 ### Get list of online visitors
@@ -1514,9 +1532,9 @@ Custom variable result is represented as simple flat JSON objects with the follo
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `onlyChattingViitor` | boolean | no  | false |  if only return the chatting visitor. |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `onlyChattingVisitor` | boolean | no  | false |  if only return the chatting visitor. |
 
 #### Response
 
@@ -1527,7 +1545,7 @@ the response is: array of [Online Visitor](#online-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors?onlyChattingViitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors?onlyChattingVisitor=false
 ```
 Response
 ```Json
@@ -1584,15 +1602,15 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of online visitor|
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of online visitor|
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `onlyChattingViitor` | boolean | no  | false |  if only return the chatting visitor. |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `onlyChattingVisitor` | boolean | no  | false |  if only return the chatting visitor. |
 
 #### Response
 
@@ -1603,7 +1621,7 @@ the response is: array of [Online Visitor](#online-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingViitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingVisitor=false
 ```
 Response
 ```Json
@@ -1657,9 +1675,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of online visitor|
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of online visitor|
 
 #### Response
 
@@ -1670,42 +1688,13 @@ the response is: array of [Online Visitor](#online-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-      "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
-      "pageViews": 1,
-      "browser": "Firefox 67.0",
-      "chats": 0,
-      "city": "Changsha",
-      "company": "",
-      "country": "China",
-      "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
-      "customFields": null,
       "customVariableResults": [
         {
           "name": "justfortestupdate",
           "value": "text",
           "url": "bbbbb"
         }
-      ],
-      "department": "",
-      "email": "",
-      "first_visit_time": "2019-06-11T03:05:42.537Z",
-      "flash_version": "",
-      "ip": "218.76.52.108",
-      "keywords": "",
-      "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
-      "language": "zh-CN",
-      "name": "218.76.52.108",
-      "operating_system": "Windows 10",
-      "phone": "",
-      "product_service": "",
-      "referrer_url": "",
-      "screen_resolution": "1920x1080",
-      "search_engine": "",
-      "state": "Hunan",
-      "status": 3,
-      "time_zone": "GMT +08:00",
-      "visit_time": "2019-06-12T07:41:40.486Z",
-      "visits": 4
+      ]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
@@ -1762,26 +1751,26 @@ Content-Type:  application/json
 
  Session is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `id` | string |  | N/A | N/A | | id of the session. |
-  | `startTime` | datetime | | N/A | N/A |  | time of this session start. |
-  | `ip` | string |  | N/A | N/A | |  |
-  | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
-  | `searchEngine` | string |  | N/A | N/A | |  |
-  | `keywords` | string |  | N/A | N/A | |  |
-  | `browser` | string | | N/A | N/A | |  |
-  | `flashVersion` | string |  | N/A | N/A | |  |
-  | `language` | string |  | N/A | N/A | |  |
-  | `screenResolution` | string |  | N/A | N/A | |  |
-  | `operatingSystem` | integer |  | N/A | N/A | |  |
-  | `timeZone` | string |  | N/A | N/A | |  |
-  | `landingPageURL` | string |  | N/A | N/A | |  |
-  | `landingPageTitle` | string | | N/A | N/A | |  |
-  | `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
-  | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
-  | `contactId` | Guid | | N/A | N/A | | the id of the contact  |
-  | `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `id` | string |  | N/A | N/A | | id of the session. |
+| `startTime` | datetime | | N/A | N/A |  | time of this session start. |
+| `ip` | string |  | N/A | N/A | |  |
+| `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
+| `searchEngine` | string |  | N/A | N/A | |  |
+| `keywords` | string |  | N/A | N/A | |  |
+| `browser` | string | | N/A | N/A | |  |
+| `flashVersion` | string |  | N/A | N/A | |  |
+| `language` | string |  | N/A | N/A | |  |
+| `screenResolution` | string |  | N/A | N/A | |  |
+| `operatingSystem` | integer |  | N/A | N/A | |  |
+| `timeZone` | string |  | N/A | N/A | |  |
+| `landingPageURL` | string |  | N/A | N/A | |  |
+| `landingPageTitle` | string | | N/A | N/A | |  |
+| `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
+| `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
+| `contactId` | Guid | | N/A | N/A | | the id of the contact  |
+| `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
 
 ## Endpoint
 
@@ -1792,15 +1781,15 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the id of the ban  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the ban  |
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `include` | string | no  | |  Available value: `visitor`, `contact` |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value: `visitor`, `contact` |
 
 #### Response
 
@@ -1842,8 +1831,8 @@ Response
 
 # Chat
 
-- `GET /api/v3/livechat/chats` - [Get all chats](#get-all-chats) include department,agent , chatbot, campaign,autoInvitation, session
-- `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-chat-by-id)  include department,agent , chatbot, campaign,autoInvitation
+- `GET /api/v3/livechat/chats` - [Get all chats](#get-all-chats)
+- `GET /api/v3/livechat/chats/{id}` - [Get a chat by id](#get-a-chat-by-id)
 - `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat](#delete-a-chat)
 - `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#Batch-delete-chats)
 
@@ -1853,99 +1842,99 @@ Response
 
  Chat is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid |  | N/A | N/A | | id of the chat. |
-  | `agentIds` | Guid |  | N/A | N/A | | Maximum four agents can join a chat. |
-  | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent.//这里应该是有一个chatbot字段才对 |
-  | `startTime` | datetime | | N/A | N/A | |  |
-  | `endTime` | datetime | | N/A | N/A | |  |
-  | `ifQueued` | boolean | | N/A | N/A | |  |
-  | `ifAudioChatHappened` | boolean | | N/A | N/A | false //不能修改也不能创建,应该就没有默认值 |  |
-  | `ifVideoChatHappened` | boolean | | N/A | N/A | false |  |
-  | `messages` | [Chat Message](#Chat-Message-object)[] | | N/A | N/A |  | |
-  | `status` | string | | N/A | N/A |  | Including `normal`, `refused` and `missed`. |
-  | `requestingPageTitle` | string | | N/A | N/A |  |  |
-  | `requestingPageURL` | string | | N/A | N/A |  | |
-  | `source` | string | | N/A | N/A |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
-  | `autoInvitationId` | Guid | | N/A | N/A |  | |
-  | `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | N/A | N/A |  |  |
-  | `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) | yes | N/A | N/A |  |  |
-  | `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) | yes | N/A | N/A |  |  |
-  | `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) | yes | N/A | N/A |  |  |
-  | `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) | yes | N/A | N/A |  |  |
-  | `requestedTime` | datetime | | N/A | N/A | | The time when the chat is requested. |
-  | `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | N/A | N/A |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
-  | `avgResponseTime` | float | | N/A | N/A | |  |
-  | `visitorMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Visitors. |
-  | `agentMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Agents. |
-  | `campaignId` | Guid | | N/A | N/A |  |  |
-  | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
-  | `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
-  | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | Max 3. // max 3 是什么?|
-  | `sessionId` | Guid | | N/A | N/A |  | id of session |
-  | `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `id` | Guid |  | N/A | N/A | | id of the chat. |
+| `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
+| `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
+| `startTime` | datetime | | N/A | N/A | |  |
+| `endTime` | datetime | | N/A | N/A | |  |
+| `ifQueued` | boolean | | N/A | N/A | |  |
+| `ifAudioChatHappened` | boolean | | N/A | N/A | false |  |
+| `ifVideoChatHappened` | boolean | | N/A | N/A | false |  |
+| `messages` | [Chat Message](#Chat-Message-object)[] | | N/A | N/A |  | |
+| `status` | string | | N/A | N/A |  | Including `normal`, `refused` and `missed`. |
+| `requestingPageTitle` | string | | N/A | N/A |  |  |
+| `requestingPageURL` | string | | N/A | N/A |  | |
+| `source` | string | | N/A | N/A |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
+| `autoInvitationId` | Guid | | N/A | N/A |  | |
+| `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | N/A | N/A |  |  |
+| `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) | yes | N/A | N/A |  |  |
+| `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) | yes | N/A | N/A |  |  |
+| `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) | yes | N/A | N/A |  |  |
+| `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) | yes | N/A | N/A |  |  |
+| `requestedTime` | datetime | | N/A | N/A | | The time when the chat is requested. |
+| `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | N/A | N/A |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
+| `avgResponseTime` | float | | N/A | N/A | |  |
+| `visitorMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Visitors. |
+| `agentMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Agents. |
+| `campaignId` | Guid | | N/A | N/A |  |  |
+| `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
+| `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
+| `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | |
+| `sessionId` | Guid | | N/A | N/A |  | id of session |
+| `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
 
 ### Chat Message Object
 
   Chat Message Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `type` | string | N/A  | N/A | | Including `system`, `visitor`, `agent`, `chatbot` and `note`. |
-  | `senderName` | string | N/A  | N/A | |  |
-  | `sentTime` | datetime | N/A  | N/A | |  |
-  | `content` | string | N/A  | N/A | | |
-  | `translatedMessage` | string | N/A  | N/A | |  |
-  | `attachment` | byte[] | N/A | N/A | |  | The attachment file data |
-  | `attachmentName` | string | N/A | N/A | |  | The attachment file name |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `type` | string | N/A  | N/A | | Including `system`, `visitor`, `agent`, `chatbot` and `note`. |
+| `senderName` | string | N/A  | N/A | |  |
+| `sentTime` | datetime | N/A  | N/A | |  |
+| `content` | string | N/A  | N/A | | |
+| `translatedMessage` | string | N/A  | N/A | |  |
+| `attachment` | byte[] | N/A | N/A | |  | The attachment file data |
+| `attachmentName` | string | N/A | N/A | |  | The attachment file name |
 
 ### Chat Pre-Chat Object
 
   Pre-Chat Window Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `socialMediaSource` | string | N/A  | N/A | |  Including `none` and `facebook`. |
-  | `socialProfileURL` | string | N/A  | N/A | |  |
-  | `name` | string | N/A  | N/A   | |  |
-  | `email` | string | N/A  | N/A | | |
-  | `phone` | string | N/A  | N/A   | |  |
-  | `company` | string | N/A  | N/A | | |
-  | `productService` | string | N/A  | N/A   | |  |
-  | `ticketID` | string | N/A  | N/A | | |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `socialMediaSource` | string | N/A  | N/A | |  Including `none` and `facebook`. |
+| `socialProfileURL` | string | N/A  | N/A | |  |
+| `name` | string | N/A  | N/A   | |  |
+| `email` | string | N/A  | N/A | | |
+| `phone` | string | N/A  | N/A   | |  |
+| `company` | string | N/A  | N/A | | |
+| `productService` | string | N/A  | N/A   | |  |
+| `ticketID` | string | N/A  | N/A | | |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ### Chat Post Chat  Object
 
   Chat Post Chat Window Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `ratingGrade` | string | N/A | N/A | | Including `noRating`, `level1` , `level2` , `level3` , `level4` and `level5`. |
-  | `ratingComment` | string | N/A | N/A | | |
-  | `ratingTime` | datetime | N/A  | N/A | |  |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `ratingGrade` | string | N/A | N/A | | Including `noRating`, `level1` , `level2` , `level3` , `level4` and `level5`. |
+| `ratingComment` | string | N/A | N/A | | |
+| `ratingTime` | datetime | N/A  | N/A | |  |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ### Chat Agent Wrap-Up Object
 
   Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `categorys` | string[] | N/A | N/A | |   |
-  | `comment` | string | N/A | N/A | |   |
-  | `lastUpdatedTime` | datetime | N/A | N/A | |   |
-  | `lastUpdatedBy` | Guid | N/A | N/A | |  Id of the agent. |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `categorys` | string[] | N/A | N/A | |   |
+| `comment` | string | N/A | N/A | |   |
+| `lastUpdatedTime` | datetime | N/A | N/A | |   |
+| `lastUpdatedBy` | Guid | N/A | N/A | |  Id of the agent. |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ### Chat Custom Variable Object
 
   Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ## Endpoint
 
@@ -1957,31 +1946,31 @@ Response
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`. |
-  | `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-  | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-  | `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
-  | `pageIndex` | integer | no  | 1 | The page index of query. |
-  | `pageSize` | integer | no  | 50 | Page size.  |
-  | `departmentId` | guid | no  |  | |
-  | `categoryId` | guid | no  |  | |
-  | `visitorId` | guid | no  |  | |
-  | `agentId` | guid | no  |  | |
-  | `keywords` | string | no  |  | |
-  | `conditions` | string | no  |  |  The condition list of inquiring the chat `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0]` |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`. |
+| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
+| `pageIndex` | integer | no  | 1 | The page index of query. |
+| `pageSize` | integer | no  | 50 | Page size.  |
+| `departmentId` | guid | no  |  | |
+| `categoryId` | guid | no  |  | |
+| `visitorId` | guid | no  |  | |
+| `agentId` | integer | no  |  | |
+| `keywords` | string | no  |  | |
+| `conditions` | string | no  |  |  The condition list of inquiring the chat `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0]` |
 
 #### Response
 
 The response body contains data with the follow structure:
 
-  | Name | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `totalCount` | integer | N/A | N/A | Total count of the list. |
-  | `previousPage` | string | N/A | N/A | Url of the previous page. |
-  | `nextPage` | string | N/A | N/A | Url of the next page. |
-  | `list` | [Chat](#Chat-Object)[] | N/A | N/A |  |
+| Name | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `totalCount` | integer | N/A | N/A | Total count of the list. |
+| `previousPage` | string | N/A | N/A | Url of the previous page. |
+| `nextPage` | string | N/A | N/A | Url of the next page. |
+| `list` | [Chat](#Chat-Object)[] | N/A | N/A |  |
 
 #### Example
 
@@ -2000,7 +1989,7 @@ Response
     "list": [
         {
             "id": "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
-            "agentIds": ["1224C179-8756-C50D-465F-73861413A4F8"],
+            "agentIds": [5],
             "startTime": "2019-01-05T07:17:08.89",
             "endTime": "2019-01-05T07:27:08.89",
             "ifQueued": false,
@@ -2096,9 +2085,9 @@ Response
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the chat. |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the chat. |
 
 #### Response
 
@@ -2116,7 +2105,7 @@ Response
 
 {
   "id": "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
-  "agentIds": ["1224C179-8756-C50D-465F-73861413A4F8"],
+  "agentIds": [5],
   "startTime": "2019-01-05T07:17:08.89",
   "endTime": "2019-01-05T07:27:08.89",
   "ifQueued": false,
@@ -2209,9 +2198,9 @@ Response
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the chat |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the chat |
 
 #### Response
 
@@ -2230,11 +2219,13 @@ HTTP/1.1 204 No Content
 
 ### Batch Delete chats
 
-  `DELETE /api/v3/livechat/chats
+  `DELETE /api/v3/livechat/chats`
 
 #### Parameters
 
-  no parameters
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `ids` | Guid[] | yes  |  the unique Ids of the chat |
 
 #### Response
 
@@ -2244,7 +2235,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats?ids[0]=2BCB61DA-FC7D-67D8-43A5-5EB453B63231
 ```
 Response
 ```json
@@ -2253,8 +2244,8 @@ HTTP/1.1 204 No Content
 
 # Offline Message
 
-- `GET /api/v3/livechat/offlineMessages` - [Get a list of offline messages](#get-a-list-of-offline-messages)  include department,agent, campaign,autoInvitation, session
-- `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offline message by id](#get-an-offline-message-by-id)  include department,agent, campaign,autoInvitation, session
+- `GET /api/v3/livechat/offlineMessages` - [Get a list of offline messages](#get-a-list-of-offline-messages)
+- `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offline message by id](#get-an-offline-message-by-id)
 - `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offline message by id](#delete-an-offline-message-by-id)
 - `DELETE /api/v3/livechat/offlineMessages` - [Batch delete offline messages](#batch-delete-offline-messages)
 
@@ -2264,44 +2255,44 @@ HTTP/1.1 204 No Content
 
  Offline Message is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `id` | string |  | N/A | N/A | | id of the offline message. |
-  | `createdTime` | datetime | | N/A | N/A | | time of this offline message submitted. |
-  | `name` | string | | N/A | N/A |  | name of the visitor |
-  | `email` | string | | N/A | N/A |  | email of the visitor |
-  | `phone` | string | | N/A | N/A |  | phone of the visitor |
-  | `company` | string | | N/A | N/A |  | company of the visitor |
-  | `departmentId` | Guid | | N/A | N/A |  | The Department which the Offline Message belongs to |
-  | `department` | [Department](#department) | yes | N/A | N/A |  | Available only when department is included |
-  | `agentId` | Guid | | N/A | N/A |  | The Agent whom the Offline Message belongs to |
-  | `agent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
-  | `ticketId` | integer | | N/A | N/A |  |  |
-  | `subject` | string | | N/A | N/A |  | the subject of this offline message|
-  | `message` | string | | N/A | N/A | | the content of this offline message |
-  | `requestingPageTitle` | string | | N/A | N/A |  |  |
-  | `requestingPageURL` | string | | N/A | N/A |  |  |
-  | `source` | string | | N/A | N/A |  | including `chatButton` and `autoInvitation` |
-  | `autoInvitationId` | Guid | | N/A | N/A |  | Available when source is `autoInvitation` |
-  | `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | N/A | N/A |  | Available only when autoInvitation is included |
-  | `campaignId` | Guid | | N/A | N/A |  | id of the campaign |
-  | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  | Available only when campaign is included |
-  | `sessionId` | Guid | | N/A | N/A |  | id of the session |
-  | `session` | [Session](#session) | yes | N/A | N/A |  | Available only when session is included |
-  | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | an array of [Customer Segment](#customer-segment) |
-  | `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  | values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
-  | `attachment` | byte[] | | N/A | N/A |  | the attachment file data |
-  | `attachmentName` | string | | N/A | N/A |  | the attachment file name |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `id` | string |  | N/A | N/A | | id of the offline message. |
+| `createdTime` | datetime | | N/A | N/A | | time of this offline message submitted. |
+| `name` | string | | N/A | N/A |  | name of the visitor |
+| `email` | string | | N/A | N/A |  | email of the visitor |
+| `phone` | string | | N/A | N/A |  | phone of the visitor |
+| `company` | string | | N/A | N/A |  | company of the visitor |
+| `departmentId` | Guid | | N/A | N/A |  | The Department which the Offline Message belongs to |
+| `department` | [Department](#department) | yes | N/A | N/A |  | Available only when department is included |
+| `agentId` | integer | | N/A | N/A |  | The Agent whom the Offline Message belongs to |
+| `agent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
+| `ticketId` | integer | | N/A | N/A |  |  |
+| `subject` | string | | N/A | N/A |  | the subject of this offline message|
+| `message` | string | | N/A | N/A | | the content of this offline message |
+| `requestingPageTitle` | string | | N/A | N/A |  |  |
+| `requestingPageURL` | string | | N/A | N/A |  |  |
+| `source` | string | | N/A | N/A |  | including `chatButton` and `autoInvitation` |
+| `autoInvitationId` | Guid | | N/A | N/A |  | Available when source is `autoInvitation` |
+| `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | N/A | N/A |  | Available only when autoInvitation is included |
+| `campaignId` | Guid | | N/A | N/A |  | id of the campaign |
+| `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  | Available only when campaign is included |
+| `sessionId` | Guid | | N/A | N/A |  | id of the session |
+| `session` | [Session](#session) | yes | N/A | N/A |  | Available only when session is included |
+| `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | an array of [Customer Segment](#customer-segment) |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | | N/A | N/A |  | values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
+| `attachment` | byte[] | | N/A | N/A |  | the attachment file data |
+| `attachmentName` | string | | N/A | N/A |  | the attachment file name |
 
 ### Field Value JSON format
 
  Field Value is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `fieldName` | string |  | N/A | N/A | |  |
-  | `value` | string | | N/A | N/A | |  |
-  | `url` | string | | N/A | N/A |  |  |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `fieldName` | string |  | N/A | N/A | |  |
+| `value` | string | | N/A | N/A | |  |
+| `url` | string | | N/A | N/A |  |  |
 
 ## Endpoint
 
@@ -2312,29 +2303,29 @@ HTTP/1.1 204 No Content
 #### Parameters
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
-  | `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-  | `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-  | `timeZone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
-  | `campaignId` | guid | no  |  | id of the campaign which the offline message |
-  | `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
-  | `agentId` | guid | no  |  | id of the agent that this offline message belongs to |
-  | `visitorSegmentId` | guid | no  |  | id of the visitor segment which the visitor belongs to |
-  | `keywords` | string | no  |  | search subject or message by keywords |
-  | `pageIndex` | integer | no  | 1 | the page index of query |
-  | `pageSize` | integer | no  | 50 | page size  |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
+| `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
+| `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
+| `timeZone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
+| `campaignId` | guid | no  |  | id of the campaign which the offline message |
+| `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
+| `agentId` | integer | no  |  | id of the agent that this offline message belongs to |
+| `visitorSegmentId` | guid | no  |  | id of the visitor segment which the visitor belongs to |
+| `keywords` | string | no  |  | search subject or message by keywords |
+| `pageIndex` | integer | no  | 1 | the page index of query |
+| `pageSize` | integer | no  | 50 | page size  |
 
 #### Response
 The response body contains data with the follow structure:
 
-  | Name | Type | Required | Default | Description |    
-  | - | - | :-: | :-: | - | 
-  | `totalCount` | integer | N/A | N/A | total count of the list. |
-  | `previousPage` | string | N/A | N/A | Url of the previous page. |
-  | `nextPage` | string | N/A | N/A | Url of the next page. |
-  | `list` | [Offline Message](#offline-message-json-format)[] | N/A | N/A | an array of [Offline Message](#offline-message-json-format) |
+| Name | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `totalCount` | integer | N/A | N/A | total count of the list. |
+| `previousPage` | string | N/A | N/A | Url of the previous page. |
+| `nextPage` | string | N/A | N/A | Url of the next page. |
+| `list` | [Offline Message](#offline-message-json-format)[] | N/A | N/A | an array of [Offline Message](#offline-message-json-format) |
 
 #### Example
 
@@ -2414,15 +2405,15 @@ Response
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the id of the offline message  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the offline message  |
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
 
 #### Response
 
@@ -2444,10 +2435,10 @@ Response
     "email": "allon@comm100.com",
     "phone":"",
     "company":"",
-    "agentId":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
+    "agentId":5,
     "agent": {
         //include agent
-        "id":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
+        "id":5,
         "name": "Sales",
         ...
     },
@@ -2497,9 +2488,9 @@ Response
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the offline message  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the offline message  |
 
 
 #### Response
@@ -2564,11 +2555,11 @@ HTTP/1.1 204 No Content
 
   Campaign Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
-  | `name` | string  | no | yes | `Default Plan` | |
-  | `description` | string  | no | no | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+|`id` | Guid | yes | N/A | | Id of the current item.  |
+| `name` | string  | no | yes | `Default Plan` | |
+| `description` | string  | no | no | | |
 
 ## Campaign Endpoints
 
@@ -2578,7 +2569,7 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-  no parameters
+    No parameters
 
 #### Response
 
@@ -2614,9 +2605,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -2694,9 +2685,9 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -2743,9 +2734,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -2773,9 +2764,9 @@ Response
 
   Installation Code Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `code` | string  | N/A | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `code` | string  | N/A | N/A | | |
 
 ## Installation Code Endpoints
 
@@ -2787,9 +2778,9 @@ Response
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -2830,33 +2821,33 @@ Content-Type:  application/json
 
   Chat Button Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `type` | string | no | N/A | `adaptive` | Type of the button, including `adaptive`, `image` and `textLink`. |
-  | `isHideWhenOffline` | boolean | no | N/A | | Whether the chat button is visible when no agent is online. `true` means that button is invisible. |
-  | `isDomainRestrictionEnabled` | boolean | no | N/A | | Whether the domain restriction is enabled or not. |
-  | `allowedDomains` | string[] | no | N/A | | An array of `domains` or `urls`, on which the chat button is visible. |
-  | `adaptiveButtonColor` | string | no | N/A | | The theme color of the chat button, available when `type` is `adaptive`. |
-  | `adaptiveButtonIconType` | integer | no | N/A | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
-  | `adaptiveButtonOnlineIcon` | string | no | N/A | | Image file key of the chat online button, available when `type` is `adaptive`. |
-  | `adaptiveButtonOfflineIcon` | string | no | N/A | | Image file key of the chat offline button, available when `type` is `adaptive`. |
-  | `isImageButtonFloating` | boolean | no | N/A | | Whether the image button is float or not, available when `type` is `image`. |
-  | `imageButtonPosition` | string | no | N/A | | Position of the image button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
-  | `imageButtonPositionMode` | string | no | N/A | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
-  | `isImageButtonXOffsetByPixel` | boolean | no | N/A | |                 available when `type` is `image`. |
-  | `imageButtonXOffset` | integer | no | N/A | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate, available when `type` is `image`. |
-  | `isImageButtonYOffsetByPixel` | boolean | no | N/A | |                 available when `type` is `image`. |
-  | `imageButtonYOffset` | integer | no | N/A | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate, available when `type` is `image`. |
-  | `imageButtonImageSource` | string | no | N/A | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
-  | `imageButtonOnlineImage` | string | no | N/A | | Image file key of online button, available when `type` is `image`. |
-  | `imageButtonOfflineImage` | string | no | N/A | | Image file key of offline button, available when `type` is `image`. |
-  | `imageButtonTypeOnMobile` | string | no | N/A | | The type of button on mobile device, including `text` and `image`. |
-  | `imageButtonColorOnMobile` | string | no | N/A | | |
-  | `imageButtonTextColorOnMobile` | string | no | N/A | | The theme color of chatbutton on mobile device. |
-  | `imageButtonOnlineImageOnMobile` | string | no | N/A | | The Image file key on mobile device when any agents is online. |
-  | `imageButtonOfflineImageOnMobile` | string | no | N/A | | The image file key on mobile device when no agent is online. |
-  | `imageButtonPositionOnMobile` | string | no | N/A | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
-  | `textLinkButtonText` | string | no | N/A | | the content of the text link, available when `type` is `textLink`. |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `type` | string | no | N/A | `adaptive` | Type of the button, including `adaptive`, `image` and `textLink`. |
+| `isHideWhenOffline` | boolean | no | N/A | | Whether the chat button is visible when no agent is online. `true` means that button is invisible. |
+| `isDomainRestrictionEnabled` | boolean | no | N/A | | Whether the domain restriction is enabled or not. |
+| `allowedDomains` | string[] | no | N/A | | An array of `domains` or `urls`, on which the chat button is visible. |
+| `adaptiveButtonColor` | string | no | N/A | | The theme color of the chat button, available when `type` is `adaptive`. |
+| `adaptiveButtonIconType` | integer | no | N/A | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
+| `adaptiveButtonOnlineIcon` | string | no | N/A | | Image file key of the chat online button, available when `type` is `adaptive`. |
+| `adaptiveButtonOfflineIcon` | string | no | N/A | | Image file key of the chat offline button, available when `type` is `adaptive`. |
+| `isImageButtonFloating` | boolean | no | N/A | | Whether the image button is float or not, available when `type` is `image`. |
+| `imageButtonPosition` | string | no | N/A | | Position of the image button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
+| `imageButtonPositionMode` | string | no | N/A | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
+| `isImageButtonXOffsetByPixel` | boolean | no | N/A | |                 available when `type` is `image`. |
+| `imageButtonXOffset` | integer | no | N/A | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate, available when `type` is `image`. |
+| `isImageButtonYOffsetByPixel` | boolean | no | N/A | |                 available when `type` is `image`. |
+| `imageButtonYOffset` | integer | no | N/A | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate, available when `type` is `image`. |
+| `imageButtonImageSource` | string | no | N/A | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
+| `imageButtonOnlineImage` | string | no | N/A | | Image file key of online button, available when `type` is `image`. |
+| `imageButtonOfflineImage` | string | no | N/A | | Image file key of offline button, available when `type` is `image`. |
+| `imageButtonTypeOnMobile` | string | no | N/A | | The type of button on mobile device, including `text` and `image`. |
+| `imageButtonColorOnMobile` | string | no | N/A | | |
+| `imageButtonTextColorOnMobile` | string | no | N/A | | The theme color of chatbutton on mobile device. |
+| `imageButtonOnlineImageOnMobile` | string | no | N/A | | The Image file key on mobile device when any agents is online. |
+| `imageButtonOfflineImageOnMobile` | string | no | N/A | | The image file key on mobile device when no agent is online. |
+| `imageButtonPositionOnMobile` | string | no | N/A | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
+| `textLinkButtonText` | string | no | N/A | | the content of the text link, available when `type` is `textLink`. |
 
 ## Chat Button Endpoints
 
@@ -2868,9 +2859,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -2925,9 +2916,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -3045,62 +3036,62 @@ Content-Type:  application/json
 
   Chat Window Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `width` | integer | no | N/A | | |
-  | `height` | integer | no | N/A | | |
-  | `style` | string | no | N/A | |  Style of the window's theme, including `classic`, `circle` and `bubble`. |
-  | `color` | string | no | N/A | |  Color of the window's theme. |
-  | `type` | string | no | N/A | | Type of the chat window, including `embedded` and `popup`. |
-  | `headerType` | string | no | N/A | |  Type of the header, including `agentInfo`, `bannerImage` and `avatarAndLogo` when `style` is `classic`. |
-  | `isAvatarDisplayed` | boolean | no | N/A | | Whether the avatar of the agent is visible or not, available when  `headerType` is `agentInfo` or `avatarAndLogo`. |
-  | `isTitleDisplayed` | boolean | no | N/A | | Whether the title of the agent is visible or not, available when `headerType` is `agentInfo`. |
-  | `isBioDisplayed` | boolean | no | N/A | | Whether the bio of the agent is visible or not, available when `headerType` is `agentInfo`. |
-  | `isLogoDisplayed` | boolean | no | N/A | | Whether the logo is visible or not, available when `headerType` is `avatarAndLogo`. |
-  | `logo` | string | no | N/A | | Image file key of the logo. |
-  | `bannerImage` | string | no | N/A | | Image file key of the banner, available when `headerType` is `bannerImage`. |
-  | `isAvatarDisplayedWithMessage` | boolean | no | N/A   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
-  | `isBackgroundDisplayed` | boolean | no | N/A | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
-  | `backgroundTexture` | string | no | N/A | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
-  | `customCSSOfClassic` | string | no | N/A | |  The content of custom css when  `style` is `classic`. |
-  | `customCSSOfCircle` | string | no | N/A | |  The content of custom css when  `style` is `circle`. |
-  | `isTranscriptDownloadAllowed` | boolean | no | N/A | | Whether the visitor can download the chat transcript. |
-  | `isTranscriptPrintAllowed` | boolean | no | N/A | | Whether the visitor can print the chat transcript. |
-  | `isTranscriptSentToVisitors` | boolean | no | N/A | | Whether the transcript send to visitor. |
-  | `isTranscriptSentFromCurrentAgentEmail` | boolean | no | N/A | | Available when `isTranscriptDownloadAllowed` is true. |
-  | `fromEmailName` | string | no | N/A | |  The from name for sending transcript email, available when `isTranscriptSentFromCurrentAgentEmail` is true. |
-  | `fromEmailAddress` | string | no | N/A | |  The subject address for sending transcript email, available when `isTranscriptSentFromCurrentAgentEmail` is true. |
-  | `isSMTPServerCustomized` | boolean | no | N/A | | Whether use custome SMTP server. |
-  | `customSMTPServer` | [Custom SMTP Server](#Custom-SMTP-Server-Object) | no | N/A | | |
-  | `isSwitchToOfflineMessageAllow` | boolean | no | N/A | | Allow visitors to switch to Offline Message Window while waiting for chat. |
-  | `isFileSendAllow` | boolean | no | N/A | | Whether the agent can send file or not. |
-  | `ifMarkUnreadMessage` | boolean | no | N/A | | |
-  | `isAudioChatEnabled` | boolean | no | N/A | | Whether the agent can use audio chat. |
-  | `isVideoChatEnabled` | boolean | no | N/A | | Whether the agent can use video chat. |
-  | `isBrowserPopupNotificationEnabled` | boolean | no | N/A | | It is available for private server sites. For shared server clients, the push notification is disabled by default. |
-  | `ifEndChatWhenVisitorIsInactive` | boolean | no | N/A | | Automatically end chats if visitors don't respond in period of time. |
-  | `minutesOfVisitorInactivity` | integer | no | N/A | | |
-  | `isTranscriptSentForArchiving` | boolean | no | N/A | | |
-  | `receivingEmailAddressesForArchivingTranscripts` | string | no | N/A | | |
-  | `emailSubjectForArchivingTranscripts` | string | no | N/A | | |
-  | `greetingMessage` | string | no | N/A | | |
-  | `isCustomJSEnabled:` | boolean | no | N/A | | |
-  | `customJS` | string | no | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `width` | integer | no | N/A | | |
+| `height` | integer | no | N/A | | |
+| `style` | string | no | N/A | |  Style of the window's theme, including `classic`, `circle` and `bubble`. |
+| `color` | string | no | N/A | |  Color of the window's theme. |
+| `type` | string | no | N/A | | Type of the chat window, including `embedded` and `popup`. |
+| `headerType` | string | no | N/A | |  Type of the header, including `agentInfo`, `bannerImage` and `avatarAndLogo` when `style` is `classic`. |
+| `isAvatarDisplayed` | boolean | no | N/A | | Whether the avatar of the agent is visible or not, available when  `headerType` is `agentInfo` or `avatarAndLogo`. |
+| `isTitleDisplayed` | boolean | no | N/A | | Whether the title of the agent is visible or not, available when `headerType` is `agentInfo`. |
+| `isBioDisplayed` | boolean | no | N/A | | Whether the bio of the agent is visible or not, available when `headerType` is `agentInfo`. |
+| `isLogoDisplayed` | boolean | no | N/A | | Whether the logo is visible or not, available when `headerType` is `avatarAndLogo`. |
+| `logo` | string | no | N/A | | Image file key of the logo. |
+| `bannerImage` | string | no | N/A | | Image file key of the banner, available when `headerType` is `bannerImage`. |
+| `isAvatarDisplayedWithMessage` | boolean | no | N/A   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
+| `isBackgroundDisplayed` | boolean | no | N/A | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
+| `backgroundTexture` | string | no | N/A | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
+| `customCSSOfClassic` | string | no | N/A | |  The content of custom css when  `style` is `classic`. |
+| `customCSSOfCircle` | string | no | N/A | |  The content of custom css when  `style` is `circle`. |
+| `isTranscriptDownloadAllowed` | boolean | no | N/A | | Whether the visitor can download the chat transcript. |
+| `isTranscriptPrintAllowed` | boolean | no | N/A | | Whether the visitor can print the chat transcript. |
+| `isTranscriptSentToVisitors` | boolean | no | N/A | | Whether the transcript send to visitor. |
+| `isTranscriptSentFromCurrentAgentEmail` | boolean | no | N/A | | Available when `isTranscriptDownloadAllowed` is true. |
+| `fromEmailName` | string | no | N/A | |  The from name for sending transcript email, available when `isTranscriptSentFromCurrentAgentEmail` is true. |
+| `fromEmailAddress` | string | no | N/A | |  The subject address for sending transcript email, available when `isTranscriptSentFromCurrentAgentEmail` is true. |
+| `isSMTPServerCustomized` | boolean | no | N/A | | Whether use custome SMTP server. |
+| `customSMTPServer` | [Custom SMTP Server](#Custom-SMTP-Server-Object) | no | N/A | | |
+| `isSwitchToOfflineMessageAllow` | boolean | no | N/A | | Allow visitors to switch to Offline Message Window while waiting for chat. |
+| `isFileSendAllow` | boolean | no | N/A | | Whether the agent can send file or not. |
+| `ifMarkUnreadMessage` | boolean | no | N/A | | |
+| `isAudioChatEnabled` | boolean | no | N/A | | Whether the agent can use audio chat. |
+| `isVideoChatEnabled` | boolean | no | N/A | | Whether the agent can use video chat. |
+| `isBrowserPopupNotificationEnabled` | boolean | no | N/A | | It is available for private server sites. For shared server clients, the push notification is disabled by default. |
+| `ifEndChatWhenVisitorIsInactive` | boolean | no | N/A | | Automatically end chats if visitors don't respond in period of time. |
+| `minutesOfVisitorInactivity` | integer | no | N/A | | |
+| `isTranscriptSentForArchiving` | boolean | no | N/A | | |
+| `receivingEmailAddressesForArchivingTranscripts` | string | no | N/A | | |
+| `emailSubjectForArchivingTranscripts` | string | no | N/A | | |
+| `greetingMessage` | string | no | N/A | | |
+| `isCustomJSEnabled:` | boolean | no | N/A | | |
+| `customJS` | string | no | N/A | | |
 
 ### Custom SMTP Server Object
 
   Custom SMTP Server Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `fromName` | string | no | N/A | | |
-  | `fromEmail` | string | no | N/A | | |
-  | `mailServer` | string | no | N/A | | |
-  | `port` | integer | no | N/A | | |
-  | `encryptedType` | string | no | N/A | | Including `none`, `SSL` and `TLS`. |
-  | `IsAuthenticationRequired` | boolean | no | N/A | | |
-  | `username` | string | no | N/A | | |
-  | `password` | string | no | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `fromName` | string | no | N/A | | |
+| `fromEmail` | string | no | N/A | | |
+| `mailServer` | string | no | N/A | | |
+| `port` | integer | no | N/A | | |
+| `encryptedType` | string | no | N/A | | Including `none`, `SSL` and `TLS`. |
+| `IsAuthenticationRequired` | boolean | no | N/A | | |
+| `username` | string | no | N/A | | |
+| `password` | string | no | N/A | | |
 
 ## Chat Window Endpoints
 
@@ -3112,9 +3103,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -3191,9 +3182,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -3377,17 +3368,17 @@ Content-Type:  application/json
 
   Pre-Chat Window Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `isEnable` | boolean | no | N/A | | Whether the pre-chat is enabled or not. |
-  | `isTeamNameDisplayed` | boolean | no | N/A | | Whether the team name is visible or not in the header. |
-  | `teamName` | string | no | N/A | | The team name displayed in the header. |
-  | `isAgentAvatarDisplayed` | boolean | no | N/A   | | Whether the avatar of the agent is visible or not in the header. |
-  | `greetingMessage` | string | no | N/A | | |
-  | `socialMediaLogin` | string | no | N/A | |  Including `none` and `facebook`. |
-  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
-  | `isVisitorInfoRecorded` | boolean | no | N/A | true | If remember visitor info collected from pre-chat form. |
-  | `formFieldLayoutStyle` | string | no | N/A | | Including `leftofInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `isEnable` | boolean | no | N/A | | Whether the pre-chat is enabled or not. |
+| `isTeamNameDisplayed` | boolean | no | N/A | | Whether the team name is visible or not in the header. |
+| `teamName` | string | no | N/A | | The team name displayed in the header. |
+| `isAgentAvatarDisplayed` | boolean | no | N/A   | | Whether the avatar of the agent is visible or not in the header. |
+| `greetingMessage` | string | no | N/A | | |
+| `socialMediaLogin` | string | no | N/A | |  Including `none` and `facebook`. |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+| `isVisitorInfoRecorded` | boolean | no | N/A | true | If remember visitor info collected from pre-chat form. |
+| `formFieldLayoutStyle` | string | no | N/A | | Including `leftofInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
 ## Pre-Chat Endpoints
 
@@ -3399,9 +3390,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -3426,7 +3417,43 @@ Content-Type:  application/json
   "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "socialMediaLogin": "none",
-  "fields":  [],//这里的数据还是举一个例子比较好.
+  "fields":  [
+    {
+      "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
+      "field": {
+        "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+        "isSystem": false,
+        "name": "teset",
+        "type": "textBox",
+        "options": [{
+          "value": "test",
+          "order": 1,
+        },
+        ...
+        ],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": [{
+          "name": "test",
+          "order": 1,
+          "options":[]
+        },
+        ...
+        ],
+      },
+      "isVisible": false,
+      "isRequired": false,
+      "order": 1,
+      "ratingGrades": [{
+        "grade": 1,
+        "label": "",
+        "isVisible": false
+      },
+      ...
+      ]
+    },
+    ...
+  ],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3440,9 +3467,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -3512,11 +3539,11 @@ Content-Type:  application/json
 
   Post Chat Window Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `isEnable` | boolean | no | N/A | | Whether the pot chat is enabled or not. |
-  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
-  | `greetingMessage` | string | no | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `isEnable` | boolean | no | N/A | | Whether the pot chat is enabled or not. |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
+| `greetingMessage` | string | no | N/A | | |
 
 ## Post Chat Endpoints
 
@@ -3528,9 +3555,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -3563,9 +3590,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -3617,15 +3644,15 @@ Content-Type:  application/json
 
   Offline Message Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `type` | string | no | N/A | | Including `systemOfflineMessageWindow` and `customOfflineMessagePage`. |
-  | `customOfflineMessagePageURL` | string | no | N/A | | Available when Type is `customOfflineMessagePage`. |
-  | `ifOpenCustomOfflineMessagePageInNewWindow` | boolean | no | N/A | | Available when Type is `customOfflineMessagePage`. |
-  | `greetingMessage` | string | no | N/A | | |
-  | `emailOfflineMessageTo` | string | no | N/A | | Including `allAgents` and `customEmailAddresses`, available when routing rule is disabled. |
-  | `customEmailAddresses` | string | no | N/A | |  Available when routing rule is disabled.  |
-  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `type` | string | no | N/A | | Including `systemOfflineMessageWindow` and `customOfflineMessagePage`. |
+| `customOfflineMessagePageURL` | string | no | N/A | | Available when Type is `customOfflineMessagePage`. |
+| `ifOpenCustomOfflineMessagePageInNewWindow` | boolean | no | N/A | | Available when Type is `customOfflineMessagePage`. |
+| `greetingMessage` | string | no | N/A | | |
+| `emailOfflineMessageTo` | string | no | N/A | | Including `allAgents` and `customEmailAddresses`, available when routing rule is disabled. |
+| `customEmailAddresses` | string | no | N/A | |  Available when routing rule is disabled.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 
 ## Campaign Offline Message Endpoints
 
@@ -3637,9 +3664,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -3676,9 +3703,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -3742,70 +3769,67 @@ Content-Type:  application/json
 
   Invitation Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
-  | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
-  | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object)[] //不对吧,手动邀请只有一个| no | no | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `id` | Guid | yes | N/A | | Id of the current item. |
+| `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
+| `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
+| `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object)[] //不对吧,手动邀请只有一个| no | no | | |
 
 ### Manual Invitation Object
 
   Manual Invitation Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `manualInvitationPosition` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
-  | `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
-  | `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
-  | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
-  | `manualInvitationCloseAreaYOffset` | integer | no | no | | |
-  | `manualInvitationCloseAreaWidth` | integer | no | no | | |
-  | `manualInvitationCloseAreaHeight` | integer | no | no | | |
-  | `manualInvitationTextAreaXOffset` | integer | no | no | | |
-  | `manualInvitationTextAreaYOffset` | integer | no | no | | |
-  | `manualInvitationTextAreaWidth` | integer | no | no | | |
-  | `manualInvitationTextAreaHeight` | integer | no | no | | |
-  | `manualInvitationText` | string | no | no | | |
-  | `manualInvitationTextFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
-  | `manualInvitationTextSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
-  | `isManualInvitationTextBold` | boolean | no | no | | |
-  | `isManualInvitationTextItalic` | boolean | no | no | | |
-  | `manualInvitationTextColor` | string | no | no | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `manualInvitationPosition` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
+| `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
+| `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
+| `manualInvitationCloseAreaXOffset` | integer | no | no | | |
+| `manualInvitationCloseAreaYOffset` | integer | no | no | | |
+| `manualInvitationCloseAreaWidth` | integer | no | no | | |
+| `manualInvitationCloseAreaHeight` | integer | no | no | | |
+| `manualInvitationTextAreaXOffset` | integer | no | no | | |
+| `manualInvitationTextAreaYOffset` | integer | no | no | | |
+| `manualInvitationTextAreaWidth` | integer | no | no | | |
+| `manualInvitationTextAreaHeight` | integer | no | no | | |
+| `manualInvitationText` | string | no | no | | |
+| `manualInvitationTextFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `manualInvitationTextSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
+| `isManualInvitationTextBold` | boolean | no | no | | |
+| `isManualInvitationTextItalic` | boolean | no | no | | |
+| `manualInvitationTextColor` | string | no | no | | |
 
 ### Auto Invitation Object
 
   Auto Invitation Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `name` | string | no | yes | | |
-  | `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
-  | `isDisplayedOnceInOneSession` | boolean | no | no | | |
-  | `order` | integer | no | no | | |
-  | `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
-  | `closeAreaXOffset` | integer | no | no | | |
-  | `closeAreaYOffset` | integer | no | no | | |
-  | `closeAreaWidth` | integer | no | no | | |
-  | `closeAreaHeight` | integer | no | no | | |
-  | `textAreaXOffset` | integer | no | no | | |
-  | `textAreaYOffset` | integer | no | no | | |
-  | `textAreaWidth` | integer | no | no | | |
-  | `textAreaHeight` | integer | no | no | | |
-  | `text` | string | no | no | | |
-  | `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
-  | `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
-  | `isTextBold` | boolean | no | no | | |
-  | `isTextItalic` | boolean | no | no | | |
-  | `textColor` | string | no | no | | |
-  | `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
-  | `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
-  | `logicalExpression` | string | no | no | | |
-  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#conditions-json-format) object. |
-  | `style` | string | no | N/A | | Including `bubble`, `popup` and `chatWindow`. |
-  | `manualInvitation` | [Manual Invitation](#Manual-Invitation-Object) | no | N/A | | |
-  | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `id` | Guid | yes | N/A | | Id of the current item. |
+| `name` | string | no | yes | | |
+| `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
+| `isDisplayedOnceInOneSession` | boolean | no | no | | |
+| `order` | integer | no | no | | |
+| `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
+| `closeAreaXOffset` | integer | no | no | | |
+| `closeAreaYOffset` | integer | no | no | | |
+| `closeAreaWidth` | integer | no | no | | |
+| `closeAreaHeight` | integer | no | no | | |
+| `textAreaXOffset` | integer | no | no | | |
+| `textAreaYOffset` | integer | no | no | | |
+| `textAreaWidth` | integer | no | no | | |
+| `textAreaHeight` | integer | no | no | | |
+| `text` | string | no | no | | |
+| `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
+| `isTextBold` | boolean | no | no | | |
+| `isTextItalic` | boolean | no | no | | |
+| `textColor` | string | no | no | | |
+| `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
+| `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
+| `logicalExpression` | string | no | no | | |
+| `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#live-chat-condition-object) object. |
 
 ## Invitation Endpoints
 
@@ -3817,9 +3841,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -3882,7 +3906,15 @@ Content-Type:  application/json
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   },
   ...
   ]
@@ -3897,9 +3929,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -3952,7 +3984,15 @@ example:
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   }]
 }
 ```
@@ -4010,7 +4050,15 @@ curl -H "Content-Type: application/json" -d '{
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   }]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
 ```
@@ -4064,7 +4112,15 @@ Content-Type:  application/json
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   }]
 }
 ```
@@ -4080,25 +4136,25 @@ Content-Type:  application/json
 
   Manual Invitation Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `manualInvitationPosition` | string | no | N/A | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
-  | `manualInvitationImageType` | string | no | N/A | | Including`fromGallery` and `fromMyComputer`.  |
-  | `manualInvitationImage` | string | no | N/A | | Image file key of Invitation.  |
-  | `manualInvitationCloseAreaXOffset` | integer | no | N/A | | |
-  | `manualInvitationCloseAreaYOffset` | integer | no | N/A | | |
-  | `manualInvitationCloseAreaWidth` | integer | no | N/A | | |
-  | `manualInvitationCloseAreaHeight` | integer | no | N/A | | |
-  | `manualInvitationTextAreaXOffset` | integer | no | N/A | | |
-  | `manualInvitationTextAreaYOffset` | integer | no | N/A | | |
-  | `manualInvitationTextAreaWidth` | integer | no | N/A | | |
-  | `manualInvitationTextAreaHeight` | integer | no | N/A | | |
-  | `manualInvitationText` | string | no | N/A | | |
-  | `manualInvitationTextFont` | string | no | N/A | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
-  | `manualInvitationTextSize` | string | no | N/A | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
-  | `isManualInvitationTextBold` | boolean | no | N/A | | |
-  | `isManualInvitationTextItalic` | boolean | no | N/A | | |
-  | `manualInvitationTextColor` | string | no | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `manualInvitationPosition` | string | no | N/A | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
+| `manualInvitationImageType` | string | no | N/A | | Including`fromGallery` and `fromMyComputer`.  |
+| `manualInvitationImage` | string | no | N/A | | Image file key of Invitation.  |
+| `manualInvitationCloseAreaXOffset` | integer | no | N/A | | |
+| `manualInvitationCloseAreaYOffset` | integer | no | N/A | | |
+| `manualInvitationCloseAreaWidth` | integer | no | N/A | | |
+| `manualInvitationCloseAreaHeight` | integer | no | N/A | | |
+| `manualInvitationTextAreaXOffset` | integer | no | N/A | | |
+| `manualInvitationTextAreaYOffset` | integer | no | N/A | | |
+| `manualInvitationTextAreaWidth` | integer | no | N/A | | |
+| `manualInvitationTextAreaHeight` | integer | no | N/A | | |
+| `manualInvitationText` | string | no | N/A | | |
+| `manualInvitationTextFont` | string | no | N/A | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `manualInvitationTextSize` | string | no | N/A | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
+| `isManualInvitationTextBold` | boolean | no | N/A | | |
+| `isManualInvitationTextItalic` | boolean | no | N/A | | |
+| `manualInvitationTextColor` | string | no | N/A | | |
 
 ## Manual Invitation Endpoints
 
@@ -4110,9 +4166,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -4159,9 +4215,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -4258,32 +4314,32 @@ Content-Type:  application/json
 
   Auto Invitation Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `name` | string | no | yes | | |
-  | `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
-  | `isDisplayedOnceInOneSession` | boolean | no | no | | |
-  | `order` | integer | no | no | | |
-  | `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
-  | `closeAreaXOffset` | integer | no | no | | |
-  | `closeAreaYOffset` | integer | no | no | | |
-  | `closeAreaWidth` | integer | no | no | | |
-  | `closeAreaHeight` | integer | no | no | | |
-  | `textAreaXOffset` | integer | no | no | | |
-  | `textAreaYOffset` | integer | no | no | | |
-  | `textAreaWidth` | integer | no | no | | |
-  | `textAreaHeight` | integer | no | no | | |
-  | `text` | string | no | no | | |
-  | `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
-  | `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
-  | `isTextBold` | boolean | no | no | | |
-  | `isTextItalic` | boolean | no | no | | |
-  | `textColor` | string | no | no | | |
-  | `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
-  | `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
-  | `logicalExpression` | string | no | no | | |
-  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `id` | Guid | yes | N/A | | Id of the current item. |
+| `name` | string | no | yes | | |
+| `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
+| `isDisplayedOnceInOneSession` | boolean | no | no | | |
+| `order` | integer | no | no | | |
+| `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
+| `closeAreaXOffset` | integer | no | no | | |
+| `closeAreaYOffset` | integer | no | no | | |
+| `closeAreaWidth` | integer | no | no | | |
+| `closeAreaHeight` | integer | no | no | | |
+| `textAreaXOffset` | integer | no | no | | |
+| `textAreaYOffset` | integer | no | no | | |
+| `textAreaWidth` | integer | no | no | | |
+| `textAreaHeight` | integer | no | no | | |
+| `text` | string | no | no | | |
+| `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
+| `isTextBold` | boolean | no | no | | |
+| `isTextItalic` | boolean | no | no | | |
+| `textColor` | string | no | no | | |
+| `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
+| `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
+| `logicalExpression` | string | no | no | | |
+| `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | |
 
 ## Auto Invitation Endpoints
 
@@ -4295,9 +4351,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -4340,7 +4396,15 @@ Content-Type:  application/json
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   },
   ...
   ]
@@ -4354,10 +4418,10 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
-  | `id` | Guid | yes  |  the unique Id of the auto invitation |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  the unique Id of the auto invitation |
 
 #### Response
 
@@ -4400,7 +4464,15 @@ Content-Type:  application/json
     "position": "centerWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   },
   ...
   ]
@@ -4414,9 +4486,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -4447,7 +4519,15 @@ example:
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -4482,7 +4562,15 @@ curl -H "Content-Type: application/json" -d '{
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
   }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations
 ```
 
@@ -4516,7 +4604,15 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -4528,10 +4624,10 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
-  | `id` | Guid | yes  |  the unique Id of the auto invitation |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  the unique Id of the auto invitation |
 
 Request Body
 
@@ -4562,7 +4658,15 @@ example:
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -4597,7 +4701,15 @@ curl -H "Content-Type: application/json" -d '{
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 ```
 
@@ -4629,7 +4741,15 @@ Content-Type:  application/json
   "position": "centerWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": ""
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -4641,10 +4761,10 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
-  | `id` | Guid | yes  |  the unique Id of the auto invitation |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  the unique Id of the auto invitation |
 
 #### Response
 
@@ -4673,9 +4793,9 @@ Response
 
   Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`.  |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`.  |
 
 ## Agent Wrap-Up Endpoints
 
@@ -4687,9 +4807,9 @@ Response
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -4720,9 +4840,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -4731,7 +4851,43 @@ Request Body
 example:
 ```Json
 {
-  "fields":  [] //这个不行的,例子里面啥都没有.
+  "fields":  [
+    {
+      "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
+      "field": {
+        "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
+        "isSystem": false,
+        "name": "teset",
+        "type": "textBox",
+        "options": [{
+          "value": "test",
+          "order": 1,
+        },
+        ...
+        ],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": [{
+          "name": "test",
+          "order": 1,
+          "options":[]
+        },
+        ...
+        ],
+      },
+      "isVisible": false,
+      "isRequired": false,
+      "order": 1,
+      "ratingGrades": [{
+        "grade": 1,
+        "label": "",
+        "isVisible": false
+      },
+      ...
+      ]
+    },
+    ...
+  ]
 }
 ```
 
@@ -4758,7 +4914,7 @@ Content-Type:  application/json
 }
 ```
 
-# Language //language 的看过界面, 逻辑是对的吗?
+# Language
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/language` - [Get settings of language for a campaign](#get-Language)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/language` - [Update settings of language for a campaign](#update-Language)
@@ -4769,21 +4925,21 @@ Content-Type:  application/json
 
   Language Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `defaultLanguage` | string | no | N/A | | The languages are defined in cPanel.  |
-  | `isCustomLanguageEnabled` | boolean | no | N/A | | |
-  | `isTextDirectionRightToLeft` | boolean | no | N/A | | |
-  | `customLanguageItems` | [Custom Language](#Custom-Language-Object)[] | no | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `defaultLanguage` | string | no | N/A | | The languages are defined in cPanel.  |
+| `isCustomLanguageEnabled` | boolean | no | N/A | | |
+| `isTextDirectionRightToLeft` | boolean | no | N/A | | |
+| `customLanguageItems` | [Custom Language](#Custom-Language-Object)[] | no | N/A | | |
 
 ### Custom Language Object
 
   Custom Language Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `systemName` | string | no | N/A | | |
-  | `customText` | string | no | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `systemName` | string | no | N/A | | |
+| `customText` | string | no | N/A | | |
 
 ## Language Endpoints
 
@@ -4795,9 +4951,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -4834,9 +4990,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -4900,25 +5056,25 @@ Content-Type:  application/json
 
   Routing Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
-  | `type` | string |  | no | no | | Including `simple` and `customRule`. |
-  | `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
-  | `routeToId` | Guid | | no | no | | AgentId or DepartmentId. |
-  | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-  | `routeToDepartment` | [Department](#Department-Object) //department 对应的链接在哪呢?| yes | no | no | |  |
-  | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
-  | `percentageToBot` | integer |  | no | no | | |
-  | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
-  | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
-  | `routeToWhenNoRuleMatched` | string | | no | no | | Including `agent` and `department`. |
-  | `routeToIdWhenNoRuleMatched` | Guid | | no | no | | AgentId or DepartmentId. |
-  | `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
-  | `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
-  | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
-  | `percentageToBotWhenNoRuleMatched` | integer |  | no | no | | |
-  | `emailsToReceiveOfflineMessage` | string |  | no | no | |  |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
+| `type` | string |  | no | no | | Including `simple` and `customRule`. |
+| `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
+| `routeToDepartment` | [Department](#Department-Object) //department 对应的链接在哪呢?| yes | no | no | |  |
+| `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
+| `percentageToBot` | integer |  | no | no | | |
+| `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
+| `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
+| `routeToWhenNoRuleMatched` | string | | no | no | | Including `agent` and `department`. |
+| `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
+| `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
+| `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
+| `percentageToBotWhenNoRuleMatched` | integer |  | no | no | | |
+| `emailsToReceiveOfflineMessage` | string |  | no | no | |  |
 
 ## Routing Endpoints
 
@@ -4930,15 +5086,15 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Query string
 
-  | Name  | Type | Required  | Default | Description |
-  | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `agent`, `department` |
+| Name  | Type | Required  | Default | Description |
+| - | - | - | - | - |
+| `include` | string | no  |  | Available value: `agent`, `department` |
 
 #### Response
 
@@ -4960,7 +5116,7 @@ Content-Type:  application/json
   "isEnable": false,
   "type": "simple",
   "routeTo": "agent",
-  "routeToId": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
+  "routeToId": "5",
   "routeToDepartment": { // include department
     "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
       "name": "markting",
@@ -5003,9 +5159,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -5090,32 +5246,32 @@ Content-Type:  application/json
 
   Custom Rule Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | | N/A | | Id of the current item. |
-  | `isEnable` | boolean | | no | no | | Whether the custom rule is enabled or not. |
-  | `name` | string | | no | no | | |
-  | `order` | integer | | no | no | | |
-  | `routeTo` | string | | no | no | | Including `agent` and `department`. |
-  | `routeToId` | Guid | | no | no | | AgentId or DepartmentId. |
-  | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-  | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
-  | `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
-  | `percentageToBot` | integer | | no | no | | |
-  | `conditionMetType` | string | | no | no | | Including `all`, `any` and `logicalExpression`. |
-  | `logicalExpression` | string | | no | no | | |
-  | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | no | no | |an array of [Live Chat Condition](#conditions-json-format) object.  |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `id` | Guid | yes | | N/A | | Id of the current item. |
+| `isEnable` | boolean | | no | no | | Whether the custom rule is enabled or not. |
+| `name` | string | | no | no | | |
+| `order` | integer | | no | no | | |
+| `routeTo` | string | | no | no | | Including `agent` and `department`. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
+| `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
+| `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
+| `percentageToBot` | integer | | no | no | | |
+| `conditionMetType` | string | | no | no | | Including `all`, `any` and `logicalExpression`. |
+| `logicalExpression` | string | | no | no | | |
+| `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | no | no | |an array of [Live Chat Condition](#Live-Chat-Condition-Object) object.  |
 
 ### Live Chat Condition Object
 
   Live Chat Condition Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `field` | string | no | no | | |
-  | `operator` | integer | no | no | | Include `is`, `isNot`, `contains`, `doesnotcontain`, `isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan` and `regularExpression`. |
-  | `value` | string | no | no | | |
-  | `order` | integer | no | no | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `field` | string | no | no | | |
+| `operator` | integer | no | no | | Include `is`, `isNot`, `contains`, `doesnotcontain`, `isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan` and `regularExpression`. |
+| `value` | string | no | no | | |
+| `order` | integer | no | no | | |
 
 ## Routing Endpoints
 
@@ -5127,15 +5283,15 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Query string
 
-  | Name  | Type | Required  | Default | Description |
-  | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `agent`, `department` |
+| Name  | Type | Required  | Default | Description |
+| - | - | - | - | - |
+| `include` | string | no  |  | Available value: `agent`, `department` |
 
 #### Response
 
@@ -5176,7 +5332,15 @@ Content-Type:  application/json
     "percentageToBot": 10,
     "conditionMetType": "any",
     "logicalExpression": "",
-    "conditions": [] //既然是例子，还是数据还是要写全一点
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
   },
   ...
 ]
@@ -5190,16 +5354,16 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the custom rule |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the custom rule |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Query string
 
-  | Name  | Type | Required  | Default | Description |
-  | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `agent`, `department` |
+| Name  | Type | Required  | Default | Description |
+| - | - | - | - | - |
+| `include` | string | no  |  | Available value: `agent`, `department` |
 
 #### Response
 
@@ -5239,7 +5403,15 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -5251,9 +5423,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the custom rule |
 
 Request Body
 
@@ -5282,7 +5454,15 @@ example:
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
 }
 ```
 
@@ -5315,7 +5495,15 @@ curl -H "Content-Type: application/json" -d '{
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
   }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules
 ```
 
@@ -5347,7 +5535,15 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
 }
 ```
 
@@ -5359,10 +5555,10 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the custom rule |
-  | `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the custom rule |
+| `campaignId` | Guid | yes  |  the unique Id of the custom rule |
 
 Request Body
 
@@ -5391,7 +5587,15 @@ example:
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -5424,7 +5628,15 @@ curl -H "Content-Type: application/json" -d '{
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
 ```
 
@@ -5454,7 +5666,15 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "conditionMetType": "any",
   "logicalExpression": "",
-  "conditions": []
+  "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+  ...
+  ]
 }
 ```
 
@@ -5466,10 +5686,10 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the custom rule |
-  | `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the custom rule |
+| `campaignId` | Guid | yes  |  the unique Id of the custom rule |
 
 #### Response
 
@@ -5498,17 +5718,17 @@ Response
 
   Chatbot Integration Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `isEnable` | boolean | | no | N/A | | Whether the chatbot integration is enabled or not. |
-  | `selectedChatbotId` | Guid | | no | N/A | | |
-  | `selectedChatbot` | [Bot](#Bot-Object) | yes | N/A | N/A | | |
-  | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | N/A | | |
-  | `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | N/A | | |
-  | `ifDistributeChatsToChatbotByPercentage` | boolean | | no | N/A | | |
-  | `queueLength` | integer | | no | N/A | | Allocate chats to Chatbot when the queue reaches the preset length. |
-  | `percentageToChatbot` | smallint | | no | N/A | | |
-  | `isChatbotAllocatedWhenAgentOffline` | boolean | | no | N/A | | |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `isEnable` | boolean | | no | N/A | | Whether the chatbot integration is enabled or not. |
+| `selectedChatbotId` | Guid | | no | N/A | | |
+| `selectedChatbot` | [Bot](#Bot-Object) | yes | N/A | N/A | | |
+| `isChatbotAllocatedWhenAgentOnline` | boolean | | no | N/A | | |
+| `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | N/A | | |
+| `ifDistributeChatsToChatbotByPercentage` | boolean | | no | N/A | | |
+| `queueLength` | integer | | no | N/A | | Allocate chats to Chatbot when the queue reaches the preset length. |
+| `percentageToChatbot` | smallint | | no | N/A | | |
+| `isChatbotAllocatedWhenAgentOffline` | boolean | | no | N/A | | |
 
 ## Chatbot Integration Endpoints
 
@@ -5520,15 +5740,15 @@ Response
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Query string
 
-  | Name  | Type | Required  | Default | Description |
-  | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `chatbot` |
+| Name  | Type | Required  | Default | Description |
+| - | - | - | - | - |
+| `include` | string | no  |  | Available value: `chatbot` |
 
 #### Response
 
@@ -5593,9 +5813,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -5662,15 +5882,15 @@ Content-Type:  application/json
 
   KB Integration Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `isEnable` | boolean | no | N/A | | Whether the KB integration is enabled or not. |
-  | `selectedKBId` | Guid | no | N/A | | |
-  | `isSearchAllowedBeforeChatting` | boolean | no | N/A | | |
-  | `greetingMessageBeforeChatting` | string | no | N/A | | |
-  | `isSearchAllowedBeforeOfflineMessage` | boolean | no | N/A | | |
-  | `greetingMessageBeforeOfflineMessage` | string | no | N/A | | |
-  | `articlesShowedInSearchResult` | integer | no | N/A | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `isEnable` | boolean | no | N/A | | Whether the KB integration is enabled or not. |
+| `selectedKBId` | Guid | no | N/A | | |
+| `isSearchAllowedBeforeChatting` | boolean | no | N/A | | |
+| `greetingMessageBeforeChatting` | string | no | N/A | | |
+| `isSearchAllowedBeforeOfflineMessage` | boolean | no | N/A | | |
+| `greetingMessageBeforeOfflineMessage` | string | no | N/A | | |
+| `articlesShowedInSearchResult` | integer | no | N/A | | |
 
 ## KB Integration Endpoints
 
@@ -5682,9 +5902,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -5721,9 +5941,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -5796,98 +6016,98 @@ Content-Type:  application/json
 
   Campaign Form Field is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `field` | [type](#Live-Chat-Field-Object) | no | no | | |
-  | `isVisible` | boolean | no | no | | Whether the field is visible or not. |
-  | `isRequired` | boolean | no | no | | Whether the field is required or not when submitting the form |
-  | `order` | integer | no | no | | The order of the field. |
-  | `ratingGrades` | [type](#Rating-Grade-Object)[] | no | no | | Always 5 grades. Available whey Type of Live Chat Field is Rating. |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `id` | Guid | yes | N/A | | Id of the current item. |
+| `field` | [type](#Live-Chat-Field-Object) | no | no | | |
+| `isVisible` | boolean | no | no | | Whether the field is visible or not. |
+| `isRequired` | boolean | no | no | | Whether the field is required or not when submitting the form |
+| `order` | integer | no | no | | The order of the field. |
+| `ratingGrades` | [type](#Rating-Grade-Object)[] | no | no | | Always 5 grades. Available whey Type of Live Chat Field is Rating. |
 
 ### Rating Grade Object
 
   Rating Grade is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `grade` | integer | no | no | | |
-  | `label` | string | no | no | | |
-  | `isVisible` | boolean | no | no | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `grade` | integer | no | no | | |
+| `label` | string | no | no | | |
+| `isVisible` | boolean | no | no | | |
 
 ### Live Chat Field Object
 
   Live Chat Field is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | N/A | | Id of the current item. |
-  | `isSystem` | boolean | no | no | | whether the field is system or not. |
-  | `name` | string | no | no | | |
-  | `type` | string | no | no | | The [Live Chat Field Type](#Live-Chat-Field-Type) of the field. |
-  | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | no | no | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
-  | `leftText` | string | no | no | | Available whey Type is NPS. |
-  | `rightText` | string | no | no | | Available whey Type is NPS. |
-  | `optionGroups` | [Live Chat Field Option Group](#Live-Chat-Field-Option-Group-Object)[] | no | no | | Live Chat Field Option Group, available whey Type is `checkboxListwithOptionGroups`. |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `id` | Guid | yes | N/A | | Id of the current item. |
+| `isSystem` | boolean | no | no | | whether the field is system or not. |
+| `name` | string | no | no | | |
+| `type` | string | no | no | | The [Live Chat Field Type](#Live-Chat-Field-Type) of the field. |
+| `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | no | no | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
+| `leftText` | string | no | no | | Available whey Type is NPS. |
+| `rightText` | string | no | no | | Available whey Type is NPS. |
+| `optionGroups` | [Live Chat Field Option Group](#Live-Chat-Field-Option-Group-Object)[] | no | no | | Live Chat Field Option Group, available whey Type is `checkboxListwithOptionGroups`. |
 
 ### Live Chat System Field
 
   Live Chat System Field is one key of the following keys:
 
-  | System Field | Type | Only Available Forms | Is Required |
-  | - | - | :-: | - |
-  | `name` | `textBox` | Name field, `Pre Chat Form` or `Offline Message Form` only. | no |
-  | `email` | `textBox` | Email field, `Pre Chat Form` or `Offline Message Form` only. | no |
-  | `phone` | `textBox` | Phone field, `Pre Chat Form` or `Offline Message Form` only. | no |
-  | `company` | `textBox` | Company field, `Pre Chat Form` or `Offline Message Form` only. | no |
-  | `product service` | `dropdownList` | Product and Service field, `Pre Chat Form` only. | no |
-  | `department` | `dropdownList` | Department field, `Pre Chat Form` or `Offline Message Form` only. | no |
-  | `ticket id` | `textBox` | Ticket field, `Pre Chat Form` or `Offline Message Form` only.  | no |
-  | `rating` | `rating` | Rating field, `Post Chat Form` only. | no |
-  | `rating comment` | `textArea` | Comments field, `Post Chat Form` only. | no |
-  | `subject` | `textBox` | Subject field, `Offline Message Form` only. | yes |
-  | `message` | `textArea` | Content field, `Offline Message Form` only. | no |
-  | `attachment` | `file` | Attachment field, `Offline Message Form` only. | no |
-  | `category` | `dropdownList` or `checkboxListwithOptionGroups`  | category field , `agent wrap-up` only | no |
-  | `wrap-up comment` | `textArea` | comment field , `agent wrap-up` only | no |
+| System Field | Type | Only Available Forms | Is Required |
+| - | - | :-: | - |
+| `name` | `textBox` | Name field, `Pre Chat Form` or `Offline Message Form` only. | no |
+| `email` | `textBox` | Email field, `Pre Chat Form` or `Offline Message Form` only. | no |
+| `phone` | `textBox` | Phone field, `Pre Chat Form` or `Offline Message Form` only. | no |
+| `company` | `textBox` | Company field, `Pre Chat Form` or `Offline Message Form` only. | no |
+| `product service` | `dropdownList` | Product and Service field, `Pre Chat Form` only. | no |
+| `department` | `dropdownList` | Department field, `Pre Chat Form` or `Offline Message Form` only. | no |
+| `ticket id` | `textBox` | Ticket field, `Pre Chat Form` or `Offline Message Form` only.  | no |
+| `rating` | `rating` | Rating field, `Post Chat Form` only. | no |
+| `rating comment` | `textArea` | Comments field, `Post Chat Form` only. | no |
+| `subject` | `textBox` | Subject field, `Offline Message Form` only. | yes |
+| `message` | `textArea` | Content field, `Offline Message Form` only. | no |
+| `attachment` | `file` | Attachment field, `Offline Message Form` only. | no |
+| `category` | `dropdownList` or `checkboxListwithOptionGroups`  | category field , `agent wrap-up` only | no |
+| `wrap-up comment` | `textArea` | comment field , `agent wrap-up` only | no |
 
 ### Live Chat Field Type
 
   Live Chat Field Type is one key of the following keys:
 
-  | Name | Available Forms |
-  | - | :-: | - |
-  | `textBox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
-  | `textArea` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
-  | `radioBox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
-  | `checkbox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
-  | `dropdownList` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up` |
-  | `checkboxList` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up` |
-  | `NPS` | `Post Chat`  |
-  | `file` | `Offline Message`   |
-  | `rating` | `Post Chat` |
-  | `checkboxListwithOptionGroups` | `Agent Wrap-Up`   |
+| Name | Available Forms |
+| - | :-: |
+| `textBox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
+| `textArea` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
+| `radioBox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
+| `checkbox` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up`   |
+| `dropdownList` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up` |
+| `checkboxList` | `Pre-Chat`, `Post Chat`, `Offline Message`, `Agent Wrap-Up` |
+| `NPS` | `Post Chat`  |
+| `file` | `Offline Message`   |
+| `rating` | `Post Chat` |
+| `checkboxListwithOptionGroups` | `Agent Wrap-Up`   |
 
 ### Live Chat Field Option Object
 
   Live Chat Field Option Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `value` | string | no | no | | |
-  | `order` | integer | no | no | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `value` | string | no | no | | |
+| `order` | integer | no | no | | |
 
 ### Live Chat Field Option Group Object
 
   Live Chat Field Option Group Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `name` | string | no | no | | |
-  | `order` | integer | no | no | | |
-  | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[]  | no | no | | |
+| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `name` | string | no | no | | |
+| `order` | integer | no | no | | |
+| `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[]  | no | no | | |
 
-## KB Integration Endpoints
+## Endpoints
 
 ### Get all form fields of Pre-Chat for a campaign
 
@@ -5897,9 +6117,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -5964,9 +6184,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -6102,9 +6322,9 @@ Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5062B231
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6169,9 +6389,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -6307,9 +6527,9 @@ Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/8FD2DBE6
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6374,9 +6594,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -6512,9 +6732,9 @@ Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/6BE9D31D
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6579,9 +6799,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -6717,9 +6937,9 @@ Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5994A98C
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the campaign form fields |
 
 #### Response
 
@@ -6781,9 +7001,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the campaign form fields |
 
 Request Body
 
@@ -6917,9 +7137,9 @@ Content-Type:  application/json
 
 Path Parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique Id of the campaign form fields |
 
 #### Response
 
@@ -6953,18 +7173,18 @@ Response
 
   Ban is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - | 
-  | `id` | string | | yes | N/A | | id of the ban. |
-  | `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
-  | `visitorId` | Guid | | no | no | | visitor's id of the ban if `type` is `visitor`  |
-  | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | |  Available only when visitor is included  |
-  | `ip` | string  |  | no | yes | | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` |
-  | `ipRangeFrom` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
-  | `ipRangeTo` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
-  | `comment` | string | | no | no | | comment of the ban. |
-  | `lastUpdatedBy` | Guid | | N/A | N/A | | comment of the ban. |
-  | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `id` | string | | yes | N/A | | id of the ban. |
+| `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
+| `visitorId` | Guid | | no | no | | visitor's id of the ban if `type` is `visitor`  |
+| `visitor` | [Visitor](#visitor) | yes | N/A | N/A | |  Available only when visitor is included  |
+| `ip` | string  |  | no | yes | | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` |
+| `ipRangeFrom` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
+| `ipRangeTo` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
+| `comment` | string | | no | no | | comment of the ban. |
+| `lastUpdatedBy` | Guid | | N/A | N/A | | comment of the ban. |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
 
 ## Endpoint
 
@@ -6976,9 +7196,9 @@ Response
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - | 
-  | `include` | string | no  | |  Available value: `visitor`, `agent` |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value: `visitor`, `agent` |
 
 #### Response
 An array of [Ban](#ban-json-format)
@@ -7028,15 +7248,15 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the id of the ban  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the ban  |
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - |
-  | `include` | string | no  | |  Available value: `visitor`, `agent` |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value: `visitor`, `agent` |
 
 #### Response
 
@@ -7128,12 +7348,12 @@ Location: https://domain.comm100.com/api/v3/livechat/bans/b222qa68-92e6-4487-a2e
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the ban  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the ban  |
 
 Request body 
-  
+
   The request body contains data with the [Ban](#ban-json-format) structure
 
   example:
@@ -7181,9 +7401,9 @@ Response
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the ban  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the ban  |
 
 
 #### Response
@@ -7215,33 +7435,33 @@ HTTP/1.1 204 No Content
 
   Conversion Action is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | - | :-: | :-: | :-: | - | 
-  | `id` | string | | yes | no | | id of the conversion action. |
-  | `name` | string | | no | yes |  | name of the conversion action. |
-  | `isEnable` | boolean | | no | no | | whether the conversion action is enabled or not. |
-  | `type` | string | | no | no | | type of the conversion action, including `url`, `customVariable` and `api`. |
-  | `customVariableUsedToDetermineConversion` | string  | | no | no |  | the name of the custom variable, available when `type` is `customVariable`. |
-  | `operator` | string | | no | no | | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
-  | `value` | string | | no | no |  | match value of the conversion action, available when `type` is `customVariable` or `url`. |
-  | `isCaseSensitive` | boolean | | no | no | | whether the conversion action is case sensitive or not, available when `type` is `url`. |
-  | `isValueAssignedToConversion` | boolean | | no | no |  | whether a value is assigned for the conversion action or not. |
-  | `valueSource` | string | | no | no |  | including `inputAValue`, `getFromCustomVariable` |
-  | `assignedValueFromInputting` | string | | no | no |  | the value assigned for the conversion action |
-  | `assignedValueFromCustomVariable` | string | | no | no |  | the value comes from the custom variable |
-  | `chatAssociatedWithConversion` | string | | no | no |  | including `theFirstChat`, `theLastChat` |
-  | `isChatInLastCertainDaysConsidered` | boolean | | no | no |  |  |
-  | `chatInLastDays` | integer | | no | no |   | between 1 and 30 |
-  | `isChatWithAtLeastCertainVisitorMessagesConsidered` | boolean | | no | no | |  |
-  | `visitorMessagesAtLeast` | integer | | no | no | |   |
-  | `isVariableIncludedInTranscript` | boolean | | no | no |  |  |
-  | `appendFieldList` | string | | no | no |  |  |
-  | `createdTime` | datetime | | N/A | N/A |  |  |
-  | `createdBy` | Guid | | N/A | N/A |  |  |
-  | `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
-  | `lastUpdatedTime` | datetime | | N/A | N/A |  | |
-  | `lastUpdatedBy` | Guid | | N/A | N/A |  | |
-  | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `id` | string | | yes | no | | id of the conversion action. |
+| `name` | string | | no | yes |  | name of the conversion action. |
+| `isEnable` | boolean | | no | no | | whether the conversion action is enabled or not. |
+| `type` | string | | no | no | | type of the conversion action, including `url`, `customVariable` and `api`. |
+| `customVariableUsedToDetermineConversion` | string  | | no | no |  | the name of the custom variable, available when `type` is `customVariable`. |
+| `operator` | string | | no | no | | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
+| `value` | string | | no | no |  | match value of the conversion action, available when `type` is `customVariable` or `url`. |
+| `isCaseSensitive` | boolean | | no | no | | whether the conversion action is case sensitive or not, available when `type` is `url`. |
+| `isValueAssignedToConversion` | boolean | | no | no |  | whether a value is assigned for the conversion action or not. |
+| `valueSource` | string | | no | no |  | including `inputAValue`, `getFromCustomVariable` |
+| `assignedValueFromInputting` | string | | no | no |  | the value assigned for the conversion action |
+| `assignedValueFromCustomVariable` | string | | no | no |  | the value comes from the custom variable |
+| `chatAssociatedWithConversion` | string | | no | no |  | including `theFirstChat`, `theLastChat` |
+| `isChatInLastCertainDaysConsidered` | boolean | | no | no |  |  |
+| `chatInLastDays` | integer | | no | no |   | between 1 and 30 |
+| `isChatWithAtLeastCertainVisitorMessagesConsidered` | boolean | | no | no | |  |
+| `visitorMessagesAtLeast` | integer | | no | no | |   |
+| `isVariableIncludedInTranscript` | boolean | | no | no |  |  |
+| `appendFieldList` | string | | no | no |  |  |
+| `createdTime` | datetime | | N/A | N/A |  |  |
+| `createdBy` | integer | | N/A | N/A |  |  |
+| `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+| `lastUpdatedTime` | datetime | | N/A | N/A |  | |
+| `lastUpdatedBy` | integer | | N/A | N/A |  | |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
 
 ## Endpoint
 
@@ -7253,9 +7473,9 @@ HTTP/1.1 204 No Content
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - | 
-  | `include` | string | no  | |  Available value: `agent` |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value: `agent` |
 
 #### Response
 An array of [Conversion Action](#conversion-action-json-format)
@@ -7294,10 +7514,10 @@ Content-Type:  application/json
         "isVariableIncludedInTranscript": false,
         "appendFieldList": "",
         "createdTime": "2020-02-20T13:12:20Z",
-        "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "createdBy": 1,
         "createdAgent": {
             //include agent
-            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+            "id": 1,
             "email": "test@comm100.com",
             "displayName": "test comm100",
             "firstName": "test",
@@ -7305,10 +7525,10 @@ Content-Type:  application/json
             ...
         },
         "lastUpdatedTime": "2020-02-20T13:12:20Z",
-        "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "lastUpdatedBy": 1,
         "lastUpdatedAgent": {
             //include agent
-            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+            "id": 1,
             "email": "test@comm100.com",
             "displayName": "test comm100",
             "firstName": "test",
@@ -7326,15 +7546,15 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the conversion action  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the conversion action  |
 
 Query string
 
-  | Name  | Type | Required | Default | Description |
-  | - | - | :-: | :-: | - | 
-  | `include` | string | no  | |  Available value:  `agent` |
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `include` | string | no  | |  Available value:  `agent` |
 
 #### Response
 
@@ -7373,10 +7593,10 @@ Content-Type:  application/json
     "isVariableIncludedInTranscript": false,
     "appendFieldList": "",
     "createdTime": "2020-02-20T13:12:20Z",
-    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "createdBy": 1,
     "createdAgent": {
         //include agent
-        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "id": 1,
         "email": "test@comm100.com",
         "displayName": "test comm100",
         "firstName": "test",
@@ -7384,10 +7604,10 @@ Content-Type:  application/json
         ...
     },
     "lastUpdatedTime": "2020-02-20T13:12:20Z",
-    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "lastUpdatedBy": 1,
     "lastUpdatedAgent": {
         //include agent
-        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "id": 1,
         "email": "test@comm100.com",
         "displayName": "test comm100",
         "firstName": "test",
@@ -7485,9 +7705,9 @@ Location: https://domain.comm100.com/api/v3/livechat/conversionActions/b222qa68-
     "isVariableIncludedInTranscript": false,
     "appendFieldList": "",
     "createdTime": "2020-02-20T13:12:20Z",
-    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "createdBy": 1,
     "lastUpdatedTime": "2020-02-20T13:12:20Z",
-    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2"
+    "lastUpdatedBy": 1
 }
 ```
 
@@ -7498,12 +7718,12 @@ Location: https://domain.comm100.com/api/v3/livechat/conversionActions/b222qa68-
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the conversion action  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the conversion action  |
 
 Request body 
-  
+
   The request body contains data with the [Conversion Action](#conversion-action-json-format) structure
 
   example:
@@ -7586,9 +7806,9 @@ Response
     "isVariableIncludedInTranscript": false,
     "appendFieldList": "",
     "createdTime": "2020-02-20T13:12:20Z",
-    "createdBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "createdBy": 1,
     "lastUpdatedTime": "2020-02-20T14:12:20Z",
-    "lastUpdatedBy": "9F4709DB-C391-4896-94BA-3A17BE12D9E2"
+    "lastUpdatedBy": 1
 }
 ```
 
@@ -7601,11 +7821,11 @@ Request body
 
 The request body contains data with the follow structure:
 
-  | Name | Type | Required | Default | Description |    
-  | - | - | :-: | :-: | - | 
-  | `conversion_name` | string | yes | |  name of the conversion action. |
-  | `visitorId` | string | yes |  | |
-  | `value` | string  | no |  |  the name of the custom variable, available when conversion action `type` is `customVariable`. |
+| Name | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `conversion_name` | string | yes | |  name of the conversion action. |
+| `visitorId` | string | yes |  | |
+| `value` | string  | no |  |  the name of the custom variable, available when conversion action `type` is `customVariable`. |
 
 example:
 ```Json 
@@ -7618,10 +7838,10 @@ example:
 #### Response
 The response body contains data with the follow structure:
 
-  | Name | Type | Required | Default | Description |    
-  | - | - | :-: | :-: | - | 
-  | `code` | string | N/A | N/A |  0: ok; 1: the conversion name does not exist; 2: the visitorId does not exist; 3: error adding conversion-related Data to system. |
-  | `message` | string | N/A | N/A | error message. |
+| Name | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `code` | string | N/A | N/A |  0: ok; 1: the conversion name does not exist; 2: the visitorId does not exist; 3: error adding conversion-related Data to system. |
+| `message` | string | N/A | N/A | error message. |
 
 #### Example
 
@@ -7655,12 +7875,12 @@ Content-Type:  application/json
 
 Secure Form is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - |
-  | `id` | string  | | yes | N/A | | id of the secure form. |
-  | `name` | string  | | no | yes | | name of the secure form. |
-  | `description` | string |  | no | no | |description of the secure form. |
-  | `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | an array of [Field](#field-json-format) |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `id` | string  | | yes | N/A | | id of the secure form. |
+| `name` | string  | | no | yes | | name of the secure form. |
+| `description` | string |  | no | no | |description of the secure form. |
+| `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | an array of [Field](#field-json-format) |
 
 ## Endpoint
 ### Get list of secure forms
@@ -7716,9 +7936,9 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the id of the secure form  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the secure form  |
 
 #### Response
 
@@ -7844,9 +8064,9 @@ Location: https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the secure form  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the secure form  |
 
 Request body
 
@@ -7989,9 +8209,9 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the secure form  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the secure form  |
 
 
 #### Response
@@ -8020,17 +8240,17 @@ HTTP/1.1 204 No Content
 
   Secure Form Field is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - |
-  | `id` | string | | yes | no | | id of the field |
-  | `name` | string | | no | yes | | name of the field |
-  | `displayName` | string | | no | yes | | name of the field |
-  | `type` | string | | no | yes | | including `text`, `textArea`, `radioBox`, `checkbox`, `dropdownList`, `checkboxList`, `datePicker` |
-  | `isSystem` | boolean | | yes | no | false | whether the field is system field or not. |
-  | `isVisible` | boolean | | no | no | false | whether the field is visible or not. |
-  | `isRequired` | boolean | | no | no | false | whether the field is required or not when submitting the form |
-  | `order` | integer | | no | no |1  | the order of the field. |
-  | `options` | string |  | no | no | | the options of the field. |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `id` | string | | yes | no | | id of the field |
+| `name` | string | | no | yes | | name of the field |
+| `displayName` | string | | no | yes | | name of the field |
+| `type` | string | | no | yes | | including `text`, `textArea`, `radioBox`, `checkbox`, `dropdownList`, `checkboxList`, `datePicker` |
+| `isSystem` | boolean | | yes | no | false | whether the field is system field or not. |
+| `isVisible` | boolean | | no | no | false | whether the field is visible or not. |
+| `isRequired` | boolean | | no | no | false | whether the field is required or not when submitting the form |
+| `order` | integer | | no | no |1  | the order of the field. |
+| `options` | string |  | no | no | | the options of the field. |
 
 ## Endpoint
 ### Get list of secure form fields
@@ -8040,9 +8260,9 @@ HTTP/1.1 204 No Content
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `secureFormId` | Guid | yes  |  the id of the secure form  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `secureFormId` | Guid | yes  |  the id of the secure form  |
 
 
 #### Response
@@ -8100,9 +8320,9 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the secure form field |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the secure form field |
 
 #### Response
 
@@ -8149,9 +8369,9 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `secureFormId` | Guid | yes  |  the id of the secure form  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `secureFormId` | Guid | yes  |  the id of the secure form  |
 
 Request body
 
@@ -8213,9 +8433,9 @@ Location: https://domain.comm100.com/api/v3/livechat/secureFormFields/3222qa68-9
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the secure form field  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the secure form field  |
 
 Request body
 
@@ -8278,9 +8498,9 @@ Content-Type:  application/json
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  | `id` | Guid | yes  |  the id of the secure form field |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the id of the secure form field |
 
 
 #### Response
@@ -8310,11 +8530,11 @@ HTTP/1.1 204 No Content
 
   Webhook is represented as simple flat JSON objects with the following keys:
 
- | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - |
-  | `id` | guid  || N/A | N/A | | id of the webhook |
-  | `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
-  | `name` | string  || no | yes | | target url of the webhook. |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `id` | guid  || N/A | N/A | | id of the webhook |
+| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `name` | string  || no | yes | | target url of the webhook. |
 
 ## Endpoints
 
@@ -8324,7 +8544,7 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-  No parameters
+    No parameters
 
 #### Response
 
@@ -8360,9 +8580,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of the webhook  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of the webhook  |
 
 #### Response
 
@@ -8394,7 +8614,7 @@ Content-Type:  application/json
 #### Parameters
 
 Request body
-  
+
   The request body contains data with the [Webhook](#webhook-object) structure
 
 example:
@@ -8411,7 +8631,7 @@ the response is: [Webhook](#webhook-object) Object.
 
 ### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl -H "Content-Type: application/json" -d '{
@@ -8441,12 +8661,12 @@ Location: https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  the unique id of the webhook|
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  the unique id of the webhook|
 
 Request body
-  
+
   The request body contains data with the [Webhook](#webhook-object) structure
 
 example:
@@ -8457,13 +8677,13 @@ example:
   "targetUrl": "https://www.google.com"
 }
 ```
-  
+
 #### Response
 the response is: [Webhook](#webhook-object) Object.
 
 #### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl -H "Content-Type: application/json" -d '{
@@ -8491,16 +8711,16 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of the webhook  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of the webhook  |
 
 #### Response
 HTTP/1.1 204 No Content
 
 #### Example
 
-Sample request:
+Using curl:
 
 ```shell
 curl  -X DELETE  https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
@@ -8524,9 +8744,9 @@ HTTP/1.1 204 No Content
 
 Custom Variable is represented as simple flat JSON objects with the following keys:  
 
- | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - | - | :-: | :-: | :-: | - | 
-  | `id` | Guid  || yes | N/A || id of the custom variable. |
+| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `id` | Guid  || yes | N/A || id of the custom variable. |
   | `name` | string  || no | yes || name of the custom variable |.
   | `type` | string  || no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
   | `value` | string  || no | no || value of the custom variable. |
@@ -8540,7 +8760,7 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 
 #### Parameters
 
-  No parameters
+    No parameters
 
 #### Response
 
@@ -8578,9 +8798,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of the custom variable  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of the custom variable  |
 
 #### Response
 
@@ -8614,7 +8834,7 @@ Content-Type:  application/json
 #### Parameters
 
 Request body
-  
+
 The request body contains data with the [Custom Variable](#custom-variable-object) structure
 
 example:
@@ -8663,12 +8883,12 @@ Content-Type:  application/json
 #### Parameters
 
 Path parameters
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of the custom variable  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of the custom variable  |
 
 Request body
-  
+
 The request body contains data with the [Custom Variable](#custom-variable-object) structure
 
 example:
@@ -8685,9 +8905,9 @@ example:
 
 the response is: [Custom Variable](#custom-variable-object) Object.
 
-### Example
+#### Example
 
-Sample request:
+Using curl:
 
 Using curl
 ```shell
@@ -8712,7 +8932,7 @@ Content-Type:  application/json
 }
 ```
 
-### delete a custom variable
+###  Delete a custom variable
 
   `DELETE /api/v3/livechat/customVariables/{id}`
 
@@ -8720,9 +8940,9 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |
-  | - | - | - | - |
-  | `id` | Guid | yes  |  id of the custom variable  |
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+| `id` | Guid | yes  |  id of the custom variable  |
 
 #### Response
 
