@@ -3208,17 +3208,11 @@ Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/
 
 Request Body
 
-  The request body contains data with the SimilarQuestions structure
-
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `similarQuestions` | string[]  | | N/A | yes | | Available when Agent Assist is enabled. |
+  The request body contains data with the string array.
 
 example:
 ```Json
-{
-  "similarQuestions": ["not ok?"]
-}
+ ["not ok?"]
 ```
 
 #### Response
@@ -3230,7 +3224,7 @@ the response is: [Public Canned Message](#public-Canned-Message-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "similarQuestions": ["are you ok?"]
+  ["not ok?"]
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
 ```
 
@@ -3758,17 +3752,11 @@ Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
 
 Request Body
 
-  The request body contains data with the SimilarQuestions structure
-
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `similarQuestions` | string[]  | | N/A | yes | | Available when Agent Assist is enabled. |
+  The request body contains data with the string array.
 
 example:
 ```Json
-{
-  "similarQuestions": ["not ok?"]
-}
+ ["not ok?"]
 ```
 
 #### Response
@@ -3780,7 +3768,7 @@ the response is: [Public Canned Message](#public-Canned-Message-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "similarQuestions": ["are you ok?"]
+  ["not ok?"]
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
 ```
 
