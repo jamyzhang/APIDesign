@@ -2180,8 +2180,20 @@ Response
   |`timeZone` | string | | no | yes | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
   |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
   |`lastUpdatedTime` | DateTime | | N/A | N/A | |  |
-  |`contactIdentity` | [ContactIdentity](#Contact-Identity) | yes | N/A | N/A | | Contact Identity. |
+  |`contactIdentity` | [ContactIdentity](#Contact-Identity)[] | yes | N/A | N/A | | Contact Identity. |
   
+### Contact List Response Object
+
+  Agent List Object for agent list Response, include count and page information.
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
+  | - | - | :-: | :-: | :-: | :-: | - | 
+  |`count` | integer  | N/A | yes | no | | The total count of the query  |
+  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
+  |`contacts`|   [Contact](#contact-object)[]| N/A | yes| no | | A list of contacts. |
+
+
 
 ## Contact Endpoints
 
@@ -2204,7 +2216,7 @@ Response
   
 
   #### Response
-  The response is a list of [Contact](#contact-object) Objects
+  The response is a [Contact List Response](#contact-list-response-object) Object
   
 
 #### Example
@@ -2215,20 +2227,25 @@ Response
   Response
   ```json
   HTTP/1.1 200 OK
-  Content-Type:  application/json[
+  Content-Type:  application/json
   {
-    "id": 7,
-    "name": "Vincent", 
-    "description": "Accept Chats",
-    "firstName": "Vincent",
-    "lastName": "Crabbe", 
-    "alias": "", 
-    "title": "CEO", 
-    "company": "BMW", 
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vincent&pageIndex=2",
+    "previousPage": null,
+    "contacts": [{
+      "id": 7,
+      "name": "Vincent", 
+      "description": "Accept Chats",
+      "firstName": "Vincent",
+      "lastName": "Crabbe", 
+      "alias": "", 
+      "title": "CEO", 
+      "company": "BMW", 
+      ...
+    },
     ...
-  },
-  ...,
-  ]
+    ]
+}
   ```
 
 
@@ -2422,7 +2439,7 @@ HTTP/1.1 204 No Content
 # Contact Identity
  + `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [Get a list of contact identities in a contact](#get-all-contact-identity)
  + `GET /api/v3/globalSettings/contactIdentities/{id}` - [Get an contact identity by id](#get-an-contact-identity)
- + `POST /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [create a new contact identity](#create-a-new-contact-identity)
+ + `POST /api/v3/globalSettings/contacts/contactIdentities` - [create a new contact identity](#create-a-new-contact-identity)
  + `PUT /api/v3/globalSettings/contactIdentities/{id}` - [update an contact identity](#update-an-contact-identity)
  + `DELETE /api/v3/globalSettings/contactIdentities/{id}` - [delete an contact identity](#delete-an-contact-identity)
 
@@ -2433,6 +2450,7 @@ HTTP/1.1 204 No Content
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   |`id` | integer| | N/A | N/A | |  |
+  |`contactId` | integer| | N/A | N/A | | Contact Id |
   |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
   |`type` | string| | no | yes | | the options of the value are:  visitor, emailAddress, SMSNumber, facebookAccount, twitterAccount, weChatAccount, SSOUserID, externalID, whatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
   |`value` | string  | | no | yes | | The value of the identity.|
@@ -2469,6 +2487,8 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json[
 {
+  "id": 25,
+  "contactId": 7,
   "name": "Vincent", 
   "type": "Visitor", 
   "value": "", 
@@ -2511,6 +2531,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": 25,
+  "contactId": 7,
   "name": "Vincent", 
   "type": "Visitor", 
   "value": "", 
@@ -2525,15 +2546,9 @@ Content-Type:  application/json
 
 
 ### create a new contact identity
-  `POST /api/v3/globalSettings/contacts/{contactId}/contactIdentities`
+  `POST /api/v3/globalSettings/contacts/contactIdentities`
 
 ####  Parameters
-
-Path parameters
-
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  |`contactId` | integer | yes  |  The id of the contact of contact Identities belong|
 
 Request body 
 
@@ -2542,6 +2557,7 @@ Request body
   example:
 ```json
  {
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
@@ -2564,6 +2580,7 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
@@ -2573,7 +2590,7 @@ curl -H "Content-Type: application/json" -d ' {
         \"screenName\": \"@Comm100Corp\", 
         \"originalContactPageURL\": \"\", 
     }",
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts/contactIdentities
 ```
 Response
 ```json
@@ -2582,6 +2599,7 @@ Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 {
     "id": 25,
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
@@ -2613,6 +2631,7 @@ Request body
   example:
 ```json
  {
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
@@ -2634,6 +2653,7 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
@@ -2652,6 +2672,7 @@ Content-Type: application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
  {
     "id": 25,
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
@@ -2684,7 +2705,7 @@ Using curl
 curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 ```
 Response
-```json
+```json  
 HTTP/1.1 204 No Content
 ```
 
