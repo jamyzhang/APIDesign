@@ -3918,12 +3918,12 @@ Response
 
   Agent Away Status Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the agent away status. |
-  | `isSystem` | boolean  | no | no | false | Whether the agent away status is system or not. |
-  | `order` | integer  | no | no | | The order of the agent away status. |
+  | `isSystem` | boolean  | yes | no | false | Whether the agent away status is system or not. |
+  | `order` | integer  | yes | no | | The order of the agent away status. |
 
 ## Agent Away Status Endpoints
 
@@ -4028,9 +4028,7 @@ the response is: [Agent Away Status](#agent-Away-Status-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "name": "agentAwayStatuses11",
-  "isSystem": false,
-  "order": 1
+  "name": "agentAwayStatuses11"
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses
 ```
 
@@ -4044,7 +4042,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F
   "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
   "name": "agentAwayStatuses11",
   "isSystem": false,
-  "order": 1
+  "order": 5
 }
 ```
 
@@ -4067,9 +4065,7 @@ Request Body
 example:
 ```Json
 {
-  "name": "agentAwayStatuses22",
-  "isSystem": false,
-  "order": 1
+  "name": "agentAwayStatuses23",
 }
 ```
 
@@ -4095,9 +4091,9 @@ Content-Type:  application/json
 
 {
   "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
-  "name": "agentAwayStatuses22",
+  "name": "agentAwayStatuses23",
   "isSystem": false,
-  "order": 1
+  "order": 5
 }
 ```
 
@@ -4334,7 +4330,6 @@ Response
 HTTP/1.1 204 No Content
 ```
 
-
 # Agent SSO  
 
   You need `Manage Settings` permission to setting sso for a site.
@@ -4348,17 +4343,16 @@ HTTP/1.1 204 No Content
 
   Agent SSO Object is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | - | :-: | :-: | :-: | - | 
-  | `isEnabled` | bool  | | no | N/A | false | |
-  | `protocolType` | string |  | no | N/A | | including `SAMLSSO` and `JWTSSO`. |
-  | `samlSSOURL` | string |  | no | N/A | |Only available when Type is SAML SSO. |
-  | `samlLogoutURL` | string |  | no | N/A | | Only available when Type is SAML SSO. |
-  | `samlCertificateFile` | string |  | no | N/A | | File key of SAML certificate file, Only available when Type is SAML SSO. |
-  | `samlCertificateFileName` | string |  | no | N/A | | Only available when Type is SAML SSO. |
-  | `jwtLoginURL` | string |  | no | N/A | | Only available when Type is JWT SSO. |
-  | `jwtLogoutURL` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
-  | `jwtSecret` | string |  | no | N/A | | Only available when Type is JWT SSO.  |
+  | Name | Type | Include | Read-only| Mandatory| Default | Description |
+  | - | - | - | :-: | :-: | :-: | - |
+  | `isEnabled` | bool  | | no | yes|| |
+  | `protocolType` | string |  | no | yes | | including `SAML` and `JWT`. |
+  | `samlSSOURL` | string |  | no |yes | |mandatory when Type is `SAML`. |
+  | `samlLogoutURL` | string |  | no | no | | only available when Type is `SAML`. |
+  | `samlCertificate` | string |  | no | yes | | SAML certificate, mandatory when Type is `SAML`.|
+  | `jwtLoginURL` | string |  | no | yes | | mandatory when Type is `JWT`. |
+  | `jwtLogoutURL` | string |  | no | no | | only available when Type is `JWT`.  |
+  | `jwtSecret` | string |  | no | no | | mandatory when Type is `JWT`.  |
 
 ## Agent SSO Endpoints
 
@@ -4387,12 +4381,14 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 {
-    "isEnabled": true,
-    "protocolType": "SAMLSSO",
-    "samlSSOURL": "",
-    "samlLogoutURL": "",
-    "samlCertificateFile": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
-    "samlCertificateFileName": "certi.pl",
+  "isEnabled": true,
+  "protocolType": "SAML",
+  "samlSSOURL": "https://domain.comm100.com/SAML/SSOLogin",
+  "samlLogoutURL": "https://domain.comm100.com/SAML/SSOLogout",
+  "samlCertificate": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
+  "jwtLoginURL": "",
+  "jwtLogoutURL": "",
+  "jwtSecret": ""
 }
 ```
 
@@ -4410,7 +4406,7 @@ Request Body
 ```Json
   {
     "isEnabled": true,
-    "protocolType": "JWTSSO",
+    "protocolType": "JWT",
     "jwtLoginURL": "",
     "jwtLogoutURL": "",
     "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
@@ -4426,7 +4422,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "isEnabled": true,
-    "protocolType": "JWTSSO",
+    "protocolType": "JWT",
     "jwtLoginURL": "",
     "jwtLogoutURL": "",
     "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
@@ -4438,11 +4434,14 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 {
-    "isEnabled": true,
-    "protocolType": "JWTSSO",
-    "jwtLoginURL": "",
-    "jwtLogoutURL": "",
-    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+  "isEnabled": true,
+  "protocolType": "JWT",
+  "samlSSOURL": "",
+  "samlLogoutURL": "",
+  "samlCertificate": "",
+  "jwtLoginURL": "https://domain.comm100.com/JWT/SSOLogin",
+  "jwtLogoutURL": "https://domain.comm100.com/JWT/SSOLogin",
+  "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
 }
 ```
 
