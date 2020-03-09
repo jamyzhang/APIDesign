@@ -88,7 +88,7 @@ Content-Type:  application/json
     "dateTimeFormat":"yyyy-MM-dd hh:mm:ss",
     "timeZone":"canadaCentralStandardTime",
     "company":"BMW",
-    "companySize": 5000,
+    "companySize": "Above 600",
     "website":"www.bmw.com",
     "registeredEmail":"bmw@gmail.com",
     "phone":"88654987",
@@ -124,7 +124,7 @@ curl -H "Content-Type: application/json" -d '{
     "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
     "timeZone"："canadaCentralStandardTime"，
     "company"："BMW"，
-    "companySize"："5000"，
+    "companySize": "Above 600",
     "website"："www.bwm.com"，
     "registeredEmail"："bmw@gmail.com"，
     "phone"："88654987"，
@@ -148,7 +148,7 @@ Content-Type:  application/json
     "dateTimeFormat": "yyyy-MM-dd hh:mm:ss",
     "timeZone": "canadaCentralStandardTime",
     "company": "BMW",
-    "companySize": 5000,
+    "companySize": "Above 600",
     "website": "www.bwm.com",
     "registeredEmail": "bmw@gmail.com",
     "phone": "88654987",
@@ -207,9 +207,9 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
   |`permissionIds` | integer[]  |  | no | no | [] | Agent permission settings.|
   |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
-  |`roleIds` | Guid[]  |  | no | no |  | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
+  |`roleIds` | Guid[]  |  | no | no | NULL | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
   |`roles` | [Role](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
-  |`departmentIds` | Guid[]  |  | no | no | [] | The list of the department ids which the agent belongs to.|
+  |`departmentIds` | Guid[]  |  | no | no | NULL | The list of the department ids which the agent belongs to.|
   |`departments` | [Department](#department)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
   |`shifts` | [Shift](#shift)[]  | yes | N/A | N/A  | | The list of shifts which the agent belongs to.|
 
@@ -688,8 +688,6 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
 
 ### Update current agent
 
- Cannot modify agent's roles, departments and permissions by api: undate current agent.
-
   `PUT /api/v3/globalSettings/agents/me`
 
 ####  Parameters
@@ -707,6 +705,10 @@ example:
     "firstName":"Tom",
     "lastName":"Green",
     "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
     ...,
 } 
 ```
@@ -724,7 +726,10 @@ curl -H "Content-Type: application/json" -d '{
     "firstName":"Tom",
     "lastName":"Green",
     "title":"CEO",
-    "roleIds": NULL,
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
     ...,
 } ' -X PUT https://domain.comm100.com/api/v3/globalSettings/me
 ```
@@ -792,9 +797,9 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
   |`id` | Guid| | N/A | N/A | |  |
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
-  |`type` | string | | no | no | customRole | The options: siteAdministrator, allAgents, customRole; siteAdministrator and allAgents are the system roles. They cannot be deleted.|
-  |`agentIds` | int[] | | no | no | [] | The selected agents for this role. |
-  |`agents` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
+  |`type` | string | | no | no | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
+  |`memberIds` | int[] | | no | no | [] | The selected agents for this role. |
+  |`members` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
   |`permissionIds` | int[] | | no | no |  | Permissions assigned to this role.|
   |`permissions` | [Permission](#permission)[] | yes | N/A | N/A | | Permissions assigned to this role.|
 
@@ -809,7 +814,7 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`agent`,`permission` |
+  |`include`|string|no||Available value:`member`,`permission` |
 
 #### Response
 
@@ -828,8 +833,8 @@ Content-Type:  application/json
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
-  "type": "CustomRole",
-  "agentIds":  [
+  "type": "custom",
+  "memberIds":  [
     68,
     ...,
   ],
@@ -868,7 +873,7 @@ Content-Type:  application/json
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no|| Available value:`agent`,`permission` |
+  |`include`|string|no|| Available value:`member`,`permission` |
 
 #### Response
 
@@ -887,8 +892,8 @@ Content-Type:  application/json
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
-  "type": "CustomRole",
-  "agentIds":  [
+  "type": "custom",
+  "memberIds":  [
     68,
     ...,
   ],
@@ -917,8 +922,8 @@ Request body
  {
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
-      "Type": "CustomRole",
-      "agentIds":  [
+      "Type": "custom",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -942,8 +947,8 @@ curl -H "Content-Type: application/json" -d ' {
       "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
-      "Type": "CustomRole",
-      "agentIds":  [
+      "Type": "custom",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -966,8 +971,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4
       "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
-      "type": "CustomRole",
-      "agentIds":  [
+      "type": "custom",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -1001,8 +1006,8 @@ Request body
       "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
-      "type": "CustomRole",
-      "agentIds":  [
+      "type": "custom",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -1025,8 +1030,8 @@ Using curl
 curl -H "Content-Type: application/json" -d ' {
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
-      "type": "CustomRole",
-      "agentIds":  [
+      "type": "custom",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -1048,8 +1053,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
-  "type": "CustomRole",
-  "agentIds":  [
+  "type": "custom",
+  "memberIds":  [
     68,
     ...,
   ],
@@ -1107,11 +1112,11 @@ You need `Manage departments` permission to manage departments.
   |`name` | string | | no | yes | |  |
   |`description` | string | | no | no | |  |
   |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
-  |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the ‘Assigned Department’ field. Default: true.|
-  |`offlineMessageMailType` | string | | no | no | allAgentsInDepartment | The value options: allAgentsInDepartment, emailAddress |
-  |`offlineMessageEmails` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
-  |`agentIds` | int[] | | no | no | [] | The selected agents for this department.|
-  |`agent` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
+  |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the 'Assigned Department' field. Default: true.|
+  |`offlineMessageMailTo` | string | | no | no | allAgentsInDepartment | The value options: All agents in the department, The email address(es).  |
+  |`offlineMessageEmailAddresses` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
+  |`memberIds` | int[] | | no | no | [] | The selected agents for this department.|
+  |`members` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
   |`shift` | [Shift](#shift)[]| yes | N/A | N/A |  |  |
 
 ## Department Endpoints
@@ -1124,7 +1129,7 @@ You need `Manage departments` permission to manage departments.
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`agent`,`shift` |
+  |`include`|string|no||Available value:`member`,`shift` |
 
 #### Response
 
@@ -1144,9 +1149,9 @@ Content-Type:  application/json
   "description": "markting departments",
   "isAvailableInChat": "yes",
   "isAvailableInTicketingAndMessaging": "yes",
-  "offlineMessageMailType": "All agents in the department",
-  "offlineMessageEmails": "",
-  "agentIds":  [
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "memberIds":  [
     68,
     ...,
   ],
@@ -1170,7 +1175,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`agent`,`shift` |
+  |`include`|string|no||Available value:`member`,`shift` |
 
   #### Response
 
@@ -1190,9 +1195,9 @@ Content-Type:  application/json
   "description": "markting departments",
   "isAvailableInChat": "yes",
   "isAvailableInTicketingAndMessaging": "yes",
-  "offlineMessageMailType": "All agents in the department",
-  "offlineMessageEmails": "",
-  "agentIds":  [
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "memberIds":  [
     68,
     ...,
   ],
@@ -1216,9 +1221,9 @@ Request body
       "description": "markting departments",
       "isAvailableInChat": "yes",
       "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "agentIds":  [
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -1237,9 +1242,9 @@ curl -H "Content-Type: application/json" -d '{
       "description": "markting departments",
       "isAvailableInChat": "yes",
       "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "agentIds":  [
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -1255,9 +1260,9 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments
       "description": "markting departments",
       "isAvailableInChat": "yes",
       "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "agentIds":  [
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -1287,9 +1292,9 @@ Request body
       "description": "markting departments",
       "isAvailableInChat": "yes",
       "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "agentIds":  [
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -1308,9 +1313,9 @@ curl -H "Content-Type: application/json" -d '{
   "description": "markting departments",
   "isAvailableInChat": "yes",
   "isAvailableInTicketingAndMessaging": "yes",
-  "offlineMessageMailType": "All agents in the department",
-  "offlineMessageEmails": "",
-  "agentIds":  [
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "memberIds":  [
     68,
     ...,
   ],
@@ -1326,9 +1331,9 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-
       "description": "markting departments",
       "isAvailableInChat": "yes",
       "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailType": "All agents in the department",
-      "offlineMessageEmails": "",
-      "agentIds":  [
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "memberIds":  [
         68,
         ...,
       ],
@@ -1725,8 +1730,8 @@ Content-Type:  application/json
           "description": "departments",
           "isAvailableInChat": false,
           "isAvailableInTicketingAndMessaging": false,
-          "offlineMessageMailType": "theEmailAddress",
-          "offlineMessageEmails": "test@comm100.com",
+          "offlineMessageMailTo": "The email address(es)",
+          "offlineMessageEmailAddresses": "test@comm100.com",
           "agentId": 68
         },
         ...
@@ -1798,8 +1803,8 @@ Content-Type:  application/json
     "description": "departments",
     "isAvailableInChat": false,
     "isAvailableInTicketingAndMessaging": false,
-    "offlineMessageMailType": "theEmailAddress",
-    "offlineMessageEmails": "test@comm100.com",
+    "offlineMessageMailTo": "The email address(es)",
+    "offlineMessageEmailAddresses": "test@comm100.com",
     "agentId": 68
   },
   ...
@@ -2163,7 +2168,6 @@ Response
   |`firstName` | string | | no | yes | |  |
   |`lastName` | string | | no | yes | |  |
   |`alias` | string | | no | no | |  |
-  |`avatar` | string| | no | no | default avatar data | image base64 data code.|
   |`title` | string | | no | no | |  |
   |`company` | string  | | no | no | |  |
   |`fax` | string  | | no | no | |  |
@@ -2176,6 +2180,20 @@ Response
   |`timeZone` | string | | no | yes | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
   |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
   |`lastUpdatedTime` | DateTime | | N/A | N/A | |  |
+  |`contactIdentity` | [ContactIdentity](#Contact-Identity)[] | yes | N/A | N/A | | Contact Identity. |
+  
+### Contact List Response Object
+
+  Agent List Object for agent list Response, include count and page information.
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
+  | - | - | :-: | :-: | :-: | :-: | - | 
+  |`count` | integer  | N/A | yes | no | | The total count of the query  |
+  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
+  |`contacts`|   [Contact](#contact-object)[]| N/A | yes| no | | A list of contacts. |
+
+
 
 ## Contact Endpoints
 
@@ -2189,39 +2207,45 @@ Response
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
   |`name` | string | no  |  | Contact name. |
-  |`title`|string|no|  | Contact title. |
+  |`company`|string|no|  | Contact company. |
   |`contactIdentityName` | string | no  |  | Contact identity name. |
+  |`contactIdentityValue` | string | no  |  | Contact identity value. |
   |`contactIdentityType` | string | no  |  | Contact identity type. |
+  | `include` | string | no  |  | Available value: `contactIdentity` |
 
   
 
   #### Response
-  The response is a list of [Contact](#contact-object) Objects
+  The response is a [Contact List Response](#contact-list-response-object) Object
   
 
 #### Example
   Using curl
   ```
-  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vince
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vincent
   ```
   Response
   ```json
   HTTP/1.1 200 OK
-  Content-Type:  application/json[
+  Content-Type:  application/json
   {
-    "id": 7,
-    "name": "Vincent", 
-    "description": "Accept Chats",
-    "firstName": "Vincent",
-    "lastName": "Crabbe", 
-    "alias": "", 
-    "avatar": "data:image/gif;base64,...", 
-    "title": "CEO", 
-    "company": "BMW", 
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vincent&pageIndex=2",
+    "previousPage": null,
+    "contacts": [{
+      "id": 7,
+      "name": "Vincent", 
+      "description": "Accept Chats",
+      "firstName": "Vincent",
+      "lastName": "Crabbe", 
+      "alias": "", 
+      "title": "CEO", 
+      "company": "BMW", 
+      ...
+    },
     ...
-  },
-  ...,
-  ]
+    ]
+}
   ```
 
 
@@ -2256,7 +2280,6 @@ Content-Type:  application/json
   "firstName": "Vincent",
   "lastName": "Crabbe", 
   "alias": "", 
-  "avatar": "data:image/gif;base64,...", 
   "title": "CEO", 
   "company": "BMW", 
   ...
@@ -2281,7 +2304,6 @@ example:
       "firstName": "Vincent",
       "lastName": "Crabbe", 
       "alias": "", 
-      "avatar": "data:image/gif;base64,...", 
       "title": "CEO", 
       "company": "BMW", 
       ...
@@ -2302,7 +2324,6 @@ curl -H "Content-Type: application/json" -d '{
       "firstName": "Vincent",
       "lastName": "Crabbe", 
       "alias": "", 
-      "avatar":"data:image/gif;base64,...", 
       "title": "CEO", 
       "company": "BMW", 
       ...
@@ -2320,7 +2341,6 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
   "firstName": "Vincent",
   "lastName": "Crabbe", 
   "alias": "", 
-  "avatar": "data:image/gif;base64,...", 
   "title": "CEO", 
   "company": "BMW", 
   ...
@@ -2350,7 +2370,6 @@ Request body
   "firstName": "Vincent",
   "lastName": "Crabbe", 
   "alias": "", 
-  "avatar": "data:image/gif;base64,...", 
   "title": "CEO", 
   "company": "BMW", 
   ...
@@ -2370,7 +2389,6 @@ curl -H "Content-Type: application/json" -d '{
   "firstName": "Vincent",
   "lastName": "Crabbe", 
   "alias": "", 
-  "avatar": "data:image/gif;base64,...", 
   "title": "CEO", 
   "company": "BMW", 
   ...
@@ -2421,7 +2439,7 @@ HTTP/1.1 204 No Content
 # Contact Identity
  + `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [Get a list of contact identities in a contact](#get-all-contact-identity)
  + `GET /api/v3/globalSettings/contactIdentities/{id}` - [Get an contact identity by id](#get-an-contact-identity)
- + `POST /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [create a new contact identity](#create-a-new-contact-identity)
+ + `POST /api/v3/globalSettings/contacts/contactIdentities` - [create a new contact identity](#create-a-new-contact-identity)
  + `PUT /api/v3/globalSettings/contactIdentities/{id}` - [update an contact identity](#update-an-contact-identity)
  + `DELETE /api/v3/globalSettings/contactIdentities/{id}` - [delete an contact identity](#delete-an-contact-identity)
 
@@ -2432,13 +2450,13 @@ HTTP/1.1 204 No Content
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   |`id` | integer| | N/A | N/A | |  |
+  |`contactId` | integer| | N/A | N/A | | Contact Id |
   |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
   |`type` | string| | no | yes | | the options of the value are:  visitor, emailAddress, SMSNumber, facebookAccount, twitterAccount, weChatAccount, SSOUserID, externalID, whatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
   |`value` | string  | | no | yes | | The value of the identity.|
   |`avatarURL` | string | | no | no | | The avatar used in a certain type, like the avatar of a user in Facebook. Not every type has avatar, for example, SMS Number doesn’t have one.|
   |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets of the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
-  |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp.|
-  |`originalContactPageURL` | string  | | no | no | | The contact profile URL on Facebook or Twitter.|
+  |`extraAttributes` | string | | no | no | | The value is a map (key: value) to store the data. For example: "Screen Name": "@Comm100Corp", "Original Contact Page URL": "",|
 
 ## Contact Identity  Endpoints
 
@@ -2469,13 +2487,17 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json[
 {
+  "id": 25,
+  "contactId": 7,
   "name": "Vincent", 
   "type": "Visitor", 
   "value": "", 
   "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
   "infoURL": "", 
-  "screenName": "@Comm100Corp", 
-  "originalContactPageURL": "", 
+  "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\", 
+        \"originalContactPageURL\": \"\", 
+    }",
 },
 ...,
 ]
@@ -2509,27 +2531,24 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": 25,
+  "contactId": 7,
   "name": "Vincent", 
   "type": "Visitor", 
   "value": "", 
   "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
   "infoURL": "", 
-  "screenName": "@Comm100Corp", 
-  "originalContactPageURL": "", 
+  "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\", 
+        \"originalContactPageURL\": \"\", 
+    }",
 }
 ```
 
 
 ### create a new contact identity
-  `POST /api/v3/globalSettings/contacts/{contactId}/contactIdentities`
+  `POST /api/v3/globalSettings/contacts/contactIdentities`
 
 ####  Parameters
-
-Path parameters
-
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
-  |`contactId` | integer | yes  |  The id of the contact of contact Identities belong|
 
 Request body 
 
@@ -2538,13 +2557,16 @@ Request body
   example:
 ```json
  {
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
-    "screenName": "@Comm100Corp", 
-    "originalContactPageURL": "", 
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\", 
+        \"originalContactPageURL\": \"\", 
+    }",
   }
 ```
 
@@ -2558,14 +2580,17 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
-    "screenName": "@Comm100Corp", 
-    "originalContactPageURL": "", 
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\", 
+        \"originalContactPageURL\": \"\", 
+    }",
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts/contactIdentities
 ```
 Response
 ```json
@@ -2574,13 +2599,16 @@ Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 {
     "id": 25,
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
-    "screenName": "@Comm100Corp", 
-    "originalContactPageURL": "", 
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\", 
+        \"originalContactPageURL\": \"\", 
+    }",
   }
 ```
 
@@ -2603,13 +2631,16 @@ Request body
   example:
 ```json
  {
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
-    "screenName": "@Comm100Corp", 
-    "originalContactPageURL": "", 
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\", 
+        \"originalContactPageURL\": \"\", 
+    }",
   }
 ```
 
@@ -2622,13 +2653,16 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
-    "screenName": "@Comm100Corp", 
-    "originalContactPageURL": "", 
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\", 
+        \"originalContactPageURL\": \"\", 
+    }",
   }' -X PUT https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 ```
 Response
@@ -2638,13 +2672,16 @@ Content-Type: application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
  {
     "id": 25,
+    "contactId": 7,
     "name": "Vincent", 
     "type": "Visitor", 
     "value": "", 
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
     "infoURL": "", 
-    "screenName": "@Comm100Corp", 
-    "originalContactPageURL": "", 
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\", 
+        \"originalContactPageURL\": \"\", 
+    }",
   }
 ```
 
@@ -2668,7 +2705,7 @@ Using curl
 curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 ```
 Response
-```json
+```json  
 HTTP/1.1 204 No Content
 ```
 
@@ -3208,17 +3245,11 @@ Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/
 
 Request Body
 
-  The request body contains data with the SimilarQuestions structure
-
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `similarQuestions` | string[]  | | N/A | yes | | Available when Agent Assist is enabled. |
+  The request body contains data with the string array.
 
 example:
 ```Json
-{
-  "similarQuestions": ["not ok?"]
-}
+ ["not ok?"]
 ```
 
 #### Response
@@ -3230,7 +3261,7 @@ the response is: [Public Canned Message](#public-Canned-Message-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "similarQuestions": ["are you ok?"]
+  ["not ok?"]
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
 ```
 
@@ -3758,17 +3789,11 @@ Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
 
 Request Body
 
-  The request body contains data with the SimilarQuestions structure
-
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
-  | - | - |- | :-: | :-: | :-: | - |
-  | `similarQuestions` | string[]  | | N/A | yes | | Available when Agent Assist is enabled. |
+  The request body contains data with the string array.
 
 example:
 ```Json
-{
-  "similarQuestions": ["not ok?"]
-}
+ ["not ok?"]
 ```
 
 #### Response
@@ -3780,7 +3805,7 @@ the response is: [Public Canned Message](#public-Canned-Message-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "similarQuestions": ["are you ok?"]
+  ["not ok?"]
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
 ```
 
