@@ -6,7 +6,7 @@
   | 3.2 | v2 | Add Agent Assist Restful API | 2019-03-22 | Davy |
   | 3.3 | v2 | Add Comm100 Own Bot Restful API | 2019-05-24 | Page |
   | 3.4 | v3 | update to v3 | 2019-09-29 | Davy |
-  | 4.0 | v3 | social bot | 2019-10-21 | Davy |
+  | 4.0 | v3 | xversion | 2019-10-21 | Davy |
 
 # Summary
   - Chatbot
@@ -236,7 +236,7 @@ Content-Type:  application/json
   | `noAnswerScore` | integer | | no | no | 20 | When visitors send a message, Bot will match it with all of your intents. If the top macthing score(matching score ranges from 0 to 100) is between the High Confidence Answer Score and No Answer Score, Bot will send the answer of the top score intent as a possible answer to visitors; if the top matching score is lower than the No Answer Score, Bot will send the message configured for When Visitor Question Is Not Recognized. |
   | `lastUpdatedTime` | datetime  | | N/A | N/A | | This attribute stores the last updated time for a chatbot. Once the chatbot or any sub attribute of the chatbot is edited, this value will be changed to the current time |
   |`thirdPartyWebhook` | [Webhook](#Webhook-object) | | no | no | | [Webhook](#Webhook-object) object, Only available when engineType is `thirdParty`  | 
-  | `enabledChannels` | string[]  | | no | no | | list of channel, eg: [`LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`]  |  
+  | `enabledChannels` | string[]  | | no | no | | list of channel, eg: [`Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`]  |  
 
 ### GreetingMessageInChannel Object
 GreetingMessageInChannel is represented as simple flat json objects with the following keys:
@@ -244,8 +244,8 @@ GreetingMessageInChannel is represented as simple flat json objects with the fol
 |Name| Type| Include | Read-only For Put |Mandatory For Post |Default | Description     | 
 | - | - | :-: | :-: | :-: | :-: | - | 
 |`id` | Guid  | | yes | N/A | | id of the current item.  | 
-| `channel` | string  | | yes | yes | | eg:  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
-|`responses`| [Response](#response-object)[] | yes | no | yes | | an array of [Response](#response-object) object. |
+| `channel` | string  | | yes | yes | | eg:  `Default`, `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+|`responses`| [Response](#response-object)[] | | no | yes | | an array of [Response](#response-object) object. |
 
 
 ### NoAnswerMessageInChannel Object
@@ -254,9 +254,9 @@ NoAnswerMessageInChannel is represented as simple flat json objects with the fol
 |Name| Type| Read-only For Put |Mandatory For Post | Default | Description     | 
 | - | - | :-: | :-: | :-: | - | 
 |`id` | Guid  | yes | N/A | | id of the current item.  | 
-| `channel` | string  | yes | yes | | eg :  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+| `channel` | string  | yes | yes | | eg :  `Default`, `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`message` | string | no | yes | | text of the message  | 
-|`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is LiveChat, Facebook Messenger or Twitter Direct Message. | 
+|`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is Live Chat, Facebook Messenger or Twitter Direct Message. | 
 
 
 ### MessageAfterSeveralConsecutivePossibleAnswersInChannel Object
@@ -265,9 +265,9 @@ MessageAfterSeveralConsecutivePossibleAnswersInChannel is represented as simple 
 |Name| Type| Read-only For Put |Mandatory For Post | Default |Description     | 
 | - | - | :-: | :-: | :-: | - | 
 |`id` | Guid  | yes | N/A | | id of the current item.  | 
-| `channel` | string  | yes | yes | | eg :  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+| `channel` | string  | yes | yes | | eg :  `Default`, `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`message` | string | no | yes | | text of the message  | 
-|`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is LiveChat, Facebook Messenger or Twitter Direct Message. |
+|`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is Live Chat, Facebook Messenger or Twitter Direct Message. |
 
 
 ### TestBotResponse
@@ -292,7 +292,6 @@ Query string
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `greetingMessageInChannels`,`noAnswerMessageInChannels`, `messageAfterSeveralConsecutivePossibleAnswersInChannels` |
   | `channel` | string | no  |  | filter by enabled channel |
 
 #### Response
@@ -333,7 +332,7 @@ Content-Type:  application/json
     "isTrained": true,
     "lastUpdatedTime": "2019-11-19 12:12:30",    
     "enabledChannels": [
-      "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+      "Live Chat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
   },
   ...
@@ -361,7 +360,7 @@ Request body
       "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
     },    
     "enabledChannels": [
-      "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+      "Live Chat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
   }
   ```
@@ -382,7 +381,7 @@ curl -H "Content-Type: application/json" -d '{
       "url": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6"
     },  
     "enabledChannels": [
-      "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+      "Live Chat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
   }' -X POST https://domain.comm100.com/api/v3/chatbot/bots
 ```
@@ -416,7 +415,7 @@ Location: https://domain.comm100.com/api/v3/chatbot/bots/casd8d68-92e6-4487-a2e8
     "noAnswerScore": 20,
     "lastUpdatedTime": "2019-11-19 12:12:30",    
     "enabledChannels": [
-      "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+      "Live Chat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
   }
 ```
@@ -460,7 +459,7 @@ Request Body
       },
       {
         "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48", //update
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
            {
             "type":"image", //Create
@@ -481,7 +480,7 @@ Request Body
     ],
     ...
     "enabledChannels": [
-      "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+      "Live Chat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
   }
   ```
@@ -513,7 +512,7 @@ curl -H "Content-Type: application/json" -d '{
       },
       {
         "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48", //update
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
            {
             "type":"image", //Create
@@ -533,7 +532,7 @@ curl -H "Content-Type: application/json" -d '{
       }
     ],
     "enabledChannels": [
-      "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+      "Live Chat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
   }' -X PUT https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48
 ```
@@ -564,7 +563,7 @@ Content-Type:  application/json
       },
       {
         "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48", 
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
            {
             "id":"dawdscwd-92e6-4487-a2e8-92e68d6892e6", 
@@ -586,7 +585,7 @@ Content-Type:  application/json
     ],
     ...
     "enabledChannels": [
-      "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+      "Live Chat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
     ]
   }
 ```
@@ -606,7 +605,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - |  - | 
-  | `include` | string | no  | |  Available value: `intent` |
+  | `include` | string | no  | |  Available value: `greetingMessageInChannel`,`noAnswerMessageInChannel`, `messageAfterSeveralConsecutivePossibleAnswersInChannel`,`intent` |
   
 #### Response
 the response is: [Bot](#bot-object) Object
@@ -615,7 +614,7 @@ the response is: [Bot](#bot-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48?include=intent
+-X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48?include=greetingMessageInChannel,intent
 ```
 Response
 ```json
@@ -645,7 +644,7 @@ Content-Type:  application/json
     },
     {
       "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48",
-      "channel":"LiveChat",
+      "channel":"Live Chat",
       "responses": [
         {
           "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -689,7 +688,7 @@ Content-Type:  application/json
   ...  
   "lastUpdatedTime": "2019-11-19 12:12:30",    
   "enabledChannels": [
-    "LiveChat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
+    "Live Chat", "Facebook Messenger", "Twitter Direct Message", "WeChat", "WhatsApp", "SMS"
   ]
 }
 ```
@@ -1269,7 +1268,7 @@ Content-Type:  application/json
   },
   {
     "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48",
-    "channel":"LiveChat",
+    "channel":"Live Chat",
     "message": "sorry , i can not understand your question.",
     "ifIncludeContactAgentOption": true
   }  
@@ -1480,7 +1479,7 @@ Content-Type:  application/json
   },
   {
     "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48",
-    "channel":"LiveChat",
+    "channel":"Live Chat",
     "message": "I think I'm not answering your question well. Please ask a different question or click on the button below to connect to an agent.",
     "ifIncludeContactAgentOption": true
   }
@@ -1913,8 +1912,8 @@ Intent is represented as simple flat json objects with the following keys:
 | `name` | string  |  | no | yes | | name of the intent |
 |`categoryId`| Guid |  | no | yes | | id of the intent category.|
 |`category`| [Category](#category) |yes  | N/A | N/A | | Available only when category is included |
-|`questions`| [Question](#question)[]|yes  | no |yes | | Available only when questions are included  |
-|`answerInChannels`| [AnswerInChannel](#AnswerInChannel-object)[]|yes  | no |yes | | Available only when answerInChannels are included |
+|`questions`| [Question](#question)[]|  | no |yes | |  |
+|`answerInChannels`| [AnswerInChannel](#AnswerInChannel-object)[]|  | no |yes | |  |
 
 
 ### AnswerInChannel Object
@@ -1923,7 +1922,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
 |Name| Type| Include | Read-only For Put |Mandatory For Post | Default | Description   |
 | - | - | :-: | :-: | :-:| :-: | - | 
 | `id` | Guid  | | yes | N/A | | id of the intent |
-| `channel` | string  | |  yes | yes | | eg :  `Default`, `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+| `channel` | string  | |  yes | yes | | eg :  `Default`, `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
 |`responses`| [Response](#response-object)[] | yes |  no | yes | | an array of [Response](#response-object) object.  |
 |`informationCollectionType` | string |  | no | yes | none | enums :  `form`, `prompt`,`none`. | 
 |`authenticationRequest`| [AuthenticationRequest](#AuthenticationRequest-Object)| yes |  no |no | |[AuthenticationRequest](#AuthenticationRequest-Object) object. |
@@ -2051,8 +2050,8 @@ Button is represented as simple flat json objects with the following keys:
 |`url` | string | | no | yes if type is `link` or `webView`| | url of the web page you want to open.  | 
 |`intentId` | Guid | | no | yes if type is `triggerAnIntent` | | id of the intent you choosed.  | 
 |`intent` | [Intent](#intent-object) | yes | N/A  | N/A  | | Available only when intent is included |
-|`openIn` | string | | no | yes if channel is `LiveChat` and type is `link` | | enums contain `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
-|`openStyle` | string | | no | yes if channel is  `LiveChat` or `Facebook Messenger` and type is `webView` | full | enums contain `compact`,`tall` and `full`,it represents the size of the webview that will be opened.  |
+|`openIn` | string | | no | yes if channel is `Live Chat` and type is `link` | | enums contain `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
+|`openStyle` | string | | no | yes if channel is  `Live Chat` or `Facebook Messenger` and type is `webView` | full | enums contain `compact`,`tall` and `full`,it represents the size of the webview that will be opened.  |
 |`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### IntentScore Object
@@ -2105,7 +2104,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - | 
-  | `include` | string | no  |  | Available value: `category`, `questions`, `answerInChannels` |
+  | `include` | string | no  |  | Available value: `category` |
   | `categoryId` | Guid | no  |  | id of the category, filter by category |
   | `keyword` | string | no  |  | search intents by intent name or question using the keyword |
 
@@ -2257,7 +2256,7 @@ Response
       },
       {
         "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48",
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
           {
             "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -2349,7 +2348,7 @@ Request body
         "informationCollectionType" : "none"
       },
       {
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
           {
             "type":"htmlText",
@@ -2407,7 +2406,7 @@ curl -H "Content-Type: application/json" -d '{
         "informationCollectionType" : "none"
       },
       {
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
           {
             "type":"htmlText",
@@ -2492,7 +2491,7 @@ The request body contains data with the [Intent](#intent-object) structure
       },
       {
         "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48",  //update
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
           {  
             "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6", //update
@@ -2558,7 +2557,7 @@ curl -H "Content-Type: application/json" -d '{
       },
       {
         "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48",  
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
           {  
             "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6", 
@@ -2627,7 +2626,7 @@ Response
       },
       {
         "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48", 
-        "channel":"LiveChat",
+        "channel":"Live Chat",
         "responses": [
           {  
             "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6", 
@@ -3127,7 +3126,7 @@ Response
     },
     {
       "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48",
-      "channel":"LiveChat",      
+      "channel":"Live Chat",      
       "informationCollectionType" : "prompt",  
       "responses": [
         {
@@ -3199,7 +3198,7 @@ Response
   
   {
     "id":"8234fc9d-92e6-4487-a2e8-f9928d681f48",
-    "channel":"LiveChat",
+    "channel":"Live Chat",
     "responses": [
       {
         "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
@@ -5244,6 +5243,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Session
+  - `POST /api/v3/chatbot/sessions/{sessionId}:greeting` - [chatbot greeting](#chatbot-greeting)
   - `POST /api/v3/chatbot/sessions/{sessionId}:detectIntent` - [Detect intent](#detect-intent)
   - `POST /api/v3/chatbot/sessions/{sessionId}:triggerAnIntent` - [Trigger an intent](#trigger-an-intent)
   - `POST /api/v3/chatbot/sessions/{sessionId}:submitForm` - [Submit Form](#Submit-Form)
@@ -5252,6 +5252,84 @@ HTTP/1.1 204 No Content
   - `POST /api/v3/chatbot/sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
 
 ## Endpoints
+
+### Chatbot greeting
+`POST /api/v3/chatbot/sessions/{sessionId}:greeting`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `sessionId` | Guid | yes  |  id of the chat or conversation |
+
+Request body
+
+The request body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |    
+  | - | - | :-: | :-: | - | 
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `botId` | Guid  | yes | | id of the bot |
+  | `extra` | Map | no | | extra data, this data will be transferred to webhook. |
+
+example:
+```Json 
+  {
+    "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "extra": {
+      "name":"Kart",
+      "email":"kart@yahoo.com",
+      "phone":"123-4355-212",
+      "ip":"12.25.11.111"
+    }
+  }
+```
+
+#### Response
+the response is:
+ [GreetingMessageInChannel](#GreetingMessageInChannel-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "extra": {
+      "name":"Kart",
+      "email":"kart@yahoo.com",
+      "phone":"123-4355-212",
+      "ip":"12.25.11.111"
+    }
+  }' -X POST https://domain.comm100.com/api/v3/chatbot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:greeting
+```
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+  {
+    "channel": "Facebook Messenger",
+    "responses":[
+      {
+        "type":"htmlText",
+        "htmlTextVariants":[
+          "<div>Hi, what can i do for you?</div>"
+        ],
+      },
+      {
+        "type":"image",
+        "image":{
+          "id": "1dw142323-92e6-4487-a2e8-92e68d6892e6",
+          "name":"greeting.png",
+          "url": "https://bot.comm100.com/botapi/images/greeting.png"
+        },
+      }
+    ]
+  }
+```
 
 ### Detect intent
 `POST /api/v3/chatbot/sessions/{sessionId}:detectIntent`
@@ -5269,7 +5347,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `channel` | string  | yes | | eg: `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `botId` | Guid  | yes | | id of the bot |
   | `questionId` | Guid  | yes | | the unique id of the question |
   | `question` | string  | yes | | visitor question |
@@ -5367,7 +5445,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `channel` | string  | yes | | eg: `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `intentId` | Guid  | yes | | id of the intent triggered |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5446,7 +5524,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `channel` | string  | yes | | eg: `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `authentication` | string  | yes | | authentication data |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5516,7 +5594,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `channel` | string  | yes | | eg: `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `location` | string  | yes | | the longitude and latitude of the location, eg: "39.900000,116.300000" |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5602,7 +5680,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `channel` | string  | yes | | eg: `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   |`formValues` | [FieldValue](#FieldValue-object)[] | yes | | an array of [FieldValue](#FieldValue-object) objects |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5702,17 +5780,17 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required  | Default | Description |    
   | - | - | :-: | :-: |  - | 
-  | `channel` | string  | yes | | eg: `LiveChat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `questionId` | Guid  | yes | | the id of the visitor question |
-  | `type` | string  | yes  | | `Helpful` or `Not Helpful` |
+  | `type` | string  | yes  | | `helpful` or `notHelpful` |
   | `extra` | Map | no | | extra data which SmartTrigger used |
 
   example:
 ```Json 
   {
-    "channel":"LiveChat",
+    "channel":"Live Chat",
     "questionId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "type": "Not Helpful",
+    "type": "notHelpful",
     "extra": {
       "name":"Kart",
       "email":"kart@yahoo.com",
@@ -5738,9 +5816,9 @@ If rate the bot as not helpful, the response body contains data with the follow 
   Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "channel":"LiveChat",
+    "channel":"Live Chat",
     "questionId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",    
-    "type": "Not Helpful",
+    "type": "notHelpful",
     "extra": {
       "name":"Kart",
       "email":"kart@yahoo.com",
@@ -5773,10 +5851,10 @@ curl -H "Content-Type: application/json" -d '{
   Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "channel":"LiveChat",
+    "channel":"Live Chat",
     "questionId":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
     "intentId": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "type": "Helpful",
+    "type": "helpful",
     "extra": {
       "name":"Kart",
       "email":"kart@yahoo.com",
@@ -5808,7 +5886,7 @@ HTTP/1.1 204 No Content
   | - | - | :-: | :-: | :-: | :-: | - | 
   | `id` | Guid  | | yes | N/A | | id of the Entity |
   | `name` | string  | | no | yes | | name of the Entity |
-  | `keywords` | [EntityKeyword](#entitykeyword)[] | yes | no | yes |  | Available only when keywords are included |
+  | `keywords` | [EntityKeyword](#entitykeyword)[] | | no | yes |  |  |
 
 ### EntityKeyword
  EntityKeyword is represented as simple flat JSON objects with the following keys:  
@@ -5837,7 +5915,6 @@ Query string
   | Name  | Type | Required| Default  | Description |     
   | - | - | - | - | - | 
   | `keyword` | string | no  | |  search entity name or keyword or synonym by the keyword |
-  | `include` | string | no  | | Available value: `keywords`  | 
 
 #### Response
 the response is: list of [Entity](#entity-object) Objects
@@ -5845,7 +5922,7 @@ the response is: list of [Entity](#entity-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities?include=keywords
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities
 ```
 Response
 ```Json
@@ -5855,30 +5932,11 @@ Response
   [
     {      
       "id":"aaa8sc9d-92e6-4487-a2e8-92e68d6892e6",
-      "name": "size",
-      "keywords": [   //include keywords
-        {
-          "id":"11e8sc9d-92e6-4487-a2e8-92e68d6892e6",
-          "content":"small",
-          "synonyms": ["Small", "S"]
-        }
-      ]    
+      "name": "size",        
     },
     {
       "id":"gg2341sa-92e6-4487-a2e8-92e68d6892e6",
-      "name": "city",
-      "keywords": [ //include keywords
-        {
-          "id":"22e8sc9d-92e6-4487-a2e8-92e68d6892e6",
-          "content":"beijing",
-          "synonyms": ["BEIJING"]
-        },
-        {
-          "id":"22e8sc9d-92e6-4487-a2e8-92e68d6892e6",
-          "content":"hangzhou",
-          "synonyms": ["HANGZHOU"]
-        }
-      ]    
+      "name": "city",   
     }
   ]
 ``` 
@@ -5910,7 +5968,7 @@ example:
       },
       {
         "content":"livechat",
-        "synonyms": ["LiveChat", "chat"]
+        "synonyms": ["Live Chat", "chat"]
       }
     ]    
   }
@@ -5932,7 +5990,7 @@ curl -H "Content-Type: application/json" -d '{
       },
       {
         "content":"livechat",
-        "synonyms": ["LiveChat", "chat"]
+        "synonyms": ["Live Chat", "chat"]
       }
     ]    
   }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities
@@ -5977,7 +6035,7 @@ example:
       {
         "id": "ffqfe21d-92e6-4487-a2e8-92e68d6892e6",  //update
         "content":"livechat",
-        "synonyms": ["LiveChat", "chat"]
+        "synonyms": ["Live Chat", "chat"]
       }
     ]    
   }
@@ -6000,7 +6058,7 @@ curl -H "Content-Type: application/json" -d '{
       {
         "id": "ffqfe21d-92e6-4487-a2e8-92e68d6892e6", 
         "content":"livechat",
-        "synonyms": ["LiveChat", "chat"]
+        "synonyms": ["Live Chat", "chat"]
       }
     ]    
   }' -X PUT https://domain.comm100.com/api/v3/chatbot/entities/r2wfe21d-92e6-4487-a2e8-92e68d6892e6
@@ -6022,7 +6080,7 @@ Response
       {
         "id": "ffqfe21d-92e6-4487-a2e8-92e68d6892e6",
         "content":"livechat",
-        "synonyms": ["LiveChat", "chat"]
+        "synonyms": ["Live Chat", "chat"]
       }
     ]    
   }
@@ -6180,7 +6238,7 @@ Response
     {
       "id": "ffqfe21d-92e6-4487-a2e8-92e68d6892e6",
       "content":"livechat",
-      "synonyms": ["LiveChat", "chat"]
+      "synonyms": ["Live Chat", "chat"]
     }
   ]      
 ``` 
@@ -6358,11 +6416,11 @@ Response
   | `isEnabled` | bool | | no | no | false | smartTriggers if is enabled. the default value is false.|
   | `conditionExpressionType` | string | | no | no | | the relationship between condition.  enum: `all`,`any`,`logicalExpression`|
   | `logicalExpression` | string | | no | no | | A formula to calculate exp:(1 or 2) and 3  |
-  | `conditions` |  [Condition](#condition-object)[] | yes | no | no | | Available only when conditions are included |
-  | `actions` | [Action](#action)[] | yes | no | no | | Available only when actions are included |
+  | `conditions` |  [Smart Trigger Condition](#smart-trigger-condition-object)[] |  | no | no | |  |
+  | `actions` | [Smart Trigger Action](#smart-trigger-action-object)[] |  | no | no | |  |
   | `order` | integer | | no | yes |  | must greater than or equal 0, the order of the smart trigger, ascending sort . |
 
- ### Condition Object
+ ### Smart Trigger Condition Object
   Condition is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
@@ -6373,7 +6431,7 @@ Response
   | `value` | string | no | yes | | a string of condition matching value |
   | `order` | integer | no | yes |  |must greater than or equal 0,the order of the condition, ascending sort  |
 
-###  Action
+###  Smart Trigger Action Object
   Action is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
@@ -6398,12 +6456,6 @@ Path parameters
   | Name  | Type | Required  | Description |     
   | - | - | - | - | 
   | `botId` | Guid | yes  |  the unique id of the bot |
-
-Query string
-
-  | Name  | Type | Required | Default | Description |     
-  | - | - | - | - | - |  
-  | `include` | string | no  |  | Available value: `conditions`, `actions` |
  
 #### Response    
 the response is: list of [Smart Trigger](#Smart-Trigger) Objects
@@ -6818,7 +6870,7 @@ Path parameters
   | `smartTriggerId` | Guid | yes  |  the unique id of the smartTrigger |
 
 #### Response    
-the response is: list of [Condition](#condition-object) Objects
+the response is: list of [Smart Trigger Condition](#smart-trigger-condition-object) Objects
 
 #### Example
 Using curl
@@ -6853,7 +6905,7 @@ Path parameters
   | `id` | Guid | yes  |  the unique id of the smartTriggerCondition |
 
 #### Response
-the response is: [Condition](#condition-object) Objects
+the response is: [Smart Trigger Condition](#smart-trigger-condition-object) Objects
 
 #### Example
 Using curl
@@ -6887,7 +6939,7 @@ Path parameters
 
 Request body
 
-The request body contains data with the [Condition](#condition-object) structure
+The request body contains data with the [Smart Trigger Condition](#smart-trigger-condition-object) structure
 
 example:
   ```json 
@@ -6900,7 +6952,7 @@ example:
 ```
 
 #### Response
-the response is: [Condition](#condition-object) Objects
+the response is: [Smart Trigger Condition](#smart-trigger-condition-object) Objects
 
 #### Example
 Using curl
@@ -6940,7 +6992,7 @@ Path parameters
 
 Request body
 
-The request body contains data with the [Condition](#condition-object) structure
+The request body contains data with the [Smart Trigger Condition](#smart-trigger-condition-object) structure
 
 example:
   ```json 
@@ -6954,7 +7006,7 @@ example:
 ```
 
 #### Response
-the response is: [Condition](#condition-object) Objects
+the response is: [Smart Trigger Condition](#smart-trigger-condition-object) Objects
 
 #### Example
 Using curl
@@ -7027,7 +7079,7 @@ Path parameters
   | `smartTriggerId` | Guid | yes  |  the unique id of the smartTrigger |
 
 #### Response  
-the response is: list of [Action](#action) Objects
+the response is: list of [Smart Trigger Action](#smart-trigger-action-object) Objects
 
 #### Example
 Using curl
@@ -7063,7 +7115,7 @@ Path parameters
   | `id` | Guid | yes  |  the unique id of the smartTriggerAction |
 
 #### Response  
-the response is: [Action](#action) Object
+the response is: [Smart Trigger Action](#smart-trigger-action-object) Object
 
 #### Example
 Using curl
@@ -7098,7 +7150,7 @@ Path parameters
 
 Request body 
 
-The request body contains data with the [Action](#action) structure
+The request body contains data with the [Smart Trigger Action](#smart-trigger-action-object) structure
 
 example:
   ```json 
@@ -7112,7 +7164,7 @@ example:
 ```
 
 #### Response
-the response is: [Action](#action) Objects
+the response is: [Smart Trigger Action](#smart-trigger-action-object) Objects
 
 #### Example
 Using curl
@@ -7156,7 +7208,7 @@ Path parameters
 
 Request body 
 
-The request body contains data with the [Action](#action) structure
+The request body contains data with the [Smart Trigger Action](#smart-trigger-action-object) structure
 
 example:
   ```json 
@@ -7171,7 +7223,7 @@ example:
 ```
 
 #### Response
-the response is: [Action](#action) Object
+the response is: [Smart Trigger Action](#smart-trigger-action-object) Object
 
 #### Example
 Using curl
@@ -7241,7 +7293,7 @@ HTTP/1.1 204 No Content
   | `id` | Guid  | | yes | N/A | | id of the Quick Reply |
   | `type` | string  | | no | yes | | enum value, `custom` and `canned` |
   | `name` | string  | | no | yes | | name of the Quick Reply |
-  | `items` | [QuickReplyItem](#QuickReplyItem-object)[] | yes | no | yes |  | Available only when items are included |
+  | `items` | [QuickReplyItem](#QuickReplyItem-object)[] | | no | yes |  | |
 
 ### QuickReplyItem Object
  QuickReplyItem is represented as simple flat JSON objects with the following keys:  
@@ -7273,7 +7325,6 @@ Query string
   | Name  | Type | Required | Default | Description |     
   | - | - | - | -  | - | 
   | `type` | string | no  | | Available value: `custom`, `canned` |
-  | `include` | string | no | |  Available value: `items` |
 
 
 #### Response
@@ -7831,6 +7882,8 @@ LearningQuestionsResponse is represented as simple flat JSON objects with the fo
   |Name| Type| Read-only For Put | Mandatory For Post | Default | Description     | 
   | - | - | :-: | :-: | :-: | - | 
   | `totalCount` | integer   | N/A | N/A | | total rows of Learning Questions |
+  | `previousPage` | string | N/A | N/A | Url of the previous page. |
+  | `nextPage` | string | N/A | N/A | Url of the next page. |
   | `list` | [LearningQuestion](#learningquestion)[] | N/A | N/A | | list of [LearningQuestion](#learningquestion) Object |
 
 ## Learning Question Endpoints
@@ -7874,6 +7927,8 @@ Response
 
   {
     "totalCount": 100,
+    "nextPage": "https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/learningQuestions?pageIndex=2&include=intent&timeFrom=2019-11-12 00:00&timeTo=2019-11-13 00:00",
+    "previousPage": null,
     "list": [
       {
         "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
@@ -8448,7 +8503,7 @@ Query string
   | `filterType` | string  | no  | | Enum: `bot`, `campaign`,`channelAccount` |
   | `filterValue` | string | no  |  | value of the filter |
   | `displayBy` | string | no  |  day | Enum: `day`, `week`, `month` |
-  | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
+  | `channel` | string | no  | All Channels | eg: `All Channels`, `Live Chat` ... |
 
 #### Response
 the response is: [ChatReport](#chatreport) Object
@@ -8500,7 +8555,7 @@ Query string
   | `filterType` | string  | no  | | Enum: `bot`, `campaign`,`channelAccount` |
   | `filterValue` | string | no  |  | value of the filter |
   | `displayBy` | string | no  |  day | Enum: `day`, `week`, `month` |
-  | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
+  | `channel` | string | no  | All Channels | eg: `All Channels`, `Live Chat` ... |
 
 
 #### Response
@@ -8702,7 +8757,7 @@ Query string
   | - | - | - | - | - | 
   | `timeFrom` | string | yes  |  | query start time  |
   | `timeTo` | string | yes  | | query end time  |  
-  | `type` | string | no  | LiveChat | eg: `Messaging`, `LiveChat` |
+  | `type` | string | no  | Live Chat | eg: `Messaging`, `Live Chat` |
 
 #### Response
 the response is: [SummaryReport](#summaryreport) Object
@@ -8740,7 +8795,7 @@ Query string
   | - | - | - | - | - | 
   | `timeFrom` | string | yes  |  | query start time  |
   | `timeTo` | string | yes  | | query end time  | 
-  | `type` | string | no  | LiveChat | eg: `Messaging`, `LiveChat` |
+  | `type` | string | no  | Live Chat | eg: `Messaging`, `Live Chat` |
 
 #### Response
 the response is: [DailyReport](#dailyreport) Object
@@ -8748,7 +8803,7 @@ the response is: [DailyReport](#dailyreport) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/dailyDetails?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&type=LiveChat
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/reports/dailyDetails?timeFrom=2019-11-30 00:00&timeTo=2019-12-06 00:00&type=Live Chat
 ```
 Response
 ```json
@@ -8787,7 +8842,7 @@ Query string
   | `timeTo` | string | yes  | |  query end time  | 
   | `filterType` | string  | yes  | bot | Enum: `bot`|
   | `filterValue` | string | yes  |  | id of the bot |
-  | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
+  | `channel` | string | no  | All Channels | eg: `All Channels`, `Live Chat` ... |
 
 
 #### Response
@@ -8835,7 +8890,7 @@ Query string
   | `filterType` | string  | yes  | bot | Enum: `bot`|
   | `filterValue` | string | yes  |  | id of the bot |
   | `displayBy` | string | no  |  day | Enum: `day`, `week`, `month` |
-  | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
+  | `channel` | string | no  | All Channels | eg: `All Channels`, `Live Chat` ... |
 
 
 #### Response
@@ -8893,7 +8948,7 @@ Query string
   | `filterValue` | string | no  | |  value of the filter |
   | `displayBy` | string | no  | day | Enum: `day`, `week`, `month` |  
   | `chatFilter` | string | no  | All Chats | `All Chats` or `Exclude Chats from Bot to Agents`, Only available when reportName is `botAgent` |
-  | `channel` | string | no  | All Channels | eg: `All Channels`, `LiveChat` ... |
+  | `channel` | string | no  | All Channels | eg: `All Channels`, `Live Chat` ... |
   | `reportName` | string | yes  | | Enum value: `chat`, `answer`, `highConfidenceAnswer`, `rating`, `botAgent`,  `intentUsageByCategory`, `intentUsageByTime` |
 
 
@@ -9423,6 +9478,8 @@ LearningQuestionsResponse is represented as simple flat JSON objects with the fo
   |Name| Type| Read-only For Put | Mandatory For Post | Default |Description     | 
   | - | - | :-: | :-: | :-: | - | 
   | `totalCount` | integer   | N/A | N/A | |total rows of Learning Questions |
+  | `previousPage` | string | N/A | N/A | Url of the previous page. |
+  | `nextPage` | string | N/A | N/A | Url of the next page. |
   | `list` | [AgentAssistLearningQuestion](#agent-assist-learning-question)[] | N/A | N/A | |list of [AgentAssistLearningQuestion](#agent-assist-learning-question) Object |
 
 ## Agent Assist  learning Question Endpoints
@@ -9457,6 +9514,8 @@ Response
 
   {
     "totalCount": 100,
+    "nextPage": "https://domain.comm100.com/api/v3/agentAssist/learningQuestions?pageIndex=2&timeFrom=2019-11-12 00:00&timeTo=2019-11-13 00:00",
+    "previousPage": null,
     "list": [
       {
         "id": "dawfe21d-92e6-4487-a2e8-92e68d6892e6",
