@@ -1,3564 +1,4948 @@
-# Global
+﻿# Global Restfull API
 
-| Object | Path |
-| - | - | 
-|[Site](#site)| `/api/v3/global/site`|
-|[Agent](#agents)| `/api/v3/global/agents`|
-|[Role](#roles)| `/api/v3/global/roles`|
-|[Agent Single Sign On](#agent-SSO-Settings)| `/api/v3/global/agentSignleSignOn`|
-|[Audit Log](#audit-logs)| `/api/v3/global/auditLogs`|
-|[Canned Message](#canned-Messages)| `/api/v3/global/cannedMessages`|
-|[Canned Message Category](#canned-Message-Categories)| `/api/v3/global/cannedMessageCategories`|
-|[Canned Message Use Record](#canned-Message-Use-Records)| `/api/v3/global/CannedmessageUseRecords`|
-|[Credit Card Masking](#credit-Card-Masking)| `/api/v3/global/creditCardMasking`|
-|[Department](#departments)| `/api/v3/global/departments`|
-|[Ip Restriction](#ip-restriction) | `/api/v3/global/ipRestriction` |
-|[Password Policy](#password-Policy)| `/api/v3/global/passwordPolicy`|
-|[Tag](#tag)| `/api/v3/global/tags`|
-|[Webhook](#webhooks)| `/api/v3/global/webhooks`|
+  | Change Version | API Version | Change notes | Change Date | Author |
+  | - | - | - | - | - |
+  | 1.0 | v3 |  | 2020-02-17 | Hardy, Michael|
 
-<div>
+# Summary
 
-## Site
+- Global
+  - [site](#site)
+  - [agent](#agent)
+    - [permission](#permission)
+    - [shift](#shift)
+  - [role](#role)
+    - [agent](#agent)
+    - [permission](#permission)
+  - [department](#department)
+    - [agent](#agent)
+    - [shift](#shift)
+  - [contact](#contact)
+    - [contact identity](#contact-identity)
+  - [visitor](#visitor)
+  - [public canned message category](#public-canned-message-category)
+  - [public canned message](#public-canned-message)
+  - [private canned message category](#private-canned-message-category)
+  - [private canned message](#private-canned-message)
+  - [agent away status](#agent-away-status)
+  - [whitelisted login IP range](#whitelisted-login-ip-range)
+  - [agent sso](#agent-sso)
+  - [visitor sso](#visitor-sso)
+  - [shift](#shift)
+  - [audit log](#audit-log)
 
-  You need `Manage Site Profile` permission to manage site.
-  
-- `GET /api/v3/global/site` -Get profile of a single site
-- `PUT /api/v3/global/site` -Update profile of a site
 
-<div>
+# Site
+  You need `Manage Site` permission to manage site
 
-### Model
+  + `GET /api/v3/globalSettings/site` - [Get profile of a site](#get-profile-of-a-site)
+  + `PUT /api/v3/globalSettings/site` - [Update profile of a site](#update-profile-of-a-site)
 
-#### Site Profile Json Format
 
-  Site profile is represented as simple flat JSON objects with the following keys:  
+## Site Related Object Json Format
 
-  | Name | Type | Description |
-  | - | - | - |
-  | `id` | integer | read-only, id of the site
-  | `siteName` | string | required, name of the site
-  | `firstName` | string | required, first name of the site
-  | `lastName` | string | required, last name of the site
-  | `mobileNumber` | string | optional, mobile number of the site
-  | `company` | string | required, company the site belongs to
-  | `website` | string | required, website of the site
-  | `phoneNumber` | string | optional, phone number of the site
-  | `title` | string | optional, title of the site
-  | `faxNumber` | string | optional, fax number of the site
-  | `mailAddress` | string | optional, mail address of the site
-  | `city` | string | optional, city which the site is in
-  | `stateOrProvince` | string | optional, state or province which the site is in
-  | `postalOrZipCode` | string | optional, postal or zip code of the site
-  | `country` | string | optional, country which the site's company belongs to
-  | `companySize` | string | optional, number of staff in the site's company, value should be `1-20`, `21-50`, `51-100`, `101-180`, `21-50`, `181-310`, `311-600`, `Above 600`
-  | `timeZone` | string | optional, time zone which the site's company belongs to
-  | `isAutoDetectDaylightSavingTime` | boolean | optional, whether auto detect daylight saving time or not
-  | `datetimeFormat` | string | optional, date/time format which the site will display
-  | `subdomain` | string | optional, subdomain of the site
+### Site Object
+  Each Comm100 account is treated as a Site and has a unique Site ID.
 
-</div>
-<div>
+ | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+ | - | - | :-: | :-: | :-: | :-: | - |
+ |`id` | integer  | | N/A | N/A |  |Site ID.|
+ |`dateTimeFormat` | string| | no | N/A  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
+ |`timeZone` | string| | no | N/A  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
+ |`company` | string | | no | N/A  | |Company name.|
+ |`companySize` | string| | no | N/A  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
+ |`website` | string  | | no | N/A  | |Company website. |
+ |`registeredEmail` | string  | | yes | N/A  | |Email used for site registration.|
+ |`phone` | string | | no | N/A  | |Company phone number.|
+ |`fax` | string | | no | N/A  | |Company fax number.|
+ |`mailingAddress` | string | | no | N/A  | |The mailing address of the company.|
+ |`city` | string  | | no | N/A  | |City where the company located.|
+ |`stateOrProvince` | string  | | no | N/A  | |State/Province where the company located.|
+ |`countryOrRegion` | string | | no | N/A  | |Country/Region where the company located.|
+ |`postalOrZipCode` | string | | no | N/A  | |Postal/Zip Code where the company located.|
+ |`firstName` | string  | | no | N/A  | |First Name of site registrant.|
+ |`lastName` | string  | | no | N/A  | |Last Name of site registrant.|
 
-### Endpoint
+## Site Endpoints
 
-#### Get the profile of a single site
+### Get profile of a site
+  `GET /api/v3/globalSettings/site`
 
-  `GET /api/v3/global/site`
+#### Parameters
+    No parameters
+#### Response
 
-- Parameters
-
-  No parameters
-
-- Response
-
-  [Site Profile](#Site-Profile-Json-Format)
+  the response is [Site](#site-object) Object, just include base informations.
 
 #### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"
-     https://hosted.comm100.com/api/v3/global/site
+Using curl
 ```
-
-  Sample response:
-
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/site
+```
+Response
 ```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "id": 6000000,
-    "siteName": "comm100",
-    "firstName": "test",
-    "lastName": "comm100",
-    "mobileNumber": "",
-    "company": "comm100",
-    "website": "www.comm100.com",
-    "phoneNumber": "123456",
-    "title": "",
-    "faxNumber": "",
-    "mailAddress": "",
-    "city": "",
-    "stateOrProvince": "",
-    "postalOrZipCode": "",
-    "country": "China",
-    "companySize": "101-180",
-    "timeZone": "71",
-    "isAutoDetectDaylightSavingTime": false,
-    "datetimeFormat": "MM/dd/yyyy HH:mm:ss",
-    "subdomain": "mysubdomain.comm100.io"
+    "id": 10000,
+    "dateTimeFormat":"yyyy-MM-dd hh:mm:ss",
+    "timeZone":"canadaCentralStandardTime",
+    "company":"BMW",
+    "companySize": "Above 600",
+    "website":"www.bmw.com",
+    "registeredEmail":"bmw@gmail.com",
+    "phone":"88654987",
+    "fax":"58469215",
+    "mailingAddress":"mail@bmw.com",
+    "city":"Berlin",
+    "stateOrProvince":"",
+    "countryOrRegion":"Germany",
+    "postalOrZipCode":"10115–14199",
+    "firstName":"Jasn",
+    "lastName":"Statham",
 }
 ```
 
-#### Update the profile of a site  
 
-  `PUT /api/v3/global/site`
+### Update profile of a site
+  `PUT /api/v3/globalSettings/site`
 
-- Request Parameters
+#### Parameters
 
-  [Site Profile](#Site-Profile-Json-Format)
+Request body
 
-- Response
+  The request body contains data with the [Site](#site-object) structure
 
-  [Site Profile](#Site-Profile-Json-Format)
+#### Response
+
+  The response is the [Site](#site-object) Object.
 
 #### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"sitename": 'sitename',"firstName": 'test',"lastName": 'comm100',"website": 'www.comm100.com',"company": 'comm100',"timezone": '71'}"    
-     https://hosted.comm100.com/api/v3/global/site
+Using curl
 ```
-
-  Sample response:
-
+curl -H "Content-Type: application/json" -d '{
+    "dateTimeFormat"："yyyy-MM-dd hh:mm:ss"，
+    "timeZone"："canadaCentralStandardTime"，
+    "company"："BMW"，
+    "companySize": "Above 600",
+    "website"："www.bwm.com"，
+    "registeredEmail"："bmw@gmail.com"，
+    "phone"："88654987"，
+    "fax"："58469215"，
+    "mailingAddress"："mail@bmw.com"，
+    "city"："Berlin"，
+    "stateOrProvince"：""，
+    "countryOrRegion"："Germany"，
+    "postalOrZipCode"："10115–14199"，
+    "firstName"："Jasn"，
+    "lastName"："Statham"，
+    ...,
+}' -X PUT https://domain.comm100.com/api/v3/globalSettings/site
+```
+Response
 ```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "id": 6000000,
-    "siteName": "sitename",
-    "firstName": "test",
-    "lastName": "comm100",
-    "mobileNumber": "",
-    "company": "comm100",
-    "website": "www.comm100.com",
-    "phoneNumber": "123456",
-    "title": "",
-    "faxNumber": "",
-    "mailAddress": "",
-    "city": "",
+    "id": 10000,
+    "dateTimeFormat": "yyyy-MM-dd hh:mm:ss",
+    "timeZone": "canadaCentralStandardTime",
+    "company": "BMW",
+    "companySize": "Above 600",
+    "website": "www.bwm.com",
+    "registeredEmail": "bmw@gmail.com",
+    "phone": "88654987",
+    "fax": "58469215",
+    "mailingAddress": "mail@bmw.com",
+    "city": "Berlin",
     "stateOrProvince": "",
-    "postalOrZipCode": "",
-    "country": "China",
-    "companySize": "101-180",
-    "timeZone": "71",
-    "isAutoDetectDaylightSavingTime": false,
-    "datetimeFormat": "MM/dd/yyyy HH:mm:ss",
-    "subdomain": "mysubdomain.comm100.io"
+    "countryOrRegion": "Germany",
+    "postalOrZipCode": "10115–14199",
+    "firstName": "Jasn",
+    "lastName": "Statham",
 }
 ```
 
-</div>
-</div>
 
-<div>
+# Agent
 
-## Agents
+You need `Manage Agent & Agent Roles` permission to manage agents.
 
-- You need `Manage Agent & Agent Roles` permission to manage agents.
-  - `GET /api/v3/global/agents` - Get a list of agents
-  - `GET /api/v3/global/agents/{id}` - Get a single agent
-  - `POST /api/v3/global/agents` - Create a new agent
-  - `PUT /api/v3/global/agents/{id}` - Update an agent  
-  - `DELETE /api/v3/global/agents/{id}` - Remove an agent
-  - `PUT /api/v3/global/agents/{id}/password` - Admin set an agent's password
-  - `PUT /api/v3/global/agents/{id}/unlock` - unlock the agent
-  - `GET /api/v3/global/agents/{id}/permissions` - Get list of an agent's permissions.
-  - `PUT /api/v3/global/agents/{id}/permissions` - Update permissions for an agent.
-  - `GET /api/v3/global/agents/{id}/effectivePermissions` -Get a list of agent's effective permissions, including the permissions of the agent and the permissions of the roles which the agent belongs to.
+  + `GET /api/v3/globalSettings/agents` - [Get a list of agents in site](#get-a-list-of-agents-in-site)
+  + `GET /api/v3/globalSettings/agents/{id}` - [Get an agent by id](#get-an-agent-by-id)
+  + `GET /api/v3/globalSettings/roles/{roleId}/agents` - [Get a list of agents by role id](#get-a-list-of-agents-by-role-id)
+  + `GET /api/v3/globalSettings/departments/{departmentId}/agents` - [Get a list of agents by department id](#get-a-list-of-agents-by-department-id)
+  + `GET /api/v3/globalSettings/agents/me` - [Get current agent](#get-current-agent)
+  + `POST /api/v3/globalSettings/agents` - [Create a new agent](#create-a-new-agent)
+  + `POST /api/v3/globalSettings/agents/{id}:unlock` - [Unlock the agent](#unlock-the-agent)
+  + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#admin-set-an-agents-password)
+  + `POST /api/v3/globalSettings/agents/me:changePassword` - [Change own password](#change-own-password)
+  + `PUT /api/v3/globalSettings/agents/{id}` - [Update an agent](#update-an-agent)
+  + `PUT /api/v3/globalSettings/agents/me` - [Update current agent](#update-current-agent)
+  + `DELETE /api/v3/globalSettings/agents/{id}` - [Delete an agent](#delete-an-agent)
 
-- You can manage your own profile
-  - `GET /api/v3/global/agents/me` - Get current agent
-  - `PUT /api/v3/global/agents/me` - Update own profile
-  - `PUT /api/v3/global/agents/me/password` - Change own password
+## Agent Related Object Json Format
 
-<div>
+### Agent Object
+  This is the entity details of the Agent.
 
-### Model
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | integer  | | N/A | N/A |  |  |
+  |`email` | string| | yes | yes | | Agent login email address, can not change |
+  |`displayName` | string  | | no | no | | Different Agents can have the same Display Name. If not offered, will set by first name.|
+  |`firstName` | string  | | no | yes | | The first name of the agent|
+  |`lastName` | string  | | no | yes | | The last name of agent|
+  |`isAdmin` | bool| | no | no | false | Whether the agent is an administrator or not.|
+  |`isActive` | bool| | no | no | true | Whether the agent is active or not.|
+  |`phone` | string | | no | no | | Mobile phone number of the agent.|
+  |`title` | string  | | no | no | | The title of the agent.|
+  |`bio` | string  | | no | no | | The bio info of the agent.|
+  |`timeZone` | string| | no | no |  | Time zone of agent. value include all [Time Zone Option](#time-zone-options) Ids, if not offered, will set by site time zone. |
+  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
+  |`createdTime` | DateTime | | N/A | N/A | UTC | The create time of the agent.|
+  |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
+  |`lockedTime` | DateTime | | N/A | N/A | UTC | When the agent is locked.|
+  |`lastLoginTime` | DateTime | | N/A | N/A | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
+  |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
+  |`permissionIds` | integer[]  |  | no | no | [] | Agent permission settings.|
+  |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
+  |`roleIds` | Guid[]  |  | no | no | NULL | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
+  |`roles` | [Role](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
+  |`departmentIds` | Guid[]  |  | no | no | NULL | The list of the department ids which the agent belongs to.|
+  |`departments` | [Department](#department)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
+  |`shifts` | [Shift](#shift)[]  | yes | N/A | N/A  | | The list of shifts which the agent belongs to.|
 
-#### Agent Json Format
 
-  Agent is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Description |
-  | - | - | - |
-  | `id` | string | read-only, id of the agent.
-  | `email` | string | required, email of the agent.
-  | `displayName` | string | required, display name of the agent.
-  | `firstName` | string | required, first name of the agent
-  | `lastName` | string | required, last name of the agent
-  | `title` | string | optional, title of the agent
-  | `bio` | string | optional, bio of the agent
-  | `mobilePhone` | string | optional, mobile phone number of the agent
-  | `timeZone` | string | optional, time zone of the agent
-  | `dateTimeFormat` | string | optional, date/time format selected by an agent to display on the site.
-  | `roles` | array  | optional, the list of roles to which an agent belongs to.
-  | `isAdmin` | boolean | optional, whether the agent is an administrator or not.
-  | `isActive` | boolean | optional, whether the agent is active or not.
-  | `isLocked` | boolean | read-only, whether the agent is locked or not.
-  | `ldapUserName` | string | optional, ldap name of the agent.
+### Agent List Response Object
 
-</div>
-<div>
+  Agent List Object for agent list Response, include count and page information.
 
-### Endpoint
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`count` | integer  | N/A | yes | no | | The total count of the query  |
+  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
+  |`agents`|   [Agent](#agent-object)[]| N/A | yes| no | | A list of agents. |
 
-#### Get a list of agents
 
-  `GET /api/v3/global/agents`
 
-- Query Parameters
+## Agent Endpoints
 
-    Optional:
-  - `pageIndex`: integer, the page index of a query.
-  - `pageSize`: integer, the page size of a query.
+### Get a list of agents in site
+  `GET/api/v3/globalSettings/agents`
 
-- Response
-  - `total`: integer, total count of the list.
-  - `previousPage`: string, url of the previous page.
-  - `nextPage`: string, url of the next page.
-  - `agents`: [Agent](#Agent-Json-Format)[].
+#### Parameters
+   Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include`|string|no||Available value:`department`,`role`,`permission`,`shift`  |
+  |`keywords` | string | no  |  | Filter by keywords in agent display name, email address. |
+  |`pageIndex`|integer|no| 1 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
+
+
+#### Response
+
+  The response is a [Agent List Response ](#agent-list-response-object) Object
 
 #### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/agents
+Using curl
 ```
-
-  Sample response:
-
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents
+```
+Response
 ```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "total": 1,
-    "previousPage": "",
-    "nextPage": "",
-    "agents": [
-        {
-            "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
-            "email": "test@comm100.com",
-            "displayName": "test comm100",
-            "firstName": "test",
-            "lastName": "comm100",
-            "title": "",
-            "bio": "",
-            "mobilePhone": "",
-            "timeZone": "-1",
-            "dateTimeFormat": "MM/dd/yyyy HH:mm:ss",
-            "roles": [],
-            "isAdmin": true,
-            "isActive": true,
-            "isLocked": false,
-            "ldapUserName": ""
-        }
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/agents?pageIndex=2",
+    "previousPage": null,
+    "agents": [{
+        "id": 68,
+        "email": "Tom@gmail.com",
+        "displayName":"Tom",
+        "firstName":"Tom",
+        "lastName":"Green",
+        "title":"CEO",
+        ...
+    }
+    ...
     ]
 }
 ```
 
-#### Get a single agent
+### Get an agent by id
++ `GET /api/v3/globalSettings/agents/{id}`
 
-  `GET /api/v3/global/agents/{id}`
+#### Parameters
 
-- Path Parameters
-  
-  - id, string, id of the agent.
+Path parameters
 
-- Response
-  
-  [Agent](#Agent-Json-Format)
+| Name  | Type | Required  | Description |
+| - | - | - | - |
+|`id` | integer | yes  |  the id of the agent |
+
+Query string
+
+ | Name  | Type | Required  | Default | Description |
+ | - | - | - | - | - |
+ |`include`|string|no||Available value:`department`,`role`,`permission`,`shift` |
+
+#### Response
+
+The response is a [Agent](#agent-object) Object
 
 #### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/agents/9F4709DB-C391-4896-94BA-3A17BE12D9E2
+Using curl
 ```
-
-  Sample response:
-
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/68?include=role,department
+```
+Response
 ```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
-    "email": "test@comm100.com",
-    "displayName": "test comm100",
-    "firstName": "test",
-    "lastName": "comm100",
-    "title": "",
-    "bio": "",
-    "mobilePhone": "",
-    "timeZone": "-1",
-    "dateTimeFormat": "MM/dd/yyyy HH:mm:ss",
-    "roles": [],
-    "isAdmin": true,
-    "isActive": true,
-    "isLocked": false,
-    "ldapUserName": ""
+    "id": 68,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    ...
 }
 ```
 
-#### Create a new agent
-  
-  `POST /api/v3/global/agents`
+### Get a list of agents by role id
+  `GET /api/v3/globalSettings/roles/{roleId}/agents`
 
-- Request Parameters
+#### Parameters
 
-  [Agent](#Agent-Json-Format)
+Path parameters
 
-- Response
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`roleId` | Guid | yes  |  The id of the role |
 
-  [Agent](#Agent-Json-Format)
+   Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include`|string|no||Available value:`department`,`role`,`permission`,`shift` |
+  |`pageIndex`|integer|no| 1 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
+
+#### Response
+
+The response is a [Agent List Response](#agent-list-response-object) Object
 
 #### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"email": 'test@test.com',"displayname": 'testname',"firstname": 'first', 
-     "lastname": 'lastname',"title": 'title',"password": '123456',"timezone": '31',"mobilephone": '12345678911'}"
-     https://hosted.comm100.com/api/v3/global/agents
+Using curl
 ```
-
-  Sample response:
-
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents
+```
+Response
 ```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "id": "2B356016-2B44-49C0-B4E6-05902E55DAFD",
-    "email": "test@test.com",
-    "displayName": "testname",
-    "firstName": "first",
-    "lastName": "lastname",
-    "title": "title",
-    "bio": "",
-    "mobilePhone": "12345678911",
-    "timeZone": "31",
-    "dateTimeFormat": "MM/dd/yyyy HH:mm:ss",
-    "roles": [],
-    "isAdmin": false,
-    "isActive": true,
-    "isLocked": false,
-    "ldapUserName": ""
-}
-```
-
-#### Update an agent
-
-  `PUT /api/v3/global/agents/{id}`
-
-- Path Parameters
-  
-  - id, string, id of the agent.
-
-- Request Parameters
-
-  [Agent](#Agent-Json-Format)
-
-- Response
-  
-  [Agent](#Agent-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-      -x PUT -H "Content-Type: application/json"  
-      -d "{"email": 'test1@test.com',"displayname": 'testname',"firstname": 'first',"lastname": 'lastname', 
-     "title": 'title',"password": '123456',"timezone": '31',"mobilephone": '12345678911'}"
-     https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD
-```
-
-  Sample response:
-
-```json
-{
-    "id": "2B356016-2B44-49C0-B4E6-05902E55DAFD",
-    "email": "test1@test.com",
-    "displayName": "testname",
-    "firstName": "first",
-    "lastName": "lastname",
-    "title": "title",
-    "bio": "",
-    "mobilePhone": "12345678911",
-    "timeZone": "31",
-    "dateTimeFormat": "MM/dd/yyyy HH:mm:ss",
-    "roles": [ ],
-    "isAdmin": true,
-    "isActive": true,
-    "isLocked": false,
-    "ldapUserName": ""
-}
-```
-
-#### Remove an agent
-
-  `DELETE /api/v3/global/agents/{id}`
-
-- Path Parameters
-  
-  - id, string, id of the agent.
-
-- Response
-
-  Status: 200 OK
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x DELETE https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD
-```
-
-  Sample response:
-
-```json
-Status: 200 OK
-```
-
-#### Admin sets an agent's password
-
-  `PUT /api/v3/global/agents/{id}/password`
-
-- Path Parameters
-  
-  - id, string, id of the agent.
-
-- Request Parameters
-  
-  - `password`: string, the new password of the agent
-
-- Response
-
-  Status: 200 OK
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT  
-     -d "{"password":"234567"}"  https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/password
-```
-
-  Sample response:
-
-```json
-Status: 200 OK
-```
-
-#### Unlock an Agent
-
-  `PUT /api/v3/global/agents/{id}/unlock`
-
-- Path Parameters
-  
-  - id, string, id of the agent.
-
-- Response
-  
-  Status: 200 OK  
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT
-     -d ""  https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/unlock
-```
-
-  Sample response:
-
-```json
-Status: 200 OK
-```
-
-#### Get an agent's permissions
-
-  `GET /api/v3/global/agents/{id}/permissions`
-
-- Path Parameters
-  
-  - id, string, id of the agent.
-
-- Response
-
-  A map of permission groups by Products
-
-```json
-  {
-    "liveChat": {
-      "acceptChats": true,
-      "viewAllHistory": true,
-      "viewHistoryInMyDepartment": false,
-      "viewMyOwnAllTranscripts": false,
-      "deleteTranscripts": false,
-      "manageCampaigns": false,
-      "manageSettings": false,
-      "manageCustomVariables": false,
-      "manageSecureForm": false,
-      "manageBan": false,
-      "viewReports": false,
-      "refuseChats": false,
-      "inviteVisitorsToChat": false,
-      "joinChats": true,
-      "transferChats": true,
-      "monitorAllChats": false,
-      "monitorChatsInMyDepartment": false,
-      "captureVisitor": false,
-      "manageCustomMetrics": false,
-      "viewAllInSiteVisitors": false,
-    },    
-    "messagingConversation": {
-      "manageAssignedToMeConversations": true,
-      "viewConversationsWithNoDepartment": false, 
-      "manageConversationsWithNoDepartment": false,
-      "viewConversationsInMyDepartments": false, 
-      "manageConversationsInMyDepartments": false,
-      "manageBlockedSenders": false,
-      "manageJunckMessages": false, 
-      "viewAllConversations": false, 
-      "manageAllConversions": false, 
-      "permanentlyDeleteConversations": false,
-      "manageAllViews": false,
-      "manageChannels": false,
-      "manageSettings": false,
-      "viewReports": false,
-    },
-    "ai": {
-      "manageAndTakeOverBotChats": false, 
-      "manageBot": false, 
-      "manageBotContent": false, 
-    },
-    "knowledgeBase": {
-      "manageArticles": false,
-      "manageCustomPages": false,
-      "manageDesign": false, 
-      "manageImages": false,
-      "manageMultipleKnowledageBases": false, 
-    },
-    "global": {
-      "manageAgentAndRoles": true,
-      "manageDepartments": false,
-      "manageCustomAwayStatus": false, 
-      "manageMyProfile": false,
-      "manageBillingInfo": false,
-      "manageProducts": false,
-      "viewBalanceHistory": false,
-      "viewAgentReports": false,
-      "manageSiteProfile": false,
-      "viewAuditLogs": false,
-      "manageSecurity": false,  
-      "manageCreditCardMasking": false,
-      "managePublicCannedMessages": false,
-      "managePrivateCannedMessages": false,
-      "manageIntegration": false,
-      "viewAllAgents": false,
-      "chatWithAgents": false,
-      "setOtherAgentToAway": false,
-      "logOtherAgentOff": false,
-      "viewAgentChatsInMyDepartment": false,
-      "viewAllAgentChats": false,
-      "manageTags": false,
-      "viewContacts": false,
-      "manageContacts": false,
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents?pageIndex=2",
+    "previousPage": null,
+    "agents": [{
+        "id": 68,
+        "email": "Tom@gmail.com",
+        "displayName":"Tom",
+        "firstName":"Tom",
+        "lastName":"Green",
+        "title":"CEO",
+        ...
     }
+    ...
+    ]
+}
+```
+
+
+### Get a list of agents by department id
+  `GET /api/v3/globalSettings/departments/{departmentId}/agents`
+
+#### Parameters
+   Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`departmentId` | Guid | yes  |  The id of the department |
+
+   Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include`| string | no ||Available value:`department`,`role`,`permission`,`shift` |
+  |`pageIndex`| integer | no | 1 |The page index of the query. |
+  |`pageSize`| integer | no | 10 |The page size of the query. |
+
+
+#### Response
+
+The response is a [Agent List Response](#agent-list-response-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents?pageIndex=2",
+    "previousPage": null,
+    "agents": [{
+        "id": 68,
+        "email": "Tom@gmail.com",
+        "displayName":"Tom",
+        "firstName":"Tom",
+        "lastName":"Green",
+        "title":"CEO",
+        ...
+    }
+    ...
+    ]
+}
+```
+
+
+### Get current agent
++ `GET /api/v3/globalSettings/agents/me`
+
+#### Parameters
+  Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include`|string|no||Available value:`department`,`role`,`permission`,`shift` |
+
+#### Response
+
+The response is a [Agent](#agent-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/agents/me?include=role,department
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+    "id": 68,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    ...
+}
+```
+
+### Create a new agent
+  `POST /api/v3/globalSettings/agents`
+
+####  Parameters
+
+Request body
+
+  The request body contains data with the [Agent](#agent-object) structure
+
+example:
+```json
+{
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+}
+```
+
+#### Response
+The response is:
+  [Agent](#agent-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+} ' -X POST https://domain.comm100.com/api/v3/globalSettings/agents
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
+{
+    "id": 68,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+}
+```
+
+
+### unlock the agent
+  `PUT /api/v3/globalSettings/agents/{id}:unlock`
+
+####  Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  The id of the agent |
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68:unlock
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+### Admin set an agent's password
+  `PUT /api/v3/globalSettings/agents/{id}:changePassword`
+
+####  Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  The id of the agent |
+
+Request body
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | - | - | - |
+  | `currentPassword` | string | yes  |  | The current password of agent |
+  | `newPassword` | string | yes  |  | The new password of agent |
+
+  example:
+  ```json
+  {
+    "currentPassword": "Aa2541554",
+    "password": "Aa5847lkdsc&d",
+  }
+  ```
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "currentPassword": "Aa2541554",
+    "password": "Aa5847lkdsc&d",
+}' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/68:changePassword
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+### Change own password
+  `PUT /api/v3/globalSettings/agents/me:changePassword`
+
+####  Parameters
+
+Request body
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | - | - | - |
+  | `currentPassword` | string | yes  |  | The current password of agent |
+  | `newPassword` | string | yes  |  | The new password of agent |
+
+  example:
+  ```json
+  {
+    "currentPassword": "Aa2541554",
+    "password": "Aa5847lkdsc&d",
+  }
+  ```
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d ' {
+    "currentPassword": "Aa2541554",
+    "password": "Aa5847lkdsc&d",
+  }' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/me:changePassword
+```
+
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+
+### Update an agent
+  `PUT /api/v3/globalSettings/agents/{id}`
+
+####  Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  The id of the agent |
+
+Request body
+
+  The request body contains data with the [Agent](#agent-object) structure
+
+  example:
+```json
+{
+    "id": 68,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+}
+```
+
+#### Response
+The response is:
+  [Agent](#agent-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
+{
+    "id": 68,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+}
+```
+
+### Update current agent
+
+  `PUT /api/v3/globalSettings/agents/me`
+
+####  Parameters
+
+Request body
+
+  The request body contains data with the [Agent](#agent-object) structure
+
+example:
+```json
+{
+    "id": 68,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+}
+```
+
+#### Response
+The response is: [Agent](#agent-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "id": 68,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/me
+```
+
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/agents/me
+{
+    "id": 68,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    "roleIds": [
+      "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      ...,
+    ]
+    ...,
+}
+```
+
+
+### Delete an agent
+  `DELETE /api/v3/globalSettings/agents/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  the agent id |
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/agents/68
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+
+
+# Role
+You need `Manage Agent & Agent Roles` permission to manage roles.
+
+  + `GET /api/v3/globalSettings/roles` - [Get a list of roles in site](#get-a-list-of-roles-in-site)
+  + `GET /api/v3/globalSettings/roles/{id}` - [Get a role by id](#get-a-role-by-id)
+  + `POST /api/v3/globalSettings/roles` - [Create a new role](#create-a-new-role)
+  + `PUT /api/v3/globalSettings/roles/{id}` - [Update a role](#update-a-role)
+  + `DELETE /api/v3/globalSettings/roles/{id}` - [Delete a role](#delete-a-role)
+
+## Role Related Object Json Format
+
+### Role Object
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | Guid| | N/A | N/A | |  |
+  |`name` | string| | no | yes | | Name.|
+  |`description` | string| | no | no | | Description of this role.|
+  |`type` | string | | yes | no | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
+  |`agentIds` | int[] | | no | no | [] | The selected agents for this role. |
+  |`agents` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
+  |`permissionIds` | int[] | | no | no |  | Permissions assigned to this role.|
+  |`permissions` | [Permission](#permission)[] | yes | N/A | N/A | | Permissions assigned to this role.|
+
+
+## Role Endpoints
+
+### Get a list of roles in site
+  `GET GET /api/v3/globalSettings/roles`
+
+#### Parameters
+  Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include`|string|no||Available value:`agent`,`permission` |
+
+#### Response
+
+The response is a list of [Role](#role) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles?include=permission
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[{
+  "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "markting",
+  "description": "yyyy-MM-dd hh:mm:ss",
+  "type": "custom",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+  "permissionIds" :
+    [
+      201,
+      205,
+      ...,
+    ],
+    "permission" :[
+      {
+        "name": "Accept Chats",
+        "description": "Accept Chats",
+        "category": "Live Chat",
+      },
+      ...,
+    ]
+},
+...,
+]
+```
+
+### Get a role by id
+
+  `GET /api/v3/globalSettings/roles/{id}`
+
+
+#### Parameters
+  Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  The id of the role |
+
+  Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include`|string|no|| Available value:`agent`,`permission` |
+
+#### Response
+
+The response is a [Role](#role) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "markting",
+  "description": "yyyy-MM-dd hh:mm:ss",
+  "type": "custom",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+  "permissionIds" :
+    [
+      201,
+      205,
+      ...,
+    ],
+}
+```
+
+
+### Create a new role
+
+  `POST /api/v3/globalSettings/roles`
+
+####  Parameters
+
+Request body
+
+  The request body contains data with the [Role](#role-object) structure
+
+  example:
+```json
+ {
+      "Name": "markting",
+      "Description": "yyyy-MM-dd hh:mm:ss",
+      "Type": "custom",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+      "permissionIds" :
+        [
+         201,
+         205,
+         ...,
+        ],
+    }
+```
+
+#### Response
+The response is:
+   [Role](#role-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d ' {
+      "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "Name": "markting",
+      "Description": "yyyy-MM-dd hh:mm:ss",
+      "Type": "custom",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+      "permissionIds" :
+        [
+         201,
+         205,
+         ...,
+        ],
+        ...,
+    },
+    }' -X POST https://domain.comm100.com/api/v3/globalSettings/roles
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+ {
+      "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "name": "markting",
+      "description": "yyyy-MM-dd hh:mm:ss",
+      "type": "custom",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+      "permissionIds" :
+        [
+         201,
+         205,
+         ...,
+        ],
+    }
+```
+
+
+### Update a role
+  `PUT /api/v3/globalSettings/roles/{id}`
+
+####  Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  The id of the role |
+
+Request body
+
+  The request body contains data with the  [Role](#role-object) structure
+
+  example:
+```json
+ {
+      "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+      "name": "markting",
+      "description": "yyyy-MM-dd hh:mm:ss",
+      "type": "custom",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+      "permissionIds" :
+        [
+         201,
+         205,
+         ...,
+        ],
+    }
+```
+
+#### Response
+The response is:
+  [Role](#role-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d ' {
+      "name": "markting",
+      "description": "yyyy-MM-dd hh:mm:ss",
+      "type": "custom",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+        "permissionIds" :
+        [
+         201,
+         205,
+         ...,
+        ],
+    },
+    } ' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+{
+  "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "name": "markting",
+  "description": "yyyy-MM-dd hh:mm:ss",
+  "type": "custom",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+  "permissionIds" :
+    [
+      201,
+      205,
+      ...,
+    ],
+}
+```
+
+### Delete a role
+  `DELETE /api/v3/globalSettings/roles/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  The role id |
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+
+# Department
+
+You need `Manage departments` permission to manage departments.
+
+  + `GET /api/v3/globalSettings/departments` - [Get a list of departments in site](#get-all-departments)
+  + `GET /api/v3/globalSettings/departments/{id}` - [Get a department by id](#get-a-department)
+  + `POST /api/v3/globalSettings/departments` - [Create a new department](#create-a-new-department)
+  + `PUT /api/v3/globalSettings/departments/{id}` - [Update a department](#update-a-department)
+  + `DELETE /api/v3/globalSettings/departments/{id}` - [Delete a department](#delete-a-department)
+
+
+## Department Related Object Json Format
+
+### Department Object
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | Guid| | N/A | N/A | |  |
+  |`name` | string | | no | yes | |  |
+  |`description` | string | | no | no | |  |
+  |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
+  |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the 'Assigned Department' field. Default: true.|
+  |`offlineMessageMailTo` | string | | no | no | allAgentsInDepartment | The value options: All agents in the department, The email address(es).  |
+  |`offlineMessageEmailAddresses` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
+  |`agentIds` | int[] | | no | no | [] | The selected agents for this department.|
+  |`agents` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
+  |`shifts` | [Shift](#shift)[]| yes | N/A | N/A |  |  |
+
+## Department Endpoints
+
+### get all departments
+  `GET /api/v3/globalSettings/departments`
+
+#### Parameters
+  Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include`|string|no||Available value:`agent`,`shift` |
+
+#### Response
+
+  The response is a list of [Department](#department-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+[{
+  "name": "markting",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+},
+...,
+]
+```
+
+### get a department
+  `GET /api/v3/globalSettings/departments/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  The id of the department |
+
+Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include`|string|no||Available value:`agent`,`shift` |
+
+  #### Response
+
+  The response is a [Department](#department-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/4487fc9d-92e6-4487-a2e8-92e68d68927777
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "name": "markting",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+}
+```
+
+
+### Create a new department
+  `POST /api/v3/globalSettings/departments`
+
+####  Parameters
+
+Request body
+
+  The request body contains data with the [Department](#department-object) structure
+
+  example:
+```json
+ {
+      "name": "markting",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+    }
+```
+
+#### Response
+The response is:
+    [Department](#department-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+      "name": "markting",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+    }' -X POST https://domain.comm100.com/api/v3/globalSettings/roles
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/departments
+{
+      "name": "markting",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+    }
+```
+
+
+
+### update a department
+  `PUT /api/v3/globalSettings/departments/{id}`
+
+####  Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  The id of the department |
+
+Request body
+
+  The request body contains data with the  [Department](#department-object) structure
+
+  example:
+```json
+{
+      "name": "markting",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+    }
+```
+
+#### Response
+The response is:
+   [Department](#department-object)  Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "markting",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+}' -X PUT https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+{
+      "name": "markting",
+      "description": "markting departments",
+      "isAvailableInChat": "yes",
+      "isAvailableInTicketingAndMessaging": "yes",
+      "offlineMessageMailTo": "All agents in the department",
+      "offlineMessageEmailAddresses": "",
+      "agentIds":  [
+        68,
+        ...,
+      ],
+    }
+```
+
+### Delete a department
+  `DELETE /api/v3/globalSettings/departments/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  the department id |
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/departments/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+
+# Permission
+
+  Permission is hard-coded.
+
+  + `GET /api/v3/globalSettings/permissions` - [Get all permissions](#get-all-permissions)
+  + `GET /api/v3/globalSettings/roles/{roleId}/permissions` - [Get role permissions](#get-role-permissions)
+  + `GET /api/v3/globalSettings/agents/{agentId}/permissions` - [Get agent permissions](#get-agent-permissions)
+  + `GET /api/v3/globalSettings/agents/{agentId}/permissions:effective` - [Get a list of agent's effective permissions](#get-agent-effective-permissions)
+  + `PUT /api/v3/globalSettings/roles/{roleId}/permissions` - [Update role permissions](#update-role-permissions)
+  + `PUT /api/v3/globalSettings/agents/{agentId}/permissions` - [Update agent permissions](#update-agent-permissions)
+
+
+## Permission Related Object Json Format
+
+### Permission Object
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | long | | N/A | N/A |  |  |
+  |`name` | string| | yes | no | |  |
+  |`description` | string| | yes | no | |  |
+  |`category` | string | | yes | no | |The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase|
+
+## Permission Endpoints
+
+### Get all permission
+  `GET /api/v3/globalSettings/permissions`
+
+#### Parameters
+    No parameters
+
+#### Response
+
+  The response is a list of [Permission](#permission) Objects
+
+#### Example
+  Using curl
+  ```
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/permissions
+  ```
+  Response
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json[
+  {
+    "id": 201,
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
+  ]
+  ```
+
+
+
+### Get role permissions
+  `GET /api/v3/globalSettings/roles/{roleId}/permissions`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`roleId` | Guid | yes  |  The id of the role |
+
+#### Response
+
+The response is a [Permission](#permission) Object
+
+
+#### Example
+  Using curl
+  ```
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
+  ```
+  Response
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json[
+  {
+    "id": 201,
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
+  ]
+  ```
+
+
+### Get agent permissions
+  `GET /api/v3/globalSettings/agents/{agentId}/permissions`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`agentId` | integer | yes  |  The id of the agent |
+
+  #### Response
+
+  The response is a list of [Permission](#permission) Objects
+
+
+  #### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json[
+{
+  "id": 201,
+  "name": "Accept Chats",
+  "description": "Accept Chats",
+  "category": "Live Chat",
+},
+...,
+]
+```
+
+### Get agent effective permissions
+
+  `GET /api/v3/globalSettings/agents/{agentId}/permissions:effective`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`agentId` | integer | yes  |  The id of the agent |
+
+  #### Response
+
+  The response is a list of [Permission](#permission) Objects
+
+
+  #### Example
+  Using curl
+  ```
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions:effective
+  ```
+  Response
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json[
+  {
+    "id": 201,
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
+  ]
+  ```
+
+### update role permissions
+
+ `PUT /api/v3/globalSettings/roles/{roleId}/permissions`
+
+####  Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`roleId` | Guid | yes  |  The id of the role |
+
+Request body
+
+  The request body contains data with the  [Permission](#permission-object) Id list
+
+  example:
+```json
+[
+  201,
+  205,
+  ...,
+]
+```
+
+#### Response
+the response is:
+role [Permission](#permission-object) Object list
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '[
+  201,
+  205,
+  ...,
+]' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
+[{
+      "id": 201,
+      "name": "Accept Chats",
+      "description": "Accept Chats",
+      "category": "Live Chat",
+    },
+    ...,
+]
+```
+
+### update agent permissions
+`PUT /api/v3/globalSettings/agents/{agentId}/permissions`
+
+####  Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`agentId` | integer | yes  |  The id of the agent |
+
+Request body
+
+  The request body contains data with the  [Permission](#permission-object) Id list
+
+  example:
+```json
+[
+  201,
+  205,
+  ...,
+]
+```
+
+#### Response
+The response is:
+   agent [Permission](#permission-object) Object list
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '[
+  201,
+  205,
+  ...,
+]' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
+[{
+      "id": 201,
+      "name": "Accept Chats",
+      "description": "Accept Chats",
+      "category": "Live Chat",
+    },
+    ...,
+]
+```
+
+
+
+# Shift
+
+- `GET /api/v3/globalSettings/shifts` - [Get all shifts in site](#get-all-shifts-in-site)
+- `GET /api/v3/globalSettings/departments/{departmentId}/shifts` - [Get all shifts by department id](#get-all-shifts-by-department-id)
+- `GET /api/v3/globalSettings/agents/{agentId}/shifts` - [Get all shifts by agent id](#get-all-shifts-by-agent-id)
+- `GET /api/v3/globalSettings/shifts/{id}` - [Get a shift by id](#get-a-shift-by-id)
+- `POST /api/v3/globalSettings/shifts` - [create a new shift](#create-a-new-shift)
+- `PUT /api/v3/globalSettings/shifts/{id}` - [update a shift](#update-a-shift)
+- `DELETE /api/v3/globalSettings/shifts/{id}` - [delete a shift](#delete-a-shift)
+
+## Related Object Json Format
+
+### Shift Object
+
+  Shift Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  |`id` | Guid | | yes | no | | Id of the current item.  |
+  | `name` | string  | | no | yes | | Name of the shift. |
+  | `timeZone` | string  | | no | no | | Time zone of shift. value include all [Time Zone Option](#time-zone-options) Ids. |
+  | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
+  |`agentIds` | int[] | | yes | no | | |
+  |`departmentIds` | Guid[] | | yes | no | | |
+  | `agents` | [Agent](#Agent-Object)[] | yes | N/A | N/A | | |
+  | `departments` | [Department](#Department-Object)[] | yes | N/A | N/A | | |
+  | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
+
+### Holiday Object
+
+  Holiday Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `name` | string  | no | yes | | The name of holiday. |
+  | `date` | DateTime  | no | yes | | The date of the holiday. |
+
+
+### Working Hours Object
+
+  Working Hours Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `dayOfWeek` | string  | no | yes | | Including `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`. |
+  | `startTime` | time  | no | yes | | |
+  | `endTime` | time  | no | yes | | |
+  | `awayStatusId` | Guid | no | no | | |
+
+## Shift Endpoints
+
+### Get all Shifts in site
+
+  `GET /api/v3/globalSettings/shifts`
+
+#### Parameters
+
+Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `department`, `agent` |
+
+#### Response
+
+the response is: list of [Shift](#shift-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/shifts?include=department
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+        "name": "Shifts",
+        "timeZone": "(GMT) Coordinated Universal Time",
+        "holidays": [{
+          "name": "summary",
+          "date": "2019-11-11"
+        },
+        ...
+        ],
+        "agentIds": [68],
+        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+        "departments": [{// include department
+          "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+          "name": "departments",
+          "siteId": "FEF12049-BF08-2CD4-C405-A5FC8AE75D0F",
+          "description": "departments",
+          "isAvailableInChat": false,
+          "isAvailableInTicketingAndMessaging": false,
+          "offlineMessageMailTo": "The email address(es)",
+          "offlineMessageEmailAddresses": "test@comm100.com",
+          "agentId": 68
+        },
+        ...
+        ],
+        "workingHours": [{
+          "dayOfWeek": "sunday",
+          "startTime": "12:00",
+          "endTime": "14:00",
+          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+        },
+        ...
+        ]
+    },
+    ...
+]
+```
+
+### Get a Shift by id
+
+  `GET /api/v3/livechat/shift/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the private canned message |
+
+Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `department`, `agent` |
+
+#### Response
+
+the response is: [Shift](#shift-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED?include=department
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+  "name": "Shifts",
+  "timeZone": "(GMT) Coordinated Universal Time",
+  "holidays": [{
+    "name": "summary",
+    "date": "2019-11-11"
+  },
+  ...
+  ],
+  "agentIds": [68],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+  "departments": [{// include department
+    "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+    "name": "departments",
+    "siteId": "FEF12049-BF08-2CD4-C405-A5FC8AE75D0F",
+    "description": "departments",
+    "isAvailableInChat": false,
+    "isAvailableInTicketingAndMessaging": false,
+    "offlineMessageMailTo": "The email address(es)",
+    "offlineMessageEmailAddresses": "test@comm100.com",
+    "agentId": 68
+  },
+  ...
+  ],
+  "workingHours": [{
+    "dayOfWeek": "sunday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+  ]
+}
+```
+
+### Get all Shifts by department id
+
+  `GET /api/v3/globalSettings/departments/{departmentId}/shifts`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `departmentId` | Guid | yes  |  The id of the department |
+
+#### Response
+
+the response is: [Shift](#shift-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/departments/1DC43077-E36F-F9EA-C7BA-C29620102F7E/shifts
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+        "name": "Shifts",
+        "timeZone": "(GMT) Coordinated Universal Time",
+        "holidays": [{
+          "name": "summary",
+          "date": "2019-11-11"
+        },
+        ...
+        ],
+        "agentIds": [68],
+        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+        "workingHours": [{
+          "dayOfWeek": "sunday",
+          "startTime": "12:00",
+          "endTime": "14:00",
+          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+        },
+        ...
+        ]
+    },
+    ...
+]
+```
+
+### Get all Shifts by agent id
+
+  `GET /api/v3/globalSettings/agents/{agentId}/shifts`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `agentId` | integer | yes  |  the unique Id of the agent |
+
+#### Response
+
+the response is: [Shift](#shift-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/agents/68/shifts
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+        "name": "Shifts",
+        "timeZone": "(GMT) Coordinated Universal Time",
+        "holidays": [{
+          "name": "summary",
+          "date": "2019-11-11"
+        },
+        ...
+        ],
+        "agentIds": [68],
+        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+        "workingHours": [{
+          "dayOfWeek": "sunday",
+          "startTime": "12:00",
+          "endTime": "14:00",
+          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+        },
+        ...
+        ]
+    },
+    ...
+]
+```
+
+### Create a new Shift
+
+  `POST /api/v3/globalSettings/shifts`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the [Shift](#shift-object) structure
+
+example:
+```Json
+{
+  "name": "Shifts1111",
+  "timeZone": "UTC",
+  "holidays": [{
+    "name": "summary",
+    "date": "2019-11-11"
+  },
+  ...
+  ],
+  "agentIds": [68],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+  "workingHours": [{
+    "dayOfWeek": "sunday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+  ]
+}
+```
+
+#### Response
+
+the response is: [Shift](#shift-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "Shifts1111",
+  "timeZone": "UTC",
+  "holidays": [{
+    "name": "summary",
+    "date": "2019-11-11"
+  },
+  ...
+  ],
+  "agentIds": [68],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+  "workingHours": [{
+    "dayOfWeek": "sunday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+  ]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/shifts
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
+
+{
+  "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+  "name": "Shifts",
+  "timeZone": "(GMT) Coordinated Universal Time",
+  "holidays": [{
+    "name": "summary",
+    "date": "2019-11-11"
+  },
+  ...
+  ],
+  "agentIds": [68],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+  "workingHours": [{
+    "dayOfWeek": "sunday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+  ]
+}
+```
+
+### Update a Shift
+
+  `PUT /api/v3/globalSettings/shifts/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the shift |
+
+Request Body
+
+  The request body contains data with the [Shift](#shift-object) structure
+
+example:
+```Json
+{
+  "name": "Shifts2222",
+  "timeZone": "UTC",
+  "holidays": [{
+    "name": "summary",
+    "date": "2019-11-11"
+  },
+  ...
+  ],
+  "agentIds": [68],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+  "workingHours": [{
+    "dayOfWeek": "sunday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+  ]
+}
+```
+
+#### Response
+
+the response is: [Shift](#shift-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "Shifts2222",
+  "timeZone": "UTC",
+  "holidays": [{
+    "name": "summary",
+    "date": "2019-11-11"
+  },
+  ...
+  ],
+  "agentIds": [68],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+  "workingHours": [{
+    "dayOfWeek": "sunday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+  ]
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+  "name": "Shifts2222",
+  "timeZone": "(GMT) Coordinated Universal Time",
+  "holidays": [{
+    "name": "summary",
+    "date": "2019-11-11"
+  },
+  ...
+  ],
+  "agentIds": [68],
+  "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+  "workingHours": [{
+    "dayOfWeek": "sunday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+  ]
+}
+```
+
+### Delete a Shift
+
+  `DELETE /api/v3/globalSettings/shifts/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the shift |
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
+# Contact
+ + `GET /api/v3/globalSettings/contacts` - [Get a list of contacts in site](#get-all-contacts)
+ + `GET /api/v3/globalSettings/contacts/{id}` - [Get a contact by id](#get-an-contact)
+ + `POST /api/v3/globalSettings/contacts` - [Create a new contact](#create-a-new-contact)
+ + `PUT /api/v3/globalSettings/contacts/{id}` - [Update a contact](#update-a-contact)
+ + `DELETE /api/v3/globalSettings/contacts/{id}` - [Delete a contact](#delete-a-contact)
+
+## Contact Related Object Json Format
+
+### Contact Object
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | integer  | | N/A | N/A |  |  |
+  |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has Name and Avatar, like Facebook Account, display Name and Avatar from that Identity in Agent Console. In other situations, display Contact Name and Avatar.|
+  |`description` | string | | no | no | |  |
+  |`firstName` | string | | no | yes | |  |
+  |`lastName` | string | | no | yes | |  |
+  |`alias` | string | | no | no | |  |
+  |`title` | string | | no | no | |  |
+  |`company` | string  | | no | no | |  |
+  |`fax` | string  | | no | no | |  |
+  |`phone` | string  | | no | no | | |
+  |`mailingAddress` | string  | | no | no | |  |
+  |`city` | string | | no | no | |  |
+  |`stateOrProvince` | string  | | no | no | |  |
+  |`countryOrRegion` | string  | | no | no | |  |
+  |`postalOrZipCode` | string  | | no | no | |  |
+  |`timeZone` | string | | no | yes | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
+  |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
+  |`lastUpdatedTime` | DateTime | | N/A | N/A | |  |
+  |`contactIdentities` | [ContactIdentity](#Contact-Identity)[] | yes | no | no | | Contact Identity. |
+
+### Contact List Response Object
+
+  Agent List Object for agent list Response, include count and page information.
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`count` | integer  | N/A | yes | no | | The total count of the query  |
+  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
+  |`contacts`|   [Contact](#contact-object)[]| N/A | yes| no | | A list of contacts. |
+
+
+
+## Contact Endpoints
+
+
+### Get all contacts
+  `GET /api/v3/globalSettings/contacts`
+
+#### Parameters
+   Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`name` | string | no  |  | Contact name. |
+  |`company`|string|no|  | Contact company. |
+  |`contactIdentityName` | string | no  |  | Contact identity name. |
+  |`contactIdentityValue` | string | no  |  | Contact identity value. |
+  |`contactIdentityType` | string | no  |  | Contact identity type. |
+  | `include` | string | no  |  | Available value: `contactIdentity` |
+
+
+
+  #### Response
+  The response is a [Contact List Response](#contact-list-response-object) Object
+
+
+#### Example
+  Using curl
+  ```
+  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vincent
+  ```
+  Response
+  ```json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+  {
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vincent&pageIndex=2",
+    "previousPage": null,
+    "contacts": [{
+      "id": 7,
+      "name": "Vincent",
+      "description": "Accept Chats",
+      "firstName": "Vincent",
+      "lastName": "Crabbe",
+      "alias": "",
+      "title": "CEO",
+      "company": "BMW",
+      ...
+    },
+    ...
+    ]
+}
+  ```
+
+
+### Get an contact
+  `GET /api/v3/globalSettings/contacts/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  The id of the contact |
+  | `include` | string | no  |  | Available value: `contactIdentity` |
+
+
+#### Response
+  The response is an [Contact](#contact-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts/7
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": 7,
+  "name": "Vincent",
+  "description": "Accept Chats",
+  "firstName": "Vincent",
+  "lastName": "Crabbe",
+  "alias": "",
+  "title": "CEO",
+  "company": "BMW",
+  ...
+}
+```
+
+### Create a new contact
+
+  `POST /api/v3/globalSettings/contacts`
+
+####  Parameters
+
+Request body
+
+  The request body contains data with the [Contact](#contact-object) structure
+
+example:
+```json
+{
+      "name": "Vincent",
+      "description": "Accept Chats",
+      "firstName": "Vincent",
+      "lastName": "Crabbe",
+      "alias": "",
+      "title": "CEO",
+      "company": "BMW",
+      ...
+    }
+```
+
+#### Response
+
+The response is:
+  [Contact](#contact-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+      "name": "Vincent",
+      "description": "Accept Chats",
+      "firstName": "Vincent",
+      "lastName": "Crabbe",
+      "alias": "",
+      "title": "CEO",
+      "company": "BMW",
+      ...
+    }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
+{
+  "id": 7,
+  "name": "Vincent",
+  "description": "Accept Chats",
+  "firstName": "Vincent",
+  "lastName": "Crabbe",
+  "alias": "",
+  "title": "CEO",
+  "company": "BMW",
+  ...
+}
+```
+
+### Update an contact
+  `PUT /api/v3/globalSettings/contacts/{id}`
+
+####  Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  The id of the contact |
+
+Request body
+
+  The request body contains data with the [Contact](#contact-object) structure
+
+  example:
+```json
+{
+  "name": "Vincent",
+  "description": "Accept Chats",
+  "firstName": "Vincent",
+  "lastName": "Crabbe",
+  "alias": "",
+  "title": "CEO",
+  "company": "BMW",
+  ...
+}
+```
+
+#### Response
+The response is:
+  [Contact](#contact-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "Vincent",
+  "description": "Accept Chats",
+  "firstName": "Vincent",
+  "lastName": "Crabbe",
+  "alias": "",
+  "title": "CEO",
+  "company": "BMW",
+  ...
+}' -X PUT https://domain.comm100.com/api/v3/globalSettings/contacts
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
+{
+    "id": 7,
+    "email": "Tom@gmail.com",
+    "displayName":"Tom",
+    "firstName":"Tom",
+    "lastName":"Green",
+    "title":"CEO",
+    ...
+}
+```
+
+
+### Delete an contact
+  `DELETE /api/v3/globalSettings/contacts/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  | The contact id |
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contacts/7
+```
+
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+# Contact Identity
+ + `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [Get a list of contact identities in a contact](#get-all-contact-identity)
+ + `GET /api/v3/globalSettings/contactIdentities/{id}` - [Get an contact identity by id](#get-an-contact-identity)
+ + `POST /api/v3/globalSettings/contacts/contactIdentities` - [create a new contact identity](#create-a-new-contact-identity)
+ + `PUT /api/v3/globalSettings/contactIdentities/{id}` - [update an contact identity](#update-an-contact-identity)
+ + `DELETE /api/v3/globalSettings/contactIdentities/{id}` - [delete an contact identity](#delete-an-contact-identity)
+
+ ## Contact Identity Related Object Json Format
+
+### Contact Identity Object
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | integer| | N/A | N/A | |  |
+  |`contactId` | integer| | no | no | | Mandatory when post by contact identity api. |
+  |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
+  |`type` | string| | no | yes | | the options of the value are:  visitor, emailAddress, SMSNumber, facebookAccount, twitterAccount, weChatAccount, SSOUserID, externalID, whatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
+  |`value` | string  | | no | yes | | The value of the identity.|
+  |`avatarURL` | string | | no | no | | The avatar used in a certain type, like the avatar of a user in Facebook. Not every type has avatar, for example, SMS Number doesn’t have one.|
+  |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets of the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
+  |`extraAttributes` | string | | no | no | | The value is a map (key: value) to store the data. For example: "Screen Name": "@Comm100Corp", "Original Contact Page URL": "",|
+
+## Contact Identity  Endpoints
+
+### get all contact identity
+
+  `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`contactId` | integer | yes  |  The id of the contact of contact Identities belong|
+
+
+#### Response
+
+  The response is a list of [Contact Identity](#contact-identity-object) Objects
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts/7/contactIdentities
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json[
+{
+  "id": 25,
+  "contactId": 7,
+  "name": "Vincent",
+  "type": "Visitor",
+  "value": "",
+  "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "infoURL": "",
+  "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
+    }",
+},
+...,
+]
+```
+
+
+
+### get an contact identity
+  `GET /api/v3/globalSettings/contactIdentities/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  The id of the contact Identitie |
+
+#### Response
+
+  The response is an [Contact Identity](#contact-identity-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+{
+  "id": 25,
+  "contactId": 7,
+  "name": "Vincent",
+  "type": "Visitor",
+  "value": "",
+  "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "infoURL": "",
+  "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
+    }",
+}
+```
+
+
+### create a new contact identity
+  `POST /api/v3/globalSettings/contacts/contactIdentities`
+
+####  Parameters
+
+Request body
+
+  The request body contains data with the [Contact Identity](#contact-identity-object) structure
+
+  example:
+```json
+ {
+    "contactId": 7,
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
+    }",
   }
 ```
 
+#### Response
+
+The response is:
+  [Contact Identity](#contact-identity-object) Object
+
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/permissions
+Using curl
 ```
-
-  Sample response:
-
+curl -H "Content-Type: application/json" -d ' {
+    "contactId": 7,
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
+    }",
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts/contactIdentities
+```
+Response
 ```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 {
-    "liveChat": {
-      "acceptChats": true,
-      "viewAllHistory": true,
-      "viewHistoryInMyDepartment": false,
-      "viewMyOwnAllTranscripts": false,
-      "deleteTranscripts": false,
-      "manageCampaigns": false,
-      "manageSettings": false,
-      "manageCustomVariables": false,
-      "manageSecureForm": false,
-      "manageBan": false,
-      "viewReports": false,
-      "refuseChats": false,
-      "inviteVisitorsToChat": false,
-      "joinChats": true,
-      "transferChats": true,
-      "monitorAllChats": false,
-      "monitorChatsInMyDepartment": false,
-      "captureVisitor": false,
-      "manageCustomMetrics": false,
-      "viewAllInSiteVisitors": false,
-    },    
-    "messagingConversation": {
-      "manageAssignedToMeConversations": true,
-      "viewConversationsWithNoDepartment": false, 
-      "manageConversationsWithNoDepartment": false,
-      "viewConversationsInMyDepartments": false, 
-      "manageConversationsInMyDepartments": false,
-      "manageBlockedSenders": false,
-      "manageJunckMessages": false, 
-      "viewAllConversations": false, 
-      "manageAllConversions": false, 
-      "permanentlyDeleteConversations": false,
-      "manageAllViews": false,
-      "manageChannels": false,
-      "manageSettings": false,
-      "viewReports": false,
-    },
-    "ai": {
-      "manageAndTakeOverBotChats": false, 
-      "manageBot": false, 
-      "manageBotContent": false, 
-    },
-    "knowledgeBase": {
-      "manageArticles": false,
-      "manageCustomPages": false,
-      "manageDesign": false, 
-      "manageImages": false,
-      "manageMultipleKnowledageBases": false, 
-    },
-    "global": {
-      "manageAgentAndRoles": true,
-      "manageDepartments": false,
-      "manageCustomAwayStatus": false, 
-      "manageMyProfile": false,
-      "manageBillingInfo": false,
-      "manageProducts": false,
-      "viewBalanceHistory": false,
-      "viewAgentReports": false,
-      "manageSiteProfile": false,
-      "viewAuditLogs": false,
-      "manageSecurity": false,  
-      "manageCreditCardMasking": false,
-      "managePublicCannedMessages": false,
-      "managePrivateCannedMessages": false,
-      "manageIntegration": false,
-      "viewAllAgents": false,
-      "chatWithAgents": false,
-      "setOtherAgentToAway": false,
-      "logOtherAgentOff": false,
-      "viewAgentChatsInMyDepartment": false,
-      "viewAllAgentChats": false,
-      "manageTags": false,
-      "viewContacts": false,
-      "manageContacts": false,
-    }
-}
+    "id": 25,
+    "contactId": 7,
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
+    }",
+  }
 ```
 
-#### Update Permissions for an Agent
+### Update an contact identity
 
-  `PUT /api/v3/global/agents/{id}/permissions`
+  `PUT /api/v3/globalSettings/contactIdentities/{id}`
 
-- Path Parameters
-  
-  - id, string, id of the agent.
+####  Parameters
 
-- Request Parameters
+Path parameters
 
-  A map of permission groups by Products
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  The id of the contact Identitie |
 
-- Response
+Request body
 
-  A map of permission groups by Products
+  The request body contains data with the [Contact Identity](#contact-identity-object) structure
+
+  example:
+```json
+ {
+    "contactId": 7,
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
+    }",
+  }
+```
+
+#### Response
+
+The response is:
+  [Contact Identity](#contact-identity-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d ' {
+    "contactId": 7,
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
+    }",
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type: application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+ {
+    "id": 25,
+    "contactId": 7,
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
+    "extraAttributes" : "{
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
+    }",
+  }
+```
+
+### delete an contact identity
+  `DELETE /api/v3/globalSettings/contactIdentities/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | integer | yes  |  the contact identity id |
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+# Visitor
+
+  You need `Manage Settings` permission to manage visitor.
+
+- `GET /api/v3/globalSettings/visitors` - [Get all visitors in site](#get-all-visitors-in-site)
+- `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitor-by-id)
+
+## Related Object Json Format
+
+### Visitor Object
+
+  Visitor Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  |`id` | Guid | N/A | N/A | | Id of the current item.  |
+  | `name` | string  | N/A | N/A | | Name of the visitor. |
+  | `email` | string  | N/A | N/A | | Email of the visitor. |
+  | `numberOfVisits` | integer  | N/A | N/A | | The total number of web pages the visitor viewed on your website. |
+  | `numberOfChats` | integer  | N/A | N/A | | The total times of chats a visitor has made on your website from the first time to present. |
+  | `firstVisitTime` | datetime  | N/A | N/A | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
+
+## Visitor Endpoints
+
+### Get all visitors in site
+
+  `GET /api/v3/globalSettings/visitors`
+
+#### Parameters
+
+Query string
+
+| Name  | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `requestedTime` | datetime | no  | today |  The time range of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `pageIndex` | integer | no  | 1 | The page index of query. |
+| `pageSize` | integer | no  | 50 | Page size.  |
+| `keywords` | string | no  |  | Filter by keywords in visitor name, email address. |
+
+#### Response
+
+The response body contains data with the follow structure:
+
+| Name | Type | Required | Default | Description |
+| - | - | :-: | :-: | - |
+| `totalCount` | integer | N/A | N/A | Total count of the list. |
+| `previousPage` | string | N/A | N/A | Url of the previous page. |
+| `nextPage` | string | N/A | N/A | Url of the next page. |
+| `visitors` | [Visitor](#visitor-Object)[] | N/A | N/A |  |
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-      -H "content-type: application/json" -x PUT  
-     -d "{"liveChat":{"acceptChats": true,"viewAllHistory": true,"viewHistoryInMyDepartment": false,
-      "viewMyOwnAllTranscripts": false,"deleteTranscripts": false,"manageCampaigns": false,"manageSettings": false,
-      "manageCustomVariables": true,"manageSecureForm": true,"manageBan": false,"viewReports": false,
-      "refuseChats": false,"inviteVisitorsToChat": false,"joinChats": true,"transferChats": true,
-      "monitorAllChats": false,"monitorChatsInMyDepartment": false,"captureVisitor": false,
-      "manageCustomMetrics": false,"viewAllInSiteVisitors": true}}"   
-     https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/permissions
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/visitors
 ```
 
-  Sample response:
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
 {
-    "liveChat": {
-      "acceptChats": true,
-      "viewAllHistory": true,
-      "viewHistoryInMyDepartment": false,
-      "viewMyOwnAllTranscripts": false,
-      "deleteTranscripts": false,
-      "manageCampaigns": false,
-      "manageSettings": false,
-      "manageCustomVariables": true,
-      "manageSecureForm": true,
-      "manageBan": false,
-      "viewReports": false,
-      "refuseChats": false,
-      "inviteVisitorsToChat": false,
-      "joinChats": true,
-      "transferChats": true,
-      "monitorAllChats": false,
-      "monitorChatsInMyDepartment": false,
-      "captureVisitor": false,
-      "manageCustomMetrics": false,
-      "viewAllInSiteVisitors": true,
-    },    
-    "messagingConversation": {
-      "manageAssignedToMeConversations": true,
-      "viewConversationsWithNoDepartment": false, 
-      "manageConversationsWithNoDepartment": false,
-      "viewConversationsInMyDepartments": false, 
-      "manageConversationsInMyDepartments": false,
-      "manageBlockedSenders": false,
-      "manageJunckMessages": false, 
-      "viewAllConversations": false, 
-      "manageAllConversions": false, 
-      "permanentlyDeleteConversations": false,
-      "manageAllViews": false,
-      "manageChannels": false,
-      "manageSettings": false,
-      "viewReports": false,
+    "totalCount": 28,
+    "previousPage": "",
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/visitors?pageIndex=2",
+    "visitors": [{
+        "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+        "name": "test",
+        "email": "",
+        "numberOfVisits": 4,
+        "numberOfChats": 1,
+        "firstVisitTime": "2019-06-12T07:41:40.486Z"
     },
-    "ai": {
-      "manageAndTakeOverBotChats": false, 
-      "manageBot": false, 
-      "manageBotContent": false, 
-    },
-    "knowledgeBase": {
-      "manageArticles": false,
-      "manageCustomPages": false,
-      "manageDesign": false, 
-      "manageImages": false,
-      "manageMultipleKnowledageBases": false, 
-    },
-    "global": {
-      "manageAgentAndRoles": true,
-      "manageDepartments": false,
-      "manageCustomAwayStatus": false, 
-      "manageMyProfile": false,
-      "manageBillingInfo": false,
-      "manageProducts": false,
-      "viewBalanceHistory": false,
-      "viewAgentReports": false,
-      "manageSiteProfile": false,
-      "viewAuditLogs": false,
-      "manageSecurity": false,  
-      "manageCreditCardMasking": false,
-      "managePublicCannedMessages": false,
-      "managePrivateCannedMessages": false,
-      "manageIntegration": false,
-      "viewAllAgents": false,
-      "chatWithAgents": false,
-      "setOtherAgentToAway": false,
-      "logOtherAgentOff": false,
-      "viewAgentChatsInMyDepartment": false,
-      "viewAllAgentChats": false,
-      "manageTags": false,
-      "viewContacts": false,
-      "manageContacts": false,
-    }
-}
-```
-
-#### Get a List of an Agent's Eeffective Permissions
-
-  `GET /api/v3/global/agents/{id}/effectivePermissions`
-
-- Path Parameters
-  
-  - id, string, id of the agent.
-
-- Response
-  
-  An array of Agent Permission Object
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/effectivepermissions
-```
-
-  Sample response:
-
-```json
-{
-    "liveChat": {
-      "acceptChats": true,
-      "viewAllHistory": true,
-      "viewHistoryInMyDepartment": false,
-      "viewMyOwnAllTranscripts": false,
-      "deleteTranscripts": false,
-      "manageCampaigns": false,
-      "manageSettings": false,
-      "manageCustomVariables": true,
-      "manageSecureForm": true,
-      "manageBan": false,
-      "viewReports": false,
-      "refuseChats": false,
-      "inviteVisitorsToChat": false,
-      "joinChats": true,
-      "transferChats": true,
-      "monitorAllChats": false,
-      "monitorChatsInMyDepartment": false,
-      "captureVisitor": false,
-      "manageCustomMetrics": false,
-      "viewAllInSiteVisitors": true,
-    },    
-    "messagingConversation": {
-      "manageAssignedToMeConversations": true,
-      "viewConversationsWithNoDepartment": false, 
-      "manageConversationsWithNoDepartment": false,
-      "viewConversationsInMyDepartments": false, 
-      "manageConversationsInMyDepartments": false,
-      "manageBlockedSenders": false,
-      "manageJunckMessages": false, 
-      "viewAllConversations": false, 
-      "manageAllConversions": false, 
-      "permanentlyDeleteConversations": false,
-      "manageAllViews": false,
-      "manageChannels": false,
-      "manageSettings": false,
-      "viewReports": false,
-    },
-    "ai": {
-      "manageAndTakeOverBotChats": false, 
-      "manageBot": false, 
-      "manageBotContent": false, 
-    },
-    "knowledgeBase": {
-      "manageArticles": false,
-      "manageCustomPages": false,
-      "manageDesign": false, 
-      "manageImages": false,
-      "manageMultipleKnowledageBases": false, 
-    },
-    "global": {
-      "manageAgentAndRoles": true,
-      "manageDepartments": false,
-      "manageCustomAwayStatus": false, 
-      "manageMyProfile": false,
-      "manageBillingInfo": false,
-      "manageProducts": false,
-      "viewBalanceHistory": false,
-      "viewAgentReports": false,
-      "manageSiteProfile": false,
-      "viewAuditLogs": false,
-      "manageSecurity": false,  
-      "manageCreditCardMasking": false,
-      "managePublicCannedMessages": false,
-      "managePrivateCannedMessages": false,
-      "manageIntegration": false,
-      "viewAllAgents": false,
-      "chatWithAgents": false,
-      "setOtherAgentToAway": false,
-      "logOtherAgentOff": false,
-      "viewAgentChatsInMyDepartment": false,
-      "viewAllAgentChats": false,
-      "manageTags": false,
-      "viewContacts": false,
-      "manageContacts": false,
-    }
-}
-```
-
-#### Get current Agent
-
-  `GET /api/v3/global/agents/me`
-
-- Parameters
-
-  No parameters
-  
-- Response
-  
-  [Agent](#Agent-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/agents/me
-```
-
-  Sample response:
-
-```json
-{
-    "id": "2B356016-2B44-49C0-B4E6-05902E55DAFD",
-    "email": "test1@test.com",
-    "displayName": "testname",
-    "firstName": "first",
-    "lastName": "lastname",
-    "title": "title",
-    "bio": "",
-    "mobilePhone": "12345678911",
-    "timeZone": "31",
-    "dateTimeFormat": "MM/dd/yyyy HH:mm:ss",
-    "roles": [],
-    "isAdmin": true,
-    "isActive": true,
-    "isLocked": false,
-    "ldapUserName": ""
-}
-```
-
-#### Update Your Own Profile
-
-  `PUT /api/v3/global/agents/me`
-
-- Request Parameters
-
-  [Agent](#Agent-Json-Format)
-
-- Response
-
-  [Agent](#Agent-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"email": 'test4@test.com',"displayname": 'testname',"firstname": 'first',
-     "lastname": 'lastname',"title": 'title',"timezone": '31',"mobilephone": '12345678911'}"
-     https://hosted.comm100.com/api/v3/global/agents/me
-```
-
-  Sample response:
-
-```json
-{
-    "id": "2B356016-2B44-49C0-B4E6-05902E55DAFD",
-    "email": "test4@test.com",
-    "displayName": "testname",
-    "firstName": "first",
-    "lastName": "lastname",
-    "title": "title",
-    "bio": "",
-    "mobilePhone": "12345678911",
-    "timeZone": "31",
-    "dateTimeFormat": "MM/dd/yyyy HH:mm:ss",
-    "roles": [],
-    "isAdmin": true,
-    "isActive": true,
-    "isLocked": false,
-    "ldapUserName": ""
-}
-```
-
-#### Change Your Own password
-
-  `PUT /api/v3/global/agents/me/password`
-
-- Request Parameters
-
-  - `currentPassword`: string, current password of curreng agent
-  - `newPassword`: string, new password of current agent
-
-- Response
-
-  Status: 200 OK
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"currentpassword": '123456', "newpassword": '111111'}"
-     https://hosted.comm100.com/api/v3/global/agents/me/password
-```
-
-  Sample response:
-
-```json
-Status: 200 OK
-```
-
-</div>
-</div>
-
-<div>
-
-## Roles
-
-  You need `Manage Agent & Agent Roles` permission to manage roles.
-- `Get /api/v3/global/roles/config` - Get roles config
-- `PUT /api/v3/global/roles/config` - Update enable or disable roles
-- `GET /api/v3/global/roles` - Get a list of roles
-- `GET /api/v3/global/roles/{id}` - Get a single roles
-- `POST /api/v3/global/roles` - Create a new role
-- `PUT /api/v3/global/roles/{id}` - Update a role
-- `DELETE /api/v3/global/roles/{id}` - Remove a role
-- `GET /api/v3/global/roles/{id}/permissions` - Get a role's permissions.
-- `PUT /api/v3/global/roles/{id}/permissions` - Update permissions for a role.
-
-<div>
-
-### Model
-
-#### Role Config Json Format
-
- Role Config is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Description |
-| - | - | - |
-| `isEnable` | string | required, whether roles are enabled or not in the site. |
-
-#### Role Json Format
-
- Role is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Description |
-| - | - | - |
-| `id` | string | read-only, id of the role. |
-| `isSystem` | bool | read-only, indicator that the role is maintained by the system |
-| `name` | string | required, name of the role. |
-| `description` | string | optional, the description of the role. |
-| `agents` | array | optional, a list of agents in current role. |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Get Roles Config
-
-  `GET /api/v3/global/roles/config`
-
-- Path Parameters:
-
- No parameter
-
-- Response
-  
-  [Role Config](#Role-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/roles/config
-```
-
-  Sample response:
-
-```json
-{
-    "isEnable": false
-}
-```
-#### Update Roles Config
-
-  `PUT /api/v3/global/roles/config`
-
-- Request Parameters
-  
-  [Role Config](#Role-Config-Json-Format)
-
-- Response
-  
-  [Role Config](#Role-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"isEnable": true}"    
-     https://hosted.comm100.com/api/v3/global/roles/config
-```
-
-  Sample response:
-
-```json
-{
-    "isEnable": true
-}
-```
-#### Get list of Roles
-
-  `GET /api/v3/global/roles`
-
-- Parameters
-  
-  No parameters
-
-- Response
-  
-  [Role](#Role-Json-Format)[]
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/roles
-```
-
-  Sample response:
-
-```json
-[
-    {
-        "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F42",
-        "name": "Site Administrators",
-        "description": "This role includes all site administrators in the system. ",
-        "isSystem": true,
-        "agents": [
-        {
-          "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F41",
-          "name": "f 1"
-        },
-        {
-          "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F43",
-          "name": "f 69"
-        }
-        ...
-        ]
-    },
-    {
-        "id": "4FCE64E9-615C-4036-B8EF-07D3B8AF7F42",
-        "name": "All Agents",
-        "description": "This role includes all agents in the system. ",
-        "isSystem": true,
-        "agents": [
-        {
-          "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F41",
-          "name": "f 1"
-        },
-        {
-          "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F43",
-          "name": "f 69"
-        }
-        ...
-        ]
-    }
-]
-```
-
-#### Get a single Role
-
-  `GET /api/v3/global/roles/{id}`
-
-- Path Parameters:
-
-    - id, string, id of the role.
-
-- Response
-  
-  [Role](#Role-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/roles/4FCE64E9-615C-4036-B8EF-07D3B8AF7F42
-```
-
-  Sample response:
-
-```json
-{
-    "id": "4FCE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "name": "Site Administrators",
-    "description": "This role includes all site administrators in the system. ",
-    "isSystem": true,
-    "agents": [
-    {
-      "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F41",
-      "name": "f 1"
-    },
-    {
-      "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F43",
-      "name": "f 69"
-    }
     ...
     ]
 }
 ```
 
-#### Create a new Role
-  
-  `POST /api/v3/global/roles`
+### Get a visitor by id
 
-- Request Parameters
-  
-  [Role](#Role-Json-Format)
+  `GET /api/v3/globalSettings/visitors/{id}`
 
-- Response
-  
-  [Role](#Role-Json-Format)
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes |  The id of the visitor |
+
+#### Response
+
+the response is: [Visitor](#visitor-object) Object
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"name": 'testaddname'}"    
-     https://hosted.comm100.com/api/v3/global/roles
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
-  Sample response:
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
 {
-    "id": "55CE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "name": "testaddname",
-    "description": "",
-    "isSystem": false,
-    "agents": []
+  "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
+  "name": "test",
+  "email": "",
+  "numberOfVisits": 4,
+  "numberOfChats": 1,
+  "firstVisitTime": "2019-06-12T07:41:40.486Z"
 }
 ```
 
-#### Update a Role
+# Public Canned Message Category
 
-  `PUT /api/v3/global/roles/{id}`
+  You need `Manage Pulbic Canned Messages` permission to manage canned message category.
 
-- Request Parameters
-  
-  [Role](#Role-Json-Format)
+- `GET /api/v3/globalSettings/publicCannedMessageCategories` - [Get all public canned message categories in site](#get-all-Public-Canned-Message-Categories-in-site)
+- `GET /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [Get a public canned message category by id](#get-a-Public-Canned-Message-Category-by-id)
+- `POST /api/v3/globalSettings/publicCannedMessageCategories` - [create a new public canned message category](#create-a-new-Public-Canned-Message-Category)
+- `PUT /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [update a public canned message category](#update-a-Public-Canned-Message-Category)
+- `DELETE /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [delete a public canned message category](#delete-a-Public-Canned-Message-Category)
 
-- Response
-  
-  [Role](#Role-Json-Format)
+## Related Object Json Format
+
+### Public Canned Message Category Object
+
+  Public Canned Message Category Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  | `name` | string  | no | yes | | Name of the canned message category. |
+  | `parentId` | Guid | no | yes | | Id of the public canned message category. |
+
+## Public Canned Message Endpoints
+
+### Get all Public Canned Message Categories in site
+
+  `GET /api/v3/globalSettings/publicCannedMessageCategories`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response is: list of [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"name": 'testchangename'}"    
-     https://hosted.comm100.com/api/v3/global/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories
 ```
 
-  Sample response:
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
+[
+  {
+    "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+    "name": "puddddtresult",
+    "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+  },
+  ...
+]
+```
+
+### Get a Public Canned Message Category by id
+
+  `GET /api/v3/globalSettings/publicCannedMessageCategories/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  The id of the public canned message category |
+
+#### Response
+
+the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/5A563046-374D-3C4E-4D4A-2CA3812A42C8
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
 {
-    "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "name": "testchangename",
-    "description": "This role includes all site administrators in the system. ",
-    "isSystem": true,
-    "agents": [ ]
+  "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "name": "puddddtresult",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
 }
 ```
 
-#### Remove a Role
+### Create a new Public Canned Message Category
 
-  `DELETE /api/v3/global/roles/{id}`
+  `POST /api/v3/globalSettings/publicCannedMessageCategories`
 
-- Path Parameters
-  
-  - id, string, id of the role.
+#### Parameters
 
-- Response
-  
-  Status: 200 OK
+Request Body
 
-#### Example
+  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x DELETE  https://hosted.comm100.com/api/v3/global/roles/55CE64E9-615C-4036-B8EF-07D3B8AF7F42
-```
-
-  Sample response:
-
-```json
-Status: 200 OK
-```
-
-#### Get a Role's Permissions
-
-  `GET /api/v3/global/roles/{id}/permissions`
-
-- Path Parameters:
-
-    - id, string, id of the role.
-
-- Response
-
-  A map of permission roles by Products
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42/permissions
-```
-
-  Sample response:
-
-```json
+example:
+```Json
 {
-    "liveChat": {
-      "acceptChats": true,
-      "viewAllHistory": true,
-      "viewHistoryInMyDepartment": false,
-      "viewMyOwnAllTranscripts": false,
-      "deleteTranscripts": false,
-      "manageCampaigns": false,
-      "manageSettings": false,
-      "manageCustomVariables": true,
-      "manageSecureForm": true,
-      "manageBan": false,
-      "viewReports": false,
-      "refuseChats": false,
-      "inviteVisitorsToChat": false,
-      "joinChats": true,
-      "transferChats": true,
-      "monitorAllChats": false,
-      "monitorChatsInMyDepartment": false,
-      "captureVisitor": false,
-      "manageCustomMetrics": false,
-      "viewAllInSiteVisitors": true,
-    },    
-    "messagingConversation": {
-      "manageAssignedToMeConversations": true,
-      "viewConversationsWithNoDepartment": false, 
-      "manageConversationsWithNoDepartment": false,
-      "viewConversationsInMyDepartments": false, 
-      "manageConversationsInMyDepartments": false,
-      "manageBlockedSenders": false,
-      "manageJunckMessages": false, 
-      "viewAllConversations": false, 
-      "manageAllConversions": false, 
-      "permanentlyDeleteConversations": false,
-      "manageAllViews": false,
-      "manageChannels": false,
-      "manageSettings": false,
-      "viewReports": false,
-    },
-    "ai": {
-      "manageAndTakeOverBotChats": false, 
-      "manageBot": false, 
-      "manageBotContent": false, 
-    },
-    "knowledgeBase": {
-      "manageArticles": false,
-      "manageCustomPages": false,
-      "manageDesign": false, 
-      "manageImages": false,
-      "manageMultipleKnowledageBases": false, 
-    },
-    "global": {
-      "manageAgentAndRoles": true,
-      "manageDepartments": false,
-      "manageCustomAwayStatus": false, 
-      "manageMyProfile": false,
-      "manageBillingInfo": false,
-      "manageProducts": false,
-      "viewBalanceHistory": false,
-      "viewAgentReports": false,
-      "manageSiteProfile": false,
-      "viewAuditLogs": false,
-      "manageSecurity": false,  
-      "manageCreditCardMasking": false,
-      "managePublicCannedMessages": false,
-      "managePrivateCannedMessages": false,
-      "manageIntegration": false,
-      "viewAllAgents": false,
-      "chatWithAgents": false,
-      "setOtherAgentToAway": false,
-      "logOtherAgentOff": false,
-      "viewAgentChatsInMyDepartment": false,
-      "viewAllAgentChats": false,
-      "manageTags": false,
-      "viewContacts": false,
-      "manageContacts": false,
-    }
+  "name": "testtest",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
 }
 ```
 
-#### Update Permissions for a Role
+#### Response
 
-  `PUT /api/v3/global/roles/{id}/permissions`
-
-- Path Parameters:
-
-    - id, string, id of the role.
-
-- Request Parameters
-
-  A map of permission groups by Products
-
-- Response
-
-  A map of permission groups by Products
+the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -H "content-type: application/json" -x PUT  
-     -d "{"realtimeConversations":{"acceptChats": true,"viewAllHistory": true,"viewHistoryInMyDepartment": false,
-      "viewMyOwnAllTranscripts": false,"deleteTranscripts": false,"manageCampaigns": false,"manageSettings": false,
-      "manageCustomVariables": true,"manageSecureForm": true,"manageBan": false,"viewReports": false,
-      "refuseChats": false,"inviteVisitorsToChat": false,"joinChats": true,"transferChats": true,
-      "monitorAllChats": false,"monitorChatsInMyDepartment": false,"captureVisitor": false,
-      "manageCustomMetrics": false,"viewAllInSiteVisitors": true}}" 
-     https://hosted.comm100.com/api/v3/global/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42/permissions
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "testtest",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories
 ```
 
-  Sample response:
+Response
+```Json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
 
-```json
 {
-    "liveChat": {
-      "acceptChats": true,
-      "viewAllHistory": true,
-      "viewHistoryInMyDepartment": false,
-      "viewMyOwnAllTranscripts": false,
-      "deleteTranscripts": false,
-      "manageCampaigns": false,
-      "manageSettings": false,
-      "manageCustomVariables": true,
-      "manageSecureForm": true,
-      "manageBan": false,
-      "viewReports": false,
-      "refuseChats": false,
-      "inviteVisitorsToChat": false,
-      "joinChats": true,
-      "transferChats": true,
-      "monitorAllChats": false,
-      "monitorChatsInMyDepartment": false,
-      "captureVisitor": false,
-      "manageCustomMetrics": false,
-      "viewAllInSiteVisitors": true,
-    },    
-    "messagingConversation": {
-      "manageAssignedToMeConversations": true,
-      "viewConversationsWithNoDepartment": false, 
-      "manageConversationsWithNoDepartment": false,
-      "viewConversationsInMyDepartments": false, 
-      "manageConversationsInMyDepartments": false,
-      "manageBlockedSenders": false,
-      "manageJunckMessages": false, 
-      "viewAllConversations": false, 
-      "manageAllConversions": false, 
-      "permanentlyDeleteConversations": false,
-      "manageAllViews": false,
-      "manageChannels": false,
-      "manageSettings": false,
-      "viewReports": false,
-    },
-    "ai": {
-      "manageAndTakeOverBotChats": false, 
-      "manageBot": false, 
-      "manageBotContent": false, 
-    },
-    "knowledgeBase": {
-      "manageArticles": false,
-      "manageCustomPages": false,
-      "manageDesign": false, 
-      "manageImages": false,
-      "manageMultipleKnowledageBases": false, 
-    },
-    "global": {
-      "manageAgentAndRoles": true,
-      "manageDepartments": false,
-      "manageCustomAwayStatus": false, 
-      "manageMyProfile": false,
-      "manageBillingInfo": false,
-      "manageProducts": false,
-      "viewBalanceHistory": false,
-      "viewAgentReports": false,
-      "manageSiteProfile": false,
-      "viewAuditLogs": false,
-      "manageSecurity": false,  
-      "manageCreditCardMasking": false,
-      "managePublicCannedMessages": false,
-      "managePrivateCannedMessages": false,
-      "manageIntegration": false,
-      "viewAllAgents": false,
-      "chatWithAgents": false,
-      "setOtherAgentToAway": false,
-      "logOtherAgentOff": false,
-      "viewAgentChatsInMyDepartment": false,
-      "viewAllAgentChats": false,
-      "manageTags": false,
-      "viewContacts": false,
-      "manageContacts": false,
-    }
+  "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
+  "name": "testtest",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
 }
 ```
 
-</div>
-</div>
-<div>
+### Update a Public Canned Message Category
 
-## Agent SSO Settings
+  `PUT /api/v3/globalSettings/publicCannedMessageCategories/{id}`
 
-  You need `Manage Security` permission to manage agent sso settings.
-- `GET /api/v3/global/agentSignleSignOn/config` - Get configuration of agent sso settings
-- `PUT /api/v3/global/agentSignleSignOn/config` - Update configuration of agent sso settings
-- `GET /api/v3/global/agentSignleSignOn` - Get agent sso settings
-- `PUT /api/v3/global/agentSignleSignOn` - Update agent sso settings
+#### Parameters
 
-<div>
+Path Parameters
 
-### Model
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the public canned message category |
 
-#### Agent SSO Settings Config Json Format
+Request Body
 
- Agent SSO Settings Config is represented as simple flat JSON objects with the following keys:  
+  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure
 
-| Name | Type | Description |
-| - | - | - |
-| `isEnable` | string | required, whether agent sso settings are enabled or not in the site. |
+example:
+```Json
+{
+  "name": "testtest22222",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+}
+```
 
-#### Agent SSO Settings Json Format
+#### Response
 
- Agent SSO Settings is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Description |
-| - | - | - |
-| `ssoType` | string | required, `SAML` or `JWT` |
-| `samlSSOUrl` | string | required, the url that Comm100 will invoke to redirect the agents to your Identity Provider |
-| `samlRemoteLogoutUrl` | string | required, the url that Comm100 will redirect your agents to after they log out |
-| `certificate` | string | required, base64 of the saml identity provider certificate content. |
-| `certificateName` | string | required, file name of the certificate. |
-| `jwtRemoteLoginUrl` | string | required, the url that Comm100 will redirect your agents to for remote authentication. |
-| `jwtRemoteLogoutUrl` | string | required, the url that Comm100 will redirect your agents to after they log out. |
-| `sharedSecret` | string | required, token between you and Comm100. |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Get Agent SSO Settings Config
-
-  `GET /api/v3/global/agentSignleSignOn/config`
-
-- Path Parameters:
-
- No parameter
-
-- Response
-  
-  [Agent SSO Settings Config](#Agent-SSO-Settings-Config-Json-Format)
+the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/agentSignleSignOn/Config
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "testtest22222",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
 ```
 
-  Sample response:
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
 {
-    "isEnable": false
+  "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
+  "name": "testtest22222",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
 }
 ```
-#### Update Agent SSO Settings Config
 
-  `PUT /api/v3/global/agentSignleSignOn/config`
+### Delete a Public Canned Message Category
 
-- Request Parameters
-  
-  [Agent SSO Settings Config](#Agent-SSO-Settings-Config-Json-Format)
+  `DELETE /api/v3/globalSettings/publicCannedMessageCategories/{id}`
 
-- Response
-  
-  [Agent SSO Settings Config](#Agent-SSO-Settings-Config-Json-Format)
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the public canned message category |
+
+#### Response
+
+HTTP/1.1 204 No Content
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"isEnable": true}"    
-     https://hosted.comm100.com/api/v3/global/agentSignleSignOn/config
+Using curl
 ```
-
-  Sample response:
-
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
+```
+Response
 ```json
-{
-    "isEnable": true
-}
-```
-#### Get Agent SSO Settings
-
-  `Get /api/v3/global/agentSignleSignOn`
-
-- Parameters
-  
-  No parameters
-
-- Response
-  
-  [Agent SSO Settings](#Agent-SSO-Settings-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/agentSignleSignOn
+HTTP/1.1 204 No Content
 ```
 
-  Sample response:
-
-```json
-{
-    "ssoType": "SAML",
-    "samlSSOUrl": "https://secure.comm100.com/login",
-    "samlRemoteLogoutUrl": "https://test.comm100.com/logout",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateName": "test.cer",
-    "jwtRemoteLoginUrl": "",
-    "jwtRemoteLogoutUrl": "",
-    "sharedSecret": "",
-}
-```
-
-#### Update Agent SSO Settings
-
-  `PUT /api/v3/global/agentSignleSignOn`
-
-- Request Parameters
-  
-  [Agent SSO Settings](#Agent-SSO-Settings-Config-Json-Format)
-
-- Response
-
-  [Agent SSO Settings](#Agent-SSO-Settings-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -H "content-type: application/json" -x PUT  
-     -d "{"ssoType": "JWT","samlSSOUrl": "https://secure.comm100.com/login",
-    "samlRemoteLogoutUrl": "https://test.comm100.com/logout","certificate": "amdoamdoaGdmcnRk",
-    "certificateName": "test.cer","jwtRemoteLoginUrl": "https://integration.comm100.com/jwt/accounts/login",
-    "jwtRemoteLogoutUrl": "https://integration.comm100.com/jwt/home/logout",
-    "sharedSecret": "NTamMDM5NzctOTayMys0Y2RjLWEwNTUdOTJibWRjszY5OGE1"}"    
-     https://hosted.comm100.com/api/v3/global/agentSignleSignOn
-```
-
-  Sample response:
-
-```json
-{
-    "ssoType": "JWT",
-    "samlSSOUrl": "https://secure.comm100.com/login",
-    "samlRemoteLogoutUrl": "https://test.comm100.com/logout",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateName": "test.cer",
-    "jwtRemoteLoginUrl": "https://integration.comm100.com/jwt/accounts/login",
-    "jwtRemoteLogoutUrl": "https://integration.comm100.com/jwt/home/logout",
-    "sharedSecret": "NTamMDM5NzctOTayMys0Y2RjLWEwNTUdOTJibWRjszY5OGE1",
-}
-```
-
-</div>
-</div>
-<div>
-
-## Audit Logs
-
-  You need `View Audit Log` permission to view audit logs.
-
-- `Get /api/v3/global/auditLogs` - Get audit Logs list.
-
-<div>
-
-### Model
-
-#### Audit Logs Config Json Format
-
- Audit Logs is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Description |
-| - | - | - |
-| `id` | string | read-only, id of audit log |
-| `actionTime` | datetime | read-only, the time of the action. |
-| `agentName` | string | read-only, the agent which did the action. |
-| `product` | string | read-only, the module which the action belongs to. |
-| `actionType` | string | read-only, the type of the action. |
-| `actionSummary` | string | read-only, the summary of the action. |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Get audit Logs list
-
-  `Get /api/v3/global/auditLogs`
-
-- Query Parameters
-  - `dateFrom`: datetime, the date from which agent did the action, format as `yyyy-MM-ddTHH:mm:ss`.
-  - `dateTo`: datetime, the date when an agent ended the action, format as `yyyy-MM-ddTHH:mm:ss`.
-
-    optional：
-  - `product`: string, the product which the action belongs to, including `Live Chat`, `Messaging`, `Knowledge Base`, `AI`, `Global`.
-  - `type`: string, the action type.
-  - `agentId`: string, id of the agent who did the action.
-  - `keywords`: string, the key words associated with the action
-  - `pageIndex`: integer, the page index of the query.
-
-- Response
-  - `total`: integer, total count for the list.
-  - `previousPage`: string, url of the previous page.
-  - `nextPage`: string, url of the next page.
-  - `logs`: [audit log](#Audit-Logs-Config-Json-Format)[]
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer XCUScuZK21qDa2Tqyo0HF1rvoHC6OTIKZRkj-GgKUcsVyaXyhC7sNfGRyZc5vUGXXeI9wzo 
-        74KX9xXrDTA3QR4XCXcaslq7a17ubllUwRRoMqt-cxYETrb5WFjOv4GRvM8nRO5H5nangeGJMHgJczhyiu7897kYvdlRHO 
-        udnoYbkwBPNMKUzQN9hiRNtZi8eV3Faf8OZYSWGxFZPvWcNHqY78WGXwnYww_UNB1HzME7UKcvY1Auxhdq_ZR-UncaiNoM 
-        46OBYYbU5nNXbKDFPAA"   
-     https://hosted.comm100.com/api/v3/global/auditlogs?datefrom=2018-07-17&dateto=2018-08-08
-```
-
-  Sample response:
-
-```json
-{
-    "total": 1,
-    "previousPage": null,
-    "nextPage": null,
-    "logs": [
-        {
-            "id": "669F1B97-457B-4256-A78A-73433E328F3D",
-            "actionTime": "2018-08-08T10:21:44.403",
-            "agentName": "testname",
-            "product": "Real-time Conversation",
-            "actionType": "Chats Auto Allocation Management",
-            "actionSummary": "Enable chats auto allocation"
-        }
-    ]
-}
-```
-
-</div>
-</div>
-
-<div>
-
-## Canned Messages
+# Public Canned Message
 
   You need `Manage Pulbic Canned Messages` permission to manage canned message.
 
-- `GET /api/v3/global/cannedMessages` -get a list of canned Messages
-- `GET /api/v3/global/cannedMessages/{id}`  -get a single canned Message
-- `POST /api/v3/global/cannedMessages` -create a new canned Message
-- `PUT /api/v3/global/cannedMessages/{id}`  -update a canned Message
-- `DELETE /api/v3/global/cannedMessages/{id}`  -remove a canned Message
+- `GET /api/v3/globalSettings/publicCannedMessages` - [Get all public canned messages in site](#get-all-Public-Canned-Messages-in-site)
+- `GET /api/v3/globalSettings/publicCannedMessages/{id}` - [Get a public canned message by id](#get-a-Public-Canned-Message-by-id)
+- `POST /api/v3/globalSettings/publicCannedMessages` - [create a new public canned message](#create-a-new-Public-Canned-Message)
+- `POST /api/v3/globalSettings/publicCannedMessages/{id}/similarQuestions`  - [create a new public similar questions](#create-a-new-public-similar-questions)
+- `PUT /api/v3/globalSettings/publicCannedMessages/{id}` - [update a public canned message](#update-a-Public-Canned-Message)
+- `DELETE /api/v3/globalSettings/publicCannedMessages/{id}` - [delete a public canned message](#delete-a-Public-Canned-Message)
 
-<div>
+## Related Object Json Format
 
-### Model
+### Public Canned Message Object
 
-#### Canned Message JSON Format
+  Public Canned Message Object is represented as simple flat JSON objects with the following keys:
 
-  Canned Message is represented as simple flat JSON objects with the following keys:  
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  |`id` | Guid | | yes | N/A | | Id of the canned message.  |
+  | `name` | string | | no | yes | | Name of the canned message. |
+  | `message` | string | | no | yes | | |
+  | `IfSetHtmlMessageForEmail` | boolean  | | no | no | false | |
+  | `htmlMessage` | string  | | no | no | | |
+  | `categoryId` | Guid | | no | yes | | |
+  | `category` | [Public Canned Message Category](#public-Canned-Message-Category-object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
+  | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
+  | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
-  | Name | Type | Description |
-  | - | - | - |
-  | `id` | string | read-only, id of the canned message. |
-  | `name` | string | required, name of the canned message. |
-  | `message` | string | required, content of the canned message. |
-  | `shortcuts` | string | optional, shortcuts of the canned message. |
-  | `categoryId` | string | required, id of the category of the canned message. |
-  | `isPrivate` | boolean | required, whether the canned message is private or not, default is `false`. |
-  | `channelType` | string | required, type the canned message, we now have `default` or `email`. |
-  | `emailHtmlMessage` | string | optional, email html message of the canned message. |
-  | `emailTextMessage` | string | optional, email plain text message of the canned message. |
+## Public Canned Message Endpoints
 
-</div>
-<div>
+### Get all Public Canned Messages in site
 
-### Endpoint
+  `GET /api/v3/globalSettings/publicCannedMessages`
 
-#### Get list of canned messages
+#### Parameters
 
-  `GET /api/v3/global/cannedMessages`
+Query string
 
-- Parameters:
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `publicCannedMessageCategory` |
 
-    No parameters
+#### Response
 
-- Response:
-
-    [Canned Message](#canned-message-json-format)[]
+the response is: list of [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/global/cannedMessages
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages?include=publicCannedMessageCategory
 ```
 
-Sample response:
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
 [
     {
-        "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F42",
-        "isPrivate": false,
-        "name": "test Canned Message name",
-        "message": "bye bye",
-        "categoryId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
-        "shortCuts": "bye",
-        "channelType": "default",
-        "emailHtmlMessage": "",
-        "emailTextMessage": ""
+        "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
+        "name": "publicCannedMessageCategory",
+        "message": "publicCannedMessageCategory",
+        "IfSetHtmlMessageForEmail": false,
+        "htmlMessage": "",
+        "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+        "category":    { // include public canned message category
+          "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+          "name": "puddddtresult",
+         "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+        },
+        "shortcuts": "",
+        "similarQuestions": ["are you ok?"]
     },
     ...
 ]
 ```
 
-#### Get a single canned message
+### Get a Public Canned Message by id
 
-  `GET /api/v3/global/cannedMessages/{id}`
+  `GET /api/v3/globalSettings/publicCannedMessages/{id}`
 
-- Parameters:
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the public canned message |
+
+Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `publicCannedMessageCategory` |
+
+#### Response
+
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/C354EA75-BAAF-9994-9307-D001FBE1882A?include=publicCannedMessageCategory
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
+  "name": "publicCannedMessageCategory",
+  "message": "publicCannedMessageCategory",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "category":    { // include public canned message category
+    "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+    "name": "puddddtresult",
+    "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+  },
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+### Create a new Public Canned Message
+
+  `POST /api/v3/globalSettings/publicCannedMessages`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure
+
+example:
+```Json
+{
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+#### Response
+
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
+
+{
+  "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+### Create a new public similar questions
+
+  `POST /api/v3/globalSettings/publicCannedMessages/{id}/similarQuestions`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the string array.
+
+example:
+```Json
+ ["not ok?"]
+```
+
+#### Response
+
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  ["not ok?"]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
+
+{
+  "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?","not ok?"]
+}
+```
+
+### Update a Public Canned Message
+
+  `PUT /api/v3/globalSettings/publicCannedMessages/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the public canned message |
+
+Request Body
+
+  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure
+
+example:
+```Json
+{
+  "name": "test11111",
+  "message": "test11111",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+#### Response
+
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "test11111",
+  "message": "test11111",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
+  "name": "test11111",
+  "message": "test11111",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+### Delete a Public Canned Message
+
+  `DELETE /api/v3/globalSettings/publicCannedMessages/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the public canned message |
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
+# Private Canned Message Category
+
+- `GET /api/v3/globalSettings/privateCannedMessageCategories` - [Get all private canned message categories in site](#get-all-Private-Canned-Message-Categories-in-site)
+- `GET /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [Get a private canned message category by id](#get-a-Private-Canned-Message-Category-by-id)
+- `POST /api/v3/globalSettings/privateCannedMessageCategories` - [create a new private canned message category](#create-a-new-Private-Canned-Message-Category)
+- `PUT /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [update a private canned message category](#update-a-Private-Canned-Message-Category)
+- `DELETE /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [delete a private canned message category](#delete-a-Private-Canned-Message-Category)
+
+## Related Object Json Format
+
+### Private Canned Message Category Object
+
+  Private Canned Message Category Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  | `name` | string  | no | yes | | Name of the canned message category. |
+  | `parentId` | Guid  | no | yes | | Parent of the canned message category. |
+
+## Private Canned Message Category Endpoints
+
+### Get all Private Canned Message Categories in site
+
+  `GET /api/v3/globalSettings/privateCannedMessageCategories`
+
+#### Parameters
 
     No parameters
 
-- Response:
+#### Response
 
-    [Canned Message](#canned-message-json-format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/global/cannedmessages/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42
-```
-
-Sample response:
-
-```json
-{
-    "id": "3FCE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "isPrivate": false,
-    "name": "test Canned Message name",
-    "message": "bye bye",
-    "categoryId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "shortCuts": "bye",
-    "channelType": "default",
-    "emailHtmlMessage": "",
-    "emailTextMessage": ""
-}
-```
-
-#### Create a new canned message
-
-  `POST /api/v3/global/cannedMessages`
-
-- Request Parameters:
-
-    [Canned Message](#canned-message-json-format)
-
-- Response:
-
-    [Canned Message](#canned-message-json-format)
+the response is: list of [Private Canned Message Category](#private-Canned-Message-Category-object) Object
 
 #### Example
 
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"isprivate": false,"name": 'test',"message": 'testmessage',"channelType": 'default',"emailHtmlMessage": '',"emailTextMessage": ''}"   
-     https://hosted.comm100.com/api/v3/global/cannedmessages
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories
 ```
 
-Sample response:
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
-{
-    "id": "217F8029-DCAC-4CFA-9859-DAA4C0410B4A",
-    "isPrivate": false,
-    "name": "test",
-    "message": "testmessage",
-    "categoryId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "shortCuts": "",
-    "channelType": "default",
-    "emailHtmlMessage": "",
-    "emailTextMessage": ""
-}
-```
-
-#### Update a canned message
-
-  `PUT /api/v3/global/cannedMessages/{id}`
-
-- Path Parameters:
-
-    - id, string, id of the canned message.
-
-- Request Parameters:
-
-    [Canned Message](#canned-message-json-format)
-
-- Response:
-
-    [Canned Message](#canned-message-json-format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"isprivate": false,"name": 'testupdate',"message": 'testmessageupdate',"channelType": 'email',"emailHtmlMessage": 'test email html message',"emailTextMessage": 'test email text message'}"   
-     https://hosted.comm100.com/api/v3/global/cannedmessages/217F8029-DCAC-4CFA-9859-DAA4C0410B4A
-```
-
-Sample response:
-
-```json
-{
-    "id": "217F8029-DCAC-4CFA-9859-DAA4C0410B4A",
-    "isPrivate": false,
-    "name": "testupdate",
-    "message": "testmessageupdate",
-    "categoryId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "shortCuts": "",
-    "channelType": "email",
-    "emailHtmlMessage": "test email html message",
-    "emailTextMessage": "test email text message"
-}
-```
-
-#### Remove a canned message
-
-  `DELETE /api/v3/global/cannedMessages/{id}`
-
-- Path Parameters:
-
-    - id, string, id of the canned message.
-
-- Response:
-
-    Status: 200 OK
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE  https://hosted.comm100.com/api/v3/global/cannedmessages/217F8029-DCAC-4CFA-9859-DAA4C0410B4A
-```
-
-Sample response:
-
-```json
-Status: 200 OK
-```
-
-</div>
-</div>
-<div>
-
-## Canned Message Categories
-
-  You need `Manage Pulbic Canned Messages` permission to manage canned message category.
-- `GET /api/v3/global/cannedMessageCategories` -get a list of canned Messages Categories
-- `GET /api/v3/global/cannedMessageCategories/{id}`  -get a single canned Messages Category
-- `POST /api/v3/global/cannedMessageCategories` -create a new canned Messages Category
-- `PUT /api/v3/global/cannedMessageCategories/{id}`  -update a canned Messages Category
-- `DELETE /api/v3/global/cannedMessageCategories/{id}`  -remove a canned Messages Category
-
-<div>
-
-### Model
-
-#### Canned Message Category JSON Format
-
-  Canned Message Category is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Description |
-  | - | - | - |
-  | `id` | string | read-only, id of the canned message category. |
-  | `name` | string | required, name of the canned message category. |
-  | `parentId` | string | required, id of the parent category of the canned message category. |
-  | `isPrivate` | boolean | optional, whether the canned message category is private or not. When a subcategory has a parent category, this attribute is determined by the parent category.  |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Get list of canned message categories
-
-  `GET /api/v3/global/cannedMessageCategories`
-
-- Parameters:
-
-    No parameters
-
-- Response:
-
-    [Canned Message Category](#canned-message-category-json-format)[]
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/global/cannedmessagecategories
-```
-
-Sample response:
-
-```json
 [
     {
-        "id": "7F79B926-1E8C-438B-8F07-53D2914149A6",
-        "isPrivate": false,
-        "name": "puddddtresult",
-        "parentId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42"
+        "id": "119043D0-76A6-D3C1-B594-493111CE1552",
+        "name": "tstestsetsteset",
+        "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
     },
     ...
 ]
 ```
 
-#### Get a single canned message category
+### Get a Private Canned Message Category by id
 
-  `GET /api/v3/global/cannedMessageCategories/{id}`
+  `GET /api/v3/globalSettings/privateCannedMessageCategories/{id}`
 
-- Path Parameters:
+#### Parameters
 
-    - id, string, id of the canned message category.
+Path Parameters
 
-- Response:
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the private canned message category |
 
-    [Canned Message Category](#canned-message-category-json-format)
+#### Response
+
+the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
 
 #### Example
 
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/global/cannedmessagecategories/7F79B926-1E8C-438B-8F07-53D2914149A6
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/119043D0-76A6-D3C1-B594-493111CE1552
 ```
 
-Sample response:
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
 {
-    "id": "7F79B926-1E8C-438B-8F07-53D2914149A6",
-    "isPrivate": false,
-    "name": "puddddtresultgggg",
-    "parentId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42"
+  "id": "119043D0-76A6-D3C1-B594-493111CE1552",
+  "name": "tstestsetsteset",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
 }
 ```
 
-#### Create a new canned message category
+### Create a new Private Canned Message Category
 
-  `POST /api/v3/global/cannedMessageCategories`
+  `POST /api/v3/globalSettings/privateCannedMessageCategories`
 
-- Request Parameters:
+#### Parameters
 
-    [Canned Message Category](#canned-message-category-json-format)
+Request Body
 
-- Response:
+  The request body contains data with the [Private Canned Message Category](#private-Canned-Message-Category-object) structure
 
-    [Canned Message Category](#canned-message-category-json-format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"isprivate": false,"name": 'justfortest',"parentid": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42'}"    
-     https://hosted.comm100.com/api/v3/global/cannedmessagecategories
-```
-
-Sample response:
-
-```json
+example:
+```Json
 {
-    "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
-    "isPrivate": false,
-    "name": "justfortest",
-    "parentId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42"
+  "name": "testtest111111",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
 }
 ```
 
-#### Update a canned message category
+#### Response
 
-  `PUT /api/v3/global/cannedMessageCategories/{id}`
-
-- Path Parameters:
-
-    - id, string, id of the canned message category.
-
-- Request Parameters:
-
-    [Canned Message Category](#canned-message-category-json-format)
-
-- Response:
-
-    [Canned Message Category](#canned-message-category-json-format)
+the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
 
 #### Example
 
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"isprivate": false,"name": 'justfortestupdate',"parentid": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42'}"    
-     https://hosted.comm100.com/api/v3/global/cannedmessagecategories/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "testtest111111",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories
 ```
 
-Sample response:
-
-```json
+Response
+```Json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
 {
-    "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
-    "isPrivate": false,
-    "name": "justfortestupdate",
-    "parentId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42"
+  "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
+  "name": "testtest111111",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
 }
 ```
 
-#### Remove a canned message category
+### Update a Private Canned Message Category
 
-  `DELETE /api/v3/global/cannedMessageCategories/{id}`
+  `PUT /api/v3/globalSettings/privateCannedMessageCategories/{id}`
 
-- Path Parameters:
+#### Parameters
 
-    - id, string, id of the canned message category.
+Path Parameters
 
-- Response:
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the private canned message category |
 
-    Status: 200 OK
+Request Body
 
-#### Example
+  The request body contains data with the [Private Canned Message Category](#private-Canned-Message-Category-object) structure
 
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE https://hosted.comm100.com/api/v3/global/cannedmessagecategories/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
-```
-
-Sample response:
-
-```json
-Status: 200 OK
-```
-
-</div>
-</div>
-
-<div>
-
-## Canned Message Use Records
-
-- `POST /api/v3/global/cannedMessageUseRecords` -create a new canned Message Use Record
-
-<div>
-
-### Model
-
-#### Canned Message Use Record JSON Format
-
-  Canned Message Use Record is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Description |
-  | - | - | - |
-  | `siteId` | int | required, site id of the canned message use record. |
-  | `conversationId` | string | required, conversation id of the canned message use record. |
-  | `conversationType` | string | required, conversation type the canned message use record, we now have `messaging` or `live chat`. |
-  | `agentId` | string | required, id of the agent who added the canned message use record. |
-  | `cannedMessageId` | string | required, the used canned message id. |
-  | `time` | string | readonly, the time of this canned message use record. |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Create a new canned message
-
-  `POST /api/v3/global/cannedMessageUseRecords`
-
-- Request Parameters:
-
-    [Canned Message Use Record](#canned-message-use-record-json-format)
-
-- Response:
-
-    [Canned Message Use Record](#canned-message-use-record-json-format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"siteId": 10000,"conversationId": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42',"conversationType": 'messaging',"agentId": '909F7DCE-778E-4FA6-8B1F-4B529023747B',"cannedMessageId": '7960F944-D510-45C9-A766-836337243487'}"   
-     https://hosted.comm100.com/api/v3/global/cannedMessageUseRecords
-```
-
-Sample response:
-
-```json
+example:
+```Json
 {
-    "siteId": 10000,
-    "conversationId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
-    "conversationType": "messaging",
-    "agentId": "909F7DCE-778E-4FA6-8B1F-4B529023747B",
-    "cannedMessageId": "7960F944-D510-45C9-A766-836337243487",
-    "time": "2019-08-08T10:21:44.403"
+  "name": "testtest22222",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
 }
 ```
 
+#### Response
 
-</div>
-</div>
-
-<div>
-
-## Credit Card Masking
-
-  You need `Manage Credit Card Masking` permission to manage credit card masking.
-- `GET /api/v3/global/creditcardMasking` - Get configuration of credit card masking
-- `PUT /api/v3/global/creditcardMasking` - Update configuration of credit card masking
-
-<div>
-
-### Model
-
-#### Credit Card Masking Config Json Format
-
- Credit Card Masking is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type |  Description |
-| - | - | - |
-| `isEnable` | boolean | required, whether Credit Card Masking are enabled or not. |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Get configuration of credit card masking
-
-  `Get /api/v3/global/creditcardMasking`
-
-- Parameters
-  
-  No parameters
-
-- Response
-  
-  [Credit Card Masking](#Credit-Card-Masking-Config-Json-Format) Config Object
+the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/creditcardMasking
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "testtest22222",
+  "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
 ```
 
-  Sample response:
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
 
-```json
 {
-    "isEnable": false
+  "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
+  "name": "testtest22222",
+  "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
 }
 ```
 
-#### Update configuration of credit card masking
+### Delete a Private Canned Message Category
 
-  `PUT /api/v3/global/creditcardMasking`
-
-- Request Parameters:
-
-  [Credit Card Masking](#Credit-Card-Masking-Config-Json-Format) Config Object
-
-- Response
-
-  [Credit Card Masking](#Credit-Card-Masking-Config-Json-Format) Config Object
+  `DELETE /api/v3/globalSettings/privateCannedMessageCategories/{id}`
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -H "content-type: application/json" -x PUT  
-     -d "{"isEnable": 'true'}"    
-     https://hosted.comm100.com/api/v3/global/creditcardMasking
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
 ```
 
-  Sample response:
-
-```json
-{
-    "isEnable": true
-}
+Response
+```Json
+  HTTP/1.1 204 No Content
 ```
 
-</div>
-</div>
-<div>
+#### Parameters
 
-## Departments
+Path Parameters
 
-  You need `Manage Departments` permission to manage department.
-- `Get /api/v3/global/departments/config` - Get departments config
-- `PUT /api/v3/global/departments/config` - Update enable or disable departments
-- `GET /api/v3/global/departments` -get a list of departments
-- `GET /api/v3/global/departments/{id}`  -get a single department
-- `POST /api/v3/global/departments` -create a new department
-- `PUT /api/v3/global/departments/{id}`  -update a department
-- `DELETE /api/v3/global/departments/{id}`  -remove a department
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the private canned message category |
 
-<div>
+#### Response
 
-### Model
+HTTP/1.1 204 No Content
 
-#### Department Config Json Format
+# Private Canned Message
 
- Role Config is represented as simple flat JSON objects with the following keys:  
+- `GET /api/v3/globalSettings/privateCannedMessages` - [Get all private canned messages in site](#get-all-Private-Canned-Messages-in-site)
+- `GET /api/v3/globalSettings/privateCannedMessages/{id}` - [Get a private canned message by id](#get-a-Private-Canned-Message-by-id)
+- `POST /api/v3/globalSettings/privateCannedMessages` - [create a new private canned message](#create-a-new-Private-Canned-Message)
+- `POST /api/v3/globalSettings/publicCannedMessages/{id}/similarQuestions`  - [create a new private similar questions](#create-a-new-private-similar-questions)
+- `PUT /api/v3/globalSettings/privateCannedMessages/{id}` - [update a private canned message](#update-a-Private-Canned-Message)
+- `DELETE /api/v3/globalSettings/privateCannedMessages/{id}` - [delete a private canned message](#delete-a-Private-Canned-Message)
 
-| Name | Type | Description |
-| - | - | - |
-| `isEnable` | string | required, whether departments are enabled or not in the site. |
+## Related Object Json Format
 
-#### Department JSON Format
+### Private Canned Message Object
 
-  Department is represented as simple flat JSON objects with the following keys:  
+  Private Canned Message Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Description |
-  | - | - | - |
-  | `id` | string | read-only, id of the department. |
-  | `name` | string | required, name of the department. |
-  | `description` | string | optional, description of the department. |
-  | `agents` | array | optional, an array of agent in the department. |
-  | `roles` | array | optional, an array of role in the department. |
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  |`id` | Guid | | yes | N/A | | Id of the current item.  |
+  | `name` | string  | | no | no | | Name of the canned message. |
+  | `message` | string  | | no | no | | |
+  | `IfSetHtmlMessageForEmail` | bool | | no | no | false | |
+  | `htmlMessage` | string  | | no | no | | |
+  | `categoryId` | Guid | | no | no | | |
+  | `category` | [Private Canned Message Category](#private-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
+  | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
+  | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
-</div>
-<div>
+## Private Canned Message Endpoints
 
-### Endpoint
+### Get all Private Canned Messages in site
 
-#### Get Roles Config
+  `GET /api/v3/globalSettings/privateCannedMessages`
 
-  `GET /api/v3/global/departments/config`
+#### Parameters
 
-- Path Parameters:
+Query string
 
- No parameter
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `privateCannedMessageCategory` |
 
-- Response
-  
-  [Department Config](#Department-Config-Json-Format)
+#### Response
+
+the response is: list of [Private Canned Message](#private-Canned-Message-object) Object
 
 #### Example
 
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/departments/Config
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages?include=privateCannedMessageCategory
 ```
 
-  Sample response:
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
-{
-    "isEnable": false
-}
-```
-#### Update Roles Config
-
-  `PUT /api/v3/global/departments/config`
-
-- Request Parameters
-  
-  [Department Config](#Department-Config-Json-Format)
-
-- Response
-  
-  [Department Config](#Department-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"isEnable": true}"    
-     https://hosted.comm100.com/api/v3/global/departments/config
-```
-
-  Sample response:
-
-```json
-{
-    "isEnable": true
-}
-```
-#### Get list of departments
-
-  `GET /api/v3/global/departments`
-
-- Parameters:
-
-    No parameters
-
-- Response:
-
-    [Department](#department-json-format)[]
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/global/departments
-```
-
-Sample response:
-
-```json
 [
     {
-        "id": "0399B614-F4E9-42A0-B0DA-8C9422D7121A",
-        "name": "<script>alert('dde')</script>",
-        "description": "<script>alert('dde111')</script>",
-        "agents": [
-            "id":"BBEBE689-0993-461A-A820-C6D30FD3C66F",
-            "name":"Terry"
-        ],
-        "roles": [ ]
+        "id": "AB71E95A-1FA5-E19D-9BA4-9C2144598C57",
+        "name": "privateCannedMessageCategory",
+        "message": "privateCannedMessageCategory",
+        "IfSetHtmlMessageForEmail": false,
+        "htmlMessage": "",
+        "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+        "category":    { // include private canned message category
+          "id": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+          "name": "justfortest",
+         "parentId": "A73FA2EB-4CE3-B195-94C6-567A24F7BDDC"
+        },
+        "shortcuts": "",
+        "similarQuestions": ["are you ok?"]
     },
     ...
 ]
 ```
 
-#### Get a single department
+### Get a Private Canned Message by id
 
-  `GET /api/v3/global/departments/{id}`
+  `GET /api/v3/globalSettings/privateCannedMessages/{id}`
 
-- Path Parameters:
+#### Parameters
 
-    - id: string, id of the department.
+Path Parameters
 
-- Response:
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the private canned message |
 
-    [Department](#department-json-format)
+Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  | `include` | string | no  |  | Available value: `privateCannedMessageCategory` |
+
+##### Response
+
+the response is: [Private Canned Message](#private-Canned-Message-object) Object
 
 #### Example
 
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/global/departments/0399B614-F4E9-42A0-B0DA-8C9422D7121A
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/AB71E95A-1FA5-E19D-9BA4-9C2144598C57?include=privateCannedMessageCategory
 ```
 
-Sample response:
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 
-```json
 {
-    "id": "0399B614-F4E9-42A0-B0DA-8C9422D7121A",
-    "name": "<script>alert('dde')</script>",
-    "description": "<script>alert('dde111')</script>",
-    "agents": [
-        "id":"BBEBE689-0993-461A-A820-C6D30FD3C66F",
-        "name":"Terry"
+  "id": "C354EA75-BAAF-9994-9307-D001FBE1882A",
+  "name": "privateCannedMessageCategory",
+  "message": "privateCannedMessageCategory",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "category":    { // include private canned message category
+    "id": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+    "name": "puddddtresult",
+    "parentId": "A73FA2EB-4CE3-B195-94C6-567A24F7BDDC"
+  },
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+### Create a new Private Canned Message
+
+  `POST /api/v3/globalSettings/privateCannedMessages`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the [Private Canned Message](#private-Canned-Message-object) structure
+
+example:
+```Json
+{
+  "name": "privateCannedMessageCategorytest1111",
+  "message": "privateCannedMessageCategorytest1111",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+#### Response
+
+the response is: [Private Canned Message](#private-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "privateCannedMessageCategorytest1111",
+  "message": "privateCannedMessageCategorytest1111",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
+
+{
+  "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
+  "name": "privateCannedMessageCategorytest1111",
+  "message": "privateCannedMessageCategorytest1111",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+### Create a new private similar questions
+
+  `POST /api/v3/globalSettings/privateCannedMessages/{id}/similarQuestions`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the string array.
+
+example:
+```Json
+ ["not ok?"]
+```
+
+#### Response
+
+the response is: [Public Canned Message](#public-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  ["not ok?"]
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
+
+{
+  "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
+  "name": "publicCannedMessageCategorytest",
+  "message": "publicCannedMessageCategorytest",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?","not ok?"]
+}
+```
+### Update a Private Canned Message
+
+  `PUT /api/v3/globalSettings/privateCannedMessages/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the private canned message |
+
+Request Body
+
+  The request body contains data with the [Private Canned Message](#private-Canned-Message-object) structure
+
+example:
+```Json
+{
+  "name": "privateCannedMessageCategorytest2222",
+  "message": "privateCannedMessageCategorytest2222",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+#### Response
+
+the response is: [Private Canned Message](#private-Canned-Message-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "privateCannedMessageCategorytest2222",
+  "message": "privateCannedMessageCategorytest2222",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
+  "name": "privateCannedMessageCategorytest2222",
+  "message": "privateCannedMessageCategorytest2222",
+  "IfSetHtmlMessageForEmail": false,
+  "htmlMessage": "",
+  "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
+  "shortcuts": "",
+  "similarQuestions": ["are you ok?"]
+}
+```
+
+### Delete a Private Canned Message
+
+  `DELETE /api/v3/globalSettings/privateCannedMessages/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the private canned message |
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
+#### Similar Question Object
+
+  Similar Question Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  | `question` | string  | no | no | | |
+
+# Agent Away Status
+
+  You need `Manage Settings` permission to manage visitor.
+
+- `GET /api/v3/globalSettings/agentAwayStatuses` - [Get all agent away statuses in site](#get-all-Agent-Away-Statuses-in-site)
+- `GET /api/v3/globalSettings/agentAwayStatuses/{id}` - [Get an agent away status by id](#get-a-Agent-Away-Status-by-id)
+- `POST /api/v3/globalSettings/agentAwayStatuses` - [create a new agent away status](#create-a-new-Agent-Away-Status)
+- `PUT /api/v3/globalSettings/agentAwayStatuses/{id}` - [update an agent away status](#update-a-Agent-Away-Status)
+- `DELETE /api/v3/globalSettings/agentAwayStatuses/{id}` - [delete an agent away status](#delete-a-Agent-Away-Status)
+
+## Related Object Json Format
+
+### Agent Away Status Object
+
+  Agent Away Status Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only | Mandatory| Default | Description |
+  | - | - | :-: | :-: | :-: | - |
+  |`id` | Guid | yes | no | | Id of the current item.  |
+  | `name` | string  | no | yes | | Name of the agent away status. |
+  | `isSystem` | boolean  | yes | no | false | Whether the agent away status is system or not. |
+  | `order` | integer  | yes | no | | The order of the agent away status. |
+
+## Agent Away Status Endpoints
+
+### Get all Agent Away Statuses of a site
+
+  `GET /api/v3/globalSettings/agentAwayStatuses`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response is: list of [Agent Away Status](#agent-Away-Status-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+[
+    {
+        "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+        "name": "agentAwayStatuses",
+        "isSystem": false,
+        "order": 1
+    },
+    ...
+]
+```
+
+### Get a Agent Away Status by id
+
+  `GET /api/v3/globalSettings/agentAwayStatuses/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the agent away status |
+
+#### Response
+
+the response is: [Agent Away Status](#agent-Away-Status-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/BAACB779-2E41-27C5-B23D-1C8F2058862D
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "BAACB779-2E41-27C5-B23D-1C8F2058862D",
+  "name": "agentAwayStatuses",
+  "isSystem": false,
+  "order": 1
+}
+```
+
+### Create a new Agent Away Status
+
+  `POST /api/v3/globalSettings/agentAwayStatuses`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure
+
+example:
+```Json
+{
+  "name": "agentAwayStatuses11",
+  "isSystem": false,
+  "order": 1
+}
+```
+
+#### Response
+
+the response is: [Agent Away Status](#agent-Away-Status-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "agentAwayStatuses11"
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses
+```
+
+Response
+``` json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
+
+{
+  "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
+  "name": "agentAwayStatuses11",
+  "isSystem": false,
+  "order": 5
+}
+```
+
+### Update a Agent Away Status
+
+  `PUT /api/v3/globalSettings/agentAwayStatuses/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the agent away status |
+
+Request Body
+
+  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure
+
+example:
+```Json
+{
+  "name": "agentAwayStatuses23",
+}
+```
+
+#### Response
+
+the response is: [Agent Away Status](#agent-Away-Status-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+  "name": "agentAwayStatuses22",
+  "isSystem": false,
+  "order": 1
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
+```
+
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
+  "name": "agentAwayStatuses23",
+  "isSystem": false,
+  "order": 5
+}
+```
+
+### Delete a Agent Away Status
+
+  `DELETE /api/v3/globalSettings/agentAwayStatuses/{id}`
+
+#### Parameters
+
+Path Parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  | `id` | Guid | yes  |  the unique Id of the agent away status |
+
+#### Response
+
+HTTP/1.1 204 No Content
+
+#### Example
+
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
+```
+
+Response
+```Json
+  HTTP/1.1 204 No Content
+```
+
+# Whitelisted Login IP Range
+
+You need `Manage Security` permission to manage whitelisted login ip restrictions.
+
+   When Login IP Whitelist is enabled, site administrator can add IP range for this site and only agents within the IP range can log in successfully.
+
+  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges` - [Get a list of whitelisted login IP ranges in site](#get-all-whitelisted-login-ip-ranges)
+  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [Get a whitelisted login IP range by id](#get-a-whitelisted-login-ip-ranges)
+  + `POST /api/v3/globalSettings/whitelistedLoginIPRanges` - [create a new whitelisted login IP range](#create-a-new-whitelisted-login-ip-range)
+  + `PUT /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [update a whitelisted login IP range](#update-a-whitelisted-login-ip-range)
+  + `DELETE /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [delete a whitelisted login IP range](#delete-a-whitelisted-login-ip-range)
+
+## Whitelisted Login IP Range Related Object Json Format
+
+### Whitelisted Login IP Range Object
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | Guid | | N/A | N/A | | |
+  |`ipFrom` | string | | no | yes | | Where an IP range starts.|
+  |`ipTo` | string | | no | yes | | Where an IP range ends.|
+  |`createdTime` | DateTime | | N/A | N/A |  |  |
+
+## Whitelisted Login IP Range Endpoints
+
+### Get all Whitelisted Login IP Ranges
+
+  `GET /api/v3/globalSettings/whitelistedLoginIPRanges`
+
+  #### Parameters
+    No parameters
+
+  #### Response
+
+  The response is a list of [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Objects
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json[
+{
+  "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "ipFrom": "201.195.21.5",
+  "ipTo": "201.195.21.8",
+  "createdTime": "2020-01-01",
+},
+...,
+]
+```
+
+### Get a Whitelisted Login IP Ranges
+
+  `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}`
+
+#### Parameters
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  The id of the whitelisted Login IP Ranges |
+
+#### Response
+
+The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+  {
+  "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "ipFrom": "201.195.21.5",
+  "ipTo": "201.195.21.8",
+  "createdTime": "2020-01-01",
+  }
+```
+
+### Create a new whitelisted Login IP Range
+
+  `POST /api/v3/globalSettings/whitelistedLoginIPRanges`
+
+####  Parameters
+
+Request body
+  The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure
+
+  example:
+```json
+ {
+    "ipFrom": "201.195.21.5",
+    "ipTo": "201.195.21.8",
+  }
+```
+
+#### Response
+
+The response is:
+  [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json" -d ' {
+      "ipFrom": "201.195.21.5",
+      "ipTo": "201.195.21.8",
+    }' -X POST https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges
+```
+Response
+```json
+HTTP/1.1 201 Created
+Content-Type:  application/json
+Location: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+ {
+    "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "ipFrom": "201.195.21.5",
+    "ipTo": "201.195.21.8",
+    "createdTime": "2020-01-01",
+  }
+```
+
+
+### Update a whitelisted Login IP Range
+  `PUT /api/v3/globalSettings/whitelistedLoginIPRanges/{id}`
+
+####  Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  The id of the whitelisted Login IP Range |
+
+Request body
+
+  The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure
+
+  example:
+```json
+ {
+    "ipFrom": "201.195.21.5",
+    "ipTo": "201.195.21.8",
+  }
+```
+
+#### Response
+
+The response is:
+  [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d ' {
+      "ipFrom": "201.195.21.5",
+      "ipTo": "201.195.21.8",
+    }' -X PUT https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+  HTTP/1.1 200 OK
+  Content-Type: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+ {
+    "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "ipFrom": "201.195.21.5",
+    "ipTo": "201.195.21.8",
+    "createdTime": "2020-01-01",
+  }
+```
+
+### Delete a whitelisted Login IP Range
+
+  `DELETE /api/v3/globalSettings/whitelistedLoginIPRanges/{id}`
+
+#### Parameters
+
+Path parameters
+
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
+  |`id` | Guid | yes  |  the whitelisted Login IP Range id |
+
+#### Response
+HTTP/1.1 204 No Content
+
+#### Example
+Using curl
+```
+curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+```
+Response
+```json
+HTTP/1.1 204 No Content
+```
+
+# Agent SSO
+
+  You need `Manage Settings` permission to setting sso for a site.
+
+- `GET /api/v3/globalSettings/agentSSO` - [Get Agent SSO](#get-agent-sso)
+- `PUT /api/v3/globalSettings/agentSSO` - [update Agent SSO](#update-agent-sso)
+
+## Related Object Json Format
+
+### Agent SSO Object
+
+  Agent SSO Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Include | Read-only| Mandatory| Default | Description |
+  | - | - | - | :-: | :-: | :-: | - |
+  | `isEnabled` | bool  | | no | yes|| |
+  | `protocolType` | string |  | no | yes | | including `SAML` and `JWT`. |
+  | `samlSSOURL` | string |  | no |yes | |mandatory when Type is `SAML`. |
+  | `samlLogoutURL` | string |  | no | no | | only available when Type is `SAML`. |
+  | `samlCertificate` | string |  | no | yes | | SAML certificate, mandatory when Type is `SAML`.|
+  | `jwtLoginURL` | string |  | no | yes | | mandatory when Type is `JWT`. |
+  | `jwtLogoutURL` | string |  | no | no | | only available when Type is `JWT`.  |
+  | `jwtSecret` | string |  | no | no | | mandatory when Type is `JWT`.  |
+
+## Agent SSO Endpoints
+
+### Get Agent SSO
+
+  `GET /api/v3/globalSettings/agentSSO`
+
+#### Parameters
+
+    No parameters
+
+#### Response
+
+the response is: [Agent SSO](#agent-SSO-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/agentSSO
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "isEnabled": true,
+  "protocolType": "SAML",
+  "samlSSOURL": "https://domain.comm100.com/SAML/SSOLogin",
+  "samlLogoutURL": "https://domain.comm100.com/SAML/SSOLogout",
+  "samlCertificate": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
+  "jwtLoginURL": "",
+  "jwtLogoutURL": "",
+  "jwtSecret": ""
+}
+```
+
+### Update Agent SSO
+
+  `PUT /api/v3/globalSettings/agentSSO`
+
+#### Parameters
+
+Request Body
+
+  The request body contains data with the [Agent SSO](#agent-SSO-object) structure
+
+ example:
+```Json
+  {
+    "isEnabled": true,
+    "protocolType": "JWT",
+    "jwtLoginURL": "",
+    "jwtLogoutURL": "",
+    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+  }
+```
+
+#### Response
+
+the response is: [Agent SSO](#agent-SSO-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "isEnabled": true,
+    "protocolType": "JWT",
+    "jwtLoginURL": "",
+    "jwtLogoutURL": "",
+    "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentSSO
+```
+Response
+```Json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+  "isEnabled": true,
+  "protocolType": "JWT",
+  "samlSSOURL": "",
+  "samlLogoutURL": "",
+  "samlCertificate": "",
+  "jwtLoginURL": "https://domain.comm100.com/JWT/SSOLogin",
+  "jwtLogoutURL": "https://domain.comm100.com/JWT/SSOLogin",
+  "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
+}
+```
+
+# Visitor SSO
+
+  You need `Manage Settings` permission to setting sso for a site.
+
+- `GET /api/v3/globalSettings/visitorSSO` - [Get Visitor SSO](#get-visitor-sso)
+- `PUT /api/v3/globalSettings/visitorSSO` - [update Visitor SSO](#update-visitor-sso)
+
+## Related Object Json Format
+
+### Visitor SSO Object
+
+  Visitor SSO Object is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `isEnabled` | bool  | | no | N/A | false | |
+  | `loginURL` | string  | | no | N/A | | |
+  | `logoutURL` | string  | | no | N/A | | |
+  | `changePasswordURL` | string  | | no | N/A | | |
+  | `certificate` | string  | | no | N/A | | Base64 data of certificate file. |
+  | `certificateFileName` | string  | | no | N/A | | |
+  | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | N/A | | |
+  | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | N/A | | |
+
+### Field Mapping Object
+
+Field Mapping is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `attribute` | string | | no | yes | | SSO attribute name. |
+  | `comm100Field` | string | | no | yes | | the Comm100 field name |
+
+### Visitor SSO Campaign Object
+
+Visitor SSO Campaign is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - |- | :-: | :-: | :-: | - |
+  | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
+  | `campaign` | [Campaign](#campaign-object)  | yes | N/A | N/A | | Available only when campaign is included  |
+  | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
+  | `isPrechatFromSkipped` | bool |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
+
+## Visitor SSO Endpoints
+
+### Get Visitor SSO
+
+  `GET /api/v3/globalSettings/visitorSSO`
+
+#### Parameters
+
+Query string
+
+  | Name  | Type | Required | Default | Description |
+  | - | - | :-: | :-: | - |
+  | `include` | string | no  | |  Available value: `campaign` |
+
+#### Response
+
+the response is: [Visitor SSO](#visitor-SSO-object) Object
+
+#### Example
+
+Using curl
+```
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/globalSettings/visitorSSO?include=campaign
+```
+Response
+``` json
+HTTP/1.1 200 OK
+Content-Type:  application/json
+
+{
+    "isEnabled": true,
+    "loginURL": "http://www.xzcs11ffffffff1a",
+    "logoutURL": "http://www.xzcs11ffffffff1a",
+    "changePasswordURL": "http://www.xzcs11ffffffff1a",
+    "certificate": "amdoamdoaGdmcnRk",
+    "certificateFileName": "r.txt",
+    "fieldMappings": [
+        {
+            "attribute": "test999",
+            "comm100Field": "{!Visitor.Name}"
+        },
+        {
+            "attribute": "test666",
+            "comm100Field": "{!Prechat.Company}"
+        }
     ],
-    "roles": [ ]
+    "perCampaign": [
+        {
+            "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+            "campaign": { //include campaign
+                "id":"cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+                "name":"testCampaign",
+                ...
+            },
+            "signInOption": "noSignIn",
+            "isPrechatFromSkipped": false
+        }
+    ]
 }
 ```
 
-#### Create a new department
+### Update Visitor SSO
 
-  `POST /api/v3/global/departments`
+  `PUT /api/v3/globalSettings/visitorSSO`
 
-- Request Parameters:
+#### Parameters
 
-    [Department](#department-json-format)
+Request Body
 
-- Response:
+  The request body contains data with the [Visitor SSO](#visitor-SSO-object) structure
 
-    [Department](#department-json-format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"name": 'test'}"    
-     https://hosted.comm100.com/api/v3/global/departments
+example:
+```Json
+  {
+    "isEnabled": true,
+    "loginURL": "http://www.xzcs11ffffffff1a",
+    "logoutURL": "http://www.xzcs11ffffffff1a",
+    "changePasswordURL": "http://www.xzcs11ffffffff1a",
+    "certificate": "amdoamdoaGdmcnRk",
+    "certificateFileName": "r.txt",
+    "fieldMappings": [
+        {
+            "attribute": "test999",
+            "comm100Field": "{!Visitor.Name}"
+        },
+        {
+            "attribute": "test666",
+            "comm100Field": "{!Prechat.Company}"
+        }
+    ],
+    "perCampaign": [
+        {
+            "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+            "signInOption": "noSignIn",
+            "isPrechatFromSkipped": false
+        }
+    ]
+  }
 ```
 
-Sample response:
+#### Response
 
+the response is: [Visitor SSO](#visitor-SSO-object) Object
+
+#### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -d '{
+    "isEnabled": true,
+    "loginURL": "http://www.xzcs11ffffffff1a",
+    "logoutURL": "http://www.xzcs11ffffffff1a",
+    "changePasswordURL": "http://www.xzcs11ffffffff1a",
+    "certificate": "amdoamdoaGdmcnRk",
+    "certificateFileName": "r.txt",
+    "fieldMappings": [
+        {
+            "attribute": "test999",
+            "comm100Field": "{!Visitor.Name}"
+        },
+        {
+            "attribute": "test666",
+            "comm100Field": "{!Prechat.Company}"
+        }
+    ],
+    "perCampaign": [
+        {
+            "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+            "signInOption": "noSignIn",
+            "isPrechatFromSkipped": false
+        }
+    ]
+  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/visitorSSO
+```
+Response
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
+
+  {
+    "isEnabled": true,
+    "loginURL": "http://www.xzcs11ffffffff1a",
+    "logoutURL": "http://www.xzcs11ffffffff1a",
+    "changePasswordURL": "http://www.xzcs11ffffffff1a",
+    "certificate": "amdoamdoaGdmcnRk",
+    "certificateFileName": "r.txt",
+    "fieldMappings": [
+        {
+            "attribute": "test999",
+            "comm100Field": "{!Visitor.Name}"
+        },
+        {
+            "attribute": "test666",
+            "comm100Field": "{!Prechat.Company}"
+        }
+    ],
+    "perCampaign": [
+        {
+            "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
+            "signInOption": "noSignIn",
+            "isPrechatFromSkipped": false
+        }
+    ]
+  }
+```
+
+# Audit Log
+  You need `View Audit Log` permission to view audit logs.
+
+  + `GET /api/v3/globalSettings/auditLogs` - [Get audit logs list](#get-audit-logs-list)
+
+## Audit Log Object Json Format
+
+### Audit Log Object
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | integer | | N/A | N/A | |  |
+  |`category` | string| | N/A | N/A | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
+  |`createdTime` | DateTime | | N/A | N/A |  |  |
+  |`actionType` | string | | N/A  | N/A  | | [action types for different applications](#action-types-for-different-applications) |
+  |`actionSummary` | string| | N/A  | N/A  | |  |
+  |`actionDetails` | string| | N/A  | N/A  | |  |
+  |`createdBy` | integer | | N/A  | N/A  | | the id of oprator agent |
+  |`agent` | [Agent](#agent) | yes | N/A  | N/A  | | the oprator agent |
+
+### Audit Log List Response Object
+
+  Agent List Object for agent list Response, include count and page information.
+
+  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`count` | integer  | N/A | yes | no | | The total count of the query  |
+  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
+  |`auditLogs`| [AuditLog](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
+
+### Action types for different applications
+
+  | Live Chat | Ticketing And Messaging | Knowledge Base | Bot|	Global |
+  | - | - | - | - | - |
+  | audioAndVideoChatManagement | autoAllocationManagement | categoryManagement | agentBotLearningManagement | accountProfileManagement |
+  | autoAcceptSetting | blockSenderManagement | articleManagement | agentBotSettingManagement | agentManagement |
+  | autoInvitationManagement | channelIntegrationManagement | tagManagement | agentBotSynonymManagement | agentRoleManagement |
+  | autoTranslationManagement | conversationManagement | imageManagement | botSettings | applicationsManagement |
+  | banManagement | fieldsAndMappingsManagement | designManagement | botsManagement | billingInfoManagement |
+  | campaignsManagement | routingRulesManagement | customPageManagement | entitiesManagement | cannedMessageManagement |
+  | chatsAuto-AllocationManagement | slaPoliciesManagement | knowledgeBaseManagement | intentsManagement | customAwayStatusManagement |
+  | chatSettingsManagement | triggerManagement | | quickRepliesManagement | customerAccountsManagement |
+  | cobrowsingManagement | workingTimeAndHolidaysManagement | | smartTriggersManagement | departmentManagement |
+  | conversionManagement | | | visitorQuestioninLearningDelete | integrationAndAPIManagement |
+  | customVariableManage | | | | licenseManagement |
+  | dashboardCustomMetricManagement | | | | manageAccountStatusorState |
+  | routingRulesManagement | | | | manuallyChargeandActiveAccount |
+  | secureFormManagement | | | | restrictedWordsManagement |
+  | segmentationManagement | | | | securityManagement |
+  | shiftsManagement | | | | siteProfileManagement |
+  | transcriptDelete | | | |   |
+  | visitorSSOManagement | | | |   |
+
+## Audit Log Endpoints
+
+### Get audit logs list
+
+  `GET /api/v3/globalSettings/auditLogs`
+
+  #### Parameters
+
+   Query stringno
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`dateFrom`|DateTime|no||The date from which agent did the action, format as yyyy-MM-ddTHH:mm:ss. |
+  |`dateTo`|DateTime|no||The date when an agent ended the action, format as yyyy-MM-ddTHH:mm:ss. |
+  |`category`|string|no||The category which the action belongs to |
+  |`actionType`|string|no||The action type. |
+  |`agentId`|integer |no||id of the agent who did the action. |
+  |`keywords`|string|no||The key words associated with the action. |
+  |`pageIndex`|integer|no| 1 | The page index of the query. |
+  |`pageSize`|integer|no| 10 |The page size of the query. |
+  |`include`|string|no||Available value: `agent` |
+
+
+#### Response
+
+  The response is a list of [Audit Log List Response](#audit-log-list-response-object) Objects
+
+  #### Example
+Using curl
+```
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/auditLogs
+```
+Response
 ```json
+HTTP/1.1 200 OK
+Content-Type:  application/json
 {
-    "id": "BBEBE689-0993-461A-A820-C6D30FD3C66F",
-    "name": "test",
-    "description": "",
-    "agents": [ ],
-    "roles": [ ]
+    "count": 1234,
+    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/auditLogs?pageIndex=2",
+    "previousPage": null,
+    "auditLogs": [
+      {
+        "id": 201,
+        "name": "add Agent",
+        "category": "My Account Global Settings",
+        "createdTime": "2020-02-02",
+        "createdBy": 68,
+        "actionType": "Add Agent",
+        "actionSummary": "Add Agent",
+        "actionDetails": "Add Agent for Live Chat",
+      },
+      ...,
+      ]
 }
 ```
 
-#### Update a department
 
-  `PUT /api/v3/global/departments/{id}`
 
-- Path Parameters:
 
-    - id: string, id of the department.
+# Time Zone Options
+
+
+  |   Id    |   Display name   |
+  |   -   |   -   |
+  |  datelineStandardTime  |   (UTC-12:00) International Date Line West   |
+  |  utc-11  |   (UTC-11:00) Coordinated Universal Time-11   |
+  |  aleutianStandardTime  |   (UTC-10:00) Aleutian Islands   |
+  |  hawaiianStandardTime  |   (UTC-10:00) Hawaii   |
+  |  marquesasStandardTime  |   (UTC-09:30) Marquesas Islands   |
+  |  alaskanStandardTime  |   (UTC-09:00) Alaska   |
+  |  utc-09  |   (UTC-09:00) Coordinated Universal Time-09   |
+  |  pacificStandardTime(Mexico)  |   (UTC-08:00) Baja California   |
+  |  utc-08  |   (UTC-08:00) Coordinated Universal Time-08   |
+  |  pacificStandardTime  |   (UTC-08:00) Pacific Time (US & Canada)   |
+  |  usMountainStandardTime  |   (UTC-07:00) Arizona   |
+  |  mountainStandardTime(Mexico)  |   (UTC-07:00) Chihuahua, La Paz, Mazatlan   |
+  |  mountainStandardTime  |   (UTC-07:00) Mountain Time (US & Canada)   |
+  |  centralAmericaStandardTime  |   (UTC-06:00) Central America   |
+  |  centralStandardTime  |   (UTC-06:00) Central Time (US & Canada)   |
+  |  easterIslandStandardTime  |   (UTC-06:00) Easter Island   |
+  |  centralStandardTime(Mexico)  |   (UTC-06:00) Guadalajara, Mexico City, Monterrey   |
+  |  canadaCentralStandardTime  |   (UTC-06:00) Saskatchewan   |
+  |  saPacificStandardTime  |   (UTC-05:00) Bogota, Lima, Quito, Rio Branco   |
+  |  easternStandardTime(Mexico)  |   (UTC-05:00) Chetumal   |
+  |  easternStandardTime  |   (UTC-05:00) Eastern Time (US & Canada)   |
+  |  haitiStandardTime  |   (UTC-05:00) Haiti   |
+  |  cubaStandardTime  |   (UTC-05:00) Havana   |
+  |  usEasternStandardTime  |   (UTC-05:00) Indiana (East)   |
+  |  turksAndCaicosStandardTime  |   (UTC-05:00) Turks and Caicos   |
+  |  paraguayStandardTime  |   (UTC-04:00) Asuncion   |
+  |  atlanticStandardTime  |   (UTC-04:00) Atlantic Time (Canada)   |
+  |  venezuelaStandardTime  |   (UTC-04:00) Caracas   |
+  |  centralBrazilianStandardTime  |   (UTC-04:00) Cuiaba   |
+  |  saWesternStandardTime  |   (UTC-04:00) Georgetown, La Paz, Manaus, San Juan   |
+  |  pacificSAStandardTime  |   (UTC-04:00) Santiago   |
+  |  newfoundlandStandardTime  |   (UTC-03:30) Newfoundland   |
+  |  tocantinsStandardTime  |   (UTC-03:00) Araguaina   |
+  |  e.SouthAmericaStandardTime  |   (UTC-03:00) Brasilia   |
+  |  saEasternStandardTime  |   (UTC-03:00) Cayenne, Fortaleza   |
+  |  argentinaStandardTime  |   (UTC-03:00) City of Buenos Aires   |
+  |  greenlandStandardTime  |   (UTC-03:00) Greenland   |
+  |  montevideoStandardTime  |   (UTC-03:00) Montevideo   |
+  |  magallanesStandardTime  |   (UTC-03:00) Punta Arenas   |
+  |  saintPierreStandardTime  |   (UTC-03:00) Saint Pierre and Miquelon   |
+  |  bahiaStandardTime  |   (UTC-03:00) Salvador   |
+  |  utc-02  |   (UTC-02:00) Coordinated Universal Time-02   |
+  |  mid-AtlanticStandardTime  |   (UTC-02:00) Mid-Atlantic - Old   |
+  |  azoresStandardTime  |   (UTC-01:00) Azores   |
+  |  capeVerdeStandardTime  |   (UTC-01:00) Cabo Verde Is.   |
+  |  utc  |   (UTC) Coordinated Universal Time   |
+  |  gmtStandardTime  |   (UTC+00:00) Dublin, Edinburgh, Lisbon, London   |
+  |  greenwichStandardTime  |   (UTC+00:00) Monrovia, Reykjavik   |
+  |  saoTomeStandardTime  |   (UTC+00:00) Sao Tome   |
+  |  moroccoStandardTime  |   (UTC+01:00) Casablanca   |
+  |  w.EuropeStandardTime  |   (UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna   |
+  |  centralEuropeStandardTime  |   (UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague   |
+  |  romanceStandardTime  |   (UTC+01:00) Brussels, Copenhagen, Madrid, Paris   |
+  |  centralEuropeanStandardTime  |   (UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb   |
+  |  w.CentralAfricaStandardTime  |   (UTC+01:00) West Central Africa   |
+  |  jordanStandardTime  |   (UTC+02:00) Amman   |
+  |  gtbStandardTime  |   (UTC+02:00) Athens, Bucharest   |
+  |  middleEastStandardTime  |   (UTC+02:00) Beirut   |
+  |  egyptStandardTime  |   (UTC+02:00) Cairo   |
+  |  e.EuropeStandardTime  |   (UTC+02:00) Chisinau   |
+  |  syriaStandardTime  |   (UTC+02:00) Damascus   |
+  |  westBankStandardTime  |   (UTC+02:00) Gaza, Hebron   |
+  |  southAfricaStandardTime  |   (UTC+02:00) Harare, Pretoria   |
+  |  fleStandardTime  |   (UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius   |
+  |  israelStandardTime  |   (UTC+02:00) Jerusalem   |
+  |  kaliningradStandardTime  |   (UTC+02:00) Kaliningrad   |
+  |  sudanStandardTime  |   (UTC+02:00) Khartoum   |
+  |  libyaStandardTime  |   (UTC+02:00) Tripoli   |
+  |  namibiaStandardTime  |   (UTC+02:00) Windhoek   |
+  |  arabicStandardTime  |   (UTC+03:00) Baghdad   |
+  |  turkeyStandardTime  |   (UTC+03:00) Istanbul   |
+  |  arabStandardTime  |   (UTC+03:00) Kuwait, Riyadh   |
+  |  belarusStandardTime  |   (UTC+03:00) Minsk   |
+  |  russianStandardTime  |   (UTC+03:00) Moscow, St. Petersburg   |
+  |  e.AfricaStandardTime  |   (UTC+03:00) Nairobi   |
+  |  iranStandardTime  |   (UTC+03:30) Tehran   |
+  |  arabianStandardTime  |   (UTC+04:00) Abu Dhabi, Muscat   |
+  |  astrakhanStandardTime  |   (UTC+04:00) Astrakhan, Ulyanovsk   |
+  |  azerbaijanStandardTime  |   (UTC+04:00) Baku   |
+  |  russiaTimeZone3  |   (UTC+04:00) Izhevsk, Samara   |
+  |  mauritiusStandardTime  |   (UTC+04:00) Port Louis   |
+  |  saratovStandardTime  |   (UTC+04:00) Saratov   |
+  |  georgianStandardTime  |   (UTC+04:00) Tbilisi   |
+  |  volgogradStandardTime  |   (UTC+04:00) Volgograd   |
+  |  caucasusStandardTime  |   (UTC+04:00) Yerevan   |
+  |  afghanistanStandardTime  |   (UTC+04:30) Kabul   |
+  |  westAsiaStandardTime  |   (UTC+05:00) Ashgabat, Tashkent   |
+  |  ekaterinburgStandardTime  |   (UTC+05:00) Ekaterinburg   |
+  |  pakistanStandardTime  |   (UTC+05:00) Islamabad, Karachi   |
+  |  qyzylordaStandardTime  |   (UTC+05:00) Qyzylorda   |
+  |  indiaStandardTime  |   (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi   |
+  |  sriLankaStandardTime  |   (UTC+05:30) Sri Jayawardenepura   |
+  |  nepalStandardTime  |   (UTC+05:45) Kathmandu   |
+  |  centralAsiaStandardTime  |   (UTC+06:00) Astana   |
+  |  bangladeshStandardTime  |   (UTC+06:00) Dhaka   |
+  |  omskStandardTime  |   (UTC+06:00) Omsk   |
+  |  myanmarStandardTime  |   (UTC+06:30) Yangon (Rangoon)   |
+  |  seAsiaStandardTime  |   (UTC+07:00) Bangkok, Hanoi, Jakarta   |
+  |  altaiStandardTime  |   (UTC+07:00) Barnaul, Gorno-Altaysk   |
+  |  w.MongoliaStandardTime  |   (UTC+07:00) Hovd   |
+  |  northAsiaStandardTime  |   (UTC+07:00) Krasnoyarsk   |
+  |  n.CentralAsiaStandardTime  |   (UTC+07:00) Novosibirsk   |
+  |  tomskStandardTime  |   (UTC+07:00) Tomsk   |
+  |  chinaStandardTime  |   (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi   |
+  |  northAsiaEastStandardTime  |   (UTC+08:00) Irkutsk   |
+  |  singaporeStandardTime  |   (UTC+08:00) Kuala Lumpur, Singapore   |
+  |  w.AustraliaStandardTime  |   (UTC+08:00) Perth   |
+  |  taipeiStandardTime  |   (UTC+08:00) Taipei   |
+  |  ulaanbaatarStandardTime  |   (UTC+08:00) Ulaanbaatar   |
+  |  ausCentralW.StandardTime  |   (UTC+08:45) Eucla   |
+  |  transbaikalStandardTime  |   (UTC+09:00) Chita   |
+  |  tokyoStandardTime  |   (UTC+09:00) Osaka, Sapporo, Tokyo   |
+  |  northKoreaStandardTime  |   (UTC+09:00) Pyongyang   |
+  |  koreaStandardTime  |   (UTC+09:00) Seoul   |
+  |  yakutskStandardTime  |   (UTC+09:00) Yakutsk   |
+  |  cen.AustraliaStandardTime  |   (UTC+09:30) Adelaide   |
+  |  aUSCentralStandardTime  |   (UTC+09:30) Darwin   |
+  |  e.AustraliaStandardTime  |   (UTC+10:00) Brisbane   |
+  |  aUSEasternStandardTime  |   (UTC+10:00) Canberra, Melbourne, Sydney   |
+  |  westPacificStandardTime  |   (UTC+10:00) Guam, Port Moresby   |
+  |  tasmaniaStandardTime  |   (UTC+10:00) Hobart   |
+  |  vladivostokStandardTime  |   (UTC+10:00) Vladivostok   |
+  |  lordHoweStandardTime  |   (UTC+10:30) Lord Howe Island   |
+  |  bougainvilleStandardTime  |   (UTC+11:00) Bougainville Island   |
+  |  russiaTimeZone10  |   (UTC+11:00) Chokurdakh   |
+  |  magadanStandardTime  |   (UTC+11:00) Magadan   |
+  |  norfolkStandardTime  |   (UTC+11:00) Norfolk Island   |
+  |  sakhalinStandardTime  |   (UTC+11:00) Sakhalin   |
+  |  centralPacificStandardTime  |   (UTC+11:00) Solomon Is., New Caledonia   |
+  |  russiaTimeZone11  |   (UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky   |
+  |  newZealandStandardTime  |   (UTC+12:00) Auckland, Wellington   |
+  |  utc+12  |   (UTC+12:00) Coordinated Universal Time+12   |
+  |  fijiStandardTime  |   (UTC+12:00) Fiji   |
+  |  kamchatkaStandardTime  |   (UTC+12:00) Petropavlovsk-Kamchatsky - Old   |
+  |  chathamIslandsStandardTime  |   (UTC+12:45) Chatham Islands   |
+  |  utc+13  |   (UTC+13:00) Coordinated Universal Time+13   |
+  |  tongaStandardTime  |   (UTC+13:00) Nuku'alofa   |
+  |  samoaStandardTime  |   (UTC+13:00) Samoa   |
+  |  lineIslandsStandardTime  |   (UTC+14:00) Kiritimati Island   |
 
-- Request Parameters:
 
-    [Department](#department-json-format)
-
-- Response:
-
-    [Department](#department-json-format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"name": 'testupdate'}"    
-     https://hosted.comm100.com/api/v3/global/departments/BBEBE689-0993-461A-A820-C6D30FD3C66F
-```
-
-Sample response:
-
-```json
-{
-    "id": "BBEBE689-0993-461A-A820-C6D30FD3C66F",
-    "name": "testupdate",
-    "description": "",
-    "agents": [ ],
-    "roles": [ ]
-}
-```
-
-#### Remove a department
-
-  `DELETE /api/v3/global/departments/{id}`
-
-- Path Parameters:
-
-    - id: string, id of the department.
-
-- Response:
-
-    Status: 200 OK
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE  https://hosted.comm100.com/api/v3/global/departments/BBEBE689-0993-461A-A820-C6D30FD3C66F
-```
-
-Sample response:
-
-```json
-Status: 200 OK
-```
-
-</div>
-</div>
-<div>
-
-## IP Restriction
-
-  You need `Manage Security` permission to manage ip restrictions.
-- `GET /api/v3/global/ipRestriction` - Get configuration of ip restrictions
-- `PUT /api/v3/global/ipRestriction` - Update configuration of ip restrictions
-- `GET /api/v3/global/ipRestriction/ipRanges` - Get authorized ip range list for ip restrictions
-- `PUT /api/v3/global/ipRestriction/ipRanges/{id}` - Update an authorized ip range
-- `POST /api/v3/global/ipRestriction/ipRanges/{id}` - Create a new ip range for ip restriction
-- `DELETE /api/v3/global/ipRestriction/ipRanges/{id}` - Remove an ip range for ip restriction
-
-<div>
-
-### Model
-
-#### IP Restriction Config Json Format
-
- Ip Restrictions is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type |  Description |
-| - | - | - |
-| `isEnable` | boolean | optional, whether IP Restrictions are enabled or not. |
-| `isEnableForMobile` | boolean | optional, whether IP Restrictions are enabled or not for mobile app access. |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Get configuration of ip restriction
-
-  `Get /api/v3/global/ipRestriction`
-
-- Parameters
-  
-  No parameters
-
-- Response
-  
-  [IP Restriction](#IP-Restriction-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/iprestriction
-```
-
-  Sample response:
-
-```json
-{
-    "isEnable": true,
-    "isEnableForMobile": false
-}
-```
-
-#### Update configuration of ip restriction
-
-  `PUT /api/v3/global/ipRestriction`
-
-- Parameters
-  
-  [IP Restriction](#IP-Restriction-Config-Json-Format)
-
-- Response
-
-  [IP Restriction](#IP-Restriction-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -H "content-type: application/json" -x PUT  
-     -d "{"isEnable":false,"isEnableForMobile":false}"    
-     https://hosted.comm100.com/api/v3/global/iprestriction
-```
-
-  Sample response:
-
-```json
-{
-    "isEnable": false,
-    "isEnableForMobile": false
-}
-```
-
-#### Ip Range Json Format
-
-  Ip Range is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Description |
-  | - | - | - |
-  | `id` | string  | read-only, id of an ip range. |
-  | `from` | string  | required, where an ip range starts from. |
-  | `to` | string  | required, where an ip range ends. |
-
-#### Get ip range list of ip restriction
-  
-  `Get /api/v3/global/ipRestriction/ipRanges`
-
-- Parameters
-
-  No parameters
-
-- Response
-
-  [Ip Range](#Ip-Range-Json-Format)[]
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/iprestriction/ipranges
-```
-
-  Sample response:
-
-```json
-[
-    {
-        "id": "669F1B97-457B-4256-A78A-73433E328F3D",
-        "from": "192.168.1.1",
-        "to": "192.168.1.2"
-    },
-    ...
-]
-```
-
-#### Create a new ip range for ip restrictions
-
-  `POST /api/v3/global/ipRestriction/ipRanges`
-
-- Request Parameters
-
-  [Ip Range](#Ip-Range-Json-Format)
-
-- Response
-
-  [Ip Range](#Ip-Range-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"from": '192.168.1.3',"to": '192.168.1.4'}"    
-     https://hosted.comm100.com/api/v3/global/iprestriction/ipranges
-```
-
-  Sample response:
-
-```json
-{
-    "id": "62BB51E9-BF58-4AAE-AFCE-CE33504B8A17",
-    "from": "192.168.1.3",
-    "to": "192.168.1.4"
-}
-```
-#### Update ip range for ip restriction
-
-  `PUT /api/v3/global/ipRestriction/ipRanges/{id}`
-
-- Path Parameters
-
-  - id: string, id of an ip range. 
-
-- Request Parameters
-  
-  [Ip Range](#Ip-Range-Json-Format)
-
-- Response
-
-  [Ip Range](#Ip-Range-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -H "content-type: application/json" -x PUT  
-     -d "{"from": '192.168.1.4',"to": '192.168.1.5'}"    
-     https://hosted.comm100.com/api/v3/global/iprestriction/ipranges/62BB51E9-BF58-4AAE-AFCE-CE33504B8A17
-```
-
-  Sample response:
-
-```json
-{
-    "id": "62BB51E9-BF58-4AAE-AFCE-CE33504B8A17",
-    "from": "192.168.1.4",
-    "to": "192.168.1.5"
-}
-```
-
-#### Remove a ip range for ip restriction
-
-  `DELETE /api/v3/global/ipRestriction/ipRanges/{id}`
-
-- Path Parameters
-
-  - id: string, id of an ip range. 
-
-- Response
-
-  Status: 200 OK
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x DELETE https://hosted.comm100.com/api/v3/global/iprestriction/ipranges/62BB51E9-BF58-4AAE-AFCE-CE33504B8A17
-```
-
-  Sample response:
-
-```json
-Status: 200 OK
-```
-
-</div>
-</div>
-
-<div>
-
-## Password Policy
-
-  You need `Manage Security` permission to manage password policy.
-- `GET /api/v3/global/passwordPolicy` - Get configuration of password policy
-- `PUT /api/v3/global/passwordPolicy` - Update configuration of password policy
-
-<div>
-
-### Model
-
-
-#### Password Policy Config Json Format
-
- Password Policy is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type |  Description |
-| - | - | - |
-| `isVerifyPasswordMinimumLength` | boolean | optional, whether verification of password minimum length is required or not. |
-| `minimumPasswordLength` | integer | optional, the least number of characters that can make up a password |
-| `isVerifyPasswordHistory` | boolean | optional, whether verification of history passwords is required or not. |
-| `verificationValueOfPasswordHistory` | integer | optional, the number of history passwords that cannot be duplicated. |
-| `isEnablePasswordExpirationLimit` | boolean | optional, whether enable valid time limit for password or not. |
-| `passwordExpireInDays` | integer | optional, the number of days a password is valid for. |
-| `isVerifyPassworfComplexity` | boolean | optional, whether a password is required to follow the complexity rules or not. |
-| `isVerifyAgentName` | boolean | optional, whether a password cannot contain an agent’s name is enabled or not. |
-| `isVerifyCommonPhrases` | boolean | optional, whether a password can be made of common phrases or not. |
-| `isVerifyMaximumChangeTimes` | boolean | optional, whether enable password change times limit within 24 hours or not. |
-| `maximumChangeTimes` | integer | optional, the maximum allowed change times for a password within 24 hours. |
-| `isLockAccountAfterCertainFailedLoginAttempts` | boolean | optional, whether the account will be locked after a certain number of failed login attempts or not. |
-| `allowedFailedLoginAttempts` | integer | optional, the allowed number of failed login attempts. |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Get configuration of password policy
-
-  `Get /api/v3/global/passwordPolicy`
-
-- Parameters
-  
-  No parameters
-
-- Response
-  
-  [Password Policy](#Password-Policy-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/passwordPolicy
-```
-
-  Sample response:
-
-```json
-{
-    "isVerifyPasswordMinimumLength": false,
-    "minimumPasswordLength": 8,
-    "isVerifyPasswordHistory": false,
-    "verificationValueOfPasswordHistory": 1,
-    "isEnablePasswordExpirationLimit": false,
-    "passwordExpireInDays": 1,
-    "isVerifyPassworfComplexity": false,
-    "isVerifyAgentName": false,
-    "isVerifyCommonPhrases": false,
-    "isVerifyMaximumChangeTimes": false,
-    "maximumChangeTimes": 8,
-    "isLockAccountAfterCertainFailedLoginAttempts": false,
-    "allowedFailedLoginAttempts": 1,
-}
-```
-
-#### Update configuration of password policy
-
-  `PUT /api/v3/global/passwordPolicy`
-
-- Request Parameters
-  
-  [Password Policy](#Password-Policy-Config-Json-Format)
-
-- Response
-
-  [Password Policy](#Password-Policy-Config-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -H "content-type: application/json" -x PUT  
-     -d "{"isVerifyPasswordMinimumLength": true,"minimumPasswordLength": 16}"    
-     https://hosted.comm100.com/api/v3/global/passwordPolicy
-```
-
-  Sample response:
-
-```json
-{
-    "isVerifyPasswordMinimumLength": true,
-    "minimumPasswordLength": 16,
-    "isVerifyPasswordHistory": false,
-    "verificationValueOfPasswordHistory": 1,
-    "isEnablePasswordExpirationLimit": false,
-    "passwordExpireInDays": 1,
-    "isVerifyPassworfComplexity": false,
-    "isVerifyAgentName": false,
-    "isVerifyCommonPhrases": false,
-    "isVerifyMaximumChangeTimes": false,
-    "maximumChangeTimes": 8,
-    "isLockAccountAfterCertainFailedLoginAttempts": false,
-    "allowedFailedLoginAttempts": 1,
-}
-```
-
-</div>
-</div>
-
-
-<div>
-
-## Tag
-
-- You need `Manage Tags` permission to manage tags.
-  - `GET /api/v3/global/tags` - Search tags
-  - `GET /api/v3/global/tags/{id}` - Get a tag by tag id
-  - `PUT /api/v3/global/tags/{id}` - Update a tag
-  - `POST /api/v3/global/tags` - Create a tag
-  - `DELETE /api/v3/global/tags/{id}` - Remove a tag
-
-<div>
-
-### Model
-
-#### Tag Json Format
-
- Tag is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Description |
-| - | - | - |
-| `id` | string | read-only, id of tag |
-| `name` | string | required, the name of the tag |
-
-</div>
-<div>
- 
- ### Endpoints
-
- #### Get tags
-
-- `GET  /api/v3/global/tags`
-
-- Parameters
-
-  No parameters
-
-- Response
-
-  [tag](#Tag-Json-Format)[]
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/global/tags
-```
-
-  Sample response:
-
-```json
-[    
-    {
-        "id": "843D009B-7D93-43F0-83AA-E29347BB947D",
-        "name": "tony's tag1"
-    },
-    {
-        "id": "954609B-7D93-43F0-83AA-E29347BB947D",
-        "name": "tony's tag2"
-    }    
-]
-```
-
-#### Get a tag by tag id
-
-`GET  /api/v3/global/tags/{id}`
-
-- Path Parameters
-
-  - id: string, id of the tag
-
-- Response
-
-  [Tag](#Tag-Json-Format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/global/tags/954609B-7D93-43F0-83AA-E29347BB947D
-```
-
-Sample response:
-
-```json
-{
-    "id": "954609B-7D93-43F0-83AA-E29347BB947D",
-    "name": "tony's tag2"
-}
-```
-
- #### Create a tag
-
-`POST  /api/v3/global/tags`
-
-- Request Parameters
-
-   [Tag](#Tag-Json-Format)
-
- - Response
-
-   [Tag](#Tag-Json-Format)
-
-
- #### Update a tag
-
-`PUT  /api/v3/global/tag/{id}`
-
-- Path Parameters
-
-  - id: string, id of the tag
-
-- Request Parameters
-
-  [Tag](#Tag-Json-Format)
-
-- Response
-
-  [Tag](#Tag-Json-Format)
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"name": 'test update tag'}"
-     https://hosted.comm100.com/api/v3/global/tags/954609B-7D93-43F0-83AA-E29347BB947D
-```
-
-  Sample response:
-
-```json
-{
-    "id": "954609B-7D93-43F0-83AA-E29347BB947D",
-    "name": "test update tag"
-}
-```
-
- #### Delete a tag
-
- `DELETE  /api/v3/global/tags/{id}`
-
-- Path Parameters
-
-  - id: string, id of the tag
-
-- Response
-
-  Status: 200 OK
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x DELETE https://hosted.comm100.com/api/v3/global/tags/843D009B-7D93-43F0-83AA-E29347BB947D
-```
-
-  Sample response:
-
-```json
-Status: 200 OK
-```
-
-</div>
-</div>
-<div>
-
-## Webhooks
-
-- `GET /api/v3/global/webhooks` - Get a list of webhooks
-- `POST /api/v3/global/webhooks` - Create a new webhook
-- `PUT /api/v3/global/webhooks/{id}` - Update a webhook
-- `DELETE /api/v3/global/webhooks/{id}`  - Remove a webhook
-
-<div>
-
-### Model
-
-#### Webhook JSON Format
-
-Webhook is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Description |
-  | - | - | - |
-  |`id`| string | read-only, id of the webhook. |
-  |`event`| string | required, event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`, `chatFileUploaded`, `offlineMessageFileUploaded`, `messagingConversationFileUploaded`. |
-  |`targetUrl`| string | required, target url of the webhook. |
-  |`version`| string | read-only, version of the webhook. |
-
-</div>
-<div>
-
-### Endpoint
-
-#### Get list of webhooks
-
-  `GET /api/v3/global/webhooks`
-
-- Parameters:
-
-    No parameters
-
-- Response:
-
-    [Webhook](#webhook-json-format)[]
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/global/webhooks
-```
-
-Sample response:
-
-```json
-[
-    {
-        "id": "36E4A18F-3AE7-4192-BCF4-CB5CA6320908",
-        "event": "chatWrappedUp",
-        "targetUrl": "http://www.aa.com",
-        "version": "3"
-    },
-    ...
-]
-```
-
-#### Create a new webhook
-
-  `POST /api/v3/global/webhooks`
-
-- Request Parameters:
-
-    [Webhook](#webhook-json-format)
-
-- Response:
-
-    [Webhook](#webhook-json-format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"event": 'chatwrappedup',"targeturl": 'http://www.baidu.com'}"    
-     https://hosted.comm100.com/api/v3/global/webhooks
-```
-
-Sample response:
-
-```json
-{
-    "id": "36E4A18F-3AE7-4192-BCF4-CB5CA6320908",
-    "event": "chatWrappedUp",
-    "targetUrl": "http://www.baidu.com",
-    "version": "3"
-}
-```
-
-#### Update a webhook
-
-  `PUT /api/v3/global/webhooks/{id}`
-
-- Path parameters:
-
-  - id: string, id of the webhook.
-
-- Request Parameters:
-
-    [Webhook](#webhook-json-format)
-
-- Response:
-
-    [Webhook](#webhook-json-format)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"event": 'chatwrappedup',"targeturl": 'http://www.google.com'}"    
-     https://hosted.comm100.com/api/v3/global/webhooks/36E4A18F-3AE7-4192-BCF4-CB5CA6320908
-```
-
-Sample response:
-
-```json
-{
-    "id": "36E4A18F-3AE7-4192-BCF4-CB5CA6320908",
-    "event": "chatWrappedUp",
-    "targetUrl": "http://www.google.com",
-    "version": "3"
-}
-```
-
-#### Remove a webhook
-
-  `DELETE /api/v3/global/webhooks/{id}`
-
-- Path Parameters:
-
-    - id: string, id of the webhook.
-
-- Response:
-
-    Status: 200 OK  
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE  https://hosted.comm100.com/api/v3/global/webhooks/36E4A18F-3AE7-4192-BCF4-CB5CA6320908
-```
-
-Sample response:
-
-```json
-Status: 200 OK
-```
-
-</div>
-</div>
-&#32;
