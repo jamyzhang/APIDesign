@@ -59,25 +59,25 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 Customer Segment is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `siteId` |integer  || yes | N/A || id of the site which the configuration belongs to.|
-| `isMultipleCampaignEnabled` |boolean || no | N/A || whether multiple campaigns are enabled or not in the site.|
-|`isAutoDistributionEnabled` |boolean || no | N/A || whether auto distribution is enabled or not in the site.|
-| `isCustomAwayStatusEnabled` |boolean || no | N/A || whether custom away status is enabled or not in the site.|
-| `isDepartmentEnabled` |boolean || no|  N/A || whether department is enabled or not in the site.|
-| `isAutoTranslationEnabled` |boolbean || no | N/A || whether auto translation is enabled or not in the site.|
-| `isAudioAndVideoChatEnabled` |boolbean || no | N/A ||whether audio&video chat is enabled or not in the site.|
-| `iscustomerSegmentEnabled` |boolbean || no | N/A ||whether customer segment chat is enabled or not in the site.|
-| `isVisitorSSOtEnabled` |boolbean || no | N/A ||whether vistor SSO is enabled or not in the site.|
-| `isCreditCardMaskingEnabled` |boolbean || no | N/A ||whether Credit card masking is enabled or not in the site.|
-| `isCustomVariablesEnabled` |boolbean || no | N/A ||whether custom variables are enabled or not in the site.|
-| `isSalesforceEnabled` |boolbean || no | N/A ||whether Salesforce integration is enabled or not in the site.|
-| `isZendeskEnabled` |boolbean || no | N/A ||whether Zendesk integration is enabled or not in the site.|
-| `isGoogleAnalyticsEnabled` |boolbean || no | N/A || whether Google Analytics integration is enabled or not in the site.|
-| `isGotoMeetingEnabled` |boolbean || no | N/A || whether GotoMeeting integration is enabled or not in the site.|
-| `isJoinmeEnabled` |boolbean || no | N/A || whether Joinme integration is enabled or not in the site.|
-| `isCobrowsingEnabled` |boolbean || no | N/A || whether Cobrowsing feature is enabled or not in the site.|
+| `siteId` |integer  || yes | no || id of the site which the configuration belongs to.|
+| `isMultipleCampaignEnabled` |boolean || no | yes || whether multiple campaigns are enabled or not in the site.|
+|`isAutoDistributionEnabled` |boolean || no | yes || whether auto distribution is enabled or not in the site.|
+| `isCustomAwayStatusEnabled` |boolean || no | yes || whether custom away status is enabled or not in the site.|
+| `isDepartmentEnabled` |boolean || no|  yes || whether department is enabled or not in the site.|
+| `isAutoTranslationEnabled` |boolean || no | yes || whether auto translation is enabled or not in the site.|
+| `isAudioAndVideoChatEnabled` |boolean || no | yes ||whether audio&video chat is enabled or not in the site.|
+| `iscustomerSegmentEnabled` |boolean || no | yes ||whether customer segment chat is enabled or not in the site.|
+| `isVisitorSSOtEnabled` |boolean || no | yes||whether vistor SSO is enabled or not in the site.|
+| `isCreditCardMaskingEnabled` |boolean || no | yes ||whether Credit card masking is enabled or not in the site.|
+| `isCustomVariablesEnabled` |boolean || no | yes||whether custom variables are enabled or not in the site.|
+| `isSalesforceEnabled` |boolean || no | yes ||whether Salesforce integration is enabled or not in the site.|
+| `isZendeskEnabled` |boolean || no | yes ||whether Zendesk integration is enabled or not in the site.|
+| `isGoogleAnalyticsEnabled` |boolean || no | yes || whether Google Analytics integration is enabled or not in the site.|
+| `isGotoMeetingEnabled` |boolean || no | yes || whether GotoMeeting integration is enabled or not in the site.|
+| `isJoinmeEnabled` |boolean || no | yes || whether Joinme integration is enabled or not in the site.|
+| `isCobrowsingEnabled` |boolean || no | yes || whether Cobrowsing feature is enabled or not in the site.|
 
 ## Endpoint
 
@@ -412,10 +412,7 @@ Content-Type:  application/json
 # Translation Excluded Word
 
 - `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-a-list-of-translation-excluded-word)
-- `GET /api/v3/livechat/translationExcludedWords/{id}` - [Get a translation excluded word by id](#get-translation-excluded-word-by-id)
-- `POST /api/v3/livechat/translationExcludedWords` - [Create a translation excluded word](#create-a-translation-excluded-word)
-- `PUT /api/v3/livechat/translationExcludedWords/{id}` - [Update a translation excluded word](#update-a-translation-excluded-word)
-- `DELETE /api/v3/livechat/translationExcludedWords/{id}` - [Delete a translation excluded word](#delete-a-translation-excluded-word)
+- `PUT /api/v3/livechat/translationExcludedWords` - [Update a translation excluded word](#update-a-translation-excluded-word)
 
 ## Translation Excluded Word Related Objects Json Format
 
@@ -423,10 +420,9 @@ Content-Type:  application/json
 
 Translation Excluded Word is represented as simple flat JSON objects with the following keys:
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` |Guid  || yes | N/A || id of the translation excluded word.
-| `word` |string  || no | yes || content of translation excluded word.
+| `excludedWords` |string[]  || no | yes || content of translation excluded word.
 
 ## Endpoints
 
@@ -454,91 +450,12 @@ Response
 ```Json
 HTTP/1.1 200 OK
 Content-Type:  application/json
-[
-  {
-    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "word": "hello"
-  },
-  {
-     "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-     "word": "no"
-  }
-]
-```
-
-### Get a translation excluded word by id
-
-  `GET /api/v3/livechat/translationExcludedWords/{id}`
-
-#### Parameters
-
-Path parameters
-
-| Name  | Type | Required  | Description |
-| - | - | - | - |
-| `id` | Guid | yes  |  id of translation excluded word   |
-
-#### Response
-
-the response is [Translation Excluded Word](#translation-excluded-word) object
-
-#### Example
-
-Using curl
-```shell
-curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
-```
-
-Response
-```Json
-HTTP/1.1 200 OK
-Content-Type:  application/json
 {
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-  "word": "no"
+  "excludedWords":[
+    "Hello",
+    "Hi"
+  ]
 }
-```
-
-### Create a translation excluded word
-
-  `POST /api/v3/livechat/translationExcludedWords`
-
-#### Parameters
-
-Request body
-
-  The request body contains data with the [Translation Excluded Word](#translation-excluded-word) object structure
-
-example:
-```Json
-{
-  "word": "no"
-}
-```
-#### Response
-
-the response is [Translation Excluded Word](#translation-excluded-word) object
-
-#### Example
-
-Using curl
-```shell
-curl -H "Content-Type: application/json" -d '{
-  "word": "no"
-}' -X POST https://domain.comm100.com/api/v3/livechat/translationExcludedWords/
-```
-
-Response
-```Json
-HTTP/1.1 201 Created
-Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/translationExcludedWords/FAE531BE-8CAD-207D-57B9-493BBCC6E585
-{
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-  "word": "no"
-}
-
 ```
 
 ### Update a translation excluded word
@@ -554,7 +471,10 @@ Request body
 example:
 ```Json
 {
-  "word": "no"
+  "excludedWords":[
+    "Hello",
+    "Hi"
+  ]
 }
 ```
 #### Response
@@ -566,7 +486,10 @@ the response is [Translation Excluded Word](#translation-excluded-word) object
 Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "word": "no"
+  "excludedWords":[
+    "Hello",
+    "Hi"
+  ]
 }' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
@@ -575,8 +498,10 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "id": "5587fc9d-92e6-4487-a2e8-92e68d6892c4",
-  "word": "no"
+  "excludedWords":[
+    "Hello",
+    "Hi"
+  ]
 }
 
 ```
@@ -623,16 +548,16 @@ HTTP/1.1 204 No Content
 
 Customer Segment is represented as simple flat JSON objects with the following keys:  
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `id` |Guid  || yes | N/A || id of the customer segment.
+  | `id` |Guid  || yes | no || id of the customer segment.
   | `name` |string  || no | yes || name of the customer segment.
   | `color` |string  || no | no |'339FD9'| color of the customer segment
   | `isEnabled` |boolean  || no | no |false| whether the customer segment is enabled or not.
   | `order` |int  || no | yes |maximum order + 1 | order of the customer segment.
   | `description` |string  || no | no || description of the customer segment.
-  | `condition met type` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
-  | `logical expression` |string  || no | no || the logical expression for conditions.
+  | `conditionMetType` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
+  | `logicalExpression` |string  || no | no || the logical expression for conditions.
   | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
   | `alertTo`| [Alert To](#alert-to)  || no | no | |an array of agent id or department Id|
 
@@ -640,21 +565,21 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 Alert To is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentIds` |string[]  || no | no|| an array of department id.|
-| `agentIds` |string[]  || no | no || an array of agent id.|
+| `departmentIds` |int[]  || no | no|| an array of department id.|
+| `agentIds` |Guid[]  || no | no || an array of agent id.|
 
 ### Live Chat Condition object
 
 Live Chat Condition is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `field` |String  | no | yes || the name of visitor field.
   | `Operator` |String  | no | yes || type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`
   | `value` |String  | no | yes || the value of a visitor field .
-  | `order` |String  | no | no|maximum order + 1| the order of visitor field.
+  | `order` |int  | no | no|maximum order + 1| the order of visitor field.
 
 ## Endpoint
 
@@ -701,7 +626,7 @@ Content-Type:  application/json
       }
     ],
     "alertTo":{
-       "agentIds":["4","5"],
+       "agentIds":[4,5],
        "departmentIds":[]
      }
   },
@@ -755,7 +680,7 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-       "agentIds":["4","5"],
+       "agentIds":[4,5],
        "departmentIds":[]
   }
 }
@@ -790,7 +715,7 @@ example:
     }
   ],
   "alertTo":{
-       "agentIds":["4","5"],
+       "agentIds":[4,5],
        "departmentIds":[]
   }
 }
@@ -821,7 +746,7 @@ curl -H "Content-Type: application/json" -d '{
     }
   ],
   "alertTo":{
-       "agentIds":["4","5"],
+       "agentIds":[4,5],
        "departmentIds":[]
   }
 }' -X POST https://domain.comm100.com/api/v3/livechat/customerSegments
@@ -849,7 +774,7 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-       "agentIds":["4","5"],
+       "agentIds":[4,5],
        "departmentIds":[]
   }
 }
@@ -892,7 +817,7 @@ curl -H "Content-Type: application/json" -d '{
     }
   ],
   "alertTo":{
-       "agentIds":["4","5"],
+       "agentIds":[4,5],
        "departmentIds":[]
   }
 }' -X PUT https://domain.comm100.com/api/v3/livechat/customerSegments
@@ -920,7 +845,7 @@ Content-Type:  application/json
     }
   ],
   "alertTo":{
-    "agentIds":["4","5"],
+    "agentIds":[4,5],
     "departmentIds":[]
   }
 }
@@ -8546,11 +8471,11 @@ HTTP/1.1 204 No Content
 
   Webhook is represented as simple flat JSON objects with the following keys:
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | guid  || N/A | N/A | | id of the webhook |
-| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
-| `name` | string  || no | yes | | target url of the webhook. |
+| `id` | guid  || yes | no | | id of the webhook |
+| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `agentStatusChanged`,`chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `targetURL` | string  || no | yes | | target url of the webhook. |
 
 ## Endpoints
 
@@ -8582,7 +8507,7 @@ Content-Type:  application/json
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "event": "chatWrappedUp",
-    "targetUrl": "http://www.google.com"
+    "targetURL": "http://www.google.com"
   },
   ...
 ]
@@ -8619,7 +8544,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetUrl": "http://www.aa.com"
+  "targetURL": "http://www.aa.com"
 }
 ```
 
@@ -8637,7 +8562,7 @@ example:
 ```Json
 {
   "event": "chatWrappedUp",
-  "targetUrl": "http://www.aa.com"
+  "targetURL": "http://www.aa.com"
 }
   
 ```
@@ -8665,7 +8590,7 @@ Location: https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetUrl": "https://www.google.com"
+  "targetURL": "https://www.google.com"
 }
 ```
 
@@ -8690,7 +8615,7 @@ example:
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetUrl": "https://www.google.com"
+  "targetURL": "https://www.google.com"
 }
 ```
 
@@ -8715,7 +8640,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
   "event": "chatWrappedUp",
-  "targetUrl": "http://www.google.com"
+  "targetURL": "http://www.google.com"
 }
 ```
 
