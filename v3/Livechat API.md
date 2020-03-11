@@ -8455,11 +8455,11 @@ HTTP/1.1 204 No Content
 
   Webhook is represented as simple flat JSON objects with the following keys:
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | guid  || N/A | N/A | | id of the webhook |
-| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
-| `name` | string  || no | yes | | target url of the webhook. |
+| `id` | guid  || yes | no | | id of the webhook |
+| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `agentStatusChanged`,`chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `targetURL` | string  || no | yes | | target url of the webhook. |
 
 ## Endpoints
 
@@ -8491,7 +8491,7 @@ Content-Type:  application/json
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "event": "chatWrappedUp",
-    "targetUrl": "http://www.google.com"
+    "targetURL": "http://www.google.com"
   },
   ...
 ]
@@ -8528,7 +8528,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetUrl": "http://www.aa.com"
+  "targetURL": "http://www.aa.com"
 }
 ```
 
@@ -8546,7 +8546,7 @@ example:
 ```Json
 {
   "event": "chatWrappedUp",
-  "targetUrl": "http://www.aa.com"
+  "targetURL": "http://www.aa.com"
 }
   
 ```
@@ -8574,7 +8574,7 @@ Location: https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetUrl": "https://www.google.com"
+  "targetURL": "https://www.google.com"
 }
 ```
 
@@ -8599,7 +8599,7 @@ example:
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetUrl": "https://www.google.com"
+  "targetURL": "https://www.google.com"
 }
 ```
 
@@ -8624,7 +8624,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
   "event": "chatWrappedUp",
-  "targetUrl": "http://www.google.com"
+  "targetURL": "http://www.google.com"
 }
 ```
 
