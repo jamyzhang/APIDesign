@@ -1674,9 +1674,9 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `dayOfWeek` | string  | no | yes | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
-  | `startTime` | datetime  | no | yes | | |
-  | `endTime` | datetime  | no | yes | | |
+  | `dayOfWeek` | string  | no | yes | | Including `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`. |
+  | `startTime` | time  | no | yes | | |
+  | `endTime` | time  | no | yes | | |
   | `awayStatusId` | Guid | no | no | | |
 
 ## Shift Endpoints
@@ -1738,8 +1738,8 @@ Content-Type:  application/json
         ],
         "workingHours": [{
           "dayOfWeek": "sunday",
-          "startTime": "2019-06-12T07:41:40.486Z",
-          "endTime": "2019-06-13T07:41:40.486Z",
+          "startTime": "12:00",
+          "endTime": "14:00",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
@@ -1811,8 +1811,8 @@ Content-Type:  application/json
   ],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -1864,8 +1864,8 @@ Content-Type:  application/json
         "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "workingHours": [{
           "dayOfWeek": "sunday",
-          "startTime": "2019-06-12T07:41:40.486Z",
-          "endTime": "2019-06-13T07:41:40.486Z",
+          "startTime": "12:00",
+          "endTime": "14:00",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
@@ -1919,8 +1919,8 @@ Content-Type:  application/json
         "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "workingHours": [{
           "dayOfWeek": "sunday",
-          "startTime": "2019-06-12T07:41:40.486Z",
-          "endTime": "2019-06-13T07:41:40.486Z",
+          "startTime": "12:00",
+          "endTime": "14:00",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
@@ -1955,8 +1955,8 @@ example:
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -1985,8 +1985,8 @@ curl -H "Content-Type: application/json" -d '{
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2014,8 +2014,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2054,8 +2054,8 @@ example:
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2084,8 +2084,8 @@ curl -H "Content-Type: application/json" -d '{
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2112,8 +2112,8 @@ Content-Type:  application/json
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
