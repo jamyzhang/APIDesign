@@ -2216,7 +2216,7 @@ Response
   |`contactIdentityName` | string | no  |  | Contact identity name. |
   |`contactIdentityValue` | string | no  |  | Contact identity value. |
   |`contactIdentityType` | string | no  |  | Contact identity type. |
-  |`keywords` | string | no  |  | Search scope includes:name, indentity id, identity value, alias. |
+  |`keywords` | string | no  |  | Search scope includes: name, indentity id, identity value, alias. |
   | `include` | string | no  |  | Available value: `contactIdentity` |
 
 
