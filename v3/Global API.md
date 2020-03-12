@@ -555,13 +555,11 @@ Request body
 
   | Name  | Type | Required | Default | Description |
   | - | - | - | - | - |
-  | `currentPassword` | string | yes  |  | The current password of agent |
-  | `newPassword` | string | yes  |  | The new password of agent |
+  | `password` | string | yes  |  | The new password of agent |
 
   example:
   ```json
   {
-    "currentPassword": "Aa2541554",
     "password": "Aa5847lkdsc&d",
   }
   ```
@@ -573,7 +571,6 @@ HTTP/1.1 204 No Content
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "currentPassword": "Aa2541554",
     "password": "Aa5847lkdsc&d",
 }' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/68:changePassword
 ```
@@ -598,7 +595,7 @@ Request body
   ```json
   {
     "currentPassword": "Aa2541554",
-    "password": "Aa5847lkdsc&d",
+    "newPassword": "Aa5847lkdsc&d",
   }
   ```
 
@@ -610,7 +607,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
     "currentPassword": "Aa2541554",
-    "password": "Aa5847lkdsc&d",
+    "newPassword": "Aa5847lkdsc&d",
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/me:changePassword
 ```
 
@@ -2216,8 +2213,10 @@ Response
   |`contactIdentityName` | string | no  |  | Contact identity name. |
   |`contactIdentityValue` | string | no  |  | Contact identity value. |
   |`contactIdentityType` | string | no  |  | Contact identity type. |
-  |`keywords` | string | no  |  | Search scope includes: name, indentity id, identity value, alias. |
-  | `include` | string | no  |  | Available value: `contactIdentity` |
+  |`keywords` | string | no  |  | Search scope includes: name, company, identity value, alias. |
+  |`include` | string | no  |  | Available value: `contactIdentity` |
+  |`pageIndex`|integer|no| 1 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
 
 
 
