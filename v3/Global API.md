@@ -4370,7 +4370,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `isEnabled` | bool  | | no | yes|| |
+  | `isEnabled` | bool  | | no | no|| false|
   | `protocolType` | string |  | no | yes | | including `SAML` and `JWT`. |
   | `samlSSOURL` | string |  | no |yes | |mandatory when Type is `SAML`. |
   | `samlLogoutURL` | string |  | no | no | | only available when Type is `SAML`. |
