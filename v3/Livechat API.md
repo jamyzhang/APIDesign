@@ -1847,10 +1847,10 @@ Response
 
 | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `categorys` | string[] | N/A | N/A | |   |
+| `categories` | string[] | N/A | N/A | |   |
 | `comment` | string | N/A | N/A | |   |
 | `lastUpdatedTime` | datetime | N/A | N/A | |   |
-| `lastUpdatedBy` | Guid | N/A | N/A | |  Id of the agent. |
+| `lastUpdatedByAgentId` | Guid | N/A | N/A | |  Id of the agent. |
 | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ### Chat Custom Variable Object
@@ -1874,8 +1874,7 @@ Query string
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`. |
-| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `requestedTime` | datetime | no  | today | The time range of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
@@ -1895,7 +1894,7 @@ The response body contains data with the follow structure:
 | `totalCount` | integer | N/A | N/A | Total count of the list. |
 | `previousPage` | string | N/A | N/A | Url of the previous page. |
 | `nextPage` | string | N/A | N/A | Url of the next page. |
-| `list` | [Chat](#Chat-Object)[] | N/A | N/A |  |
+| `chats` | [Chat](#Chat-Object)[] | N/A | N/A |  |
 
 #### Example
 
@@ -2148,9 +2147,17 @@ HTTP/1.1 204 No Content
 
 #### Parameters
 
-| Name  | Type | Required  | Description |
-| - | - | - | - |
-| `ids` | Guid[] | yes  |  the unique Ids of the chat |
+Request body
+- an array of offline chat id
+
+example:
+```json
+[
+  "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
+  "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
+  "44878d68-92e6-4487-a2e8-8234fc9d1f48"
+]
+```
 
 #### Response
 
@@ -2160,7 +2167,12 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats?ids[0]=2BCB61DA-FC7D-67D8-43A5-5EB453B63231
+curl -d '[
+    "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
+    "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
+    "44878d68-92e6-4487-a2e8-8234fc9d1f48"
+  ]' -X DELETE https://domain.comm100.com/api/v3/livechat/chats
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats
 ```
 Response
 ```json
@@ -2485,6 +2497,7 @@ HTTP/1.1 204 No Content
 |`id` | Guid | yes | N/A | | Id of the current item.  |
 | `name` | string  | no | yes | `Default Plan` | |
 | `description` | string  | no | no | | |
+| `language` | string | no | no | `English` | The languages are defined in cPanel.  |
 
 ## Campaign Endpoints
 
@@ -2516,7 +2529,8 @@ Content-Type:  application/json
     {
         "id": "CE76FDBC-B451-F4C9-FE00-89360F86E9F9",
         "name": "campaigns",
-        "description": "campaigns"
+        "description": "campaigns",
+        "language": "English"
     },
     ...
 ]
@@ -2553,7 +2567,8 @@ Content-Type:  application/json
 {
   "id": "CE76FDBC-B451-F4C9-FE00-89360F86E9F9",
   "name": "campaigns",
-  "description": "campaigns"
+  "description": "campaigns",
+  "language": "English"
 }
 ```
 
@@ -2571,7 +2586,8 @@ example:
 ```Json
 {
   "name": "campaigns11111",
-  "description": "campaigns"
+  "description": "campaigns",
+  "language": "English"
 }
 ```
 
@@ -2585,7 +2601,8 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "name": "campaigns11111",
-  "description": "campaigns"
+  "description": "campaigns",
+  "language": "English"
   }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns
 ```
 
@@ -2598,7 +2615,8 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 {
   "id": "FAE531BE-8CAD-207D-57B9-493BBCC6E585",
   "name": "campaigns11111",
-  "description": "campaigns"
+  "description": "campaigns",
+  "language": "English"
 }
 ```
 
@@ -2622,7 +2640,8 @@ example:
 ```Json
 {
   "name": "campaigns2222",
-  "description": "campaigns"
+  "description": "campaigns",
+  "language": "English"
 }
 ```
 
@@ -2636,7 +2655,8 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "name": "campaigns2222",
-  "description": "campaigns"
+  "description": "campaigns",
+  "language": "English"
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 ```
 
@@ -2647,7 +2667,8 @@ Content-Type:  application/json
 {
   "id": "FAE531BE-8CAD-207D-57B9-493BBCC6E585",
   "name": "campaigns2222",
-  "description": "campaigns"
+  "description": "campaigns",
+  "language": "English"
 }
 ```
 
@@ -2759,9 +2780,9 @@ Content-Type:  application/json
 | `isImageButtonFloating` | boolean | no | N/A | | Whether the image button is float or not, available when `type` is `image`. |
 | `imageButtonPosition` | string | no | N/A | | Position of the image button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
 | `imageButtonPositionMode` | string | no | N/A | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
-| `isImageButtonXOffsetByPixel` | boolean | no | N/A | |                 available when `type` is `image`. |
+| `isImageButtonXOffsetByPixel` | boolean | no | N/A | | Available when `type` is `image`. |
 | `imageButtonXOffset` | integer | no | N/A | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate, available when `type` is `image`. |
-| `isImageButtonYOffsetByPixel` | boolean | no | N/A | |                 available when `type` is `image`. |
+| `isImageButtonYOffsetByPixel` | boolean | no | N/A | | Available when `type` is `image`. |
 | `imageButtonYOffset` | integer | no | N/A | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate, available when `type` is `image`. |
 | `imageButtonImageSource` | string | no | N/A | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
 | `imageButtonOnlineImage` | string | no | N/A | | Image file key of online button, available when `type` is `image`. |
@@ -2978,8 +2999,7 @@ Content-Type:  application/json
 | `isAvatarDisplayedWithMessage` | boolean | no | N/A   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `isBackgroundDisplayed` | boolean | no | N/A | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `backgroundTexture` | string | no | N/A | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
-| `customCSSOfClassic` | string | no | N/A | |  The content of custom css when  `style` is `classic`. |
-| `customCSSOfCircle` | string | no | N/A | |  The content of custom css when  `style` is `circle`. |
+| `customCSS` | string | no | N/A | | |
 | `isTranscriptDownloadAllowed` | boolean | no | N/A | | Whether the visitor can download the chat transcript. |
 | `isTranscriptPrintAllowed` | boolean | no | N/A | | Whether the visitor can print the chat transcript. |
 | `isTranscriptSentToVisitors` | boolean | no | N/A | | Whether the transcript send to visitor. |
@@ -3016,7 +3036,7 @@ Content-Type:  application/json
 | `encryptedType` | string | no | N/A | | Including `none`, `SSL` and `TLS`. |
 | `IsAuthenticationRequired` | boolean | no | N/A | | |
 | `username` | string | no | N/A | | |
-| `password` | string | no | N/A | | |
+| `password` | string | no | N/A | | Return empty when get. |
 
 ## Chat Window Endpoints
 
@@ -3063,8 +3083,7 @@ Content-Type:  application/json
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
-  "customCSSOfClassic": "",
-  "customCSSOfCircle": "",
+  "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
   "isTranscriptSentToVisitors":  false,
@@ -3132,8 +3151,7 @@ example:
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
-  "customCSSOfClassic": "",
-  "customCSSOfCircle": "",
+  "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
   "isTranscriptSentToVisitors":  false,
@@ -3191,8 +3209,7 @@ curl -H "Content-Type: application/json" -d '{
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
-  "customCSSOfClassic": "",
-  "customCSSOfCircle": "",
+  "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
   "isTranscriptSentToVisitors":  false,
@@ -3246,8 +3263,7 @@ Content-Type:  application/json
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
-  "customCSSOfClassic": "",
-  "customCSSOfCircle": "",
+  "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
   "isTranscriptSentToVisitors":  false,
@@ -3303,7 +3319,7 @@ Content-Type:  application/json
 | `socialMediaLogin` | string | no | N/A | |  Including `none` and `facebook`. |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | N/A | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 | `isVisitorInfoRecorded` | boolean | no | N/A | true | If remember visitor info collected from pre-chat form. |
-| `formFieldLayoutStyle` | string | no | N/A | | Including `leftofInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
+| `formFieldLayoutStyle` | string | no | N/A | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
 ## Pre-Chat Endpoints
 
@@ -5944,11 +5960,11 @@ Content-Type:  application/json
 | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `id` | Guid | yes | N/A | | Id of the current item. |
-| `field` | [type](#Live-Chat-Field-Object) | no | no | | |
+| `field` | [Live Chat Field](#Live-Chat-Field-Object) | no | no | | |
 | `isVisible` | boolean | no | no | | Whether the field is visible or not. |
 | `isRequired` | boolean | no | no | | Whether the field is required or not when submitting the form |
 | `order` | integer | no | no | | The order of the field. |
-| `ratingGrades` | [type](#Rating-Grade-Object)[] | no | no | | Always 5 grades. Available whey Type of Live Chat Field is Rating. |
+| `ratingGrades` | [Rating Grade](#Rating-Grade-Object)[] | no | no | | Always 5 grades. Available whey Type of Live Chat Field is Rating. |
 
 ### Rating Grade Object
 
