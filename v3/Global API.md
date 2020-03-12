@@ -2264,7 +2264,12 @@ Path parameters
   | Name  | Type | Required  | Description |
   | - | - | - | - |
   |`id` | integer | yes  |  The id of the contact |
-  | `include` | string | no  |  | Available value: `contactIdentity` |
+
+   Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include` | string | no  |  | Available value: `contactIdentity` |
 
 
 #### Response
