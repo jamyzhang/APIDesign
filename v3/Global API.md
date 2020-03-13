@@ -2782,7 +2782,7 @@ Content-Type:  application/json
 {
     "totalCount": 28,
     "previousPage": "",
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/visitors?pageIndex=2",
+    "nextPage": "/api/v3/globalSettings/visitors?pageIndex=2",
     "visitors": [{
         "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
         "name": "test",
