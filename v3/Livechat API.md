@@ -1093,24 +1093,24 @@ Content-Type:  application/json
 
 Mobile Push is represented as simple flat JSON objects with the following keys:
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `IOSType` | string |  | no | N/A | |type of IOS |
-| `IOSProductionCertificateFileName` | string |  | no | N/A | | name of IOS prodution certicate file|
-| `IOSProductionCertificateFileData` | string |  | no | N/A | | data of IOS prodution certicate file|
-| `IOSProductionCertificatePassword` | string |  | no | N/A | | password of IOS prodution certicate|
-| `IOSDevelopmentCertificateFileName` | string |  | no | N/A | | name of IOS development certicate file|
-| `IOSDevelopmentCertificateFileData` | string |  | no | N/A | | data of IOS development certicate file|
-| `IOSDevelopmentCertificatePassword` | string |  | no | N/A | | password of IOS development certicate|
-| `IOSAPNSPayloadFormat` | string |  | no | N/A | | format of IOS APNS payload|
-| `IOSThirdPartyURL` | string |  | no | N/A | | IOS third party URL|
-| `IOSThirdPartyRequestHeaders` | string |  | no | N/A | | IOS third party request headers|
-| `AndroidType` | string |  | no | N/A | |type of Andriod |
-| `AndroidGCMAPIKey` | string |  | no | N/A | |Android GCM API key|
-| `AndroidGCMExtraData` | string |  | no| N/A | |Android GCM extra data |
-| `AndroidThirdPartyURL` | string |  | no | N/A | |Android third party URL |
-| `AndroidThirdPartyRequestHeaders` | string |  | no | N/A | | Android third party request headers|
-| `AndroidThirdPartyRequestBody` | string |  | no | N/A | |Android Third Party Request Body |
+| `iosType` | string |  | no | yes  | |type of ios |
+| `iosProductionCertificateFileName` | string |  | no | yes | | name of ios prodution certicate file|
+| `iosProductionCertificateFileData` | string |  | no | yes  | | data of ios prodution certicate file|
+| `iosProductionCertificatePassword` | string |  | no | yes  | | password of ios prodution certicate|
+| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | name of ios development certicate file|
+| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | data of ios development certicate file|
+| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | password of ios development certicate|
+| `iosApnsPayloadFormat` | string |  | no | yes  | | format of ios Apns payload|
+| `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL|
+| `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers|
+| `androidType` | string |  | no |yes  | |type of android |
+| `androidGcmAPIKey` | string |  | no | yes  | |android gcm API key|
+| `androidGcmExtraData` | string |  | no| yes  | |android gcm extra data |
+| `androidThirdPartyURL` | string |  | no | yes  | |android third party URL |
+| `androidThirdPartyRequestHeaders` | string |  | no | yes | | android third party request headers|
+| `androidThirdPartyRequestBody` | string |  | no | yes  | |android Third Party Request Body |
 
 ## Endpoint
 
@@ -1138,22 +1138,22 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "IOSType": "APNS",
-  "IOSProductionCertificateFileName": "",
-  "IOSProductionCertificateFileData": "",
-  "IOSProductionCertificatePassword": "",
-  "IOSDevelopmentCertificateFileName": "",
-  "IOSDevelopmentCertificateFileData": "",
-  "IOSDevelopmentCertificatePassword": "",
-  "IOSAPNSPayloadFormat": "",
-  "IOSThirdPartyURL": "",
-  "IOSThirdPartyRequestHeaders": "",
-  "AndroidType": "",
-  "AndroidGCMAPIKey": "",
-  "AndroidGCMExtraData": "",
-  "AndroidThirdPartyURL": "",
-  "AndroidThirdPartyRequestHeaders": "",
-  "AndroidThirdPartyRequestBody": "",
+  "iosType": "APNS",
+  "iosProductionCertificateFileName": "",
+  "iosProductionCertificateFileData": "",
+  "iosProductionCertificatePassword": "",
+  "iosDevelopmentCertificateFileName": "",
+  "iosDevelopmentCertificateFileData": "",
+  "iosDevelopmentCertificatePassword": "",
+  "iosApnsPayloadFormat": "",
+  "iosThirdPartyURL": "",
+  "iosThirdPartyRequestHeaders": "",
+  "androidType": "",
+  "androidGcmAPIKey": "",
+  "androidGcmExtraData": "",
+  "androidThirdPartyURL": "",
+  "androidThirdPartyRequestHeaders": "",
+  "androidThirdPartyRequestBody": ""
 }
 ```
 
@@ -1170,22 +1170,22 @@ Request body
 example:
 ```Json
 {
-  "IOSType": "APNS",
-  "IOSProductionCertificateFileName": "",
-  "IOSProductionCertificateFileData": "",
-  "IOSProductionCertificatePassword": "",
-  "IOSDevelopmentCertificateFileName": "",
-  "IOSDevelopmentCertificateFileData": "",
-  "IOSDevelopmentCertificatePassword": "",
-  "IOSAPNSPayloadFormat": "",
-  "IOSThirdPartyURL": "",
-  "IOSThirdPartyRequestHeaders": "",
-  "AndroidType": "",
-  "AndroidGCMAPIKey": "",
-  "AndroidGCMExtraData": "",
-  "AndroidThirdPartyURL": "",
-  "AndroidThirdPartyRequestHeaders": "",
-  "AndroidThirdPartyRequestBody": "",
+  "iosType": "APNS",
+  "iosProductionCertificateFileName": "",
+  "iosProductionCertificateFileData": "",
+  "iosProductionCertificatePassword": "",
+  "iosDevelopmentCertificateFileName": "",
+  "iosDevelopmentCertificateFileData": "",
+  "iosDevelopmentCertificatePassword": "",
+  "iosApnsPayloadFormat": "",
+  "iosThirdPartyURL": "",
+  "iosThirdPartyRequestHeaders": "",
+  "androidType": "",
+  "androidGcmAPIKey": "",
+  "androidGcmExtraData": "",
+  "androidThirdPartyURL": "",
+  "androidThirdPartyRequestHeaders": "",
+  "androidThirdPartyRequestBody": ""
 }
 ```
 
@@ -1198,22 +1198,22 @@ the response is: [Mobile Push](#moble-push-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "IOSType": "APNS",
-  "IOSProductionCertificateFileName": "",
-  "IOSProductionCertificateFileData": "",
-  "IOSProductionCertificatePassword": "",
-  "IOSDevelopmentCertificateFileName": "",
-  "IOSDevelopmentCertificateFileData": "",
-  "IOSDevelopmentCertificatePassword": "",
-  "IOSAPNSPayloadFormat": "",
-  "IOSThirdPartyURL": "",
-  "IOSThirdPartyRequestHeaders": "",
-  "AndroidType": "",
-  "AndroidGCMAPIKey": "",
-  "AndroidGCMExtraData": "",
-  "AndroidThirdPartyURL": "",
-  "AndroidThirdPartyRequestHeaders": "",
-  "AndroidThirdPartyRequestBody": "",
+  "iosType": "APNS",
+  "iosProductionCertificateFileName": "",
+  "iosProductionCertificateFileData": "",
+  "iosProductionCertificatePassword": "",
+  "iosDevelopmentCertificateFileName": "",
+  "iosDevelopmentCertificateFileData": "",
+  "iosDevelopmentCertificatePassword": "",
+  "iosApnsPayloadFormat": "",
+  "iosThirdPartyURL": "",
+  "iosThirdPartyRequestHeaders": "",
+  "androidType": "",
+  "androidGcmAPIKey": "",
+  "androidGcmExtraData": "",
+  "androidThirdPartyURL": "",
+  "androidThirdPartyRequestHeaders": "",
+  "androidThirdPartyRequestBody": "",
 }' -X PUT https://domain.comm100.com/api/v3/livechat/mobilePush
 ```
 Response
@@ -1221,22 +1221,22 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "IOSType": "APNS",
-  "IOSProductionCertificateFileName": "",
-  "IOSProductionCertificateFileData": "",
-  "IOSProductionCertificatePassword": "",
-  "IOSDevelopmentCertificateFileName": "",
-  "IOSDevelopmentCertificateFileData": "",
-  "IOSDevelopmentCertificatePassword": "",
-  "IOSAPNSPayloadFormat": "",
-  "IOSThirdPartyURL": "",
-  "IOSThirdPartyRequestHeaders": "",
-  "AndroidType": "",
-  "AndroidGCMAPIKey": "",
-  "AndroidGCMExtraData": "",
-  "AndroidThirdPartyURL": "",
-  "AndroidThirdPartyRequestHeaders": "",
-  "AndroidThirdPartyRequestBody": "",
+  "iosType": "APNS",
+  "iosProductionCertificateFileName": "",
+  "iosProductionCertificateFileData": "",
+  "iosProductionCertificatePassword": "",
+  "iosDevelopmentCertificateFileName": "",
+  "iosDevelopmentCertificateFileData": "",
+  "iosDevelopmentCertificatePassword": "",
+  "iosApnsPayloadFormat": "",
+  "iosThirdPartyURL": "",
+  "iosThirdPartyRequestHeaders": "",
+  "androidType": "",
+  "androidGcmAPIKey": "",
+  "androidGcmExtraData": "",
+  "androidThirdPartyURL": "",
+  "androidThirdPartyRequestHeaders": "",
+  "androidThirdPartyRequestBody": "",
 }
 ```
 
@@ -8474,8 +8474,8 @@ HTTP/1.1 204 No Content
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | guid  || yes | no | | id of the webhook |
-| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `agentStatusChanged`,`chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
-| `targetURL` | string  || no | yes | | target url of the webhook. |
+| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, , `agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `targetUrl` | string  || no | yes | | target url of the webhook. |
 
 ## Endpoints
 
@@ -8507,7 +8507,7 @@ Content-Type:  application/json
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "event": "chatWrappedUp",
-    "targetURL": "http://www.google.com"
+    "targetUrl": "http://www.google.com"
   },
   ...
 ]
@@ -8544,11 +8544,11 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetURL": "http://www.aa.com"
+  "targetUrl": "http://www.aa.com"
 }
 ```
 
-### Create a new webhook
+### Create a webhook
 
   `POST /api/v3/livechat/webhooks`
 
@@ -8562,7 +8562,7 @@ example:
 ```Json
 {
   "event": "chatWrappedUp",
-  "targetURL": "http://www.aa.com"
+  "targetUrl": "http://www.aa.com"
 }
   
 ```
@@ -8590,7 +8590,7 @@ Location: https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetURL": "https://www.google.com"
+  "targetUrl": "https://www.google.com"
 }
 ```
 
@@ -8615,7 +8615,7 @@ example:
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
-  "targetURL": "https://www.google.com"
+  "targetUrl": "https://www.google.com"
 }
 ```
 
@@ -8640,7 +8640,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
   "event": "chatWrappedUp",
-  "targetURL": "http://www.google.com"
+  "targetUrl": "http://www.google.com"
 }
 ```
 
@@ -8674,7 +8674,7 @@ HTTP/1.1 204 No Content
 # Custom Variable
 
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
-- `GET /api/v3/livechat/campacustomVariablesigns/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
+- `GET /api/v3/livechat/campacustomVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
 - `POST /api/v3/livechat/customVariables` - [Create a custom variable](#create-a-custom-variable)
 - `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable)
 - `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
@@ -8685,11 +8685,11 @@ HTTP/1.1 204 No Content
 
 Custom Variable is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read| Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid  || yes | N/A || id of the custom variable. |
+| `id` | Guid  || yes | no || id of the custom variable. |
   | `name` | string  || no | yes || name of the custom variable |.
-  | `type` | string  || no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
+  | `type` | string  || no | yes || type of the custom variable., including `ttyoext`, `integer` and `decimal`. |
   | `value` | string  || no | no || value of the custom variable. |
   |`hyperlink` | string  || no | no ||  hyperlink of the custom variable. |
 

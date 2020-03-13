@@ -201,11 +201,10 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`timeZone` | string| | no | no |  | Time zone of agent. value include all [Time Zone Option](#time-zone-options) Ids, if not offered, will set by site time zone. |
   |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
   |`createdTime` | DateTime | | N/A | N/A | UTC | The create time of the agent.|
-  |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
+  |`isLocked` | bool| | yes | N/A | false | Account will be locked after several failed login attempts.|
   |`lockedTime` | DateTime | | N/A | N/A | UTC | When the agent is locked.|
   |`lastLoginTime` | DateTime | | N/A | N/A | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
-  |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
-  |`permissionIds` | integer[]  |  | no | no | [] | Agent permission settings.|
+  |`permissionIds` | integer[]  |  | no | no | NULL | Agent permission settings.|
   |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
   |`roleIds` | Guid[]  |  | no | no | NULL | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
   |`roles` | [Role](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
@@ -520,7 +519,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
 
 
 ### unlock the agent
-  `PUT /api/v3/globalSettings/agents/{id}:unlock`
+  `POST /api/v3/globalSettings/agents/{id}:unlock`
 
 ####  Parameters
 Path parameters
@@ -535,7 +534,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -d '{} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68:unlock
+curl -H "Content-Type: application/json" -d '{} ' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/68:unlock
 ```
 Response
 ```json
@@ -543,7 +542,7 @@ HTTP/1.1 204 No Content
 ```
 
 ### Admin set an agent's password
-  `PUT /api/v3/globalSettings/agents/{id}:changePassword`
+  `POST /api/v3/globalSettings/agents/{id}:changePassword`
 
 ####  Parameters
 Path parameters
@@ -556,13 +555,11 @@ Request body
 
   | Name  | Type | Required | Default | Description |
   | - | - | - | - | - |
-  | `currentPassword` | string | yes  |  | The current password of agent |
-  | `newPassword` | string | yes  |  | The new password of agent |
+  | `password` | string | yes  |  | The new password of agent |
 
   example:
   ```json
   {
-    "currentPassword": "Aa2541554",
     "password": "Aa5847lkdsc&d",
   }
   ```
@@ -574,9 +571,8 @@ HTTP/1.1 204 No Content
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "currentPassword": "Aa2541554",
     "password": "Aa5847lkdsc&d",
-}' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/68:changePassword
+}' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/68:changePassword
 ```
 Response
 ```json
@@ -584,7 +580,7 @@ HTTP/1.1 204 No Content
 ```
 
 ### Change own password
-  `PUT /api/v3/globalSettings/agents/me:changePassword`
+  `POST /api/v3/globalSettings/agents/me:changePassword`
 
 ####  Parameters
 
@@ -599,7 +595,7 @@ Request body
   ```json
   {
     "currentPassword": "Aa2541554",
-    "password": "Aa5847lkdsc&d",
+    "newPassword": "Aa5847lkdsc&d",
   }
   ```
 
@@ -611,8 +607,8 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
     "currentPassword": "Aa2541554",
-    "password": "Aa5847lkdsc&d",
-  }' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/me:changePassword
+    "newPassword": "Aa5847lkdsc&d",
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/me:changePassword
 ```
 
 Response
@@ -803,10 +799,10 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
   |`id` | Guid| | N/A | N/A | |  |
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
-  |`type` | string | | yes | no | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
-  |`agentIds` | int[] | | no | no | [] | The selected agents for this role. |
+  |`type` | string | | yes | N/A | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
+  |`agentIds` | int[] | | no | no | NULL | The selected agents for this role. |
   |`agents` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
-  |`permissionIds` | int[] | | no | no |  | Permissions assigned to this role.|
+  |`permissionIds` | int[] | | no | no | NULL | Permissions assigned to this role.|
   |`permissions` | [Permission](#permission)[] | yes | N/A | N/A | | Permissions assigned to this role.|
 
 
@@ -1119,9 +1115,9 @@ You need `Manage departments` permission to manage departments.
   |`description` | string | | no | no | |  |
   |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
   |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the 'Assigned Department' field. Default: true.|
-  |`offlineMessageMailTo` | string | | no | no | allAgentsInDepartment | The value options: All agents in the department, The email address(es).  |
+  |`offlineMessageMailTo` | string | | no | no | All agents in the department | The value options: All agents in the department, The email address(es).  |
   |`offlineMessageEmailAddresses` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
-  |`agentIds` | int[] | | no | no | [] | The selected agents for this department.|
+  |`agentIds` | int[] | | no | no | NULL | The selected agents for this department.|
   |`agents` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
   |`shifts` | [Shift](#shift)[]| yes | N/A | N/A |  |  |
 
@@ -1658,8 +1654,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
   | `name` | string  | | no | yes | | Name of the shift. |
   | `timeZone` | string  | | no | no | | Time zone of shift. value include all [Time Zone Option](#time-zone-options) Ids. |
   | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
-  |`agentIds` | int[] | | yes | no | | |
-  |`departmentIds` | Guid[] | | yes | no | | |
+  |`agentIds` | int[] | | yes | no | NULL | |
+  |`departmentIds` | Guid[] | | yes | no | NULL | |
   | `agents` | [Agent](#Agent-Object)[] | yes | N/A | N/A | | |
   | `departments` | [Department](#Department-Object)[] | yes | N/A | N/A | | |
   | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
@@ -2171,8 +2167,8 @@ Response
   |`id` | integer  | | N/A | N/A |  |  |
   |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has Name and Avatar, like Facebook Account, display Name and Avatar from that Identity in Agent Console. In other situations, display Contact Name and Avatar.|
   |`description` | string | | no | no | |  |
-  |`firstName` | string | | no | yes | |  |
-  |`lastName` | string | | no | yes | |  |
+  |`firstName` | string | | no | no | |  |
+  |`lastName` | string | | no | no | |  |
   |`alias` | string | | no | no | |  |
   |`title` | string | | no | no | |  |
   |`company` | string  | | no | no | |  |
@@ -2183,7 +2179,7 @@ Response
   |`stateOrProvince` | string  | | no | no | |  |
   |`countryOrRegion` | string  | | no | no | |  |
   |`postalOrZipCode` | string  | | no | no | |  |
-  |`timeZone` | string | | no | yes | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
+  |`timeZone` | string | | no | no | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
   |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
   |`lastUpdatedTime` | DateTime | | N/A | N/A | |  |
   |`contactIdentities` | [ContactIdentity](#Contact-Identity)[] | yes | no | no | | Contact Identity. |
@@ -2217,7 +2213,10 @@ Response
   |`contactIdentityName` | string | no  |  | Contact identity name. |
   |`contactIdentityValue` | string | no  |  | Contact identity value. |
   |`contactIdentityType` | string | no  |  | Contact identity type. |
-  | `include` | string | no  |  | Available value: `contactIdentity` |
+  |`keywords` | string | no  |  | Search scope includes: name, company, identity value, alias. |
+  |`include` | string | no  |  | Available value: `contactIdentity` |
+  |`pageIndex`|integer|no| 1 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
 
 
 
@@ -2265,7 +2264,12 @@ Path parameters
   | Name  | Type | Required  | Description |
   | - | - | - | - |
   |`id` | integer | yes  |  The id of the contact |
-  | `include` | string | no  |  | Available value: `contactIdentity` |
+
+   Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include` | string | no  |  | Available value: `contactIdentity` |
 
 
 #### Response
@@ -2463,7 +2467,8 @@ HTTP/1.1 204 No Content
   |`value` | string  | | no | yes | | The value of the identity.|
   |`avatarURL` | string | | no | no | | The avatar used in a certain type, like the avatar of a user in Facebook. Not every type has avatar, for example, SMS Number doesn’t have one.|
   |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets of the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
-  |`extraAttributes` | string | | no | no | | The value is a map (key: value) to store the data. For example: "Screen Name": "@Comm100Corp", "Original Contact Page URL": "",|
+  |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp. |
+  |`originalContactPageURL` | string | | no | no | | The contact profile URL on Facebook or Twitter.|
 
 ## Contact Identity  Endpoints
 
@@ -4377,7 +4382,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `isEnabled` | bool  | | no | yes|| |
+  | `isEnabled` | bool  | | no | no|| false|
   | `protocolType` | string |  | no | yes | | including `SAML` and `JWT`. |
   | `samlSSOURL` | string |  | no |yes | |mandatory when Type is `SAML`. |
   | `samlLogoutURL` | string |  | no | no | | only available when Type is `SAML`. |
