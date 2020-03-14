@@ -1390,35 +1390,35 @@ online visitor is represented as simple flat JSON objects with the following key
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| N/A | | id of the visitor. |
-| `name` | name |  |  yes| N/A | | name of the visitor. |
-| `email` | string |  | yes | N/A | | email of the visitor.|
-| `status` | String|  | yes | N/A | |status of the visitor . |
-| `pageViews` | integer|  | yes | N/A | |the total number of web pages the visitor viewed on your website. |
-| `browser` | string|  | yes | N/A | |the browser the visitor is using. |
-| `chats` | integer|  | yes | N/A | |the total times of chats a visitor has made on your website from the first time to present. |
-| `city` | string|  | yes | N/A | |the city of the visitor. |
-| `country` | string|  | yes | N/A | |the country of the visitor. |
-| `currentBrowsing` | string|  | yes | N/A | |the page the visitor is currently looking at. |
-| `customFields` | [Custom Field](#custom-field-object)[]|  | yes | N/A | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
-| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | N/A | |the information of custom variables captured from the web page visitors viewed.|
-| `departmentId` | Guid|  | yes | N/A ||the department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
-| `firstVisitTime` | datetime|  | yes | N/A | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
-| `flashVersion` | string|  | yes | N/A | |the flash version of the browser the visitor is using.|
-| `ip` | string|  | yes | N/A | |the IP of the visitor.|
-| `searchKeywords` | string|  | yes | N/A | |the keywords the visitor used to search for your website.|
-| `landingPage` | string|  | yes | N/A | |the title and URL of the first page of your website the visitor visited.|
-| `language` | string|  | yes | N/A | |the language the visitor is using.|
-| `operatingSystem` | string|  | yes | N/A | |the operating system of the visitor's device.|
-| `phone` | string|  | yes | N/A | |the phone of the visitor.|
-| `productService` | string|  | yes | N/A | |the product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
-| `referrerUrl` | string|  | yes | N/A | |the URL of the page from which a visitor comes to your website.|
-| `screenResolution` | string|  | yes | N/A | |the screen resolution of the visitor's device.|
-| `searchEngine` | string|  | yes | N/A | |the search engine the visitor used to search for your website.|
-| `state` | string|  | yes | N/A | |the state of the visitor.|
-| `timeZone` | string|  | yes | N/A | |the time zone of the visitor.|
-| `visitTime` | string|  | yes | N/A | |the starting time when this visitor visits your website this time.|
-| `visits` | string|  | yes | N/A | |the total times of visits a visitor has made on your website from the first time to present|
+| `id` | Guid |  |  yes| no | | id of the visitor. |
+| `name` | name |  |  yes| no | | name of the visitor. |
+| `email` | string |  | yes | no | | email of the visitor.|
+| `status` | String|  | yes | no| |status of the visitor . including `waitingForChat`,  `voiceChatting`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
+| `pageViews` | integer|  | yes | no | |the total number of web pages the visitor viewed on your website. |
+| `browser` | string|  | yes | no | |the browser the visitor is using. |
+| `chats` | integer|  | yes | no | |the total times of chats a visitor has made on your website from the first time to present. |
+| `city` | string|  | yes | no | |the city of the visitor. |
+| `country` | string|  | yes | no | |the country of the visitor. |
+| `currentBrowsing` | string|  | yes | no | |the page the visitor is currently looking at. |
+| `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
+| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | yes | |the information of custom variables captured from the web page visitors viewed.|
+| `departmentId` | Guid|  | yes | no ||the department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
+| `firstVisitTime` | datetime|  | yes | no | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
+| `flashVersion` | string|  | yes | no| |the flash version of the browser the visitor is using.|
+| `ip` | string|  | yes | no | |the IP of the visitor.|
+| `searchKeywords` | string|  | yes | no | |the keywords the visitor used to search for your website.|
+| `landingPage` | string|  | yes | no | |the title and URL of the first page of your website the visitor visited.|
+| `language` | string|  | yes | no | |the language the visitor is using.|
+| `operatingSystem` | string|  | yes | no | |the operating system of the visitor's device.|
+| `phone` | string|  | yes | no | |the phone of the visitor.|
+| `productService` | string|  | yes | no | |the product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
+| `referrerUrl` | string|  | yes | no | |the URL of the page from which a visitor comes to your website.|
+| `screenResolution` | string|  | yes | no| |the screen resolution of the visitor's device.|
+| `searchEngine` | string|  | yes | no | |the search engine the visitor used to search for your website.|
+| `state` | string|  | yes | no | |the state of the visitor.|
+| `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids.|
+| `visitTime` | string|  | yes | no | |the starting time when this visitor visits your website this time.|
+| `visits` | string|  | yes | no | |the total times of visits a visitor has made on your website from the first time to present|
 
 
 ### Custom Field Object
@@ -1454,7 +1454,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `onlyChattingVisitor` | boolean | no  | false |  if only return the chatting visitor. |
+| `status` | boolean | no  | false |  status of this chat |
 
 #### Response
 
@@ -8894,4 +8894,149 @@ Response
 ```json
 HTTP/1.1 204 No Content
 ```
+
+# Time Zone Options
+
+
+  |   Id    |   Display name   |
+  |   -   |   -   |
+  |  datelineStandardTime  |   (UTC-12:00) International Date Line West   |
+  |  utc-11  |   (UTC-11:00) Coordinated Universal Time-11   |
+  |  aleutianStandardTime  |   (UTC-10:00) Aleutian Islands   |
+  |  hawaiianStandardTime  |   (UTC-10:00) Hawaii   |
+  |  marquesasStandardTime  |   (UTC-09:30) Marquesas Islands   |
+  |  alaskanStandardTime  |   (UTC-09:00) Alaska   |
+  |  utc-09  |   (UTC-09:00) Coordinated Universal Time-09   |
+  |  pacificStandardTime(Mexico)  |   (UTC-08:00) Baja California   |
+  |  utc-08  |   (UTC-08:00) Coordinated Universal Time-08   |
+  |  pacificStandardTime  |   (UTC-08:00) Pacific Time (US & Canada)   |
+  |  usMountainStandardTime  |   (UTC-07:00) Arizona   |
+  |  mountainStandardTime(Mexico)  |   (UTC-07:00) Chihuahua, La Paz, Mazatlan   |
+  |  mountainStandardTime  |   (UTC-07:00) Mountain Time (US & Canada)   |
+  |  centralAmericaStandardTime  |   (UTC-06:00) Central America   |
+  |  centralStandardTime  |   (UTC-06:00) Central Time (US & Canada)   |
+  |  easterIslandStandardTime  |   (UTC-06:00) Easter Island   |
+  |  centralStandardTime(Mexico)  |   (UTC-06:00) Guadalajara, Mexico City, Monterrey   |
+  |  canadaCentralStandardTime  |   (UTC-06:00) Saskatchewan   |
+  |  saPacificStandardTime  |   (UTC-05:00) Bogota, Lima, Quito, Rio Branco   |
+  |  easternStandardTime(Mexico)  |   (UTC-05:00) Chetumal   |
+  |  easternStandardTime  |   (UTC-05:00) Eastern Time (US & Canada)   |
+  |  haitiStandardTime  |   (UTC-05:00) Haiti   |
+  |  cubaStandardTime  |   (UTC-05:00) Havana   |
+  |  usEasternStandardTime  |   (UTC-05:00) Indiana (East)   |
+  |  turksAndCaicosStandardTime  |   (UTC-05:00) Turks and Caicos   |
+  |  paraguayStandardTime  |   (UTC-04:00) Asuncion   |
+  |  atlanticStandardTime  |   (UTC-04:00) Atlantic Time (Canada)   |
+  |  venezuelaStandardTime  |   (UTC-04:00) Caracas   |
+  |  centralBrazilianStandardTime  |   (UTC-04:00) Cuiaba   |
+  |  saWesternStandardTime  |   (UTC-04:00) Georgetown, La Paz, Manaus, San Juan   |
+  |  pacificSAStandardTime  |   (UTC-04:00) Santiago   |
+  |  newfoundlandStandardTime  |   (UTC-03:30) Newfoundland   |
+  |  tocantinsStandardTime  |   (UTC-03:00) Araguaina   |
+  |  e.SouthAmericaStandardTime  |   (UTC-03:00) Brasilia   |
+  |  saEasternStandardTime  |   (UTC-03:00) Cayenne, Fortaleza   |
+  |  argentinaStandardTime  |   (UTC-03:00) City of Buenos Aires   |
+  |  greenlandStandardTime  |   (UTC-03:00) Greenland   |
+  |  montevideoStandardTime  |   (UTC-03:00) Montevideo   |
+  |  magallanesStandardTime  |   (UTC-03:00) Punta Arenas   |
+  |  saintPierreStandardTime  |   (UTC-03:00) Saint Pierre and Miquelon   |
+  |  bahiaStandardTime  |   (UTC-03:00) Salvador   |
+  |  utc-02  |   (UTC-02:00) Coordinated Universal Time-02   |
+  |  mid-AtlanticStandardTime  |   (UTC-02:00) Mid-Atlantic - Old   |
+  |  azoresStandardTime  |   (UTC-01:00) Azores   |
+  |  capeVerdeStandardTime  |   (UTC-01:00) Cabo Verde Is.   |
+  |  utc  |   (UTC) Coordinated Universal Time   |
+  |  gmtStandardTime  |   (UTC+00:00) Dublin, Edinburgh, Lisbon, London   |
+  |  greenwichStandardTime  |   (UTC+00:00) Monrovia, Reykjavik   |
+  |  saoTomeStandardTime  |   (UTC+00:00) Sao Tome   |
+  |  moroccoStandardTime  |   (UTC+01:00) Casablanca   |
+  |  w.EuropeStandardTime  |   (UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna   |
+  |  centralEuropeStandardTime  |   (UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague   |
+  |  romanceStandardTime  |   (UTC+01:00) Brussels, Copenhagen, Madrid, Paris   |
+  |  centralEuropeanStandardTime  |   (UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb   |
+  |  w.CentralAfricaStandardTime  |   (UTC+01:00) West Central Africa   |
+  |  jordanStandardTime  |   (UTC+02:00) Amman   |
+  |  gtbStandardTime  |   (UTC+02:00) Athens, Bucharest   |
+  |  middleEastStandardTime  |   (UTC+02:00) Beirut   |
+  |  egyptStandardTime  |   (UTC+02:00) Cairo   |
+  |  e.EuropeStandardTime  |   (UTC+02:00) Chisinau   |
+  |  syriaStandardTime  |   (UTC+02:00) Damascus   |
+  |  westBankStandardTime  |   (UTC+02:00) Gaza, Hebron   |
+  |  southAfricaStandardTime  |   (UTC+02:00) Harare, Pretoria   |
+  |  fleStandardTime  |   (UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius   |
+  |  israelStandardTime  |   (UTC+02:00) Jerusalem   |
+  |  kaliningradStandardTime  |   (UTC+02:00) Kaliningrad   |
+  |  sudanStandardTime  |   (UTC+02:00) Khartoum   |
+  |  libyaStandardTime  |   (UTC+02:00) Tripoli   |
+  |  namibiaStandardTime  |   (UTC+02:00) Windhoek   |
+  |  arabicStandardTime  |   (UTC+03:00) Baghdad   |
+  |  turkeyStandardTime  |   (UTC+03:00) Istanbul   |
+  |  arabStandardTime  |   (UTC+03:00) Kuwait, Riyadh   |
+  |  belarusStandardTime  |   (UTC+03:00) Minsk   |
+  |  russianStandardTime  |   (UTC+03:00) Moscow, St. Petersburg   |
+  |  e.AfricaStandardTime  |   (UTC+03:00) Nairobi   |
+  |  iranStandardTime  |   (UTC+03:30) Tehran   |
+  |  arabianStandardTime  |   (UTC+04:00) Abu Dhabi, Muscat   |
+  |  astrakhanStandardTime  |   (UTC+04:00) Astrakhan, Ulyanovsk   |
+  |  azerbaijanStandardTime  |   (UTC+04:00) Baku   |
+  |  russiaTimeZone3  |   (UTC+04:00) Izhevsk, Samara   |
+  |  mauritiusStandardTime  |   (UTC+04:00) Port Louis   |
+  |  saratovStandardTime  |   (UTC+04:00) Saratov   |
+  |  georgianStandardTime  |   (UTC+04:00) Tbilisi   |
+  |  volgogradStandardTime  |   (UTC+04:00) Volgograd   |
+  |  caucasusStandardTime  |   (UTC+04:00) Yerevan   |
+  |  afghanistanStandardTime  |   (UTC+04:30) Kabul   |
+  |  westAsiaStandardTime  |   (UTC+05:00) Ashgabat, Tashkent   |
+  |  ekaterinburgStandardTime  |   (UTC+05:00) Ekaterinburg   |
+  |  pakistanStandardTime  |   (UTC+05:00) Islamabad, Karachi   |
+  |  qyzylordaStandardTime  |   (UTC+05:00) Qyzylorda   |
+  |  indiaStandardTime  |   (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi   |
+  |  sriLankaStandardTime  |   (UTC+05:30) Sri Jayawardenepura   |
+  |  nepalStandardTime  |   (UTC+05:45) Kathmandu   |
+  |  centralAsiaStandardTime  |   (UTC+06:00) Astana   |
+  |  bangladeshStandardTime  |   (UTC+06:00) Dhaka   |
+  |  omskStandardTime  |   (UTC+06:00) Omsk   |
+  |  myanmarStandardTime  |   (UTC+06:30) Yangon (Rangoon)   |
+  |  seAsiaStandardTime  |   (UTC+07:00) Bangkok, Hanoi, Jakarta   |
+  |  altaiStandardTime  |   (UTC+07:00) Barnaul, Gorno-Altaysk   |
+  |  w.MongoliaStandardTime  |   (UTC+07:00) Hovd   |
+  |  northAsiaStandardTime  |   (UTC+07:00) Krasnoyarsk   |
+  |  n.CentralAsiaStandardTime  |   (UTC+07:00) Novosibirsk   |
+  |  tomskStandardTime  |   (UTC+07:00) Tomsk   |
+  |  chinaStandardTime  |   (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi   |
+  |  northAsiaEastStandardTime  |   (UTC+08:00) Irkutsk   |
+  |  singaporeStandardTime  |   (UTC+08:00) Kuala Lumpur, Singapore   |
+  |  w.AustraliaStandardTime  |   (UTC+08:00) Perth   |
+  |  taipeiStandardTime  |   (UTC+08:00) Taipei   |
+  |  ulaanbaatarStandardTime  |   (UTC+08:00) Ulaanbaatar   |
+  |  ausCentralW.StandardTime  |   (UTC+08:45) Eucla   |
+  |  transbaikalStandardTime  |   (UTC+09:00) Chita   |
+  |  tokyoStandardTime  |   (UTC+09:00) Osaka, Sapporo, Tokyo   |
+  |  northKoreaStandardTime  |   (UTC+09:00) Pyongyang   |
+  |  koreaStandardTime  |   (UTC+09:00) Seoul   |
+  |  yakutskStandardTime  |   (UTC+09:00) Yakutsk   |
+  |  cen.AustraliaStandardTime  |   (UTC+09:30) Adelaide   |
+  |  aUSCentralStandardTime  |   (UTC+09:30) Darwin   |
+  |  e.AustraliaStandardTime  |   (UTC+10:00) Brisbane   |
+  |  aUSEasternStandardTime  |   (UTC+10:00) Canberra, Melbourne, Sydney   |
+  |  westPacificStandardTime  |   (UTC+10:00) Guam, Port Moresby   |
+  |  tasmaniaStandardTime  |   (UTC+10:00) Hobart   |
+  |  vladivostokStandardTime  |   (UTC+10:00) Vladivostok   |
+  |  lordHoweStandardTime  |   (UTC+10:30) Lord Howe Island   |
+  |  bougainvilleStandardTime  |   (UTC+11:00) Bougainville Island   |
+  |  russiaTimeZone10  |   (UTC+11:00) Chokurdakh   |
+  |  magadanStandardTime  |   (UTC+11:00) Magadan   |
+  |  norfolkStandardTime  |   (UTC+11:00) Norfolk Island   |
+  |  sakhalinStandardTime  |   (UTC+11:00) Sakhalin   |
+  |  centralPacificStandardTime  |   (UTC+11:00) Solomon Is., New Caledonia   |
+  |  russiaTimeZone11  |   (UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky   |
+  |  newZealandStandardTime  |   (UTC+12:00) Auckland, Wellington   |
+  |  utc+12  |   (UTC+12:00) Coordinated Universal Time+12   |
+  |  fijiStandardTime  |   (UTC+12:00) Fiji   |
+  |  kamchatkaStandardTime  |   (UTC+12:00) Petropavlovsk-Kamchatsky - Old   |
+  |  chathamIslandsStandardTime  |   (UTC+12:45) Chatham Islands   |
+  |  utc+13  |   (UTC+13:00) Coordinated Universal Time+13   |
+  |  tongaStandardTime  |   (UTC+13:00) Nuku'alofa   |
+  |  samoaStandardTime  |   (UTC+13:00) Samoa   |
+  |  lineIslandsStandardTime  |   (UTC+14:00) Kiritimati Island   |
 </div>
