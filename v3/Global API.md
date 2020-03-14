@@ -44,24 +44,24 @@
 ### Site Object
   Each Comm100 account is treated as a Site and has a unique Site ID.
 
- | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+ | Name | Type | Include | Read-only | Mandatory | Default | Description |
  | - | - | :-: | :-: | :-: | :-: | - |
- |`id` | integer  | | N/A | N/A |  |Site ID.|
- |`dateTimeFormat` | string| | no | N/A  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
- |`timeZone` | string| | no | N/A  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
- |`company` | string | | no | N/A  | |Company name.|
- |`companySize` | string| | no | N/A  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
- |`website` | string  | | no | N/A  | |Company website. |
- |`registeredEmail` | string  | | yes | N/A  | |Email used for site registration.|
- |`phone` | string | | no | N/A  | |Company phone number.|
- |`fax` | string | | no | N/A  | |Company fax number.|
- |`mailingAddress` | string | | no | N/A  | |The mailing address of the company.|
- |`city` | string  | | no | N/A  | |City where the company located.|
- |`stateOrProvince` | string  | | no | N/A  | |State/Province where the company located.|
- |`countryOrRegion` | string | | no | N/A  | |Country/Region where the company located.|
- |`postalOrZipCode` | string | | no | N/A  | |Postal/Zip Code where the company located.|
- |`firstName` | string  | | no | N/A  | |First Name of site registrant.|
- |`lastName` | string  | | no | N/A  | |Last Name of site registrant.|
+ |`id` | integer  | | yes | no |  |Site ID.|
+ |`dateTimeFormat` | string| | no | no  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
+ |`timeZone` | string| | no | no  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
+ |`company` | string | | no | no  | |Company name.|
+ |`companySize` | string| | no | no  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
+ |`website` | string  | | no | no  | |Company website. |
+ |`registeredEmail` | string  | | yes | no  | |Email used for site registration.|
+ |`phone` | string | | no | no  | |Company phone number.|
+ |`fax` | string | | no | no  | |Company fax number.|
+ |`mailingAddress` | string | | no | no  | |The mailing address of the company.|
+ |`city` | string  | | no | no  | |City where the company located.|
+ |`stateOrProvince` | string  | | no | no  | |State/Province where the company located.|
+ |`countryOrRegion` | string | | no | no  | |Country/Region where the company located.|
+ |`postalOrZipCode` | string | | no | no  | |Postal/Zip Code where the company located.|
+ |`firstName` | string  | | no | no  | |First Name of site registrant.|
+ |`lastName` | string  | | no | no  | |Last Name of site registrant.|
 
 ## Site Endpoints
 
@@ -186,9 +186,9 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 ### Agent Object
   This is the entity details of the Agent.
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | integer  | | N/A | N/A |  |  |
+  |`id` | integer  | | yes | no |  |  |
   |`email` | string| | yes | yes | | Agent login email address, can not change |
   |`displayName` | string  | | no | no | | Different Agents can have the same Display Name. If not offered, will set by first name.|
   |`firstName` | string  | | no | yes | | The first name of the agent|
@@ -200,17 +200,17 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`bio` | string  | | no | no | | The bio info of the agent.|
   |`timeZone` | string| | no | no |  | Time zone of agent. value include all [Time Zone Option](#time-zone-options) Ids, if not offered, will set by site time zone. |
   |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
-  |`createdTime` | DateTime | | N/A | N/A | UTC | The create time of the agent.|
-  |`isLocked` | bool| | yes | N/A | false | Account will be locked after several failed login attempts.|
-  |`lockedTime` | DateTime | | N/A | N/A | UTC | When the agent is locked.|
-  |`lastLoginTime` | DateTime | | N/A | N/A | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
+  |`createdTime` | DateTime | | no | no | UTC | The create time of the agent.|
+  |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
+  |`lockedTime` | DateTime | | no | no | UTC | When the agent is locked.|
+  |`lastLoginTime` | DateTime | | no | no | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
   |`permissionIds` | integer[]  |  | no | no | NULL | Agent permission settings.|
-  |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
+  |`permissions` | [Permission](#permission)[]  | yes| no | no | | Agent permission settings. |
   |`roleIds` | Guid[]  |  | no | no | NULL | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
-  |`roles` | [Role](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
+  |`roles` | [Role](#role)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
   |`departmentIds` | Guid[]  |  | no | no | NULL | The list of the department ids which the agent belongs to.|
-  |`departments` | [Department](#department)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
-  |`shifts` | [Shift](#shift)[]  | yes | N/A | N/A  | | The list of shifts which the agent belongs to.|
+  |`departments` | [Department](#department)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
+  |`shifts` | [Shift](#shift)[]  | yes | no | no  | | The list of shifts which the agent belongs to.|
 
 
 
@@ -218,12 +218,12 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 
   Agent List Object for agent list Response, include count and page information.
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`count` | integer  | N/A | yes | no | | The total count of the query  |
-  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
-  |`agents`|   [Agent](#agent-object)[]| N/A | yes| no | | A list of agents. |
+  |`count` | integer  | no | yes | no | | The total count of the query  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
+  |`agents`|   [Agent](#agent-object)[]| no | yes| no | | A list of agents. |
 
 
 
@@ -794,16 +794,16 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
 ## Role Related Object Json Format
 
 ### Role Object
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | Guid| | N/A | N/A | |  |
+  |`id` | Guid| | yes | no | |  |
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
-  |`type` | string | | yes | N/A | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
+  |`type` | string | | yes | no | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
   |`agentIds` | int[] | | no | no | NULL | The selected agents for this role. |
-  |`agents` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
+  |`agents` | [Agent](#agent)[] | yes | no | no | | The selected agents for this role.|
   |`permissionIds` | int[] | | no | no | NULL | Permissions assigned to this role.|
-  |`permissions` | [Permission](#permission)[] | yes | N/A | N/A | | Permissions assigned to this role.|
+  |`permissions` | [Permission](#permission)[] | yes | no | no | | Permissions assigned to this role.|
 
 
 ## Role Endpoints
@@ -1108,9 +1108,9 @@ You need `Manage departments` permission to manage departments.
 
 ### Department Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | Guid| | N/A | N/A | |  |
+  |`id` | Guid| | yes | no | |  |
   |`name` | string | | no | yes | |  |
   |`description` | string | | no | no | |  |
   |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
@@ -1118,8 +1118,8 @@ You need `Manage departments` permission to manage departments.
   |`offlineMessageMailTo` | string | | no | no | All agents in the department | The value options: All agents in the department, The email address(es).  |
   |`offlineMessageEmailAddresses` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
   |`agentIds` | int[] | | no | no | NULL | The selected agents for this department.|
-  |`agents` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
-  |`shifts` | [Shift](#shift)[]| yes | N/A | N/A |  |  |
+  |`agents` | [Agent](#agent)[]| yes | no | no |  |  |
+  |`shifts` | [Shift](#shift)[]| yes | no | no |  |  |
 
 ## Department Endpoints
 
@@ -1383,9 +1383,9 @@ HTTP/1.1 204 No Content
 
 ### Permission Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | long | | N/A | N/A |  |  |
+  |`id` | long | | no | no |  |  |
   |`name` | string| | yes | no | |  |
   |`description` | string| | yes | no | |  |
   |`category` | string | | yes | no | |The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase|
@@ -1648,7 +1648,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
 
   Shift Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | yes | | Name of the shift. |
@@ -1656,15 +1656,15 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
   | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
   |`agentIds` | int[] | | yes | no | NULL | |
   |`departmentIds` | Guid[] | | yes | no | NULL | |
-  | `agents` | [Agent](#Agent-Object)[] | yes | N/A | N/A | | |
-  | `departments` | [Department](#Department-Object)[] | yes | N/A | N/A | | |
+  | `agents` | [Agent](#Agent-Object)[] | yes | no | no | | |
+  | `departments` | [Department](#Department-Object)[] | yes | no | no | | |
   | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
 
 ### Holiday Object
 
   Holiday Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `name` | string  | no | yes | | The name of holiday. |
   | `date` | DateTime  | no | yes | | The date of the holiday. |
@@ -1674,9 +1674,9 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
 
   Working Hours Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `dayOfWeek` | string  | no | yes | | Including `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday` and `Sunday`. |
+  | `dayOfWeek` | string  | no | yes | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
   | `startTime` | time  | no | yes | | |
   | `endTime` | time  | no | yes | | |
   | `awayStatusId` | Guid | no | no | | |
@@ -2162,9 +2162,9 @@ Response
 
 ### Contact Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | integer  | | N/A | N/A |  |  |
+  |`id` | integer  | | yes | no |  |  |
   |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has Name and Avatar, like Facebook Account, display Name and Avatar from that Identity in Agent Console. In other situations, display Contact Name and Avatar.|
   |`description` | string | | no | no | |  |
   |`firstName` | string | | no | no | |  |
@@ -2180,20 +2180,20 @@ Response
   |`countryOrRegion` | string  | | no | no | |  |
   |`postalOrZipCode` | string  | | no | no | |  |
   |`timeZone` | string | | no | no | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
-  |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
-  |`lastUpdatedTime` | DateTime | | N/A | N/A | |  |
+  |`createdTime` | DateTime | | no | no | | When the contact is created.|
+  |`lastUpdatedTime` | DateTime | | no | no | |  |
   |`contactIdentities` | [ContactIdentity](#Contact-Identity)[] | yes | no | no | | Contact Identity. |
 
 ### Contact List Response Object
 
   Agent List Object for agent list Response, include count and page information.
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`count` | integer  | N/A | yes | no | | The total count of the query  |
-  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
-  |`contacts`|   [Contact](#contact-object)[]| N/A | yes| no | | A list of contacts. |
+  |`count` | integer  | no | yes | no | | The total count of the query  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
+  |`contacts`|   [Contact](#contact-object)[]| no | yes| no | | A list of contacts. |
 
 
 
@@ -2458,9 +2458,9 @@ HTTP/1.1 204 No Content
 
 ### Contact Identity Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | integer| | N/A | N/A | |  |
+  |`id` | integer| | yes | no | |  |
   |`contactId` | integer| | no | no | | Mandatory when post by contact identity api. |
   |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
   |`type` | string| | no | yes | | the options of the value are:  visitor, emailAddress, SMSNumber, facebookAccount, twitterAccount, weChatAccount, SSOUserID, externalID, whatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
@@ -2734,14 +2734,14 @@ HTTP/1.1 204 No Content
 
   Visitor Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | N/A | N/A | | Id of the current item.  |
-  | `name` | string  | N/A | N/A | | Name of the visitor. |
-  | `email` | string  | N/A | N/A | | Email of the visitor. |
-  | `numberOfVisits` | integer  | N/A | N/A | | The total number of web pages the visitor viewed on your website. |
-  | `numberOfChats` | integer  | N/A | N/A | | The total times of chats a visitor has made on your website from the first time to present. |
-  | `firstVisitTime` | datetime  | N/A | N/A | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
+  |`id` | Guid | yes | no | | Id of the current item.  |
+  | `name` | string  | no | no | | Name of the visitor. |
+  | `email` | string  | no | no | | Email of the visitor. |
+  | `numberOfVisits` | integer  | no | no | | The total number of web pages the visitor viewed on your website. |
+  | `numberOfChats` | integer  | no | no | | The total times of chats a visitor has made on your website from the first time to present. |
+  | `firstVisitTime` | datetime  | no | no | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
 
 ## Visitor Endpoints
 
@@ -2766,10 +2766,10 @@ The response body contains data with the follow structure:
 
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `totalCount` | integer | N/A | N/A | Total count of the list. |
-| `previousPage` | string | N/A | N/A | Url of the previous page. |
-| `nextPage` | string | N/A | N/A | Url of the next page. |
-| `visitors` | [Visitor](#visitor-Object)[] | N/A | N/A |  |
+| `totalCount` | integer | no | no | Total count of the list. |
+| `previousPage` | string | no | no | Url of the previous page. |
+| `nextPage` | string | no | no | Url of the next page. |
+| `visitors` | [Visitor](#visitor-Object)[] | no | no |  |
 
 #### Example
 
@@ -2787,7 +2787,7 @@ Content-Type:  application/json
 {
     "totalCount": 28,
     "previousPage": "",
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/visitors?pageIndex=2",
+    "nextPage": "/api/v3/globalSettings/visitors?pageIndex=2",
     "visitors": [{
         "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
         "name": "test",
@@ -2856,9 +2856,9 @@ Content-Type:  application/json
 
   Public Canned Message Category Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid | no | yes | | Id of the public canned message category. |
 
@@ -3074,15 +3074,15 @@ HTTP/1.1 204 No Content
 
   Public Canned Message Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | N/A | | Id of the canned message.  |
+  |`id` | Guid | | yes | no | | Id of the canned message.  |
   | `name` | string | | no | yes | | Name of the canned message. |
   | `message` | string | | no | yes | | |
   | `IfSetHtmlMessageForEmail` | boolean  | | no | no | false | |
   | `htmlMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | yes | | |
-  | `category` | [Public Canned Message Category](#public-Canned-Message-Category-object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
+  | `category` | [Public Canned Message Category](#public-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
@@ -3402,9 +3402,9 @@ Response
 
   Private Canned Message Category Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid  | no | yes | | Parent of the canned message category. |
 
@@ -3618,9 +3618,9 @@ HTTP/1.1 204 No Content
 
   Private Canned Message Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | no | | Name of the canned message. |
   | `message` | string  | | no | no | | |
   | `IfSetHtmlMessageForEmail` | bool | | no | no | false | |
@@ -3935,7 +3935,7 @@ Response
 
   Similar Question Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `question` | string  | no | no | | |
 
@@ -4178,12 +4178,12 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
 
 ### Whitelisted Login IP Range Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | Guid | | N/A | N/A | | |
+  |`id` | Guid | | yes | no | | |
   |`ipFrom` | string | | no | yes | | Where an IP range starts.|
   |`ipTo` | string | | no | yes | | Where an IP range ends.|
-  |`createdTime` | DateTime | | N/A | N/A |  |  |
+  |`createdTime` | DateTime | | no | no |  |  |
 
 ## Whitelisted Login IP Range Endpoints
 
@@ -4495,22 +4495,22 @@ Content-Type:  application/json
 
   Visitor SSO Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `isEnabled` | bool  | | no | N/A | false | |
-  | `loginURL` | string  | | no | N/A | | |
-  | `logoutURL` | string  | | no | N/A | | |
-  | `changePasswordURL` | string  | | no | N/A | | |
-  | `certificate` | string  | | no | N/A | | Base64 data of certificate file. |
-  | `certificateFileName` | string  | | no | N/A | | |
-  | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | N/A | | |
-  | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | N/A | | |
+  | `isEnabled` | bool  | | no | no | false | |
+  | `loginURL` | string  | | no | no | | |
+  | `logoutURL` | string  | | no | no | | |
+  | `changePasswordURL` | string  | | no | no | | |
+  | `certificate` | string  | | no | no | | Base64 data of certificate file. |
+  | `certificateFileName` | string  | | no | no | | |
+  | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | no | | |
+  | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | no | | |
 
 ### Field Mapping Object
 
 Field Mapping is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `attribute` | string | | no | yes | | SSO attribute name. |
   | `comm100Field` | string | | no | yes | | the Comm100 field name |
@@ -4519,10 +4519,10 @@ Field Mapping is represented as simple flat JSON objects with the following keys
 
 Visitor SSO Campaign is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
-  | `campaign` | [Campaign](#campaign-object)  | yes | N/A | N/A | | Available only when campaign is included  |
+  | `campaign` | [Campaign](#campaign-object)  | yes | no | no | | Available only when campaign is included  |
   | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
   | `isPrechatFromSkipped` | bool |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
 
@@ -4701,27 +4701,27 @@ Response
 
 ### Audit Log Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | integer | | N/A | N/A | |  |
-  |`category` | string| | N/A | N/A | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
-  |`createdTime` | DateTime | | N/A | N/A |  |  |
-  |`actionType` | string | | N/A  | N/A  | | [action types for different applications](#action-types-for-different-applications) |
-  |`actionSummary` | string| | N/A  | N/A  | |  |
-  |`actionDetails` | string| | N/A  | N/A  | |  |
-  |`createdBy` | integer | | N/A  | N/A  | | the id of oprator agent |
-  |`agent` | [Agent](#agent) | yes | N/A  | N/A  | | the oprator agent |
+  |`id` | integer | | yes | no | |  |
+  |`category` | string| | no | no | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
+  |`createdTime` | DateTime | | no | no |  |  |
+  |`actionType` | string | | no  | no  | | [action types for different applications](#action-types-for-different-applications) |
+  |`actionSummary` | string| | no  | no  | |  |
+  |`actionDetails` | string| | no  | no  | |  |
+  |`createdBy` | integer | | no  | no  | | the id of oprator agent |
+  |`agent` | [Agent](#agent) | yes | no  | no  | | the oprator agent |
 
 ### Audit Log List Response Object
 
   Agent List Object for agent list Response, include count and page information.
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`count` | integer  | N/A | yes | no | | The total count of the query  |
-  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
-  |`auditLogs`| [AuditLog](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
+  |`count` | integer  | no | yes | no | | The total count of the query  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
+  |`auditLogs`| [AuditLog](#audit-log-object)[]| no | yes| 0 | | a list of Audit Log. |
 
 ### Action types for different applications
 
