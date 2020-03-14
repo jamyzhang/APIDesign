@@ -15,8 +15,8 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
     - [dynamic campaign](#dynamic-campaign)
     - [mobile push](#mobile-push)
   - [customer segment](#customer-segment)
-  - [online-agent](#online-agent)
-  - [online-visitor](#online-visitor)
+  - [live chat agent](#live-chat-agent)
+  - [live chat visitor](#live-chat-visitor)
   - [session](#session)  
   - [chat](#chat)
   - [offline message](#offline-message)  
@@ -1240,30 +1240,29 @@ Content-Type:  application/json
 }
 ```
 
-# Online Agent
+# Live Chat Agent
 
-- `GET /api/v3/livechat/onlineAgents` - [Get list of online agents](#get-list-of-online-agents)
-- `GET /api/v3/livechat/onlineAgents/{id}` - [Get an online agent by id](#get-an-online-agent-by-id)  
-- `PUT /api/v3/livechat/onlineAgents/{id}` - [Update an online agent](#update-an-online-agent)  
+- `GET /api/v3/livechat/agents` - [Get list of live chat agents](#get-list-of-live-chat-agents)
+- `GET /api/v3/livechat/agents/{id}` - [Get a live chat agent by id](#get-a-live-chat-agent-by-id)  
+- `PUT /api/v3/livechat/agents/{id}` - [Update a live chat agent](#update-a-live-chat-agent)  
   
 ## Related Object Json Format
 
-### Online Agent JSON format
+### Live Chat Agent Object
 
 agent is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| N/A | | id of the online agent. |
-| `name` | String |  |  yes| N/A | | name of the online agent. |
-| `status` | String |  | no | N/A | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
-| `ongoingChats` | integer|  | yes | N/A | | total number of ongoing chats the agent has. |
+| `id` | Guid |  |  yes| N/A | | id of the live chat agent. |
+| `status` | String |  | no | yes | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
+| `ongoingChats` | integer|  | yes | no | | total number of ongoing chats the agent has. |
 
 ## Endpoints
 
-### Get list of online agents
+### Get list of live chat agents
 
-`GET /api/v3/livechat/onlineAgents`
+`GET /api/v3/livechat/agents`
 
 #### Parameters
 
@@ -1271,14 +1270,14 @@ agent is represented as simple flat JSON objects with the following keys:
 
 #### Response
 
-the response an array of [Online Agent](#online-agent-object) object
+the response an array of [Live Chat Agent](#live-chat-agent-object) object
 
 #### Example
 
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineAgents
+-X GET https://domain.comm100.com/api/v3/livechat/agents
 ```
 
 Response
@@ -1288,7 +1287,6 @@ Content-Type:  application/json
 [
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "name": "Grubby",
     "status": "online",
     "ongoingChats": 50
   },
@@ -1296,9 +1294,9 @@ Content-Type:  application/json
 ]
 ```
 
-### Get an online agent by id
+### Get an live chat agent by id
 
-`GET /api/v3/livechat/onlineAgents/{id}`
+`GET /api/v3/livechat/agents/{id}`
 
 #### Parameters
 
@@ -1306,18 +1304,18 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of online agent   |
+| `id` | Guid | yes  |  id of live chat agent   |
 
 #### Response
 
-the response is [Online Agent](#online-agent-object) object
+the response is [Live Chat Agent](#live-chat-agent-object) object
 
 #### Example
 
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://domain.comm100.com/api/v3/livechat/agents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -1326,15 +1324,14 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "name": "Grubby",
   "status": "online",
   "ongoingChats": 50
 }
 ```
 
-### Update an online agent
+### Update a live chat agent
 
-`POST /api/v3/livechat/onlineAgents/{id}`
+`POST /api/v3/livechat/agents/{id}`
 
 #### Parameters
 
@@ -1342,24 +1339,22 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of online agent   |
+| `id` | Guid | yes  |  id of live chat agent   |
 
 Request body
 
-  The request body contains data with the [Online Agent](#online-agent-object) Object structure
+  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) Object structure
 
 example:
 ```Json
 {
-  "name": "Grubby",
-  "status": "online",
-  "ongoingChats": 50
+  "status": "online"
 }
 ```
 
 #### Response
 
-the response is [Online Agent](#online-agent-object) object
+the response is [Live Chat Agent](#live-chat-agent-object) object
 
 #### Example
 
@@ -1369,7 +1364,7 @@ curl -H "Content-Type: application/json" -d '{
   "name": "Grubby",
   "status": "online",
   "ongoingChats": 50
-}' -X PUT https://domain.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+}' -X PUT https://domain.comm100.com/api/v3/livechat/agents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -1381,15 +1376,15 @@ Content-Type:  application/json
 }
 ```
 
-# Online Visitor
+# Live Chat Visitor
 
-- `GET /api/v3/livechat/onlineVisitors` - [Get list of online visitors](#get-list-of-online-visitors)
-- `GET /api/v3/livechat/onlineVisitors/{id}` - [Get an online visitor by id](#get-an-online-visitor-by-id)  
-- `PUT /api/v3/livechat/onlineVisitors/{id}` - [Update visitor custom variable](#update-visitor-custom-variable)  
+- `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
+- `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
+- `PUT /api/v3/livechat/visitors/{id}` - [Update visitor custom variable](#update-visitor-custom-variable)  
 
 ## Related Object JSON Format
 
-### Online Visitor JSON format
+### Live Chat Visitor Object
 
 online visitor is represented as simple flat JSON objects with the following keys:  
 
@@ -1411,7 +1406,7 @@ online visitor is represented as simple flat JSON objects with the following key
 | `firstVisitTime` | datetime|  | yes | N/A | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
 | `flashVersion` | string|  | yes | N/A | |the flash version of the browser the visitor is using.|
 | `ip` | string|  | yes | N/A | |the IP of the visitor.|
-| `keywords` | string|  | yes | N/A | |the keywords the visitor used to search for your website.|
+| `searchKeywords` | string|  | yes | N/A | |the keywords the visitor used to search for your website.|
 | `landingPage` | string|  | yes | N/A | |the title and URL of the first page of your website the visitor visited.|
 | `language` | string|  | yes | N/A | |the language the visitor is using.|
 | `operatingSystem` | string|  | yes | N/A | |the operating system of the visitor's device.|
@@ -1426,7 +1421,7 @@ online visitor is represented as simple flat JSON objects with the following key
 | `visits` | string|  | yes | N/A | |the total times of visits a visitor has made on your website from the first time to present|
 
 
-### Custom Field JSON format
+### Custom Field Object
 
 Custom Field is represented as simple flat JSON objects with the following keys:  
 
@@ -1436,7 +1431,7 @@ Custom Field is represented as simple flat JSON objects with the following keys:
 | `name` | string |  |  yes| N/A | | name of the custom field.|
 | `value` | string |  |  yes| N/A | | value of the custom field.|
 
-### Custom Variable Result JSON Format
+### Custom Variable Result Object
 
 Custom variable result is represented as simple flat JSON objects with the following keys: 
 
@@ -1448,9 +1443,9 @@ Custom variable result is represented as simple flat JSON objects with the follo
 
 ## Endpoints
 
-### Get list of online visitors
+### Get list of live chat visitors
 
-`GET /api/v3/livechat/onlineVisitors`
+`GET /api/v3/livechat/visitors`
 
 #### Parameters
 
@@ -1463,14 +1458,14 @@ Query string
 
 #### Response
 
-the response is: array of [Online Visitor](#online-visitor-object) Object.
+the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors?onlyChattingVisitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/visitors?onlyChattingVisitor=false
 ```
 Response
 ```Json
@@ -1499,7 +1494,7 @@ Content-Type:  application/json
       "first_visit_time": "2019-06-11T03:05:42.537Z",
       "flash_version": "",
       "ip": "218.76.52.108",
-      "keywords": "",
+      "searchKeywords": "",
       "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "language": "zh-CN",
       "name": "218.76.52.108",
@@ -1519,9 +1514,9 @@ Content-Type:  application/json
 ]
 ```
 
-### Get an online visitor by id
+### Get a live chat visitor by id
 
-`GET /api/v3/livechat/onlineVisitors/{id}`
+`GET /api/v3/livechat/visitors/{id}`
 
 #### Parameters
 
@@ -1529,7 +1524,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of online visitor|
+| `id` | Guid | yes  |  id of live chat visitor|
 
 Query string
 
@@ -1539,14 +1534,14 @@ Query string
 
 #### Response
 
-the response is: array of [Online Visitor](#online-visitor-object) Object.
+the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingVisitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingVisitor=false
 ```
 Response
 ```Json
@@ -1574,7 +1569,7 @@ Content-Type:  application/json
   "first_visit_time": "2019-06-11T03:05:42.537Z",
   "flash_version": "",
   "ip": "218.76.52.108",
-  "keywords": "",
+  "searchKeywords": "",
   "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
@@ -1594,7 +1589,7 @@ Content-Type:  application/json
 
 ### Update visitor custom variable
 
-`PUT /api/v3/livechat/onlineVisitors/{id}`
+`PUT /api/v3/livechat/visitors/{id}`
 
 #### Parameters
 
@@ -1606,7 +1601,7 @@ Path parameters
 
 #### Response
 
-the response is: array of [Online Visitor](#online-visitor-object) Object.
+the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
@@ -1620,7 +1615,7 @@ curl -H "Content-Type: application/json" -d '{
           "url": "bbbbb"
         }
       ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
 Response
@@ -1649,7 +1644,7 @@ Content-Type:  application/json
   "first_visit_time": "2019-06-11T03:05:42.537Z",
   "flash_version": "",
   "ip": "218.76.52.108",
-  "keywords": "",
+  "searchKeywords": "",
   "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
@@ -8689,7 +8684,7 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | Guid  || yes | no || id of the custom variable. |
   | `name` | string  || no | yes || name of the custom variable |.
-  | `type` | string  || no | yes || type of the custom variable., including `ttyoext`, `integer` and `decimal`. |
+  | `type` | string  || no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
   | `value` | string  || no | no || value of the custom variable. |
   |`hyperlink` | string  || no | no ||  hyperlink of the custom variable. |
 
