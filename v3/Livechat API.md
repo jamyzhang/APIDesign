@@ -1678,7 +1678,7 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | string |  | N/A | N/A | | id of the session. |
+| `id` | Guid |  | N/A | N/A | | id of the session. |
 | `startTime` | datetime | | N/A | N/A |  | time of this session start. |
 | `ip` | string |  | N/A | N/A | |  |
 | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
@@ -1784,11 +1784,12 @@ Response
 | `source` | string | | N/A | N/A |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
 | `autoInvitationId` | Guid | | N/A | N/A |  | |
 | `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | N/A | N/A |  |  |
-| `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) | yes | N/A | N/A |  |  |
-| `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) | yes | N/A | N/A |  |  |
-| `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) | yes | N/A | N/A |  |  |
-| `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) | yes | N/A | N/A |  |  |
+| `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) |  | N/A | N/A |  |  |
+| `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) |  | N/A | N/A |  |  |
+| `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) |  | N/A | N/A |  |  |
+| `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) |  | N/A | N/A |  |  |
 | `requestedTime` | datetime | | N/A | N/A | | The time when the chat is requested. |
+| `offlineMessageId` | integer | | N/A | N/A | |  |
 | `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | N/A | N/A |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
 | `avgResponseTime` | float | | N/A | N/A | |  |
 | `visitorMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Visitors. |
@@ -1797,8 +1798,10 @@ Response
 | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
 | `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
 | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | |
-| `sessionId` | Guid | | N/A | N/A |  | id of session |
+| `sessionId` | integer | | N/A | N/A |  | id of session |
 | `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
+| `botId` | Guid | | N/A | N/A |  | id of chatbot |
+| `chatBot` | [ChatBot](#chatBot) | yes | N/A | N/A |  |  the related [ChatBot](#chatBot) object|
 
 ### Chat Message Object
 
@@ -1811,8 +1814,7 @@ Response
 | `sentTime` | datetime | N/A  | N/A | |  |
 | `content` | string | N/A  | N/A | | |
 | `translatedMessage` | string | N/A  | N/A | |  |
-| `attachment` | byte[] | N/A | N/A | |  | The attachment file data |
-| `attachmentName` | string | N/A | N/A | |  | The attachment file name |
+| `attachmentUrl` | string | N/A | N/A | |  | The attachment file Url |
 
 ### Chat Pre-Chat Object
 
@@ -1829,6 +1831,8 @@ Response
 | `productService` | string | N/A  | N/A   | |  |
 | `ticketID` | string | N/A  | N/A | | |
 | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
+| `departmentId` | Guid | N/A  | N/A | | |
+| `department` | [Department](#department) | N/A  | N/A | | |
 
 ### Chat Post Chat  Object
 
@@ -1847,18 +1851,10 @@ Response
 
 | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `categorys` | string[] | N/A | N/A | |   |
+| `categories` | string[] | N/A | N/A | |   |
 | `comment` | string | N/A | N/A | |   |
 | `lastUpdatedTime` | datetime | N/A | N/A | |   |
-| `lastUpdatedBy` | Guid | N/A | N/A | |  Id of the agent. |
-| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
-
-### Chat Custom Variable Object
-
-  Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
-| - | - | :-: | :-: | :-: | - |
+| `lastUpdatedByAgentId` | int | N/A | N/A | |  Id of the agent. |
 | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ## Endpoint
@@ -1873,7 +1869,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`. |
+| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`,`offlineMessage`. |
 | `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
@@ -7098,17 +7094,17 @@ Response
 
   Ban is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+| Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | string | | yes | N/A | | id of the ban. |
+| `id` | Guid | | yes | N/A | | id of the ban. |
 | `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
-| `visitorId` | Guid | | no | no | | visitor's id of the ban if `type` is `visitor`  |
+| `visitorId` | Guid | | no | yes | | visitor's id of the ban if `type` is `visitor`  |
 | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | |  Available only when visitor is included  |
 | `ip` | string  |  | no | yes | | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` |
 | `ipRangeFrom` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
 | `ipRangeTo` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
 | `comment` | string | | no | no | | comment of the ban. |
-| `lastUpdatedBy` | Guid | | N/A | N/A | | comment of the ban. |
+| `lastUpdatedBy` | intger | | N/A | N/A | | comment of the ban. |
 | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
 
 ## Endpoint
@@ -7362,30 +7358,30 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | string | | yes | no | | id of the conversion action. |
+| `id` | guid | | yes | no | | id of the conversion action. |
 | `name` | string | | no | yes |  | name of the conversion action. |
 | `isEnable` | boolean | | no | no | | whether the conversion action is enabled or not. |
-| `type` | string | | no | no | | type of the conversion action, including `url`, `customVariable` and `api`. |
+| `type` | string | | no | yes | | type of the conversion action, including `url`, `customVariable` and `api`. |
 | `customVariableUsedToDetermineConversion` | string  | | no | no |  | the name of the custom variable, available when `type` is `customVariable`. |
 | `operator` | string | | no | no | | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
 | `value` | string | | no | no |  | match value of the conversion action, available when `type` is `customVariable` or `url`. |
 | `isCaseSensitive` | boolean | | no | no | | whether the conversion action is case sensitive or not, available when `type` is `url`. |
 | `isValueAssignedToConversion` | boolean | | no | no |  | whether a value is assigned for the conversion action or not. |
 | `valueSource` | string | | no | no |  | including `inputAValue`, `getFromCustomVariable` |
-| `assignedValueFromInputting` | string | | no | no |  | the value assigned for the conversion action |
+| `assignedValueFromInputting` | integer | | no | no |  | the value assigned for the conversion action, between 1 and 999999999 |
 | `assignedValueFromCustomVariable` | string | | no | no |  | the value comes from the custom variable |
 | `chatAssociatedWithConversion` | string | | no | no |  | including `theFirstChat`, `theLastChat` |
 | `isChatInLastCertainDaysConsidered` | boolean | | no | no |  |  |
 | `chatInLastDays` | integer | | no | no |   | between 1 and 30 |
 | `isChatWithAtLeastCertainVisitorMessagesConsidered` | boolean | | no | no | |  |
-| `visitorMessagesAtLeast` | integer | | no | no | |   |
+| `visitorMessagesAtLeast` | integer | | no | no | | between 1 and 999  |
 | `isVariableIncludedInTranscript` | boolean | | no | no |  |  |
-| `appendFieldList` | string | | no | no |  |  |
+| `appendFieldList` | string[] | | no | no |  |  |
 | `createdTime` | datetime | | N/A | N/A |  |  |
-| `createdBy` | integer | | N/A | N/A |  |  |
+| `createdByAgentId` | integer | | N/A | N/A |  |  |
 | `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
 | `lastUpdatedTime` | datetime | | N/A | N/A |  | |
-| `lastUpdatedBy` | integer | | N/A | N/A |  | |
+| `lastUpdatedByAgentId` | integer | | N/A | N/A |  | |
 | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
 
 ## Endpoint
