@@ -30,10 +30,10 @@
   - [visitor sso](#visitor-sso)
   - [shift](#shift)
   - [audit log](#audit-log)
-  
+
 
 # Site
-  You need `Manage Site` permission to manage site 
+  You need `Manage Site` permission to manage site
 
   + `GET /api/v3/globalSettings/site` - [Get profile of a site](#get-profile-of-a-site)
   + `PUT /api/v3/globalSettings/site` - [Update profile of a site](#update-profile-of-a-site)
@@ -42,26 +42,26 @@
 ## Site Related Object Json Format
 
 ### Site Object
-  Each Comm100 account is treated as a Site and has a unique Site ID.  
+  Each Comm100 account is treated as a Site and has a unique Site ID.
 
- | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
- | - | - | :-: | :-: | :-: | :-: | - | 
- |`id` | integer  | | N/A | N/A |  |Site ID.|
- |`dateTimeFormat` | string| | no | N/A  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
- |`timeZone` | string| | no | N/A  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
- |`company` | string | | no | N/A  | |Company name.|
- |`companySize` | string| | no | N/A  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
- |`website` | string  | | no | N/A  | |Company website. |
- |`registeredEmail` | string  | | yes | N/A  | |Email used for site registration.|
- |`phone` | string | | no | N/A  | |Company phone number.|
- |`fax` | string | | no | N/A  | |Company fax number.|
- |`mailingAddress` | string | | no | N/A  | |The mailing address of the company.|
- |`city` | string  | | no | N/A  | |City where the company located.|
- |`stateOrProvince` | string  | | no | N/A  | |State/Province where the company located.|
- |`countryOrRegion` | string | | no | N/A  | |Country/Region where the company located.|
- |`postalOrZipCode` | string | | no | N/A  | |Postal/Zip Code where the company located.|
- |`firstName` | string  | | no | N/A  | |First Name of site registrant.|
- |`lastName` | string  | | no | N/A  | |Last Name of site registrant.|
+ | Name | Type | Include | Read-only | Mandatory | Default | Description |
+ | - | - | :-: | :-: | :-: | :-: | - |
+ |`id` | integer  | | yes | no |  |Site ID.|
+ |`dateTimeFormat` | string| | no | no  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
+ |`timeZone` | string| | no | no  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
+ |`company` | string | | no | no  | |Company name.|
+ |`companySize` | string| | no | no  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
+ |`website` | string  | | no | no  | |Company website. |
+ |`registeredEmail` | string  | | yes | no  | |Email used for site registration.|
+ |`phone` | string | | no | no  | |Company phone number.|
+ |`fax` | string | | no | no  | |Company fax number.|
+ |`mailingAddress` | string | | no | no  | |The mailing address of the company.|
+ |`city` | string  | | no | no  | |City where the company located.|
+ |`stateOrProvince` | string  | | no | no  | |State/Province where the company located.|
+ |`countryOrRegion` | string | | no | no  | |Country/Region where the company located.|
+ |`postalOrZipCode` | string | | no | no  | |Postal/Zip Code where the company located.|
+ |`firstName` | string  | | no | no  | |First Name of site registrant.|
+ |`lastName` | string  | | no | no  | |Last Name of site registrant.|
 
 ## Site Endpoints
 
@@ -109,7 +109,7 @@ Content-Type:  application/json
 
 #### Parameters
 
-Request body 
+Request body
 
   The request body contains data with the [Site](#site-object) structure
 
@@ -168,8 +168,8 @@ Content-Type:  application/json
 
 You need `Manage Agent & Agent Roles` permission to manage agents.
 
-  + `GET /api/v3/globalSettings/agents` - [Get a list of agents in site](#get-a-list-of-agents-in-site) 
-  + `GET /api/v3/globalSettings/agents/{id}` - [Get an agent by id](#get-an-agent-by-id) 
+  + `GET /api/v3/globalSettings/agents` - [Get a list of agents in site](#get-a-list-of-agents-in-site)
+  + `GET /api/v3/globalSettings/agents/{id}` - [Get an agent by id](#get-an-agent-by-id)
   + `GET /api/v3/globalSettings/roles/{roleId}/agents` - [Get a list of agents by role id](#get-a-list-of-agents-by-role-id)
   + `GET /api/v3/globalSettings/departments/{departmentId}/agents` - [Get a list of agents by department id](#get-a-list-of-agents-by-department-id)
   + `GET /api/v3/globalSettings/agents/me` - [Get current agent](#get-current-agent)
@@ -186,9 +186,9 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 ### Agent Object
   This is the entity details of the Agent.
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer  | | N/A | N/A |  |  |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | integer  | | yes | no |  |  |
   |`email` | string| | yes | yes | | Agent login email address, can not change |
   |`displayName` | string  | | no | no | | Different Agents can have the same Display Name. If not offered, will set by first name.|
   |`firstName` | string  | | no | yes | | The first name of the agent|
@@ -200,18 +200,17 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`bio` | string  | | no | no | | The bio info of the agent.|
   |`timeZone` | string| | no | no |  | Time zone of agent. value include all [Time Zone Option](#time-zone-options) Ids, if not offered, will set by site time zone. |
   |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
-  |`createdTime` | DateTime | | N/A | N/A | UTC | The create time of the agent.|
+  |`createdTime` | DateTime | | no | no | UTC | The create time of the agent.|
   |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
-  |`lockedTime` | DateTime | | N/A | N/A | UTC | When the agent is locked.|
-  |`lastLoginTime` | DateTime | | N/A | N/A | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
-  |`lastLoginIP` | string  | | N/A | N/A | | The IP address where the agent logs in from.|
-  |`permissionIds` | integer[]  |  | no | no | [] | Agent permission settings.|
-  |`permissions` | [Permission](#permission)[]  | yes| N/A | N/A | | Agent permission settings. |
+  |`lockedTime` | DateTime | | no | no | UTC | When the agent is locked.|
+  |`lastLoginTime` | DateTime | | no | no | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
+  |`permissionIds` | integer[]  |  | no | no | NULL | Agent permission settings.|
+  |`permissions` | [Permission](#permission)[]  | yes| no | no | | Agent permission settings. |
   |`roleIds` | Guid[]  |  | no | no | NULL | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
-  |`roles` | [Role](#role)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
+  |`roles` | [Role](#role)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
   |`departmentIds` | Guid[]  |  | no | no | NULL | The list of the department ids which the agent belongs to.|
-  |`departments` | [Department](#department)[]  |yes | N/A | N/A | | The list of the roles which the agent belongs to.|
-  |`shifts` | [Shift](#shift)[]  | yes | N/A | N/A  | | The list of shifts which the agent belongs to.|
+  |`departments` | [Department](#department)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
+  |`shifts` | [Shift](#shift)[]  | yes | no | no  | | The list of shifts which the agent belongs to.|
 
 
 
@@ -219,12 +218,12 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 
   Agent List Object for agent list Response, include count and page information.
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`count` | integer  | N/A | yes | no | | The total count of the query  |
-  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
-  |`agents`|   [Agent](#agent-object)[]| N/A | yes| no | | A list of agents. |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`count` | integer  | no | yes | no | | The total count of the query  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
+  |`agents`|   [Agent](#agent-object)[]| no | yes| no | | A list of agents. |
 
 
 
@@ -236,7 +235,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 #### Parameters
    Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
   |`include`|string|no||Available value:`department`,`role`,`permission`,`shift`  |
   |`keywords` | string | no  |  | Filter by keywords in agent display name, email address. |
@@ -275,15 +274,15 @@ Content-Type:  application/json
 }
 ```
 
-### Get an agent by id 
+### Get an agent by id
 + `GET /api/v3/globalSettings/agents/{id}`
 
 #### Parameters
 
 Path parameters
 
-| Name  | Type | Required  | Description |     
-| - | - | - | - | 
+| Name  | Type | Required  | Description |
+| - | - | - | - |
 |`id` | integer | yes  |  the id of the agent |
 
 Query string
@@ -323,13 +322,13 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`roleId` | Guid | yes  |  The id of the role |
 
    Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
   |`include`|string|no||Available value:`department`,`role`,`permission`,`shift` |
   |`pageIndex`|integer|no| 1 | The page index of the query. |
@@ -373,13 +372,13 @@ Content-Type:  application/json
 #### Parameters
    Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`departmentId` | Guid | yes  |  The id of the department |
 
    Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
   |`include`| string | no ||Available value:`department`,`role`,`permission`,`shift` |
   |`pageIndex`| integer | no | 1 |The page index of the query. |
@@ -424,7 +423,7 @@ Content-Type:  application/json
 #### Parameters
   Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
   |`include`|string|no||Available value:`department`,`role`,`permission`,`shift` |
 
@@ -435,7 +434,7 @@ The response is a [Agent](#agent-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" 
+curl -H "Content-Type: application/json"
 -X GET https://domain.comm100.com/api/v3/globalSettings/agents/me?include=role,department
 ```
 Response
@@ -458,7 +457,7 @@ Content-Type:  application/json
 
 ####  Parameters
 
-Request body 
+Request body
 
   The request body contains data with the [Agent](#agent-object) structure
 
@@ -475,7 +474,7 @@ example:
       ...,
     ]
     ...,
-} 
+}
 ```
 
 #### Response
@@ -515,18 +514,18 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
       ...,
     ]
     ...,
-} 
+}
 ```
 
 
 ### unlock the agent
-  `PUT /api/v3/globalSettings/agents/{id}:unlock`
+  `POST /api/v3/globalSettings/agents/{id}:unlock`
 
 ####  Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  The id of the agent |
 
 #### Response
@@ -535,7 +534,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -d '{} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68:unlock
+curl -H "Content-Type: application/json" -d '{} ' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/68:unlock
 ```
 Response
 ```json
@@ -543,18 +542,18 @@ HTTP/1.1 204 No Content
 ```
 
 ### Admin set an agent's password
-  `PUT /api/v3/globalSettings/agents/{id}:changePassword`
+  `POST /api/v3/globalSettings/agents/{id}:changePassword`
 
 ####  Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  The id of the agent |
 
 Request body
 
-  | Name  | Type | Required | Default | Description |     
+  | Name  | Type | Required | Default | Description |
   | - | - | - | - | - |
   | `password` | string | yes  |  | The new password of agent |
 
@@ -573,7 +572,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "password": "Aa5847lkdsc&d",
-}' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/68:changePassword
+}' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/68:changePassword
 ```
 Response
 ```json
@@ -581,20 +580,22 @@ HTTP/1.1 204 No Content
 ```
 
 ### Change own password
-  `PUT /api/v3/globalSettings/agents/me:changePassword`
+  `POST /api/v3/globalSettings/agents/me:changePassword`
 
 ####  Parameters
 
 Request body
 
-  | Name  | Type | Required | Default | Description |     
+  | Name  | Type | Required | Default | Description |
   | - | - | - | - | - |
-  | `password` | string | yes  |  | The new password of agent |
+  | `currentPassword` | string | yes  |  | The current password of agent |
+  | `newPassword` | string | yes  |  | The new password of agent |
 
   example:
   ```json
   {
-    "password": "Aa5847lkdsc&d",
+    "currentPassword": "Aa2541554",
+    "newPassword": "Aa5847lkdsc&d",
   }
   ```
 
@@ -605,8 +606,9 @@ HTTP/1.1 204 No Content
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
-    "password": "Aa5847lkdsc&d",
-  }' -X Put https://domain.comm100.com/api/v3/globalSettings/agents/me:changePassword
+    "currentPassword": "Aa2541554",
+    "newPassword": "Aa5847lkdsc&d",
+  }' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/me:changePassword
 ```
 
 Response
@@ -621,8 +623,8 @@ HTTP/1.1 204 No Content
 ####  Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  The id of the agent |
 
 Request body
@@ -643,7 +645,7 @@ Request body
       ...,
     ]
     ...,
-} 
+}
 ```
 
 #### Response
@@ -683,7 +685,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
       ...,
     ]
     ...,
-} 
+}
 ```
 
 ### Update current agent
@@ -710,7 +712,7 @@ example:
       ...,
     ]
     ...,
-} 
+}
 ```
 
 #### Response
@@ -751,7 +753,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/me
       ...,
     ]
     ...,
-} 
+}
 ```
 
 
@@ -761,8 +763,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/me
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  the agent id |
 
 #### Response
@@ -792,16 +794,16 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
 ## Role Related Object Json Format
 
 ### Role Object
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | Guid| | N/A | N/A | |  |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | Guid| | yes | no | |  |
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
-  |`type` | string | | no | no | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
-  |`memberIds` | int[] | | no | no | [] | The selected agents for this role. |
-  |`members` | [Agent](#agent)[] | yes | N/A | N/A | | The selected agents for this role.|
-  |`permissionIds` | int[] | | no | no |  | Permissions assigned to this role.|
-  |`permissions` | [Permission](#permission)[] | yes | N/A | N/A | | Permissions assigned to this role.|
+  |`type` | string | | yes | no | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
+  |`agentIds` | int[] | | no | no | NULL | The selected agents for this role. |
+  |`agents` | [Agent](#agent)[] | yes | no | no | | The selected agents for this role.|
+  |`permissionIds` | int[] | | no | no | NULL | Permissions assigned to this role.|
+  |`permissions` | [Permission](#permission)[] | yes | no | no | | Permissions assigned to this role.|
 
 
 ## Role Endpoints
@@ -812,9 +814,9 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
 #### Parameters
   Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`member`,`permission` |
+  |`include`|string|no||Available value:`agent`,`permission` |
 
 #### Response
 
@@ -834,7 +836,7 @@ Content-Type:  application/json
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "custom",
-  "memberIds":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -865,15 +867,15 @@ Content-Type:  application/json
 #### Parameters
   Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  The id of the role |
 
   Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`|string|no|| Available value:`member`,`permission` |
+  |`include`|string|no|| Available value:`agent`,`permission` |
 
 #### Response
 
@@ -893,7 +895,7 @@ Content-Type:  application/json
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "custom",
-  "memberIds":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -913,7 +915,7 @@ Content-Type:  application/json
 
 ####  Parameters
 
-Request body 
+Request body
 
   The request body contains data with the [Role](#role-object) structure
 
@@ -923,7 +925,7 @@ Request body
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "custom",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -948,7 +950,7 @@ curl -H "Content-Type: application/json" -d ' {
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "custom",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -972,7 +974,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -992,8 +994,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4
 ####  Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  The id of the role |
 
 Request body
@@ -1007,7 +1009,7 @@ Request body
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1031,7 +1033,7 @@ curl -H "Content-Type: application/json" -d ' {
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1048,13 +1050,13 @@ Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48 
+Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 {
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "custom",
-  "memberIds":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -1073,8 +1075,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  The role id |
 
 #### Response
@@ -1106,18 +1108,18 @@ You need `Manage departments` permission to manage departments.
 
 ### Department Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | Guid| | N/A | N/A | |  |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | Guid| | yes | no | |  |
   |`name` | string | | no | yes | |  |
   |`description` | string | | no | no | |  |
   |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
   |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the 'Assigned Department' field. Default: true.|
-  |`offlineMessageMailTo` | string | | no | no | allAgentsInDepartment | The value options: All agents in the department, The email address(es).  |
+  |`offlineMessageMailTo` | string | | no | no | All agents in the department | The value options: All agents in the department, The email address(es).  |
   |`offlineMessageEmailAddresses` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
-  |`memberIds` | int[] | | no | no | [] | The selected agents for this department.|
-  |`members` | [Agent](#agent)[]| yes | N/A | N/A |  |  |
-  |`shift` | [Shift](#shift)[]| yes | N/A | N/A |  |  |
+  |`agentIds` | int[] | | no | no | NULL | The selected agents for this department.|
+  |`agents` | [Agent](#agent)[]| yes | no | no |  |  |
+  |`shifts` | [Shift](#shift)[]| yes | no | no |  |  |
 
 ## Department Endpoints
 
@@ -1127,9 +1129,9 @@ You need `Manage departments` permission to manage departments.
 #### Parameters
   Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`member`,`shift` |
+  |`include`|string|no||Available value:`agent`,`shift` |
 
 #### Response
 
@@ -1151,7 +1153,7 @@ Content-Type:  application/json
   "isAvailableInTicketingAndMessaging": "yes",
   "offlineMessageMailTo": "All agents in the department",
   "offlineMessageEmailAddresses": "",
-  "memberIds":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -1167,15 +1169,15 @@ Content-Type:  application/json
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  The id of the department |
 
 Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`member`,`shift` |
+  |`include`|string|no||Available value:`agent`,`shift` |
 
   #### Response
 
@@ -1197,7 +1199,7 @@ Content-Type:  application/json
   "isAvailableInTicketingAndMessaging": "yes",
   "offlineMessageMailTo": "All agents in the department",
   "offlineMessageEmailAddresses": "",
-  "memberIds":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -1223,7 +1225,7 @@ Request body
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailTo": "All agents in the department",
       "offlineMessageEmailAddresses": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1244,7 +1246,7 @@ curl -H "Content-Type: application/json" -d '{
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailTo": "All agents in the department",
       "offlineMessageEmailAddresses": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1262,7 +1264,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailTo": "All agents in the department",
       "offlineMessageEmailAddresses": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1277,8 +1279,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments
 ####  Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  The id of the department |
 
 Request body
@@ -1294,7 +1296,7 @@ Request body
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailTo": "All agents in the department",
       "offlineMessageEmailAddresses": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1315,7 +1317,7 @@ curl -H "Content-Type: application/json" -d '{
   "isAvailableInTicketingAndMessaging": "yes",
   "offlineMessageMailTo": "All agents in the department",
   "offlineMessageEmailAddresses": "",
-  "memberIds":  [
+  "agentIds":  [
     68,
     ...,
   ],
@@ -1333,7 +1335,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-
       "isAvailableInTicketingAndMessaging": "yes",
       "offlineMessageMailTo": "All agents in the department",
       "offlineMessageEmailAddresses": "",
-      "memberIds":  [
+      "agentIds":  [
         68,
         ...,
       ],
@@ -1347,8 +1349,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  the department id |
 
 #### Response
@@ -1367,7 +1369,7 @@ HTTP/1.1 204 No Content
 
 # Permission
 
-  Permission is hard-coded.  
+  Permission is hard-coded.
 
   + `GET /api/v3/globalSettings/permissions` - [Get all permissions](#get-all-permissions)
   + `GET /api/v3/globalSettings/roles/{roleId}/permissions` - [Get role permissions](#get-role-permissions)
@@ -1381,12 +1383,12 @@ HTTP/1.1 204 No Content
 
 ### Permission Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer| | N/A | N/A |  |  |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | long | | no | no |  |  |
   |`name` | string| | yes | no | |  |
   |`description` | string| | yes | no | |  |
-  |`category` | string | | yes | no | |Live Chat, Ticketing & Messaging, Bot, Knowledge Base, Global Setting|
+  |`category` | string | | yes | no | |The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase|
 
 ## Permission Endpoints
 
@@ -1427,14 +1429,14 @@ HTTP/1.1 204 No Content
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`roleId` | Guid | yes  |  The id of the role |
 
 #### Response
 
 The response is a [Permission](#permission) Object
-  
+
 
 #### Example
   Using curl
@@ -1462,14 +1464,14 @@ The response is a [Permission](#permission) Object
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`agentId` | integer | yes  |  The id of the agent |
 
   #### Response
 
   The response is a list of [Permission](#permission) Objects
-  
+
 
   #### Example
 Using curl
@@ -1497,14 +1499,14 @@ Content-Type:  application/json[
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`agentId` | integer | yes  |  The id of the agent |
 
   #### Response
 
   The response is a list of [Permission](#permission) Objects
-  
+
 
   #### Example
   Using curl
@@ -1532,8 +1534,8 @@ Path parameters
 ####  Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`roleId` | Guid | yes  |  The id of the role |
 
 Request body
@@ -1583,8 +1585,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4
 ####  Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`agentId` | integer | yes  |  The id of the agent |
 
 Request body
@@ -1625,7 +1627,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
       "category": "Live Chat",
     },
     ...,
-] 
+]
 ```
 
 
@@ -1644,25 +1646,25 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
 
 ### Shift Object
 
-  Shift Object is represented as simple flat JSON objects with the following keys:  
+  Shift Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | yes | | Name of the shift. |
   | `timeZone` | string  | | no | no | | Time zone of shift. value include all [Time Zone Option](#time-zone-options) Ids. |
   | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
-  |`agentIds` | int[] | | yes | no | | |
-  |`departmentIds` | Guid[] | | yes | no | | |
-  | `agents` | [Agent](#Agent-Object)[] | yes | N/A | N/A | | |
-  | `departments` | [Department](#Department-Object)[] | yes | N/A | N/A | | |
+  |`agentIds` | int[] | | yes | no | NULL | |
+  |`departmentIds` | Guid[] | | yes | no | NULL | |
+  | `agents` | [Agent](#Agent-Object)[] | yes | no | no | | |
+  | `departments` | [Department](#Department-Object)[] | yes | no | no | | |
   | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
 
 ### Holiday Object
 
-  Holiday Object is represented as simple flat JSON objects with the following keys:  
+  Holiday Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `name` | string  | no | yes | | The name of holiday. |
   | `date` | DateTime  | no | yes | | The date of the holiday. |
@@ -1670,13 +1672,13 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
 
 ### Working Hours Object
 
-  Working Hours Object is represented as simple flat JSON objects with the following keys:  
+  Working Hours Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `dayOfWeek` | string  | no | yes | | Including `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday` and `sunday`. |
-  | `startTime` | datetime  | no | yes | | |
-  | `endTime` | datetime  | no | yes | | |
+  | `startTime` | time  | no | yes | | |
+  | `endTime` | time  | no | yes | | |
   | `awayStatusId` | Guid | no | no | | |
 
 ## Shift Endpoints
@@ -1738,8 +1740,8 @@ Content-Type:  application/json
         ],
         "workingHours": [{
           "dayOfWeek": "sunday",
-          "startTime": "2019-06-12T07:41:40.486Z",
-          "endTime": "2019-06-13T07:41:40.486Z",
+          "startTime": "12:00",
+          "endTime": "14:00",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
@@ -1811,8 +1813,8 @@ Content-Type:  application/json
   ],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -1864,8 +1866,8 @@ Content-Type:  application/json
         "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "workingHours": [{
           "dayOfWeek": "sunday",
-          "startTime": "2019-06-12T07:41:40.486Z",
-          "endTime": "2019-06-13T07:41:40.486Z",
+          "startTime": "12:00",
+          "endTime": "14:00",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
@@ -1919,8 +1921,8 @@ Content-Type:  application/json
         "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
         "workingHours": [{
           "dayOfWeek": "sunday",
-          "startTime": "2019-06-12T07:41:40.486Z",
-          "endTime": "2019-06-13T07:41:40.486Z",
+          "startTime": "12:00",
+          "endTime": "14:00",
           "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
         },
         ...
@@ -1955,8 +1957,8 @@ example:
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -1985,8 +1987,8 @@ curl -H "Content-Type: application/json" -d '{
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2014,8 +2016,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2054,8 +2056,8 @@ example:
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2084,8 +2086,8 @@ curl -H "Content-Type: application/json" -d '{
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2112,8 +2114,8 @@ Content-Type:  application/json
   "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
   "workingHours": [{
     "dayOfWeek": "sunday",
-    "startTime": "2019-06-12T07:41:40.486Z",
-    "endTime": "2019-06-13T07:41:40.486Z",
+    "startTime": "12:00",
+    "endTime": "14:00",
     "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
     },
     ...
@@ -2150,7 +2152,7 @@ Response
 ```
 
 # Contact
- + `GET /api/v3/globalSettings/contacts` - [Get a list of contacts in site](#get-all-contacts)  
+ + `GET /api/v3/globalSettings/contacts` - [Get a list of contacts in site](#get-all-contacts)
  + `GET /api/v3/globalSettings/contacts/{id}` - [Get a contact by id](#get-an-contact)
  + `POST /api/v3/globalSettings/contacts` - [Create a new contact](#create-a-new-contact)
  + `PUT /api/v3/globalSettings/contacts/{id}` - [Update a contact](#update-a-contact)
@@ -2160,13 +2162,13 @@ Response
 
 ### Contact Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer  | | N/A | N/A |  |  |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | integer  | | yes | no |  |  |
   |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has Name and Avatar, like Facebook Account, display Name and Avatar from that Identity in Agent Console. In other situations, display Contact Name and Avatar.|
   |`description` | string | | no | no | |  |
-  |`firstName` | string | | no | yes | |  |
-  |`lastName` | string | | no | yes | |  |
+  |`firstName` | string | | no | no | |  |
+  |`lastName` | string | | no | no | |  |
   |`alias` | string | | no | no | |  |
   |`title` | string | | no | no | |  |
   |`company` | string  | | no | no | |  |
@@ -2177,21 +2179,21 @@ Response
   |`stateOrProvince` | string  | | no | no | |  |
   |`countryOrRegion` | string  | | no | no | |  |
   |`postalOrZipCode` | string  | | no | no | |  |
-  |`timeZone` | string | | no | yes | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
-  |`createdTime` | DateTime | | N/A | N/A | | When the contact is created.|
-  |`lastUpdatedTime` | DateTime | | N/A | N/A | |  |
-  |`contactIdentity` | [ContactIdentity](#Contact-Identity)[] | yes | N/A | N/A | | Contact Identity. |
-  
+  |`timeZone` | string | | no | no | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
+  |`createdTime` | DateTime | | no | no | | When the contact is created.|
+  |`lastUpdatedTime` | DateTime | | no | no | |  |
+  |`contactIdentities` | [ContactIdentity](#Contact-Identity)[] | yes | no | no | | Contact Identity. |
+
 ### Contact List Response Object
 
   Agent List Object for agent list Response, include count and page information.
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`count` | integer  | N/A | yes | no | | The total count of the query  |
-  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
-  |`contacts`|   [Contact](#contact-object)[]| N/A | yes| no | | A list of contacts. |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`count` | integer  | no | yes | no | | The total count of the query  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
+  |`contacts`|   [Contact](#contact-object)[]| no | yes| no | | A list of contacts. |
 
 
 
@@ -2204,20 +2206,23 @@ Response
 #### Parameters
    Query string
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
   |`name` | string | no  |  | Contact name. |
   |`company`|string|no|  | Contact company. |
   |`contactIdentityName` | string | no  |  | Contact identity name. |
   |`contactIdentityValue` | string | no  |  | Contact identity value. |
   |`contactIdentityType` | string | no  |  | Contact identity type. |
-  | `include` | string | no  |  | Available value: `contactIdentity` |
+  |`keywords` | string | no  |  | Search scope includes: name, company, identity value, alias. |
+  |`include` | string | no  |  | Available value: `contactIdentity` |
+  |`pageIndex`|integer|no| 1 | The page index of the query. |
+  |`pageSize`|integer|no| 10 | The page size of the query. |
 
-  
+
 
   #### Response
   The response is a [Contact List Response](#contact-list-response-object) Object
-  
+
 
 #### Example
   Using curl
@@ -2234,13 +2239,13 @@ Response
     "previousPage": null,
     "contacts": [{
       "id": 7,
-      "name": "Vincent", 
+      "name": "Vincent",
       "description": "Accept Chats",
       "firstName": "Vincent",
-      "lastName": "Crabbe", 
-      "alias": "", 
-      "title": "CEO", 
-      "company": "BMW", 
+      "lastName": "Crabbe",
+      "alias": "",
+      "title": "CEO",
+      "company": "BMW",
       ...
     },
     ...
@@ -2256,14 +2261,20 @@ Response
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  The id of the contact |
+
+   Query string
+
+  | Name  | Type | Required  | Default | Description |
+  | - | - | - | - | - |
+  |`include` | string | no  |  | Available value: `contactIdentity` |
 
 
 #### Response
   The response is an [Contact](#contact-object) Object
-  
+
 #### Example
 Using curl
 ```
@@ -2275,13 +2286,13 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": 7,
-  "name": "Vincent", 
+  "name": "Vincent",
   "description": "Accept Chats",
   "firstName": "Vincent",
-  "lastName": "Crabbe", 
-  "alias": "", 
-  "title": "CEO", 
-  "company": "BMW", 
+  "lastName": "Crabbe",
+  "alias": "",
+  "title": "CEO",
+  "company": "BMW",
   ...
 }
 ```
@@ -2292,20 +2303,20 @@ Content-Type:  application/json
 
 ####  Parameters
 
-Request body 
+Request body
 
   The request body contains data with the [Contact](#contact-object) structure
 
 example:
 ```json
 {
-      "name": "Vincent", 
+      "name": "Vincent",
       "description": "Accept Chats",
       "firstName": "Vincent",
-      "lastName": "Crabbe", 
-      "alias": "", 
-      "title": "CEO", 
-      "company": "BMW", 
+      "lastName": "Crabbe",
+      "alias": "",
+      "title": "CEO",
+      "company": "BMW",
       ...
     }
 ```
@@ -2319,13 +2330,13 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-      "name": "Vincent", 
+      "name": "Vincent",
       "description": "Accept Chats",
       "firstName": "Vincent",
-      "lastName": "Crabbe", 
-      "alias": "", 
-      "title": "CEO", 
-      "company": "BMW", 
+      "lastName": "Crabbe",
+      "alias": "",
+      "title": "CEO",
+      "company": "BMW",
       ...
     }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts
 ```
@@ -2336,13 +2347,13 @@ Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
 {
   "id": 7,
-  "name": "Vincent", 
+  "name": "Vincent",
   "description": "Accept Chats",
   "firstName": "Vincent",
-  "lastName": "Crabbe", 
-  "alias": "", 
-  "title": "CEO", 
-  "company": "BMW", 
+  "lastName": "Crabbe",
+  "alias": "",
+  "title": "CEO",
+  "company": "BMW",
   ...
 }
 ```
@@ -2354,24 +2365,24 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  The id of the contact |
 
-Request body 
+Request body
 
   The request body contains data with the [Contact](#contact-object) structure
 
   example:
 ```json
 {
-  "name": "Vincent", 
+  "name": "Vincent",
   "description": "Accept Chats",
   "firstName": "Vincent",
-  "lastName": "Crabbe", 
-  "alias": "", 
-  "title": "CEO", 
-  "company": "BMW", 
+  "lastName": "Crabbe",
+  "alias": "",
+  "title": "CEO",
+  "company": "BMW",
   ...
 }
 ```
@@ -2384,13 +2395,13 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "name": "Vincent", 
+  "name": "Vincent",
   "description": "Accept Chats",
   "firstName": "Vincent",
-  "lastName": "Crabbe", 
-  "alias": "", 
-  "title": "CEO", 
-  "company": "BMW", 
+  "lastName": "Crabbe",
+  "alias": "",
+  "title": "CEO",
+  "company": "BMW",
   ...
 }' -X PUT https://domain.comm100.com/api/v3/globalSettings/contacts
 ```
@@ -2407,7 +2418,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
     "lastName":"Green",
     "title":"CEO",
     ...
-} 
+}
 ```
 
 
@@ -2418,8 +2429,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  | The contact id |
 
 #### Response
@@ -2447,16 +2458,17 @@ HTTP/1.1 204 No Content
 
 ### Contact Identity Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | integer| | N/A | N/A | |  |
-  |`contactId` | integer| | N/A | N/A | | Contact Id |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | integer| | yes | no | |  |
+  |`contactId` | integer| | no | no | | Mandatory when post by contact identity api. |
   |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
   |`type` | string| | no | yes | | the options of the value are:  visitor, emailAddress, SMSNumber, facebookAccount, twitterAccount, weChatAccount, SSOUserID, externalID, whatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
   |`value` | string  | | no | yes | | The value of the identity.|
   |`avatarURL` | string | | no | no | | The avatar used in a certain type, like the avatar of a user in Facebook. Not every type has avatar, for example, SMS Number doesn’t have one.|
   |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets of the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
-  |`extraAttributes` | string | | no | no | | The value is a map (key: value) to store the data. For example: "Screen Name": "@Comm100Corp", "Original Contact Page URL": "",|
+  |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp. |
+  |`originalContactPageURL` | string | | no | no | | The contact profile URL on Facebook or Twitter.|
 
 ## Contact Identity  Endpoints
 
@@ -2468,8 +2480,8 @@ HTTP/1.1 204 No Content
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`contactId` | integer | yes  |  The id of the contact of contact Identities belong|
 
 
@@ -2489,14 +2501,14 @@ Content-Type:  application/json[
 {
   "id": 25,
   "contactId": 7,
-  "name": "Vincent", 
-  "type": "Visitor", 
-  "value": "", 
-  "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-  "infoURL": "", 
+  "name": "Vincent",
+  "type": "Visitor",
+  "value": "",
+  "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "infoURL": "",
   "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\", 
-        \"originalContactPageURL\": \"\", 
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
     }",
 },
 ...,
@@ -2511,14 +2523,14 @@ Content-Type:  application/json[
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  The id of the contact Identitie |
 
 #### Response
 
   The response is an [Contact Identity](#contact-identity-object) Object
-  
+
 #### Example
 
 Using curl
@@ -2532,14 +2544,14 @@ Content-Type:  application/json
 {
   "id": 25,
   "contactId": 7,
-  "name": "Vincent", 
-  "type": "Visitor", 
-  "value": "", 
-  "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-  "infoURL": "", 
+  "name": "Vincent",
+  "type": "Visitor",
+  "value": "",
+  "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+  "infoURL": "",
   "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\", 
-        \"originalContactPageURL\": \"\", 
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
     }",
 }
 ```
@@ -2550,7 +2562,7 @@ Content-Type:  application/json
 
 ####  Parameters
 
-Request body 
+Request body
 
   The request body contains data with the [Contact Identity](#contact-identity-object) structure
 
@@ -2558,14 +2570,14 @@ Request body
 ```json
  {
     "contactId": 7,
-    "name": "Vincent", 
-    "type": "Visitor", 
-    "value": "", 
-    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-    "infoURL": "", 
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
     "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\", 
-        \"originalContactPageURL\": \"\", 
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
     }",
   }
 ```
@@ -2581,14 +2593,14 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
     "contactId": 7,
-    "name": "Vincent", 
-    "type": "Visitor", 
-    "value": "", 
-    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-    "infoURL": "", 
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
     "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\", 
-        \"originalContactPageURL\": \"\", 
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
     }",
   }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts/contactIdentities
 ```
@@ -2600,14 +2612,14 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 {
     "id": 25,
     "contactId": 7,
-    "name": "Vincent", 
-    "type": "Visitor", 
-    "value": "", 
-    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-    "infoURL": "", 
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
     "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\", 
-        \"originalContactPageURL\": \"\", 
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
     }",
   }
 ```
@@ -2620,11 +2632,11 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  The id of the contact Identitie |
 
-Request body 
+Request body
 
   The request body contains data with the [Contact Identity](#contact-identity-object) structure
 
@@ -2632,14 +2644,14 @@ Request body
 ```json
  {
     "contactId": 7,
-    "name": "Vincent", 
-    "type": "Visitor", 
-    "value": "", 
-    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-    "infoURL": "", 
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
     "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\", 
-        \"originalContactPageURL\": \"\", 
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
     }",
   }
 ```
@@ -2654,14 +2666,14 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
     "contactId": 7,
-    "name": "Vincent", 
-    "type": "Visitor", 
-    "value": "", 
-    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-    "infoURL": "", 
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
     "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\", 
-        \"originalContactPageURL\": \"\", 
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
     }",
   }' -X PUT https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 ```
@@ -2673,14 +2685,14 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
  {
     "id": 25,
     "contactId": 7,
-    "name": "Vincent", 
-    "type": "Visitor", 
-    "value": "", 
-    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6", 
-    "infoURL": "", 
+    "name": "Vincent",
+    "type": "Visitor",
+    "value": "",
+    "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
+    "infoURL": "",
     "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\", 
-        \"originalContactPageURL\": \"\", 
+        \"screenName\": \"@Comm100Corp\",
+        \"originalContactPageURL\": \"\",
     }",
   }
 ```
@@ -2692,8 +2704,8 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | integer | yes  |  the contact identity id |
 
 #### Response
@@ -2705,7 +2717,7 @@ Using curl
 curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
 ```
 Response
-```json  
+```json
 HTTP/1.1 204 No Content
 ```
 
@@ -2714,22 +2726,22 @@ HTTP/1.1 204 No Content
   You need `Manage Settings` permission to manage visitor.
 
 - `GET /api/v3/globalSettings/visitors` - [Get all visitors in site](#get-all-visitors-in-site)
-- `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitor-by-id)  
+- `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitor-by-id)
 
 ## Related Object Json Format
 
 ### Visitor Object
 
-  Visitor Object is represented as simple flat JSON objects with the following keys:  
+  Visitor Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | N/A | N/A | | Id of the current item.  |
-  | `name` | string  | N/A | N/A | | Name of the visitor. |
-  | `email` | string  | N/A | N/A | | Email of the visitor. |
-  | `numberOfVisits` | integer  | N/A | N/A | | The total number of web pages the visitor viewed on your website. |
-  | `numberOfChats` | integer  | N/A | N/A | | The total times of chats a visitor has made on your website from the first time to present. |
-  | `firstVisitTime` | datetime  | N/A | N/A | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
+  |`id` | Guid | yes | no | | Id of the current item.  |
+  | `name` | string  | no | no | | Name of the visitor. |
+  | `email` | string  | no | no | | Email of the visitor. |
+  | `numberOfVisits` | integer  | no | no | | The total number of web pages the visitor viewed on your website. |
+  | `numberOfChats` | integer  | no | no | | The total times of chats a visitor has made on your website from the first time to present. |
+  | `firstVisitTime` | datetime  | no | no | | The time the visitor first visited a web page pasted with Comm100 Live Chat code. |
 
 ## Visitor Endpoints
 
@@ -2754,10 +2766,10 @@ The response body contains data with the follow structure:
 
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `totalCount` | integer | N/A | N/A | Total count of the list. |
-| `previousPage` | string | N/A | N/A | Url of the previous page. |
-| `nextPage` | string | N/A | N/A | Url of the next page. |
-| `visitors` | [Visitor](#visitor-Object)[] | N/A | N/A |  |
+| `totalCount` | integer | no | no | Total count of the list. |
+| `previousPage` | string | no | no | Url of the previous page. |
+| `nextPage` | string | no | no | Url of the next page. |
+| `visitors` | [Visitor](#visitor-Object)[] | no | no |  |
 
 #### Example
 
@@ -2775,7 +2787,7 @@ Content-Type:  application/json
 {
     "totalCount": 28,
     "previousPage": "",
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/visitors?pageIndex=2",
+    "nextPage": "/api/v3/globalSettings/visitors?pageIndex=2",
     "visitors": [{
         "id": "7273e957-02cb-4c03-a84c-44283fcfd47d",
         "name": "test",
@@ -2842,11 +2854,11 @@ Content-Type:  application/json
 
 ### Public Canned Message Category Object
 
-  Public Canned Message Category Object is represented as simple flat JSON objects with the following keys:  
+  Public Canned Message Category Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid | no | yes | | Id of the public canned message category. |
 
@@ -3060,17 +3072,17 @@ HTTP/1.1 204 No Content
 
 ### Public Canned Message Object
 
-  Public Canned Message Object is represented as simple flat JSON objects with the following keys:  
+  Public Canned Message Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | N/A | | Id of the canned message.  |
+  |`id` | Guid | | yes | no | | Id of the canned message.  |
   | `name` | string | | no | yes | | Name of the canned message. |
   | `message` | string | | no | yes | | |
   | `IfSetHtmlMessageForEmail` | boolean  | | no | no | false | |
   | `htmlMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | yes | | |
-  | `category` | [Public Canned Message Category](#public-Canned-Message-Category-object)  | yes | N/A | N/A | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
+  | `category` | [Public Canned Message Category](#public-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `publicCannedMessageCategory` is included. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
@@ -3388,11 +3400,11 @@ Response
 
 ### Private Canned Message Category Object
 
-  Private Canned Message Category Object is represented as simple flat JSON objects with the following keys:  
+  Private Canned Message Category Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid  | no | yes | | Parent of the canned message category. |
 
@@ -3604,11 +3616,11 @@ HTTP/1.1 204 No Content
 
 ### Private Canned Message Object
 
-  Private Canned Message Object is represented as simple flat JSON objects with the following keys:  
+  Private Canned Message Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | N/A | | Id of the current item.  |
+  |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | no | | Name of the canned message. |
   | `message` | string  | | no | no | | |
   | `IfSetHtmlMessageForEmail` | bool | | no | no | false | |
@@ -3921,9 +3933,9 @@ Response
 
 #### Similar Question Object
 
-  Similar Question Object is represented as simple flat JSON objects with the following keys:  
+  Similar Question Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `question` | string  | no | no | | |
 
@@ -3941,7 +3953,7 @@ Response
 
 ### Agent Away Status Object
 
-  Agent Away Status Object is represented as simple flat JSON objects with the following keys:  
+  Agent Away Status Object is represented as simple flat JSON objects with the following keys:
 
   | Name | Type | Read-only | Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
@@ -4156,8 +4168,8 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
 
    When Login IP Whitelist is enabled, site administrator can add IP range for this site and only agents within the IP range can log in successfully.
 
-  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges` - [Get a list of whitelisted login IP ranges in site](#get-all-whitelisted-login-ip-ranges) 
-  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [Get a whitelisted login IP range by id](#get-a-whitelisted-login-ip-ranges) 
+  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges` - [Get a list of whitelisted login IP ranges in site](#get-all-whitelisted-login-ip-ranges)
+  + `GET /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [Get a whitelisted login IP range by id](#get-a-whitelisted-login-ip-ranges)
   + `POST /api/v3/globalSettings/whitelistedLoginIPRanges` - [create a new whitelisted login IP range](#create-a-new-whitelisted-login-ip-range)
   + `PUT /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [update a whitelisted login IP range](#update-a-whitelisted-login-ip-range)
   + `DELETE /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [delete a whitelisted login IP range](#delete-a-whitelisted-login-ip-range)
@@ -4166,12 +4178,12 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
 
 ### Whitelisted Login IP Range Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`id` | Guid | | N/A | N/A | | |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`id` | Guid | | yes | no | | |
   |`ipFrom` | string | | no | yes | | Where an IP range starts.|
   |`ipTo` | string | | no | yes | | Where an IP range ends.|
-  |`createdTime` | DateTime | | N/A | N/A |  |  |
+  |`createdTime` | DateTime | | no | no |  |  |
 
 ## Whitelisted Login IP Range Endpoints
 
@@ -4197,9 +4209,9 @@ HTTP/1.1 200 OK
 Content-Type:  application/json[
 {
   "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-  "ipFrom": "201.195.21.5", 
-  "ipTo": "201.195.21.8", 
-  "createdTime": "2020-01-01", 
+  "ipFrom": "201.195.21.5",
+  "ipTo": "201.195.21.8",
+  "createdTime": "2020-01-01",
 },
 ...,
 ]
@@ -4212,14 +4224,14 @@ Content-Type:  application/json[
 #### Parameters
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  The id of the whitelisted Login IP Ranges |
 
 #### Response
 
 The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
-  
+
 #### Example
 Using curl
 ```
@@ -4231,9 +4243,9 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
   {
   "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-  "ipFrom": "201.195.21.5", 
-  "ipTo": "201.195.21.8", 
-  "createdTime": "2020-01-01", 
+  "ipFrom": "201.195.21.5",
+  "ipTo": "201.195.21.8",
+  "createdTime": "2020-01-01",
   }
 ```
 
@@ -4243,14 +4255,14 @@ Content-Type:  application/json
 
 ####  Parameters
 
-Request body 
+Request body
   The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure
 
   example:
 ```json
  {
-    "ipFrom": "201.195.21.5", 
-    "ipTo": "201.195.21.8", 
+    "ipFrom": "201.195.21.5",
+    "ipTo": "201.195.21.8",
   }
 ```
 
@@ -4264,8 +4276,8 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
-      "ipFrom": "201.195.21.5", 
-      "ipTo": "201.195.21.8", 
+      "ipFrom": "201.195.21.5",
+      "ipTo": "201.195.21.8",
     }' -X POST https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges
 ```
 Response
@@ -4275,9 +4287,9 @@ Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
     "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-    "ipFrom": "201.195.21.5", 
-    "ipTo": "201.195.21.8", 
-    "createdTime": "2020-01-01", 
+    "ipFrom": "201.195.21.5",
+    "ipTo": "201.195.21.8",
+    "createdTime": "2020-01-01",
   }
 ```
 
@@ -4289,19 +4301,19 @@ Location: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRan
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  The id of the whitelisted Login IP Range |
 
-Request body 
+Request body
 
   The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure
 
   example:
 ```json
  {
-    "ipFrom": "201.195.21.5", 
-    "ipTo": "201.195.21.8", 
+    "ipFrom": "201.195.21.5",
+    "ipTo": "201.195.21.8",
   }
 ```
 
@@ -4314,8 +4326,8 @@ The response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d ' {
-      "ipFrom": "201.195.21.5", 
-      "ipTo": "201.195.21.8", 
+      "ipFrom": "201.195.21.5",
+      "ipTo": "201.195.21.8",
     }' -X PUT https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
@@ -4324,9 +4336,9 @@ Response
   Content-Type: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
     "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
-    "ipFrom": "201.195.21.5", 
-    "ipTo": "201.195.21.8", 
-    "createdTime": "2020-01-01", 
+    "ipFrom": "201.195.21.5",
+    "ipTo": "201.195.21.8",
+    "createdTime": "2020-01-01",
   }
 ```
 
@@ -4338,8 +4350,8 @@ Response
 
 Path parameters
 
-  | Name  | Type | Required  | Description |     
-  | - | - | - | - | 
+  | Name  | Type | Required  | Description |
+  | - | - | - | - |
   |`id` | Guid | yes  |  the whitelisted Login IP Range id |
 
 #### Response
@@ -4355,7 +4367,7 @@ Response
 HTTP/1.1 204 No Content
 ```
 
-# Agent SSO  
+# Agent SSO
 
   You need `Manage Settings` permission to setting sso for a site.
 
@@ -4366,11 +4378,11 @@ HTTP/1.1 204 No Content
 
 ### Agent SSO Object
 
-  Agent SSO Object is represented as simple flat JSON objects with the following keys:  
+  Agent SSO Object is represented as simple flat JSON objects with the following keys:
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `isEnabled` | bool  | | no | yes|| |
+  | `isEnabled` | bool  | | no | no|| false|
   | `protocolType` | string |  | no | yes | | including `SAML` and `JWT`. |
   | `samlSSOURL` | string |  | no |yes | |mandatory when Type is `SAML`. |
   | `samlLogoutURL` | string |  | no | no | | only available when Type is `SAML`. |
@@ -4397,7 +4409,7 @@ the response is: [Agent SSO](#agent-SSO-object) Object
 
 Using curl
 ```
-curl -H "Content-Type: application/json" 
+curl -H "Content-Type: application/json"
 -X GET https://domain.comm100.com/api/v3/globalSettings/agentSSO
 ```
 Response
@@ -4470,7 +4482,7 @@ Content-Type:  application/json
 }
 ```
 
-# Visitor SSO  
+# Visitor SSO
 
   You need `Manage Settings` permission to setting sso for a site.
 
@@ -4481,36 +4493,36 @@ Content-Type:  application/json
 
 ### Visitor SSO Object
 
-  Visitor SSO Object is represented as simple flat JSON objects with the following keys:  
+  Visitor SSO Object is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `isEnabled` | bool  | | no | N/A | false | |
-  | `loginURL` | string  | | no | N/A | | |
-  | `logoutURL` | string  | | no | N/A | | |
-  | `changePasswordURL` | string  | | no | N/A | | |
-  | `certificate` | string  | | no | N/A | | Base64 data of certificate file. |
-  | `certificateFileName` | string  | | no | N/A | | |
-  | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | N/A | | |
-  | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | N/A | | |
+  | `isEnabled` | bool  | | no | no | false | |
+  | `loginURL` | string  | | no | no | | |
+  | `logoutURL` | string  | | no | no | | |
+  | `changePasswordURL` | string  | | no | no | | |
+  | `certificate` | string  | | no | no | | Base64 data of certificate file. |
+  | `certificateFileName` | string  | | no | no | | |
+  | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | no | | |
+  | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | no | | |
 
 ### Field Mapping Object
 
-Field Mapping is represented as simple flat JSON objects with the following keys:  
+Field Mapping is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `attribute` | string | | no | yes | | SSO attribute name. |
   | `comm100Field` | string | | no | yes | | the Comm100 field name |
 
 ### Visitor SSO Campaign Object
 
-Visitor SSO Campaign is represented as simple flat JSON objects with the following keys:  
+Visitor SSO Campaign is represented as simple flat JSON objects with the following keys:
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
-  | `campaign` | [Campaign](#campaign-object)  | yes | N/A | N/A | | Available only when campaign is included  |
+  | `campaign` | [Campaign](#campaign-object)  | yes | no | no | | Available only when campaign is included  |
   | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
   | `isPrechatFromSkipped` | bool |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
 
@@ -4536,14 +4548,14 @@ the response is: [Visitor SSO](#visitor-SSO-object) Object
 
 Using curl
 ```
-curl -H "Content-Type: application/json" 
+curl -H "Content-Type: application/json"
 -X GET https://domain.comm100.com/api/v3/globalSettings/visitorSSO?include=campaign
 ```
 Response
 ``` json
 HTTP/1.1 200 OK
 Content-Type:  application/json
- 
+
 {
     "isEnabled": true,
     "loginURL": "http://www.xzcs11ffffffff1a",
@@ -4689,32 +4701,32 @@ Response
 
 ### Audit Log Object
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`id` | integer | | N/A | N/A | |  | 
-  |`category` | string| | N/A | N/A | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
-  |`createdTime` | DateTime | | N/A | N/A |  |  |
-  |`actionType` | string | | N/A  | N/A  | | [action types for different applications](#action-types-for-different-applications) |
-  |`actionSummary` | string| | N/A  | N/A  | |  |
-  |`actionDetails` | string| | N/A  | N/A  | |  |
-  |`createdBy` | integer | | N/A  | N/A  | | the id of oprator agent |
-  |`agent` | [Agent](#agent) | yes | N/A  | N/A  | | the oprator agent |
+  |`id` | integer | | yes | no | |  |
+  |`category` | string| | no | no | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
+  |`createdTime` | DateTime | | no | no |  |  |
+  |`actionType` | string | | no  | no  | | [action types for different applications](#action-types-for-different-applications) |
+  |`actionSummary` | string| | no  | no  | |  |
+  |`actionDetails` | string| | no  | no  | |  |
+  |`createdBy` | integer | | no  | no  | | the id of oprator agent |
+  |`agent` | [Agent](#agent) | yes | no  | no  | | the oprator agent |
 
 ### Audit Log List Response Object
 
   Agent List Object for agent list Response, include count and page information.
 
-  | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | :-: | - | 
-  |`count` | integer  | N/A | yes | no | | The total count of the query  |
-  |`nextPage` | string  | N/A | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | N/A | yes | no | | The previous page url of the query  |
-  |`auditLogs`| [AuditLog](#audit-log-object)[]| N/A | yes| 0 | | a list of Audit Log. |
+  | Name | Type | Include | Read-only | Mandatory | Default | Description |
+  | - | - | :-: | :-: | :-: | :-: | - |
+  |`count` | integer  | no | yes | no | | The total count of the query  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
+  |`auditLogs`| [AuditLog](#audit-log-object)[]| no | yes| 0 | | a list of Audit Log. |
 
 ### Action types for different applications
 
-  | Live Chat | Ticketing And Messaging | Knowledge Base | Bot|	Global |    
-  | - | - | - | - | - | 
+  | Live Chat | Ticketing And Messaging | Knowledge Base | Bot|	Global |
+  | - | - | - | - | - |
   | audioAndVideoChatManagement | autoAllocationManagement | categoryManagement | agentBotLearningManagement | accountProfileManagement |
   | autoAcceptSetting | blockSenderManagement | articleManagement | agentBotSettingManagement | agentManagement |
   | autoInvitationManagement | channelIntegrationManagement | tagManagement | agentBotSynonymManagement | agentRoleManagement |
@@ -4744,7 +4756,7 @@ Response
 
    Query stringno
 
-  | Name  | Type | Required  | Default | Description |     
+  | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
   |`dateFrom`|DateTime|no||The date from which agent did the action, format as yyyy-MM-ddTHH:mm:ss. |
   |`dateTo`|DateTime|no||The date when an agent ended the action, format as yyyy-MM-ddTHH:mm:ss. |
@@ -4796,146 +4808,146 @@ Content-Type:  application/json
 # Time Zone Options
 
 
-  |   Id    |   Display name   |  
-  |   -   |   -   |   
-  |  datelineStandardTime  |   (UTC-12:00) International Date Line West   |  
-  |  utc-11  |   (UTC-11:00) Coordinated Universal Time-11   |  
-  |  aleutianStandardTime  |   (UTC-10:00) Aleutian Islands   |  
-  |  hawaiianStandardTime  |   (UTC-10:00) Hawaii   |  
-  |  marquesasStandardTime  |   (UTC-09:30) Marquesas Islands   |  
-  |  alaskanStandardTime  |   (UTC-09:00) Alaska   |  
-  |  utc-09  |   (UTC-09:00) Coordinated Universal Time-09   |  
-  |  pacificStandardTime(Mexico)  |   (UTC-08:00) Baja California   |  
-  |  utc-08  |   (UTC-08:00) Coordinated Universal Time-08   |  
-  |  pacificStandardTime  |   (UTC-08:00) Pacific Time (US & Canada)   |  
-  |  usMountainStandardTime  |   (UTC-07:00) Arizona   |  
-  |  mountainStandardTime(Mexico)  |   (UTC-07:00) Chihuahua, La Paz, Mazatlan   |  
-  |  mountainStandardTime  |   (UTC-07:00) Mountain Time (US & Canada)   |  
-  |  centralAmericaStandardTime  |   (UTC-06:00) Central America   |  
-  |  centralStandardTime  |   (UTC-06:00) Central Time (US & Canada)   |  
-  |  easterIslandStandardTime  |   (UTC-06:00) Easter Island   |  
-  |  centralStandardTime(Mexico)  |   (UTC-06:00) Guadalajara, Mexico City, Monterrey   |  
-  |  canadaCentralStandardTime  |   (UTC-06:00) Saskatchewan   |  
-  |  saPacificStandardTime  |   (UTC-05:00) Bogota, Lima, Quito, Rio Branco   |  
-  |  easternStandardTime(Mexico)  |   (UTC-05:00) Chetumal   |  
-  |  easternStandardTime  |   (UTC-05:00) Eastern Time (US & Canada)   |  
-  |  haitiStandardTime  |   (UTC-05:00) Haiti   |  
-  |  cubaStandardTime  |   (UTC-05:00) Havana   |  
-  |  usEasternStandardTime  |   (UTC-05:00) Indiana (East)   |  
-  |  turksAndCaicosStandardTime  |   (UTC-05:00) Turks and Caicos   |  
-  |  paraguayStandardTime  |   (UTC-04:00) Asuncion   |  
-  |  atlanticStandardTime  |   (UTC-04:00) Atlantic Time (Canada)   |  
-  |  venezuelaStandardTime  |   (UTC-04:00) Caracas   |  
-  |  centralBrazilianStandardTime  |   (UTC-04:00) Cuiaba   |  
-  |  saWesternStandardTime  |   (UTC-04:00) Georgetown, La Paz, Manaus, San Juan   |  
-  |  pacificSAStandardTime  |   (UTC-04:00) Santiago   |  
-  |  newfoundlandStandardTime  |   (UTC-03:30) Newfoundland   |  
-  |  tocantinsStandardTime  |   (UTC-03:00) Araguaina   |  
-  |  e.SouthAmericaStandardTime  |   (UTC-03:00) Brasilia   |  
-  |  saEasternStandardTime  |   (UTC-03:00) Cayenne, Fortaleza   |  
-  |  argentinaStandardTime  |   (UTC-03:00) City of Buenos Aires   |  
-  |  greenlandStandardTime  |   (UTC-03:00) Greenland   |  
-  |  montevideoStandardTime  |   (UTC-03:00) Montevideo   |  
-  |  magallanesStandardTime  |   (UTC-03:00) Punta Arenas   |  
-  |  saintPierreStandardTime  |   (UTC-03:00) Saint Pierre and Miquelon   |  
-  |  bahiaStandardTime  |   (UTC-03:00) Salvador   |  
-  |  utc-02  |   (UTC-02:00) Coordinated Universal Time-02   |  
-  |  mid-AtlanticStandardTime  |   (UTC-02:00) Mid-Atlantic - Old   |  
-  |  azoresStandardTime  |   (UTC-01:00) Azores   |  
-  |  capeVerdeStandardTime  |   (UTC-01:00) Cabo Verde Is.   |  
-  |  utc  |   (UTC) Coordinated Universal Time   |  
-  |  gmtStandardTime  |   (UTC+00:00) Dublin, Edinburgh, Lisbon, London   |  
-  |  greenwichStandardTime  |   (UTC+00:00) Monrovia, Reykjavik   |  
-  |  saoTomeStandardTime  |   (UTC+00:00) Sao Tome   |  
-  |  moroccoStandardTime  |   (UTC+01:00) Casablanca   |  
-  |  w.EuropeStandardTime  |   (UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna   |  
-  |  centralEuropeStandardTime  |   (UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague   |  
-  |  romanceStandardTime  |   (UTC+01:00) Brussels, Copenhagen, Madrid, Paris   |  
-  |  centralEuropeanStandardTime  |   (UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb   |  
-  |  w.CentralAfricaStandardTime  |   (UTC+01:00) West Central Africa   |  
-  |  jordanStandardTime  |   (UTC+02:00) Amman   |  
-  |  gtbStandardTime  |   (UTC+02:00) Athens, Bucharest   |  
-  |  middleEastStandardTime  |   (UTC+02:00) Beirut   |  
-  |  egyptStandardTime  |   (UTC+02:00) Cairo   |  
-  |  e.EuropeStandardTime  |   (UTC+02:00) Chisinau   |  
-  |  syriaStandardTime  |   (UTC+02:00) Damascus   |  
-  |  westBankStandardTime  |   (UTC+02:00) Gaza, Hebron   |  
-  |  southAfricaStandardTime  |   (UTC+02:00) Harare, Pretoria   |  
-  |  fleStandardTime  |   (UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius   |  
-  |  israelStandardTime  |   (UTC+02:00) Jerusalem   |  
-  |  kaliningradStandardTime  |   (UTC+02:00) Kaliningrad   |  
-  |  sudanStandardTime  |   (UTC+02:00) Khartoum   |  
-  |  libyaStandardTime  |   (UTC+02:00) Tripoli   |  
-  |  namibiaStandardTime  |   (UTC+02:00) Windhoek   |  
-  |  arabicStandardTime  |   (UTC+03:00) Baghdad   |  
-  |  turkeyStandardTime  |   (UTC+03:00) Istanbul   |  
-  |  arabStandardTime  |   (UTC+03:00) Kuwait, Riyadh   |  
-  |  belarusStandardTime  |   (UTC+03:00) Minsk   |  
-  |  russianStandardTime  |   (UTC+03:00) Moscow, St. Petersburg   |  
-  |  e.AfricaStandardTime  |   (UTC+03:00) Nairobi   |  
-  |  iranStandardTime  |   (UTC+03:30) Tehran   |  
-  |  arabianStandardTime  |   (UTC+04:00) Abu Dhabi, Muscat   |  
-  |  astrakhanStandardTime  |   (UTC+04:00) Astrakhan, Ulyanovsk   |  
-  |  azerbaijanStandardTime  |   (UTC+04:00) Baku   |  
-  |  russiaTimeZone3  |   (UTC+04:00) Izhevsk, Samara   |  
-  |  mauritiusStandardTime  |   (UTC+04:00) Port Louis   |  
-  |  saratovStandardTime  |   (UTC+04:00) Saratov   |  
-  |  georgianStandardTime  |   (UTC+04:00) Tbilisi   |  
-  |  volgogradStandardTime  |   (UTC+04:00) Volgograd   |  
-  |  caucasusStandardTime  |   (UTC+04:00) Yerevan   |  
-  |  afghanistanStandardTime  |   (UTC+04:30) Kabul   |  
-  |  westAsiaStandardTime  |   (UTC+05:00) Ashgabat, Tashkent   |  
-  |  ekaterinburgStandardTime  |   (UTC+05:00) Ekaterinburg   |  
-  |  pakistanStandardTime  |   (UTC+05:00) Islamabad, Karachi   |  
-  |  qyzylordaStandardTime  |   (UTC+05:00) Qyzylorda   |  
-  |  indiaStandardTime  |   (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi   |  
-  |  sriLankaStandardTime  |   (UTC+05:30) Sri Jayawardenepura   |  
-  |  nepalStandardTime  |   (UTC+05:45) Kathmandu   |  
-  |  centralAsiaStandardTime  |   (UTC+06:00) Astana   |  
-  |  bangladeshStandardTime  |   (UTC+06:00) Dhaka   |  
-  |  omskStandardTime  |   (UTC+06:00) Omsk   |  
-  |  myanmarStandardTime  |   (UTC+06:30) Yangon (Rangoon)   |  
-  |  seAsiaStandardTime  |   (UTC+07:00) Bangkok, Hanoi, Jakarta   |  
-  |  altaiStandardTime  |   (UTC+07:00) Barnaul, Gorno-Altaysk   |  
-  |  w.MongoliaStandardTime  |   (UTC+07:00) Hovd   |  
-  |  northAsiaStandardTime  |   (UTC+07:00) Krasnoyarsk   |  
-  |  n.CentralAsiaStandardTime  |   (UTC+07:00) Novosibirsk   |  
-  |  tomskStandardTime  |   (UTC+07:00) Tomsk   |  
-  |  chinaStandardTime  |   (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi   |  
-  |  northAsiaEastStandardTime  |   (UTC+08:00) Irkutsk   |  
-  |  singaporeStandardTime  |   (UTC+08:00) Kuala Lumpur, Singapore   |  
-  |  w.AustraliaStandardTime  |   (UTC+08:00) Perth   |  
-  |  taipeiStandardTime  |   (UTC+08:00) Taipei   |  
-  |  ulaanbaatarStandardTime  |   (UTC+08:00) Ulaanbaatar   |  
-  |  ausCentralW.StandardTime  |   (UTC+08:45) Eucla   |  
-  |  transbaikalStandardTime  |   (UTC+09:00) Chita   |  
-  |  tokyoStandardTime  |   (UTC+09:00) Osaka, Sapporo, Tokyo   |  
-  |  northKoreaStandardTime  |   (UTC+09:00) Pyongyang   |  
-  |  koreaStandardTime  |   (UTC+09:00) Seoul   |  
-  |  yakutskStandardTime  |   (UTC+09:00) Yakutsk   |  
-  |  cen.AustraliaStandardTime  |   (UTC+09:30) Adelaide   |  
-  |  aUSCentralStandardTime  |   (UTC+09:30) Darwin   |  
-  |  e.AustraliaStandardTime  |   (UTC+10:00) Brisbane   |  
-  |  aUSEasternStandardTime  |   (UTC+10:00) Canberra, Melbourne, Sydney   |  
-  |  westPacificStandardTime  |   (UTC+10:00) Guam, Port Moresby   |  
-  |  tasmaniaStandardTime  |   (UTC+10:00) Hobart   |  
-  |  vladivostokStandardTime  |   (UTC+10:00) Vladivostok   |  
-  |  lordHoweStandardTime  |   (UTC+10:30) Lord Howe Island   |  
-  |  bougainvilleStandardTime  |   (UTC+11:00) Bougainville Island   |  
-  |  russiaTimeZone10  |   (UTC+11:00) Chokurdakh   |  
-  |  magadanStandardTime  |   (UTC+11:00) Magadan   |  
-  |  norfolkStandardTime  |   (UTC+11:00) Norfolk Island   |  
-  |  sakhalinStandardTime  |   (UTC+11:00) Sakhalin   |  
-  |  centralPacificStandardTime  |   (UTC+11:00) Solomon Is., New Caledonia   |  
-  |  russiaTimeZone11  |   (UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky   |  
-  |  newZealandStandardTime  |   (UTC+12:00) Auckland, Wellington   |  
-  |  utc+12  |   (UTC+12:00) Coordinated Universal Time+12   |  
-  |  fijiStandardTime  |   (UTC+12:00) Fiji   |  
-  |  kamchatkaStandardTime  |   (UTC+12:00) Petropavlovsk-Kamchatsky - Old   |  
-  |  chathamIslandsStandardTime  |   (UTC+12:45) Chatham Islands   |  
-  |  utc+13  |   (UTC+13:00) Coordinated Universal Time+13   |  
-  |  tongaStandardTime  |   (UTC+13:00) Nuku'alofa   |  
-  |  samoaStandardTime  |   (UTC+13:00) Samoa   |  
-  |  lineIslandsStandardTime  |   (UTC+14:00) Kiritimati Island   |  
+  |   Id    |   Display name   |
+  |   -   |   -   |
+  |  datelineStandardTime  |   (UTC-12:00) International Date Line West   |
+  |  utc-11  |   (UTC-11:00) Coordinated Universal Time-11   |
+  |  aleutianStandardTime  |   (UTC-10:00) Aleutian Islands   |
+  |  hawaiianStandardTime  |   (UTC-10:00) Hawaii   |
+  |  marquesasStandardTime  |   (UTC-09:30) Marquesas Islands   |
+  |  alaskanStandardTime  |   (UTC-09:00) Alaska   |
+  |  utc-09  |   (UTC-09:00) Coordinated Universal Time-09   |
+  |  pacificStandardTime(Mexico)  |   (UTC-08:00) Baja California   |
+  |  utc-08  |   (UTC-08:00) Coordinated Universal Time-08   |
+  |  pacificStandardTime  |   (UTC-08:00) Pacific Time (US & Canada)   |
+  |  usMountainStandardTime  |   (UTC-07:00) Arizona   |
+  |  mountainStandardTime(Mexico)  |   (UTC-07:00) Chihuahua, La Paz, Mazatlan   |
+  |  mountainStandardTime  |   (UTC-07:00) Mountain Time (US & Canada)   |
+  |  centralAmericaStandardTime  |   (UTC-06:00) Central America   |
+  |  centralStandardTime  |   (UTC-06:00) Central Time (US & Canada)   |
+  |  easterIslandStandardTime  |   (UTC-06:00) Easter Island   |
+  |  centralStandardTime(Mexico)  |   (UTC-06:00) Guadalajara, Mexico City, Monterrey   |
+  |  canadaCentralStandardTime  |   (UTC-06:00) Saskatchewan   |
+  |  saPacificStandardTime  |   (UTC-05:00) Bogota, Lima, Quito, Rio Branco   |
+  |  easternStandardTime(Mexico)  |   (UTC-05:00) Chetumal   |
+  |  easternStandardTime  |   (UTC-05:00) Eastern Time (US & Canada)   |
+  |  haitiStandardTime  |   (UTC-05:00) Haiti   |
+  |  cubaStandardTime  |   (UTC-05:00) Havana   |
+  |  usEasternStandardTime  |   (UTC-05:00) Indiana (East)   |
+  |  turksAndCaicosStandardTime  |   (UTC-05:00) Turks and Caicos   |
+  |  paraguayStandardTime  |   (UTC-04:00) Asuncion   |
+  |  atlanticStandardTime  |   (UTC-04:00) Atlantic Time (Canada)   |
+  |  venezuelaStandardTime  |   (UTC-04:00) Caracas   |
+  |  centralBrazilianStandardTime  |   (UTC-04:00) Cuiaba   |
+  |  saWesternStandardTime  |   (UTC-04:00) Georgetown, La Paz, Manaus, San Juan   |
+  |  pacificSAStandardTime  |   (UTC-04:00) Santiago   |
+  |  newfoundlandStandardTime  |   (UTC-03:30) Newfoundland   |
+  |  tocantinsStandardTime  |   (UTC-03:00) Araguaina   |
+  |  e.SouthAmericaStandardTime  |   (UTC-03:00) Brasilia   |
+  |  saEasternStandardTime  |   (UTC-03:00) Cayenne, Fortaleza   |
+  |  argentinaStandardTime  |   (UTC-03:00) City of Buenos Aires   |
+  |  greenlandStandardTime  |   (UTC-03:00) Greenland   |
+  |  montevideoStandardTime  |   (UTC-03:00) Montevideo   |
+  |  magallanesStandardTime  |   (UTC-03:00) Punta Arenas   |
+  |  saintPierreStandardTime  |   (UTC-03:00) Saint Pierre and Miquelon   |
+  |  bahiaStandardTime  |   (UTC-03:00) Salvador   |
+  |  utc-02  |   (UTC-02:00) Coordinated Universal Time-02   |
+  |  mid-AtlanticStandardTime  |   (UTC-02:00) Mid-Atlantic - Old   |
+  |  azoresStandardTime  |   (UTC-01:00) Azores   |
+  |  capeVerdeStandardTime  |   (UTC-01:00) Cabo Verde Is.   |
+  |  utc  |   (UTC) Coordinated Universal Time   |
+  |  gmtStandardTime  |   (UTC+00:00) Dublin, Edinburgh, Lisbon, London   |
+  |  greenwichStandardTime  |   (UTC+00:00) Monrovia, Reykjavik   |
+  |  saoTomeStandardTime  |   (UTC+00:00) Sao Tome   |
+  |  moroccoStandardTime  |   (UTC+01:00) Casablanca   |
+  |  w.EuropeStandardTime  |   (UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna   |
+  |  centralEuropeStandardTime  |   (UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague   |
+  |  romanceStandardTime  |   (UTC+01:00) Brussels, Copenhagen, Madrid, Paris   |
+  |  centralEuropeanStandardTime  |   (UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb   |
+  |  w.CentralAfricaStandardTime  |   (UTC+01:00) West Central Africa   |
+  |  jordanStandardTime  |   (UTC+02:00) Amman   |
+  |  gtbStandardTime  |   (UTC+02:00) Athens, Bucharest   |
+  |  middleEastStandardTime  |   (UTC+02:00) Beirut   |
+  |  egyptStandardTime  |   (UTC+02:00) Cairo   |
+  |  e.EuropeStandardTime  |   (UTC+02:00) Chisinau   |
+  |  syriaStandardTime  |   (UTC+02:00) Damascus   |
+  |  westBankStandardTime  |   (UTC+02:00) Gaza, Hebron   |
+  |  southAfricaStandardTime  |   (UTC+02:00) Harare, Pretoria   |
+  |  fleStandardTime  |   (UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius   |
+  |  israelStandardTime  |   (UTC+02:00) Jerusalem   |
+  |  kaliningradStandardTime  |   (UTC+02:00) Kaliningrad   |
+  |  sudanStandardTime  |   (UTC+02:00) Khartoum   |
+  |  libyaStandardTime  |   (UTC+02:00) Tripoli   |
+  |  namibiaStandardTime  |   (UTC+02:00) Windhoek   |
+  |  arabicStandardTime  |   (UTC+03:00) Baghdad   |
+  |  turkeyStandardTime  |   (UTC+03:00) Istanbul   |
+  |  arabStandardTime  |   (UTC+03:00) Kuwait, Riyadh   |
+  |  belarusStandardTime  |   (UTC+03:00) Minsk   |
+  |  russianStandardTime  |   (UTC+03:00) Moscow, St. Petersburg   |
+  |  e.AfricaStandardTime  |   (UTC+03:00) Nairobi   |
+  |  iranStandardTime  |   (UTC+03:30) Tehran   |
+  |  arabianStandardTime  |   (UTC+04:00) Abu Dhabi, Muscat   |
+  |  astrakhanStandardTime  |   (UTC+04:00) Astrakhan, Ulyanovsk   |
+  |  azerbaijanStandardTime  |   (UTC+04:00) Baku   |
+  |  russiaTimeZone3  |   (UTC+04:00) Izhevsk, Samara   |
+  |  mauritiusStandardTime  |   (UTC+04:00) Port Louis   |
+  |  saratovStandardTime  |   (UTC+04:00) Saratov   |
+  |  georgianStandardTime  |   (UTC+04:00) Tbilisi   |
+  |  volgogradStandardTime  |   (UTC+04:00) Volgograd   |
+  |  caucasusStandardTime  |   (UTC+04:00) Yerevan   |
+  |  afghanistanStandardTime  |   (UTC+04:30) Kabul   |
+  |  westAsiaStandardTime  |   (UTC+05:00) Ashgabat, Tashkent   |
+  |  ekaterinburgStandardTime  |   (UTC+05:00) Ekaterinburg   |
+  |  pakistanStandardTime  |   (UTC+05:00) Islamabad, Karachi   |
+  |  qyzylordaStandardTime  |   (UTC+05:00) Qyzylorda   |
+  |  indiaStandardTime  |   (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi   |
+  |  sriLankaStandardTime  |   (UTC+05:30) Sri Jayawardenepura   |
+  |  nepalStandardTime  |   (UTC+05:45) Kathmandu   |
+  |  centralAsiaStandardTime  |   (UTC+06:00) Astana   |
+  |  bangladeshStandardTime  |   (UTC+06:00) Dhaka   |
+  |  omskStandardTime  |   (UTC+06:00) Omsk   |
+  |  myanmarStandardTime  |   (UTC+06:30) Yangon (Rangoon)   |
+  |  seAsiaStandardTime  |   (UTC+07:00) Bangkok, Hanoi, Jakarta   |
+  |  altaiStandardTime  |   (UTC+07:00) Barnaul, Gorno-Altaysk   |
+  |  w.MongoliaStandardTime  |   (UTC+07:00) Hovd   |
+  |  northAsiaStandardTime  |   (UTC+07:00) Krasnoyarsk   |
+  |  n.CentralAsiaStandardTime  |   (UTC+07:00) Novosibirsk   |
+  |  tomskStandardTime  |   (UTC+07:00) Tomsk   |
+  |  chinaStandardTime  |   (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi   |
+  |  northAsiaEastStandardTime  |   (UTC+08:00) Irkutsk   |
+  |  singaporeStandardTime  |   (UTC+08:00) Kuala Lumpur, Singapore   |
+  |  w.AustraliaStandardTime  |   (UTC+08:00) Perth   |
+  |  taipeiStandardTime  |   (UTC+08:00) Taipei   |
+  |  ulaanbaatarStandardTime  |   (UTC+08:00) Ulaanbaatar   |
+  |  ausCentralW.StandardTime  |   (UTC+08:45) Eucla   |
+  |  transbaikalStandardTime  |   (UTC+09:00) Chita   |
+  |  tokyoStandardTime  |   (UTC+09:00) Osaka, Sapporo, Tokyo   |
+  |  northKoreaStandardTime  |   (UTC+09:00) Pyongyang   |
+  |  koreaStandardTime  |   (UTC+09:00) Seoul   |
+  |  yakutskStandardTime  |   (UTC+09:00) Yakutsk   |
+  |  cen.AustraliaStandardTime  |   (UTC+09:30) Adelaide   |
+  |  aUSCentralStandardTime  |   (UTC+09:30) Darwin   |
+  |  e.AustraliaStandardTime  |   (UTC+10:00) Brisbane   |
+  |  aUSEasternStandardTime  |   (UTC+10:00) Canberra, Melbourne, Sydney   |
+  |  westPacificStandardTime  |   (UTC+10:00) Guam, Port Moresby   |
+  |  tasmaniaStandardTime  |   (UTC+10:00) Hobart   |
+  |  vladivostokStandardTime  |   (UTC+10:00) Vladivostok   |
+  |  lordHoweStandardTime  |   (UTC+10:30) Lord Howe Island   |
+  |  bougainvilleStandardTime  |   (UTC+11:00) Bougainville Island   |
+  |  russiaTimeZone10  |   (UTC+11:00) Chokurdakh   |
+  |  magadanStandardTime  |   (UTC+11:00) Magadan   |
+  |  norfolkStandardTime  |   (UTC+11:00) Norfolk Island   |
+  |  sakhalinStandardTime  |   (UTC+11:00) Sakhalin   |
+  |  centralPacificStandardTime  |   (UTC+11:00) Solomon Is., New Caledonia   |
+  |  russiaTimeZone11  |   (UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky   |
+  |  newZealandStandardTime  |   (UTC+12:00) Auckland, Wellington   |
+  |  utc+12  |   (UTC+12:00) Coordinated Universal Time+12   |
+  |  fijiStandardTime  |   (UTC+12:00) Fiji   |
+  |  kamchatkaStandardTime  |   (UTC+12:00) Petropavlovsk-Kamchatsky - Old   |
+  |  chathamIslandsStandardTime  |   (UTC+12:45) Chatham Islands   |
+  |  utc+13  |   (UTC+13:00) Coordinated Universal Time+13   |
+  |  tongaStandardTime  |   (UTC+13:00) Nuku'alofa   |
+  |  samoaStandardTime  |   (UTC+13:00) Samoa   |
+  |  lineIslandsStandardTime  |   (UTC+14:00) Kiritimati Island   |
 
 
