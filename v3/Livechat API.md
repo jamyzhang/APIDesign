@@ -1242,7 +1242,6 @@ Content-Type:  application/json
 
 # Live Chat Agent
 
-- `GET /api/v3/livechat/agents` - [Get list of live chat agents](#get-list-of-live-chat-agents)
 - `GET /api/v3/livechat/agents/{id}` - [Get a live chat agent by id](#get-a-live-chat-agent-by-id)  
 - `PUT /api/v3/livechat/agents/{id}` - [Update a live chat agent](#update-a-live-chat-agent)  
   
@@ -1254,13 +1253,11 @@ agent is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| N/A | | id of the live chat agent. |
+| `id` | integer |  |  yes| N/A | | id of the live chat agent. |
 | `status` | String |  | no | yes | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
 | `ongoingChats` | integer|  | yes | no | | total number of ongoing chats the agent has. |
 
 ## Endpoints
-
-### Get list of live chat agents
 
 `GET /api/v3/livechat/agents`
 
@@ -1286,7 +1283,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 [
   {
-    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "id": 1,
     "status": "online",
     "ongoingChats": 50
   },
@@ -1304,7 +1301,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of live chat agent   |
+| `id` | integer | yes  |  id of live chat agent   |
 
 #### Response
 
@@ -1315,7 +1312,7 @@ the response is [Live Chat Agent](#live-chat-agent-object) object
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/agents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://domain.comm100.com/api/v3/livechat/agents/1
 ```
 
 Response
@@ -1323,7 +1320,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+  "id": 1,
   "status": "online",
   "ongoingChats": 50
 }
@@ -1339,7 +1336,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of live chat agent   |
+| `id` | integer | yes  |  id of live chat agent   |
 
 Request body
 
@@ -1361,10 +1358,8 @@ the response is [Live Chat Agent](#live-chat-agent-object) object
 Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "name": "Grubby",
-  "status": "online",
-  "ongoingChats": 50
-}' -X PUT https://domain.comm100.com/api/v3/livechat/agents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+  "status": "online"
+}' -X PUT https://domain.comm100.com/api/v3/livechat/agents/1
 ```
 
 Response
@@ -1372,7 +1367,9 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "status": "online"
+  "id": 1,
+  "status": "online",
+  "ongoingChats": 50
 }
 ```
 
