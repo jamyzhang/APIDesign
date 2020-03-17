@@ -1254,7 +1254,7 @@ agent is represented as simple flat JSON objects with the following keys:
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | integer |  |  yes| N/A | | id of the live chat agent. |
-| `status` | String |  | no | yes | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
+| `status` | String |  | no | yes | | status of the agent, including `Online`, `Away`, `Offline` and custom away status defined by site. |
 | `ongoingChats` | integer|  | yes | no | | total number of ongoing chats the agent has. |
 
 ## Endpoints
@@ -1284,7 +1284,7 @@ Content-Type:  application/json
 [
   {
     "id": 1,
-    "status": "online",
+    "status": "Online",
     "ongoingChats": 50
   },
   ...
@@ -1321,14 +1321,14 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": 1,
-  "status": "online",
+  "status": "Online",
   "ongoingChats": 50
 }
 ```
 
 ### Update a live chat agent
 
-`POST /api/v3/livechat/agents/{id}`
+`PUT /api/v3/livechat/agents/{id}`
 
 #### Parameters
 
@@ -1345,7 +1345,7 @@ Request body
 example:
 ```Json
 {
-  "status": "online"
+  "status": "Online"
 }
 ```
 
@@ -1358,7 +1358,7 @@ the response is [Live Chat Agent](#live-chat-agent-object) object
 Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "status": "online"
+  "status": "Online"
 }' -X PUT https://domain.comm100.com/api/v3/livechat/agents/1
 ```
 
@@ -1368,7 +1368,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "id": 1,
-  "status": "online",
+  "status": "Online",
   "ongoingChats": 50
 }
 ```
