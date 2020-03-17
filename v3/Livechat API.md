@@ -15,8 +15,8 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
     - [dynamic campaign](#dynamic-campaign)
     - [mobile push](#mobile-push)
   - [customer segment](#customer-segment)
-  - [online-agent](#online-agent)
-  - [online-visitor](#online-visitor)
+  - [live chat agent](#live-chat-agent)
+  - [live chat visitor](#live-chat-visitor)
   - [session](#session)  
   - [chat](#chat)
   - [offline message](#offline-message)  
@@ -1240,30 +1240,26 @@ Content-Type:  application/json
 }
 ```
 
-# Online Agent
+# Live Chat Agent
 
-- `GET /api/v3/livechat/onlineAgents` - [Get list of online agents](#get-list-of-online-agents)
-- `GET /api/v3/livechat/onlineAgents/{id}` - [Get an online agent by id](#get-an-online-agent-by-id)  
-- `PUT /api/v3/livechat/onlineAgents/{id}` - [Update an online agent](#update-an-online-agent)  
+- `GET /api/v3/livechat/agents/{id}` - [Get a live chat agent by id](#get-a-live-chat-agent-by-id)  
+- `PUT /api/v3/livechat/agents/{id}` - [Update a live chat agent](#update-a-live-chat-agent)  
   
 ## Related Object Json Format
 
-### Online Agent JSON format
+### Live Chat Agent Object
 
 agent is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read-only | Mandatory | Default | Description |
+| Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| no | | id of the online agent. |
-| `name` | String |  |  yes| no | | name of the online agent. |
-| `status` | String |  | no | no | | status of the agent, including `online`, `away`, `offline` and custom away status defined by site. |
+| `id` | integer |  |  yes| N/A | | id of the live chat agent. |
+| `status` | String |  | no | yes | | status of the agent, including `Online`, `Away`, `Offline` and custom away status defined by site. |
 | `ongoingChats` | integer|  | yes | no | | total number of ongoing chats the agent has. |
 
 ## Endpoints
 
-### Get list of online agents
-
-`GET /api/v3/livechat/onlineAgents`
+`GET /api/v3/livechat/agents`
 
 #### Parameters
 
@@ -1271,14 +1267,14 @@ agent is represented as simple flat JSON objects with the following keys:
 
 #### Response
 
-the response an array of [Online Agent](#online-agent-object) object
+the response an array of [Live Chat Agent](#live-chat-agent-object) object
 
 #### Example
 
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineAgents
+-X GET https://domain.comm100.com/api/v3/livechat/agents
 ```
 
 Response
@@ -1287,18 +1283,17 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 [
   {
-    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "name": "Grubby",
-    "status": "online",
+    "id": 1,
+    "status": "Online",
     "ongoingChats": 50
   },
   ...
 ]
 ```
 
-### Get an online agent by id
+### Get an live chat agent by id
 
-`GET /api/v3/livechat/onlineAgents/{id}`
+`GET /api/v3/livechat/agents/{id}`
 
 #### Parameters
 
@@ -1306,18 +1301,18 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of online agent   |
+| `id` | integer | yes  |  id of live chat agent   |
 
 #### Response
 
-the response is [Online Agent](#online-agent-object) object
+the response is [Live Chat Agent](#live-chat-agent-object) object
 
 #### Example
 
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://domain.comm100.com/api/v3/livechat/agents/1
 ```
 
 Response
@@ -1325,16 +1320,15 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
-  "name": "Grubby",
-  "status": "online",
+  "id": 1,
+  "status": "Online",
   "ongoingChats": 50
 }
 ```
 
-### Update an online agent
+### Update a live chat agent
 
-`POST /api/v3/livechat/onlineAgents/{id}`
+`PUT /api/v3/livechat/agents/{id}`
 
 #### Parameters
 
@@ -1342,34 +1336,30 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of online agent   |
+| `id` | integer | yes  |  id of live chat agent   |
 
 Request body
 
-  The request body contains data with the [Online Agent](#online-agent-object) Object structure
+  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) Object structure
 
 example:
 ```Json
 {
-  "name": "Grubby",
-  "status": "online",
-  "ongoingChats": 50
+  "status": "Online"
 }
 ```
 
 #### Response
 
-the response is [Online Agent](#online-agent-object) object
+the response is [Live Chat Agent](#live-chat-agent-object) object
 
 #### Example
 
 Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "name": "Grubby",
-  "status": "online",
-  "ongoingChats": 50
-}' -X PUT https://domain.comm100.com/api/v3/livechat/onlineAgents/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+  "status": "Online"
+}' -X PUT https://domain.comm100.com/api/v3/livechat/agents/1
 ```
 
 Response
@@ -1377,19 +1367,21 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "status": "online"
+  "id": 1,
+  "status": "Online",
+  "ongoingChats": 50
 }
 ```
 
-# Online Visitor
+# Live Chat Visitor
 
-- `GET /api/v3/livechat/onlineVisitors` - [Get list of online visitors](#get-list-of-online-visitors)
-- `GET /api/v3/livechat/onlineVisitors/{id}` - [Get an online visitor by id](#get-an-online-visitor-by-id)  
-- `PUT /api/v3/livechat/onlineVisitors/{id}` - [Update visitor custom variable](#update-visitor-custom-variable)  
+- `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
+- `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
+- `PUT /api/v3/livechat/visitors/{id}` - [Update visitor custom variable](#update-visitor-custom-variable)  
 
 ## Related Object JSON Format
 
-### Online Visitor JSON format
+### Live Chat Visitor Object
 
 online visitor is represented as simple flat JSON objects with the following keys:  
 
@@ -1398,7 +1390,7 @@ online visitor is represented as simple flat JSON objects with the following key
 | `id` | Guid |  |  yes| no | | id of the visitor. |
 | `name` | name |  |  yes| no | | name of the visitor. |
 | `email` | string |  | yes | no | | email of the visitor.|
-| `status` | String|  | yes | no | |status of the visitor . |
+| `status` | String|  | yes | no| |status of the visitor . including `waitingForChat`,  `voiceChatting`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
 | `pageViews` | integer|  | yes | no | |the total number of web pages the visitor viewed on your website. |
 | `browser` | string|  | yes | no | |the browser the visitor is using. |
 | `chats` | integer|  | yes | no | |the total times of chats a visitor has made on your website from the first time to present. |
@@ -1406,27 +1398,27 @@ online visitor is represented as simple flat JSON objects with the following key
 | `country` | string|  | yes | no | |the country of the visitor. |
 | `currentBrowsing` | string|  | yes | no | |the page the visitor is currently looking at. |
 | `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
-| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | no | |the information of custom variables captured from the web page visitors viewed.|
+| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | yes | |the information of custom variables captured from the web page visitors viewed.|
 | `departmentId` | Guid|  | yes | no ||the department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
 | `firstVisitTime` | datetime|  | yes | no | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
-| `flashVersion` | string|  | yes | no | |the flash version of the browser the visitor is using.|
+| `flashVersion` | string|  | yes | no| |the flash version of the browser the visitor is using.|
 | `ip` | string|  | yes | no | |the IP of the visitor.|
-| `keywords` | string|  | yes | no | |the keywords the visitor used to search for your website.|
+| `searchKeywords` | string|  | yes | no | |the keywords the visitor used to search for your website.|
 | `landingPage` | string|  | yes | no | |the title and URL of the first page of your website the visitor visited.|
 | `language` | string|  | yes | no | |the language the visitor is using.|
 | `operatingSystem` | string|  | yes | no | |the operating system of the visitor's device.|
 | `phone` | string|  | yes | no | |the phone of the visitor.|
 | `productService` | string|  | yes | no | |the product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
 | `referrerUrl` | string|  | yes | no | |the URL of the page from which a visitor comes to your website.|
-| `screenResolution` | string|  | yes | no | |the screen resolution of the visitor's device.|
+| `screenResolution` | string|  | yes | no| |the screen resolution of the visitor's device.|
 | `searchEngine` | string|  | yes | no | |the search engine the visitor used to search for your website.|
 | `state` | string|  | yes | no | |the state of the visitor.|
-| `timeZone` | string|  | yes | no | |the time zone of the visitor.|
+| `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids.|
 | `visitTime` | string|  | yes | no | |the starting time when this visitor visits your website this time.|
 | `visits` | string|  | yes | no | |the total times of visits a visitor has made on your website from the first time to present|
 
 
-### Custom Field JSON format
+### Custom Field Object
 
 Custom Field is represented as simple flat JSON objects with the following keys:  
 
@@ -1436,7 +1428,7 @@ Custom Field is represented as simple flat JSON objects with the following keys:
 | `name` | string |  |  yes| no | | name of the custom field.|
 | `value` | string |  |  yes| no | | value of the custom field.|
 
-### Custom Variable Result JSON Format
+### Custom Variable Result Object
 
 Custom variable result is represented as simple flat JSON objects with the following keys: 
 
@@ -1448,9 +1440,9 @@ Custom variable result is represented as simple flat JSON objects with the follo
 
 ## Endpoints
 
-### Get list of online visitors
+### Get list of live chat visitors
 
-`GET /api/v3/livechat/onlineVisitors`
+`GET /api/v3/livechat/visitors`
 
 #### Parameters
 
@@ -1459,18 +1451,18 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `onlyChattingVisitor` | boolean | no  | false |  if only return the chatting visitor. |
+| `status` | boolean | no  | false |  status of this chat |
 
 #### Response
 
-the response is: array of [Online Visitor](#online-visitor-object) Object.
+the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors?onlyChattingVisitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/visitors?onlyChattingVisitor=false
 ```
 Response
 ```Json
@@ -1499,7 +1491,7 @@ Content-Type:  application/json
       "first_visit_time": "2019-06-11T03:05:42.537Z",
       "flash_version": "",
       "ip": "218.76.52.108",
-      "keywords": "",
+      "searchKeywords": "",
       "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "language": "zh-CN",
       "name": "218.76.52.108",
@@ -1519,9 +1511,9 @@ Content-Type:  application/json
 ]
 ```
 
-### Get an online visitor by id
+### Get a live chat visitor by id
 
-`GET /api/v3/livechat/onlineVisitors/{id}`
+`GET /api/v3/livechat/visitors/{id}`
 
 #### Parameters
 
@@ -1529,7 +1521,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of online visitor|
+| `id` | Guid | yes  |  id of live chat visitor|
 
 Query string
 
@@ -1539,14 +1531,14 @@ Query string
 
 #### Response
 
-the response is: array of [Online Visitor](#online-visitor-object) Object.
+the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingVisitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingVisitor=false
 ```
 Response
 ```Json
@@ -1574,7 +1566,7 @@ Content-Type:  application/json
   "first_visit_time": "2019-06-11T03:05:42.537Z",
   "flash_version": "",
   "ip": "218.76.52.108",
-  "keywords": "",
+  "searchKeywords": "",
   "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
@@ -1594,7 +1586,7 @@ Content-Type:  application/json
 
 ### Update visitor custom variable
 
-`PUT /api/v3/livechat/onlineVisitors/{id}`
+`PUT /api/v3/livechat/visitors/{id}`
 
 #### Parameters
 
@@ -1606,7 +1598,7 @@ Path parameters
 
 #### Response
 
-the response is: array of [Online Visitor](#online-visitor-object) Object.
+the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
@@ -1620,7 +1612,7 @@ curl -H "Content-Type: application/json" -d '{
           "url": "bbbbb"
         }
       ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/onlineVisitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
 Response
@@ -1649,7 +1641,7 @@ Content-Type:  application/json
   "first_visit_time": "2019-06-11T03:05:42.537Z",
   "flash_version": "",
   "ip": "218.76.52.108",
-  "keywords": "",
+  "searchKeywords": "",
   "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
@@ -8675,7 +8667,7 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | Guid  || yes | no || id of the custom variable. |
   | `name` | string  || no | yes || name of the custom variable |.
-  | `type` | string  || no | yes || type of the custom variable., including `ttyoext`, `integer` and `decimal`. |
+  | `type` | string  || no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
   | `value` | string  || no | no || value of the custom variable. |
   |`hyperlink` | string  || no | no ||  hyperlink of the custom variable. |
 
@@ -8885,4 +8877,149 @@ Response
 ```json
 HTTP/1.1 204 No Content
 ```
+
+# Time Zone Options
+
+
+  |   Id    |   Display name   |
+  |   -   |   -   |
+  |  datelineStandardTime  |   (UTC-12:00) International Date Line West   |
+  |  utc-11  |   (UTC-11:00) Coordinated Universal Time-11   |
+  |  aleutianStandardTime  |   (UTC-10:00) Aleutian Islands   |
+  |  hawaiianStandardTime  |   (UTC-10:00) Hawaii   |
+  |  marquesasStandardTime  |   (UTC-09:30) Marquesas Islands   |
+  |  alaskanStandardTime  |   (UTC-09:00) Alaska   |
+  |  utc-09  |   (UTC-09:00) Coordinated Universal Time-09   |
+  |  pacificStandardTime(Mexico)  |   (UTC-08:00) Baja California   |
+  |  utc-08  |   (UTC-08:00) Coordinated Universal Time-08   |
+  |  pacificStandardTime  |   (UTC-08:00) Pacific Time (US & Canada)   |
+  |  usMountainStandardTime  |   (UTC-07:00) Arizona   |
+  |  mountainStandardTime(Mexico)  |   (UTC-07:00) Chihuahua, La Paz, Mazatlan   |
+  |  mountainStandardTime  |   (UTC-07:00) Mountain Time (US & Canada)   |
+  |  centralAmericaStandardTime  |   (UTC-06:00) Central America   |
+  |  centralStandardTime  |   (UTC-06:00) Central Time (US & Canada)   |
+  |  easterIslandStandardTime  |   (UTC-06:00) Easter Island   |
+  |  centralStandardTime(Mexico)  |   (UTC-06:00) Guadalajara, Mexico City, Monterrey   |
+  |  canadaCentralStandardTime  |   (UTC-06:00) Saskatchewan   |
+  |  saPacificStandardTime  |   (UTC-05:00) Bogota, Lima, Quito, Rio Branco   |
+  |  easternStandardTime(Mexico)  |   (UTC-05:00) Chetumal   |
+  |  easternStandardTime  |   (UTC-05:00) Eastern Time (US & Canada)   |
+  |  haitiStandardTime  |   (UTC-05:00) Haiti   |
+  |  cubaStandardTime  |   (UTC-05:00) Havana   |
+  |  usEasternStandardTime  |   (UTC-05:00) Indiana (East)   |
+  |  turksAndCaicosStandardTime  |   (UTC-05:00) Turks and Caicos   |
+  |  paraguayStandardTime  |   (UTC-04:00) Asuncion   |
+  |  atlanticStandardTime  |   (UTC-04:00) Atlantic Time (Canada)   |
+  |  venezuelaStandardTime  |   (UTC-04:00) Caracas   |
+  |  centralBrazilianStandardTime  |   (UTC-04:00) Cuiaba   |
+  |  saWesternStandardTime  |   (UTC-04:00) Georgetown, La Paz, Manaus, San Juan   |
+  |  pacificSAStandardTime  |   (UTC-04:00) Santiago   |
+  |  newfoundlandStandardTime  |   (UTC-03:30) Newfoundland   |
+  |  tocantinsStandardTime  |   (UTC-03:00) Araguaina   |
+  |  e.SouthAmericaStandardTime  |   (UTC-03:00) Brasilia   |
+  |  saEasternStandardTime  |   (UTC-03:00) Cayenne, Fortaleza   |
+  |  argentinaStandardTime  |   (UTC-03:00) City of Buenos Aires   |
+  |  greenlandStandardTime  |   (UTC-03:00) Greenland   |
+  |  montevideoStandardTime  |   (UTC-03:00) Montevideo   |
+  |  magallanesStandardTime  |   (UTC-03:00) Punta Arenas   |
+  |  saintPierreStandardTime  |   (UTC-03:00) Saint Pierre and Miquelon   |
+  |  bahiaStandardTime  |   (UTC-03:00) Salvador   |
+  |  utc-02  |   (UTC-02:00) Coordinated Universal Time-02   |
+  |  mid-AtlanticStandardTime  |   (UTC-02:00) Mid-Atlantic - Old   |
+  |  azoresStandardTime  |   (UTC-01:00) Azores   |
+  |  capeVerdeStandardTime  |   (UTC-01:00) Cabo Verde Is.   |
+  |  utc  |   (UTC) Coordinated Universal Time   |
+  |  gmtStandardTime  |   (UTC+00:00) Dublin, Edinburgh, Lisbon, London   |
+  |  greenwichStandardTime  |   (UTC+00:00) Monrovia, Reykjavik   |
+  |  saoTomeStandardTime  |   (UTC+00:00) Sao Tome   |
+  |  moroccoStandardTime  |   (UTC+01:00) Casablanca   |
+  |  w.EuropeStandardTime  |   (UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna   |
+  |  centralEuropeStandardTime  |   (UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague   |
+  |  romanceStandardTime  |   (UTC+01:00) Brussels, Copenhagen, Madrid, Paris   |
+  |  centralEuropeanStandardTime  |   (UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb   |
+  |  w.CentralAfricaStandardTime  |   (UTC+01:00) West Central Africa   |
+  |  jordanStandardTime  |   (UTC+02:00) Amman   |
+  |  gtbStandardTime  |   (UTC+02:00) Athens, Bucharest   |
+  |  middleEastStandardTime  |   (UTC+02:00) Beirut   |
+  |  egyptStandardTime  |   (UTC+02:00) Cairo   |
+  |  e.EuropeStandardTime  |   (UTC+02:00) Chisinau   |
+  |  syriaStandardTime  |   (UTC+02:00) Damascus   |
+  |  westBankStandardTime  |   (UTC+02:00) Gaza, Hebron   |
+  |  southAfricaStandardTime  |   (UTC+02:00) Harare, Pretoria   |
+  |  fleStandardTime  |   (UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius   |
+  |  israelStandardTime  |   (UTC+02:00) Jerusalem   |
+  |  kaliningradStandardTime  |   (UTC+02:00) Kaliningrad   |
+  |  sudanStandardTime  |   (UTC+02:00) Khartoum   |
+  |  libyaStandardTime  |   (UTC+02:00) Tripoli   |
+  |  namibiaStandardTime  |   (UTC+02:00) Windhoek   |
+  |  arabicStandardTime  |   (UTC+03:00) Baghdad   |
+  |  turkeyStandardTime  |   (UTC+03:00) Istanbul   |
+  |  arabStandardTime  |   (UTC+03:00) Kuwait, Riyadh   |
+  |  belarusStandardTime  |   (UTC+03:00) Minsk   |
+  |  russianStandardTime  |   (UTC+03:00) Moscow, St. Petersburg   |
+  |  e.AfricaStandardTime  |   (UTC+03:00) Nairobi   |
+  |  iranStandardTime  |   (UTC+03:30) Tehran   |
+  |  arabianStandardTime  |   (UTC+04:00) Abu Dhabi, Muscat   |
+  |  astrakhanStandardTime  |   (UTC+04:00) Astrakhan, Ulyanovsk   |
+  |  azerbaijanStandardTime  |   (UTC+04:00) Baku   |
+  |  russiaTimeZone3  |   (UTC+04:00) Izhevsk, Samara   |
+  |  mauritiusStandardTime  |   (UTC+04:00) Port Louis   |
+  |  saratovStandardTime  |   (UTC+04:00) Saratov   |
+  |  georgianStandardTime  |   (UTC+04:00) Tbilisi   |
+  |  volgogradStandardTime  |   (UTC+04:00) Volgograd   |
+  |  caucasusStandardTime  |   (UTC+04:00) Yerevan   |
+  |  afghanistanStandardTime  |   (UTC+04:30) Kabul   |
+  |  westAsiaStandardTime  |   (UTC+05:00) Ashgabat, Tashkent   |
+  |  ekaterinburgStandardTime  |   (UTC+05:00) Ekaterinburg   |
+  |  pakistanStandardTime  |   (UTC+05:00) Islamabad, Karachi   |
+  |  qyzylordaStandardTime  |   (UTC+05:00) Qyzylorda   |
+  |  indiaStandardTime  |   (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi   |
+  |  sriLankaStandardTime  |   (UTC+05:30) Sri Jayawardenepura   |
+  |  nepalStandardTime  |   (UTC+05:45) Kathmandu   |
+  |  centralAsiaStandardTime  |   (UTC+06:00) Astana   |
+  |  bangladeshStandardTime  |   (UTC+06:00) Dhaka   |
+  |  omskStandardTime  |   (UTC+06:00) Omsk   |
+  |  myanmarStandardTime  |   (UTC+06:30) Yangon (Rangoon)   |
+  |  seAsiaStandardTime  |   (UTC+07:00) Bangkok, Hanoi, Jakarta   |
+  |  altaiStandardTime  |   (UTC+07:00) Barnaul, Gorno-Altaysk   |
+  |  w.MongoliaStandardTime  |   (UTC+07:00) Hovd   |
+  |  northAsiaStandardTime  |   (UTC+07:00) Krasnoyarsk   |
+  |  n.CentralAsiaStandardTime  |   (UTC+07:00) Novosibirsk   |
+  |  tomskStandardTime  |   (UTC+07:00) Tomsk   |
+  |  chinaStandardTime  |   (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi   |
+  |  northAsiaEastStandardTime  |   (UTC+08:00) Irkutsk   |
+  |  singaporeStandardTime  |   (UTC+08:00) Kuala Lumpur, Singapore   |
+  |  w.AustraliaStandardTime  |   (UTC+08:00) Perth   |
+  |  taipeiStandardTime  |   (UTC+08:00) Taipei   |
+  |  ulaanbaatarStandardTime  |   (UTC+08:00) Ulaanbaatar   |
+  |  ausCentralW.StandardTime  |   (UTC+08:45) Eucla   |
+  |  transbaikalStandardTime  |   (UTC+09:00) Chita   |
+  |  tokyoStandardTime  |   (UTC+09:00) Osaka, Sapporo, Tokyo   |
+  |  northKoreaStandardTime  |   (UTC+09:00) Pyongyang   |
+  |  koreaStandardTime  |   (UTC+09:00) Seoul   |
+  |  yakutskStandardTime  |   (UTC+09:00) Yakutsk   |
+  |  cen.AustraliaStandardTime  |   (UTC+09:30) Adelaide   |
+  |  aUSCentralStandardTime  |   (UTC+09:30) Darwin   |
+  |  e.AustraliaStandardTime  |   (UTC+10:00) Brisbane   |
+  |  aUSEasternStandardTime  |   (UTC+10:00) Canberra, Melbourne, Sydney   |
+  |  westPacificStandardTime  |   (UTC+10:00) Guam, Port Moresby   |
+  |  tasmaniaStandardTime  |   (UTC+10:00) Hobart   |
+  |  vladivostokStandardTime  |   (UTC+10:00) Vladivostok   |
+  |  lordHoweStandardTime  |   (UTC+10:30) Lord Howe Island   |
+  |  bougainvilleStandardTime  |   (UTC+11:00) Bougainville Island   |
+  |  russiaTimeZone10  |   (UTC+11:00) Chokurdakh   |
+  |  magadanStandardTime  |   (UTC+11:00) Magadan   |
+  |  norfolkStandardTime  |   (UTC+11:00) Norfolk Island   |
+  |  sakhalinStandardTime  |   (UTC+11:00) Sakhalin   |
+  |  centralPacificStandardTime  |   (UTC+11:00) Solomon Is., New Caledonia   |
+  |  russiaTimeZone11  |   (UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky   |
+  |  newZealandStandardTime  |   (UTC+12:00) Auckland, Wellington   |
+  |  utc+12  |   (UTC+12:00) Coordinated Universal Time+12   |
+  |  fijiStandardTime  |   (UTC+12:00) Fiji   |
+  |  kamchatkaStandardTime  |   (UTC+12:00) Petropavlovsk-Kamchatsky - Old   |
+  |  chathamIslandsStandardTime  |   (UTC+12:45) Chatham Islands   |
+  |  utc+13  |   (UTC+13:00) Coordinated Universal Time+13   |
+  |  tongaStandardTime  |   (UTC+13:00) Nuku'alofa   |
+  |  samoaStandardTime  |   (UTC+13:00) Samoa   |
+  |  lineIslandsStandardTime  |   (UTC+14:00) Kiritimati Island   |
 </div>
