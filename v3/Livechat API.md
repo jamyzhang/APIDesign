@@ -28,7 +28,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
       - [campaign form field](#campaign-form-field)
     - [post chat](#post-chat)
       - [campaign form field](#campaign-form-field)
-    - [offline message](#Campaign-offline-message)
+    - [offline message](#offline-message)
       - [campaign form field](#campaign-form-field)
     - [invitation](#invitation)
       - [manual invitation](#manual-invitation)
@@ -1390,7 +1390,7 @@ online visitor is represented as simple flat JSON objects with the following key
 | `id` | Guid |  |  yes| no | | id of the visitor. |
 | `name` | name |  |  yes| no | | name of the visitor. |
 | `email` | string |  | yes | no | | email of the visitor.|
-| `status` | String|  | yes | no| |status of the visitor . including `waitingForChat`,  `voiceChatting`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
+| `status` | String|  | yes | no| |status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
 | `pageViews` | integer|  | yes | no | |the total number of web pages the visitor viewed on your website. |
 | `browser` | string|  | yes | no | |the browser the visitor is using. |
 | `chats` | integer|  | yes | no | |the total times of chats a visitor has made on your website from the first time to present. |
@@ -1436,7 +1436,7 @@ Custom variable result is represented as simple flat JSON objects with the follo
 | - | - |- | :-: | :-: | :-: | - |
 | `name` | string |  |  yes| no | | name of the custom variable.|
 | `value` | string |  |  no| no | | value of the custom variable.|
-| `url` | string |  | no| no | | url of the custom variable.|
+| `url` | string |  | yes| no | | url of the custom variable.|
 
 ## Endpoints
 
@@ -2767,6 +2767,8 @@ Content-Type:  application/json
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
 | `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
 | `adaptiveButtonIconType` | integer | no | no | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
+| `adaptiveButtonOnlineIcon` | string | no | no | | Image file key of the chat online button, available when `type` is `adaptive`. |
+| `adaptiveButtonOfflineIcon` | string | no | no | | Image file key of the chat offline button, available when `type` is `adaptive`. |
 | `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
 | `imageButtonPosition` | string | no | no | | Position of the image button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
 | `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
@@ -2774,7 +2776,7 @@ Content-Type:  application/json
 | `imageButtonXOffset` | integer | no | no | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate, available when `type` is `image`. |
 | `isImageButtonYOffsetByPixel` | boolean | no | no | | Available when `type` is `image`. |
 | `imageButtonYOffset` | integer | no | no | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate, available when `type` is `image`. |
-| `imageButtonImageSource` | string | no | no | |  Type of the image source, including `fromGallery` and `fromCustom` |
+| `imageButtonImageSource` | string | no | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
 | `imageButtonOnlineImage` | string | no | no | | Image file key of online button, available when `type` is `image`. |
 | `imageButtonOfflineImage` | string | no | no | | Image file key of offline button, available when `type` is `image`. |
 | `imageButtonTypeOnMobile` | string | no | no | | The type of button on mobile device, including `text` and `image`. |
@@ -2831,7 +2833,7 @@ Content-Type:  application/json
   "imageButtonXOffset": 10,
   "isImageButtonYOffsetByPixel": false,
   "imageButtonYOffset": 10,
-  "imageButtonImageSource": "fromCustom",
+  "imageButtonImageSource": "fromMyComputer",
   "imageButtonOnlineImage": "08A3ACFE-FD5C-1B46-FA40-86DBA3E110FF",
   "imageButtonOfflineImage": "2EF5F854-A5CC-972F-1DC7-6DEA8B50F63A",
   "imageButtonTypeOnMobile": "image",
@@ -2878,7 +2880,7 @@ example:
   "imageButtonXOffset": 10,
   "isImageButtonYOffsetByPixel": false,
   "imageButtonYOffset": 10,
-  "imageButtonImageSource": "fromCustom",
+  "imageButtonImageSource": "fromMyComputer",
   "imageButtonOnlineImage": "08A3ACFE-FD5C-1B46-FA40-86DBA3E110FF",
   "imageButtonOfflineImage": "2EF5F854-A5CC-972F-1DC7-6DEA8B50F63A",
   "imageButtonTypeOnMobile": "image",
@@ -2915,7 +2917,7 @@ curl -H "Content-Type: application/json" -d '{
   "imageButtonXOffset": 10,
   "isImageButtonYOffsetByPixel": false,
   "imageButtonYOffset": 10,
-  "imageButtonImageSource": "fromCustom",
+  "imageButtonImageSource": "fromMyComputer",
   "imageButtonOnlineImage": "08A3ACFE-FD5C-1B46-FA40-86DBA3E110FF",
   "imageButtonOfflineImage": "2EF5F854-A5CC-972F-1DC7-6DEA8B50F63A",
   "imageButtonTypeOnMobile": "image",
@@ -2948,7 +2950,7 @@ Content-Type:  application/json
   "imageButtonXOffset": 10,
   "isImageButtonYOffsetByPixel": false,
   "imageButtonYOffset": 10,
-  "imageButtonImageSource": "fromCustom",
+  "imageButtonImageSource": "fromMyComputer",
   "imageButtonOnlineImage": "08A3ACFE-FD5C-1B46-FA40-86DBA3E110FF",
   "imageButtonOfflineImage": "2EF5F854-A5CC-972F-1DC7-6DEA8B50F63A",
   "imageButtonTypeOnMobile": "image",
@@ -3010,7 +3012,7 @@ Content-Type:  application/json
 | `receivingEmailAddressesForArchivingTranscripts` | string | no | no | | |
 | `emailSubjectForArchivingTranscripts` | string | no | no | | |
 | `greetingMessage` | string | no | no | | |
-| `isCustomJSEnabled` | boolean | no | no | | |
+| `isCustomJSEnabled:` | boolean | no | no | | |
 | `customJS` | string | no | no | | |
 
 ### Custom SMTP Server Object
@@ -3705,7 +3707,7 @@ Content-Type:  application/json
 | `id` | Guid | yes | no | | Id of the current item. |
 | `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
 | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
-| `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object) | no | no | | |
+| `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object)[] //不对吧,手动邀请只有一个| no | no | | |
 
 ### Manual Invitation Object
 
@@ -3714,7 +3716,7 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `manualInvitationPosition` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
-| `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromCustom`.  |
+| `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
 | `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
 | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
 | `manualInvitationCloseAreaYOffset` | integer | no | no | | |
@@ -3730,6 +3732,37 @@ Content-Type:  application/json
 | `isManualInvitationTextBold` | boolean | no | no | | |
 | `isManualInvitationTextItalic` | boolean | no | no | | |
 | `manualInvitationTextColor` | string | no | no | | |
+
+### Auto Invitation Object
+
+  Auto Invitation Object is represented as simple flat JSON objects with the following keys:
+
+| Name | Type | Read-only | Mandatory | Default | Description |
+| - | - | :-: | :-: | :-: | - |
+| `id` | Guid | yes | no | | Id of the current item. |
+| `name` | string | no | yes | | |
+| `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
+| `isDisplayedOnceInOneSession` | boolean | no | no | | |
+| `order` | integer | no | no | | |
+| `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
+| `closeAreaXOffset` | integer | no | no | | |
+| `closeAreaYOffset` | integer | no | no | | |
+| `closeAreaWidth` | integer | no | no | | |
+| `closeAreaHeight` | integer | no | no | | |
+| `textAreaXOffset` | integer | no | no | | |
+| `textAreaYOffset` | integer | no | no | | |
+| `textAreaWidth` | integer | no | no | | |
+| `textAreaHeight` | integer | no | no | | |
+| `text` | string | no | no | | |
+| `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
+| `isTextBold` | boolean | no | no | | |
+| `isTextItalic` | boolean | no | no | | |
+| `textColor` | string | no | no | | |
+| `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
+| `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
+| `logicalExpression` | string | no | no | | |
+| `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#live-chat-condition-object) object. |
 
 ## Invitation Endpoints
 
@@ -4039,7 +4072,7 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `manualInvitationPosition` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
-| `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromCustom`.  |
+| `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
 | `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
 | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
 | `manualInvitationCloseAreaYOffset` | integer | no | no | | |
@@ -4221,8 +4254,7 @@ Content-Type:  application/json
 | `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
 | `isDisplayedOnceInOneSession` | boolean | no | no | | |
 | `order` | integer | no | no | | |
-| `imageType` | string | no | no | | Including`fromGallery` and `fromCustom`. |
-| `image` | string | no | no | | Image file key of Invitation.  |
+| `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
 | `closeAreaXOffset` | integer | no | no | | |
 | `closeAreaYOffset` | integer | no | no | | |
 | `closeAreaWidth` | integer | no | no | | |
@@ -4828,8 +4860,8 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `defaultLanguage` | string | yes | no | | The languages are defined in cPanel.  |
-| `isCustomLanguageEnabled` | boolean | no | yes | | |
+| `defaultLanguage` | string | no | no | | The languages are defined in cPanel.  |
+| `isCustomLanguageEnabled` | boolean | no | no | | |
 | `isTextDirectionRightToLeft` | boolean | no | no | | |
 | `customLanguageItems` | [Custom Language](#Custom-Language-Object)[] | no | no | | |
 
@@ -4961,10 +4993,10 @@ Content-Type:  application/json
 | - | - |- | :-: | :-: | :-: | - |
 | `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
 | `type` | string |  | no | no | | Including `simple` and `customRule`. |
-| `routeTo` | string | | no | no | | Including `agent` and `department`. |
+| `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
 | `routeToId` | String | | no | no | | AgentId or DepartmentId. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartment` | [Department](#Department-Object)| yes | no | no | | |
+| `routeToDepartment` | [Department](#Department-Object) //department 对应的链接在哪呢?| yes | no | no | |  |
 | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBot` | integer |  | no | no | | |
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
@@ -5774,7 +5806,7 @@ Content-Type:  application/json
 
 # KB Integration
 
-- `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Get settings of KB Integration for a campaign](#get-KB-Integration)
+- `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Get settings of KB Integration for a campaign](#get-KB-Integration) include knowledgeBase
 - `PUT /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Update settings of KB Integration for a campaign](#update-KB-Integration)
 
 ## Related Object Json Format
@@ -5787,7 +5819,6 @@ Content-Type:  application/json
 | - | - | :-: | :-: | :-: | - |
 | `isEnable` | boolean | no | no | | Whether the KB integration is enabled or not. |
 | `selectedKBId` | Guid | no | no | | |
-| `selectedKB` | [KB](#kb-Object) | yes | no | no | | |
 | `isSearchAllowedBeforeChatting` | boolean | no | no | | |
 | `greetingMessageBeforeChatting` | string | no | no | | |
 | `isSearchAllowedBeforeOfflineMessage` | boolean | no | no | | |
@@ -5808,12 +5839,6 @@ Path Parameters
 | - | - | - | - |
 | `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
-Query string
-
-| Name  | Type | Required  | Default | Description |
-| - | - | - | - | - |
-| `include` | string | no  |  | Available value: `kb` |
-
 #### Response
 
 the response is: [KB Integration](#KB-Integration-Object) Object
@@ -5833,7 +5858,6 @@ Content-Type:  application/json
 {
   "isEnable": false,
   "selectedKBId": "7213D14D-1EAD-6ED7-EA09-D834BAB9F092",
-  "selectedKB": null,
   "isSearchAllowedBeforeChatting": false,
   "greetingMessageBeforeChatting": "",
   "isSearchAllowedBeforeOfflineMessage": false,
@@ -5950,10 +5974,9 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
+| `id` | Guid | yes | no | | Id of the current item. |
 | `isSystem` | boolean | no | no | | whether the field is system or not. |
 | `name` | string | no | no | | |
-
-
 | `type` | string | no | no | | The [Live Chat Field Type](#Live-Chat-Field-Type) of the field. |
 | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | no | no | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
 | `leftText` | string | no | no | | Available whey Type is NPS. |
@@ -8160,16 +8183,7 @@ HTTP/1.1 204 No Content
 | `isVisible` | boolean | | no | no | false | whether the field is visible or not. |
 | `isRequired` | boolean | | no | no | false | whether the field is required or not when submitting the form |
 | `order` | integer | | no | no |1  | the order of the field. |
-| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | no | | the options of the field. |
-
-### Secure Form Field Option JSON Format
-
-  Secure Form Field Option is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Include | Read-only | Mandatory | Default | Description |
-| - | - | - | :-: | :-: | :-: | - |
-| `value` | string | | no | yes | | |
-| `order` | integer | | no | no |1  | |
+| `options` | string |  | no | no | | the options of the field. |
 
 ## Endpoint
 ### Get list of secure form fields
