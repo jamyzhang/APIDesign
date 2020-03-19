@@ -68,8 +68,8 @@ Customer Segment is represented as simple flat JSON objects with the following k
 | `isDepartmentEnabled` |boolean || no|  yes || whether department is enabled or not in the site.|
 | `isAutoTranslationEnabled` |boolean || no | yes || whether auto translation is enabled or not in the site.|
 | `isAudioAndVideoChatEnabled` |boolean || no | yes ||whether audio&video chat is enabled or not in the site.|
-| `iscustomerSegmentEnabled` |boolean || no | yes ||whether customer segment chat is enabled or not in the site.|
-| `isVisitorSSOtEnabled` |boolean || no | yes||whether vistor SSO is enabled or not in the site.|
+| `isCustomerSegmentEnabled` |boolean || no | yes ||whether customer segment chat is enabled or not in the site.|
+| `isVisitorSSOEnabled` |boolean || no | yes||whether vistor SSO is enabled or not in the site.|
 | `isCreditCardMaskingEnabled` |boolean || no | yes ||whether Credit card masking is enabled or not in the site.|
 | `isCustomVariablesEnabled` |boolean || no | yes||whether custom variables are enabled or not in the site.|
 | `isSalesforceEnabled` |boolean || no | yes ||whether Salesforce integration is enabled or not in the site.|
@@ -226,7 +226,7 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `autoDistributionMethod` | string || no | no | method of auto distribution, including `load banlancing` , `round robin` and `capability weighted` |
+| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
 | `isLastChattedAgentPreferred` | boolean || no | no | whether last-chatted agent is preferred or not |
 | `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | no | whether to set the same maximum number of chats for all agents |
 | `maxConcurrentChatsForAllAgents` | integer || no | no | maximum number of chats for all agents |
@@ -242,6 +242,7 @@ Department Auto Distribution Object is represented as simple flat JSON objects w
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `departmentId` | Guid ||  yes| no|| id of department |
+| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
 | `isLastChattedAgentPreferred` | boolean||  no| no|  | whether last-chatted agent is preferred or not |
 | `backupDepartmentId` | Guid ||  no| no|| id of backup department |
 
@@ -253,7 +254,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 | - | - | - | :-: | :-: | :-: | - |
 | `agentId` | integer ||  yes| no|| id of agent |
 | `ifAutoAcceptChat` | boolean||  no| no|| if agent can auto accept chat|
-| `maxConcurrentChats` | boolean ||  no| no|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
+| `maxConcurrentChats` | int ||  no| no|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
 
 ## Endpoint
 
@@ -906,7 +907,7 @@ Dynamic Campaign Rule is represented as simple flat JSON objects with the follow
 | `isEnabled` |boolean || no | yes ||if this rule is enabled.|
 | `conditionMetType` |String || no | yes ||including `all`, `any` and `logicalExpression`.|
 | `logicalExpression` |String || no | no ||the logical expression for conditions.|
-| `targetCampaignId` |integer || no | yes||the id of target [Campaign](#campaign-object).|
+| `targetCampaignId` |Guid || no | yes||the id of target [Campaign](#campaign-object).|
 | `targetCampaign` |[Campaign](#campaign-object) |yes| no | no ||the target [Campaign](#campaign-object) object.|
 | `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no ||an array of [Live Chat Condition](#live-chat-condition-object) object. .|
 | `order` |integer|| no | yes ||the order of this rule|
@@ -1095,7 +1096,7 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `iosType` | string |  | no | yes  | |type of ios |
+| `iosType` | string |  | no | yes  | |type of ios include `APNS`,`thirdParty` |
 | `iosProductionCertificateFileName` | string |  | no | yes | | name of ios prodution certicate file|
 | `iosProductionCertificateFileData` | string |  | no | yes  | | data of ios prodution certicate file|
 | `iosProductionCertificatePassword` | string |  | no | yes  | | password of ios prodution certicate|
@@ -1105,7 +1106,8 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 | `iosApnsPayloadFormat` | string |  | no | yes  | | format of ios Apns payload|
 | `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL|
 | `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers|
-| `androidType` | string |  | no |yes  | |type of android |
+| `iosThirdPartyBody` | string |  | no | yes  | | ios third party Body|
+| `androidType` | string |  | no |yes  | |type of android include `GCM`,`thirdParty` |
 | `androidGcmAPIKey` | string |  | no | yes  | |android gcm API key|
 | `androidGcmExtraData` | string |  | no| yes  | |android gcm extra data |
 | `androidThirdPartyURL` | string |  | no | yes  | |android third party URL |
