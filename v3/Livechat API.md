@@ -1392,7 +1392,7 @@ online visitor is represented as simple flat JSON objects with the following key
 | `id` | Guid |  |  yes| no | | id of the visitor. |
 | `name` | name |  |  yes| no | | name of the visitor. |
 | `email` | string |  | yes | no | | email of the visitor.|
-| `status` | String|  | yes | no| |status of the visitor . including `waitingForChat`,  `voiceChatting`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
+| `status` | String|  | yes | no| |status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
 | `pageViews` | integer|  | yes | no | |the total number of web pages the visitor viewed on your website. |
 | `browser` | string|  | yes | no | |the browser the visitor is using. |
 | `chats` | integer|  | yes | no | |the total times of chats a visitor has made on your website from the first time to present. |
@@ -1438,7 +1438,7 @@ Custom variable result is represented as simple flat JSON objects with the follo
 | - | - |- | :-: | :-: | :-: | - |
 | `name` | string |  |  yes| no | | name of the custom variable.|
 | `value` | string |  |  no| no | | value of the custom variable.|
-| `url` | string |  | no| no | | url of the custom variable.|
+| `url` | string |  | yes| no | | url of the custom variable.|
 
 ## Endpoints
 

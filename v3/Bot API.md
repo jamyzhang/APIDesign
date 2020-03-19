@@ -293,6 +293,8 @@ Query string
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
   | `channel` | string | no  |  | filter by enabled channel |
+  | `include` | string | no  | |  Available value: `greetingMessageInChannel`,`noAnswerMessageInChannel`, `messageAfterSeveralConsecutivePossibleAnswersInChannel` |
+
 
 #### Response
 the response is: list of [Bot](#bot-object) Objects
@@ -842,13 +844,11 @@ Request body
 
   | Name  | Type | Required | Default | Description |     
   | - | - | - | - | - |
-  | `questionId` | Guid | yes  |  | the unique id of the question |
   | `question` | string | yes  |  | the question |
 
   example:
   ```json
   {
-    "questionId": "74e29172-f383-4a2c-9c2d-fb91c3ecbb40",
     "question": "i want to buy nbn"
   }
   ```
@@ -861,7 +861,6 @@ the response is:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "questionId": "74e29172-f383-4a2c-9c2d-fb91c3ecbb40",
     "question": "i want to buy nbn"
   }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:test
 ```
@@ -2070,9 +2069,11 @@ Button is represented as simple flat json objects with the following keys:
   HighConfidenceIntent is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only For Put |Mandatory For Post  | Default | Description |    
-  | - | - | :-: | :-: | - | - | 
-  | `id` | Guid  | N/A | N/A |  | id of the matched intent |
-  | `name` | string  | N/A | N/A |  | name of the matched intent |
+  | - | - | :-: | :-: | - | - |
+  | `questionId` | Guid  | N/A | N/A |  | the unique id of the question |
+  | `question` | string  | N/A | N/A |  | visitor question | 
+  | `intentId` | Guid  | N/A | N/A |  | id of the matched intent |
+  | `intentName` | string  | N/A | N/A |  | name of the matched intent |
   | `score` | float  | N/A | N/A |  | the score of the intent matched, between 0.0 and 100.0 |
   |`answer`| [AnswerInChannel](#AnswerInChannel-object) | N/A | N/A | | | N/A | N/A | | an array of intent answers |
 
@@ -2104,7 +2105,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - | 
-  | `include` | string | no  |  | Available value: `category` |
+  | `include` | string | no  |  | Available value: `category`, `question`, `answerInChannel` |
   | `categoryId` | Guid | no  |  | id of the category, filter by category |
   | `keyword` | string | no  |  | search intents by intent name or question using the keyword |
 
@@ -5349,7 +5350,6 @@ The request body contains data with the follow structure:
   | - | - | :-: | :-: | - | 
   | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `botId` | Guid  | yes | | id of the bot |
-  | `questionId` | Guid  | yes | | the unique id of the question |
   | `question` | string  | yes | | visitor question |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5358,7 +5358,6 @@ example:
   {
     "channel":"Facebook Messenger",
     "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "questionId": "a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
     "question":"i want to buy NBN",
     "extra": {
       "name":"Kart",
@@ -5384,7 +5383,6 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "channel":"Facebook Messenger",
     "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "questionId": "a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
     "question":"i want to buy NBN",
     "extra": {
       "name":"Kart",
@@ -5915,6 +5913,7 @@ Query string
   | Name  | Type | Required| Default  | Description |     
   | - | - | - | - | - | 
   | `keyword` | string | no  | |  search entity name or keyword or synonym by the keyword |
+  | `include` | string | no  | | Available value: `entityKeyword`  | 
 
 #### Response
 the response is: list of [Entity](#entity-object) Objects
@@ -5922,7 +5921,7 @@ the response is: list of [Entity](#entity-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities?include=entityKeyword
 ```
 Response
 ```Json
@@ -5932,11 +5931,30 @@ Response
   [
     {      
       "id":"aaa8sc9d-92e6-4487-a2e8-92e68d6892e6",
-      "name": "size",        
+      "name": "size",
+      "keywords": [   //include entityKeyword
+        {
+          "id":"11e8sc9d-92e6-4487-a2e8-92e68d6892e6",
+          "content":"small",
+          "synonyms": ["Small", "S"]
+        }
+      ]          
     },
     {
       "id":"gg2341sa-92e6-4487-a2e8-92e68d6892e6",
       "name": "city",   
+      "keywords": [   //include entityKeyword
+        {
+          "id":"22e8sc9d-92e6-4487-a2e8-92e68d6892e6",
+          "content":"beijing",
+          "synonyms": ["BEIJING"]
+        },
+        {
+          "id":"22e8sc9d-92e6-4487-a2e8-92e68d6892e6",
+          "content":"hangzhou",
+          "synonyms": ["HANGZHOU"]
+        }
+      ]
     }
   ]
 ``` 
@@ -6457,6 +6475,12 @@ Path parameters
   | - | - | - | - | 
   | `botId` | Guid | yes  |  the unique id of the bot |
  
+ Query string
+
+  | Name  | Type | Required | Default | Description |     
+  | - | - | - | - | - |  
+  | `include` | string | no  |  | Available value: `smartTriggerCondition`, `smartTriggerAction` |
+
 #### Response    
 the response is: list of [Smart Trigger](#Smart-Trigger) Objects
 
@@ -7325,7 +7349,7 @@ Query string
   | Name  | Type | Required | Default | Description |     
   | - | - | - | -  | - | 
   | `type` | string | no  | | Available value: `custom`, `canned` |
-
+  | `include` | string | no | |  Available value: `quickReplyItem`  |
 
 #### Response
 the response is: list of [QuickReply](#quick-reply-object) Objects
