@@ -68,8 +68,8 @@ Customer Segment is represented as simple flat JSON objects with the following k
 | `isDepartmentEnabled` |boolean || no|  yes || whether department is enabled or not in the site.|
 | `isAutoTranslationEnabled` |boolean || no | yes || whether auto translation is enabled or not in the site.|
 | `isAudioAndVideoChatEnabled` |boolean || no | yes ||whether audio&video chat is enabled or not in the site.|
-| `iscustomerSegmentEnabled` |boolean || no | yes ||whether customer segment chat is enabled or not in the site.|
-| `isVisitorSSOtEnabled` |boolean || no | yes||whether vistor SSO is enabled or not in the site.|
+| `isCustomerSegmentEnabled` |boolean || no | yes ||whether customer segment chat is enabled or not in the site.|
+| `isVisitorSSOEnabled` |boolean || no | yes||whether vistor SSO is enabled or not in the site.|
 | `isCreditCardMaskingEnabled` |boolean || no | yes ||whether Credit card masking is enabled or not in the site.|
 | `isCustomVariablesEnabled` |boolean || no | yes||whether custom variables are enabled or not in the site.|
 | `isSalesforceEnabled` |boolean || no | yes ||whether Salesforce integration is enabled or not in the site.|
@@ -226,7 +226,7 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `autoDistributionMethod` | string || no | no | method of auto distribution, including `load banlancing` , `round robin` and `capability weighted` |
+| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
 | `isLastChattedAgentPreferred` | boolean || no | no | whether last-chatted agent is preferred or not |
 | `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | no | whether to set the same maximum number of chats for all agents |
 | `maxConcurrentChatsForAllAgents` | integer || no | no | maximum number of chats for all agents |
@@ -242,6 +242,7 @@ Department Auto Distribution Object is represented as simple flat JSON objects w
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `departmentId` | Guid ||  yes| no|| id of department |
+| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
 | `isLastChattedAgentPreferred` | boolean||  no| no|  | whether last-chatted agent is preferred or not |
 | `backupDepartmentId` | Guid ||  no| no|| id of backup department |
 
@@ -253,7 +254,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 | - | - | - | :-: | :-: | :-: | - |
 | `agentId` | integer ||  yes| no|| id of agent |
 | `ifAutoAcceptChat` | boolean||  no| no|| if agent can auto accept chat|
-| `maxConcurrentChats` | boolean ||  no| no|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
+| `maxConcurrentChats` | int ||  no| no|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
 
 ## Endpoint
 
@@ -906,7 +907,7 @@ Dynamic Campaign Rule is represented as simple flat JSON objects with the follow
 | `isEnabled` |boolean || no | yes ||if this rule is enabled.|
 | `conditionMetType` |String || no | yes ||including `all`, `any` and `logicalExpression`.|
 | `logicalExpression` |String || no | no ||the logical expression for conditions.|
-| `targetCampaignId` |integer || no | yes||the id of target [Campaign](#campaign-object).|
+| `targetCampaignId` |Guid || no | yes||the id of target [Campaign](#campaign-object).|
 | `targetCampaign` |[Campaign](#campaign-object) |yes| no | no ||the target [Campaign](#campaign-object) object.|
 | `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no ||an array of [Live Chat Condition](#live-chat-condition-object) object. .|
 | `order` |integer|| no | yes ||the order of this rule|
@@ -1095,7 +1096,7 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `iosType` | string |  | no | yes  | |type of ios |
+| `iosType` | string |  | no | yes  | |type of ios include `APNS`,`thirdParty` |
 | `iosProductionCertificateFileName` | string |  | no | yes | | name of ios prodution certicate file|
 | `iosProductionCertificateFileData` | string |  | no | yes  | | data of ios prodution certicate file|
 | `iosProductionCertificatePassword` | string |  | no | yes  | | password of ios prodution certicate|
@@ -1105,7 +1106,8 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 | `iosApnsPayloadFormat` | string |  | no | yes  | | format of ios Apns payload|
 | `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL|
 | `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers|
-| `androidType` | string |  | no |yes  | |type of android |
+| `iosThirdPartyBody` | string |  | no | yes  | | ios third party Body|
+| `androidType` | string |  | no |yes  | |type of android include `GCM`,`thirdParty` |
 | `androidGcmAPIKey` | string |  | no | yes  | |android gcm API key|
 | `androidGcmExtraData` | string |  | no| yes  | |android gcm extra data |
 | `androidThirdPartyURL` | string |  | no | yes  | |android third party URL |
@@ -1670,24 +1672,24 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | string |  | yes | no | | id of the session. |
-| `startTime` | datetime | | no | no |  | time of this session start. |
-| `ip` | string |  | no | no | |  |
-| `referrerURL` | string |  | no | no | | The rest part of URL will be abandoned if the URL is too long. |
-| `searchEngine` | string |  | no | no | |  |
-| `keywords` | string |  | no | no | |  |
-| `browser` | string | | no | no | |  |
-| `flashVersion` | string |  | no | no | |  |
-| `language` | string |  | no | no | |  |
-| `screenResolution` | string |  | no | no | |  |
-| `operatingSystem` | integer |  | no | no | |  |
-| `timeZone` | string |  | no | no | |  |
-| `landingPageURL` | string |  | no | no | |  |
-| `landingPageTitle` | string | | no | no | |  |
-| `visitorId` | Guid | | no | no | | the id of the visitor |
-| `visitor` | [Visitor](#visitor) | yes | no | no | | Available only when visitor is included  |
-| `contactId` | Guid | | no | no | | the id of the contact  |
-| `contact` | [Contact](#contact) | yes | no | no | | Available only when contact is included  |
+| `id` | Guid |  | N/A | N/A | | id of the session. |
+| `startTime` | datetime | | N/A | N/A |  | time of this session start. |
+| `ip` | string |  | N/A | N/A | |  |
+| `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
+| `searchEngine` | string |  | N/A | N/A | |  |
+| `keywords` | string |  | N/A | N/A | |  |
+| `browser` | string | | N/A | N/A | |  |
+| `flashVersion` | string |  | N/A | N/A | |  |
+| `language` | string |  | N/A | N/A | |  |
+| `screenResolution` | string |  | N/A | N/A | |  |
+| `operatingSystem` | integer |  | N/A | N/A | |  |
+| `timeZone` | string |  | N/A | N/A | |  |
+| `landingPageURL` | string |  | N/A | N/A | |  |
+| `landingPageTitle` | string | | N/A | N/A | |  |
+| `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
+| `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
+| `contactId` | integer | | N/A | N/A | | the id of the contact  |
+| `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
 
 ## Endpoint
 
@@ -1761,36 +1763,39 @@ Response
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | no | no | | id of the chat. |
-| `agentIds` | integer[] |  | no | no | | Maximum four agents can join a chat. |
-| `agents` | [Agent](#agent-object)[] | yes | no | no | | Chatbot is a type of agent. |
-| `startTime` | datetime | | no | no | |  |
-| `endTime` | datetime | | no | no | |  |
-| `ifQueued` | boolean | | no | no | |  |
-| `ifAudioChatHappened` | boolean | | no | no | false |  |
-| `ifVideoChatHappened` | boolean | | no | no | false |  |
-| `messages` | [Chat Message](#Chat-Message-object)[] | | no | no |  | |
-| `status` | string | | no | no |  | Including `normal`, `refused` and `missed`. |
-| `requestingPageTitle` | string | | no | no |  |  |
-| `requestingPageURL` | string | | no | no |  | |
-| `source` | string | | no | no |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
-| `autoInvitationId` | Guid | | no | no |  | |
-| `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | no | no |  |  |
-| `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) | yes | no | no |  |  |
-| `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) | yes | no | no |  |  |
-| `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) | yes | no | no |  |  |
-| `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) | yes | no | no |  |  |
-| `requestedTime` | datetime | | no | no | | The time when the chat is requested. |
-| `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | no | no |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
-| `avgResponseTime` | float | | no | no | |  |
-| `visitorMessagesCount` | integer | | no | no | 0 | The number of messages sent by Visitors. |
-| `agentMessagesCount` | integer | | no | no | 0 | The number of messages sent by Agents. |
-| `campaignId` | Guid | | no | no |  |  |
-| `campaign` | [Campaign](#campaign) | yes | no | no |  |  |
-| `lastMessageSentBy` | string | | no | no |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
-| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | |
-| `sessionId` | Guid | | no | no |  | id of session |
-| `session` | [Session](#session) | yes | no | no |  |  the related [Session](#session) object|
+| `id` | Guid |  | N/A | N/A | | id of the chat. |
+| `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
+| `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
+| `startTime` | datetime | | N/A | N/A | |  |
+| `endTime` | datetime | | N/A | N/A | |  |
+| `ifQueued` | boolean | | N/A | N/A | |  |
+| `ifAudioChatHappened` | boolean | | N/A | N/A | false |  |
+| `ifVideoChatHappened` | boolean | | N/A | N/A | false |  |
+| `messages` | [Chat Message](#Chat-Message-object)[] | | N/A | N/A |  | |
+| `status` | string | | N/A | N/A |  | Including `normal`, `refused` and `missed`. |
+| `requestingPageTitle` | string | | N/A | N/A |  |  |
+| `requestingPageURL` | string | | N/A | N/A |  | |
+| `source` | string | | N/A | N/A |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
+| `autoInvitationId` | Guid | | N/A | N/A |  | |
+| `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | N/A | N/A |  |  |
+| `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) |  | N/A | N/A |  |  |
+| `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) |  | N/A | N/A |  |  |
+| `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) |  | N/A | N/A |  |  |
+| `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) |  | N/A | N/A |  |  |
+| `requestedTime` | datetime | | N/A | N/A | | The time when the chat is requested. |
+| `offlineMessageId` | integer | | N/A | N/A | |  |
+| `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | N/A | N/A |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
+| `avgResponseTime` | float | | N/A | N/A | |  |
+| `visitorMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Visitors. |
+| `agentMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Agents. |
+| `campaignId` | Guid | | N/A | N/A |  |  |
+| `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
+| `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
+| `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | |
+| `sessionId` | integer | | N/A | N/A |  | id of session |
+| `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
+| `botId` | Guid | | N/A | N/A |  | id of chatbot |
+| `chatBot` | [ChatBot](#chatBot) | yes | N/A | N/A |  |  the related [ChatBot](#chatBot) object|
 
 ### Chat Message Object
 
@@ -1798,13 +1803,12 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `type` | string | no  | no | | Including `system`, `visitor`, `agent`, `chatbot` and `note`. |
-| `senderName` | string | no  | no | |  |
-| `sentTime` | datetime | no  | no | |  |
-| `content` | string | no  | no | | |
-| `translatedMessage` | string | no  | no | |  |
-| `attachment` | byte[] | no | no | |  | The attachment file data |
-| `attachmentName` | string | no | no | |  | The attachment file name |
+| `type` | string | N/A  | N/A | | Including `system`, `visitor`, `agent`, `chatbot` and `note`. |
+| `senderName` | string | N/A  | N/A | |  |
+| `sentTime` | datetime | N/A  | N/A | |  |
+| `content` | string | N/A  | N/A | | |
+| `translatedMessage` | string | N/A  | N/A | |  |
+| `attachmentUrl` | string | N/A | N/A | |  | The attachment file Url |
 
 ### Chat Pre-Chat Object
 
@@ -1812,15 +1816,17 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `socialMediaSource` | string | no  | no | |  Including `none` and `facebook`. |
-| `socialProfileURL` | string | no  | no | |  |
-| `name` | string | no  | no   | |  |
-| `email` | string | no  | no | | |
-| `phone` | string | no  | no   | |  |
-| `company` | string | no  | no | | |
-| `productService` | string | no  | no   | |  |
-| `ticketID` | string | no  | no | | |
-| `fieldValues` | [Field Value](#field-value-json-format)[] | no | no | |  |  |
+| `socialMediaSource` | string | N/A  | N/A | |  Including `none` and `facebook`. |
+| `socialProfileURL` | string | N/A  | N/A | |  |
+| `name` | string | N/A  | N/A   | |  |
+| `email` | string | N/A  | N/A | | |
+| `phone` | string | N/A  | N/A   | |  |
+| `company` | string | N/A  | N/A | | |
+| `productService` | string | N/A  | N/A   | |  |
+| `ticketID` | string | N/A  | N/A | | |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
+| `departmentId` | Guid | N/A  | N/A | | |
+| `department` | [Department](#department) | N/A  | N/A | | |
 
 ### Chat Post Chat  Object
 
@@ -1839,19 +1845,11 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `categories` | string[] | no | no | |   |
-| `comment` | string | no | no | |   |
-| `lastUpdatedTime` | datetime | no | no | |   |
-| `lastUpdatedByAgentId` | Guid | no | no | |  Id of the agent. |
-| `fieldValues` | [Field Value](#field-value-json-format)[] | no | no | |  |  |
-
-### Chat Custom Variable Object
-
-  Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Read-only | Mandatory | Default | Description |
-| - | - | :-: | :-: | :-: | - |
-| `fieldValues` | [Field Value](#field-value-json-format)[] | no | no | |  |  |
+| `categories` | string[] | N/A | N/A | |   |
+| `comment` | string | N/A | N/A | |   |
+| `lastUpdatedTime` | datetime | N/A | N/A | |   |
+| `lastUpdatedByAgentId` | int | N/A | N/A | |  Id of the agent. |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 
 ## Endpoint
 
@@ -1865,8 +1863,9 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`. |
-| `requestedTime` | datetime | no  | today | The time range of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`,`offlineMessage`. |
+| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
@@ -7106,18 +7105,18 @@ Response
 
   Ban is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read-only | Mandatory | Default | Description |
+| Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | string | | yes | no | | id of the ban. |
+| `id` | Guid | | yes | N/A | | id of the ban. |
 | `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
-| `visitorId` | Guid | | no | no | | visitor's id of the ban if `type` is `visitor`  |
-| `visitor` | [Visitor](#visitor) | yes | no | no | |  Available only when visitor is included  |
+| `visitorId` | Guid | | no | yes | | visitor's id of the ban if `type` is `visitor`  |
+| `visitor` | [Visitor](#visitor) | yes | N/A | N/A | |  Available only when visitor is included  |
 | `ip` | string  |  | no | yes | | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` |
 | `ipRangeFrom` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
 | `ipRangeTo` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
 | `comment` | string | | no | no | | comment of the ban. |
-| `lastUpdatedBy` | Guid | | no | no | | comment of the ban. |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included  |
+| `lastUpdatedByAgentId` | intger | | N/A | N/A | | comment of the ban. |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
 
 ## Endpoint
 
@@ -7370,31 +7369,31 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | string | | yes | no | | id of the conversion action. |
+| `id` | guid | | yes | no | | id of the conversion action. |
 | `name` | string | | no | yes |  | name of the conversion action. |
 | `isEnable` | boolean | | no | no | | whether the conversion action is enabled or not. |
-| `type` | string | | no | no | | type of the conversion action, including `url`, `customVariable` and `api`. |
+| `type` | string | | no | yes | | type of the conversion action, including `url`, `customVariable` and `api`. |
 | `customVariableUsedToDetermineConversion` | string  | | no | no |  | the name of the custom variable, available when `type` is `customVariable`. |
 | `operator` | string | | no | no | | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
 | `value` | string | | no | no |  | match value of the conversion action, available when `type` is `customVariable` or `url`. |
 | `isCaseSensitive` | boolean | | no | no | | whether the conversion action is case sensitive or not, available when `type` is `url`. |
 | `isValueAssignedToConversion` | boolean | | no | no |  | whether a value is assigned for the conversion action or not. |
 | `valueSource` | string | | no | no |  | including `inputAValue`, `getFromCustomVariable` |
-| `assignedValueFromInputting` | string | | no | no |  | the value assigned for the conversion action |
+| `assignedValueFromInputting` | integer | | no | no |  | the value assigned for the conversion action, between 1 and 999999999 |
 | `assignedValueFromCustomVariable` | string | | no | no |  | the value comes from the custom variable |
 | `chatAssociatedWithConversion` | string | | no | no |  | including `theFirstChat`, `theLastChat` |
 | `isChatInLastCertainDaysConsidered` | boolean | | no | no |  |  |
 | `chatInLastDays` | integer | | no | no |   | between 1 and 30 |
 | `isChatWithAtLeastCertainVisitorMessagesConsidered` | boolean | | no | no | |  |
-| `visitorMessagesAtLeast` | integer | | no | no | |   |
+| `visitorMessagesAtLeast` | integer | | no | no | | between 1 and 999  |
 | `isVariableIncludedInTranscript` | boolean | | no | no |  |  |
-| `appendFieldList` | string | | no | no |  |  |
-| `createdTime` | datetime | | no | no |  |  |
-| `createdBy` | integer | | no | no |  |  |
-| `createdAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included  |
-| `lastUpdatedTime` | datetime | | no | no |  | |
-| `lastUpdatedBy` | integer | | no | no |  | |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included |
+| `appendFieldList` | string[] | | no | no |  |  |
+| `createdTime` | datetime | | N/A | N/A |  |  |
+| `createdByAgentId` | integer | | N/A | N/A |  |  |
+| `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+| `lastUpdatedTime` | datetime | | N/A | N/A |  | |
+| `lastUpdatedByAgentId` | integer | | N/A | N/A |  | |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
 
 ## Endpoint
 
