@@ -1688,7 +1688,7 @@ Content-Type:  application/json
 | `landingPageTitle` | string | | N/A | N/A | |  |
 | `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
 | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
-| `contactId` | Guid | | N/A | N/A | | the id of the contact  |
+| `contactId` | integer | | N/A | N/A | | the id of the contact  |
 | `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
 
 ## Endpoint
