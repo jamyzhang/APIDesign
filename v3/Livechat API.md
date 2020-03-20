@@ -1453,7 +1453,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `status` | boolean | no  | false |  status of this chat |
+| `status` |string| no  | false |  status of this chat |
 
 #### Response
 
