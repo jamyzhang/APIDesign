@@ -1453,7 +1453,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `status` |string| no  | false |  status of this chat |
+| `status` |string| no  | |  status of this chat |
 
 #### Response
 
@@ -1464,7 +1464,7 @@ the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/visitors?onlyChattingVisitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/visitors?status=chatting
 ```
 Response
 ```Json
@@ -1525,11 +1525,7 @@ Path parameters
 | - | - | - | - |
 | `id` | Guid | yes  |  id of live chat visitor|
 
-Query string
 
-| Name  | Type | Required | Default | Description |
-| - | - | :-: | :-: | - |
-| `onlyChattingVisitor` | boolean | no  | false |  if only return the chatting visitor. |
 
 #### Response
 
@@ -1540,7 +1536,7 @@ the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d?onlyChattingVisitor=false
+-X GET https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 Response
 ```Json
