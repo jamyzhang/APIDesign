@@ -1604,13 +1604,13 @@ the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 Using curl
 ```
-curl -H "Content-Type: application/json" -d '{
-      "customVariableResults": [
+curl -H "Content-Type: application/json" -d '[
         {
           "name": "justfortestupdate",
           "value": "text",
           "url": "bbbbb"
-        }
+        },
+        ...
       ]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
