@@ -1526,7 +1526,6 @@ Path parameters
 | `id` | Guid | yes  |  id of live chat visitor|
 
 
-
 #### Response
 
 the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
@@ -2204,9 +2203,18 @@ HTTP/1.1 204 No Content
 | `sessionId` | Guid | | no | no |  | id of the session |
 | `session` | [Session](#session) | yes | no | no |  | Available only when session is included |
 | `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | an array of [Customer Segment](#customer-segment) |
-| `fieldValues` | [Field Value](#field-value-json-format)[] | | no | no |  | values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
-| `attachment` | byte[] | | no | no |  | the attachment file data |
-| `attachmentName` | string | | no | no |  | the attachment file name |
+| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
+| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
+| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | the attachment file data |
+
+### Attachment JSON format
+
+ Attachment is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Include | Read-only | Mandatory | Default | Description |
+| - | - |- | :-: | :-: | :-: | - |
+| `name` | string |  | no | no | | file name of this attachment |
+| `uri` | string | | no | no |  | url for download this attachment |
 
 ### Field Value JSON format
 
@@ -2312,7 +2320,7 @@ Response
                 "browser": "Firefox",
                 ...
             },
-            "fieldValues": [],
+            "customFields": [],
             "customerSegments": [],
             "attachment": [file binary data],
             "attachmentName": "comm100SDK.css"
