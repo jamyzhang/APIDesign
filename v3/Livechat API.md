@@ -1397,6 +1397,7 @@ online visitor is represented as simple flat JSON objects with the following key
 | `browser` | string|  | yes | no | |the browser the visitor is using. |
 | `chats` | integer|  | yes | no | |the total times of chats a visitor has made on your website from the first time to present. |
 | `city` | string|  | yes | no | |the city of the visitor. |
+| `company` | string|  | yes | no | |the company of the visitor. |
 | `country` | string|  | yes | no | |the country of the visitor. |
 | `currentBrowsing` | string|  | yes | no | |the page the visitor is currently looking at. |
 | `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
@@ -1592,6 +1593,27 @@ Path parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  id of online visitor|
+
+Request body 
+
+  The request body is an array of [Custom Variable Result](#custom-variable-result-object) object.
+
+  example:
+```Json
+[
+  {
+    "name": "justfortestupdate",
+    "value": "text",
+    "url": "bbbbb"
+  },
+   {
+    "name": "justfortestupdate2",
+    "value": "text",
+    "url": ""
+  },
+  ...
+]
+```
 
 #### Response
 
