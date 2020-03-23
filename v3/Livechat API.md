@@ -1379,7 +1379,7 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
-- `PUT /api/v3/livechat/visitors/{id}` - [Update visitor custom variable](#update-visitor-custom-variable)  
+- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable](#update-a-visitor's-custom-variable)  
 
 ## Related Object JSON Format
 
@@ -1581,7 +1581,7 @@ Content-Type:  application/json
 }
 ```
 
-### Update visitor custom variable
+### update a visitor's custom variable
 
 `PUT /api/v3/livechat/visitors/{id}`
 
@@ -2190,7 +2190,6 @@ HTTP/1.1 204 No Content
 | `department` | [Department](#department) | yes | no | no |  | Available only when department is included |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to |
 | `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included |
-| `ticketId` | integer | | no | no |  |  |
 | `subject` | string | | no | no |  | the subject of this offline message|
 | `message` | string | | no | no | | the content of this offline message |
 | `requestingPageTitle` | string | | no | no |  |  |
@@ -2431,7 +2430,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/10
 ```
 Response
 ```json
