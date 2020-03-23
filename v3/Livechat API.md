@@ -2214,7 +2214,7 @@ HTTP/1.1 204 No Content
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `name` | string |  | no | no | | file name of this attachment |
-| `uri` | string | | no | no |  | url for download this attachment |
+| `uri` | string | | no | no |  | uri for download this attachment |
 
 ### Field Value JSON format
 
@@ -2275,7 +2275,7 @@ Response
     "nextPage": "https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session&pageIndex=2",
     "list": [
         {
-            "id": "a2317d24-bec0-43e5-aaf5-2eae29ce948f",
+            "id": 10,
             "createdTime": "2019-01-05T07:17:08.89",
             "name": "allon",
             "email": "allon@comm100.com",
@@ -2339,7 +2339,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the offline message  |
+| `id` | Integer | yes  |  the id of the offline message  |
 
 Query string
 
@@ -2356,12 +2356,12 @@ the response is: [Offline Message](#offline-message-json-format) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=department,agent,campaign,autoInvitation, session
+-X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/10?include=department,agent,campaign,autoInvitation, session
 ```
 Response
 ```json  
 {
-    "id": "a2317d24-bec0-43e5-aaf5-2eae29ce948f",
+    "id": 10,
     "createdTime": "2019-01-05T07:17:08.89",
     "name": "allon",
     "email": "allon@comm100.com",
@@ -2422,7 +2422,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the offline message  |
+| `id` | integer | yes  |  the id of the offline message  |
 
 
 #### Response
