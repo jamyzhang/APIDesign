@@ -2791,8 +2791,6 @@ Content-Type:  application/json
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
 | `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
 | `adaptiveButtonIconType` | integer | no | no | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
-| `adaptiveButtonOnlineIcon` | string | no | no | | Image file key of the chat online button, available when `type` is `adaptive`. |
-| `adaptiveButtonOfflineIcon` | string | no | no | | Image file key of the chat offline button, available when `type` is `adaptive`. |
 | `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
 | `imageButtonPosition` | string | no | no | | Position of the image button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
 | `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
@@ -2848,8 +2846,6 @@ Content-Type:  application/json
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2895,8 +2891,6 @@ example:
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2932,8 +2926,6 @@ curl -H "Content-Type: application/json" -d '{
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2965,8 +2957,6 @@ Content-Type:  application/json
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
