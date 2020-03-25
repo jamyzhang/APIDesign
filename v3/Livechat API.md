@@ -7120,7 +7120,7 @@ Response
 
 - `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
 - `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
-- `POST /api/v3/livechat/bans` - [Create a ban](#get-a-ban)
+- `POST /api/v3/livechat/bans` - [Create a ban](#create-a-ban)
 - `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban)
 - `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
 
@@ -7132,16 +7132,16 @@ Response
 
 | Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | | yes | N/A | | id of the ban. |
+| `id` | Guid | | yes | no| | id of the ban. |
 | `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
-| `visitorId` | Guid | | no | yes | | visitor's id of the ban if `type` is `visitor`  |
-| `visitor` | [Visitor](#visitor) | yes | N/A | N/A | |  Available only when visitor is included  |
-| `ip` | string  |  | no | yes | | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` |
-| `ipRangeFrom` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
-| `ipRangeTo` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
+| `visitorId` | Guid | | no | yes | | mandatory when `type` is `visitor` |
+| `visitor` | [Visitor](#visitor) | yes | no | no | |  available only when visitor is included  |
+| `ip` | string  |  | no | yes | | ip address of the ban, mandatory when `type` is `ip`. |
+| `ipRangeFrom` | string | | no | yes | | mandatory when `type` is `ipRange`. |
+| `ipRangeTo` | string | | no | yes | | mandatory when `type` is `ipRange`. |
 | `comment` | string | | no | no | | comment of the ban. |
-| `lastUpdatedByAgentId` | intger | | N/A | N/A | | comment of the ban. |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+| `lastUpdatedByAgentId` | integer | | yes | no | | |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included  |
 
 ## Endpoint
 
@@ -7251,7 +7251,7 @@ Response
 }
 ```
 
-### Create a new ban
+### Create a ban
 
   `POST /api/v3/livechat/bans`
 
