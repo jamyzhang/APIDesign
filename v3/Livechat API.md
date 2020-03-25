@@ -553,7 +553,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
   | - | - | - | :-: | :-: | :-: | - |
   | `id` |Guid  || yes | no || id of the customer segment.
   | `name` |string  || no | yes || name of the customer segment.
-  | `color` |string  || no | no |'339FD9'| color of the customer segment
+  | `color` |string  || no | no |'#339FD9'| color of the customer segment
   | `isEnabled` |boolean  || no | no |false| whether the customer segment is enabled or not.
   | `order` |int  || no | no |maximum order + 1 | order of the customer segment.
   | `description` |string  || no | no || description of the customer segment.
@@ -612,7 +612,7 @@ Content-Type:  application/json
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "name": "livechat15293908029",
-    "color": "339FD9",
+    "color": "#339FD9",
     "isEnabled": false,
     "order": 1,
     "description": "",
@@ -666,7 +666,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "livechat15293908029",
-  "color": "339FD9",
+  "color": "#339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -701,7 +701,7 @@ example:
 ```Json
 {
   "name": "livechat15293908029",
-  "color": "339FD9",
+  "color": "#339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -732,7 +732,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
   "name": "livechat15293908029",
-  "color": "339FD9",
+  "color": "#339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -760,7 +760,7 @@ Location: https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-9
 Content-Type:  application/json
 {
   "name": "livechat15293908029",
-  "color": "339FD9",
+  "color": "#339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -803,7 +803,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
   "name": "livechat15293908029",
-  "color": "339FD9",
+  "color": "#339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -831,7 +831,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "livechat15293908029",
-  "color": "339FD9",
+  "color": "#339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -2513,7 +2513,7 @@ HTTP/1.1 204 No Content
 |`id` | Guid | yes | no | | Id of the current item.  |
 | `name` | string  | no | yes | `Default Plan` | |
 | `description` | string  | no | no | | |
-| `language` | string | no | no | `English` | The languages are defined in cPanel.  |
+| `language` | string | no | yes | `English` | The languages are defined in cPanel.  |
 
 ## Campaign Endpoints
 
@@ -3501,6 +3501,7 @@ Content-Type:  application/json
 | `isEnable` | boolean | no | no | | Whether the pot chat is enabled or not. |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
 | `greetingMessage` | string | no | no | | |
+| `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
 ## Post Chat Endpoints
 
@@ -3535,7 +3536,8 @@ Content-Type:  application/json
 {
   "isEnable":  false,
   "fields":  [],
-  "greetingMessage": ""
+  "greetingMessage": "",
+  "formFieldLayoutStyle": "leftofInput"
 }
 ```
 
@@ -3560,7 +3562,8 @@ example:
 {
   "isEnable":  true,
   "fields":  [],
-  "greetingMessage": ""
+  "greetingMessage": "",
+  "formFieldLayoutStyle": "leftofInput"
 }
 ```
 
@@ -3575,7 +3578,8 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "isEnable":  true,
   "fields":  [],
-  "greetingMessage": ""
+  "greetingMessage": "",
+  "formFieldLayoutStyle": "leftofInput"
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
 ```
 
@@ -3586,7 +3590,8 @@ Content-Type:  application/json
 {
   "isEnable":  true,
   "fields":  [],
-  "greetingMessage": ""
+  "greetingMessage": "",
+  "formFieldLayoutStyle": "leftofInput"
 }
 ```
 
@@ -3609,6 +3614,7 @@ Content-Type:  application/json
 | `greetingMessage` | string | no | no | | |
 | `emailOfflineMessageTo` | string | no | no | | Including `allAgents` and `customEmailAddresses`, available when routing rule is disabled. |
 | `customEmailAddresses` | string | no | no | |  Available when routing rule is disabled.  |
+| `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 
 ## Campaign Offline Message Endpoints
@@ -3648,6 +3654,7 @@ Content-Type:  application/json
   "greetingMessage": "",
   "emailOfflineMessageTo": "allAgents",
   "customEmailAddresses": "",
+  "formFieldLayoutStyle": "leftofInput",
   "fields":  []
 }
 ```
@@ -3677,6 +3684,7 @@ example:
   "greetingMessage": "",
   "emailOfflineMessageTo": "allAgents",
   "customEmailAddresses": "",
+  "formFieldLayoutStyle": "leftofInput",
   "fields":  []
 }
 ```
@@ -3696,6 +3704,7 @@ curl -H "Content-Type: application/json" -d '{
   "greetingMessage": "",
   "emailOfflineMessageTo": "allAgents",
   "customEmailAddresses": "",
+  "formFieldLayoutStyle": "leftofInput",
   "fields":  []
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
 ```
@@ -3711,6 +3720,7 @@ Content-Type:  application/json
   "greetingMessage": "",
   "emailOfflineMessageTo": "allAgents",
   "customEmailAddresses": "",
+  "formFieldLayoutStyle": "leftofInput",
   "fields":  []
 }
 ```
@@ -4929,7 +4939,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "defaultLanguage": "",
+  "defaultLanguage": "English",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -4958,7 +4968,7 @@ Request Body
 example:
 ```Json
 {
-  "defaultLanguage": "",
+  "defaultLanguage": "English",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -4977,7 +4987,7 @@ the response is: [Language](#Language-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "defaultLanguage": "",
+  "defaultLanguage": "English",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -4992,7 +5002,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "defaultLanguage": "",
+  "defaultLanguage": "English",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -5963,9 +5973,9 @@ Content-Type:  application/json
 - `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a new form field of offline message for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
 - `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get all form fields of agent wrapup for a campaign](#get-all-form-fields-of-Agent-Wrap-up-for-a-campaign)
 - `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a new form field of agent wrapup for a campaign](#create-a-new-form-fields-of-Agent-Wrap-up-for-a-campaign)
-- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
-- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
-- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
+- `GET /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
+- `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
 ## Related Object Json Format
 
@@ -6043,7 +6053,7 @@ Content-Type:  application/json
 | `NPS` | `Post Chat`  |
 | `file` | `Offline Message`   |
 | `rating` | `Post Chat` |
-| `checkboxListwithOptionGroups` | `Agent Wrap-Up`   |
+| `checkboxListWithOptionGroups` | `Agent Wrap-Up`   |
 
 ### Live Chat Field Option Object
 

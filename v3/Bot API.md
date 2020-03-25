@@ -5374,7 +5374,7 @@ The response body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`possibleAnswer`、`noAnswer` |
-  | `smartTriggerActions` | [SmartTriggerAction](#action)[] | no |  | an array of [SmartTriggerAction](#action) objects. |
+  | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] | no |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
   | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer);when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
 
 #### Example
@@ -5399,7 +5399,6 @@ Response
 
   {
     "type": "highConfidenceAnswer",
-    "smartTriggerActions":[],
     "content": {
       "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
       "name": "buy nbn",
@@ -5466,8 +5465,10 @@ The response body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `smartTriggerActions` | [SmartTriggerAction](#action)[] | no |  | an array of [SmartTriggerAction](#action) objects. |
-  | `content` |  [HighConfidenceAnswer](#HighConfidenceAnswer) | yes |  | response's content |
+  | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`noAnswer` |
+  | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] | no |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+
 
 #### Example
 Using curl
@@ -5489,7 +5490,7 @@ Response
   Content-Type:  application/json
 
   {
-    "smartTriggerActions":[],
+    "type": "highConfidenceAnswer",
     "content": {
       "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
       "name": "buy nbn",
@@ -5541,7 +5542,13 @@ example:
 ```
 
 #### Response
-the response is: [HighConfidenceAnswer](#HighConfidenceAnswer) Object
+The response body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |    
+  | - | - | :-: | :-: | - | 
+  | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`noAnswer` |  
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+
 
 #### Example
 Using curl
@@ -5561,8 +5568,9 @@ Response
 ```Json
   HTTP/1.1 200 OK
   Content-Type:  application/json
-
-  {
+{
+  "type": "highConfidenceAnswer",
+  "content": {
     "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
     "name": "buy nbn",
     "score": 100,
@@ -5574,6 +5582,7 @@ Response
       }
     }     
   }
+}
 ```
 
 ### Submit Location
@@ -5611,7 +5620,13 @@ example:
 ```
 
 #### Response
-the response is: [HighConfidenceAnswer](#HighConfidenceAnswer) Object
+The response body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |    
+  | - | - | :-: | :-: | - | 
+  | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`noAnswer` |  
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+
 
 #### Example
 Using curl
@@ -5632,7 +5647,9 @@ Response
   HTTP/1.1 200 OK
   Content-Type:  application/json
 
-  {
+{
+  "type": "highConfidenceAnswer",
+  "content": {
     "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
     "name": "buy nbn",
     "score": 100,
@@ -5660,6 +5677,7 @@ Response
       }
     }     
   }
+}
 ```
 
 ### Submit Form
@@ -5706,7 +5724,13 @@ example:
 ```
 
 #### Response
-the response is: [HighConfidenceAnswer](#HighConfidenceAnswer) Object
+The response body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |    
+  | - | - | :-: | :-: | - | 
+  | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`noAnswer` |  
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+
 
 #### Example
 Using curl
@@ -5735,7 +5759,9 @@ Response
 ```Json
   HTTP/1.1 200 OK
   Content-Type:  application/json
-  {
+{
+  "type": "highConfidenceAnswer",
+  "content": {
     "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
     "name": "buy nbn",
     "score": 100,
@@ -5759,6 +5785,7 @@ Response
       ]
     } 
   }  
+}
 ```
 
 ### Rate the bot answer as helpful or not helpful
@@ -5806,7 +5833,7 @@ If rate the bot as not helpful, the response body contains data with the follow 
   | - | - | :-: | :-: | - | 
   |`messageWhenNotHelpful` | string | yes |  | text of the message  | 
   |`ifIncludeContactAgentOptionWhenNotHelpful` | bool | yes |  | include Contact An Agent or not . |  
-  | `smartTriggerActionsWhenNotHelpful` | [SmartTriggerAction](#action)[] | no | | if smart trigger conditions contain the condition `rate as not helpful is true` |
+  | `smartTriggerActionsWhenNotHelpful` | [SmartTriggerAction](#smart-trigger-action-object)[] | no | | if smart trigger conditions contain the condition `rate as not helpful is true` |
 
 #### Example
 - Rate the bot as not helpful
