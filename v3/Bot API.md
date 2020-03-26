@@ -5443,6 +5443,7 @@ The request body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `botId` | Guid  | yes | | id of the bot |
   | `intentId` | Guid  | yes | | id of the intent triggered |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5450,6 +5451,7 @@ example:
 ```Json 
   {
     "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "intentId":"8d6892e6-92e6-4487-a2e8-92e68d6892e6",
     "extra": {
       "name":"Kart",
@@ -5475,6 +5477,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "intentId":"8d6892e6-92e6-4487-a2e8-92e68d6892e6",
     "extra": {
       "name":"Kart",
@@ -5524,6 +5527,7 @@ The request body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `botId` | Guid  | yes | | id of the bot |
   | `authentication` | string  | yes | | authentication data |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5531,6 +5535,7 @@ example:
 ```Json 
   {
     "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "authentication": "vcw1fc9d-92e6-4487-a2e8-92e68d68dsww",
     "extra": {
       "name":"Kart",
@@ -5555,6 +5560,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "authentication": "vcw1fc9d-92e6-4487-a2e8-92e68d68dsww",
     "extra": {
       "name":"Kart",
@@ -5602,6 +5608,7 @@ The request body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `botId` | Guid  | yes | | id of the bot |
   | `location` | string  | yes | | the longitude and latitude of the location, eg: "39.900000,116.300000" |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5609,6 +5616,7 @@ example:
 ```Json 
   {
     "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "location":"39.9000,116.3000",
     "extra": {
       "name":"Kart",
@@ -5633,6 +5641,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "location":"39.9000,116.3000",
     "extra": {
       "name":"Kart",
@@ -5697,6 +5706,7 @@ The request body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `botId` | Guid  | yes | | id of the bot |
   |`formValues` | [FieldValue](#FieldValue-object)[] | yes | | an array of [FieldValue](#FieldValue-object) objects |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
@@ -5704,6 +5714,7 @@ example:
 ```Json 
   {
     "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "formValues": [
       {
         "name":"email",
@@ -5737,6 +5748,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "channel":"Facebook Messenger",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "formValues": [
       {
         "name":"email",
@@ -5860,7 +5872,7 @@ curl -H "Content-Type: application/json" -d '{
   {
     "messageWhenNotHelpful":"I am sorry that this doesn't answer your question. Please click on following button to connect to an agent.",
     "ifIncludeContactAgentOptionWhenNotHelpful": true,
-    "smartTriggerActions":[
+    "smartTriggerActionsWhenNotHelpful":[
       {
         "type":"transfer", 
         "isEnabled": true,
@@ -5878,7 +5890,6 @@ curl -H "Content-Type: application/json" -d '{
 curl -H "Content-Type: application/json" -d '{
     "channel":"Live Chat",
     "questionId":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
-    "intentId": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "type": "helpful",
     "extra": {
       "name":"Kart",
@@ -9819,7 +9830,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | - | 
-  | `id` | Guid  | N/A | yes |  | the unique id of the question |
+  | `id` | string  | N/A | yes |  | the unique id of the question |
   | `question` | string  | N/A | yes | | the question visitor asked. |
   | `campaignId` | Guid  | N/A | yes | | the campaign id |
 
