@@ -559,7 +559,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
   | `description` |string  || no | no || description of the customer segment.
   | `conditionMetType` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
   | `logicalExpression` |string  || no | no || the logical expression for conditions.
-  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
+  | `conditions` |[Live Chat Condition](#live-chat-condition-object)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
   | `alertTo`| [Alert To](#alert-to)  || no | no | |an array of agent id or department Id|
 
 ### Alert To Segment Object
@@ -703,7 +703,6 @@ example:
   "name": "livechat15293908029",
   "color": "#339FD9",
   "isEnable": false,
-  "order": 1,
   "description": "",
   "conditionMetType": "all",
   "logicalExpression": "",
@@ -2791,8 +2790,6 @@ Content-Type:  application/json
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
 | `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
 | `adaptiveButtonIconType` | integer | no | no | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
-| `adaptiveButtonOnlineIcon` | string | no | no | | Image file key of the chat online button, available when `type` is `adaptive`. |
-| `adaptiveButtonOfflineIcon` | string | no | no | | Image file key of the chat offline button, available when `type` is `adaptive`. |
 | `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
 | `imageButtonPosition` | string | no | no | | Position of the image button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
 | `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
@@ -2806,8 +2803,8 @@ Content-Type:  application/json
 | `imageButtonTypeOnMobile` | string | no | no | | The type of button on mobile device, including `text` and `image`. |
 | `imageButtonColorOnMobile` | string | no | no | | |
 | `imageButtonTextColorOnMobile` | string | no | no | | The theme color of chatbutton on mobile device. |
-| `imageButtonOnlineImageOnMobile` | string | no | no | | The Image file key on mobile device when any agents is online. |
-| `imageButtonOfflineImageOnMobile` | string | no | no | | The image file key on mobile device when no agent is online. |
+| `imageButtonOnlineImageOnMobile` | Guid | no | no | | The Image file key on mobile device when any agents is online. |
+| `imageButtonOfflineImageOnMobile` | Guid | no | no | | The image file key on mobile device when no agent is online. |
 | `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
 | `textLinkButtonText` | string | no | no | | the content of the text link, available when `type` is `textLink`. |
 
@@ -2848,8 +2845,6 @@ Content-Type:  application/json
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2895,8 +2890,6 @@ example:
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2932,8 +2925,6 @@ curl -H "Content-Type: application/json" -d '{
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2965,8 +2956,6 @@ Content-Type:  application/json
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -3000,8 +2989,6 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `width` | integer | no | no | | |
-| `height` | integer | no | no | | |
 | `style` | string | no | no | |  Style of the window's theme, including `classic`, `circle` and `bubble`. |
 | `color` | string | no | no | |  Color of the window's theme. |
 | `type` | string | no | no | | Type of the chat window, including `embedded` and `popup`. |
@@ -3012,6 +2999,7 @@ Content-Type:  application/json
 | `isLogoDisplayed` | boolean | no | no | | Whether the logo is visible or not, available when `headerType` is `avatarAndLogo`. |
 | `logo` | string | no | no | | Image file key of the logo. |
 | `bannerImage` | string | no | no | | Image file key of the banner, available when `headerType` is `bannerImage`. |
+| `bannerImageType` | string | no | no | | Including `fromGallery` and `fromMyComputer`, available when `headerType` is `bannerImage`. |
 | `isAvatarDisplayedWithMessage` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `backgroundTexture` | string | no | no | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
@@ -3085,8 +3073,6 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#329fd9",
   "type": "popup",
@@ -3096,6 +3082,7 @@ Content-Type:  application/json
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
+  "bannerImageType": "fromGallery",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3153,8 +3140,6 @@ Request Body
 example:
 ```Json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3164,6 +3149,7 @@ example:
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
+  "bannerImageType": "fromGallery",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3211,8 +3197,6 @@ the response is: [Chat Window](#Chat-Window-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3222,6 +3206,7 @@ curl -H "Content-Type: application/json" -d '{
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
+  "bannerImageType": "fromGallery",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3265,8 +3250,6 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3276,6 +3259,7 @@ Content-Type:  application/json
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
+  "bannerImageType": "fromGallery",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3907,60 +3891,7 @@ Request Body
 example:
 ```Json
 {
-  "style": "bubble",
-  "manualInvitation": {
-    "manualInvitationPosition": "centerWithOverlay",
-    "manualInvitationImageType": "fromGallery",
-    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
-    "manualInvitationCloseAreaXOffset": 10,
-    "manualInvitationCloseAreaYOffset": 10,
-    "manualInvitationCloseAreaWidth": 10,
-    "manualInvitationCloseAreaHeight": 10,
-    "manualInvitationTextAreaXOffset": 10,
-    "manualInvitationTextAreaYOffset": 10,
-    "manualInvitationTextAreaWidth": 10,
-    "manualInvitationTextAreaHeight": 10,
-    "manualInvitationText": "",
-    "manualInvitationTextFont": "timesNewRoman",
-    "manualInvitationTextSize": "XXSmall",
-    "isManualInvitationTextBold": false,
-    "isManualInvitationTextItalic": false,
-    "manualInvitationTextColor": "#339FD9"
-  },
-  "autoInvitations": [{
-    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
-    "name": "test",
-    "isEnable": false,
-    "isDisplayedOnceInOneSession": false,
-    "order": 1,
-    "imageType": "fromGallery",
-    "closeAreaXOffset": 10,
-    "closeAreaYOffset": 10,
-    "closeAreaWidth": 10,
-    "closeAreaHeight": 10,
-    "textAreaXOffset": 10,
-    "textAreaYOffset": 10,
-    "textAreaWidth": 10,
-    "textAreaHeight": 10,
-    "text": "",
-    "textFont": "timesNewRoman",
-    "textSize": "XXSmall",
-    "isTextBold": false,
-    "isTextItalic": false,
-    "textColor": "#339FD9",
-    "position": "centerWithOverlay",
-    "conditionMetType": "any",
-    "logicalExpression": "",
-    "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
-    },
-    ...
-    ]
-  }]
+  "style": "bubble"
 }
 ```
 
@@ -3973,60 +3904,7 @@ the response is: [Invitation](#Invitation-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "style": "bubble",
-  "manualInvitation": {
-    "manualInvitationPosition": "centerWithOverlay",
-    "manualInvitationImageType": "fromGallery",
-    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
-    "manualInvitationCloseAreaXOffset": 10,
-    "manualInvitationCloseAreaYOffset": 10,
-    "manualInvitationCloseAreaWidth": 10,
-    "manualInvitationCloseAreaHeight": 10,
-    "manualInvitationTextAreaXOffset": 10,
-    "manualInvitationTextAreaYOffset": 10,
-    "manualInvitationTextAreaWidth": 10,
-    "manualInvitationTextAreaHeight": 10,
-    "manualInvitationText": "",
-    "manualInvitationTextFont": "timesNewRoman",
-    "manualInvitationTextSize": "XXSmall",
-    "isManualInvitationTextBold": false,
-    "isManualInvitationTextItalic": false,
-    "manualInvitationTextColor": "#339FD9"
-  },
-  "autoInvitations": [{
-    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
-    "name": "test",
-    "isEnable": false,
-    "isDisplayedOnceInOneSession": false,
-    "order": 1,
-    "imageType": "fromGallery",
-    "closeAreaXOffset": 10,
-    "closeAreaYOffset": 10,
-    "closeAreaWidth": 10,
-    "closeAreaHeight": 10,
-    "textAreaXOffset": 10,
-    "textAreaYOffset": 10,
-    "textAreaWidth": 10,
-    "textAreaHeight": 10,
-    "text": "",
-    "textFont": "timesNewRoman",
-    "textSize": "XXSmall",
-    "isTextBold": false,
-    "isTextItalic": false,
-    "textColor": "#339FD9",
-    "position": "centerWithOverlay",
-    "conditionMetType": "any",
-    "logicalExpression": "",
-    "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
-    },
-    ...
-    ]
-  }]
+  "style": "bubble"
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
 ```
 
@@ -7130,7 +7008,7 @@ Response
 
 - `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
 - `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
-- `POST /api/v3/livechat/bans` - [Create a ban](#get-a-ban)
+- `POST /api/v3/livechat/bans` - [Create a ban](#create-a-ban)
 - `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban)
 - `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
 
@@ -7142,16 +7020,16 @@ Response
 
 | Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | | yes | N/A | | id of the ban. |
+| `id` | Guid | | yes | no| | id of the ban. |
 | `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
-| `visitorId` | Guid | | no | yes | | visitor's id of the ban if `type` is `visitor`  |
-| `visitor` | [Visitor](#visitor) | yes | N/A | N/A | |  Available only when visitor is included  |
-| `ip` | string  |  | no | yes | | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` |
-| `ipRangeFrom` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
-| `ipRangeTo` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
+| `visitorId` | Guid | | no | yes | | mandatory when `type` is `visitor` |
+| `visitor` | [Visitor](#visitor) | yes | no | no | |  available only when visitor is included  |
+| `ip` | string  |  | no | yes | | ip address of the ban, mandatory when `type` is `ip`. |
+| `ipRangeFrom` | string | | no | yes | | mandatory when `type` is `ipRange`. |
+| `ipRangeTo` | string | | no | yes | | mandatory when `type` is `ipRange`. |
 | `comment` | string | | no | no | | comment of the ban. |
-| `lastUpdatedByAgentId` | intger | | N/A | N/A | | comment of the ban. |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+| `lastUpdatedByAgentId` | integer | | yes | no | | |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included  |
 
 ## Endpoint
 
@@ -7261,7 +7139,7 @@ Response
 }
 ```
 
-### Create a new ban
+### Create a ban
 
   `POST /api/v3/livechat/bans`
 
@@ -8197,10 +8075,10 @@ HTTP/1.1 204 No Content
 # Secure Form Field
 
 - `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-list-of-secure-form-fields)
-- `GET /api/v3/livechat/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
+- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
 - `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#ceate-a-secure-form-field)
-- `PUT /api/v3/livechat/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
-- `DELETE /api/v3/livechat/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
+- `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
+- `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
 
 ## Related Object Json Format
 ### Secure Form Field JSON Format
