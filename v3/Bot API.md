@@ -269,19 +269,6 @@ MessageAfterSeveralConsecutivePossibleAnswersInChannel is represented as simple 
 |`message` | string | no | yes | | text of the message  | 
 |`ifIncludeContactAgentOption` | bool | no | yes | false | include Contact An Agent or not,Only available when the Channel is Live Chat, Facebook Messenger or Twitter Direct Message. |
 
-
-### TestBotResponse
-
-  TestBotResponse is represented as simple flat JSON objects with the following keys: 
-
-  | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |    
-  | - | - | :-: | :-: | :-: | - | 
-  | `type` | string  | N/A | N/A | | type of the response,including `authenticationRequest`、`form`、`prompt`、`highConfidenceAnswer`、`possibleAnswer`、`noAnswer` and `locationRequest` |
-  | `content` | object | N/A | N/A | | response's content. when type is authenticationRequest, it represents [Authentication Request](#Require-Authentication-Object);when type is prompt,it represents [Prompt](#Prompt-Object); when type is form,it represents [Form](#Form-Object); when type is highConfidenceAnswer, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is possibleAnswer,it represents [PossibleAnswer](#PossibleAnswer);when type is noAnswer,it represents [NoAnswer](#NoAnswerMessageInChannel-object);when type is locationRequest, it represents [Location Request](#LocationRequest-Object). |
-  | `score` | float  | N/A | N/A | 0 | the score of the intent matched,between 0.0 and 100.0 |
-  | `intentId` | string  | N/A | N/A | | id of the matched intent |
-  | `intentName` | string  | N/A | N/A | | name of the matched intent |
-
 ## Bot Endpoints
 ### Get all bots of a site
 
@@ -844,23 +831,31 @@ Request body
 
   | Name  | Type | Required | Default | Description |     
   | - | - | - | - | - |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `question` | string | yes  |  | the question |
 
   example:
   ```json
   {
+    "channel": "Live Chat",
     "question": "i want to buy nbn"
   }
   ```
 
 #### Response
-the response is:
- [TestBotResponse](#testbotresponse) Object 
+The response body contains data with the follow structure:
+
+  | Name | Type | Required | Default | Description |    
+  | - | - | :-: | :-: | - | 
+  | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`possibleAnswer`、`noAnswer` |
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer) |
+
 
 #### Example
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
+    "channel": "Live Chat",
     "question": "i want to buy nbn"
   }' -X POST https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48:test
 ```
@@ -872,30 +867,33 @@ Content-Type:  application/json
 {
   "type": "highConfidenceAnswer",
   "content": {
-    "intentResponses":[
-      {
-        "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
-        "type":"htmlText",
-        "htmlTextVariants":[
-          "<div>Hi, what can i do for you?</div>"
-        ],
-        "order": 0
-      },
-      {
-        "id":"12e8fc9d-92e6-4487-a2e8-92e68d6892e6",
-        "type":"image",
-        "image":{
-          "id": "1dw142323-92e6-4487-a2e8-92e68d6892e6",
-          "name":"greeting.png",
-          "url": "https://bot.comm100.com/botapi/images/greeting.png"
+    "intentId": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
+    "intentName": "buy nbn",
+    "score": 89.25,
+    "answer": {
+      "channel": "Live Chat",
+      "responses":[
+        {
+          "id":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
+          "type":"htmlText",
+          "htmlTextVariants":[
+            "<div>Hi, what can i do for you?</div>"
+          ],
+          "order": 0
         },
-        "order": 1
-      }
-    ]
-  },
-  "score": 89.25,
-  "intentId": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
-  "intentName": "buy nbn"
+        {
+          "id":"12e8fc9d-92e6-4487-a2e8-92e68d6892e6",
+          "type":"image",
+          "image":{
+            "id": "1dw142323-92e6-4487-a2e8-92e68d6892e6",
+            "name":"greeting.png",
+            "url": "https://bot.comm100.com/botapi/images/greeting.png"
+          },
+          "order": 1
+        }
+      ]
+    }
+  }
 }
 ```
 
@@ -2062,32 +2060,6 @@ Button is represented as simple flat json objects with the following keys:
   |`id` | Guid | N/A | N/A | | id of the intent  | 
   |`name` | string | N/A | N/A | | name of the intent |  
   | `score` | float  | N/A | N/A |  | the score of the intent matched, between 0.0 and 100.0 |
-
-
-### HighConfidenceAnswer
-
-  HighConfidenceIntent is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Read-only For Put |Mandatory For Post  | Default | Description |    
-  | - | - | :-: | :-: | - | - |
-  | `questionId` | Guid  | N/A | N/A |  | the unique id of the question |
-  | `question` | string  | N/A | N/A |  | visitor question | 
-  | `intentId` | Guid  | N/A | N/A |  | id of the matched intent |
-  | `intentName` | string  | N/A | N/A |  | name of the matched intent |
-  | `score` | float  | N/A | N/A |  | the score of the intent matched, between 0.0 and 100.0 |
-  |`answer`| [AnswerInChannel](#AnswerInChannel-object) | N/A | N/A | | | N/A | N/A | | an array of intent answers |
-
-
-### PossibleAnswer
-
-  PossibleAnswer is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type | Read-only For Put |Mandatory For Post  | Default | Description |    
-  | - | - | :-: | :-: | - | - | 
-  | `messageWhenProvidingPossibleAnswer` | string  | N/A | N/A | | message of the possible response |
-  | `intents` | [IntentScore](#IntentScore-object)[]  | N/A | N/A | | an array of [IntentScore](#IntentScore-object)   | 
-  | `messageAfterSeveralConsecutivePossibleAnswers` | [MessageAfterSeveralConsecutivePossibleAnswers](#MessageAfterSeveralConsecutivePossibleAnswersInChannel-Object)  | N/A | N/A | |  |
-
 
 ## Endpoints
 ### Get intents
@@ -5252,6 +5224,41 @@ HTTP/1.1 204 No Content
   - `POST /api/v3/chatbot/sessions/{sessionId}:submitLocation` - [Submit Location](#submit-location)
   - `POST /api/v3/chatbot/sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
 
+## Related Object Json Format
+### HighConfidenceAnswer
+
+  HighConfidenceIntent is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put |Mandatory For Post  | Default | Description |    
+  | - | - | :-: | :-: | - | - |
+  | `intentId` | Guid  | N/A | N/A |  | id of the matched intent |
+  | `intentName` | string  | N/A | N/A |  | name of the matched intent |
+  | `score` | float  | N/A | N/A |  | the score of the intent matched, between 0.0 and 100.0 |
+  |`answer`| [AnswerInChannel](#AnswerInChannel-object) | N/A | N/A | | | N/A | N/A | | intent answer |
+
+
+### PossibleAnswer
+
+  PossibleAnswer is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put |Mandatory For Post  | Default | Description |    
+  | - | - | :-: | :-: | - | - | 
+  | `messageWhenProvidingPossibleAnswer` | string  | N/A | N/A | | message of the possible response |
+  | `intents` | [IntentScore](#IntentScore-object)[]  | N/A | N/A | | an array of [IntentScore](#IntentScore-object)   | 
+  | `messageAfterSeveralConsecutivePossibleAnswers` | [MessageAfterSeveralConsecutivePossibleAnswers](#MessageAfterSeveralConsecutivePossibleAnswersInChannel-Object)  | N/A | N/A | |  |
+
+### NoAnswer
+
+  NoAnswer is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Read-only For Put |Mandatory For Post  | Default | Description |    
+  | - | - | :-: | :-: | - | - | 
+  | `intentId` | Guid  | N/A | N/A |  | id of the matched intent |
+  | `intentName` | string  | N/A | N/A |  | name of the matched intent |
+  | `score` | float  | N/A | N/A |  | the score of the intent matched, between 0.0 and 100.0 |
+  |`answer`| [NoAnswerMessageInChannel](#NoAnswerMessageInChannel-object) | N/A | N/A | | |
+
+
 ## Endpoints
 
 ### Chatbot greeting
@@ -5373,9 +5380,11 @@ The response body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
+  | `questionId` | Guid  | N/A | N/A |  | the unique id of the question |
+  | `question` | string  | N/A | N/A |  | visitor question | 
   | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`possibleAnswer`、`noAnswer` |
   | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] | no |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
-  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer);when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer) |
 
 #### Example
 Using curl
@@ -5398,10 +5407,12 @@ Response
   Content-Type:  application/json
 
   {
+    "questionId": "89928d68-92e6-4487-a2e8-92e68d6892e6",
+    "question":"i want to buy NBN",
     "type": "highConfidenceAnswer",
     "content": {
-      "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
-      "name": "buy nbn",
+      "intentId": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
+      "intentName": "buy nbn",
       "score": 89.25,
       "answer":{
         "channel": "Facebook Messenger",
@@ -5469,7 +5480,7 @@ The response body contains data with the follow structure:
   | - | - | :-: | :-: | - | 
   | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`noAnswer` |
   | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] | no |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
-  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswer) |
 
 
 #### Example
@@ -5495,8 +5506,8 @@ Response
   {
     "type": "highConfidenceAnswer",
     "content": {
-      "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
-      "name": "buy nbn",
+    "intentId": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
+    "intentName": "buy nbn",
       "score": 100,
       "answer":{
         "channel": "Facebook Messenger",
@@ -5552,7 +5563,7 @@ The response body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`noAnswer` |  
-  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswer) |
 
 
 #### Example
@@ -5577,8 +5588,8 @@ Response
 {
   "type": "highConfidenceAnswer",
   "content": {
-    "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
-    "name": "buy nbn",
+    "intentId": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
+    "intentName": "buy nbn",
     "score": 100,
     "answer":{
       "channel": "Facebook Messenger",
@@ -5633,7 +5644,7 @@ The response body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`noAnswer` |  
-  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswer) |
 
 
 #### Example
@@ -5659,8 +5670,8 @@ Response
 {
   "type": "highConfidenceAnswer",
   "content": {
-    "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
-    "name": "buy nbn",
+    "intentId": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
+    "intentName": "buy nbn",
     "score": 100,
     "answer":{
       "channel": "Facebook Messenger",
@@ -5740,7 +5751,7 @@ The response body contains data with the follow structure:
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
   | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`noAnswer` |  
-  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswerMessageInChannel-object) |
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `noAnswer`,it represents [NoAnswer](#NoAnswer) |
 
 
 #### Example
@@ -5774,8 +5785,8 @@ Response
 {
   "type": "highConfidenceAnswer",
   "content": {
-    "id": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
-    "name": "buy nbn",
+    "intentId": "7534fdsca-92e6-4487-a2e8-92e68d6892e6",
+    "intentName": "buy nbn",
     "score": 100,
     "answer":{
       "channel": "Facebook Messenger",
