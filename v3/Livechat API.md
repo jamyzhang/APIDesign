@@ -7272,7 +7272,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include agent
 - `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#get-a-campaign)
 - `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign)
-- `POST /api/v3/livechat/conversionActions:achieved` - [Make api conversion succesful](#make-api-conversion-succesful)
+- `POST /api/v3/livechat/conversionActions/achieved` - [Make api conversion succesful](#make-api-conversion-succesful)
 
 ## Related Object Json Format
 
