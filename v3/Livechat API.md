@@ -7284,17 +7284,17 @@ HTTP/1.1 204 No Content
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | guid | | yes | no | | id of the conversion action. |
 | `name` | string | | no | yes |  | name of the conversion action. |
-| `isEnabled` | boolean | | no | no | | whether the conversion action is enabled or not. |
+| `isEnabled` | boolean | | no | no | false| whether the conversion action is enabled or not. |
 | `type` | string | | no | yes | | type of the conversion action, including `url`, `customVariable` and `api`. |
 | `customVariableUsedToDetermineConversion` | string  | | no | no |  | the name of the custom variable, available when `type` is `customVariable`. |
-| `operator` | string | | no | no | | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
+| `operator` | string | | no | no |`is` | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
 | `value` | string | | no | no |  | match value of the conversion action, available when `type` is `customVariable` or `url`. |
 | `isCaseSensitive` | boolean | | no | no | | whether the conversion action is case sensitive or not, available when `type` is `url`. |
 | `isValueAssignedToConversion` | boolean | | no | no |  | whether a value is assigned for the conversion action or not. |
-| `valueSource` | string | | no | no |  | including `inputAValue`, `getFromCustomVariable` |
+| `valueSource` | string | | no | no | `inputAvalue` | including `inputAValue`, `getFromCustomVariable` |
 | `assignedValueFromInputting` | integer | | no | no |  | the value assigned for the conversion action, between 1 and 999999999 |
 | `assignedValueFromCustomVariable` | string | | no | no |  | the value comes from the custom variable |
-| `chatAssociatedWithConversion` | string | | no | no |  | including `theFirstChat`, `theLastChat` |
+| `chatAssociatedWithConversion` | string | | no | no | `theLastChat` | including `theFirstChat`, `theLastChat` |
 | `isChatInLastCertainDaysConsidered` | boolean | | no | no |  |  |
 | `chatInLastDays` | integer | | no | no |   | between 1 and 30 |
 | `isChatWithAtLeastCertainVisitorMessagesConsidered` | boolean | | no | no | |  |
