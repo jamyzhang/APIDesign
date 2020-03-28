@@ -1672,7 +1672,7 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | N/A | N/A | | id of the session. |
+| `id` | integer |  | N/A | N/A | | id of the session. |
 | `startTime` | datetime | | N/A | N/A |  | time of this session start. |
 | `ip` | string |  | N/A | N/A | |  |
 | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
@@ -1683,10 +1683,10 @@ Content-Type:  application/json
 | `language` | string |  | N/A | N/A | |  |
 | `screenResolution` | string |  | N/A | N/A | |  |
 | `operatingSystem` | integer |  | N/A | N/A | |  |
-| `timeZone` | string |  | N/A | N/A | |  |
+| `timeZoneOffset` | float |  | N/A | N/A | |  |
 | `landingPageURL` | string |  | N/A | N/A | |  |
 | `landingPageTitle` | string | | N/A | N/A | |  |
-| `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
+| `visitorId` | integer | | N/A | N/A | | the id of the visitor |
 | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
 | `contactId` | integer | | N/A | N/A | | the id of the contact  |
 | `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
@@ -1702,7 +1702,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the ban  |
+| `id` | integer | yes  |  the id of the ban  |
 
 Query string
 
@@ -1724,7 +1724,7 @@ curl -H "Content-Type: application/json"
 Response
 ```json  
 {
-    "id": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "id": 1,
     "startTime": "2020-02-20T13:12:20Z",
     "ip": "192.168.0.201",
     "referrerURL": "",
@@ -1738,9 +1738,9 @@ Response
     "timeZone": "",
     "landingPageURL": "",
     "landingPageTitle": "",
-    "visitorId": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "visitorId": 2,
     "visitor": {  //include visitor
-        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "id": 2,
         "email": "test@comm100.com",
         "name": "test comm100",
         ...
@@ -1763,7 +1763,7 @@ Response
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | N/A | N/A | | id of the chat. |
+| `id` | integer |  | N/A | N/A | | id of the chat. |
 | `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
 | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
 | `startTime` | datetime | | N/A | N/A | |  |
@@ -1866,7 +1866,6 @@ Query string
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`,`offlineMessage`. |
 | `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
 | `departmentId` | guid | no  |  | |
