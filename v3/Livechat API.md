@@ -7284,7 +7284,7 @@ HTTP/1.1 204 No Content
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | guid | | yes | no | | id of the conversion action. |
 | `name` | string | | no | yes |  | name of the conversion action. |
-| `isEnable` | boolean | | no | no | | whether the conversion action is enabled or not. |
+| `isEnabled` | boolean | | no | no | | whether the conversion action is enabled or not. |
 | `type` | string | | no | yes | | type of the conversion action, including `url`, `customVariable` and `api`. |
 | `customVariableUsedToDetermineConversion` | string  | | no | no |  | the name of the custom variable, available when `type` is `customVariable`. |
 | `operator` | string | | no | no | | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
@@ -7307,6 +7307,16 @@ HTTP/1.1 204 No Content
 | `lastUpdatedTime` | datetime | | N/A | N/A |  | |
 | `lastUpdatedByAgentId` | integer | | N/A | N/A |  | |
 | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
+
+### Conversion Achievement JSON Format
+
+  Conversion Achievement is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Include | Read-only | Mandatory | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `conversionName` | string | | no | yes |  | name of this conversion action, the `type` of this conversion must be `api`. |
+| `visitorId` | Guid | | no | yes |  | id of this visitor, the visitor must be online. |
+| `value` | Guid | | no | no | 0.0 | the value for achieving this conversion. |
 
 ## Endpoint
 
@@ -7341,7 +7351,7 @@ Content-Type:  application/json
     {
         "id": "5728600f-0e75-432f-8638-db189f1e4e44",
         "name": "justfortest2",
-        "isEnable": false,
+        "isEnabled": false,
         "type": "url",
         "customVariableUsedToDetermineConversion": "",
         "operator": "is",
@@ -7420,7 +7430,7 @@ Content-Type:  application/json
 {
     "id": "5728600f-0e75-432f-8638-db189f1e4e44",
     "name": "justfortest2",
-    "isEnable": false,
+    "isEnabled": false,
     "type": "url",
     "customVariableUsedToDetermineConversion": "",
     "operator": "is",
@@ -7475,7 +7485,7 @@ Request body
 ```Json
 {
     "name": "justfortest2",
-    "isEnable": false,
+    "isEnabled": false,
     "type": "url",
     "customVariableUsedToDetermineConversion": "",
     "operator": "is",
@@ -7504,7 +7514,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "name": "justfortest2",
-    "isEnable": false,
+    "isEnabled": false,
     "type": "url",
     "customVariableUsedToDetermineConversion": "",
     "operator": "is",
@@ -7532,7 +7542,7 @@ Location: https://domain.comm100.com/api/v3/livechat/conversionActions/b222qa68-
 {
     "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
     "name": "justfortest2",
-    "isEnable": false,
+    "isEnabled": false,
     "type": "url",
     "customVariableUsedToDetermineConversion": "",
     "operator": "is",
@@ -7567,7 +7577,7 @@ Path parameters
 | - | - | - | - |
 | `id` | Guid | yes  |  the id of the conversion action  |
 
-Request body 
+Request body
 
   The request body contains data with the [Conversion Action](#conversion-action-json-format) structure
 
@@ -7576,7 +7586,7 @@ Request body
   {
     "id": "60a555fd-b5db-40ac-9043-57fcee181f78",
     "name": "justfortest",
-    "isEnable": false,
+    "isEnabled": false,
     "type": "url",
     "customVariableUsedToDetermineConversion": "",
     "operator": "is",
@@ -7606,7 +7616,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "id": "60a555fd-b5db-40ac-9043-57fcee181f78",
     "name": "justfortest",
-    "isEnable": false,
+    "isEnabled": false,
     "type": "url",
     "customVariableUsedToDetermineConversion": "",
     "operator": "is",
@@ -7633,7 +7643,7 @@ Response
 {
     "id": "60a555fd-b5db-40ac-9043-57fcee181f78",
     "name": "justfortest",
-    "isEnable": false,
+    "isEnabled": false,
     "type": "url",
     "customVariableUsedToDetermineConversion": "",
     "operator": "is",
@@ -7659,51 +7669,46 @@ Response
 
 ### make api conversion succesful
 
-  `POST /api/v3/livechat/conversionActions:achieved`
+  `POST /api/v3/livechat/conversionActions/achieved`
 
 #### Parameters
+
 Request body
 
-The request body contains data with the follow structure:
-
-| Name | Type | Required | Default | Description |
-| - | - | :-: | :-: | - |
-| `conversion_name` | string | yes | |  name of the conversion action. |
-| `visitorId` | string | yes |  | |
-| `value` | string  | no |  |  the name of the custom variable, available when conversion action `type` is `customVariable`. |
+The request body contains data with the [Conversion Achievement](#conversion-achievement-json-format) structure
 
 example:
-```Json 
-  {
-    "conversion_name" : "justfortestupdate", 
-    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
-  }
+```Json
+{
+  "conversionName" : "justfortestupdate",
+  "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
+  "value": 10.5
+}
 ```
 
 #### Response
-The response body contains data with the follow structure:
 
-| Name | Type | Required | Default | Description |
-| - | - | :-: | :-: | - |
-| `code` | string | no | no |  0: ok; 1: the conversion name does not exist; 2: the visitorId does not exist; 3: error adding conversion-related Data to system. |
-| `message` | string | no | no | error message. |
+The response is a [Conversion Achievement](#conversion-achievement-json-format) Object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "conversion_name" : "justfortestupdate", 
-    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
-  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions:achieved
+    "conversionName" : "justfortestupdate",
+    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
+    "value":100
+  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions/achieved
 ```
+
 Response
-```json
-HTTP/1.1 200 OK
-Content-Type:  application/json
+```Json
+  HTTP/1.1 200 OK
+  Content-Type:  application/json
 {
-    "code": 0,
-    "message": "ok",
+  "conversion_name" : "justfortestupdate",
+  "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
+  "value":100.0
 }
 ```
 
@@ -7716,6 +7721,7 @@ Content-Type:  application/json
 - `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
 
 ## Related Object Json Format
+
 ### Secure Form JSON Format
 
 Secure Form is represented as simple flat JSON objects with the following keys:  
