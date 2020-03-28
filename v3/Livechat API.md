@@ -1791,6 +1791,7 @@ Response
 | `status` | string | | N/A | N/A |  | Including `normal`, `refused` and `missed`. |
 | `requestingPageTitle` | string | | N/A | N/A |  |  |
 | `requestingPageURL` | string | | N/A | N/A |  | |
+| `ssoUserId` | string | | N/A | N/A |  | |
 | `source` | string | | N/A | N/A |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
 | `autoInvitationId` | Guid | | N/A | N/A |  | |
 | `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | N/A | N/A |  |  |
