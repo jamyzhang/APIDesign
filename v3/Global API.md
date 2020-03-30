@@ -1653,6 +1653,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
   |`id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | yes | | Name of the shift. |
   | `timeZone` | string  | | no | no | | Time zone of shift. value include all [Time Zone Option](#time-zone-options) Ids. |
+  | `ifAutoDetectDayLight` | boolean  | | no | no | |  |
   | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
   |`agentIds` | int[] | | yes | no | NULL | |
   |`departmentIds` | Guid[] | | yes | no | NULL | |
@@ -1717,6 +1718,7 @@ Content-Type:  application/json
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
         "timeZone": "(GMT) Coordinated Universal Time",
+        "ifAutoDetectDayLight": false,
         "holidays": [{
           "name": "summary",
           "date": "2019-11-11"
@@ -1790,6 +1792,7 @@ Content-Type:  application/json
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts",
   "timeZone": "(GMT) Coordinated Universal Time",
+  "ifAutoDetectDayLight": false,
   "holidays": [{
     "name": "summary",
     "date": "2019-11-11"
@@ -1856,6 +1859,7 @@ Content-Type:  application/json
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
         "timeZone": "(GMT) Coordinated Universal Time",
+        "ifAutoDetectDayLight": false,
         "holidays": [{
           "name": "summary",
           "date": "2019-11-11"
@@ -1911,6 +1915,7 @@ Content-Type:  application/json
         "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
         "name": "Shifts",
         "timeZone": "(GMT) Coordinated Universal Time",
+        "ifAutoDetectDayLight": false,
         "holidays": [{
           "name": "summary",
           "date": "2019-11-11"
@@ -1947,6 +1952,7 @@ example:
 {
   "name": "Shifts1111",
   "timeZone": "UTC",
+  "ifAutoDetectDayLight": false,
   "holidays": [{
     "name": "summary",
     "date": "2019-11-11"
@@ -1977,6 +1983,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "Shifts1111",
   "timeZone": "UTC",
+  "ifAutoDetectDayLight": false,
   "holidays": [{
     "name": "summary",
     "date": "2019-11-11"
@@ -2006,6 +2013,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts",
   "timeZone": "(GMT) Coordinated Universal Time",
+  "ifAutoDetectDayLight": false,
   "holidays": [{
     "name": "summary",
     "date": "2019-11-11"
@@ -2046,6 +2054,7 @@ example:
 {
   "name": "Shifts2222",
   "timeZone": "UTC",
+  "ifAutoDetectDayLight": false,
   "holidays": [{
     "name": "summary",
     "date": "2019-11-11"
@@ -2076,6 +2085,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "Shifts2222",
   "timeZone": "UTC",
+  "ifAutoDetectDayLight": false,
   "holidays": [{
     "name": "summary",
     "date": "2019-11-11"
@@ -2104,6 +2114,7 @@ Content-Type:  application/json
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
   "name": "Shifts2222",
   "timeZone": "(GMT) Coordinated Universal Time",
+  "ifAutoDetectDayLight": false,
   "holidays": [{
     "name": "summary",
     "date": "2019-11-11"

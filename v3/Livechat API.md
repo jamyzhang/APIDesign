@@ -28,7 +28,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
       - [campaign form field](#campaign-form-field)
     - [post chat](#post-chat)
       - [campaign form field](#campaign-form-field)
-    - [offline message](#offline-message)
+    - [offline message](#Campaign-offline-message)
       - [campaign form field](#campaign-form-field)
     - [invitation](#invitation)
       - [manual invitation](#manual-invitation)
@@ -2791,7 +2791,7 @@ Content-Type:  application/json
 | `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
 | `adaptiveButtonIconType` | integer | no | no | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
 | `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
-| `imageButtonPosition` | string | no | no | | Position of the image button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
+| `imageButtonPosition` | string | no | no | | Position of the image button. Including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
 | `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
 | `isImageButtonXOffsetByPixel` | boolean | no | no | | Available when `type` is `image`. |
 | `imageButtonXOffset` | integer | no | no | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate, available when `type` is `image`. |
@@ -2805,7 +2805,7 @@ Content-Type:  application/json
 | `imageButtonTextColorOnMobile` | string | no | no | | The theme color of chatbutton on mobile device. |
 | `imageButtonOnlineImageOnMobile` | Guid | no | no | | The Image file key on mobile device when any agents is online. |
 | `imageButtonOfflineImageOnMobile` | Guid | no | no | | The image file key on mobile device when no agent is online. |
-| `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
+| `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
 | `textLinkButtonText` | string | no | no | | the content of the text link, available when `type` is `textLink`. |
 
 ## Chat Button Endpoints
@@ -3019,7 +3019,7 @@ Content-Type:  application/json
 | `isVideoChatEnabled` | boolean | no | no | | Whether the agent can use video chat. |
 | `isBrowserPopupNotificationEnabled` | boolean | no | no | | It is available for private server sites. For shared server clients, the push notification is disabled by default. |
 | `ifEndChatWhenVisitorIsInactive` | boolean | no | no | | Automatically end chats if visitors don't respond in period of time. |
-| `minutesOfVisitorInactivity` | integer | no | no | | |
+| `minutesOfVisitorInactivity` | integer | no | no | | Including `3`, `5`, `10`, `15`, `20`, `30` and `60`. |
 | `isTranscriptSentForArchiving` | boolean | no | no | | |
 | `receivingEmailAddressesForArchivingTranscripts` | string | no | no | | |
 | `emailSubjectForArchivingTranscripts` | string | no | no | | |
@@ -3595,9 +3595,16 @@ Content-Type:  application/json
 | `type` | string | no | no | | Including `systemOfflineMessageWindow` and `customOfflineMessagePage`. |
 | `customOfflineMessagePageURL` | string | no | no | | Available when Type is `customOfflineMessagePage`. |
 | `ifOpenCustomOfflineMessagePageInNewWindow` | boolean | no | no | | Available when Type is `customOfflineMessagePage`. |
+| `isTeamNameDisplayed` | boolean | no | no | | Whether the team name is visible or not in the header. |
+| `teamName` | string | no | no | | The team name displayed in the header. |
+| `isAgentAvatarDisplayed` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the header. |
 | `greetingMessage` | string | no | no | | |
 | `emailOfflineMessageTo` | string | no | no | | Including `allAgents` and `customEmailAddresses`, available when routing rule is disabled. |
 | `customEmailAddresses` | string | no | no | |  Available when routing rule is disabled.  |
+| `customEmailIfAddClientInfo` | boolean | no | no | |  |
+| `customEmailIfAddGeoInfo` | boolean | no | no | |  |
+| `customEmailIfAddNavigationInfo` | boolean | no | no | |  |
+| `customEmailIfAddVisitorInfo` | boolean | no | no | |  |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 
@@ -3635,9 +3642,16 @@ Content-Type:  application/json
   "type": "systemOfflineMessageWindow",
   "customOfflineMessagePageURL": "",
   "ifOpenCustomOfflineMessagePageInNewWindow":  false,
+  "isTeamNameDisplayed": false,
+  "teamName": "Our Team",
+  "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "emailOfflineMessageTo": "allAgents",
   "customEmailAddresses": "",
+  "customEmailIfAddClientInfo": false,
+  "customEmailIfAddGeoInfo": false,
+  "customEmailIfAddNavigationInfo": false,
+  "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
   "fields":  []
 }
@@ -3665,9 +3679,16 @@ example:
   "type": "systemOfflineMessageWindow",
   "customOfflineMessagePageURL": "",
   "ifOpenCustomOfflineMessagePageInNewWindow":  false,
+  "isTeamNameDisplayed": false,
+  "teamName": "Our Team",
+  "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "emailOfflineMessageTo": "allAgents",
   "customEmailAddresses": "",
+  "customEmailIfAddClientInfo": false,
+  "customEmailIfAddGeoInfo": false,
+  "customEmailIfAddNavigationInfo": false,
+  "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
   "fields":  []
 }
@@ -3685,9 +3706,16 @@ curl -H "Content-Type: application/json" -d '{
   "type": "systemOfflineMessageWindow",
   "customOfflineMessagePageURL": "",
   "ifOpenCustomOfflineMessagePageInNewWindow":  false,
+  "isTeamNameDisplayed": false,
+  "teamName": "Our Team",
+  "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "emailOfflineMessageTo": "allAgents",
   "customEmailAddresses": "",
+  "customEmailIfAddClientInfo": false,
+  "customEmailIfAddGeoInfo": false,
+  "customEmailIfAddNavigationInfo": false,
+  "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
   "fields":  []
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
@@ -3701,9 +3729,16 @@ Content-Type:  application/json
   "type": "systemOfflineMessageWindow",
   "customOfflineMessagePageURL": "",
   "ifOpenCustomOfflineMessagePageInNewWindow":  false,
+  "isTeamNameDisplayed": false,
+  "teamName": "Our Team",
+  "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "emailOfflineMessageTo": "allAgents",
   "customEmailAddresses": "",
+  "customEmailIfAddClientInfo": false,
+  "customEmailIfAddGeoInfo": false,
+  "customEmailIfAddNavigationInfo": false,
+  "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
   "fields":  []
 }
@@ -3725,7 +3760,7 @@ Content-Type:  application/json
 | `id` | Guid | yes | no | | Id of the current item. |
 | `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
 | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
-| `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object)[] //不对吧,手动邀请只有一个| no | no | | |
+| `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object) | no | no | | |
 
 ### Manual Invitation Object
 
