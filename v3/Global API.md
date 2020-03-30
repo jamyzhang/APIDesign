@@ -48,10 +48,10 @@
  | - | - | :-: | :-: | :-: | :-: | - |
  |`id` | integer  | | yes | no |  |Site ID.|
  |`dateTimeFormat` | string| | no | no  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
- |`timeZone` | string| | no | no  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
- |`company` | string | | no | no  | |Company name.|
+ |`timeZone` | string| | no | yes  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
+ |`company` | string | | no | yes  | |Company name.|
  |`companySize` | string| | no | no  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
- |`website` | string  | | no | no  | |Company website. |
+ |`website` | string  | | no | yes  | |Company website. |
  |`registeredEmail` | string  | | yes | no  | |Email used for site registration.|
  |`phone` | string | | no | no  | |Company phone number.|
  |`fax` | string | | no | no  | |Company fax number.|
@@ -60,8 +60,8 @@
  |`stateOrProvince` | string  | | no | no  | |State/Province where the company located.|
  |`countryOrRegion` | string | | no | no  | |Country/Region where the company located.|
  |`postalOrZipCode` | string | | no | no  | |Postal/Zip Code where the company located.|
- |`firstName` | string  | | no | no  | |First Name of site registrant.|
- |`lastName` | string  | | no | no  | |Last Name of site registrant.|
+ |`firstName` | string  | | no | yes  | |First Name of site registrant.|
+ |`lastName` | string  | | no | yes  | |Last Name of site registrant.|
 
 ## Site Endpoints
 
@@ -1325,8 +1325,8 @@ curl -H "Content-Type: application/json" -d '{
 ```
 Response
 ```json
-HTTP/1.1 201 Created
-Content-Type:  application/json
+HTTP/1.1 200 OK
+Content-Type: application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 {
       "name": "markting",
@@ -4738,19 +4738,19 @@ Response
 
   | Live Chat | Ticketing And Messaging | Knowledge Base | Bot|	Global |
   | - | - | - | - | - |
-  | audioAndVideoChatManagement | autoAllocationManagement | categoryManagement | agentBotLearningManagement | accountProfileManagement |
-  | autoAcceptSetting | blockSenderManagement | articleManagement | agentBotSettingManagement | agentManagement |
-  | autoInvitationManagement | channelIntegrationManagement | tagManagement | agentBotSynonymManagement | agentRoleManagement |
+  | audioAndVideoChatManagement | autoAllocationManagement | categoryManagement | agentAssistLearningManagement | accountProfileManagement |
+  | autoAcceptSetting | blockSenderManagement | articleManagement | agentAssistSettingManagement | agentManagement |
+  | autoInvitationManagement | channelIntegrationManagement | tagManagement | agentAssistSynonymManagement | agentRoleManagement |
   | autoTranslationManagement | conversationManagement | imageManagement | botSettings | applicationsManagement |
   | banManagement | fieldsAndMappingsManagement | designManagement | botsManagement | billingInfoManagement |
-  | campaignsManagement | routingRulesManagement | customPageManagement | entitiesManagement | cannedMessageManagement |
+  | campaignsManagement |ticketAndMessagingRoutingRulesManagement | customPageManagement | entitiesManagement | cannedMessageManagement |
   | chatsAuto-AllocationManagement | slaPoliciesManagement | knowledgeBaseManagement | intentsManagement | customAwayStatusManagement |
   | chatSettingsManagement | triggerManagement | | quickRepliesManagement | customerAccountsManagement |
   | cobrowsingManagement | workingTimeAndHolidaysManagement | | smartTriggersManagement | departmentManagement |
   | conversionManagement | | | visitorQuestioninLearningDelete | integrationAndAPIManagement |
   | customVariableManage | | | | licenseManagement |
   | dashboardCustomMetricManagement | | | | manageAccountStatusorState |
-  | routingRulesManagement | | | | manuallyChargeandActiveAccount |
+  | liveChatRoutingRulesManagement | | | | manuallyChargeandActiveAccount |
   | secureFormManagement | | | | restrictedWordsManagement |
   | segmentationManagement | | | | securityManagement |
   | shiftsManagement | | | | siteProfileManagement |

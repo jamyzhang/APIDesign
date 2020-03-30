@@ -553,13 +553,13 @@ Customer Segment is represented as simple flat JSON objects with the following k
   | - | - | - | :-: | :-: | :-: | - |
   | `id` |Guid  || yes | no || id of the customer segment.
   | `name` |string  || no | yes || name of the customer segment.
-  | `color` |string  || no | no |'#339FD9'| color of the customer segment
+  | `color` |string  || no | no |'339FD9'| color of the customer segment
   | `isEnabled` |boolean  || no | no |false| whether the customer segment is enabled or not.
   | `order` |int  || no | no |maximum order + 1 | order of the customer segment.
   | `description` |string  || no | no || description of the customer segment.
   | `conditionMetType` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
   | `logicalExpression` |string  || no | no || the logical expression for conditions.
-  | `conditions` |[Live Chat Condition](#live-chat-condition-object)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
+  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
   | `alertTo`| [Alert To](#alert-to)  || no | no | |an array of agent id or department Id|
 
 ### Alert To Segment Object
@@ -612,7 +612,7 @@ Content-Type:  application/json
   {
     "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "name": "livechat15293908029",
-    "color": "#339FD9",
+    "color": "339FD9",
     "isEnabled": false,
     "order": 1,
     "description": "",
@@ -666,7 +666,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "livechat15293908029",
-  "color": "#339FD9",
+  "color": "339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -701,8 +701,9 @@ example:
 ```Json
 {
   "name": "livechat15293908029",
-  "color": "#339FD9",
+  "color": "339FD9",
   "isEnable": false,
+  "order": 1,
   "description": "",
   "conditionMetType": "all",
   "logicalExpression": "",
@@ -731,7 +732,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
   "name": "livechat15293908029",
-  "color": "#339FD9",
+  "color": "339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -759,7 +760,7 @@ Location: https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-9
 Content-Type:  application/json
 {
   "name": "livechat15293908029",
-  "color": "#339FD9",
+  "color": "339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -802,7 +803,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
   "name": "livechat15293908029",
-  "color": "#339FD9",
+  "color": "339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -830,7 +831,7 @@ Content-Type:  application/json
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "livechat15293908029",
-  "color": "#339FD9",
+  "color": "339FD9",
   "isEnable": false,
   "order": 1,
   "description": "",
@@ -2191,7 +2192,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/livechat/offlineMessages` - [Get a list of offline messages](#get-a-list-of-offline-messages)
 - `GET /api/v3/livechat/offlineMessages/{id}` - [Get an offline message by id](#get-an-offline-message-by-id)
 - `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offline message by id](#delete-an-offline-message-by-id)
-- `DELETE /api/v3/livechat/offlineMessages` - [Batch delete offline messages](#batch-delete-offline-messages)
+- `DELETE /api/v3/livechat/offlineMessages` - [Batch delete offline messages](#batch-delete-offline-messages) 
 
 ## Related Object Json Format
 
@@ -2203,6 +2204,7 @@ HTTP/1.1 204 No Content
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | string |  | yes | no | | id of the offline message. |
 | `createdTime` | datetime | | no | no | | time of this offline message submitted. |
+| `ssoUserId` | string | | no | no |  | SSO id of visitor |
 | `name` | string | | no | no |  | name of the visitor |
 | `email` | string | | no | no |  | email of the visitor |
 | `phone` | string | | no | no |  | phone of the visitor |
@@ -2299,6 +2301,7 @@ Response
             "createdTime": "2019-01-05T07:17:08.89",
             "name": "allon",
             "email": "allon@comm100.com",
+            "ssoUSerId":"",
             "phone":"",
             "company":"",
             "departmentId":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
@@ -2385,6 +2388,7 @@ Response
     "createdTime": "2019-01-05T07:17:08.89",
     "name": "allon",
     "email": "allon@comm100.com",
+    "ssoUSerId":"",
     "phone":"",
     "company":"",
     "agentId":5,
@@ -2512,7 +2516,7 @@ HTTP/1.1 204 No Content
 |`id` | Guid | yes | no | | Id of the current item.  |
 | `name` | string  | no | yes | `Default Plan` | |
 | `description` | string  | no | no | | |
-| `language` | string | no | yes | `English` | The languages are defined in cPanel.  |
+| `language` | string | no | no | `English` | The languages are defined in cPanel.  |
 
 ## Campaign Endpoints
 
@@ -2790,6 +2794,8 @@ Content-Type:  application/json
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
 | `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
 | `adaptiveButtonIconType` | integer | no | no | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
+| `adaptiveButtonOnlineIcon` | string | no | no | | Image file key of the chat online button, available when `type` is `adaptive`. |
+| `adaptiveButtonOfflineIcon` | string | no | no | | Image file key of the chat offline button, available when `type` is `adaptive`. |
 | `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
 | `imageButtonPosition` | string | no | no | | Position of the image button. Including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
 | `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
@@ -2845,6 +2851,8 @@ Content-Type:  application/json
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
+  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
+  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2890,6 +2898,8 @@ example:
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
+  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
+  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2925,6 +2935,8 @@ curl -H "Content-Type: application/json" -d '{
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
+  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
+  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2956,6 +2968,8 @@ Content-Type:  application/json
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
+  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
+  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2989,6 +3003,8 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
+| `width` | integer | no | no | | |
+| `height` | integer | no | no | | |
 | `style` | string | no | no | |  Style of the window's theme, including `classic`, `circle` and `bubble`. |
 | `color` | string | no | no | |  Color of the window's theme. |
 | `type` | string | no | no | | Type of the chat window, including `embedded` and `popup`. |
@@ -2999,7 +3015,6 @@ Content-Type:  application/json
 | `isLogoDisplayed` | boolean | no | no | | Whether the logo is visible or not, available when `headerType` is `avatarAndLogo`. |
 | `logo` | string | no | no | | Image file key of the logo. |
 | `bannerImage` | string | no | no | | Image file key of the banner, available when `headerType` is `bannerImage`. |
-| `bannerImageType` | string | no | no | | Including `fromGallery` and `fromMyComputer`, available when `headerType` is `bannerImage`. |
 | `isAvatarDisplayedWithMessage` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `backgroundTexture` | string | no | no | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
@@ -3073,6 +3088,8 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
+  "width": 10,
+  "height": 10,
   "style": "classic",
   "color": "#329fd9",
   "type": "popup",
@@ -3082,7 +3099,6 @@ Content-Type:  application/json
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
-  "bannerImageType": "fromGallery",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3140,6 +3156,8 @@ Request Body
 example:
 ```Json
 {
+  "width": 10,
+  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3149,7 +3167,6 @@ example:
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
-  "bannerImageType": "fromGallery",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3197,6 +3214,8 @@ the response is: [Chat Window](#Chat-Window-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
+  "width": 10,
+  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3206,7 +3225,6 @@ curl -H "Content-Type: application/json" -d '{
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
-  "bannerImageType": "fromGallery",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3250,6 +3268,8 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
+  "width": 10,
+  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3259,7 +3279,6 @@ Content-Type:  application/json
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
-  "bannerImageType": "fromGallery",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3485,7 +3504,6 @@ Content-Type:  application/json
 | `isEnable` | boolean | no | no | | Whether the pot chat is enabled or not. |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
 | `greetingMessage` | string | no | no | | |
-| `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
 ## Post Chat Endpoints
 
@@ -3520,8 +3538,7 @@ Content-Type:  application/json
 {
   "isEnable":  false,
   "fields":  [],
-  "greetingMessage": "",
-  "formFieldLayoutStyle": "leftofInput"
+  "greetingMessage": ""
 }
 ```
 
@@ -3546,8 +3563,7 @@ example:
 {
   "isEnable":  true,
   "fields":  [],
-  "greetingMessage": "",
-  "formFieldLayoutStyle": "leftofInput"
+  "greetingMessage": ""
 }
 ```
 
@@ -3562,8 +3578,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "isEnable":  true,
   "fields":  [],
-  "greetingMessage": "",
-  "formFieldLayoutStyle": "leftofInput"
+  "greetingMessage": ""
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
 ```
 
@@ -3574,8 +3589,7 @@ Content-Type:  application/json
 {
   "isEnable":  true,
   "fields":  [],
-  "greetingMessage": "",
-  "formFieldLayoutStyle": "leftofInput"
+  "greetingMessage": ""
 }
 ```
 
@@ -3926,7 +3940,60 @@ Request Body
 example:
 ```Json
 {
-  "style": "bubble"
+  "style": "bubble",
+  "manualInvitation": {
+    "manualInvitationPosition": "centerWithOverlay",
+    "manualInvitationImageType": "fromGallery",
+    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+    "manualInvitationCloseAreaXOffset": 10,
+    "manualInvitationCloseAreaYOffset": 10,
+    "manualInvitationCloseAreaWidth": 10,
+    "manualInvitationCloseAreaHeight": 10,
+    "manualInvitationTextAreaXOffset": 10,
+    "manualInvitationTextAreaYOffset": 10,
+    "manualInvitationTextAreaWidth": 10,
+    "manualInvitationTextAreaHeight": 10,
+    "manualInvitationText": "",
+    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextSize": "XXSmall",
+    "isManualInvitationTextBold": false,
+    "isManualInvitationTextItalic": false,
+    "manualInvitationTextColor": "#339FD9"
+  },
+  "autoInvitations": [{
+    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+    "name": "test",
+    "isEnable": false,
+    "isDisplayedOnceInOneSession": false,
+    "order": 1,
+    "imageType": "fromGallery",
+    "closeAreaXOffset": 10,
+    "closeAreaYOffset": 10,
+    "closeAreaWidth": 10,
+    "closeAreaHeight": 10,
+    "textAreaXOffset": 10,
+    "textAreaYOffset": 10,
+    "textAreaWidth": 10,
+    "textAreaHeight": 10,
+    "text": "",
+    "textFont": "timesNewRoman",
+    "textSize": "XXSmall",
+    "isTextBold": false,
+    "isTextItalic": false,
+    "textColor": "#339FD9",
+    "position": "centerWithOverlay",
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
+  }]
 }
 ```
 
@@ -3939,7 +4006,60 @@ the response is: [Invitation](#Invitation-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "style": "bubble"
+  "style": "bubble",
+  "manualInvitation": {
+    "manualInvitationPosition": "centerWithOverlay",
+    "manualInvitationImageType": "fromGallery",
+    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
+    "manualInvitationCloseAreaXOffset": 10,
+    "manualInvitationCloseAreaYOffset": 10,
+    "manualInvitationCloseAreaWidth": 10,
+    "manualInvitationCloseAreaHeight": 10,
+    "manualInvitationTextAreaXOffset": 10,
+    "manualInvitationTextAreaYOffset": 10,
+    "manualInvitationTextAreaWidth": 10,
+    "manualInvitationTextAreaHeight": 10,
+    "manualInvitationText": "",
+    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextSize": "XXSmall",
+    "isManualInvitationTextBold": false,
+    "isManualInvitationTextItalic": false,
+    "manualInvitationTextColor": "#339FD9"
+  },
+  "autoInvitations": [{
+    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
+    "name": "test",
+    "isEnable": false,
+    "isDisplayedOnceInOneSession": false,
+    "order": 1,
+    "imageType": "fromGallery",
+    "closeAreaXOffset": 10,
+    "closeAreaYOffset": 10,
+    "closeAreaWidth": 10,
+    "closeAreaHeight": 10,
+    "textAreaXOffset": 10,
+    "textAreaYOffset": 10,
+    "textAreaWidth": 10,
+    "textAreaHeight": 10,
+    "text": "",
+    "textFont": "timesNewRoman",
+    "textSize": "XXSmall",
+    "isTextBold": false,
+    "isTextItalic": false,
+    "textColor": "#339FD9",
+    "position": "centerWithOverlay",
+    "conditionMetType": "any",
+    "logicalExpression": "",
+    "conditions": [
+    {
+      "field": "CurrentPageUrl",
+      "operator": "include",
+      "value": "live",
+      "order": 1
+    },
+    ...
+    ]
+  }]
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
 ```
 
@@ -4852,7 +4972,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "defaultLanguage": "English",
+  "defaultLanguage": "",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -4881,7 +5001,7 @@ Request Body
 example:
 ```Json
 {
-  "defaultLanguage": "English",
+  "defaultLanguage": "",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -4900,7 +5020,7 @@ the response is: [Language](#Language-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "defaultLanguage": "English",
+  "defaultLanguage": "",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -4915,7 +5035,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "defaultLanguage": "English",
+  "defaultLanguage": "",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -5886,9 +6006,9 @@ Content-Type:  application/json
 - `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a new form field of offline message for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
 - `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get all form fields of agent wrapup for a campaign](#get-all-form-fields-of-Agent-Wrap-up-for-a-campaign)
 - `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a new form field of agent wrapup for a campaign](#create-a-new-form-fields-of-Agent-Wrap-up-for-a-campaign)
-- `GET /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
-- `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
-- `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
+- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
+- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
+- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
 ## Related Object Json Format
 
@@ -5966,7 +6086,7 @@ Content-Type:  application/json
 | `NPS` | `Post Chat`  |
 | `file` | `Offline Message`   |
 | `rating` | `Post Chat` |
-| `checkboxListWithOptionGroups` | `Agent Wrap-Up`   |
+| `checkboxListwithOptionGroups` | `Agent Wrap-Up`   |
 
 ### Live Chat Field Option Object
 
@@ -7043,7 +7163,7 @@ Response
 
 - `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
 - `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
-- `POST /api/v3/livechat/bans` - [Create a ban](#get-a-ban)
+- `POST /api/v3/livechat/bans` - [Create a ban](#create-a-ban)
 - `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban)
 - `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
 
@@ -7055,16 +7175,16 @@ Response
 
 | Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | | yes | N/A | | id of the ban. |
+| `id` | Guid | | yes | no| | id of the ban. |
 | `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
-| `visitorId` | Guid | | no | yes | | visitor's id of the ban if `type` is `visitor`  |
-| `visitor` | [Visitor](#visitor) | yes | N/A | N/A | |  Available only when visitor is included  |
-| `ip` | string  |  | no | yes | | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` |
-| `ipRangeFrom` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
-| `ipRangeTo` | string | | no | yes | | ip address of the ban if `type` is `ipRange` |
+| `visitorId` | Guid | | no | yes | | mandatory when `type` is `visitor` |
+| `visitor` | [Visitor](#visitor) | yes | no | no | |  available only when visitor is included  |
+| `ip` | string  |  | no | yes | | ip address of the ban, mandatory when `type` is `ip`. |
+| `ipRangeFrom` | string | | no | yes | | mandatory when `type` is `ipRange`. |
+| `ipRangeTo` | string | | no | yes | | mandatory when `type` is `ipRange`. |
 | `comment` | string | | no | no | | comment of the ban. |
-| `lastUpdatedByAgentId` | intger | | N/A | N/A | | comment of the ban. |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+| `lastUpdatedByAgentId` | integer | | yes | no | | |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included  |
 
 ## Endpoint
 
@@ -7174,7 +7294,7 @@ Response
 }
 ```
 
-### Create a new ban
+### Create a ban
 
   `POST /api/v3/livechat/bans`
 
@@ -7239,7 +7359,6 @@ Request body
   example:
 ```Json
   {
-    "id": "27c48ac9-2553-4066-bf94-e30957aa390e",
     "type": "ip",
     "ip": "192.168.1.2",
     "comment": ""
@@ -7384,7 +7503,7 @@ Content-Type:  application/json
         "isCaseSensitive": false,
         "isValueAssignedToConversion": false,
         "valueSource": "inputAValue",
-        "assignedValueFromInputting": "https://www.comm100.com",
+        "assignedValueFromInputting": 8,
         "assignedValueFromCustomVariable": "",
         "chatAssociatedWithConversion": "theFirstChat",
         "isChatInLastCertainDaysConsidered": false,
@@ -7463,7 +7582,7 @@ Content-Type:  application/json
     "isCaseSensitive": false,
     "isValueAssignedToConversion": false,
     "valueSource": "inputAValue",
-    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromInputting": 8,
     "assignedValueFromCustomVariable": "",
     "chatAssociatedWithConversion": "theFirstChat",
     "isChatInLastCertainDaysConsidered": false,
@@ -7518,7 +7637,7 @@ Request body
     "isCaseSensitive": false,
     "isValueAssignedToConversion": false,
     "valueSource": "inputAValue",
-    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromInputting": 8,
     "assignedValueFromCustomVariable": "",
     "chatAssociatedWithConversion": "theFirstChat",
     "isChatInLastCertainDaysConsidered": false,
@@ -7547,7 +7666,7 @@ curl -H "Content-Type: application/json" -d '{
     "isCaseSensitive": false,
     "isValueAssignedToConversion": false,
     "valueSource": "inputAValue",
-    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromInputting": 8,
     "assignedValueFromCustomVariable": "",
     "chatAssociatedWithConversion": "theFirstChat",
     "isChatInLastCertainDaysConsidered": false,
@@ -7575,7 +7694,7 @@ Location: https://domain.comm100.com/api/v3/livechat/conversionActions/b222qa68-
     "isCaseSensitive": false,
     "isValueAssignedToConversion": false,
     "valueSource": "inputAValue",
-    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromInputting": 8,
     "assignedValueFromCustomVariable": "",
     "chatAssociatedWithConversion": "theFirstChat",
     "isChatInLastCertainDaysConsidered": false,
@@ -7619,7 +7738,7 @@ Request body
     "isCaseSensitive": false,
     "isValueAssignedToConversion": false,
     "valueSource": "inputAValue",
-    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromInputting": 8,
     "assignedValueFromCustomVariable": "",
     "chatAssociatedWithConversion": "theFirstChat",
     "isChatInLastCertainDaysConsidered": false,
@@ -7649,7 +7768,7 @@ curl -H "Content-Type: application/json" -d '{
     "isCaseSensitive": false,
     "isValueAssignedToConversion": false,
     "valueSource": "inputAValue",
-    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromInputting": 8,
     "assignedValueFromCustomVariable": "",
     "chatAssociatedWithConversion": "theFirstChat",
     "isChatInLastCertainDaysConsidered": false,
@@ -7676,7 +7795,7 @@ Response
     "isCaseSensitive": false,
     "isValueAssignedToConversion": false,
     "valueSource": "inputAValue",
-    "assignedValueFromInputting": "https://www.comm100.com",
+    "assignedValueFromInputting": 8,
     "assignedValueFromCustomVariable": "",
     "chatAssociatedWithConversion": "theFirstChat",
     "isChatInLastCertainDaysConsidered": false,
@@ -7697,6 +7816,7 @@ Response
   `POST /api/v3/livechat/conversionActions:achieved`
 
 #### Parameters
+
 Request body
 
 The request body contains data with the follow structure:
@@ -7704,11 +7824,11 @@ The request body contains data with the follow structure:
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
 | `conversion_name` | string | yes | |  name of the conversion action. |
-| `visitorId` | string | yes |  | |
+| `visitorId` | string | yes |  | id of visitor|
 | `value` | string  | no |  |  the name of the custom variable, available when conversion action `type` is `customVariable`. |
 
 example:
-```Json 
+```Json
   {
     "conversion_name" : "justfortestupdate", 
     "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
@@ -8110,10 +8230,10 @@ HTTP/1.1 204 No Content
 # Secure Form Field
 
 - `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-list-of-secure-form-fields)
-- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
+- `GET /api/v3/livechat/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
 - `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#ceate-a-secure-form-field)
-- `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
-- `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
+- `PUT /api/v3/livechat/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
+- `DELETE /api/v3/livechat/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
 
 ## Related Object Json Format
 ### Secure Form Field JSON Format
