@@ -2804,8 +2804,8 @@ Content-Type:  application/json
 | `isImageButtonYOffsetByPixel` | boolean | no | no | | Available when `type` is `image`. |
 | `imageButtonYOffset` | integer | no | no | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate, available when `type` is `image`. |
 | `imageButtonImageSource` | string | no | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
-| `imageButtonOnlineImage` | string | no | no | | Image file key of online button, available when `type` is `image`. |
-| `imageButtonOfflineImage` | string | no | no | | Image file key of offline button, available when `type` is `image`. |
+| `imageButtonOnlineImage` | Guid | no | no | | Image file key of online button, available when `type` is `image`. |
+| `imageButtonOfflineImage` | Guid | no | no | | Image file key of offline button, available when `type` is `image`. |
 | `imageButtonTypeOnMobile` | string | no | no | | The type of button on mobile device, including `text` and `image`. |
 | `imageButtonColorOnMobile` | string | no | no | | |
 | `imageButtonTextColorOnMobile` | string | no | no | | The theme color of chatbutton on mobile device. |
@@ -3336,6 +3336,8 @@ Content-Type:  application/json
 | `isAgentAvatarDisplayed` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the header. |
 | `greetingMessage` | string | no | no | | |
 | `socialMediaLogin` | string | no | no | |  Including `none` and `facebook`. |
+| `isEnableGoogleReCAPTCHA` | boolean | no | no | | |
+| `reReCAPTCHALable` | string | no | no | |  |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 | `isVisitorInfoRecorded` | boolean | no | no | true | If remember visitor info collected from pre-chat form. |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
@@ -3377,6 +3379,8 @@ Content-Type:  application/json
   "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "socialMediaLogin": "none",
+  "isEnableGoogleReCAPTCHA": false,
+  "reReCAPTCHALable": "Captchat",
   "fields":  [
     {
       "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
@@ -3444,6 +3448,8 @@ example:
   "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "socialMediaLogin": "none",
+  "isEnableGoogleReCAPTCHA": false,
+  "reReCAPTCHALable": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
@@ -3465,6 +3471,8 @@ curl -H "Content-Type: application/json" -d '{
   "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "socialMediaLogin": "none",
+  "isEnableGoogleReCAPTCHA": false,
+  "reReCAPTCHALable": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
@@ -3482,6 +3490,8 @@ Content-Type:  application/json
   "isAgentAvatarDisplayed": false,
   "greetingMessage": "",
   "socialMediaLogin": "none",
+  "isEnableGoogleReCAPTCHA": false,
+  "reReCAPTCHALable": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
@@ -4322,6 +4332,7 @@ Content-Type:  application/json
 | `isDisplayedOnceInOneSession` | boolean | no | no | | |
 | `order` | integer | no | no | | |
 | `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
+| `image` | string | no | yes | | Image file key of Invitation.  |
 | `closeAreaXOffset` | integer | no | no | | |
 | `closeAreaYOffset` | integer | no | no | | |
 | `closeAreaWidth` | integer | no | no | | |
@@ -4379,6 +4390,7 @@ Content-Type:  application/json
     "isDisplayedOnceInOneSession": false,
     "order": 1,
     "imageType": "fromGallery",
+    "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
     "closeAreaXOffset": 10,
     "closeAreaYOffset": 10,
     "closeAreaWidth": 10,
@@ -4447,6 +4459,7 @@ Content-Type:  application/json
     "isDisplayedOnceInOneSession": false,
     "order": 1,
     "imageType": "fromGallery",
+    "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
     "closeAreaXOffset": 10,
     "closeAreaYOffset": 10,
     "closeAreaWidth": 10,
@@ -4502,6 +4515,7 @@ example:
   "isDisplayedOnceInOneSession": false,
   "order": 1,
   "imageType": "fromGallery",
+  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4545,6 +4559,7 @@ curl -H "Content-Type: application/json" -d '{
   "isDisplayedOnceInOneSession": false,
   "order": 1,
   "imageType": "fromGallery",
+  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4587,6 +4602,7 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "isDisplayedOnceInOneSession": false,
   "order": 1,
   "imageType": "fromGallery",
+  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4641,6 +4657,7 @@ example:
   "isDisplayedOnceInOneSession": false,
   "order": 1,
   "imageType": "fromGallery",
+  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4684,6 +4701,7 @@ curl -H "Content-Type: application/json" -d '{
   "isDisplayedOnceInOneSession": false,
   "order": 1,
   "imageType": "fromGallery",
+  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4724,6 +4742,7 @@ Content-Type:  application/json
   "isDisplayedOnceInOneSession": false,
   "order": 1,
   "imageType": "fromGallery",
+  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4972,7 +4991,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "defaultLanguage": "",
+  "defaultLanguage": "English",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -5001,7 +5020,6 @@ Request Body
 example:
 ```Json
 {
-  "defaultLanguage": "",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -5020,7 +5038,6 @@ the response is: [Language](#Language-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "defaultLanguage": "",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -5035,7 +5052,6 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "defaultLanguage": "",
   "isCustomLanguageEnabled": false,
   "isTextDirectionRightToLeft": false,
   "customLanguageItems": {
@@ -5873,7 +5889,7 @@ Content-Type:  application/json
 
 # KB Integration
 
-- `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Get settings of KB Integration for a campaign](#get-KB-Integration) include knowledgeBase
+- `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Get settings of KB Integration for a campaign](#get-KB-Integration)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Update settings of KB Integration for a campaign](#update-KB-Integration)
 
 ## Related Object Json Format
@@ -8230,10 +8246,10 @@ HTTP/1.1 204 No Content
 # Secure Form Field
 
 - `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-list-of-secure-form-fields)
-- `GET /api/v3/livechat/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
+- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
 - `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#ceate-a-secure-form-field)
-- `PUT /api/v3/livechat/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
-- `DELETE /api/v3/livechat/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
+- `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
+- `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
 
 ## Related Object Json Format
 ### Secure Form Field JSON Format
@@ -8272,7 +8288,7 @@ An array of [Secure Form Field](#secure-form-field-json-format)
 
 Using curl
 ```
-curl -H "Content-Type: application/json" 
+curl -H "Content-Type: application/json"
 -X GET https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields
 ```
 Response
@@ -8315,7 +8331,7 @@ Content-Type:  application/json
 
 ### Get a single secure form field
 
-  `GET /api/v3/livechat/secureFormFields/{id}`
+  `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}`
 
 #### Parameters
 Path parameters
@@ -8323,6 +8339,7 @@ Path parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the id of the secure form field |
+| `secureFormId` | Guid | yes  |  the id of the secure form  |
 
 #### Response
 
@@ -8334,7 +8351,7 @@ the response is: [Secure Form Field](#secure-form-field-json-format) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/secureFormFields/vc21qa68-92e6-4487-a2e8-8234fc9d1f48
+-X GET https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/vc21qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ``` json
@@ -8428,7 +8445,7 @@ Location: https://domain.comm100.com/api/v3/livechat/secureFormFields/3222qa68-9
 
 ### Update a secure form field
 
-  `PUT /api/v3/livechat/secureFormFields/{id}`
+  `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}`
 
 #### Parameters
 Path parameters
@@ -8436,6 +8453,7 @@ Path parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the id of the secure form field  |
+| `secureFormId` | Guid | yes  |  the id of the secure form  |
 
 Request body
 
@@ -8472,7 +8490,7 @@ curl -H "Content-Type: application/json" -d '{
     "isVisible": false,
     "isRequired": false,
     "order": 1
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -8493,7 +8511,7 @@ Content-Type:  application/json
 
 ### Remove a secure form field
 
-  `DELETE /api/v3/livechat/secureFormFields/{id}`
+  `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}`
 
 #### Parameters
 Path parameters
@@ -8501,7 +8519,7 @@ Path parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the id of the secure form field |
-
+| `secureFormId` | Guid | yes  |  the id of the secure form  |
 
 #### Response
 HTTP/1.1 204 No Content
@@ -8509,7 +8527,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureFormFields/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
 ```
 Response
 ```json
