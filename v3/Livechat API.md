@@ -2794,8 +2794,6 @@ Content-Type:  application/json
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
 | `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
 | `adaptiveButtonIconType` | integer | no | no | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
-| `adaptiveButtonOnlineIcon` | string | no | no | | Image file key of the chat online button, available when `type` is `adaptive`. |
-| `adaptiveButtonOfflineIcon` | string | no | no | | Image file key of the chat offline button, available when `type` is `adaptive`. |
 | `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
 | `imageButtonPosition` | string | no | no | | Position of the image button. Including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
 | `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
@@ -2803,14 +2801,14 @@ Content-Type:  application/json
 | `imageButtonXOffset` | integer | no | no | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate, available when `type` is `image`. |
 | `isImageButtonYOffsetByPixel` | boolean | no | no | | Available when `type` is `image`. |
 | `imageButtonYOffset` | integer | no | no | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate, available when `type` is `image`. |
-| `imageButtonImageSource` | string | no | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
-| `imageButtonOnlineImage` | Guid | no | no | | Image file key of online button, available when `type` is `image`. |
-| `imageButtonOfflineImage` | Guid | no | no | | Image file key of offline button, available when `type` is `image`. |
+| `imageButtonImageSource` | string | yes | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
+| `imageButtonOnlineImage` | Guid | yes | no | | Image file key of online button, available when `type` is `image`. |
+| `imageButtonOfflineImage` | Guid | yes | no | | Image file key of offline button, available when `type` is `image`. |
 | `imageButtonTypeOnMobile` | string | no | no | | The type of button on mobile device, including `text` and `image`. |
 | `imageButtonColorOnMobile` | string | no | no | | |
 | `imageButtonTextColorOnMobile` | string | no | no | | The theme color of chatbutton on mobile device. |
-| `imageButtonOnlineImageOnMobile` | Guid | no | no | | The Image file key on mobile device when any agents is online. |
-| `imageButtonOfflineImageOnMobile` | Guid | no | no | | The image file key on mobile device when no agent is online. |
+| `imageButtonOnlineImageOnMobile` | Guid | yes | no | | The Image file key on mobile device when any agents is online. |
+| `imageButtonOfflineImageOnMobile` | Guid | yes | no | | The image file key on mobile device when no agent is online. |
 | `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
 | `textLinkButtonText` | string | no | no | | the content of the text link, available when `type` is `textLink`. |
 
@@ -2851,8 +2849,6 @@ Content-Type:  application/json
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2898,8 +2894,6 @@ example:
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2907,14 +2901,9 @@ example:
   "imageButtonXOffset": 10,
   "isImageButtonYOffsetByPixel": false,
   "imageButtonYOffset": 10,
-  "imageButtonImageSource": "fromMyComputer",
-  "imageButtonOnlineImage": "08A3ACFE-FD5C-1B46-FA40-86DBA3E110FF",
-  "imageButtonOfflineImage": "2EF5F854-A5CC-972F-1DC7-6DEA8B50F63A",
   "imageButtonTypeOnMobile": "image",
   "imageButtonColorOnMobile": "#329fd9",
   "imageButtonTextColorOnMobile": "#329fd9",
-  "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
-  "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
   "textLinkButtonText": "tset111111"
 }
@@ -2935,8 +2924,6 @@ curl -H "Content-Type: application/json" -d '{
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2944,14 +2931,9 @@ curl -H "Content-Type: application/json" -d '{
   "imageButtonXOffset": 10,
   "isImageButtonYOffsetByPixel": false,
   "imageButtonYOffset": 10,
-  "imageButtonImageSource": "fromMyComputer",
-  "imageButtonOnlineImage": "08A3ACFE-FD5C-1B46-FA40-86DBA3E110FF",
-  "imageButtonOfflineImage": "2EF5F854-A5CC-972F-1DC7-6DEA8B50F63A",
   "imageButtonTypeOnMobile": "image",
   "imageButtonColorOnMobile": "#329fd9",
   "imageButtonTextColorOnMobile": "#329fd9",
-  "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
-  "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
   "textLinkButtonText": "tset111111"
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatButton
@@ -2968,8 +2950,6 @@ Content-Type:  application/json
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
   "adaptiveButtonIconType": 1,
-  "adaptiveButtonOnlineIcon": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "adaptiveButtonOfflineIcon": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -3013,8 +2993,9 @@ Content-Type:  application/json
 | `isTitleDisplayed` | boolean | no | no | | Whether the title of the agent is visible or not, available when `headerType` is `agentInfo`. |
 | `isBioDisplayed` | boolean | no | no | | Whether the bio of the agent is visible or not, available when `headerType` is `agentInfo`. |
 | `isLogoDisplayed` | boolean | no | no | | Whether the logo is visible or not, available when `headerType` is `avatarAndLogo`. |
-| `logo` | string | no | no | | Image file key of the logo. |
-| `bannerImage` | string | no | no | | Image file key of the banner, available when `headerType` is `bannerImage`. |
+| `logo` | string | yes | no | | Image file key of the logo. |
+| `bannerImageType` | string | yes | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
+| `bannerImage` | string | no | yes | | Image file key of the banner, available when `headerType` is `bannerImage`. |
 | `isAvatarDisplayedWithMessage` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `backgroundTexture` | string | no | no | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
@@ -3098,6 +3079,7 @@ Content-Type:  application/json
   "isBioDisplayed":  false,
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
+  "bannerImageType": "fromGallery",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
@@ -3165,8 +3147,6 @@ example:
   "isTitleDisplayed": false,
   "isBioDisplayed":  false,
   "isLogoDisplayed": false,
-  "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3223,8 +3203,6 @@ curl -H "Content-Type: application/json" -d '{
   "isTitleDisplayed": false,
   "isBioDisplayed":  false,
   "isLogoDisplayed": false,
-  "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
-  "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
   "backgroundTexture": "style1",
@@ -3278,6 +3256,7 @@ Content-Type:  application/json
   "isBioDisplayed":  false,
   "isLogoDisplayed": false,
   "logo": "6FABEE8F-F5DB-C1DB-FAD2-154692BB0715",
+  "bannerImageType": "fromGallery",
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
@@ -3790,61 +3769,6 @@ Content-Type:  application/json
 | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
 | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object) | no | no | | |
 
-### Manual Invitation Object
-
-  Manual Invitation Object is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Read-only | Mandatory | Default | Description |
-| - | - | :-: | :-: | :-: | - |
-| `manualInvitationPosition` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
-| `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
-| `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
-| `manualInvitationCloseAreaXOffset` | integer | no | no | | |
-| `manualInvitationCloseAreaYOffset` | integer | no | no | | |
-| `manualInvitationCloseAreaWidth` | integer | no | no | | |
-| `manualInvitationCloseAreaHeight` | integer | no | no | | |
-| `manualInvitationTextAreaXOffset` | integer | no | no | | |
-| `manualInvitationTextAreaYOffset` | integer | no | no | | |
-| `manualInvitationTextAreaWidth` | integer | no | no | | |
-| `manualInvitationTextAreaHeight` | integer | no | no | | |
-| `manualInvitationText` | string | no | no | | |
-| `manualInvitationTextFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
-| `manualInvitationTextSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
-| `isManualInvitationTextBold` | boolean | no | no | | |
-| `isManualInvitationTextItalic` | boolean | no | no | | |
-| `manualInvitationTextColor` | string | no | no | | |
-
-### Auto Invitation Object
-
-  Auto Invitation Object is represented as simple flat JSON objects with the following keys:
-
-| Name | Type | Read-only | Mandatory | Default | Description |
-| - | - | :-: | :-: | :-: | - |
-| `id` | Guid | yes | no | | Id of the current item. |
-| `name` | string | no | yes | | |
-| `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
-| `isDisplayedOnceInOneSession` | boolean | no | no | | |
-| `order` | integer | no | no | | |
-| `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
-| `closeAreaXOffset` | integer | no | no | | |
-| `closeAreaYOffset` | integer | no | no | | |
-| `closeAreaWidth` | integer | no | no | | |
-| `closeAreaHeight` | integer | no | no | | |
-| `textAreaXOffset` | integer | no | no | | |
-| `textAreaYOffset` | integer | no | no | | |
-| `textAreaWidth` | integer | no | no | | |
-| `textAreaHeight` | integer | no | no | | |
-| `text` | string | no | no | | |
-| `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
-| `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
-| `isTextBold` | boolean | no | no | | |
-| `isTextItalic` | boolean | no | no | | |
-| `textColor` | string | no | no | | |
-| `position` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
-| `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
-| `logicalExpression` | string | no | no | | |
-| `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#live-chat-condition-object) object. |
-
 ## Invitation Endpoints
 
 ### Get Invitation
@@ -3994,8 +3918,8 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `manualInvitationPosition` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
-| `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
-| `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
+| `manualInvitationImageType` | string | yes | no | | Including`fromGallery` and `fromMyComputer`.  |
+| `manualInvitationImage` | string | yes | no | | Image file key of Invitation.  |
 | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
 | `manualInvitationCloseAreaYOffset` | integer | no | no | | |
 | `manualInvitationCloseAreaWidth` | integer | no | no | | |
@@ -4176,8 +4100,8 @@ Content-Type:  application/json
 | `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
 | `isDisplayedOnceInOneSession` | boolean | no | no | | |
 | `order` | integer | no | no | | |
-| `imageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`. |
-| `image` | string | no | yes | | Image file key of Invitation.  |
+| `imageType` | string | yes | no | | Including`fromGallery` and `fromMyComputer`. |
+| `image` | string | yes | no | | Image file key of Invitation.  |
 | `closeAreaXOffset` | integer | no | no | | |
 | `closeAreaYOffset` | integer | no | no | | |
 | `closeAreaWidth` | integer | no | no | | |
