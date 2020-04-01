@@ -3514,6 +3514,7 @@ Content-Type:  application/json
 | `isEnable` | boolean | no | no | | Whether the pot chat is enabled or not. |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
 | `greetingMessage` | string | no | no | | |
+| `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
 ## Post Chat Endpoints
 
@@ -3548,7 +3549,8 @@ Content-Type:  application/json
 {
   "isEnable":  false,
   "fields":  [],
-  "greetingMessage": ""
+  "greetingMessage": "",
+  "formFieldLayoutStyle": "leftofInput"
 }
 ```
 
@@ -3588,7 +3590,8 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "isEnable":  true,
   "fields":  [],
-  "greetingMessage": ""
+  "greetingMessage": "",
+  "formFieldLayoutStyle": "leftofInput"
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
 ```
 
@@ -3599,7 +3602,8 @@ Content-Type:  application/json
 {
   "isEnable":  true,
   "fields":  [],
-  "greetingMessage": ""
+  "greetingMessage": "",
+  "formFieldLayoutStyle": "leftofInput"
 }
 ```
 
@@ -3792,7 +3796,7 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `manualInvitationPosition` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
+| `manualInvitationPosition` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
 | `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
 | `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
 | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
@@ -3836,7 +3840,7 @@ Content-Type:  application/json
 | `isTextBold` | boolean | no | no | | |
 | `isTextItalic` | boolean | no | no | | |
 | `textColor` | string | no | no | | |
-| `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
+| `position` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
 | `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
 | `logicalExpression` | string | no | no | | |
 | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | an array of [Live Chat Condition](#live-chat-condition-object) object. |
@@ -3874,7 +3878,7 @@ Content-Type:  application/json
 {
   "style": "bubble",
   "manualInvitation": {
-    "manualInvitationPosition": "centerWithOverlay",
+    "manualInvitationPosition": "centeredWithOverlay",
     "manualInvitationImageType": "fromGallery",
     "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
     "manualInvitationCloseAreaXOffset": 10,
@@ -3913,7 +3917,7 @@ Content-Type:  application/json
     "isTextBold": false,
     "isTextItalic": false,
     "textColor": "#339FD9",
-    "position": "centerWithOverlay",
+    "position": "centeredWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
     "conditions": [
@@ -3950,60 +3954,7 @@ Request Body
 example:
 ```Json
 {
-  "style": "bubble",
-  "manualInvitation": {
-    "manualInvitationPosition": "centerWithOverlay",
-    "manualInvitationImageType": "fromGallery",
-    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
-    "manualInvitationCloseAreaXOffset": 10,
-    "manualInvitationCloseAreaYOffset": 10,
-    "manualInvitationCloseAreaWidth": 10,
-    "manualInvitationCloseAreaHeight": 10,
-    "manualInvitationTextAreaXOffset": 10,
-    "manualInvitationTextAreaYOffset": 10,
-    "manualInvitationTextAreaWidth": 10,
-    "manualInvitationTextAreaHeight": 10,
-    "manualInvitationText": "",
-    "manualInvitationTextFont": "timesNewRoman",
-    "manualInvitationTextSize": "XXSmall",
-    "isManualInvitationTextBold": false,
-    "isManualInvitationTextItalic": false,
-    "manualInvitationTextColor": "#339FD9"
-  },
-  "autoInvitations": [{
-    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
-    "name": "test",
-    "isEnable": false,
-    "isDisplayedOnceInOneSession": false,
-    "order": 1,
-    "imageType": "fromGallery",
-    "closeAreaXOffset": 10,
-    "closeAreaYOffset": 10,
-    "closeAreaWidth": 10,
-    "closeAreaHeight": 10,
-    "textAreaXOffset": 10,
-    "textAreaYOffset": 10,
-    "textAreaWidth": 10,
-    "textAreaHeight": 10,
-    "text": "",
-    "textFont": "timesNewRoman",
-    "textSize": "XXSmall",
-    "isTextBold": false,
-    "isTextItalic": false,
-    "textColor": "#339FD9",
-    "position": "centerWithOverlay",
-    "conditionMetType": "any",
-    "logicalExpression": "",
-    "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
-    },
-    ...
-    ]
-  }]
+  "style": "bubble"
 }
 ```
 
@@ -4016,60 +3967,7 @@ the response is: [Invitation](#Invitation-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "style": "bubble",
-  "manualInvitation": {
-    "manualInvitationPosition": "centerWithOverlay",
-    "manualInvitationImageType": "fromGallery",
-    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
-    "manualInvitationCloseAreaXOffset": 10,
-    "manualInvitationCloseAreaYOffset": 10,
-    "manualInvitationCloseAreaWidth": 10,
-    "manualInvitationCloseAreaHeight": 10,
-    "manualInvitationTextAreaXOffset": 10,
-    "manualInvitationTextAreaYOffset": 10,
-    "manualInvitationTextAreaWidth": 10,
-    "manualInvitationTextAreaHeight": 10,
-    "manualInvitationText": "",
-    "manualInvitationTextFont": "timesNewRoman",
-    "manualInvitationTextSize": "XXSmall",
-    "isManualInvitationTextBold": false,
-    "isManualInvitationTextItalic": false,
-    "manualInvitationTextColor": "#339FD9"
-  },
-  "autoInvitations": [{
-    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
-    "name": "test",
-    "isEnable": false,
-    "isDisplayedOnceInOneSession": false,
-    "order": 1,
-    "imageType": "fromGallery",
-    "closeAreaXOffset": 10,
-    "closeAreaYOffset": 10,
-    "closeAreaWidth": 10,
-    "closeAreaHeight": 10,
-    "textAreaXOffset": 10,
-    "textAreaYOffset": 10,
-    "textAreaWidth": 10,
-    "textAreaHeight": 10,
-    "text": "",
-    "textFont": "timesNewRoman",
-    "textSize": "XXSmall",
-    "isTextBold": false,
-    "isTextItalic": false,
-    "textColor": "#339FD9",
-    "position": "centerWithOverlay",
-    "conditionMetType": "any",
-    "logicalExpression": "",
-    "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
-    },
-    ...
-    ]
-  }]
+  "style": "bubble"
   }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
 ```
 
@@ -4078,60 +3976,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "style": "bubble",
-  "manualInvitation": {
-    "manualInvitationPosition": "centerWithOverlay",
-    "manualInvitationImageType": "fromGallery",
-    "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
-    "manualInvitationCloseAreaXOffset": 10,
-    "manualInvitationCloseAreaYOffset": 10,
-    "manualInvitationCloseAreaWidth": 10,
-    "manualInvitationCloseAreaHeight": 10,
-    "manualInvitationTextAreaXOffset": 10,
-    "manualInvitationTextAreaYOffset": 10,
-    "manualInvitationTextAreaWidth": 10,
-    "manualInvitationTextAreaHeight": 10,
-    "manualInvitationText": "",
-    "manualInvitationTextFont": "timesNewRoman",
-    "manualInvitationTextSize": "XXSmall",
-    "isManualInvitationTextBold": false,
-    "isManualInvitationTextItalic": false,
-    "manualInvitationTextColor": "#339FD9"
-  },
-  "autoInvitations": [{
-    "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
-    "name": "test",
-    "isEnable": false,
-    "isDisplayedOnceInOneSession": false,
-    "order": 1,
-    "imageType": "fromGallery",
-    "closeAreaXOffset": 10,
-    "closeAreaYOffset": 10,
-    "closeAreaWidth": 10,
-    "closeAreaHeight": 10,
-    "textAreaXOffset": 10,
-    "textAreaYOffset": 10,
-    "textAreaWidth": 10,
-    "textAreaHeight": 10,
-    "text": "",
-    "textFont": "timesNewRoman",
-    "textSize": "XXSmall",
-    "isTextBold": false,
-    "isTextItalic": false,
-    "textColor": "#339FD9",
-    "position": "centerWithOverlay",
-    "conditionMetType": "any",
-    "logicalExpression": "",
-    "conditions": [
-    {
-      "field": "CurrentPageUrl",
-      "operator": "include",
-      "value": "live",
-      "order": 1
-    },
-    ...
-    ]
-  }]
+  "style": "bubble"
 }
 ```
 
@@ -4148,7 +3993,7 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `manualInvitationPosition` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
+| `manualInvitationPosition` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
 | `manualInvitationImageType` | string | no | no | | Including`fromGallery` and `fromMyComputer`.  |
 | `manualInvitationImage` | string | no | no | | Image file key of Invitation.  |
 | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
@@ -4197,7 +4042,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "manualInvitationPosition": "centerWithOverlay",
+  "manualInvitationPosition": "centeredWithOverlay",
   "manualInvitationImageType": "fromGallery",
   "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
@@ -4240,7 +4085,7 @@ the response is: [Invitation](#Invitation-Object) Object
 example:
 ```Json
 {
-  "manualInvitationPosition": "centerWithOverlay",
+  "manualInvitationPosition": "centeredWithOverlay",
   "manualInvitationImageType": "fromGallery",
   "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
@@ -4265,7 +4110,7 @@ example:
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "manualInvitationPosition": "centerWithOverlay",
+  "manualInvitationPosition": "centeredWithOverlay",
   "manualInvitationImageType": "fromGallery",
   "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
@@ -4290,7 +4135,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "manualInvitationPosition": "centerWithOverlay",
+  "manualInvitationPosition": "centeredWithOverlay",
   "manualInvitationImageType": "fromGallery",
   "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
@@ -4347,7 +4192,7 @@ Content-Type:  application/json
 | `isTextBold` | boolean | no | no | | |
 | `isTextItalic` | boolean | no | no | | |
 | `textColor` | string | no | no | | |
-| `position` | string | no | no | | Including `centerWithOverlay`, `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
+| `position` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`.  |
 | `conditionMetType` | string | no | no | | Including `all`, `any` and `logicalExpression`. |
 | `logicalExpression` | string | no | no | | |
 | `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | no | no | | |
@@ -4405,7 +4250,7 @@ Content-Type:  application/json
     "isTextBold": false,
     "isTextItalic": false,
     "textColor": "#339FD9",
-    "position": "centerWithOverlay",
+    "position": "centeredWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
     "conditions": [
@@ -4474,7 +4319,7 @@ Content-Type:  application/json
     "isTextBold": false,
     "isTextItalic": false,
     "textColor": "#339FD9",
-    "position": "centerWithOverlay",
+    "position": "centeredWithOverlay",
     "conditionMetType": "any",
     "logicalExpression": "",
     "conditions": [
@@ -4530,7 +4375,7 @@ example:
   "isTextBold": false,
   "isTextItalic": false,
   "textColor": "#339FD9",
-  "position": "centerWithOverlay",
+  "position": "centeredWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
   "conditions": [
@@ -4574,7 +4419,7 @@ curl -H "Content-Type: application/json" -d '{
   "isTextBold": false,
   "isTextItalic": false,
   "textColor": "#339FD9",
-  "position": "centerWithOverlay",
+  "position": "centeredWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
   "conditions": [
@@ -4617,7 +4462,7 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "isTextBold": false,
   "isTextItalic": false,
   "textColor": "#339FD9",
-  "position": "centerWithOverlay",
+  "position": "centeredWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
   "conditions": [
@@ -4672,7 +4517,7 @@ example:
   "isTextBold": false,
   "isTextItalic": false,
   "textColor": "#339FD9",
-  "position": "centerWithOverlay",
+  "position": "centeredWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
   "conditions": [
@@ -4716,7 +4561,7 @@ curl -H "Content-Type: application/json" -d '{
   "isTextBold": false,
   "isTextItalic": false,
   "textColor": "#339FD9",
-  "position": "centerWithOverlay",
+  "position": "centeredWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
   "conditions": [
@@ -4757,7 +4602,7 @@ Content-Type:  application/json
   "isTextBold": false,
   "isTextItalic": false,
   "textColor": "#339FD9",
-  "position": "centerWithOverlay",
+  "position": "centeredWithOverlay",
   "conditionMetType": "any",
   "logicalExpression": "",
   "conditions": [
