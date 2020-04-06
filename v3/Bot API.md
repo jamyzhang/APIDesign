@@ -9856,7 +9856,7 @@ HTTP/1.1 204 No Content
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `type` | string  | N/A | N/A | | enum value, `cannedMessage`,`article`, `intent` |
-  | `content` | object  | N/A | N/A | |suggestion's content.<br/>when type is cannedMessage, it represents [CannedMessageContent](#canned-message-suggestion-content);<br/>when type is knowledgeBase ,it represents [KnowledgeBaseContent](#knowledge-base-suggestion-content);<br/>when type is chatbot, it represents [ChatbotSuggestionContent](#chatbot-suggestion-content). |
+  | `content` | object  | N/A | N/A | |suggestion's content.<br/>when type is cannedMessage, it represents [CannedMessageContent](#canned-message-suggestion-content);<br/>when type is article ,it represents [KnowledgeBaseContent](#knowledge-base-suggestion-content);<br/>when type is intent, it represents [ChatbotSuggestionContent](#chatbot-suggestion-content). |
   | `score` | float  | N/A | N/A | 0 |the score of the suggestion |
  
 ### QuestionSuggestion
