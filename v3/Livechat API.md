@@ -3316,7 +3316,7 @@ Content-Type:  application/json
 | `greetingMessage` | string | no | no | | |
 | `socialMediaLogin` | string | no | no | |  Including `none` and `facebook`. |
 | `isEnableGoogleReCAPTCHA` | boolean | no | no | | |
-| `reReCAPTCHALable` | string | no | no | |  |
+| `reReCAPTCHALabel` | string | no | no | |  |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 | `isVisitorInfoRecorded` | boolean | no | no | true | If remember visitor info collected from pre-chat form. |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
@@ -3359,7 +3359,7 @@ Content-Type:  application/json
   "greetingMessage": "",
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
-  "reReCAPTCHALable": "Captchat",
+  "reReCAPTCHALabel": "Captchat",
   "fields":  [
     {
       "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
@@ -3428,7 +3428,7 @@ example:
   "greetingMessage": "",
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
-  "reReCAPTCHALable": "Captchat",
+  "reReCAPTCHALabel": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
@@ -3451,7 +3451,7 @@ curl -H "Content-Type: application/json" -d '{
   "greetingMessage": "",
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
-  "reReCAPTCHALable": "Captchat",
+  "reReCAPTCHALabel": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
@@ -3470,7 +3470,7 @@ Content-Type:  application/json
   "greetingMessage": "",
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
-  "reReCAPTCHALable": "Captchat",
+  "reReCAPTCHALabel": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
