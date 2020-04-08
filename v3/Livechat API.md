@@ -2202,7 +2202,7 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | string |  | yes | no | | id of the offline message. |
+| `id` | Guid |  | yes | no | | id of the offline message. |
 | `createdTime` | datetime | | no | no | | time of this offline message submitted. |
 | `ssoUserId` | string | | no | no |  | SSO id of visitor |
 | `name` | string | | no | no |  | name of the visitor |
@@ -2262,7 +2262,6 @@ Query string
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
 | `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
 | `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-| `timeZone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
 | `campaignId` | guid | no  |  | id of the campaign which the offline message |
 | `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
 | `agentId` | integer | no  |  | id of the agent that this offline message belongs to |
