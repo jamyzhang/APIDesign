@@ -5826,8 +5826,8 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | yes | no | | Id of the current item. |
-| `isSystem` | boolean | no | no | | whether the field is system or not. |
+| `id` | Guid | yes | no | | Id of the current item, if you want to modify the system field, it must be set to field's Id. |
+| `isSystem` | boolean | no | no | | whether the field is system or not, if you want to modify the system field, it must be set to true. |
 | `name` | string | no | no | | |
 | `type` | string | no | no | | The [Live Chat Field Type](#Live-Chat-Field-Type) of the field. |
 | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | no | no | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
