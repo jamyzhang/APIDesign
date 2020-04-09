@@ -210,6 +210,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`roles` | [Role](#role)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
   |`departmentIds` | Guid[]  |  | no | no | NULL | The list of the department ids which the agent belongs to.|
   |`departments` | [Department](#department)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
+  |`shiftIds` | Guid[]  |  | no | no | NULL | The list of the shift ids which the agent belongs to.|
   |`shifts` | [Shift](#shift)[]  | yes | no | no  | | The list of shifts which the agent belongs to.|
 
 
@@ -259,7 +260,7 @@ Content-Type:  application/json
 {
     "count": 1234,
     "nextPage": "https://domain.comm100.com/api/v3/globalSettings/agents?pageIndex=2",
-    "previousPage": null,
+    "previousPage": "",
     "agents": [{
         "id": 68,
         "email": "Tom@gmail.com",
@@ -350,7 +351,7 @@ Content-Type:  application/json
 {
     "count": 1234,
     "nextPage": "https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents?pageIndex=2",
-    "previousPage": null,
+    "previousPage": "",
     "agents": [{
         "id": 68,
         "email": "Tom@gmail.com",
@@ -401,7 +402,7 @@ Content-Type:  application/json
 {
     "count": 1234,
     "nextPage": "https://domain.comm100.com/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents?pageIndex=2",
-    "previousPage": null,
+    "previousPage": "",
     "agents": [{
         "id": 68,
         "email": "Tom@gmail.com",
@@ -968,7 +969,7 @@ Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
  {
       "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "name": "markting",
@@ -1044,13 +1045,13 @@ curl -H "Content-Type: application/json" -d ' {
          ...,
         ],
     },
-    } ' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+    } ' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/roles/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 {
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "markting",
@@ -1119,6 +1120,7 @@ You need `Manage departments` permission to manage departments.
   |`offlineMessageEmailAddresses` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
   |`agentIds` | int[] | | no | no | NULL | The selected agents for this department.|
   |`agents` | [Agent](#agent)[]| yes | no | no |  |  |
+  |`shiftIds` | Guid[]  |  | no | no | NULL | The list of the shift ids which the department belongs to.|
   |`shifts` | [Shift](#shift)[]| yes | no | no |  |  |
 
 ## Department Endpoints
@@ -1147,6 +1149,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 [{
+  "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
   "name": "markting",
   "description": "markting departments",
   "isAvailableInChat": "yes",
@@ -1186,13 +1189,14 @@ Query string
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/4487fc9d-92e6-4487-a2e8-92e68d68927777
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
+  "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
   "name": "markting",
   "description": "markting departments",
   "isAvailableInChat": "yes",
@@ -1258,6 +1262,7 @@ HTTP/1.1 201 Created
 Content-Type:  application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/departments
 {
+      "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
       "name": "markting",
       "description": "markting departments",
       "isAvailableInChat": "yes",
@@ -1329,6 +1334,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 {
+      "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
       "name": "markting",
       "description": "markting departments",
       "isAvailableInChat": "yes",
@@ -2193,7 +2199,7 @@ Response
   |`timeZone` | string | | no | no | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
   |`createdTime` | DateTime | | no | no | | When the contact is created.|
   |`lastUpdatedTime` | DateTime | | no | no | |  |
-  |`contactIdentities` | [ContactIdentity](#Contact-Identity)[] | yes | no | no | | Contact Identity. |
+  |`contactIdentities` | [ContactIdentity](#Contact-Identity)[] | yes | no | no | | Contact Identities. |
 
 ### Contact List Response Object
 
@@ -2247,7 +2253,7 @@ Response
   {
     "count": 1234,
     "nextPage": "https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vincent&pageIndex=2",
-    "previousPage": null,
+    "previousPage": "",
     "contacts": [{
       "id": 7,
       "name": "Vincent",
@@ -2474,7 +2480,7 @@ HTTP/1.1 204 No Content
   |`id` | integer| | yes | no | |  |
   |`contactId` | integer| | no | no | | Mandatory when post by contact identity api. |
   |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
-  |`type` | string| | no | yes | | the options of the value are:  visitor, emailAddress, SMSNumber, facebookAccount, twitterAccount, weChatAccount, SSOUserID, externalID, whatsApp. In phase 1, one type only has one identity. We need remove the limitation in phase 2.|
+  |`type` | string| | no | yes | | the options of the value are:  visitor, email, sms, facebook, twitter, wechat, ssoid, externalid, whatsapp, inphase.|
   |`value` | string  | | no | yes | | The value of the identity.|
   |`avatarURL` | string | | no | no | | The avatar used in a certain type, like the avatar of a user in Facebook. Not every type has avatar, for example, SMS Number doesn’t have one.|
   |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets of the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
@@ -4796,7 +4802,7 @@ Content-Type:  application/json
 {
     "count": 1234,
     "nextPage": "https://domain.comm100.com/api/v3/globalSettings/auditLogs?pageIndex=2",
-    "previousPage": null,
+    "previousPage": "",
     "auditLogs": [
       {
         "id": 201,
@@ -4821,144 +4827,97 @@ Content-Type:  application/json
 
   |   Id    |   Display name   |
   |   -   |   -   |
-  |  datelineStandardTime  |   (UTC-12:00) International Date Line West   |
-  |  utc-11  |   (UTC-11:00) Coordinated Universal Time-11   |
-  |  aleutianStandardTime  |   (UTC-10:00) Aleutian Islands   |
-  |  hawaiianStandardTime  |   (UTC-10:00) Hawaii   |
-  |  marquesasStandardTime  |   (UTC-09:30) Marquesas Islands   |
-  |  alaskanStandardTime  |   (UTC-09:00) Alaska   |
-  |  utc-09  |   (UTC-09:00) Coordinated Universal Time-09   |
-  |  pacificStandardTime(Mexico)  |   (UTC-08:00) Baja California   |
-  |  utc-08  |   (UTC-08:00) Coordinated Universal Time-08   |
-  |  pacificStandardTime  |   (UTC-08:00) Pacific Time (US & Canada)   |
-  |  usMountainStandardTime  |   (UTC-07:00) Arizona   |
-  |  mountainStandardTime(Mexico)  |   (UTC-07:00) Chihuahua, La Paz, Mazatlan   |
-  |  mountainStandardTime  |   (UTC-07:00) Mountain Time (US & Canada)   |
-  |  centralAmericaStandardTime  |   (UTC-06:00) Central America   |
-  |  centralStandardTime  |   (UTC-06:00) Central Time (US & Canada)   |
-  |  easterIslandStandardTime  |   (UTC-06:00) Easter Island   |
-  |  centralStandardTime(Mexico)  |   (UTC-06:00) Guadalajara, Mexico City, Monterrey   |
-  |  canadaCentralStandardTime  |   (UTC-06:00) Saskatchewan   |
-  |  saPacificStandardTime  |   (UTC-05:00) Bogota, Lima, Quito, Rio Branco   |
-  |  easternStandardTime(Mexico)  |   (UTC-05:00) Chetumal   |
-  |  easternStandardTime  |   (UTC-05:00) Eastern Time (US & Canada)   |
-  |  haitiStandardTime  |   (UTC-05:00) Haiti   |
-  |  cubaStandardTime  |   (UTC-05:00) Havana   |
-  |  usEasternStandardTime  |   (UTC-05:00) Indiana (East)   |
-  |  turksAndCaicosStandardTime  |   (UTC-05:00) Turks and Caicos   |
-  |  paraguayStandardTime  |   (UTC-04:00) Asuncion   |
-  |  atlanticStandardTime  |   (UTC-04:00) Atlantic Time (Canada)   |
-  |  venezuelaStandardTime  |   (UTC-04:00) Caracas   |
-  |  centralBrazilianStandardTime  |   (UTC-04:00) Cuiaba   |
-  |  saWesternStandardTime  |   (UTC-04:00) Georgetown, La Paz, Manaus, San Juan   |
-  |  pacificSAStandardTime  |   (UTC-04:00) Santiago   |
-  |  newfoundlandStandardTime  |   (UTC-03:30) Newfoundland   |
-  |  tocantinsStandardTime  |   (UTC-03:00) Araguaina   |
-  |  e.SouthAmericaStandardTime  |   (UTC-03:00) Brasilia   |
-  |  saEasternStandardTime  |   (UTC-03:00) Cayenne, Fortaleza   |
-  |  argentinaStandardTime  |   (UTC-03:00) City of Buenos Aires   |
-  |  greenlandStandardTime  |   (UTC-03:00) Greenland   |
-  |  montevideoStandardTime  |   (UTC-03:00) Montevideo   |
-  |  magallanesStandardTime  |   (UTC-03:00) Punta Arenas   |
-  |  saintPierreStandardTime  |   (UTC-03:00) Saint Pierre and Miquelon   |
-  |  bahiaStandardTime  |   (UTC-03:00) Salvador   |
-  |  utc-02  |   (UTC-02:00) Coordinated Universal Time-02   |
-  |  mid-AtlanticStandardTime  |   (UTC-02:00) Mid-Atlantic - Old   |
-  |  azoresStandardTime  |   (UTC-01:00) Azores   |
-  |  capeVerdeStandardTime  |   (UTC-01:00) Cabo Verde Is.   |
-  |  utc  |   (UTC) Coordinated Universal Time   |
-  |  gmtStandardTime  |   (UTC+00:00) Dublin, Edinburgh, Lisbon, London   |
-  |  greenwichStandardTime  |   (UTC+00:00) Monrovia, Reykjavik   |
-  |  saoTomeStandardTime  |   (UTC+00:00) Sao Tome   |
-  |  moroccoStandardTime  |   (UTC+01:00) Casablanca   |
-  |  w.EuropeStandardTime  |   (UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna   |
-  |  centralEuropeStandardTime  |   (UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague   |
-  |  romanceStandardTime  |   (UTC+01:00) Brussels, Copenhagen, Madrid, Paris   |
-  |  centralEuropeanStandardTime  |   (UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb   |
-  |  w.CentralAfricaStandardTime  |   (UTC+01:00) West Central Africa   |
-  |  jordanStandardTime  |   (UTC+02:00) Amman   |
-  |  gtbStandardTime  |   (UTC+02:00) Athens, Bucharest   |
-  |  middleEastStandardTime  |   (UTC+02:00) Beirut   |
-  |  egyptStandardTime  |   (UTC+02:00) Cairo   |
-  |  e.EuropeStandardTime  |   (UTC+02:00) Chisinau   |
-  |  syriaStandardTime  |   (UTC+02:00) Damascus   |
-  |  westBankStandardTime  |   (UTC+02:00) Gaza, Hebron   |
-  |  southAfricaStandardTime  |   (UTC+02:00) Harare, Pretoria   |
-  |  fleStandardTime  |   (UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius   |
-  |  israelStandardTime  |   (UTC+02:00) Jerusalem   |
-  |  kaliningradStandardTime  |   (UTC+02:00) Kaliningrad   |
-  |  sudanStandardTime  |   (UTC+02:00) Khartoum   |
-  |  libyaStandardTime  |   (UTC+02:00) Tripoli   |
-  |  namibiaStandardTime  |   (UTC+02:00) Windhoek   |
-  |  arabicStandardTime  |   (UTC+03:00) Baghdad   |
-  |  turkeyStandardTime  |   (UTC+03:00) Istanbul   |
-  |  arabStandardTime  |   (UTC+03:00) Kuwait, Riyadh   |
-  |  belarusStandardTime  |   (UTC+03:00) Minsk   |
-  |  russianStandardTime  |   (UTC+03:00) Moscow, St. Petersburg   |
-  |  e.AfricaStandardTime  |   (UTC+03:00) Nairobi   |
-  |  iranStandardTime  |   (UTC+03:30) Tehran   |
-  |  arabianStandardTime  |   (UTC+04:00) Abu Dhabi, Muscat   |
-  |  astrakhanStandardTime  |   (UTC+04:00) Astrakhan, Ulyanovsk   |
-  |  azerbaijanStandardTime  |   (UTC+04:00) Baku   |
-  |  russiaTimeZone3  |   (UTC+04:00) Izhevsk, Samara   |
-  |  mauritiusStandardTime  |   (UTC+04:00) Port Louis   |
-  |  saratovStandardTime  |   (UTC+04:00) Saratov   |
-  |  georgianStandardTime  |   (UTC+04:00) Tbilisi   |
-  |  volgogradStandardTime  |   (UTC+04:00) Volgograd   |
-  |  caucasusStandardTime  |   (UTC+04:00) Yerevan   |
-  |  afghanistanStandardTime  |   (UTC+04:30) Kabul   |
-  |  westAsiaStandardTime  |   (UTC+05:00) Ashgabat, Tashkent   |
-  |  ekaterinburgStandardTime  |   (UTC+05:00) Ekaterinburg   |
-  |  pakistanStandardTime  |   (UTC+05:00) Islamabad, Karachi   |
-  |  qyzylordaStandardTime  |   (UTC+05:00) Qyzylorda   |
-  |  indiaStandardTime  |   (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi   |
-  |  sriLankaStandardTime  |   (UTC+05:30) Sri Jayawardenepura   |
-  |  nepalStandardTime  |   (UTC+05:45) Kathmandu   |
-  |  centralAsiaStandardTime  |   (UTC+06:00) Astana   |
-  |  bangladeshStandardTime  |   (UTC+06:00) Dhaka   |
-  |  omskStandardTime  |   (UTC+06:00) Omsk   |
-  |  myanmarStandardTime  |   (UTC+06:30) Yangon (Rangoon)   |
-  |  seAsiaStandardTime  |   (UTC+07:00) Bangkok, Hanoi, Jakarta   |
-  |  altaiStandardTime  |   (UTC+07:00) Barnaul, Gorno-Altaysk   |
-  |  w.MongoliaStandardTime  |   (UTC+07:00) Hovd   |
-  |  northAsiaStandardTime  |   (UTC+07:00) Krasnoyarsk   |
-  |  n.CentralAsiaStandardTime  |   (UTC+07:00) Novosibirsk   |
-  |  tomskStandardTime  |   (UTC+07:00) Tomsk   |
-  |  chinaStandardTime  |   (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi   |
-  |  northAsiaEastStandardTime  |   (UTC+08:00) Irkutsk   |
-  |  singaporeStandardTime  |   (UTC+08:00) Kuala Lumpur, Singapore   |
-  |  w.AustraliaStandardTime  |   (UTC+08:00) Perth   |
-  |  taipeiStandardTime  |   (UTC+08:00) Taipei   |
-  |  ulaanbaatarStandardTime  |   (UTC+08:00) Ulaanbaatar   |
-  |  ausCentralW.StandardTime  |   (UTC+08:45) Eucla   |
-  |  transbaikalStandardTime  |   (UTC+09:00) Chita   |
-  |  tokyoStandardTime  |   (UTC+09:00) Osaka, Sapporo, Tokyo   |
-  |  northKoreaStandardTime  |   (UTC+09:00) Pyongyang   |
-  |  koreaStandardTime  |   (UTC+09:00) Seoul   |
-  |  yakutskStandardTime  |   (UTC+09:00) Yakutsk   |
-  |  cen.AustraliaStandardTime  |   (UTC+09:30) Adelaide   |
-  |  aUSCentralStandardTime  |   (UTC+09:30) Darwin   |
-  |  e.AustraliaStandardTime  |   (UTC+10:00) Brisbane   |
-  |  aUSEasternStandardTime  |   (UTC+10:00) Canberra, Melbourne, Sydney   |
-  |  westPacificStandardTime  |   (UTC+10:00) Guam, Port Moresby   |
-  |  tasmaniaStandardTime  |   (UTC+10:00) Hobart   |
-  |  vladivostokStandardTime  |   (UTC+10:00) Vladivostok   |
-  |  lordHoweStandardTime  |   (UTC+10:30) Lord Howe Island   |
-  |  bougainvilleStandardTime  |   (UTC+11:00) Bougainville Island   |
-  |  russiaTimeZone10  |   (UTC+11:00) Chokurdakh   |
-  |  magadanStandardTime  |   (UTC+11:00) Magadan   |
-  |  norfolkStandardTime  |   (UTC+11:00) Norfolk Island   |
-  |  sakhalinStandardTime  |   (UTC+11:00) Sakhalin   |
-  |  centralPacificStandardTime  |   (UTC+11:00) Solomon Is., New Caledonia   |
-  |  russiaTimeZone11  |   (UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky   |
-  |  newZealandStandardTime  |   (UTC+12:00) Auckland, Wellington   |
-  |  utc+12  |   (UTC+12:00) Coordinated Universal Time+12   |
-  |  fijiStandardTime  |   (UTC+12:00) Fiji   |
-  |  kamchatkaStandardTime  |   (UTC+12:00) Petropavlovsk-Kamchatsky - Old   |
-  |  chathamIslandsStandardTime  |   (UTC+12:45) Chatham Islands   |
-  |  utc+13  |   (UTC+13:00) Coordinated Universal Time+13   |
-  |  tongaStandardTime  |   (UTC+13:00) Nuku'alofa   |
-  |  samoaStandardTime  |   (UTC+13:00) Samoa   |
-  |  lineIslandsStandardTime  |   (UTC+14:00) Kiritimati Island   |
+  |	W. Europe Standard Time	|	(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna	|
+  |	GTB Standard Time	|	(GMT+02:00) Athens, Bucharest, Istanbul	|
+  |	Cen. Australia Standard Time	|	(GMT+09:30) Adelaide	|
+  |	Arabian Standard Time	|	(GMT+04:00) Abu Dhabi, Muscat	|
+  |	Alaskan Standard Time	|	(GMT-09:00) Alaska	|
+  |	Jordan Standard Time	|	(GMT+02:00) Amman	|
+  |	US Mountain Standard Time	|	(GMT-07:00) Arizona	|
+  |	Bangladesh Standard Time	|	(GMT+06:00) Astana, Dhaka	|
+  |	Paraguay Standard Time	|	(GMT-04:00) Asuncion	|
+  |	Atlantic Standard Time	|	(GMT-04:00) Atlantic Time (Canada)	|
+  |	New Zealand Standard Time	|	(GMT+12:00) Auckland, Wellington	|
+  |	Azores Standard Time	|	(GMT-01:00) Azores	|
+  |	Arabic Standard Time	|	(GMT+03:00) Baghdad	|
+  |	Azerbaijan Standard Time	|	(GMT+04:00) Baku	|
+  |	Central Europe Standard Time	|	(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague	|
+  |	China Standard Time	|	(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi	|
+  |	Romance Standard Time	|	(GMT+01:00) Brussels, Copenhagen, Madrid, Paris	|
+  |	Middle East Standard Time	|	(GMT+02:00) Beirut	|
+  |	SE Asia Standard Time	|	(GMT+07:00) Bangkok, Hanoi, Jakarta	|
+  |	SA Pacific Standard Time	|	(GMT-05:00) Bogota, Lima, Quito	|
+  |	E. South America Standard Time	|	(GMT-03:00) Brasilia	|
+  |	E. Australia Standard Time	|	(GMT+10:00) Brisbane	|
+  |	Argentina Standard Time	|	(GMT-03:00) Buenos Aires	|
+  |	Egypt Standard Time	|	(GMT+02:00) Cairo	|
+  |	Venezuela Standard Time	|	(GMT-04:30) Caracas	|
+  |	Morocco Standard Time	|	(GMT) Casablanca	|
+  |	SA Eastern Standard Time	|	(GMT-03:00) Cayenne	|
+  |	Central America Standard Time	|	(GMT-06:00) Central America	|
+  |	Central Standard Time	|	(GMT-06:00) Central Time (US & Canada)	|
+  |	India Standard Time	|	(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi	|
+  |	Mountain Standard Time (Mexico)	|	(GMT-07:00) Chihuahua, La Paz, Mazatlan	|
+  |	AUS Eastern Standard Time	|	(GMT+10:00) Canberra, Melbourne, Sydney	|
+  |	UTC	|	(GMT) Coordinated Universal Time	|
+  |	Cape Verde Standard Time	|	(GMT-01:00) Cape Verde Is.	|
+  |	AUS Central Standard Time	|	(GMT+09:30) Darwin	|
+  |	Eastern Standard Time	|	(GMT-05:00) Eastern Time (US & Canada)	|
+  |	Ekaterinburg Standard Time	|	(GMT+05:00) Ekaterinburg	|
+  |	Fiji Standard Time	|	(GMT+12:00) Fiji, Marshall Is.	|
+  |	SA Western Standard Time	|	(GMT-04:00) Georgetown, La Paz, San Juan	|
+  |	Central Standard Time (Mexico)	|	(GMT-06:00) Guadalajara, Mexico City, Monterrey	|
+  |	GMT Standard Time	|	(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London	|
+  |	West Pacific Standard Time	|	(GMT+10:00) Guam, Port Moresby	|
+  |	Greenland Standard Time	|	(GMT-03:00) Greenland	|
+  |	South Africa Standard Time	|	(GMT+02:00) Harare, Pretoria	|
+  |	Hawaiian Standard Time	|	(GMT-10:00) Hawaii	|
+  |	FLE Standard Time	|	(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius	|
+  |	Tasmania Standard Time	|	(GMT+10:00) Hobart	|
+  |	Dateline Standard Time	|	(GMT-12:00) International Date Line West	|
+  |	US Eastern Standard Time	|	(GMT-05:00) Indiana (East)	|
+  |	North Asia East Standard Time	|	(GMT+08:00) Irkutsk	|
+  |	Pakistan Standard Time	|	(GMT+05:00) Islamabad, Karachi	|
+  |	Israel Standard Time	|	(GMT+02:00) Jerusalem	|
+  |	Afghanistan Standard Time	|	(GMT+04:30) Kabul	|
+  |	Nepal Standard Time	|	(GMT+05:45) Kathmandu	|
+  |	Singapore Standard Time	|	(GMT+08:00) Kuala Lumpur, Singapore	|
+  |	North Asia Standard Time	|	(GMT+07:00) Krasnoyarsk	|
+  |	Arab Standard Time	|	(GMT+03:00) Kuwait, Riyadh	|
+  |	SA Western Standard Time	|	(GMT-04:00) Manaus	|
+  |	Mid-Atlantic Standard Time	|	(GMT-02:00) Mid-Atlantic	|
+  |	Samoa Standard Time	|	(GMT+13:00) Midway Island, Samoa	|
+  |	E. Europe Standard Time	|	(GMT+02:00) Minsk	|
+  |	Montevideo Standard Time	|	(GMT-03:00) Montevideo	|
+  |	Mountain Standard Time	|	(GMT-07:00) Mountain Time (US & Canada)	|
+  |	Greenwich Standard Time	|	(GMT) Monrovia, Reykjavik	|
+  |	Central Pacific Standard Time	|	(GMT+11:00) Magadan, Solomon Is., New Caledonia	|
+  |	Russian Standard Time	|	(GMT+03:00) Moscow, St. Petersburg, Volgograd	|
+  |	E. Africa Standard Time	|	(GMT+03:00) Nairobi	|
+  |	Newfoundland Standard Time	|	(GMT-03:30) Newfoundland	|
+  |	N. Central Asia Standard Time	|	(GMT+06:00) Novosibirsk	|
+  |	Tonga Standard Time	|	(GMT+13:00) Nuku'alofa	|
+  |	Tokyo Standard Time	|	(GMT+09:00) Osaka, Sapporo, Tokyo	|
+  |	Pacific Standard Time	|	(GMT-08:00) Pacific Time (US & Canada)	|
+  |	W. Australia Standard Time	|	(GMT+08:00) Perth	|
+  |	Kamchatka Standard Time	|	(GMT+12:00) Petropavlovsk-Kamchatsky	|
+  |	Mauritius Standard Time	|	(GMT+04:00) Port Louis	|
+  |	Pacific SA Standard Time	|	(GMT-04:00) Santiago	|
+  |	Canada Central Standard Time	|	(GMT-06:00) Saskatchewan	|
+  |	Korea Standard Time	|	(GMT+09:00) Seoul	|
+  |	Sri Lanka Standard Time	|	(GMT+05:30) Sri Jayawardenepura	|
+  |	Central European Standard Time	|	(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb	|
+  |	Taipei Standard Time	|	(GMT+08:00) Taipei	|
+  |	West Asia Standard Time	|	(GMT+05:00) Tashkent	|
+  |	Pacific Standard Time (Mexico)	|	(GMT-08:00) Tijuana, Baja California	|
+  |	Georgian Standard Time	|	(GMT+04:00) Tbilisi	|
+  |	Iran Standard Time	|	(GMT+03:30) Tehran	|
+  |	Ulaanbaatar Standard Time	|	(GMT+08:00) Ulaanbaatar	|
+  |	Vladivostok Standard Time	|	(GMT+10:00) Vladivostok	|
+  |	W. Central Africa Standard Time	|	(GMT+01:00) West Central Africa	|
+  |	Namibia Standard Time	|	(GMT+01:00) Windhoek	|
+  |	Yakutsk Standard Time	|	(GMT+09:00) Yakutsk	|
+  |	Myanmar Standard Time	|	(GMT+06:30) Yangon (Rangoon)	|
+  |	Caucasus Standard Time	|	(GMT+04:00) Yerevan	|
 
 
