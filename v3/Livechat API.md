@@ -226,14 +226,14 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
-| `isLastChattedAgentPreferred` | boolean || no | no | whether last-chatted agent is preferred or not |
-| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | no | whether to set the same maximum number of chats for all agents |
-| `maxConcurrentChatsForAllAgents` | integer || no | no | maximum number of chats for all agents |
-| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | no| whether to allocate chats to agents who are having audio or video chats |
-| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | no | whether to allow agent to manually accept chat after reaching max chats limit in agent console |
-| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | no | auto distribution configuration for per department |
-| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | no | auto distribution configuration for per agent |
+| `autoDistributionMethod` | string || no | yes || method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
+| `isLastChattedAgentPreferred` | boolean || no | yes || whether last-chatted agent is preferred or not |
+| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | yes || whether to set the same maximum number of chats for all agents |
+| `maxConcurrentChatsForAllAgents` | integer || no | yes || maximum number of chats for all agents |
+| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | yes|| whether to allocate chats to agents who are having audio or video chats |
+| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | yes | |whether to allow agent to manually accept chat after reaching max chats limit in agent console |
+| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | no || auto distribution configuration for per department |
+| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | no || auto distribution configuration for per agent |
 
 ### Department Auto Distribution Object
 
@@ -1883,7 +1883,6 @@ Query string
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`,`offlineMessage`. |
 | `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
 | `departmentId` | guid | no  |  | |
@@ -2347,7 +2346,7 @@ Response
             "customerSegments": [],
             "attachment":{
               "name":"test.png",
-              "uri":"https://download.comm100.com/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+              "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
             }
         },
         ...
@@ -2436,7 +2435,7 @@ Response
     "customerSegments": [],
     "attachment":{
       "name":"test.png",
-      "uri":"https://download.comm100.com/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+      "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
     }
 }
 ```
