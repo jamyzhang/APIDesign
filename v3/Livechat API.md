@@ -226,14 +226,14 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
-| `isLastChattedAgentPreferred` | boolean || no | no | whether last-chatted agent is preferred or not |
-| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | no | whether to set the same maximum number of chats for all agents |
-| `maxConcurrentChatsForAllAgents` | integer || no | no | maximum number of chats for all agents |
-| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | no| whether to allocate chats to agents who are having audio or video chats |
-| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | no | whether to allow agent to manually accept chat after reaching max chats limit in agent console |
-| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | no | auto distribution configuration for per department |
-| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | no | auto distribution configuration for per agent |
+| `autoDistributionMethod` | string || no | yes || method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
+| `isLastChattedAgentPreferred` | boolean || no | yes || whether last-chatted agent is preferred or not |
+| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | yes || whether to set the same maximum number of chats for all agents |
+| `maxConcurrentChatsForAllAgents` | integer || no | yes || maximum number of chats for all agents |
+| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | yes|| whether to allocate chats to agents who are having audio or video chats |
+| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | yes | |whether to allow agent to manually accept chat after reaching max chats limit in agent console |
+| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | no || auto distribution configuration for per department |
+| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | no || auto distribution configuration for per agent |
 
 ### Department Auto Distribution Object
 
@@ -1883,7 +1883,6 @@ Query string
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`,`offlineMessage`. |
 | `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
 | `departmentId` | guid | no  |  | |
@@ -2156,7 +2155,7 @@ HTTP/1.1 204 No Content
 #### Parameters
 
 Request body
-- an array of offline chat id
+- an array of chat id
 
 example:
 ```json
@@ -2271,14 +2270,15 @@ Query string
 | `pageSize` | integer | no  | 50 | page size  |
 
 #### Response
+
 The response body contains data with the follow structure:
 
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `totalCount` | integer | no | no | total count of the list. |
+| `total` | integer | no | no | total count of the list. |
 | `previousPage` | string | no | no | Url of the previous page. |
 | `nextPage` | string | no | no | Url of the next page. |
-| `list` | [Offline Message](#offline-message-json-format)[] | no | no | an array of [Offline Message](#offline-message-json-format) |
+| `offlineMessages` | [Offline Message](#offline-message-json-format)[] | no | no | an array of [Offline Message](#offline-message-json-format) |
 
 #### Example
 
@@ -2291,12 +2291,12 @@ Response
 ```json  
 
 {
-    "totalCount": 28,
+    "total": 28,
     "previousPage": "",
     "nextPage": "https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session&pageIndex=2",
-    "list": [
+    "offlineMessages": [
         {
-            "id": 10,
+            "id": "3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c",
             "createdTime": "2019-01-05T07:17:08.89",
             "name": "allon",
             "email": "allon@comm100.com",
@@ -2344,8 +2344,10 @@ Response
             },
             "customFields": [],
             "customerSegments": [],
-            "attachment": [file binary data],
-            "attachmentName": "comm100SDK.css"
+            "attachment":{
+              "name":"test.png",
+              "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+            }
         },
         ...
     ]
@@ -2361,7 +2363,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Integer | yes  |  the id of the offline message  |
+| `id` | Guid | yes  |  the id of the offline message  |
 
 Query string
 
@@ -2377,13 +2379,13 @@ the response is: [Offline Message](#offline-message-json-format) Object
 
 Using curl
 ```
-curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/10?include=department,agent,campaign,autoInvitation, session
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation, session
 ```
 Response
 ```json  
 {
-    "id": 10,
+    "id": "3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c",
     "createdTime": "2019-01-05T07:17:08.89",
     "name": "allon",
     "email": "allon@comm100.com",
@@ -2431,8 +2433,10 @@ Response
     },
     "fieldValues": [],
     "customerSegments": [],
-    "attachment": [file binary data],
-    "attachmentName": "comm100SDK.css"
+    "attachment":{
+      "name":"test.png",
+      "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+    }
 }
 ```
 
@@ -2445,7 +2449,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  the id of the offline message  |
+| `id` | Guid | yes  |  the id of the offline message  |
 
 
 #### Response
@@ -2454,7 +2458,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/10
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c
 ```
 Response
 ```json
@@ -5825,8 +5829,8 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | yes | no | | Id of the current item, if you want to modify the system field, it must be set to field's Id. |
-| `isSystem` | boolean | no | no | | whether the field is system or not, if you want to modify the system field, it must be set to true. |
+| `id` | Guid | yes | no | | Id of the current item. |
+| `isSystem` | boolean | no | no | | whether the field is system or not. |
 | `name` | string | no | no | | |
 | `type` | string | no | no | | The [Live Chat Field Type](#Live-Chat-Field-Type) of the field. |
 | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | no | no | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
