@@ -4516,8 +4516,6 @@ Content-Type:  application/json
   | - | - |- | :-: | :-: | :-: | - |
   | `isEnabled` | bool  | | no | no | false | |
   | `loginURL` | string  | | no | no | | |
-  | `logoutURL` | string  | | no | no | | |
-  | `changePasswordURL` | string  | | no | no | | |
   | `certificate` | string  | | no | no | | Base64 data of certificate file. |
   | `certificateFileName` | string  | | no | no | | |
   | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | no | | |
@@ -4576,8 +4574,6 @@ Content-Type:  application/json
 {
     "isEnabled": true,
     "loginURL": "http://www.xzcs11ffffffff1a",
-    "logoutURL": "http://www.xzcs11ffffffff1a",
-    "changePasswordURL": "http://www.xzcs11ffffffff1a",
     "certificate": "amdoamdoaGdmcnRk",
     "certificateFileName": "r.txt",
     "fieldMappings": [
@@ -4620,8 +4616,6 @@ example:
   {
     "isEnabled": true,
     "loginURL": "http://www.xzcs11ffffffff1a",
-    "logoutURL": "http://www.xzcs11ffffffff1a",
-    "changePasswordURL": "http://www.xzcs11ffffffff1a",
     "certificate": "amdoamdoaGdmcnRk",
     "certificateFileName": "r.txt",
     "fieldMappings": [
@@ -4654,8 +4648,6 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "isEnabled": true,
     "loginURL": "http://www.xzcs11ffffffff1a",
-    "logoutURL": "http://www.xzcs11ffffffff1a",
-    "changePasswordURL": "http://www.xzcs11ffffffff1a",
     "certificate": "amdoamdoaGdmcnRk",
     "certificateFileName": "r.txt",
     "fieldMappings": [
@@ -4685,8 +4677,6 @@ Response
   {
     "isEnabled": true,
     "loginURL": "http://www.xzcs11ffffffff1a",
-    "logoutURL": "http://www.xzcs11ffffffff1a",
-    "changePasswordURL": "http://www.xzcs11ffffffff1a",
     "certificate": "amdoamdoaGdmcnRk",
     "certificateFileName": "r.txt",
     "fieldMappings": [
