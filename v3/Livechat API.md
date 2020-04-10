@@ -945,8 +945,10 @@ Content-Type:  application/json
 {
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "defaultCampaign": {
+    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "name":"default campaign",
-    "description":""
+    "description":"",
+    "language": "English"
   },
   "dynamicCampaignRules":
   [
@@ -957,13 +959,14 @@ Content-Type:  application/json
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "targetCampaign":{
+        "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "name":"default campaign",
-        "description":""
+        "description":"",
+        "language": "English"
       },
       "conditions":
       [
         {
-          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
           "field": "CurrentPageUrl",
           "operator": "include",
           "value": "live",
@@ -1056,8 +1059,10 @@ Content-Type:  application/json
 {
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "defaultCampaign": {
+    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "name":"default campaign",
-    "description":""
+    "description":"",
+    "language": "English"
   },
   "dynamicCampaignRules":[
     {
@@ -1067,8 +1072,10 @@ Content-Type:  application/json
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "targetCampaign":{
+        "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "name":"default campaign",
-        "description":""
+        "description":"",
+        "language": "English"
       }
     }
   ],
@@ -1719,7 +1726,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the ban  |
+| `id` | integer | yes  |  the id of the session  |
 
 Query string
 
@@ -1736,12 +1743,12 @@ the response is: [Session](#session-json-format) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/sessions/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor
+-X GET https://domain.comm100.com/api/v3/livechat/sessions/1?include=visitor
 ```
 Response
 ```json  
 {
-    "id": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "id": 1,
     "startTime": "2020-02-20T13:12:20Z",
     "ip": "192.168.0.201",
     "referrerURL": "",
@@ -1755,9 +1762,10 @@ Response
     "timeZone": "",
     "landingPageURL": "",
     "landingPageTitle": "",
-    "visitorId": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+    "visitorId": 2,
     "visitor": {  //include visitor
-        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "id": 2,
+        "guid": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
         "email": "test@comm100.com",
         "name": "test comm100",
         ...
@@ -1901,7 +1909,7 @@ The response body contains data with the follow structure:
 | `totalCount` | integer | no | no | Total count of the list. |
 | `previousPage` | string | no | no | Url of the previous page. |
 | `nextPage` | string | no | no | Url of the next page. |
-| `chats` | [Chat](#Chat-Object)[] | no | no |  |
+| `list` | [Chat](#Chat-Object)[] | no | no |  |
 
 #### Example
 
