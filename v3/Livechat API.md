@@ -578,7 +578,7 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
   | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `field` |String  | no | yes || the name of visitor field.
-  | `Operator` |String  | no | yes || type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`
+  | `operator` |String  | no | yes || type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`
   | `value` |String  | no | yes || the value of a visitor field .
   | `order` |int  | no | no|maximum order + 1| the order of visitor field.
 
