@@ -5829,6 +5829,7 @@ The request body contains data with the follow structure:
   | Name | Type | Required  | Default | Description |    
   | - | - | :-: | :-: |  - | 
   | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `botId` | Guid  | yes | | id of the bot |
   | `questionId` | Guid  | yes | | the id of the visitor question |
   | `type` | string  | yes  | | `helpful` or `notHelpful` |
   | `extra` | Map | no | | extra data which SmartTrigger used |
@@ -5837,6 +5838,7 @@ The request body contains data with the follow structure:
 ```Json 
   {
     "channel":"Live Chat",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "questionId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "type": "notHelpful",
     "extra": {
@@ -5865,6 +5867,7 @@ If rate the bot as not helpful, the response body contains data with the follow 
 ```
 curl -H "Content-Type: application/json" -d '{
     "channel":"Live Chat",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "questionId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",    
     "type": "notHelpful",
     "extra": {
@@ -5900,6 +5903,7 @@ curl -H "Content-Type: application/json" -d '{
 ```
 curl -H "Content-Type: application/json" -d '{
     "channel":"Live Chat",
+    "botId":"4487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "questionId":"a2e8fc9d-92e6-4487-a2e8-92e68d6892e6",
     "type": "helpful",
     "extra": {
@@ -9851,8 +9855,8 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `type` | string  | N/A | N/A | |enum value, `cannedMessage` ， `knowledgeBase`， `chatbot` |
-  | `content` | object  | N/A | N/A | |suggestion's content.<br/>when type is cannedMessage, it represents [CannedMessageContent](#canned-message-suggestion-content);<br/>when type is knowledgeBase ,it represents [KnowledgeBaseContent](#knowledge-base-suggestion-content);<br/>when type is chatbot, it represents [ChatbotSuggestionContent](#chatbot-suggestion-content). |
+  | `type` | string  | N/A | N/A | | enum value, `cannedMessage`,`article`, `intent` |
+  | `content` | object  | N/A | N/A | |suggestion's content.<br/>when type is cannedMessage, it represents [CannedMessageContent](#canned-message-suggestion-content);<br/>when type is article ,it represents [KnowledgeBaseContent](#knowledge-base-suggestion-content);<br/>when type is intent, it represents [ChatbotSuggestionContent](#chatbot-suggestion-content). |
   | `score` | float  | N/A | N/A | 0 |the score of the suggestion |
  
 ### QuestionSuggestion
@@ -9939,7 +9943,7 @@ Content-Type:  application/json
     "ifMatch": true,
     "suggestions": [
       {
-        "type": "chatbot",
+        "type": "intent",
         "content": {
           "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
           "intentId":"saw54s23-92e6-4487-a2e8-8234fc9d1f48",
@@ -9967,7 +9971,7 @@ example:
   {
     "question": "what is comm100 livechat about?",
     "clickedSuggestion": {
-      "type": "chatbot",
+      "type": "intent",
       "content": {
         "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
         "intentId":"saw54s23-92e6-4487-a2e8-8234fc9d1f48",
@@ -9988,7 +9992,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "question": "what is comm100 livechat about?",
     "clickedSuggestion": {
-      "type": "chatbot",
+      "type": "intent",
       "content": {
         "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
         "intentId":"saw54s23-92e6-4487-a2e8-8234fc9d1f48",
