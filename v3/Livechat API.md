@@ -2155,7 +2155,7 @@ HTTP/1.1 204 No Content
 #### Parameters
 
 Request body
-- an array of offline chat id
+- an array of chat id
 
 example:
 ```json
