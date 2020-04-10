@@ -1103,16 +1103,16 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 | `iosDevelopmentCertificateFileName` | string |  | no | yes  | | name of ios development certicate file|
 | `iosDevelopmentCertificateFileData` | string |  | no | yes  | | data of ios development certicate file|
 | `iosDevelopmentCertificatePassword` | string |  | no | yes  | | password of ios development certicate|
-| `iosApnsPayloadFormat` | string |  | no | yes  | | format of ios Apns payload|
-| `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL|
-| `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers|
-| `iosThirdPartyBody` | string |  | no | yes  | | ios third party Body|
+| `iosApnsPayloadFormat` | string |  | no | yes  | | format of ios Apns payload,mandatory when `iostype` is `thirdParty`.|
+| `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL,mandatory when `iostype` is `thirdParty`.|
+| `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers,mandatory when `iostype` is `thirdParty`.|
+| `iosThirdPartyBody` | string |  | no | yes  | | ios third party Body,ymandatory when `iostype` is `thirdParty`.|
 | `androidType` | string |  | no |yes  | |type of android include `GCM`,`thirdParty` |
-| `androidGcmAPIKey` | string |  | no | yes  | |android gcm API key|
-| `androidGcmExtraData` | string |  | no| yes  | |android gcm extra data |
-| `androidThirdPartyURL` | string |  | no | yes  | |android third party URL |
-| `androidThirdPartyRequestHeaders` | string |  | no | yes | | android third party request headers|
-| `androidThirdPartyRequestBody` | string |  | no | yes  | |android Third Party Request Body |
+| `androidGcmAPIKey` | string |  | no | yes  | |android gcm API key,mandatory when `andriodType` is `GCM`.|
+| `androidGcmExtraData` | string |  | no| yes  | |android gcm extra data,mandatory when `andriodType` is `GCM`. |
+| `androidThirdPartyURL` | string |  | no | yes  | |android third party URL,mandatory when `andriodType` is `thirdParty`. | |
+| `androidThirdPartyRequestHeaders` | string |  | no | yes | | android third party request headers,mandatory when `andriodType` is `thirdParty`|
+| `androidThirdPartyRequestBody` | string |  | no | yes  | |android Third Party Request Body,mandatory when `andriodType` is `thirdParty` |
 
 ## Endpoint
 
@@ -2212,6 +2212,7 @@ HTTP/1.1 204 No Content
 | `department` | [Department](#department) | yes | no | no |  | Available only when department is included |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to |
 | `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included |
+| `ticketId` | integer | yes | no | no |  | id of the related ticket |
 | `subject` | string | | no | no |  | the subject of this offline message|
 | `message` | string | | no | no | | the content of this offline message |
 | `requestingPageTitle` | string | | no | no |  |  |
@@ -2303,6 +2304,13 @@ Response
             "ssoUSerId":"",
             "phone":"",
             "company":"",
+            "agentId":5,
+            "agent": {
+              //include agent
+              "id":5,
+              "name": "Sales",
+              ...
+            },
             "departmentId":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
             "department": {
                 //include department
