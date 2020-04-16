@@ -3827,7 +3827,7 @@ Content-Type:  application/json
     "manualInvitationTextAreaWidth": 10,
     "manualInvitationTextAreaHeight": 10,
     "manualInvitationText": "",
-    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextFont": "times new roman",
     "manualInvitationTextSize": "XXSmall",
     "isManualInvitationTextBold": false,
     "isManualInvitationTextItalic": false,
@@ -3849,7 +3849,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -3942,7 +3942,7 @@ Content-Type:  application/json
 | `manualInvitationTextAreaWidth` | integer | no | no | | |
 | `manualInvitationTextAreaHeight` | integer | no | no | | |
 | `manualInvitationText` | string | no | no | | |
-| `manualInvitationTextFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `manualInvitationTextFont` | string | no | no | | Including `times new roman`, `tahoma`, `verdana`, `arial`, `comic sans ms` and `courier`. |
 | `manualInvitationTextSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
 | `isManualInvitationTextBold` | boolean | no | no | | |
 | `isManualInvitationTextItalic` | boolean | no | no | | |
@@ -3991,7 +3991,7 @@ Content-Type:  application/json
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4023,8 +4023,6 @@ example:
 ```Json
 {
   "manualInvitationPosition": "centeredWithOverlay",
-  "manualInvitationImageType": "fromGallery",
-  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
   "manualInvitationCloseAreaYOffset": 10,
   "manualInvitationCloseAreaWidth": 10,
@@ -4034,7 +4032,7 @@ example:
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4048,8 +4046,6 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "manualInvitationPosition": "centeredWithOverlay",
-  "manualInvitationImageType": "fromGallery",
-  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
   "manualInvitationCloseAreaYOffset": 10,
   "manualInvitationCloseAreaWidth": 10,
@@ -4059,7 +4055,7 @@ curl -H "Content-Type: application/json" -d '{
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4084,7 +4080,7 @@ Content-Type:  application/json
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4124,7 +4120,7 @@ Content-Type:  application/json
 | `textAreaWidth` | integer | no | no | | |
 | `textAreaHeight` | integer | no | no | | |
 | `text` | string | no | no | | |
-| `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `textFont` | string | no | no | | Including `times new roman`, `tahoma`, `verdana`, `arial`, `comic sans ms` and `courier`. |
 | `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
 | `isTextBold` | boolean | no | no | | |
 | `isTextItalic` | boolean | no | no | | |
@@ -4182,7 +4178,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -4251,7 +4247,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -4296,8 +4292,6 @@ example:
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4307,7 +4301,7 @@ example:
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4340,8 +4334,6 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4351,7 +4343,7 @@ curl -H "Content-Type: application/json" -d '{
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4394,7 +4386,7 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4438,8 +4430,6 @@ example:
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4449,7 +4439,7 @@ example:
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4482,8 +4472,6 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4493,7 +4481,7 @@ curl -H "Content-Type: application/json" -d '{
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4534,7 +4522,7 @@ Content-Type:  application/json
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4858,16 +4846,15 @@ Content-Type:  application/json
 | - | - |- | :-: | :-: | :-: | - |
 | `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
 | `type` | string |  | no | no | | Including `simple` and `customRule`. |
-| `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
-| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
+| `routeTo` | string | | no | no | | Including `agent` and `department`. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartment` | [Department](#Department-Object) //department 对应的链接在哪呢?| yes | no | no | |  |
+| `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
 | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBot` | integer |  | no | no | | |
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
 | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
-| `routeToWhenNoRuleMatched` | string | | no | no | | Including `agent` and `department`. |
-| `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
 | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
@@ -4930,7 +4917,6 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "routeToDepartmentWhenNoRuleMatched": { // include department
       "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
@@ -4976,7 +4962,6 @@ example:
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -5001,7 +4986,6 @@ curl -H "Content-Type: application/json" -d '{
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -5022,7 +5006,6 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -5051,7 +5034,7 @@ Content-Type:  application/json
 | `name` | string | | no | no | | |
 | `order` | integer | | no | no | | |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. |
-| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
 | `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
@@ -5804,9 +5787,9 @@ Content-Type:  application/json
 - `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a new form field of offline message for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
 - `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get all form fields of agent wrapup for a campaign](#get-all-form-fields-of-Agent-Wrap-up-for-a-campaign)
 - `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a new form field of agent wrapup for a campaign](#create-a-new-form-fields-of-Agent-Wrap-up-for-a-campaign)
-- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
-- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
-- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
+- `GET /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
+- `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
 ## Related Object Json Format
 
@@ -6074,7 +6057,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
 
 {
   "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
@@ -6279,7 +6262,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
 
 {
   "id": "8FD2DBE6-4653-1705-F791-F2C648A11FC7",
@@ -6484,7 +6467,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
 
 {
   "id": "6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA",
@@ -6689,7 +6672,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
 
 {
   "id": "5994A98C-CF88-1B8E-2909-CA81E0C1B469",
@@ -6729,7 +6712,7 @@ Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5994A98C
 
 ### Get a campaign form field by id
 
-  `GET /api/v3/livechat/campaignFormFields/{id}`
+  `GET /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6738,6 +6721,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6748,7 +6732,7 @@ the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Obje
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6793,7 +6777,7 @@ Content-Type:  application/json
 
 ### Update a campaign form field
 
-  `PUT /api/v3/livechat/campaignFormFields/{id}`
+  `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6802,6 +6786,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -6884,7 +6869,7 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6929,7 +6914,7 @@ Content-Type:  application/json
 
 ### Delete a campaign form field
 
-  `DELETE /api/v3/livechat/campaignFormFields/{id}`
+  `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6938,6 +6923,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6947,7 +6933,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
