@@ -4515,9 +4515,9 @@ Content-Type:  application/json
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `isEnabled` | bool  | | no | no | false | |
-  | `loginURL` | string  | | no | no | | |
-  | `certificate` | string  | | no | no | | Base64 data of certificate file. |
-  | `certificateFileName` | string  | | no | no | | |
+  | `loginURL` | string  | | no | yes | | |
+  | `certificate` | string  | | no | yes | | Base64 data of certificate file. |
+  | `certificateFileName` | string  | | no | yes | | |
   | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | no | | |
   | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | no | | |
 
