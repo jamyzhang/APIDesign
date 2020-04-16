@@ -5505,8 +5505,8 @@ Response
 | `selectedChatbotId` | Guid | | no | no | | |
 | `selectedChatbot` | [Bot](#Bot-Object) | yes | no | no | | |
 | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | no | | |
-| `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
-| `ifDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
+| `isDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
+| `isDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
 | `queueLength` | integer | | no | no | | Allocate chats to Chatbot when the queue reaches the preset length. |
 | `percentageToChatbot` | smallint | | no | no | | |
 | `isChatbotAllocatedWhenAgentOffline` | boolean | | no | no | | |
@@ -5578,8 +5578,8 @@ Content-Type:  application/json
     ]
   },
   "isChatbotAllocatedWhenAgentOnline": false,
-  "ifDistributeChatsToChatbotByQueueLength": false,
-  "ifDistributeChatsToChatbotByPercentage": false,
+  "isDistributeChatsToChatbotByQueueLength": false,
+  "isDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5608,8 +5608,7 @@ example:
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "ifDistributeChatsToChatbotByQueueLength": false,
-  "ifDistributeChatsToChatbotByPercentage": false,
+  "isDistributeChatsToChatbotByQueueLength": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5628,8 +5627,7 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "ifDistributeChatsToChatbotByQueueLength": false,
-  "ifDistributeChatsToChatbotByPercentage": false,
+  "isDistributeChatsToChatbotByQueueLength": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5644,8 +5642,8 @@ Content-Type:  application/json
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "ifDistributeChatsToChatbotByQueueLength": false,
-  "ifDistributeChatsToChatbotByPercentage": false,
+  "isDistributeChatsToChatbotByQueueLength": false,
+  "isDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
