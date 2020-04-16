@@ -12,7 +12,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
   - [settings](#settings)
     - [auto distribution](#auto-distribution)
     - [translation excluded word](#translation-excluded-word)
-    - [dynamic campaign](#dynamic-campaign)
+    <!-- - [dynamic campaign](#dynamic-campaign) -->
     - [mobile push](#mobile-push)
   - [customer segment](#customer-segment)
   - [live chat agent](#live-chat-agent)
@@ -578,7 +578,7 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
   | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
   | `field` |String  | no | yes || the name of visitor field.
-  | `operator` |String  | no | yes || type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`
+  | `Operator` |String  | no | yes || type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`
   | `value` |String  | no | yes || the value of a visitor field .
   | `order` |int  | no | no|maximum order + 1| the order of visitor field.
 
@@ -880,6 +880,7 @@ Response
 HTTP/1.1 204 No Content
 ```
 
+<!--
 # Dynamic Campaign
 
 - `GET /api/v3/livechat/dynamicCampaign` - [Get dynamic campaign](#get-dynamic-campaign) include campaign
@@ -945,10 +946,8 @@ Content-Type:  application/json
 {
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "defaultCampaign": {
-    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "name":"default campaign",
-    "description":"",
-    "language": "English"
+    "description":""
   },
   "dynamicCampaignRules":
   [
@@ -959,14 +958,13 @@ Content-Type:  application/json
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "targetCampaign":{
-        "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "name":"default campaign",
-        "description":"",
-        "language": "English"
+        "description":""
       },
       "conditions":
       [
         {
+          "id":"5687fc9d-92e6-4487-a2e8-92e68d6892d8",
           "field": "CurrentPageUrl",
           "operator": "include",
           "value": "live",
@@ -1059,10 +1057,8 @@ Content-Type:  application/json
 {
   "defaultCampaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "defaultCampaign": {
-    "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
     "name":"default campaign",
-    "description":"",
-    "language": "English"
+    "description":""
   },
   "dynamicCampaignRules":[
     {
@@ -1072,10 +1068,8 @@ Content-Type:  application/json
       "logicalExpression": "",
       "targetCampaignId":"1487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "targetCampaign":{
-        "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "name":"default campaign",
-        "description":"",
-        "language": "English"
+        "description":""
       }
     }
   ],
@@ -1089,6 +1083,7 @@ Content-Type:  application/json
   ]
 }
 ```
+-->
 
 # Mobile Push
 
@@ -1726,7 +1721,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  the id of the session  |
+| `id` | Guid | yes  |  the id of the ban  |
 
 Query string
 
@@ -1743,12 +1738,12 @@ the response is: [Session](#session-json-format) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/sessions/1?include=visitor
+-X GET https://domain.comm100.com/api/v3/livechat/sessions/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor
 ```
 Response
 ```json  
 {
-    "id": 1,
+    "id": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
     "startTime": "2020-02-20T13:12:20Z",
     "ip": "192.168.0.201",
     "referrerURL": "",
@@ -1762,10 +1757,9 @@ Response
     "timeZone": "",
     "landingPageURL": "",
     "landingPageTitle": "",
-    "visitorId": 2,
+    "visitorId": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
     "visitor": {  //include visitor
-        "id": 2,
-        "guid": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
+        "id": "9F4709DB-C391-4896-94BA-3A17BE12D9E2",
         "email": "test@comm100.com",
         "name": "test comm100",
         ...
@@ -1898,7 +1892,7 @@ Query string
 | `visitorId` | guid | no  |  | |
 | `agentId` | integer | no  |  | |
 | `keywords` | string | no  |  | |
-| `conditions` | string | no  |  |  The condition list of inquiring the chat `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0]` |
+| `conditions` | string | no  |  | The condition list of inquiring the chat. available field: `name`,`email`,`company`,`phone`,`campaign`. avaiable operate: `contains`,`notContains`. e.g. `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test` |
 
 #### Response
 
@@ -1909,14 +1903,14 @@ The response body contains data with the follow structure:
 | `totalCount` | integer | no | no | Total count of the list. |
 | `previousPage` | string | no | no | Url of the previous page. |
 | `nextPage` | string | no | no | Url of the next page. |
-| `list` | [Chat](#Chat-Object)[] | no | no |  |
+| `chats` | [Chat](#Chat-Object)[] | no | no |  |
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session
+-X GET https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session&conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test
 ```
 Response
 ```json  
