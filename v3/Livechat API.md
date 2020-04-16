@@ -4860,8 +4860,7 @@ Content-Type:  application/json
 | `percentageToBot` | integer |  | no | no | | |
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
 | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
-| `routeToWhenNoRuleMatched` | string | | no | no | | Including `agent` and `department`. |
-| `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
 | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
@@ -4924,7 +4923,6 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "routeToDepartmentWhenNoRuleMatched": { // include department
       "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
@@ -4970,7 +4968,6 @@ example:
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -4995,7 +4992,6 @@ curl -H "Content-Type: application/json" -d '{
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -5016,7 +5012,6 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -5045,7 +5040,7 @@ Content-Type:  application/json
 | `name` | string | | no | no | | |
 | `order` | integer | | no | no | | |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. |
-| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
 | `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
