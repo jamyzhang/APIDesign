@@ -4855,7 +4855,7 @@ Content-Type:  application/json
 | `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
 | `routeToId` | String | | no | no | | AgentId or DepartmentId. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartment` | [Department](#Department-Object) //department 对应的链接在哪呢?| yes | no | no | |  |
+| `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
 | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBot` | integer |  | no | no | | |
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
@@ -5798,9 +5798,9 @@ Content-Type:  application/json
 - `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a new form field of offline message for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
 - `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get all form fields of agent wrapup for a campaign](#get-all-form-fields-of-Agent-Wrap-up-for-a-campaign)
 - `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a new form field of agent wrapup for a campaign](#create-a-new-form-fields-of-Agent-Wrap-up-for-a-campaign)
-- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
-- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
-- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
+- `GET /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
+- `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
 ## Related Object Json Format
 
@@ -6068,7 +6068,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
 
 {
   "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
@@ -6273,7 +6273,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
 
 {
   "id": "8FD2DBE6-4653-1705-F791-F2C648A11FC7",
@@ -6478,7 +6478,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
 
 {
   "id": "6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA",
@@ -6683,7 +6683,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
 
 {
   "id": "5994A98C-CF88-1B8E-2909-CA81E0C1B469",
@@ -6723,7 +6723,7 @@ Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5994A98C
 
 ### Get a campaign form field by id
 
-  `GET /api/v3/livechat/campaignFormFields/{id}`
+  `GET /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6732,6 +6732,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6742,7 +6743,7 @@ the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Obje
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6787,7 +6788,7 @@ Content-Type:  application/json
 
 ### Update a campaign form field
 
-  `PUT /api/v3/livechat/campaignFormFields/{id}`
+  `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6796,6 +6797,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -6878,7 +6880,7 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6923,7 +6925,7 @@ Content-Type:  application/json
 
 ### Delete a campaign form field
 
-  `DELETE /api/v3/livechat/campaignFormFields/{id}`
+  `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6932,6 +6934,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6941,7 +6944,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
