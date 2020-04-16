@@ -8517,6 +8517,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Custom Variable
+You need `Manage Custom Variable` permission to manage custom variable
 
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
 - `GET /api/v3/livechat/campacustomVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
