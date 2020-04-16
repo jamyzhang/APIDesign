@@ -3833,7 +3833,7 @@ Content-Type:  application/json
     "manualInvitationTextAreaWidth": 10,
     "manualInvitationTextAreaHeight": 10,
     "manualInvitationText": "",
-    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextFont": "times new roman",
     "manualInvitationTextSize": "XXSmall",
     "isManualInvitationTextBold": false,
     "isManualInvitationTextItalic": false,
@@ -3855,7 +3855,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -3948,7 +3948,7 @@ Content-Type:  application/json
 | `manualInvitationTextAreaWidth` | integer | no | no | | |
 | `manualInvitationTextAreaHeight` | integer | no | no | | |
 | `manualInvitationText` | string | no | no | | |
-| `manualInvitationTextFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `manualInvitationTextFont` | string | no | no | | Including `times new roman`, `tahoma`, `verdana`, `arial`, `comic sans ms` and `courier`. |
 | `manualInvitationTextSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
 | `isManualInvitationTextBold` | boolean | no | no | | |
 | `isManualInvitationTextItalic` | boolean | no | no | | |
@@ -3997,7 +3997,7 @@ Content-Type:  application/json
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4040,7 +4040,7 @@ example:
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4065,7 +4065,7 @@ curl -H "Content-Type: application/json" -d '{
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4090,7 +4090,7 @@ Content-Type:  application/json
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4130,7 +4130,7 @@ Content-Type:  application/json
 | `textAreaWidth` | integer | no | no | | |
 | `textAreaHeight` | integer | no | no | | |
 | `text` | string | no | no | | |
-| `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `textFont` | string | no | no | | Including `times new roman`, `tahoma`, `verdana`, `arial`, `comic sans ms` and `courier`. |
 | `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
 | `isTextBold` | boolean | no | no | | |
 | `isTextItalic` | boolean | no | no | | |
@@ -4188,7 +4188,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -4257,7 +4257,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -4313,7 +4313,7 @@ example:
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4357,7 +4357,7 @@ curl -H "Content-Type: application/json" -d '{
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4400,7 +4400,7 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4455,7 +4455,7 @@ example:
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4499,7 +4499,7 @@ curl -H "Content-Type: application/json" -d '{
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4540,7 +4540,7 @@ Content-Type:  application/json
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
