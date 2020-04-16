@@ -4029,8 +4029,6 @@ example:
 ```Json
 {
   "manualInvitationPosition": "centeredWithOverlay",
-  "manualInvitationImageType": "fromGallery",
-  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
   "manualInvitationCloseAreaYOffset": 10,
   "manualInvitationCloseAreaWidth": 10,
@@ -4054,8 +4052,6 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "manualInvitationPosition": "centeredWithOverlay",
-  "manualInvitationImageType": "fromGallery",
-  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
   "manualInvitationCloseAreaYOffset": 10,
   "manualInvitationCloseAreaWidth": 10,
@@ -4302,8 +4298,6 @@ example:
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4346,8 +4340,6 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4444,8 +4436,6 @@ example:
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4488,8 +4478,6 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
