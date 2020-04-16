@@ -4852,8 +4852,8 @@ Content-Type:  application/json
 | - | - |- | :-: | :-: | :-: | - |
 | `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
 | `type` | string |  | no | no | | Including `simple` and `customRule`. |
-| `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
-| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
+| `routeTo` | string | | no | no | | Including `agent` and `department`. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
 | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
