@@ -8032,7 +8032,16 @@ HTTP/1.1 204 No Content
 | `isVisible` | boolean | | no | no | false | whether the field is visible or not. |
 | `isRequired` | boolean | | no | no | false | whether the field is required or not when submitting the form |
 | `order` | integer | | no | no |1  | the order of the field. |
-| `options` | string |  | no | no | | the options of the field. |
+| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | no | | the options of the field. |
+
+### Secure Form Field Option JSON Format
+
+  Secure Form Field Option is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Include | Read-only | Mandatory | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `value` | string | | no | yes | | |
+| `order` | integer | | no | no |1  | the order of the field. |
 
 ## Endpoint
 ### Get list of secure form fields
