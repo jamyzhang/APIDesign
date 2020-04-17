@@ -50,6 +50,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 # Settings
 
+You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permissions to manage `Settings`.
 - `GET /api/v3/livechat/settings` - [Get settings of a site](#get-settings-of-a-site)
 - `PUT /api/v3/livechat/settings` - [Update settings of a site](#update-settings-of-a-site)
 
@@ -214,6 +215,8 @@ HTTP/1.1 200 OK
 ```
 
 # Auto Distribution
+
+You need `Manage Settings` permission to manage `Auto Distribution`.
 
 - `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)
 - `PUT /api/v3/livechat/autoDistribution` - [Update auto distribution](#update-auto-distribution)
@@ -412,6 +415,7 @@ Content-Type:  application/json
 
 # Translation Excluded Word
 
+You need `Manage Settings` permission to manage translation excluded word.
 - `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-a-list-of-translation-excluded-word)
 - `PUT /api/v3/livechat/translationExcludedWords` - [Update a translation excluded word](#update-a-translation-excluded-word)
 
@@ -536,6 +540,8 @@ HTTP/1.1 204 No Content
 ```
 
 # Customer Segment
+
+You need `Manage Settings` permission to manage `Customer Segment`.
 
 - `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-list-of-customer-segments)
 - `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-a-cusomer-segment-by-id)
@@ -1087,6 +1093,8 @@ Content-Type:  application/json
 
 # Mobile Push
 
+You need `Manage Settings` permission to manage `Mobile Push`.
+
 - `GET /api/v3/livechat/mobilePush` - [Get mobile push](#get-mobile-push)
 - `PUT /api/v3/livechat/mobilePush` - [Update mobile push](#update-mobile-push)
 
@@ -1246,6 +1254,7 @@ Content-Type:  application/json
 
 # Live Chat Agent
 
+You need `Manage Agent & Agent Roles` permission to manage `Live Chat Agent`.
 - `GET /api/v3/livechat/agents/{id}` - [Get a live chat agent by id](#get-a-live-chat-agent-by-id)  
 - `PUT /api/v3/livechat/agents/{id}` - [Update a live chat agent](#update-a-live-chat-agent)  
   
@@ -5505,8 +5514,8 @@ Response
 | `selectedChatbotId` | Guid | | no | no | | |
 | `selectedChatbot` | [Bot](#Bot-Object) | yes | no | no | | |
 | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | no | | |
-| `isDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
-| `isDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
+| `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
+| `ifDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
 | `queueLength` | integer | | no | no | | Allocate chats to Chatbot when the queue reaches the preset length. |
 | `percentageToChatbot` | smallint | | no | no | | |
 | `isChatbotAllocatedWhenAgentOffline` | boolean | | no | no | | |
@@ -5578,8 +5587,8 @@ Content-Type:  application/json
     ]
   },
   "isChatbotAllocatedWhenAgentOnline": false,
-  "isDistributeChatsToChatbotByQueueLength": false,
-  "isDistributeChatsToChatbotByPercentage": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5608,7 +5617,8 @@ example:
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "isDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5627,7 +5637,8 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "isDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5642,8 +5653,8 @@ Content-Type:  application/json
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "isDistributeChatsToChatbotByQueueLength": false,
-  "isDistributeChatsToChatbotByPercentage": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -7646,6 +7657,8 @@ Content-Type:  application/json
 
 # Secure Form
 
+You need `Manage Security` permission to manage `Secure Form`.
+
 - `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-list-of-secure-forms)
 - `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
 - `POST /api/v3/livechat/secureForms` - [Create a secure form](#get-a-secure-form)
@@ -8310,6 +8323,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Webhook
+You need `Manage Integration` permission to manage `Webhook`.
 
 + `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-a-list-of-webhooks)
 + `GET /api/v3/livechat/webhooks/{id}` - [Get a webhook by id](#get-a-webhook-by-id)
@@ -8524,6 +8538,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Custom Variable
+You need `Manage Custom Variable` permission to manage custom variable.
 
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
 - `GET /api/v3/livechat/campacustomVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
