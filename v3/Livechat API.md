@@ -7657,6 +7657,8 @@ Content-Type:  application/json
 
 # Secure Form
 
+You need `Manage Security` permission to manage `Secure Form`.
+
 - `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-list-of-secure-forms)
 - `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
 - `POST /api/v3/livechat/secureForms` - [Create a secure form](#get-a-secure-form)
