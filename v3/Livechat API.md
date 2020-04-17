@@ -1388,6 +1388,7 @@ Content-Type:  application/json
 
 # Live Chat Visitor
 
+You need `Manage Settings` permission to manage `Live Chat Visitor`.
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
 - `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable](#update-a-visitor's-custom-variable)  
@@ -1730,7 +1731,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Integar | yes  |  the id of the session  |
+| `id` | Integer | yes  |  the id of the session  |
 
 Query string
 
@@ -1747,12 +1748,12 @@ the response is: [Session](#session-json-format) Object
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/sessions/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor
+-X GET https://domain.comm100.com/api/v3/livechat/sessions/12?include=visitor
 ```
 Response
 ```json  
 {
-    "id": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "id": 12,
     "startTime": "2020-02-20T13:12:20Z",
     "ip": "192.168.0.201",
     "referrerURL": "",
@@ -2134,6 +2135,8 @@ Response
 
 ### Delete a chat
 
+You need `Delete Transcripts` permission to delete `Chat`.
+
   `DELETE /api/v3/livechat/chats/{id}`
 
 #### Parameters
@@ -2160,6 +2163,8 @@ HTTP/1.1 204 No Content
 ```
 
 ### Batch Delete chats
+
+You need `Delete Transcripts` permission to delete `Chat` by batch.
 
   `DELETE /api/v3/livechat/chats`
 
