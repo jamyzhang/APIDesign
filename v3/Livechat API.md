@@ -1730,7 +1730,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the ban  |
+| `id` | Integar | yes  |  the id of the session  |
 
 Query string
 
