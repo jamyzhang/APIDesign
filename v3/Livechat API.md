@@ -415,7 +415,7 @@ Content-Type:  application/json
 
 # Translation Excluded Word
 
-You need `Manage Settings` permission to manage translation excluded word.
+You need `Manage Settings` permission to manage `Translation Excluded Word`.
 - `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-a-list-of-translation-excluded-word)
 - `PUT /api/v3/livechat/translationExcludedWords` - [Update a translation excluded word](#update-a-translation-excluded-word)
 
