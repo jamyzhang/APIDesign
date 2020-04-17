@@ -50,6 +50,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 # Settings
 
+You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permission to manage custom variable.
 - `GET /api/v3/livechat/settings` - [Get settings of a site](#get-settings-of-a-site)
 - `PUT /api/v3/livechat/settings` - [Update settings of a site](#update-settings-of-a-site)
 
@@ -5505,8 +5506,8 @@ Response
 | `selectedChatbotId` | Guid | | no | no | | |
 | `selectedChatbot` | [Bot](#Bot-Object) | yes | no | no | | |
 | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | no | | |
-| `isDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
-| `isDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
+| `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
+| `ifDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
 | `queueLength` | integer | | no | no | | Allocate chats to Chatbot when the queue reaches the preset length. |
 | `percentageToChatbot` | smallint | | no | no | | |
 | `isChatbotAllocatedWhenAgentOffline` | boolean | | no | no | | |
@@ -5578,8 +5579,8 @@ Content-Type:  application/json
     ]
   },
   "isChatbotAllocatedWhenAgentOnline": false,
-  "isDistributeChatsToChatbotByQueueLength": false,
-  "isDistributeChatsToChatbotByPercentage": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5608,7 +5609,8 @@ example:
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "isDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5627,7 +5629,8 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "isDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -5642,8 +5645,8 @@ Content-Type:  application/json
   "isEnable": true,
   "selectedChatbotId": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
   "isChatbotAllocatedWhenAgentOnline": false,
-  "isDistributeChatsToChatbotByQueueLength": false,
-  "isDistributeChatsToChatbotByPercentage": false,
+  "ifDistributeChatsToChatbotByQueueLength": false,
+  "ifDistributeChatsToChatbotByPercentage": false,
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
@@ -8515,7 +8518,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Custom Variable
-You need `Manage Custom Variable` permission to manage custom variable
+You need `Manage Custom Variable` permission to manage custom variable.
 
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
 - `GET /api/v3/livechat/campacustomVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
