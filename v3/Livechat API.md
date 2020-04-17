@@ -1388,7 +1388,6 @@ Content-Type:  application/json
 
 # Live Chat Visitor
 
-You need `Manage Settings` permission to manage `Live Chat Visitor`.
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
 - `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable](#update-a-visitor's-custom-variable)  
@@ -2466,6 +2465,8 @@ Response
 
 ### Delete an offline message by id
 
+You need `Delete Transcripts` permission to delete `Offline Message`.
+
   `DELETE /api/v3/livechat/offlineMessages/{id}`
 
 #### Parameters
@@ -2490,6 +2491,8 @@ HTTP/1.1 204 No Content
 ```
 
 ### Batch delete offline messages
+
+You need `Delete Transcripts` permission to delete `Offline Message` by batch.
 
   `DELETE /api/v3/livechat/offlineMessages`
 
@@ -2620,6 +2623,8 @@ Content-Type:  application/json
 
 ### Create a new Campaign
 
+You need `Manage Campaigns` permission to create a new `Campaign`.
+
   `POST /api/v3/livechat/campaigns`
 
 #### Parameters
@@ -2667,6 +2672,8 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 ```
 
 ### Update a Campaign
+
+You need `Manage Campaigns` permission to update a `Campaign`.
 
   `PUT /api/v3/livechat/campaigns/{id}`
 
@@ -2719,6 +2726,8 @@ Content-Type:  application/json
 ```
 
 ### Delete a Campaign
+
+You need `Manage Campaigns` permission to delete a `Campaign`.
 
   `DELETE /api/v3/livechat/campaigns/{id}`
 
@@ -2897,6 +2906,8 @@ Content-Type:  application/json
 ```
 
 ### Update Chat Button
+
+You need `Manage Campaigns` permission to update `Chat Button`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/chatButton`
 
@@ -3147,6 +3158,8 @@ Content-Type:  application/json
 ```
 
 ### Update Chat Window
+
+You need `Manage Campaigns` permission to update `Chat Window`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/chatWindow`
 
@@ -3431,6 +3444,8 @@ Content-Type:  application/json
 
 ### Update Pre-Chat
 
+You need `Manage Campaigns` permission to update `PreChat`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/preChat`
 
 #### Parameters
@@ -3562,6 +3577,8 @@ Content-Type:  application/json
 
 ### Update Post Chat
 
+You need `Manage Campaigns` permission to update `Post Chat`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/postChat`
 
 #### Parameters
@@ -3692,6 +3709,8 @@ Content-Type:  application/json
 ```
 
 ### Update Campaign Offline Message
+
+You need `Manage Campaigns` permission to update `Campaign Offline Message`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/offlineMessage`
 
@@ -3888,6 +3907,7 @@ Content-Type:  application/json
 
 ### Update Invitation
 
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation`
 
 #### Parameters
@@ -4014,6 +4034,8 @@ Content-Type:  application/json
 ```
 
 ### Update Manual Invitation
+
+You need `Manage Campaigns` permission to update `Manual Invitation`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation`
 
@@ -4285,6 +4307,8 @@ Content-Type:  application/json
 
 ### Create a new Auto Invitation
 
+You need `Manage Campaigns` permission to create a `Auto Invitation`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations`
 
 #### Parameters
@@ -4421,6 +4445,8 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 ```
 
 ### Update a Auto Invitation
+
+You need `Manage Campaigns` permission to update a `Auto Invitation`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
