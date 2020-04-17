@@ -3958,7 +3958,7 @@ Response
 
 # Agent Away Status
 
-  You need `Manage Settings` permission to manage visitor.
+  You need `Manage Custom Away Status` permission to manage `Agent Away Status`.
 
 - `GET /api/v3/globalSettings/agentAwayStatuses` - [Get all agent away statuses in site](#get-all-Agent-Away-Statuses-in-site)
 - `GET /api/v3/globalSettings/agentAwayStatuses/{id}` - [Get an agent away status by id](#get-a-Agent-Away-Status-by-id)
