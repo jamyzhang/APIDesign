@@ -244,7 +244,7 @@ Department Auto Distribution Object is represented as simple flat JSON objects w
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentId` | Guid ||  yes| no|| id of department |
+| `departmentId` | Guid ||  yes| yes|| id of department |
 | `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
 | `isLastChattedAgentPreferred` | boolean||  no| no|  | whether last-chatted agent is preferred or not |
 | `backupDepartmentId` | Guid ||  no| no|| id of backup department |
@@ -255,7 +255,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `agentId` | integer ||  yes| no|| id of agent |
+| `agentId` | integer ||  yes| yes|| id of agent |
 | `ifAutoAcceptChat` | boolean||  no| no|| if agent can auto accept chat|
 | `maxConcurrentChats` | int ||  no| no|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
 
