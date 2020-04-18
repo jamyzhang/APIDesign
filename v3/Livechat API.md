@@ -1093,7 +1093,6 @@ Content-Type:  application/json
 
 # Mobile Push
 
-You need `Manage Settings` permission to manage `Mobile Push`.
 
 - `GET /api/v3/livechat/mobilePush` - [Get mobile push](#get-mobile-push)
 - `PUT /api/v3/livechat/mobilePush` - [Update mobile push](#update-mobile-push)
@@ -4584,6 +4583,8 @@ Content-Type:  application/json
 
 ### Delete a Auto Invitation
 
+You need `Manage Campaigns` permission to delete a `Auto Invitation`.
+
   `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
 #### Parameters
@@ -4662,6 +4663,8 @@ Content-Type:  application/json
 ```
 
 ### Update Agent Wrap-Up
+
+You need `Manage Campaigns` permission to update `Agent Wrap-Up`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/agentWrapup`
 
