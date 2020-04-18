@@ -50,7 +50,6 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 
 # Settings
 
-You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permissions to manage `Settings`.
 - `GET /api/v3/livechat/settings` - [Get settings of a site](#get-settings-of-a-site)
 - `PUT /api/v3/livechat/settings` - [Update settings of a site](#update-settings-of-a-site)
 
@@ -128,6 +127,8 @@ Content-Type:  application/json
 ```
 
 ### Update settings of a site
+
+You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permissions to update `Settings` of a site.
 
   `PUT /api/v3/livechat/settings`
 
