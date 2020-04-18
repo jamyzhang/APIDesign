@@ -2143,7 +2143,7 @@ Response
 
 ### Delete a chat
 
-You need `Delete Transcripts` permission to delete `Chat`.
+You need `Delete Transcripts` permission to delete a `Chat`.
 
   `DELETE /api/v3/livechat/chats/{id}`
 
@@ -2172,7 +2172,7 @@ HTTP/1.1 204 No Content
 
 ### Batch Delete chats
 
-You need `Delete Transcripts` permission to delete `Chat` by batch.
+You need `Delete Transcripts` permission to delete `Chats` by batch.
 
   `DELETE /api/v3/livechat/chats`
 
@@ -3916,6 +3916,7 @@ Content-Type:  application/json
 
 ### Update Invitation
 
+You need `Manage Campaigns` permission to update a `Invitation`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation`
 
@@ -4044,7 +4045,7 @@ Content-Type:  application/json
 
 ### Update Manual Invitation
 
-You need `Manage Campaigns` permission to update `Manual Invitation`.
+You need `Manage Campaigns` permission to update a `Manual Invitation`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation`
 
@@ -4826,6 +4827,8 @@ Content-Type:  application/json
 
 ### Update Language
 
+You need `Manage Campaigns` permission to update `Language`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/language`
 
 #### Parameters
@@ -4989,6 +4992,8 @@ Content-Type:  application/json
 ```
 
 ### Update Routing
+
+You need `Manage Campaigns` permission to update `Routing`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/routing`
 
@@ -5251,6 +5256,8 @@ Content-Type:  application/json
 
 ### Create a new Custom Rule
 
+You need `Manage Campaigns` permission to create a new `Custom Rule`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules`
 
 #### Parameters
@@ -5383,6 +5390,8 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 
 ### Update a Custom Rule
 
+You need `Manage Campaigns` permission to create a update a `Custom Rule`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
 
 #### Parameters
@@ -5514,6 +5523,8 @@ Content-Type:  application/json
 
 ### Delete a Custom Rule
 
+You need `Manage Campaigns` permission to delete a `Custom Rule`.
+
   `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
 
 #### Parameters
@@ -5640,6 +5651,8 @@ Content-Type:  application/json
 ```
 
 ### Update Chatbot Integration
+
+You need `Manage Campaigns` permission to update a `Chatbot Integration`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration`
 
@@ -5768,6 +5781,8 @@ Content-Type:  application/json
 ```
 
 ### Update KB Integration
+
+You need `Manage Campaigns` permission to update a `KB Integration`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/KBIntegration`
 
@@ -6012,6 +6027,8 @@ Content-Type:  application/json
 
 ### Create a new form fields of Pre-Chat for a campaign
 
+You need `Manage Campaigns` permission to create a `form field` of `Pre-Chat`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields`
 
 #### Parameters
@@ -6216,6 +6233,8 @@ Content-Type:  application/json
 ```
 
 ### Create a new form fields of Post Chat for a campaign
+
+You need `Manage Campaigns` permission to create a `form field` of `Post Chat`.
 
   `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields`
 
@@ -6422,6 +6441,8 @@ Content-Type:  application/json
 
 ### Create a new form fields of Offline Message for a campaign
 
+You need `Manage Campaigns` permission to create a `form field` of `Offline Message`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields`
 
 #### Parameters
@@ -6627,6 +6648,8 @@ Content-Type:  application/json
 
 ### Create a new form fields of Agent Wrap-up for a campaign
 
+You need `Manage Campaigns` permission to create a `form field` of `Agent Wrap-up`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields`
 
 #### Parameters
@@ -6830,6 +6853,8 @@ Content-Type:  application/json
 
 ### Update a campaign form field
 
+You need `Manage Campaigns` permission to update a `campaign form field`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
@@ -6966,6 +6991,8 @@ Content-Type:  application/json
 ```
 
 ### Delete a campaign form field
+
+You need `Manage Campaigns` permission to delete a `campaign form field`.
 
   `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
