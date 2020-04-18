@@ -217,7 +217,6 @@ HTTP/1.1 200 OK
 
 # Auto Distribution
 
-You need `Manage Settings` permission to manage `Auto Distribution`.
 
 - `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)
 - `PUT /api/v3/livechat/autoDistribution` - [Update auto distribution](#update-auto-distribution)
@@ -313,6 +312,8 @@ Content-Type:  application/json
 ```
 
 ### Update Auto Distribution
+
+You need `Manage Settings` permission to update `Auto Distribution`.
 
   `PUT /api/v3/livechat/autoDistribution`
 
@@ -465,6 +466,8 @@ Content-Type:  application/json
 ```
 
 ### Update a translation excluded word
+
+You need `Manage Settings` permission to manage `Translation Excluded Word`.
 
   `PUT /api/v3/livechat/translationExcludedWords/{id}`
 
@@ -696,6 +699,8 @@ Content-Type:  application/json
 
 ### Create a customer segment
 
+You need `Manage Settings` permission to create a `Customer Segment`.
+
   `POST /api/v3/livechat/customerSegments`
 
 #### Parameters
@@ -790,6 +795,8 @@ Content-Type:  application/json
 
 ### Update a customer segment
 
+You need `Manage Settings` permission to update a `Customer Segment`.
+
   `PUT /api/v3/livechat/customerSegments/{id}`
 
 #### Parameters
@@ -860,6 +867,8 @@ Content-Type:  application/json
 ```
 
 ### Delete a customer segment
+
+You need `Manage Settings` permission to delete a `Customer Segment`.
 
  `DELETE /api/v3/livechat/customerSegments/{id}`
 
