@@ -8394,6 +8394,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Webhook
+
 You need `Manage Integration` permission to manage `Webhook`.
 
 + `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-a-list-of-webhooks)
