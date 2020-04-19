@@ -7290,7 +7290,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include agent
 - `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#get-a-campaign)
 - `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign)
-- `POST /api/v3/livechat/conversionActions:achieved` - [Make api conversion succesful](#make-api-conversion-succesful)
+- `POST /api/v3/livechat/conversionActions/achieved` - [Make api conversion successful](#make-api-conversion-successful)
 
 ## Related Object Json Format
 
@@ -7675,9 +7675,9 @@ Response
 }
 ```
 
-### make api conversion succesful
+### make api conversion successful
 
-  `POST /api/v3/livechat/conversionActions:achieved`
+  `POST /api/v3/livechat/conversionActions/achieved`
 
 #### Parameters
 
@@ -7714,7 +7714,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "conversion_name" : "justfortestupdate", 
     "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
-  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions:achieved
+  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions/achieved
 ```
 Response
 ```json
