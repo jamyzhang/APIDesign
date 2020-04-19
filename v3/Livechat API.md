@@ -3042,7 +3042,7 @@ Content-Type:  application/json
 | `isLogoDisplayed` | boolean | no | no | | Whether the logo is visible or not, available when `headerType` is `avatarAndLogo`. |
 | `logo` | string | yes | no | | Image file key of the logo. |
 | `bannerImageType` | string | yes | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
-| `bannerImage` | string | no | yes | | Image file key of the banner, available when `headerType` is `bannerImage`. |
+| `bannerImage` | Guid | no | yes | | Image file key of the banner, available when `headerType` is `bannerImage`. |
 | `isAvatarDisplayedWithMessage` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `backgroundTexture` | string | no | no | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
@@ -3976,7 +3976,7 @@ Content-Type:  application/json
 | - | - | :-: | :-: | :-: | - |
 | `manualInvitationPosition` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
 | `manualInvitationImageType` | string | yes | no | | Including`fromGallery` and `fromMyComputer`.  |
-| `manualInvitationImage` | string | yes | no | | Image file key of Invitation.  |
+| `manualInvitationImage` | Guid | yes | no | | Image file key of Invitation.  |
 | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
 | `manualInvitationCloseAreaYOffset` | integer | no | no | | |
 | `manualInvitationCloseAreaWidth` | integer | no | no | | |
@@ -4155,8 +4155,8 @@ Content-Type:  application/json
 | `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
 | `isDisplayedOnceInOneSession` | boolean | no | no | | |
 | `order` | integer | no | no | | |
-| `imageType` | string | yes | no | | Including`fromGallery` and `fromMyComputer`. |
-| `image` | string | yes | no | | Image file key of Invitation.  |
+| `imageType` | string | yes | no | | Including `fromGallery` and `fromMyComputer`. |
+| `image` | Guid | yes | no | | Image file key of Invitation.  |
 | `closeAreaXOffset` | integer | no | no | | |
 | `closeAreaYOffset` | integer | no | no | | |
 | `closeAreaWidth` | integer | no | no | | |
