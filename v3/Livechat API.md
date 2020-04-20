@@ -1,6 +1,6 @@
 ﻿# Live Chat Restful API
 
-Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems.
+Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 Live Chat into your own systems.
 
 | Change Version | API Version | Change note | Change Date | Author |
 | - | - | - | - | - |
@@ -72,12 +72,12 @@ Customer Segment is represented as simple flat JSON objects with the following k
 | `isVisitorSSOEnabled` |boolean || no | yes||whether vistor SSO is enabled or not in the site.|
 | `isCreditCardMaskingEnabled` |boolean || no | yes ||whether Credit card masking is enabled or not in the site.|
 | `isCustomVariablesEnabled` |boolean || no | yes||whether custom variables are enabled or not in the site.|
-| `isSalesforceEnabled` |boolean || no | yes ||whether Salesforce integration is enabled or not in the site.|
-| `isZendeskEnabled` |boolean || no | yes ||whether Zendesk integration is enabled or not in the site.|
-| `isGoogleAnalyticsEnabled` |boolean || no | yes || whether Google Analytics integration is enabled or not in the site.|
-| `isGotoMeetingEnabled` |boolean || no | yes || whether GotoMeeting integration is enabled or not in the site.|
-| `isJoinmeEnabled` |boolean || no | yes || whether Joinme integration is enabled or not in the site.|
-| `isCobrowsingEnabled` |boolean || no | yes || whether Cobrowsing feature is enabled or not in the site.|
+| `isSalesforceEnabled` |boolean || no | yes ||whether the Salesforce integration is enabled or not in the site.|
+| `isZendeskEnabled` |boolean || no | yes ||whether the Zendesk integration is enabled or not in the site.|
+| `isGoogleAnalyticsEnabled` |boolean || no | yes || whether the Google Analytics integration is enabled or not in the site.|
+| `isGotoMeetingEnabled` |boolean || no | yes || whether the GotoMeeting integration is enabled or not in the site.|
+| `isJoinmeEnabled` |boolean || no | yes || whether the Joinme integration is enabled or not in the site.|
+| `isCobrowsingEnabled` |boolean || no | yes || whether the Cobrowsing feature is enabled or not in the site.|
 
 ## Endpoint
 
@@ -91,7 +91,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 #### Response
 
-the response is [Settings](#settings-object) object
+the response is a [Settings](#settings-object) object
 
 #### Example
 
@@ -164,7 +164,7 @@ example:
 
 #### Response
 
-the response is [Settings](#settings-object) object
+the response is a [Settings](#settings-object) object
 
 #### Example
 
@@ -230,7 +230,7 @@ HTTP/1.1 200 OK
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `autoDistributionMethod` | string || no | yes || method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
-| `isLastChattedAgentPreferred` | boolean || no | yes || whether last-chatted agent is preferred or not |
+| `isLastChattedAgentPreferred` | boolean || no | yes || whether the last-chatted agent is preferred or not |
 | `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | yes || whether to set the same maximum number of chats for all agents |
 | `maxConcurrentChatsForAllAgents` | integer || no | yes || maximum number of chats for all agents |
 | `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | yes|| whether to allocate chats to agents who are having audio or video chats |
@@ -271,7 +271,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 #### Response
 
-the response is: [Auto Distribution](#auto-distribution-object) Object.
+the response is an [Auto Distribution](#auto-distribution-object) Object.
 
 #### Example
 
@@ -353,7 +353,7 @@ example:
 
 #### Response
 
-the response is: [Auto Distribution](#auto-distribution-object) object.
+the response is an [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
@@ -415,7 +415,7 @@ Content-Type:  application/json
 }
 ```
 
-# Translation Excluded Word
+# Translation Excluded Words
 
 You need `Manage Settings` permission to manage `Translation Excluded Word`.
 - `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-a-list-of-translation-excluded-word)
@@ -1116,12 +1116,12 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 | Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `iosType` | string |  | no | yes  | |type of ios include `APNS`,`thirdParty` |
-| `iosProductionCertificateFileName` | string |  | no | yes | | name of ios prodution certicate file|
-| `iosProductionCertificateFileData` | string |  | no | yes  | | data of ios prodution certicate file|
-| `iosProductionCertificatePassword` | string |  | no | yes  | | password of ios prodution certicate|
-| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | name of ios development certicate file|
-| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | data of ios development certicate file|
-| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | password of ios development certicate|
+| `iosProductionCertificateFileName` | string |  | no | yes | | name of ios production certificate file|
+| `iosProductionCertificateFileData` | string |  | no | yes  | | data of ios production certificate file|
+| `iosProductionCertificatePassword` | string |  | no | yes  | | password of ios production certificate|
+| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | name of ios development certificate file|
+| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | data of ios development certificate file|
+| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | password of ios development certificate|
 | `iosApnsPayloadFormat` | string |  | no | yes  | | format of ios Apns payload,mandatory when `iostype` is `thirdParty`.|
 | `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL,mandatory when `iostype` is `thirdParty`.|
 | `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers,mandatory when `iostype` is `thirdParty`.|
