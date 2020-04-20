@@ -61,23 +61,23 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `siteId` |integer  || yes | no || id of the site which the configuration belongs to.|
-| `isMultipleCampaignEnabled` |boolean || no | yes || whether multiple campaigns are enabled or not in the site.|
-|`isAutoDistributionEnabled` |boolean || no | yes || whether auto distribution is enabled or not in the site.|
-| `isCustomAwayStatusEnabled` |boolean || no | yes || whether custom away status is enabled or not in the site.|
-| `isDepartmentEnabled` |boolean || no|  yes || whether department is enabled or not in the site.|
-| `isAutoTranslationEnabled` |boolean || no | yes || whether auto translation is enabled or not in the site.|
-| `isAudioAndVideoChatEnabled` |boolean || no | yes ||whether audio&video chat is enabled or not in the site.|
-| `isCustomerSegmentEnabled` |boolean || no | yes ||whether customer segment chat is enabled or not in the site.|
-| `isVisitorSSOEnabled` |boolean || no | yes||whether vistor SSO is enabled or not in the site.|
-| `isCreditCardMaskingEnabled` |boolean || no | yes ||whether Credit card masking is enabled or not in the site.|
-| `isCustomVariablesEnabled` |boolean || no | yes||whether custom variables are enabled or not in the site.|
-| `isSalesforceEnabled` |boolean || no | yes ||whether the Salesforce integration is enabled or not in the site.|
-| `isZendeskEnabled` |boolean || no | yes ||whether the Zendesk integration is enabled or not in the site.|
-| `isGoogleAnalyticsEnabled` |boolean || no | yes || whether the Google Analytics integration is enabled or not in the site.|
-| `isGotoMeetingEnabled` |boolean || no | yes || whether the GotoMeeting integration is enabled or not in the site.|
-| `isJoinmeEnabled` |boolean || no | yes || whether the Joinme integration is enabled or not in the site.|
-| `isCobrowsingEnabled` |boolean || no | yes || whether the Cobrowsing feature is enabled or not in the site.|
+| `siteId` |integer  || yes | no || Id of the site which the configuration belongs to.|
+| `isMultipleCampaignEnabled` |boolean || no | yes || Whether multiple campaigns are enabled or not in the site.|
+|`isAutoDistributionEnabled` |boolean || no | yes || Whether auto distribution is enabled or not in the site.|
+| `isCustomAwayStatusEnabled` |boolean || no | yes || Whether custom away status is enabled or not in the site.|
+| `isDepartmentEnabled` |boolean || no|  yes || Whether department is enabled or not in the site.|
+| `isAutoTranslationEnabled` |boolean || no | yes || Whether auto translation is enabled or not in the site.|
+| `isAudioAndVideoChatEnabled` |boolean || no | yes ||Whether audio&video chat is enabled or not in the site.|
+| `isCustomerSegmentEnabled` |boolean || no | yes ||Whether customer segment chat is enabled or not in the site.|
+| `isVisitorSSOEnabled` |boolean || no | yes||Whether vistor SSO is enabled or not in the site.|
+| `isCreditCardMaskingEnabled` |boolean || no | yes ||Whether Credit card masking is enabled or not in the site.|
+| `isCustomVariablesEnabled` |boolean || no | yes||Whether custom variables are enabled or not in the site.|
+| `isSalesforceEnabled` |boolean || no | yes ||Whether the Salesforce integration is enabled or not in the site.|
+| `isZendeskEnabled` |boolean || no | yes ||Whether the Zendesk integration is enabled or not in the site.|
+| `isGoogleAnalyticsEnabled` |boolean || no | yes || Whether the Google Analytics integration is enabled or not in the site.|
+| `isGotoMeetingEnabled` |boolean || no | yes || Whether the GotoMeeting integration is enabled or not in the site.|
+| `isJoinmeEnabled` |boolean || no | yes || Whether the Joinme integration is enabled or not in the site.|
+| `isCobrowsingEnabled` |boolean || no | yes || Whether the Cobrowsing feature is enabled or not in the site.|
 
 ## Endpoint
 
@@ -91,7 +91,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 #### Response
 
-the response is a [Settings](#settings-object) object
+the response is a [Settings](#settings-object) object.
 
 #### Example
 
@@ -229,14 +229,14 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `autoDistributionMethod` | string || no | yes || method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
-| `isLastChattedAgentPreferred` | boolean || no | yes || whether the last-chatted agent is preferred or not |
-| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | yes || whether to set the same maximum number of chats for all agents |
-| `maxConcurrentChatsForAllAgents` | integer || no | yes || maximum number of chats for all agents |
-| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | yes|| whether to allocate chats to agents who are having audio or video chats |
-| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | yes | |whether to allow agent to manually accept chat after reaching max chats limit in agent console |
-| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | no || auto distribution configuration for per department |
-| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | no || auto distribution configuration for per agent |
+| `autoDistributionMethod` | string || no | yes || Method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted`. |
+| `isLastChattedAgentPreferred` | boolean || no | yes || Whether the last-chatted agent is preferred or not. |
+| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | yes || Whether to set the same maximum number of chats for all agents. |
+| `maxConcurrentChatsForAllAgents` | integer || no | yes || Maximum number of chats for all agents. |
+| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | yes|| Whether to allocate chats to agents who are having audio or video chats. |
+| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | yes | |Whether to allow agent to manually accept chat after reaching max chats limit in agent console. |
+| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | no || Auto distribution configuration for per department. |
+| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | no || Auto distribution configuration for per agent. |
 
 ### Department Auto Distribution Object
 
@@ -244,10 +244,10 @@ Department Auto Distribution Object is represented as simple flat JSON objects w
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentId` | Guid ||  yes| yes|| id of department |
-| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
-| `isLastChattedAgentPreferred` | boolean||  no| no|  | whether last-chatted agent is preferred or not |
-| `backupDepartmentId` | Guid ||  no| no|| id of backup department |
+| `departmentId` | Guid ||  yes| yes|| Id of department |
+| `autoDistributionMethod` | string || no | no || Method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
+| `isLastChattedAgentPreferred` | boolean||  no| no|  | Whether last-chatted agent is preferred or not |
+| `backupDepartmentId` | Guid ||  no| no|| Id of backup department |
 
 ### Agent Auto Distribution Object
 
@@ -255,9 +255,9 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `agentId` | integer ||  yes| yes|| id of agent |
-| `ifAutoAcceptChat` | boolean||  no| no|| if agent can auto accept chat|
-| `maxConcurrentChats` | int ||  no| no|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
+| `agentId` | integer ||  yes| yes|| Id of agent. |
+| `ifAutoAcceptChat` | boolean||  no| no|| If agent can auto accept chat.|
+| `maxConcurrentChats` | int ||  no| no|| Maximum concurrent chats, available when Is Chat Auto Accepted is true.|
 
 ## Endpoint
 
@@ -271,7 +271,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 #### Response
 
-the response is an [Auto Distribution](#auto-distribution-object) Object.
+the response is an [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
@@ -443,7 +443,7 @@ Translation Excluded Word is represented as simple flat JSON objects with the fo
 
 #### Response
 
-an array of [Translation Excluded Word](#translation-excluded-word) object
+the response is an array of [Translation Excluded Word](#translation-excluded-word) objects
 
 #### Example
 
@@ -488,7 +488,7 @@ example:
 ```
 #### Response
 
-the response is [Translation Excluded Word](#translation-excluded-word) object
+the response is an [Translation Excluded Word](#translation-excluded-word) objects.
 
 #### Example
 
@@ -561,16 +561,16 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `id` |Guid  || yes | no || id of the customer segment.
-  | `name` |string  || no | yes || name of the customer segment.
-  | `color` |string  || no | no |'339FD9'| color of the customer segment
-  | `isEnabled` |boolean  || no | no |false| whether the customer segment is enabled or not.
-  | `order` |int  || no | no |maximum order + 1 | order of the customer segment.
-  | `description` |string  || no | no || description of the customer segment.
-  | `conditionMetType` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
-  | `logicalExpression` |string  || no | no || the logical expression for conditions.
-  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
-  | `alertTo`| [Alert To](#alert-to)  || no | no | |an array of agent id or department Id|
+  | `id` |Guid  || yes | no || Id of the customer segment.
+  | `name` |string  || no | yes || Name of the customer segment.
+  | `color` |string  || no | no |'339FD9'| Color of the customer segment.
+  | `isEnabled` |boolean  || no | no |false| Whether the customer segment is enabled or not.
+  | `order` |int  || no | no |maximum order + 1 | Order of the customer segment.
+  | `description` |string  || no | no || Description of the customer segment.
+  | `conditionMetType` |string  || no | no |all| Met type of condtion , including `all`,`any`,`logicalExpression`.
+  | `logicalExpression` |string  || no | no || The logical expression for conditions.
+  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || An array of [Live Chat Condition](#live-chat-condition-object) object. |
+  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent id or department Id.|
 
 ### Alert To Segment Object
 
@@ -578,8 +578,8 @@ Alert To is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentIds` |int[]  || no | no|| an array of department id.|
-| `agentIds` |Guid[]  || no | no || an array of agent id.|
+| `departmentIds` |int[]  || no | no|| An array of department id.|
+| `agentIds` |Guid[]  || no | no || An array of agent id.|
 
 ### Live Chat Condition object
 
@@ -587,10 +587,10 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
 
   | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `field` |String  | no | yes || the name of visitor field.
-  | `Operator` |String  | no | yes || type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`
-  | `value` |String  | no | yes || the value of a visitor field .
-  | `order` |int  | no | no|maximum order + 1| the order of visitor field.
+  | `field` |String  | no | yes || The name of visitor field.
+  | `Operator` |String  | no | yes || Type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`.
+  | `value` |String  | no | yes || The value of a visitor field .
+  | `order` |int  | no | no|maximum order + 1| The order of visitor field.
 
 ## Endpoint
 
@@ -655,7 +655,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of customer segment   |
+| `id` | Guid | yes  |  Id of customer segment.   |
 
 #### Response
 
@@ -878,7 +878,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of customer segment   |
+| `id` | Guid | yes  |  Id of customer segment   |
 
 #### Response
 
@@ -1115,23 +1115,23 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `iosType` | string |  | no | yes  | |type of ios include `APNS`,`thirdParty` |
-| `iosProductionCertificateFileName` | string |  | no | yes | | name of ios production certificate file|
-| `iosProductionCertificateFileData` | string |  | no | yes  | | data of ios production certificate file|
-| `iosProductionCertificatePassword` | string |  | no | yes  | | password of ios production certificate|
-| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | name of ios development certificate file|
-| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | data of ios development certificate file|
-| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | password of ios development certificate|
-| `iosApnsPayloadFormat` | string |  | no | yes  | | format of ios Apns payload,mandatory when `iostype` is `thirdParty`.|
+| `iosType` | string |  | no | yes  | |Type of ios include `APNS`,`thirdParty` |
+| `iosProductionCertificateFileName` | string |  | no | yes | | Name of ios production certificate file|
+| `iosProductionCertificateFileData` | string |  | no | yes  | | Data of ios production certificate file|
+| `iosProductionCertificatePassword` | string |  | no | yes  | | Password of ios production certificate|
+| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | Name of ios development certificate file|
+| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | Data of ios development certificate file|
+| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | Password of ios development certificate|
+| `iosApnsPayloadFormat` | string |  | no | yes  | | Format of ios Apns payload,mandatory when `iostype` is `thirdParty`.|
 | `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL,mandatory when `iostype` is `thirdParty`.|
 | `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers,mandatory when `iostype` is `thirdParty`.|
 | `iosThirdPartyBody` | string |  | no | yes  | | ios third party Body,ymandatory when `iostype` is `thirdParty`.|
-| `androidType` | string |  | no |yes  | |type of android include `GCM`,`thirdParty` |
-| `androidGcmAPIKey` | string |  | no | yes  | |android gcm API key,mandatory when `andriodType` is `GCM`.|
-| `androidGcmExtraData` | string |  | no| yes  | |android gcm extra data,mandatory when `andriodType` is `GCM`. |
-| `androidThirdPartyURL` | string |  | no | yes  | |android third party URL,mandatory when `andriodType` is `thirdParty`. | |
-| `androidThirdPartyRequestHeaders` | string |  | no | yes | | android third party request headers,mandatory when `andriodType` is `thirdParty`|
-| `androidThirdPartyRequestBody` | string |  | no | yes  | |android Third Party Request Body,mandatory when `andriodType` is `thirdParty` |
+| `androidType` | string |  | no |yes  | |Type of android include `GCM`,`thirdParty` |
+| `androidGcmAPIKey` | string |  | no | yes  | |Android gcm API key,mandatory when `andriodType` is `GCM`.|
+| `androidGcmExtraData` | string |  | no| yes  | |Android gcm extra data,mandatory when `andriodType` is `GCM`. |
+| `androidThirdPartyURL` | string |  | no | yes  | |Android third party URL,mandatory when `andriodType` is `thirdParty`. | |
+| `androidThirdPartyRequestHeaders` | string |  | no | yes | | Android third party request headers,mandatory when `andriodType` is `thirdParty`|
+| `androidThirdPartyRequestBody` | string |  | no | yes  | |Android Third Party Request Body,mandatory when `andriodType` is `thirdParty` |
 
 ## Endpoint
 
@@ -1275,9 +1275,9 @@ agent is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | integer |  |  yes| N/A | | id of the live chat agent. |
-| `status` | String |  | no | yes | | status of the agent, including `Online`, `Away`, `Offline` and custom away status defined by site. |
-| `ongoingChats` | integer|  | yes | no | | total number of ongoing chats the agent has. |
+| `id` | integer |  |  yes| N/A | | Id of the live chat agent. |
+| `status` | String |  | no | yes | | Status of the agent, including `Online`, `Away`, `Offline` and custom away status defined by site. |
+| `ongoingChats` | integer|  | yes | no | | Total number of ongoing chats the agent has. |
 
 ## Endpoints
 
@@ -1437,8 +1437,8 @@ online visitor is represented as simple flat JSON objects with the following key
 | `searchEngine` | string|  | yes | no | |the search engine the visitor used to search for your website.|
 | `state` | string|  | yes | no | |the state of the visitor.|
 | `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids.|
-| `visitTime` | string|  | yes | no | |the starting time when this visitor visits your website this time.|
-| `visits` | string|  | yes | no | |the total times of visits a visitor has made on your website from the first time to present|
+| `visitTime` | string|  | yes | no | |the starting time when this visitor visits your website this session.|
+| `visits` | string|  | yes | no | |the total number of visits a visitor has made on your website from the first time to present|
 
 
 ### Custom Field Object
@@ -1478,7 +1478,7 @@ Query string
 
 #### Response
 
-the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+the response is an array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
@@ -1549,7 +1549,7 @@ Path parameters
 
 #### Response
 
-the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+the response is an array of [Live Chat Visitor](#live-chat-visitor-object) objects.
 
 #### Example
 
@@ -1616,7 +1616,7 @@ Path parameters
 
 Request body 
 
-  The request body is an array of [Custom Variable Result](#custom-variable-result-object) object.
+  The request body is an array of [Custom Variable Result](#custom-variable-result-object) objects.
 
   example:
 ```Json
@@ -1637,7 +1637,7 @@ Request body
 
 #### Response
 
-the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+the response is an array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
@@ -1710,7 +1710,7 @@ Content-Type:  application/json
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | N/A | N/A | | id of the session. |
-| `startTime` | datetime | | N/A | N/A |  | time of this session start. |
+| `startTime` | datetime | | N/A | N/A |  | Time when the session started. |
 | `ip` | string |  | N/A | N/A | |  |
 | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
 | `searchEngine` | string |  | N/A | N/A | |  |
@@ -1725,7 +1725,7 @@ Content-Type:  application/json
 | `landingPageTitle` | string | | N/A | N/A | |  |
 | `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
 | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
-| `contactId` | integer | | N/A | N/A | | the id of the contact  |
+| `contactId` | integer | | N/A | N/A | | The id of the contact  |
 | `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
 
 ## Endpoint
@@ -1749,7 +1749,7 @@ Query string
 
 #### Response
 
-the response is: [Session](#session-json-format) Object
+the response is a [Session](#session-json-format) object.
 
 #### Example
 
@@ -1901,8 +1901,8 @@ Query string
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`,`offlineMessage`. |
-| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
+| `timeFrom` | datetime | no  | today |  The beginning of the query time, defaults to today, format is `yyyy-MM-ddTHH:mm:ss`. |
+| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format is `yyyy-MM-ddTHH:mm:ss`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
 | `departmentId` | guid | no  |  | |
@@ -2042,7 +2042,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Chat](#Chat-object) Object
+the response is a [Chat](#Chat-object) object.
 
 #### Example
 
@@ -2225,33 +2225,33 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | yes | no | | id of the offline message. |
-| `createdTime` | datetime | | no | no | | time of this offline message submitted. |
+| `id` | Guid |  | yes | no | | Id of the offline message. |
+| `createdTime` | datetime | | no | no | | Time of this offline message submitted. |
 | `ssoUserId` | string | | no | no |  | SSO id of visitor |
-| `name` | string | | no | no |  | name of the visitor |
-| `email` | string | | no | no |  | email of the visitor |
-| `phone` | string | | no | no |  | phone of the visitor |
-| `company` | string | | no | no |  | company of the visitor |
+| `name` | string | | no | no |  | Name of the visitor |
+| `email` | string | | no | no |  | Email of the visitor |
+| `phone` | string | | no | no |  | Phone of the visitor |
+| `company` | string | | no | no |  | Company of the visitor |
 | `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to |
 | `department` | [Department](#department) | yes | no | no |  | Available only when department is included |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to |
 | `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included |
 | `ticketId` | integer | yes | no | no |  | id of the related ticket |
-| `subject` | string | | no | no |  | the subject of this offline message|
-| `message` | string | | no | no | | the content of this offline message |
+| `subject` | string | | no | no |  | The subject of this offline message|
+| `message` | string | | no | no | | The content of this offline message |
 | `requestingPageTitle` | string | | no | no |  |  |
 | `requestingPageURL` | string | | no | no |  |  |
-| `source` | string | | no | no |  | including `chatButton` and `autoInvitation` |
+| `source` | string | | no | no |  | Including `chatButton` and `autoInvitation` |
 | `autoInvitationId` | Guid | | no | no |  | Available when source is `autoInvitation` |
 | `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | no | no |  | Available only when autoInvitation is included |
-| `campaignId` | Guid | | no | no |  | id of the campaign |
+| `campaignId` | Guid | | no | no |  | Id of the campaign |
 | `campaign` | [Campaign](#campaign) | yes | no | no |  | Available only when campaign is included |
-| `sessionId` | Guid | | no | no |  | id of the session |
+| `sessionId` | Guid | | no | no |  | Id of the session |
 | `session` | [Session](#session) | yes | no | no |  | Available only when session is included |
-| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | an array of [Customer Segment](#customer-segment) |
-| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
-| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
-| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | the attachment file data |
+| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | An array of [Customer Segment](#customer-segment) |
+| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | Values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
+| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | Information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
+| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | The attachment file data |
 
 ### Attachment JSON format
 
