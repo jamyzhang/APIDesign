@@ -1323,7 +1323,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  id of live chat agent   |
+| `id` | integer | yes  |  Id of live chat agent   |
 
 #### Response
 
@@ -1409,36 +1409,36 @@ online visitor is represented as simple flat JSON objects with the following key
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| no | | id of the visitor. |
-| `name` | name |  |  yes| no | | name of the visitor. |
-| `email` | string |  | yes | no | | email of the visitor.|
-| `status` | String|  | yes | no| |status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
-| `pageViews` | integer|  | yes | no | |the total number of web pages the visitor viewed on your website. |
-| `browser` | string|  | yes | no | |the browser the visitor is using. |
-| `chats` | integer|  | yes | no | |the total times of chats a visitor has made on your website from the first time to present. |
-| `city` | string|  | yes | no | |the city of the visitor. |
-| `company` | string|  | yes | no | |the company of the visitor. |
-| `country` | string|  | yes | no | |the country of the visitor. |
-| `currentBrowsing` | string|  | yes | no | |the page the visitor is currently looking at. |
-| `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
-| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | yes | |the information of custom variables captured from the web page visitors viewed.|
-| `departmentId` | Guid|  | yes | no ||the department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
-| `firstVisitTime` | datetime|  | yes | no | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
-| `flashVersion` | string|  | yes | no| |the flash version of the browser the visitor is using.|
-| `ip` | string|  | yes | no | |the IP of the visitor.|
-| `searchKeywords` | string|  | yes | no | |the keywords the visitor used to search for your website.|
-| `landingPage` | string|  | yes | no | |the title and URL of the first page of your website the visitor visited.|
-| `language` | string|  | yes | no | |the language the visitor is using.|
-| `operatingSystem` | string|  | yes | no | |the operating system of the visitor's device.|
-| `phone` | string|  | yes | no | |the phone of the visitor.|
-| `productService` | string|  | yes | no | |the product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
-| `referrerUrl` | string|  | yes | no | |the URL of the page from which a visitor comes to your website.|
-| `screenResolution` | string|  | yes | no| |the screen resolution of the visitor's device.|
-| `searchEngine` | string|  | yes | no | |the search engine the visitor used to search for your website.|
-| `state` | string|  | yes | no | |the state of the visitor.|
+| `id` | Guid |  |  yes| no | | Id of the visitor. |
+| `name` | name |  |  yes| no | | Name of the visitor. |
+| `email` | string |  | yes | no | | Email of the visitor.|
+| `status` | String|  | yes | no| |Status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
+| `pageViews` | integer|  | yes | no | |The total number of web pages the visitor viewed on your website. |
+| `browser` | string|  | yes | no | |The browser the visitor is using. |
+| `chats` | integer|  | yes | no | |The total times of chats a visitor has made on your website from the first time to present. |
+| `city` | string|  | yes | no | |The city of the visitor. |
+| `company` | string|  | yes | no | |The company of the visitor. |
+| `country` | string|  | yes | no | |The country of the visitor. |
+| `currentBrowsing` | string|  | yes | no | |The page the visitor is currently looking at. |
+| `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |The values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
+| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | yes | |The information of custom variables captured from the web page visitors viewed.|
+| `departmentId` | Guid|  | yes | no ||The department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
+| `firstVisitTime` | datetime|  | yes | no | |The time the visitor first visited a web page pasted with Comm100 Live Chat code.|
+| `flashVersion` | string|  | yes | no| |The flash version of the browser the visitor is using.|
+| `ip` | string|  | yes | no | |The IP of the visitor.|
+| `searchKeywords` | string|  | yes | no | |The keywords the visitor used to search for your website.|
+| `landingPage` | string|  | yes | no | |The title and URL of the first page of your website the visitor visited.|
+| `language` | string|  | yes | no | |The language the visitor is using.|
+| `operatingSystem` | string|  | yes | no | |The operating system of the visitor's device.|
+| `phone` | string|  | yes | no | |The phone of the visitor.|
+| `productService` | string|  | yes | no | |The product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
+| `referrerUrl` | string|  | yes | no | |The URL of the page from which a visitor comes to your website.|
+| `screenResolution` | string|  | yes | no| |The screen resolution of the visitor's device.|
+| `searchEngine` | string|  | yes | no | |The search engine the visitor used to search for your website.|
+| `state` | string|  | yes | no | |The state of the visitor.|
 | `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids.|
-| `visitTime` | string|  | yes | no | |the starting time when this visitor visits your website this session.|
-| `visits` | string|  | yes | no | |the total number of visits a visitor has made on your website from the first time to present|
+| `visitTime` | string|  | yes | no | |The starting time when this visitor visits your website this session.|
+| `visits` | string|  | yes | no | |The total number of visits a visitor has made on your website from the first time to present|
 
 
 ### Custom Field Object
@@ -1447,9 +1447,9 @@ Custom Field is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| no | | id of the custom field.|
-| `name` | string |  |  yes| no | | name of the custom field.|
-| `value` | string |  |  yes| no | | value of the custom field.|
+| `id` | Guid |  |  yes| no | | Id of the custom field.|
+| `name` | string |  |  yes| no | | Name of the custom field.|
+| `value` | string |  |  yes| no | | Value of the custom field.|
 
 ### Custom Variable Result Object
 
@@ -1457,9 +1457,9 @@ Custom variable result is represented as simple flat JSON objects with the follo
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `name` | string |  |  yes| no | | name of the custom variable.|
-| `value` | string |  |  no| no | | value of the custom variable.|
-| `url` | string |  | yes| no | | url of the custom variable.|
+| `name` | string |  |  yes| no | | Name of the custom variable.|
+| `value` | string |  |  no| no | | Value of the custom variable.|
+| `url` | string |  | yes| no | | Url of the custom variable.|
 
 ## Endpoints
 
@@ -1474,7 +1474,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `status` |string| no  | |  status of this chat |
+| `status` |string| no  | |  Status of this chat |
 
 #### Response
 
