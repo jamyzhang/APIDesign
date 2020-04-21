@@ -8798,7 +8798,7 @@ curl -H "Content-Type: application/json" -d '{
   "type": "text",
   "value": "'lizz'",
   "hyperlink": "{!Visitor.IP}"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/customvariables
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
