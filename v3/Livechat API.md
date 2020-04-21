@@ -515,33 +515,6 @@ Content-Type:  application/json
 
 ```
 
-### Delete a translation excluded word
-
-  `Delete /api/v3/livechat/translationExcludedWords/{id}`
-
-#### Parameters
-
-Path parameters
-
-| Name  | Type | Required  | Description |
-| - | - | - | - |
-| `id` | Guid | yes  |  id of translation excluded word   |
-
-#### Response
-
-HTTP/1.1 204 No Content
-
-#### Example
-
-Using curl
-```shell
-curl -H -X DELETE https://domain.comm100.com/api/v3/livechat/translationExcludedWord/5587fc9d-92e6-4487-a2e8-92e68d6892c4
-```
-
-Response
-```json
-HTTP/1.1 204 No Content
-```
 
 # Customer Segment
 
@@ -7732,7 +7705,7 @@ You need `Manage Security` permission to manage `Secure Form`.
 
 - `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-list-of-secure-forms)
 - `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
-- `POST /api/v3/livechat/secureForms` - [Create a secure form](#get-a-secure-form)
+- `POST /api/v3/livechat/secureForms` - [Create a secure form](#create-a-secure-form)
 - `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form)
 - `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
 
@@ -7746,7 +7719,7 @@ Secure Form is represented as simple flat JSON objects with the following keys:
 | `id` | Guid  | | yes | no | | Id of the secure form. |
 | `name` | string  | | no | yes | | Name of the secure form. |
 | `description` | string |  | no | no | |Description of the secure form. |
-| `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | An array of [Field](#field-json-format). |
+| `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | An array of [Secure Form Field](#secure-form-field-json-format). |
 
 ## Endpoint
 ### Get list of secure forms
@@ -7786,7 +7759,16 @@ Content-Type:  application/json
                 "isSystem": true,
                 "isVisible": false,
                 "isRequired": false,
-                "order": 1
+                "order": 1,
+                "options":[
+                  {
+                    "value": "beijing",
+                    "order":0,
+                  },
+                  {
+                    "value": "hangzhou",
+                    "order":1,
+                  }],
             },
             ...
         ]
@@ -7824,26 +7806,35 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 {
-    "id": "5721c1ac-f18b-43ed-9ff1-597acd9f48e2",
-    "name": "justfortest2",
-    "description": "",
-    "fields": [
+  "id": "5721c1ac-f18b-43ed-9ff1-597acd9f48e2",
+  "name": "justfortest",
+  "description": "",
+  "fields": [
+    {
+      "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
+      "name": "Card Number",
+      "type": "cardNumber",
+      "displayName": "Card Number",
+      "isSystem": true,
+      "isVisible": false,
+      "isRequired": false,
+      "order": 1,
+      "options":[
         {
-            "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
-            "order": 1
+          "value": "beijing",
+          "order":0,
         },
-        ...
-    ]
+        {
+          "value": "hangzhou",
+          "order":1,
+        }
+    },
+    ...
+  ]
 }
 ```
 
-### Create a new secure form
+### Create a secure form
 
   `POST /api/v3/livechat/secureForms`
 
@@ -7866,8 +7857,7 @@ Request body
             "isVisible": false,
             "isRequired": false,
             "order": 1
-        },
-        ...
+        }
     ]
   }
 ```
