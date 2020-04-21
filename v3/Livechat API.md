@@ -1,6 +1,6 @@
 ﻿# Live Chat Restful API
 
-Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live Chat into your own systems.
+Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 Live Chat into your own systems.
 
 | Change Version | API Version | Change note | Change Date | Author |
 | - | - | - | - | - |
@@ -11,8 +11,8 @@ Comm100 Live Chat API allows you to pull the raw livechat data from Comm100 Live
 - Live Chat
   - [settings](#settings)
     - [auto distribution](#auto-distribution)
-    - [translation excluded word](#translation-excluded-word)
-    - [dynamic campaign](#dynamic-campaign)
+    - [translation excluded words](#translation-excluded-words)
+    <!-- - [dynamic campaign](#dynamic-campaign) -->
     - [mobile push](#mobile-push)
   - [customer segment](#customer-segment)
   - [live chat agent](#live-chat-agent)
@@ -61,23 +61,23 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `siteId` |integer  || yes | no || id of the site which the configuration belongs to.|
-| `isMultipleCampaignEnabled` |boolean || no | yes || whether multiple campaigns are enabled or not in the site.|
-|`isAutoDistributionEnabled` |boolean || no | yes || whether auto distribution is enabled or not in the site.|
-| `isCustomAwayStatusEnabled` |boolean || no | yes || whether custom away status is enabled or not in the site.|
-| `isDepartmentEnabled` |boolean || no|  yes || whether department is enabled or not in the site.|
-| `isAutoTranslationEnabled` |boolean || no | yes || whether auto translation is enabled or not in the site.|
-| `isAudioAndVideoChatEnabled` |boolean || no | yes ||whether audio&video chat is enabled or not in the site.|
-| `isCustomerSegmentEnabled` |boolean || no | yes ||whether customer segment chat is enabled or not in the site.|
-| `isVisitorSSOEnabled` |boolean || no | yes||whether vistor SSO is enabled or not in the site.|
-| `isCreditCardMaskingEnabled` |boolean || no | yes ||whether Credit card masking is enabled or not in the site.|
-| `isCustomVariablesEnabled` |boolean || no | yes||whether custom variables are enabled or not in the site.|
-| `isSalesforceEnabled` |boolean || no | yes ||whether Salesforce integration is enabled or not in the site.|
-| `isZendeskEnabled` |boolean || no | yes ||whether Zendesk integration is enabled or not in the site.|
-| `isGoogleAnalyticsEnabled` |boolean || no | yes || whether Google Analytics integration is enabled or not in the site.|
-| `isGotoMeetingEnabled` |boolean || no | yes || whether GotoMeeting integration is enabled or not in the site.|
-| `isJoinmeEnabled` |boolean || no | yes || whether Joinme integration is enabled or not in the site.|
-| `isCobrowsingEnabled` |boolean || no | yes || whether Cobrowsing feature is enabled or not in the site.|
+| `siteId` |integer  || yes | no || Id of the site which the configuration belongs to.|
+| `isMultipleCampaignEnabled` |boolean || no | yes || Whether multiple campaigns are enabled or not in the site.|
+|`isAutoDistributionEnabled` |boolean || no | yes || Whether auto distribution is enabled or not in the site.|
+| `isCustomAwayStatusEnabled` |boolean || no | yes || Whether custom away status is enabled or not in the site.|
+| `isDepartmentEnabled` |boolean || no|  yes || Whether department is enabled or not in the site.|
+| `isAutoTranslationEnabled` |boolean || no | yes || Whether auto translation is enabled or not in the site.|
+| `isAudioAndVideoChatEnabled` |boolean || no | yes ||Whether audio&video chat is enabled or not in the site.|
+| `isCustomerSegmentEnabled` |boolean || no | yes ||Whether customer segment chat is enabled or not in the site.|
+| `isVisitorSSOEnabled` |boolean || no | yes||Whether vistor SSO is enabled or not in the site.|
+| `isCreditCardMaskingEnabled` |boolean || no | yes ||Whether Credit card masking is enabled or not in the site.|
+| `isCustomVariablesEnabled` |boolean || no | yes||Whether custom variables are enabled or not in the site.|
+| `isSalesforceEnabled` |boolean || no | yes ||Whether the Salesforce integration is enabled or not in the site.|
+| `isZendeskEnabled` |boolean || no | yes ||Whether the Zendesk integration is enabled or not in the site.|
+| `isGoogleAnalyticsEnabled` |boolean || no | yes || Whether the Google Analytics integration is enabled or not in the site.|
+| `isGotoMeetingEnabled` |boolean || no | yes || Whether the GotoMeeting integration is enabled or not in the site.|
+| `isJoinmeEnabled` |boolean || no | yes || Whether the Joinme integration is enabled or not in the site.|
+| `isCobrowsingEnabled` |boolean || no | yes || Whether the Cobrowsing feature is enabled or not in the site.|
 
 ## Endpoint
 
@@ -91,7 +91,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 #### Response
 
-the response is [Settings](#settings-object) object
+the response is a [Settings](#settings-object) object.
 
 #### Example
 
@@ -128,13 +128,15 @@ Content-Type:  application/json
 
 ### Update settings of a site
 
+You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permissions to update `Settings` of a site.
+
   `PUT /api/v3/livechat/settings`
 
 #### Parameters
 
 Request body
 
-  The request body contains data with the [Settings](#settings-object) Object structure
+  The request body contains data with the [Settings](#settings-object) Object structure.
 
 example:
 
@@ -162,7 +164,7 @@ example:
 
 #### Response
 
-the response is [Settings](#settings-object) object
+the response is a [Settings](#settings-object) object.
 
 #### Example
 
@@ -215,6 +217,7 @@ HTTP/1.1 200 OK
 
 # Auto Distribution
 
+
 - `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)
 - `PUT /api/v3/livechat/autoDistribution` - [Update auto distribution](#update-auto-distribution)
 
@@ -226,14 +229,14 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
-| `isLastChattedAgentPreferred` | boolean || no | no | whether last-chatted agent is preferred or not |
-| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | no | whether to set the same maximum number of chats for all agents |
-| `maxConcurrentChatsForAllAgents` | integer || no | no | maximum number of chats for all agents |
-| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | no| whether to allocate chats to agents who are having audio or video chats |
-| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | no | whether to allow agent to manually accept chat after reaching max chats limit in agent console |
-| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | no | auto distribution configuration for per department |
-| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | no | auto distribution configuration for per agent |
+| `autoDistributionMethod` | string || no | yes || Method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted`. |
+| `isLastChattedAgentPreferred` | boolean || no | yes || Whether the last-chatted agent is preferred or not. |
+| `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | yes || Whether to set the same maximum number of chats for all agents. |
+| `maxConcurrentChatsForAllAgents` | integer || no | yes || Maximum number of chats for all agents. |
+| `ifAutoAcceptChatWhenHavingAudioVideoChat` | boolean || no | yes|| Whether to allocate chats to agents who are having audio or video chats. |
+| `ifAgentCanManuallyAcceptChatsAfterReachingMaxChatsLimit` | boolean || no | yes | |Whether to allow agent to manually accept chat after reaching max chats limit in agent console. |
+| `departmentAutoDistributions` | [Department Auto Distribution](#department-auto-distribution-object)[] || no | no || Auto distribution configuration for per department. |
+| `agentAutoDistributions` | [Agent Auto Distribution](#agent-auto-distribution-object)[] || no | no || Auto distribution configuration for per agent. |
 
 ### Department Auto Distribution Object
 
@@ -241,10 +244,10 @@ Department Auto Distribution Object is represented as simple flat JSON objects w
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentId` | Guid ||  yes| no|| id of department |
-| `autoDistributionMethod` | string || no | no | method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
-| `isLastChattedAgentPreferred` | boolean||  no| no|  | whether last-chatted agent is preferred or not |
-| `backupDepartmentId` | Guid ||  no| no|| id of backup department |
+| `departmentId` | Guid ||  yes| yes|| Id of department |
+| `autoDistributionMethod` | string || no | no || Method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
+| `isLastChattedAgentPreferred` | boolean||  no| no|  | Whether last-chatted agent is preferred or not |
+| `backupDepartmentId` | Guid ||  no| no|| Id of backup department |
 
 ### Agent Auto Distribution Object
 
@@ -252,9 +255,9 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `agentId` | integer ||  yes| no|| id of agent |
-| `ifAutoAcceptChat` | boolean||  no| no|| if agent can auto accept chat|
-| `maxConcurrentChats` | int ||  no| no|| maximum concurrent chats, available when Is Chat Auto Accepted is true.|
+| `agentId` | integer ||  yes| yes|| Id of agent. |
+| `ifAutoAcceptChat` | boolean||  no| no|| If agent can auto accept chat.|
+| `maxConcurrentChats` | int ||  no| no|| Maximum concurrent chats, available when Is Chat Auto Accepted is true.|
 
 ## Endpoint
 
@@ -268,7 +271,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 #### Response
 
-the response is: [Auto Distribution](#auto-distribution-object) Object.
+the response is an [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
@@ -310,13 +313,15 @@ Content-Type:  application/json
 
 ### Update Auto Distribution
 
+You need `Manage Settings` permission to update `Auto Distribution`.
+
   `PUT /api/v3/livechat/autoDistribution`
 
 #### Parameters
 
 Request body
 
-  The request body contains data with the [Auto Distribution](#auto-distribution-object) Object structure
+  The request body contains data with the [Auto Distribution](#auto-distribution-object) object structure
 
 example:
 ```Json
@@ -348,7 +353,7 @@ example:
 
 #### Response
 
-the response is: [Auto Distribution](#auto-distribution-object) object.
+the response is an [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
@@ -410,8 +415,9 @@ Content-Type:  application/json
 }
 ```
 
-# Translation Excluded Word
+# Translation Excluded Words
 
+You need `Manage Settings` permission to manage `Translation Excluded Word`.
 - `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-a-list-of-translation-excluded-word)
 - `PUT /api/v3/livechat/translationExcludedWords` - [Update a translation excluded word](#update-a-translation-excluded-word)
 
@@ -437,7 +443,7 @@ Translation Excluded Word is represented as simple flat JSON objects with the fo
 
 #### Response
 
-an array of [Translation Excluded Word](#translation-excluded-word) object
+the response is an array of [Translation Excluded Word](#translation-excluded-word) objects
 
 #### Example
 
@@ -461,6 +467,8 @@ Content-Type:  application/json
 
 ### Update a translation excluded word
 
+You need `Manage Settings` permission to manage `Translation Excluded Word`.
+
   `PUT /api/v3/livechat/translationExcludedWords/{id}`
 
 #### Parameters
@@ -480,7 +488,7 @@ example:
 ```
 #### Response
 
-the response is [Translation Excluded Word](#translation-excluded-word) object
+the response is an [Translation Excluded Word](#translation-excluded-word) objects.
 
 #### Example
 
@@ -507,35 +515,10 @@ Content-Type:  application/json
 
 ```
 
-### Delete a translation excluded word
-
-  `Delete /api/v3/livechat/translationExcludedWords/{id}`
-
-#### Parameters
-
-Path parameters
-
-| Name  | Type | Required  | Description |
-| - | - | - | - |
-| `id` | Guid | yes  |  id of translation excluded word   |
-
-#### Response
-
-HTTP/1.1 204 No Content
-
-#### Example
-
-Using curl
-```shell
-curl -H -X DELETE https://domain.comm100.com/api/v3/livechat/translationExcludedWord/5587fc9d-92e6-4487-a2e8-92e68d6892c4
-```
-
-Response
-```json
-HTTP/1.1 204 No Content
-```
 
 # Customer Segment
+
+You need `Manage Settings` permission to manage `Customer Segment`.
 
 - `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-list-of-customer-segments)
 - `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-a-cusomer-segment-by-id)
@@ -551,16 +534,16 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `id` |Guid  || yes | no || id of the customer segment.
-  | `name` |string  || no | yes || name of the customer segment.
-  | `color` |string  || no | no |'339FD9'| color of the customer segment
-  | `isEnabled` |boolean  || no | no |false| whether the customer segment is enabled or not.
-  | `order` |int  || no | no |maximum order + 1 | order of the customer segment.
-  | `description` |string  || no | no || description of the customer segment.
-  | `conditionMetType` |string  || no | no |all| met type of condtion , including `all`,`any`,`logicalExpression`.
-  | `logicalExpression` |string  || no | no || the logical expression for conditions.
-  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || an array of [Live Chat Condition](#live-chat-condition-object) object. |
-  | `alertTo`| [Alert To](#alert-to)  || no | no | |an array of agent id or department Id|
+  | `id` |Guid  || yes | no || Id of the customer segment.
+  | `name` |string  || no | yes || Name of the customer segment.
+  | `color` |string  || no | no |'339FD9'| Color of the customer segment.
+  | `isEnabled` |boolean  || no | no |false| Whether the customer segment is enabled or not.
+  | `order` |int  || no | no |maximum order + 1 | Order of the customer segment.
+  | `description` |string  || no | no || Description of the customer segment.
+  | `conditionMetType` |string  || no | no |all| Met type of condtion , including `all`,`any`,`logicalExpression`.
+  | `logicalExpression` |string  || no | no || The logical expression for conditions.
+  | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || An array of [Live Chat Condition](#live-chat-condition-object) object. |
+  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent id or department Id.|
 
 ### Alert To Segment Object
 
@@ -568,8 +551,8 @@ Alert To is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentIds` |int[]  || no | no|| an array of department id.|
-| `agentIds` |Guid[]  || no | no || an array of agent id.|
+| `departmentIds` |int[]  || no | no|| An array of department id.|
+| `agentIds` |Guid[]  || no | no || An array of agent id.|
 
 ### Live Chat Condition object
 
@@ -577,10 +560,10 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
 
   | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `field` |String  | no | yes || the name of visitor field.
-  | `Operator` |String  | no | yes || type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`
-  | `value` |String  | no | yes || the value of a visitor field .
-  | `order` |int  | no | no|maximum order + 1| the order of visitor field.
+  | `field` |String  | no | yes || The name of visitor field.
+  | `Operator` |String  | no | yes || Type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`.
+  | `value` |String  | no | yes || The value of a visitor field .
+  | `order` |int  | no | no|maximum order + 1| The order of visitor field.
 
 ## Endpoint
 
@@ -594,7 +577,7 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
 
 #### Response
 
-  an array of [Customer Segment](#customer-segment-object) object
+  The response is an array of [Customer Segment](#customer-segment-object) objects.
 
 #### Example
 
@@ -645,11 +628,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of customer segment   |
+| `id` | Guid | yes  |  Id of customer segment.   |
 
 #### Response
 
-the response is: [customer segment](#customer-segment-object) Object.
+The response is a [customer segment](#customer-segment-object) object.
 
 #### Example
 
@@ -689,13 +672,15 @@ Content-Type:  application/json
 
 ### Create a customer segment
 
+You need `Manage Settings` permission to create a `Customer Segment`.
+
   `POST /api/v3/livechat/customerSegments`
 
 #### Parameters
 
 Request body
 
-  The request body contains data with the [customer segment](#customer-segment) structure
+  The request body contains data with the [customer segment](#customer-segment) structure.
 
 example:
 ```Json
@@ -724,7 +709,7 @@ example:
 
 #### Response
 
-the response is: [customer segment](#customer-segment-object) Object.
+The response is a [customer segment](#customer-segment-object) object.
 
 #### Example
 
@@ -783,6 +768,8 @@ Content-Type:  application/json
 
 ### Update a customer segment
 
+You need `Manage Settings` permission to update a `Customer Segment`.
+
   `PUT /api/v3/livechat/customerSegments/{id}`
 
 #### Parameters
@@ -795,7 +782,7 @@ Path parameters
 
 #### Response
 
-the response is: [customer segment](#customer-segment-object) Object.
+The response is a [customer segment](#customer-segment-object) object.
 
 #### Example
 
@@ -854,6 +841,8 @@ Content-Type:  application/json
 
 ### Delete a customer segment
 
+You need `Manage Settings` permission to delete a `Customer Segment`.
+
  `DELETE /api/v3/livechat/customerSegments/{id}`
 
 #### Parameter
@@ -862,7 +851,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of customer segment   |
+| `id` | Guid | yes  |  Id of customer segment   |
 
 #### Response
 
@@ -880,6 +869,7 @@ Response
 HTTP/1.1 204 No Content
 ```
 
+<!--
 # Dynamic Campaign
 
 - `GET /api/v3/livechat/dynamicCampaign` - [Get dynamic campaign](#get-dynamic-campaign) include campaign
@@ -1082,8 +1072,10 @@ Content-Type:  application/json
   ]
 }
 ```
+-->
 
 # Mobile Push
+
 
 - `GET /api/v3/livechat/mobilePush` - [Get mobile push](#get-mobile-push)
 - `PUT /api/v3/livechat/mobilePush` - [Update mobile push](#update-mobile-push)
@@ -1096,23 +1088,23 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `iosType` | string |  | no | yes  | |type of ios include `APNS`,`thirdParty` |
-| `iosProductionCertificateFileName` | string |  | no | yes | | name of ios prodution certicate file|
-| `iosProductionCertificateFileData` | string |  | no | yes  | | data of ios prodution certicate file|
-| `iosProductionCertificatePassword` | string |  | no | yes  | | password of ios prodution certicate|
-| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | name of ios development certicate file|
-| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | data of ios development certicate file|
-| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | password of ios development certicate|
-| `iosApnsPayloadFormat` | string |  | no | yes  | | format of ios Apns payload|
-| `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL|
-| `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers|
-| `iosThirdPartyBody` | string |  | no | yes  | | ios third party Body|
-| `androidType` | string |  | no |yes  | |type of android include `GCM`,`thirdParty` |
-| `androidGcmAPIKey` | string |  | no | yes  | |android gcm API key|
-| `androidGcmExtraData` | string |  | no| yes  | |android gcm extra data |
-| `androidThirdPartyURL` | string |  | no | yes  | |android third party URL |
-| `androidThirdPartyRequestHeaders` | string |  | no | yes | | android third party request headers|
-| `androidThirdPartyRequestBody` | string |  | no | yes  | |android Third Party Request Body |
+| `iosType` | string |  | no | yes  | |Type of ios include `APNS`,`thirdParty` |
+| `iosProductionCertificateFileName` | string |  | no | yes | | Name of ios production certificate file|
+| `iosProductionCertificateFileData` | string |  | no | yes  | | Data of ios production certificate file|
+| `iosProductionCertificatePassword` | string |  | no | yes  | | Password of ios production certificate|
+| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | Name of ios development certificate file|
+| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | Data of ios development certificate file|
+| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | Password of ios development certificate|
+| `iosApnsPayloadFormat` | string |  | no | yes  | | Format of ios Apns payload,mandatory when `iostype` is `thirdParty`.|
+| `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL,mandatory when `iostype` is `thirdParty`.|
+| `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers,mandatory when `iostype` is `thirdParty`.|
+| `iosThirdPartyBody` | string |  | no | yes  | | ios third party Body,ymandatory when `iostype` is `thirdParty`.|
+| `androidType` | string |  | no |yes  | |Type of android include `GCM`,`thirdParty` |
+| `androidGcmAPIKey` | string |  | no | yes  | |Android gcm API key,mandatory when `andriodType` is `GCM`.|
+| `androidGcmExtraData` | string |  | no| yes  | |Android gcm extra data,mandatory when `andriodType` is `GCM`. |
+| `androidThirdPartyURL` | string |  | no | yes  | |Android third party URL,mandatory when `andriodType` is `thirdParty`. | |
+| `androidThirdPartyRequestHeaders` | string |  | no | yes | | Android third party request headers,mandatory when `andriodType` is `thirdParty`|
+| `androidThirdPartyRequestBody` | string |  | no | yes  | |Android Third Party Request Body,mandatory when `andriodType` is `thirdParty` |
 
 ## Endpoint
 
@@ -1126,7 +1118,7 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 
 #### Response
 
-the response is: [Mobile Push](#moble-push-object) Object.
+The response is [Mobile Push](#moble-push-object) object.
 
 #### Example
 
@@ -1167,7 +1159,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) Object structure
+  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) object structure.
 
 example:
 ```Json
@@ -1193,7 +1185,7 @@ example:
 
 #### Response
 
-the response is: [Mobile Push](#moble-push-object) Object.
+The response is a [Mobile Push](#moble-push-object) object.
 
 #### Example
 
@@ -1244,6 +1236,7 @@ Content-Type:  application/json
 
 # Live Chat Agent
 
+You need `Manage Agent & Agent Roles` permission to manage `Live Chat Agent`.
 - `GET /api/v3/livechat/agents/{id}` - [Get a live chat agent by id](#get-a-live-chat-agent-by-id)  
 - `PUT /api/v3/livechat/agents/{id}` - [Update a live chat agent](#update-a-live-chat-agent)  
   
@@ -1255,9 +1248,9 @@ agent is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | integer |  |  yes| N/A | | id of the live chat agent. |
-| `status` | String |  | no | yes | | status of the agent, including `Online`, `Away`, `Offline` and custom away status defined by site. |
-| `ongoingChats` | integer|  | yes | no | | total number of ongoing chats the agent has. |
+| `id` | integer |  |  yes| N/A | | Id of the live chat agent. |
+| `status` | String |  | no | yes | | Status of the agent, including `Online`, `Away`, `Offline` and custom away status defined by site. |
+| `ongoingChats` | integer|  | yes | no | | Total number of ongoing chats the agent has. |
 
 ## Endpoints
 
@@ -1269,7 +1262,7 @@ agent is represented as simple flat JSON objects with the following keys:
 
 #### Response
 
-the response an array of [Live Chat Agent](#live-chat-agent-object) object
+The response is an array of [Live Chat Agent](#live-chat-agent-object) objects.
 
 #### Example
 
@@ -1303,11 +1296,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  id of live chat agent   |
+| `id` | integer | yes  |  Id of live chat agent   |
 
 #### Response
 
-the response is [Live Chat Agent](#live-chat-agent-object) object
+The response is a [Live Chat Agent](#live-chat-agent-object) object.
 
 #### Example
 
@@ -1342,7 +1335,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) Object structure
+  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) object structure.
 
 example:
 ```Json
@@ -1353,7 +1346,7 @@ example:
 
 #### Response
 
-the response is [Live Chat Agent](#live-chat-agent-object) object
+The response is a [Live Chat Agent](#live-chat-agent-object) object.
 
 #### Example
 
@@ -1389,36 +1382,36 @@ online visitor is represented as simple flat JSON objects with the following key
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| no | | id of the visitor. |
-| `name` | name |  |  yes| no | | name of the visitor. |
-| `email` | string |  | yes | no | | email of the visitor.|
-| `status` | String|  | yes | no| |status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
-| `pageViews` | integer|  | yes | no | |the total number of web pages the visitor viewed on your website. |
-| `browser` | string|  | yes | no | |the browser the visitor is using. |
-| `chats` | integer|  | yes | no | |the total times of chats a visitor has made on your website from the first time to present. |
-| `city` | string|  | yes | no | |the city of the visitor. |
-| `company` | string|  | yes | no | |the company of the visitor. |
-| `country` | string|  | yes | no | |the country of the visitor. |
-| `currentBrowsing` | string|  | yes | no | |the page the visitor is currently looking at. |
-| `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |the values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
-| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | yes | |the information of custom variables captured from the web page visitors viewed.|
-| `departmentId` | Guid|  | yes | no ||the department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
-| `firstVisitTime` | datetime|  | yes | no | |the time the visitor first visited a web page pasted with Comm100 Live Chat code.|
-| `flashVersion` | string|  | yes | no| |the flash version of the browser the visitor is using.|
-| `ip` | string|  | yes | no | |the IP of the visitor.|
-| `searchKeywords` | string|  | yes | no | |the keywords the visitor used to search for your website.|
-| `landingPage` | string|  | yes | no | |the title and URL of the first page of your website the visitor visited.|
-| `language` | string|  | yes | no | |the language the visitor is using.|
-| `operatingSystem` | string|  | yes | no | |the operating system of the visitor's device.|
-| `phone` | string|  | yes | no | |the phone of the visitor.|
-| `productService` | string|  | yes | no | |the product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
-| `referrerUrl` | string|  | yes | no | |the URL of the page from which a visitor comes to your website.|
-| `screenResolution` | string|  | yes | no| |the screen resolution of the visitor's device.|
-| `searchEngine` | string|  | yes | no | |the search engine the visitor used to search for your website.|
-| `state` | string|  | yes | no | |the state of the visitor.|
+| `id` | Guid |  |  yes| no | | Id of the visitor. |
+| `name` | name |  |  yes| no | | Name of the visitor. |
+| `email` | string |  | yes | no | | Email of the visitor.|
+| `status` | String|  | yes | no| |Status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
+| `pageViews` | integer|  | yes | no | |The total number of web pages the visitor viewed on your website. |
+| `browser` | string|  | yes | no | |The browser the visitor is using. |
+| `chats` | integer|  | yes | no | |The total times of chats a visitor has made on your website from the first time to present. |
+| `city` | string|  | yes | no | |The city of the visitor. |
+| `company` | string|  | yes | no | |The company of the visitor. |
+| `country` | string|  | yes | no | |The country of the visitor. |
+| `currentBrowsing` | string|  | yes | no | |The page the visitor is currently looking at. |
+| `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |The values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
+| `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | yes | |The information of custom variables captured from the web page visitors viewed.|
+| `departmentId` | Guid|  | yes | no ||The department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
+| `firstVisitTime` | datetime|  | yes | no | |The time the visitor first visited a web page pasted with Comm100 Live Chat code.|
+| `flashVersion` | string|  | yes | no| |The flash version of the browser the visitor is using.|
+| `ip` | string|  | yes | no | |The IP of the visitor.|
+| `searchKeywords` | string|  | yes | no | |The keywords the visitor used to search for your website.|
+| `landingPage` | string|  | yes | no | |The title and URL of the first page of your website the visitor visited.|
+| `language` | string|  | yes | no | |The language the visitor is using.|
+| `operatingSystem` | string|  | yes | no | |The operating system of the visitor's device.|
+| `phone` | string|  | yes | no | |The phone of the visitor.|
+| `productService` | string|  | yes | no | |The product/service the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
+| `referrerUrl` | string|  | yes | no | |The URL of the page from which a visitor comes to your website.|
+| `screenResolution` | string|  | yes | no| |The screen resolution of the visitor's device.|
+| `searchEngine` | string|  | yes | no | |The search engine the visitor used to search for your website.|
+| `state` | string|  | yes | no | |The state of the visitor.|
 | `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids.|
-| `visitTime` | string|  | yes | no | |the starting time when this visitor visits your website this time.|
-| `visits` | string|  | yes | no | |the total times of visits a visitor has made on your website from the first time to present|
+| `visitTime` | string|  | yes | no | |The starting time when this visitor visits your website this session.|
+| `visits` | string|  | yes | no | |The total number of visits a visitor has made on your website from the first time to present|
 
 
 ### Custom Field Object
@@ -1427,9 +1420,9 @@ Custom Field is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| no | | id of the custom field.|
-| `name` | string |  |  yes| no | | name of the custom field.|
-| `value` | string |  |  yes| no | | value of the custom field.|
+| `id` | Guid |  |  yes| no | | Id of the custom field.|
+| `name` | string |  |  yes| no | | Name of the custom field.|
+| `value` | string |  |  yes| no | | Value of the custom field.|
 
 ### Custom Variable Result Object
 
@@ -1437,9 +1430,9 @@ Custom variable result is represented as simple flat JSON objects with the follo
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `name` | string |  |  yes| no | | name of the custom variable.|
-| `value` | string |  |  no| no | | value of the custom variable.|
-| `url` | string |  | yes| no | | url of the custom variable.|
+| `name` | string |  |  yes| no | | Name of the custom variable.|
+| `value` | string |  |  no| no | | Value of the custom variable.|
+| `url` | string |  | yes| no | | Url of the custom variable.|
 
 ## Endpoints
 
@@ -1454,11 +1447,11 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `status` |string| no  | |  status of this chat |
+| `status` |string| no  | |  Status of this chat |
 
 #### Response
 
-the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+The response is an array of [Live Chat Visitor](#live-chat-visitor-object) object.
 
 #### Example
 
@@ -1529,7 +1522,7 @@ Path parameters
 
 #### Response
 
-the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+The response is an array of [Live Chat Visitor](#live-chat-visitor-object) objects.
 
 #### Example
 
@@ -1592,11 +1585,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of online visitor|
+| `id` | Guid | yes  |  Id of online visitor|
 
 Request body 
 
-  The request body is an array of [Custom Variable Result](#custom-variable-result-object) object.
+  The request body is an array of [Custom Variable Result](#custom-variable-result-object) objects.
 
   example:
 ```Json
@@ -1617,7 +1610,7 @@ Request body
 
 #### Response
 
-the response is: array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+the response is an array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
@@ -1690,7 +1683,7 @@ Content-Type:  application/json
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | N/A | N/A | | id of the session. |
-| `startTime` | datetime | | N/A | N/A |  | time of this session start. |
+| `startTime` | datetime | | N/A | N/A |  | Time when the session started. |
 | `ip` | string |  | N/A | N/A | |  |
 | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
 | `searchEngine` | string |  | N/A | N/A | |  |
@@ -1705,7 +1698,7 @@ Content-Type:  application/json
 | `landingPageTitle` | string | | N/A | N/A | |  |
 | `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
 | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
-| `contactId` | integer | | N/A | N/A | | the id of the contact  |
+| `contactId` | integer | | N/A | N/A | | The id of the contact  |
 | `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
 
 ## Endpoint
@@ -1719,7 +1712,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the ban  |
+| `id` | Integer | yes  |  the id of the session  |
 
 Query string
 
@@ -1729,19 +1722,19 @@ Query string
 
 #### Response
 
-the response is: [Session](#session-json-format) Object
+The response is a [Session](#session-json-format) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/sessions/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor
+-X GET https://domain.comm100.com/api/v3/livechat/sessions/12?include=visitor
 ```
 Response
 ```json  
 {
-    "id": "f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e",
+    "id": 12,
     "startTime": "2020-02-20T13:12:20Z",
     "ip": "192.168.0.201",
     "referrerURL": "",
@@ -1780,7 +1773,7 @@ Response
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | N/A | N/A | | id of the chat. |
+| `id` | Guid |  | N/A | N/A | | Id of the chat. |
 | `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
 | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
 | `startTime` | datetime | | N/A | N/A | |  |
@@ -1881,9 +1874,8 @@ Query string
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`,`offlineMessage`. |
-| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
-| `timeZone` | string | no  | UTC |  Time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as `±hh:mm`. |
+| `timeFrom` | datetime | no  | today |  The beginning of the query time, defaults to today, format is `yyyy-MM-ddTHH:mm:ss`. |
+| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format is `yyyy-MM-ddTHH:mm:ss`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
 | `departmentId` | guid | no  |  | |
@@ -1891,7 +1883,7 @@ Query string
 | `visitorId` | guid | no  |  | |
 | `agentId` | integer | no  |  | |
 | `keywords` | string | no  |  | |
-| `conditions` | string | no  |  |  The condition list of inquiring the chat `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0]` |
+| `conditions` | string | no  |  | The condition list of inquiring the chat. available field: `name`,`email`,`company`,`phone`,`campaign`. avaiable operate: `contains`,`notContains`. e.g. `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test` |
 
 #### Response
 
@@ -1909,7 +1901,7 @@ The response body contains data with the follow structure:
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session
+-X GET https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session&conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test
 ```
 Response
 ```json  
@@ -2019,11 +2011,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the chat. |
+| `id` | Guid | yes  |  The unique Id of the chat. |
 
 #### Response
 
-the response is: [Chat](#Chat-object) Object
+the response is a [Chat](#Chat-object) object.
 
 #### Example
 
@@ -2124,6 +2116,8 @@ Response
 
 ### Delete a chat
 
+You need `Delete Transcripts` permission to delete a `Chat`.
+
   `DELETE /api/v3/livechat/chats/{id}`
 
 #### Parameters
@@ -2132,7 +2126,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the chat |
+| `id` | Guid | yes  |  The unique Id of the chat |
 
 #### Response
 
@@ -2151,12 +2145,14 @@ HTTP/1.1 204 No Content
 
 ### Batch Delete chats
 
+You need `Delete Transcripts` permission to delete `Chats` by batch.
+
   `DELETE /api/v3/livechat/chats`
 
 #### Parameters
 
 Request body
-- an array of offline chat id
+- An array of chat id
 
 example:
 ```json
@@ -2202,32 +2198,33 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | string |  | yes | no | | id of the offline message. |
-| `createdTime` | datetime | | no | no | | time of this offline message submitted. |
+| `id` | Guid |  | yes | no | | Id of the offline message. |
+| `createdTime` | datetime | | no | no | | Time of this offline message submitted. |
 | `ssoUserId` | string | | no | no |  | SSO id of visitor |
-| `name` | string | | no | no |  | name of the visitor |
-| `email` | string | | no | no |  | email of the visitor |
-| `phone` | string | | no | no |  | phone of the visitor |
-| `company` | string | | no | no |  | company of the visitor |
+| `name` | string | | no | no |  | Name of the visitor |
+| `email` | string | | no | no |  | Email of the visitor |
+| `phone` | string | | no | no |  | Phone of the visitor |
+| `company` | string | | no | no |  | Company of the visitor |
 | `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to |
 | `department` | [Department](#department) | yes | no | no |  | Available only when department is included |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to |
 | `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included |
-| `subject` | string | | no | no |  | the subject of this offline message|
-| `message` | string | | no | no | | the content of this offline message |
+| `ticketId` | integer | yes | no | no |  | id of the related ticket |
+| `subject` | string | | no | no |  | The subject of this offline message|
+| `message` | string | | no | no | | The content of this offline message |
 | `requestingPageTitle` | string | | no | no |  |  |
 | `requestingPageURL` | string | | no | no |  |  |
-| `source` | string | | no | no |  | including `chatButton` and `autoInvitation` |
+| `source` | string | | no | no |  | Including `chatButton` and `autoInvitation` |
 | `autoInvitationId` | Guid | | no | no |  | Available when source is `autoInvitation` |
 | `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | no | no |  | Available only when autoInvitation is included |
-| `campaignId` | Guid | | no | no |  | id of the campaign |
+| `campaignId` | Guid | | no | no |  | Id of the campaign |
 | `campaign` | [Campaign](#campaign) | yes | no | no |  | Available only when campaign is included |
-| `sessionId` | Guid | | no | no |  | id of the session |
+| `sessionId` | Guid | | no | no |  | Id of the session |
 | `session` | [Session](#session) | yes | no | no |  | Available only when session is included |
-| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | an array of [Customer Segment](#customer-segment) |
-| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
-| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
-| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | the attachment file data |
+| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | An array of [Customer Segment](#customer-segment) |
+| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | Values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
+| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | Information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
+| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | The attachment file data |
 
 ### Attachment JSON format
 
@@ -2235,8 +2232,8 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `name` | string |  | no | no | | file name of this attachment |
-| `uri` | string | | no | no |  | uri for download this attachment |
+| `name` | string |  | no | no | | File name of this attachment |
+| `uri` | string | | no | no |  | Uri for download this attachment |
 
 ### Field Value JSON format
 
@@ -2259,27 +2256,27 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
-| `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-| `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-| `timeZone` | string | no  | UTC |  time zone of the `timeFrom` and `timeTo`, defaults to UTC time, format as ±hh:mm.|
-| `campaignId` | guid | no  |  | id of the campaign which the offline message |
-| `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
-| `agentId` | integer | no  |  | id of the agent that this offline message belongs to |
-| `visitorSegmentId` | guid | no  |  | id of the visitor segment which the visitor belongs to |
-| `keywords` | string | no  |  | search subject or message by keywords |
-| `pageIndex` | integer | no  | 1 | the page index of query |
-| `pageSize` | integer | no  | 50 | page size  |
+| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session`. |
+| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`.|
+| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`.|
+| `campaignId` | guid | no  |  | Id of the campaign which the offline message. |
+| `departmentId` | guid | no  |  | Id of the department which the offline message belongs to. |
+| `agentId` | integer | no  |  | Id of the agent that this offline message belongs to. |
+| `visitorSegmentId` | guid | no  |  | Id of the visitor segment which the visitor belongs to. |
+| `keywords` | string | no  |  | Search subject or message by keywords. |
+| `pageIndex` | integer | no  | 1 | The page index of query. |
+| `pageSize` | integer | no  | 50 | Page size,  |
 
 #### Response
+
 The response body contains data with the follow structure:
 
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `totalCount` | integer | no | no | total count of the list. |
+| `total` | integer | no | no | total count of the list. |
 | `previousPage` | string | no | no | Url of the previous page. |
 | `nextPage` | string | no | no | Url of the next page. |
-| `list` | [Offline Message](#offline-message-json-format)[] | no | no | an array of [Offline Message](#offline-message-json-format) |
+| `offlineMessages` | [Offline Message](#offline-message-json-format)[] | no | no | An array of [Offline Message](#offline-message-json-format). |
 
 #### Example
 
@@ -2292,18 +2289,25 @@ Response
 ```json  
 
 {
-    "totalCount": 28,
+    "total": 28,
     "previousPage": "",
     "nextPage": "https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session&pageIndex=2",
-    "list": [
+    "offlineMessages": [
         {
-            "id": 10,
+            "id": "3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c",
             "createdTime": "2019-01-05T07:17:08.89",
             "name": "allon",
             "email": "allon@comm100.com",
             "ssoUSerId":"",
             "phone":"",
             "company":"",
+            "agentId":5,
+            "agent": {
+              //include agent
+              "id":5,
+              "name": "Sales",
+              ...
+            },
             "departmentId":"2a317d24-bec0-43e5-aaf5-2eae29ce948f",
             "department": {
                 //include department
@@ -2345,8 +2349,10 @@ Response
             },
             "customFields": [],
             "customerSegments": [],
-            "attachment": [file binary data],
-            "attachmentName": "comm100SDK.css"
+            "attachment":{
+              "name":"test.png",
+              "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+            }
         },
         ...
     ]
@@ -2362,7 +2368,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Integer | yes  |  the id of the offline message  |
+| `id` | Guid | yes  |  The id of the offline message  |
 
 Query string
 
@@ -2378,13 +2384,13 @@ the response is: [Offline Message](#offline-message-json-format) Object
 
 Using curl
 ```
-curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/10?include=department,agent,campaign,autoInvitation, session
+curl -H "Content-Type: application/json"
+-X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation, session
 ```
 Response
 ```json  
 {
-    "id": 10,
+    "id": "3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c",
     "createdTime": "2019-01-05T07:17:08.89",
     "name": "allon",
     "email": "allon@comm100.com",
@@ -2432,12 +2438,16 @@ Response
     },
     "fieldValues": [],
     "customerSegments": [],
-    "attachment": [file binary data],
-    "attachmentName": "comm100SDK.css"
+    "attachment":{
+      "name":"test.png",
+      "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+    }
 }
 ```
 
 ### Delete an offline message by id
+
+You need `Delete Transcripts` permission to delete `Offline Message`.
 
   `DELETE /api/v3/livechat/offlineMessages/{id}`
 
@@ -2446,7 +2456,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  the id of the offline message  |
+| `id` | Guid | yes  |  The id of the offline message.  |
 
 
 #### Response
@@ -2455,7 +2465,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/10
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c
 ```
 Response
 ```json
@@ -2464,12 +2474,14 @@ HTTP/1.1 204 No Content
 
 ### Batch delete offline messages
 
+You need `Delete Transcripts` permission to delete `Offline Message` by batch.
+
   `DELETE /api/v3/livechat/offlineMessages`
 
 #### Parameters
 
 Request body 
-  - an array of offline message id
+  - An array of offline message id
 
   example:
   ```json
@@ -2530,7 +2542,7 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: list of [Campaign](#Campaign-Object) Object
+The response is an array of [Campaign](#Campaign-Object) objects.
 
 #### Example
 
@@ -2565,11 +2577,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
-the response is: [Campaign](#Campaign-Object) Object
+The response is a [Campaign](#Campaign-Object) object.
 
 #### Example
 
@@ -2593,6 +2605,8 @@ Content-Type:  application/json
 
 ### Create a new Campaign
 
+You need `Manage Campaigns` permission to create a new `Campaign`.
+
   `POST /api/v3/livechat/campaigns`
 
 #### Parameters
@@ -2612,7 +2626,7 @@ example:
 
 #### Response
 
-the response is: [Campaign](#Campaign-Object) Object
+The response is a [Campaign](#Campaign-Object) object.
 
 #### Example
 
@@ -2641,6 +2655,8 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 
 ### Update a Campaign
 
+You need `Manage Campaigns` permission to update a `Campaign`.
+
   `PUT /api/v3/livechat/campaigns/{id}`
 
 #### Parameters
@@ -2649,11 +2665,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Campaign](#Campaign-Object) structure
+  The request body contains data with the [Campaign](#Campaign-Object) structure.
 
 example:
 ```Json
@@ -2666,7 +2682,7 @@ example:
 
 #### Response
 
-the response is: [Campaign](#Campaign-Object) Object
+The response is a [Campaign](#Campaign-Object) object.
 
 #### Example
 
@@ -2693,6 +2709,8 @@ Content-Type:  application/json
 
 ### Delete a Campaign
 
+You need `Manage Campaigns` permission to delete a `Campaign`.
+
   `DELETE /api/v3/livechat/campaigns/{id}`
 
 #### Parameters
@@ -2701,7 +2719,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
@@ -2749,7 +2767,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Installation Code](#Installation-Code-Object) Object
+The response is a [Installation Code](#Installation-Code-Object) object.
 
 #### Example
 
@@ -2810,7 +2828,7 @@ Content-Type:  application/json
 | `imageButtonOnlineImageOnMobile` | Guid | yes | no | | The Image file key on mobile device when any agents is online. |
 | `imageButtonOfflineImageOnMobile` | Guid | yes | no | | The image file key on mobile device when no agent is online. |
 | `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
-| `textLinkButtonText` | string | no | no | | the content of the text link, available when `type` is `textLink`. |
+| `textLinkButtonText` | string | no | no | | The content of the text link, available when `type` is `textLink`. |
 
 ## Chat Button Endpoints
 
@@ -2828,7 +2846,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Chat Button](#Chat-Button-Object) Object
+The response is a [Chat Button](#Chat-Button-Object) object.
 
 #### Example
 
@@ -2871,6 +2889,8 @@ Content-Type:  application/json
 
 ### Update Chat Button
 
+You need `Manage Campaigns` permission to update `Chat Button`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/chatButton`
 
 #### Parameters
@@ -2879,11 +2899,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Chat Button](#Chat-Button-Object) structure
+  The request body contains data with the [Chat Button](#Chat-Button-Object) structure.
 
 example:
 ```Json
@@ -2911,7 +2931,7 @@ example:
 
 #### Response
 
-the response is: [Chat Button](#Chat-Button-Object) Object
+The response is a [Chat Button](#Chat-Button-Object) object.
 
 #### Example
 
@@ -2995,7 +3015,7 @@ Content-Type:  application/json
 | `isLogoDisplayed` | boolean | no | no | | Whether the logo is visible or not, available when `headerType` is `avatarAndLogo`. |
 | `logo` | string | yes | no | | Image file key of the logo. |
 | `bannerImageType` | string | yes | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
-| `bannerImage` | string | no | yes | | Image file key of the banner, available when `headerType` is `bannerImage`. |
+| `bannerImage` | Guid | no | yes | | Image file key of the banner, available when `headerType` is `bannerImage`. |
 | `isAvatarDisplayedWithMessage` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
 | `backgroundTexture` | string | no | no | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
@@ -3054,7 +3074,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Chat Window](#Chat-Window-Object) Object
+The response is a [Chat Window](#Chat-Window-Object) object.
 
 #### Example
 
@@ -3121,6 +3141,8 @@ Content-Type:  application/json
 
 ### Update Chat Window
 
+You need `Manage Campaigns` permission to update `Chat Window`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/chatWindow`
 
 #### Parameters
@@ -3129,11 +3151,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Chat Window](#Chat-Window-Object) structure
+  The request body contains data with the [Chat Window](#Chat-Window-Object) structure.
 
 example:
 ```Json
@@ -3187,7 +3209,7 @@ example:
 
 #### Response
 
-the response is: [Chat Window](#Chat-Window-Object) Object
+The response is a [Chat Window](#Chat-Window-Object) object.
 
 #### Example
 
@@ -3316,7 +3338,7 @@ Content-Type:  application/json
 | `greetingMessage` | string | no | no | | |
 | `socialMediaLogin` | string | no | no | |  Including `none` and `facebook`. |
 | `isEnableGoogleReCAPTCHA` | boolean | no | no | | |
-| `reReCAPTCHALable` | string | no | no | |  |
+| `reCAPTCHALabel` | string | no | no | |  |
 | `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
 | `isVisitorInfoRecorded` | boolean | no | no | true | If remember visitor info collected from pre-chat form. |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
@@ -3333,11 +3355,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: [Pre-Chat](#Pre-Chat-Object) Object
+The response is a [Pre-Chat](#Pre-Chat-Object) object.
 
 #### Example
 
@@ -3359,7 +3381,7 @@ Content-Type:  application/json
   "greetingMessage": "",
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
-  "reReCAPTCHALable": "Captchat",
+  "reCAPTCHALabel": "Captchat",
   "fields":  [
     {
       "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
@@ -3404,6 +3426,8 @@ Content-Type:  application/json
 
 ### Update Pre-Chat
 
+You need `Manage Campaigns` permission to update `PreChat`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/preChat`
 
 #### Parameters
@@ -3416,7 +3440,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Pre-Chat](#Pre-Chat-Object) structure
+  The request body contains data with the [Pre-Chat](#Pre-Chat-Object) structure.
 
 example:
 ```Json
@@ -3428,7 +3452,7 @@ example:
   "greetingMessage": "",
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
-  "reReCAPTCHALable": "Captchat",
+  "reCAPTCHALabel": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
@@ -3437,7 +3461,7 @@ example:
 
 #### Response
 
-the response is: [Pre-Chat](#Pre-Chat-Object) Object
+The response is a [Pre-Chat](#Pre-Chat-Object) object.
 
 #### Example
 
@@ -3451,7 +3475,7 @@ curl -H "Content-Type: application/json" -d '{
   "greetingMessage": "",
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
-  "reReCAPTCHALable": "Captchat",
+  "reCAPTCHALabel": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
@@ -3470,7 +3494,7 @@ Content-Type:  application/json
   "greetingMessage": "",
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
-  "reReCAPTCHALable": "Captchat",
+  "reCAPTCHALabel": "Captchat",
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
@@ -3507,11 +3531,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: [Post Chat](#Post-Chat-Object) Object
+The response is a [Post Chat](#Post-Chat-Object) object.
 
 #### Example
 
@@ -3535,6 +3559,8 @@ Content-Type:  application/json
 
 ### Update Post Chat
 
+You need `Manage Campaigns` permission to update `Post Chat`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/postChat`
 
 #### Parameters
@@ -3543,11 +3569,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Post Chat](#Post-Chat-Object) structure
+  The request body contains data with the [Post Chat](#Post-Chat-Object) structure.
 
 example:
 ```Json
@@ -3560,7 +3586,7 @@ example:
 
 #### Response
 
-the response is: [Post Chat](#Post-Chat-Object) Object
+The response is a [Post Chat](#Post-Chat-Object) object.
 
 #### Example
 
@@ -3631,7 +3657,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Object
+The response is a [Campaign Offline Message](#Campaign-Offline-Message-Object) object.
 
 #### Example
 
@@ -3666,6 +3692,8 @@ Content-Type:  application/json
 
 ### Update Campaign Offline Message
 
+You need `Manage Campaigns` permission to update `Campaign Offline Message`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/offlineMessage`
 
 #### Parameters
@@ -3674,7 +3702,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
@@ -3703,7 +3731,7 @@ example:
 
 #### Response
 
-the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Object
+The response is a [Campaign Offline Message](#Campaign-Offline-Message-Object) object.
 
 #### Example
 
@@ -3781,11 +3809,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: [Invitation](#Invitation-Object) Object
+The response is a [Invitation](#Invitation-Object) object.
 
 #### Example
 
@@ -3814,7 +3842,7 @@ Content-Type:  application/json
     "manualInvitationTextAreaWidth": 10,
     "manualInvitationTextAreaHeight": 10,
     "manualInvitationText": "",
-    "manualInvitationTextFont": "timesNewRoman",
+    "manualInvitationTextFont": "times new roman",
     "manualInvitationTextSize": "XXSmall",
     "isManualInvitationTextBold": false,
     "isManualInvitationTextItalic": false,
@@ -3836,7 +3864,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -3861,6 +3889,8 @@ Content-Type:  application/json
 
 ### Update Invitation
 
+You need `Manage Campaigns` permission to update a `Invitation`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation`
 
 #### Parameters
@@ -3869,11 +3899,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Invitation](#Invitation-Object) structure
+  The request body contains data with the [Invitation](#Invitation-Object) structure.
 
 example:
 ```Json
@@ -3884,7 +3914,7 @@ example:
 
 #### Response
 
-the response is: [Invitation](#Invitation-Object) Object
+The response is a [Invitation](#Invitation-Object) object.
 
 #### Example
 
@@ -3919,7 +3949,7 @@ Content-Type:  application/json
 | - | - | :-: | :-: | :-: | - |
 | `manualInvitationPosition` | string | no | no | | Including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, available When using `popup` Invitation Style.  |
 | `manualInvitationImageType` | string | yes | no | | Including`fromGallery` and `fromMyComputer`.  |
-| `manualInvitationImage` | string | yes | no | | Image file key of Invitation.  |
+| `manualInvitationImage` | Guid | yes | no | | Image file key of Invitation.  |
 | `manualInvitationCloseAreaXOffset` | integer | no | no | | |
 | `manualInvitationCloseAreaYOffset` | integer | no | no | | |
 | `manualInvitationCloseAreaWidth` | integer | no | no | | |
@@ -3929,7 +3959,7 @@ Content-Type:  application/json
 | `manualInvitationTextAreaWidth` | integer | no | no | | |
 | `manualInvitationTextAreaHeight` | integer | no | no | | |
 | `manualInvitationText` | string | no | no | | |
-| `manualInvitationTextFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `manualInvitationTextFont` | string | no | no | | Including `times new roman`, `tahoma`, `verdana`, `arial`, `comic sans ms` and `courier`. |
 | `manualInvitationTextSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
 | `isManualInvitationTextBold` | boolean | no | no | | |
 | `isManualInvitationTextItalic` | boolean | no | no | | |
@@ -3951,7 +3981,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Manual Invitation](#Manual-Invitation-Object) Object
+The response is a [Manual Invitation](#Manual-Invitation-Object) object.
 
 #### Example
 
@@ -3978,7 +4008,7 @@ Content-Type:  application/json
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -3988,6 +4018,8 @@ Content-Type:  application/json
 
 ### Update Manual Invitation
 
+You need `Manage Campaigns` permission to update a `Manual Invitation`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation`
 
 #### Parameters
@@ -3996,22 +4028,20 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Manual Invitation](#Manual-Invitation-Object) structure
+  The request body contains data with the [Manual Invitation](#Manual-Invitation-Object) structure.
 
 #### Response
 
-the response is: [Invitation](#Invitation-Object) Object
+The response is a [Invitation](#Invitation-Object) Object.
 
 example:
 ```Json
 {
   "manualInvitationPosition": "centeredWithOverlay",
-  "manualInvitationImageType": "fromGallery",
-  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
   "manualInvitationCloseAreaYOffset": 10,
   "manualInvitationCloseAreaWidth": 10,
@@ -4021,7 +4051,7 @@ example:
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4035,8 +4065,6 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "manualInvitationPosition": "centeredWithOverlay",
-  "manualInvitationImageType": "fromGallery",
-  "manualInvitationImage": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "manualInvitationCloseAreaXOffset": 10,
   "manualInvitationCloseAreaYOffset": 10,
   "manualInvitationCloseAreaWidth": 10,
@@ -4046,7 +4074,7 @@ curl -H "Content-Type: application/json" -d '{
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4071,7 +4099,7 @@ Content-Type:  application/json
   "manualInvitationTextAreaWidth": 10,
   "manualInvitationTextAreaHeight": 10,
   "manualInvitationText": "",
-  "manualInvitationTextFont": "timesNewRoman",
+  "manualInvitationTextFont": "times new roman",
   "manualInvitationTextSize": "XXSmall",
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
@@ -4100,8 +4128,8 @@ Content-Type:  application/json
 | `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
 | `isDisplayedOnceInOneSession` | boolean | no | no | | |
 | `order` | integer | no | no | | |
-| `imageType` | string | yes | no | | Including`fromGallery` and `fromMyComputer`. |
-| `image` | string | yes | no | | Image file key of Invitation.  |
+| `imageType` | string | yes | no | | Including `fromGallery` and `fromMyComputer`. |
+| `image` | Guid | yes | no | | Image file key of Invitation.  |
 | `closeAreaXOffset` | integer | no | no | | |
 | `closeAreaYOffset` | integer | no | no | | |
 | `closeAreaWidth` | integer | no | no | | |
@@ -4111,7 +4139,7 @@ Content-Type:  application/json
 | `textAreaWidth` | integer | no | no | | |
 | `textAreaHeight` | integer | no | no | | |
 | `text` | string | no | no | | |
-| `textFont` | string | no | no | | Including `timesNewRoman`, `tahoma`, `verdana`, `arial`, `comicSansMs` and `courier`. |
+| `textFont` | string | no | no | | Including `times new roman`, `tahoma`, `verdana`, `arial`, `comic sans ms` and `courier`. |
 | `textSize` | string | no | no | | Including `XXSmall`, `XSmall`, `small`, `medium`, `large`, `XLarge` and `XXLarge`. |
 | `isTextBold` | boolean | no | no | | |
 | `isTextItalic` | boolean | no | no | | |
@@ -4133,11 +4161,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: list of [Auto Invitation](#Auto-Invitation-Object) Object
+The response is an array of [Auto Invitation](#Auto-Invitation-Object) objects.
 
 #### Example
 
@@ -4169,7 +4197,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -4201,12 +4229,12 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
-| `id` | Guid | yes  |  the unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the auto invitation |
 
 #### Response
 
-the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+The response is: [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4238,7 +4266,7 @@ Content-Type:  application/json
     "textAreaWidth": 10,
     "textAreaHeight": 10,
     "text": "",
-    "textFont": "timesNewRoman",
+    "textFont": "times new roman",
     "textSize": "XXSmall",
     "isTextBold": false,
     "isTextItalic": false,
@@ -4262,6 +4290,8 @@ Content-Type:  application/json
 
 ### Create a new Auto Invitation
 
+You need `Manage Campaigns` permission to create a `Auto Invitation`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations`
 
 #### Parameters
@@ -4270,11 +4300,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure
+  The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure.
 
 example:
 ```Json
@@ -4283,8 +4313,6 @@ example:
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4294,7 +4322,7 @@ example:
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4316,7 +4344,7 @@ example:
 
 #### Response
 
-the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+The response is a [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4327,8 +4355,6 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4338,7 +4364,7 @@ curl -H "Content-Type: application/json" -d '{
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4381,7 +4407,7 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4403,6 +4429,8 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 
 ### Update a Auto Invitation
 
+You need `Manage Campaigns` permission to update a `Auto Invitation`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
 #### Parameters
@@ -4411,12 +4439,12 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
-| `id` | Guid | yes  |  the unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique Id of the auto invitation. |
 
 Request Body
 
-  The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure
+  The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure.
 
 example:
 ```Json
@@ -4425,8 +4453,6 @@ example:
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4436,7 +4462,7 @@ example:
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4458,7 +4484,7 @@ example:
 
 #### Response
 
-the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+The response is a [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4469,8 +4495,6 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable": false,
   "isDisplayedOnceInOneSession": false,
   "order": 1,
-  "imageType": "fromGallery",
-  "image": "A036254E-1DBD-C271-8A12-0ED667EF9C8A",
   "closeAreaXOffset": 10,
   "closeAreaYOffset": 10,
   "closeAreaWidth": 10,
@@ -4480,7 +4504,7 @@ curl -H "Content-Type: application/json" -d '{
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4521,7 +4545,7 @@ Content-Type:  application/json
   "textAreaWidth": 10,
   "textAreaHeight": 10,
   "text": "",
-  "textFont": "timesNewRoman",
+  "textFont": "times new roman",
   "textSize": "XXSmall",
   "isTextBold": false,
   "isTextItalic": false,
@@ -4543,6 +4567,8 @@ Content-Type:  application/json
 
 ### Delete a Auto Invitation
 
+You need `Manage Campaigns` permission to delete a `Auto Invitation`.
+
   `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
 #### Parameters
@@ -4551,8 +4577,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
-| `id` | Guid | yes  |  the unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the auto invitation |
 
 #### Response
 
@@ -4597,11 +4623,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
+The response is an [Agent Wrap-Up](#Agent-Wrap-Up-Object) object.
 
 #### Example
 
@@ -4622,6 +4648,8 @@ Content-Type:  application/json
 
 ### Update Agent Wrap-Up
 
+You need `Manage Campaigns` permission to update `Agent Wrap-Up`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/agentWrapup`
 
 #### Parameters
@@ -4630,11 +4658,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Agent Wrap-Up](#Agent-Wrap-Up-Object) structure
+  The request body contains data with the [Agent Wrap-Up](#Agent-Wrap-Up-Object) structure.
 
 example:
 ```Json
@@ -4772,6 +4800,8 @@ Content-Type:  application/json
 
 ### Update Language
 
+You need `Manage Campaigns` permission to update `Language`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/language`
 
 #### Parameters
@@ -4845,16 +4875,15 @@ Content-Type:  application/json
 | - | - |- | :-: | :-: | :-: | - |
 | `isEnable` | boolean |  | no | no |  false | Whether the routing rule is enabled or not. |
 | `type` | string |  | no | no | | Including `simple` and `customRule`. |
-| `routeTo` | string | | no | no | | Including `agent` and `department`. //agent 对应的链接呢. |
-| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
+| `routeTo` | string | | no | no | | Including `agent` and `department`. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartment` | [Department](#Department-Object) //department 对应的链接在哪呢?| yes | no | no | |  |
+| `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
 | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBot` | integer |  | no | no | | |
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
 | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
-| `routeToWhenNoRuleMatched` | string | | no | no | | Including `agent` and `department`. |
-| `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
 | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
@@ -4917,7 +4946,6 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "routeToDepartmentWhenNoRuleMatched": { // include department
       "id": "1455D7CD-C510-77F8-44AF-6E75ACEECC3D",
@@ -4937,6 +4965,8 @@ Content-Type:  application/json
 ```
 
 ### Update Routing
+
+You need `Manage Campaigns` permission to update `Routing`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/routing`
 
@@ -4963,7 +4993,6 @@ example:
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -4988,7 +5017,6 @@ curl -H "Content-Type: application/json" -d '{
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -5009,7 +5037,6 @@ Content-Type:  application/json
   "percentageToBot": 10,
   "customRules": [],
   "actionWhenNoRuleMatched": "routeToDepartment",
-  "routeToWhenNoRuleMatched": "department",
   "routeToIdWhenNoRuleMatched": "EFF66BBD-1FAD-A04E-486A-B8B4269A6BB5",
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
@@ -5038,7 +5065,7 @@ Content-Type:  application/json
 | `name` | string | | no | no | | |
 | `order` | integer | | no | no | | |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. |
-| `routeToId` | String | | no | no | | AgentId or DepartmentId. |
+| `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
 | `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
 | `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
@@ -5202,6 +5229,8 @@ Content-Type:  application/json
 
 ### Create a new Custom Rule
 
+You need `Manage Campaigns` permission to create a new `Custom Rule`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/routing/customRules`
 
 #### Parameters
@@ -5334,6 +5363,8 @@ Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207
 
 ### Update a Custom Rule
 
+You need `Manage Campaigns` permission to create a update a `Custom Rule`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
 
 #### Parameters
@@ -5465,6 +5496,8 @@ Content-Type:  application/json
 
 ### Delete a Custom Rule
 
+You need `Manage Campaigns` permission to delete a `Custom Rule`.
+
   `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
 
 #### Parameters
@@ -5591,6 +5624,8 @@ Content-Type:  application/json
 ```
 
 ### Update Chatbot Integration
+
+You need `Manage Campaigns` permission to update a `Chatbot Integration`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration`
 
@@ -5720,6 +5755,8 @@ Content-Type:  application/json
 
 ### Update KB Integration
 
+You need `Manage Campaigns` permission to update a `KB Integration`.
+
   `PUT /api/v3/livechat/campaigns/{campaignId}/KBIntegration`
 
 #### Parameters
@@ -5791,9 +5828,9 @@ Content-Type:  application/json
 - `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields` - [Create a new form field of offline message for a campaign](#create-a-new-form-fields-of-Offline-Message-for-a-campaign)
 - `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Get all form fields of agent wrapup for a campaign](#get-all-form-fields-of-Agent-Wrap-up-for-a-campaign)
 - `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields` - [Create a new form field of agent wrapup for a campaign](#create-a-new-form-fields-of-Agent-Wrap-up-for-a-campaign)
-- `GET /api/v3/livechat/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
-- `PUT /api/v3/livechat/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
-- `DELETE /api/v3/livechat/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
+- `GET /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Get a campaign form field by id](#get-a-campaign-form-field-by-id)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
+- `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
 ## Related Object Json Format
 
@@ -5963,6 +6000,8 @@ Content-Type:  application/json
 
 ### Create a new form fields of Pre-Chat for a campaign
 
+You need `Manage Campaigns` permission to create a `form field` of `Pre-Chat`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/preChat/campaignFormFields`
 
 #### Parameters
@@ -6061,7 +6100,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
 
 {
   "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
@@ -6168,6 +6207,8 @@ Content-Type:  application/json
 
 ### Create a new form fields of Post Chat for a campaign
 
+You need `Manage Campaigns` permission to create a `form field` of `Post Chat`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/postChat/campaignFormFields`
 
 #### Parameters
@@ -6266,7 +6307,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
 
 {
   "id": "8FD2DBE6-4653-1705-F791-F2C648A11FC7",
@@ -6373,6 +6414,8 @@ Content-Type:  application/json
 
 ### Create a new form fields of Offline Message for a campaign
 
+You need `Manage Campaigns` permission to create a `form field` of `Offline Message`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/offlineMessage/campaignFormFields`
 
 #### Parameters
@@ -6471,7 +6514,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
 
 {
   "id": "6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA",
@@ -6578,6 +6621,8 @@ Content-Type:  application/json
 
 ### Create a new form fields of Agent Wrap-up for a campaign
 
+You need `Manage Campaigns` permission to create a `form field` of `Agent Wrap-up`.
+
   `POST /api/v3/livechat/campaigns/{campaignId}/agentWrapup/campaignFormFields`
 
 #### Parameters
@@ -6676,7 +6721,7 @@ Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
+Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
 
 {
   "id": "5994A98C-CF88-1B8E-2909-CA81E0C1B469",
@@ -6716,7 +6761,7 @@ Location: https://domain.comm100.com/api/v3/livechat/campaignFormFields/5994A98C
 
 ### Get a campaign form field by id
 
-  `GET /api/v3/livechat/campaignFormFields/{id}`
+  `GET /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6725,6 +6770,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6735,7 +6781,7 @@ the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Obje
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+-X GET https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6780,7 +6826,9 @@ Content-Type:  application/json
 
 ### Update a campaign form field
 
-  `PUT /api/v3/livechat/campaignFormFields/{id}`
+You need `Manage Campaigns` permission to update a `campaign form field`.
+
+  `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6789,6 +6837,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 Request Body
 
@@ -6871,7 +6920,7 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6916,7 +6965,9 @@ Content-Type:  application/json
 
 ### Delete a campaign form field
 
-  `DELETE /api/v3/livechat/campaignFormFields/{id}`
+You need `Manage Campaigns` permission to delete a `campaign form field`.
+
+  `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}`
 
 #### Parameters
 
@@ -6925,6 +6976,7 @@ Path Parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
 | `id` | Guid | yes  |  the unique Id of the campaign form fields |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign |
 
 #### Response
 
@@ -6934,7 +6986,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -7211,7 +7263,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include agent
 - `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#get-a-campaign)
 - `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign)
-- `POST /api/v3/livechat/conversionActions:achieved` - [Make api conversion succesful](#make-api-conversion-succesful)
+- `POST /api/v3/livechat/conversionActions/achieved` - [Make api conversion successful](#make-api-conversion-successful)
 
 ## Related Object Json Format
 
@@ -7596,9 +7648,9 @@ Response
 }
 ```
 
-### make api conversion succesful
+### make api conversion successful
 
-  `POST /api/v3/livechat/conversionActions:achieved`
+  `POST /api/v3/livechat/conversionActions/achieved`
 
 #### Parameters
 
@@ -7635,7 +7687,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "conversion_name" : "justfortestupdate", 
     "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
-  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions:achieved
+  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions/achieved
 ```
 Response
 ```json
@@ -7649,9 +7701,11 @@ Content-Type:  application/json
 
 # Secure Form
 
+You need `Manage Security` permission to manage `Secure Form`.
+
 - `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-list-of-secure-forms)
 - `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
-- `POST /api/v3/livechat/secureForms` - [Create a secure form](#get-a-secure-form)
+- `POST /api/v3/livechat/secureForms` - [Create a secure form](#create-a-secure-form)
 - `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form)
 - `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
 
@@ -7662,10 +7716,10 @@ Secure Form is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | string  | | yes | no | | id of the secure form. |
-| `name` | string  | | no | yes | | name of the secure form. |
-| `description` | string |  | no | no | |description of the secure form. |
-| `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | an array of [Field](#field-json-format) |
+| `id` | Guid  | | yes | no | | Id of the secure form. |
+| `name` | string  | | no | yes | | Name of the secure form. |
+| `description` | string |  | no | no | |Description of the secure form. |
+| `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | An array of [Secure Form Field](#secure-form-field-json-format). |
 
 ## Endpoint
 ### Get list of secure forms
@@ -7677,7 +7731,7 @@ Secure Form is represented as simple flat JSON objects with the following keys:
     No parameters
 
 #### Response
-An array of [Secure Form](#secure-form-json-format)
+The reponse is an array of [Secure Form](#secure-form-json-format).
 
 #### Example
 
@@ -7705,7 +7759,16 @@ Content-Type:  application/json
                 "isSystem": true,
                 "isVisible": false,
                 "isRequired": false,
-                "order": 1
+                "order": 1,
+                "options":[
+                  {
+                    "value": "beijing",
+                    "order":0,
+                  },
+                  {
+                    "value": "hangzhou",
+                    "order":1,
+                  }],
             },
             ...
         ]
@@ -7723,11 +7786,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form.  |
 
 #### Response
 
-the response is: [Secure Form](#secure-form-json-format) Object
+The response is a [Secure Form](#secure-form-json-format) object.
 
 
 #### Example
@@ -7743,33 +7806,42 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 {
-    "id": "5721c1ac-f18b-43ed-9ff1-597acd9f48e2",
-    "name": "justfortest2",
-    "description": "",
-    "fields": [
+  "id": "5721c1ac-f18b-43ed-9ff1-597acd9f48e2",
+  "name": "justfortest",
+  "description": "",
+  "fields": [
+    {
+      "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
+      "name": "Card Number",
+      "type": "cardNumber",
+      "displayName": "Card Number",
+      "isSystem": true,
+      "isVisible": false,
+      "isRequired": false,
+      "order": 1,
+      "options":[
         {
-            "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
-            "order": 1
+          "value": "beijing",
+          "order":0,
         },
-        ...
-    ]
+        {
+          "value": "hangzhou",
+          "order":1,
+        }
+    },
+    ...
+  ]
 }
 ```
 
-### Create a new secure form
+### Create a secure form
 
   `POST /api/v3/livechat/secureForms`
 
 #### Parameters
 Request body
 
-  The request body contains data with the [Secure Form](#secure-form-json-format) structure
+  The request body contains data with the [Secure Form](#secure-form-json-format) structure.
 
   example:
 ```Json
@@ -7785,15 +7857,13 @@ Request body
             "isVisible": false,
             "isRequired": false,
             "order": 1
-        },
-        ...
+        }
     ]
   }
 ```
 
 #### Response
-the response is:
-[Secure Form](#secure-form-json-format) Object
+The response is a [Secure Form](#secure-form-json-format) object.
 
 #### Example
 
@@ -7851,11 +7921,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form.|
 
 Request body
 
-  The request body contains data with the [Secure Form](#secure-form-json-format) structure
+  The request body contains data with the [Secure Form](#secure-form-json-format) structure.
 
   example:
 ```Json
@@ -7899,8 +7969,8 @@ Request body
 ```
 
 #### Response
-the response is:
-[Secure Form](#secure-form-json-format) Object
+The response is a [Secure Form](#secure-form-json-format) object.
+
 
 #### Example
 
@@ -7996,7 +8066,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form.|
 
 
 #### Response
@@ -8027,15 +8097,24 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | string | | yes | no | | id of the field |
-| `name` | string | | no | yes | | name of the field |
-| `displayName` | string | | no | yes | | name of the field |
-| `type` | string | | no | yes | | including `text`, `textArea`, `radioBox`, `checkbox`, `dropdownList`, `checkboxList`, `datePicker` |
-| `isSystem` | boolean | | yes | no | false | whether the field is system field or not. |
-| `isVisible` | boolean | | no | no | false | whether the field is visible or not. |
-| `isRequired` | boolean | | no | no | false | whether the field is required or not when submitting the form |
-| `order` | integer | | no | no |1  | the order of the field. |
-| `options` | string |  | no | no | | the options of the field. |
+| `id` | Guid | | yes | no | | Id of the field. |
+| `name` | string | | no | yes | | Name of the field. |
+| `displayName` | string | | no | yes | | Dispaly name of the field. |
+| `type` | string | | no | yes | | Including `text`, `textArea`, `radioBox`, `checkbox`, `dropdownList`, `checkboxList`, `datePicker` |
+| `isSystem` | boolean | | yes | no | false | Whether the field is system field or not. |
+| `isVisible` | boolean | | no | no | false | Whether the field is visible or not. |
+| `isRequired` | boolean | | no | no | false | Whether the field is required or not when submitting the form. |
+| `order` | integer | | no | no |1  | The order of the field. |
+| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | no | | The options of the field. |
+
+### Secure Form Field Option JSON Format
+
+  Secure Form Field Option is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Include | Read-only | Mandatory | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `value` | string | | no | yes | | | Value of this field.
+| `order` | integer | | no | no |1  | The order of the field. |
 
 ## Endpoint
 ### Get list of secure form fields
@@ -8051,7 +8130,7 @@ Path parameters
 
 
 #### Response
-An array of [Secure Form Field](#secure-form-field-json-format)
+the response is an array of [Secure Form Field](#secure-form-field-json-format) object.
 
 #### Example
 
@@ -8107,12 +8186,12 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form field |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form field. |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 #### Response
 
-the response is: [Secure Form Field](#secure-form-field-json-format) Object
+The response is a [Secure Form Field](#secure-form-field-json-format) object.
 
 
 #### Example
@@ -8157,7 +8236,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 Request body
 
@@ -8177,8 +8256,8 @@ Request body
 ```
 
 #### Response
-the response is:
-[Secure Form Field](#secure-form-field-json-format) Object
+The response is a [Secure Form Field](#secure-form-field-json-format) object.
+
 
 #### Example
 
@@ -8221,12 +8300,12 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form field  |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form field.  |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 Request body
 
-  The request body contains data with the [Secure Form Field](#secure-form-field-json-format) structure
+  The request body contains data with the [Secure Form Field](#secure-form-field-json-format) structure.
 
   example:
 ```Json
@@ -8243,8 +8322,7 @@ Request body
 ```
 
 #### Response
-the response is:
-[Secure Form Field](#secure-form-field-json-format) Object
+The response is a [Secure Form Field](#secure-form-field-json-format) object.
 
 #### Example
 
@@ -8287,8 +8365,8 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form field |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form field. |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 #### Response
 HTTP/1.1 204 No Content
@@ -8305,6 +8383,8 @@ HTTP/1.1 204 No Content
 
 # Webhook
 
+You need `Manage Integration` permission to manage `Webhook`.
+
 + `GET /api/v3/livechat/webhooks` - [Get a list of webhooks](#get-a-list-of-webhooks)
 + `GET /api/v3/livechat/webhooks/{id}` - [Get a webhook by id](#get-a-webhook-by-id)
 + `POST /api/v3/livechat/webhooks` - [Create a webhook](#create-a-webhook)
@@ -8320,7 +8400,7 @@ HTTP/1.1 204 No Content
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | guid  || yes | no | | id of the webhook |
-| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, , `agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, ,`agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
 | `targetUrl` | string  || no | yes | | target url of the webhook. |
 
 ## Endpoints
@@ -8484,7 +8564,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
+  "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
   "targetUrl": "http://www.google.com"
 }
@@ -8519,8 +8599,10 @@ HTTP/1.1 204 No Content
 
 # Custom Variable
 
+You need `Manage Custom Variable` permission to manage custom variable.
+
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
-- `GET /api/v3/livechat/campacustomVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
+- `GET /api/v3/livechat/customVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
 - `POST /api/v3/livechat/customVariables` - [Create a custom variable](#create-a-custom-variable)
 - `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable)
 - `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
@@ -8531,13 +8613,13 @@ HTTP/1.1 204 No Content
 
 Custom Variable is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read| Mandatory | Default | Description |
+| Name | Type | Include | Read-only| Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid  || yes | no || id of the custom variable. |
-  | `name` | string  || no | yes || name of the custom variable |.
-  | `type` | string  || no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
-  | `value` | string  || no | no || value of the custom variable. |
-  |`hyperlink` | string  || no | no ||  hyperlink of the custom variable. |
+| `id` | Guid  || yes | no || Id of the custom variable. |
+  | `name` | string  || no | yes || Name of the custom variable. |
+  | `type` | string  || no | yes || Type of the custom variable, including `text`, `integer` and `decimal`. |
+  | `value` | string  || no | no || Value of the custom variable. |
+  |`hyperlink` | string  || no | no ||  Hyperlink of the custom variable. |
 
 ## Endpoints
 
@@ -8551,7 +8633,7 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 
 #### Response
 
-the response is: An array of [Custom Variable](#custom-variable-object) Object.
+The response is an array of [Custom Variable](#custom-variable-object) object.
 
 ### Example
 
@@ -8559,6 +8641,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json"
 -X GET https://domain.comm100.com/api/v3/livechat/customvariables
+--header "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9y"
 ```
 
 Response
@@ -8587,11 +8670,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the custom variable  |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 #### Response
 
-the response is: [Custom Variable](#custom-variable-object) Object.
+The response is a [Custom Variable](#custom-variable-object) object.
 
 #### Example
 
@@ -8599,6 +8682,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json"
 -X GET https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+--header "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9y"
 ```
 
 Response
@@ -8622,7 +8706,7 @@ Content-Type:  application/json
 
 Request body
 
-The request body contains data with the [Custom Variable](#custom-variable-object) structure
+The request body contains data with the [Custom Variable](#custom-variable-object) structure.
 
 example:
 ```Json
@@ -8636,16 +8720,18 @@ example:
 
 #### Response
 
-the response is: [Custom Variable](#custom-variable-object) Object.
+The response is a [Custom Variable](#custom-variable-object) object.
 
 #### Example
 
 Using curl
 ```shell
-curl -H "Content-Type: application/json" -d '"name": "test",
+curl -H "Content-Type: application/json" -d '{
+  "name": "test",
   "type": "text",
   "value": "'lizz'",
-  "hyperlink": "{!Visitor.IP}"' -X POST  https://domain.comm100.com/api/v3/livechat/customvariables
+  "hyperlink": "{!Visitor.IP}"
+  }' -X POST  https://domain.comm100.com/api/v3/livechat/customvariables
 ```
 
 Response
@@ -8672,11 +8758,11 @@ Content-Type:  application/json
 Path parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the custom variable  |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 Request body
 
-The request body contains data with the [Custom Variable](#custom-variable-object) structure
+The request body contains data with the [Custom Variable](#custom-variable-object) structure.
 
 example:
 ```Json
@@ -8690,7 +8776,7 @@ example:
 
 #### Response
 
-the response is: [Custom Variable](#custom-variable-object) Object.
+The response is a [Custom Variable](#custom-variable-object) object.
 
 #### Example
 
@@ -8703,7 +8789,7 @@ curl -H "Content-Type: application/json" -d '{
   "type": "text",
   "value": "'lizz'",
   "hyperlink": "{!Visitor.IP}"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/customvariables
+  }' -X PUT https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8729,7 +8815,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the custom variable  |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 #### Response
 
@@ -8745,149 +8831,3 @@ Response
 ```json
 HTTP/1.1 204 No Content
 ```
-
-# Time Zone Options
-
-
-  |   Id    |   Display name   |
-  |   -   |   -   |
-  |  datelineStandardTime  |   (UTC-12:00) International Date Line West   |
-  |  utc-11  |   (UTC-11:00) Coordinated Universal Time-11   |
-  |  aleutianStandardTime  |   (UTC-10:00) Aleutian Islands   |
-  |  hawaiianStandardTime  |   (UTC-10:00) Hawaii   |
-  |  marquesasStandardTime  |   (UTC-09:30) Marquesas Islands   |
-  |  alaskanStandardTime  |   (UTC-09:00) Alaska   |
-  |  utc-09  |   (UTC-09:00) Coordinated Universal Time-09   |
-  |  pacificStandardTime(Mexico)  |   (UTC-08:00) Baja California   |
-  |  utc-08  |   (UTC-08:00) Coordinated Universal Time-08   |
-  |  pacificStandardTime  |   (UTC-08:00) Pacific Time (US & Canada)   |
-  |  usMountainStandardTime  |   (UTC-07:00) Arizona   |
-  |  mountainStandardTime(Mexico)  |   (UTC-07:00) Chihuahua, La Paz, Mazatlan   |
-  |  mountainStandardTime  |   (UTC-07:00) Mountain Time (US & Canada)   |
-  |  centralAmericaStandardTime  |   (UTC-06:00) Central America   |
-  |  centralStandardTime  |   (UTC-06:00) Central Time (US & Canada)   |
-  |  easterIslandStandardTime  |   (UTC-06:00) Easter Island   |
-  |  centralStandardTime(Mexico)  |   (UTC-06:00) Guadalajara, Mexico City, Monterrey   |
-  |  canadaCentralStandardTime  |   (UTC-06:00) Saskatchewan   |
-  |  saPacificStandardTime  |   (UTC-05:00) Bogota, Lima, Quito, Rio Branco   |
-  |  easternStandardTime(Mexico)  |   (UTC-05:00) Chetumal   |
-  |  easternStandardTime  |   (UTC-05:00) Eastern Time (US & Canada)   |
-  |  haitiStandardTime  |   (UTC-05:00) Haiti   |
-  |  cubaStandardTime  |   (UTC-05:00) Havana   |
-  |  usEasternStandardTime  |   (UTC-05:00) Indiana (East)   |
-  |  turksAndCaicosStandardTime  |   (UTC-05:00) Turks and Caicos   |
-  |  paraguayStandardTime  |   (UTC-04:00) Asuncion   |
-  |  atlanticStandardTime  |   (UTC-04:00) Atlantic Time (Canada)   |
-  |  venezuelaStandardTime  |   (UTC-04:00) Caracas   |
-  |  centralBrazilianStandardTime  |   (UTC-04:00) Cuiaba   |
-  |  saWesternStandardTime  |   (UTC-04:00) Georgetown, La Paz, Manaus, San Juan   |
-  |  pacificSAStandardTime  |   (UTC-04:00) Santiago   |
-  |  newfoundlandStandardTime  |   (UTC-03:30) Newfoundland   |
-  |  tocantinsStandardTime  |   (UTC-03:00) Araguaina   |
-  |  e.SouthAmericaStandardTime  |   (UTC-03:00) Brasilia   |
-  |  saEasternStandardTime  |   (UTC-03:00) Cayenne, Fortaleza   |
-  |  argentinaStandardTime  |   (UTC-03:00) City of Buenos Aires   |
-  |  greenlandStandardTime  |   (UTC-03:00) Greenland   |
-  |  montevideoStandardTime  |   (UTC-03:00) Montevideo   |
-  |  magallanesStandardTime  |   (UTC-03:00) Punta Arenas   |
-  |  saintPierreStandardTime  |   (UTC-03:00) Saint Pierre and Miquelon   |
-  |  bahiaStandardTime  |   (UTC-03:00) Salvador   |
-  |  utc-02  |   (UTC-02:00) Coordinated Universal Time-02   |
-  |  mid-AtlanticStandardTime  |   (UTC-02:00) Mid-Atlantic - Old   |
-  |  azoresStandardTime  |   (UTC-01:00) Azores   |
-  |  capeVerdeStandardTime  |   (UTC-01:00) Cabo Verde Is.   |
-  |  utc  |   (UTC) Coordinated Universal Time   |
-  |  gmtStandardTime  |   (UTC+00:00) Dublin, Edinburgh, Lisbon, London   |
-  |  greenwichStandardTime  |   (UTC+00:00) Monrovia, Reykjavik   |
-  |  saoTomeStandardTime  |   (UTC+00:00) Sao Tome   |
-  |  moroccoStandardTime  |   (UTC+01:00) Casablanca   |
-  |  w.EuropeStandardTime  |   (UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna   |
-  |  centralEuropeStandardTime  |   (UTC+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague   |
-  |  romanceStandardTime  |   (UTC+01:00) Brussels, Copenhagen, Madrid, Paris   |
-  |  centralEuropeanStandardTime  |   (UTC+01:00) Sarajevo, Skopje, Warsaw, Zagreb   |
-  |  w.CentralAfricaStandardTime  |   (UTC+01:00) West Central Africa   |
-  |  jordanStandardTime  |   (UTC+02:00) Amman   |
-  |  gtbStandardTime  |   (UTC+02:00) Athens, Bucharest   |
-  |  middleEastStandardTime  |   (UTC+02:00) Beirut   |
-  |  egyptStandardTime  |   (UTC+02:00) Cairo   |
-  |  e.EuropeStandardTime  |   (UTC+02:00) Chisinau   |
-  |  syriaStandardTime  |   (UTC+02:00) Damascus   |
-  |  westBankStandardTime  |   (UTC+02:00) Gaza, Hebron   |
-  |  southAfricaStandardTime  |   (UTC+02:00) Harare, Pretoria   |
-  |  fleStandardTime  |   (UTC+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius   |
-  |  israelStandardTime  |   (UTC+02:00) Jerusalem   |
-  |  kaliningradStandardTime  |   (UTC+02:00) Kaliningrad   |
-  |  sudanStandardTime  |   (UTC+02:00) Khartoum   |
-  |  libyaStandardTime  |   (UTC+02:00) Tripoli   |
-  |  namibiaStandardTime  |   (UTC+02:00) Windhoek   |
-  |  arabicStandardTime  |   (UTC+03:00) Baghdad   |
-  |  turkeyStandardTime  |   (UTC+03:00) Istanbul   |
-  |  arabStandardTime  |   (UTC+03:00) Kuwait, Riyadh   |
-  |  belarusStandardTime  |   (UTC+03:00) Minsk   |
-  |  russianStandardTime  |   (UTC+03:00) Moscow, St. Petersburg   |
-  |  e.AfricaStandardTime  |   (UTC+03:00) Nairobi   |
-  |  iranStandardTime  |   (UTC+03:30) Tehran   |
-  |  arabianStandardTime  |   (UTC+04:00) Abu Dhabi, Muscat   |
-  |  astrakhanStandardTime  |   (UTC+04:00) Astrakhan, Ulyanovsk   |
-  |  azerbaijanStandardTime  |   (UTC+04:00) Baku   |
-  |  russiaTimeZone3  |   (UTC+04:00) Izhevsk, Samara   |
-  |  mauritiusStandardTime  |   (UTC+04:00) Port Louis   |
-  |  saratovStandardTime  |   (UTC+04:00) Saratov   |
-  |  georgianStandardTime  |   (UTC+04:00) Tbilisi   |
-  |  volgogradStandardTime  |   (UTC+04:00) Volgograd   |
-  |  caucasusStandardTime  |   (UTC+04:00) Yerevan   |
-  |  afghanistanStandardTime  |   (UTC+04:30) Kabul   |
-  |  westAsiaStandardTime  |   (UTC+05:00) Ashgabat, Tashkent   |
-  |  ekaterinburgStandardTime  |   (UTC+05:00) Ekaterinburg   |
-  |  pakistanStandardTime  |   (UTC+05:00) Islamabad, Karachi   |
-  |  qyzylordaStandardTime  |   (UTC+05:00) Qyzylorda   |
-  |  indiaStandardTime  |   (UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi   |
-  |  sriLankaStandardTime  |   (UTC+05:30) Sri Jayawardenepura   |
-  |  nepalStandardTime  |   (UTC+05:45) Kathmandu   |
-  |  centralAsiaStandardTime  |   (UTC+06:00) Astana   |
-  |  bangladeshStandardTime  |   (UTC+06:00) Dhaka   |
-  |  omskStandardTime  |   (UTC+06:00) Omsk   |
-  |  myanmarStandardTime  |   (UTC+06:30) Yangon (Rangoon)   |
-  |  seAsiaStandardTime  |   (UTC+07:00) Bangkok, Hanoi, Jakarta   |
-  |  altaiStandardTime  |   (UTC+07:00) Barnaul, Gorno-Altaysk   |
-  |  w.MongoliaStandardTime  |   (UTC+07:00) Hovd   |
-  |  northAsiaStandardTime  |   (UTC+07:00) Krasnoyarsk   |
-  |  n.CentralAsiaStandardTime  |   (UTC+07:00) Novosibirsk   |
-  |  tomskStandardTime  |   (UTC+07:00) Tomsk   |
-  |  chinaStandardTime  |   (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi   |
-  |  northAsiaEastStandardTime  |   (UTC+08:00) Irkutsk   |
-  |  singaporeStandardTime  |   (UTC+08:00) Kuala Lumpur, Singapore   |
-  |  w.AustraliaStandardTime  |   (UTC+08:00) Perth   |
-  |  taipeiStandardTime  |   (UTC+08:00) Taipei   |
-  |  ulaanbaatarStandardTime  |   (UTC+08:00) Ulaanbaatar   |
-  |  ausCentralW.StandardTime  |   (UTC+08:45) Eucla   |
-  |  transbaikalStandardTime  |   (UTC+09:00) Chita   |
-  |  tokyoStandardTime  |   (UTC+09:00) Osaka, Sapporo, Tokyo   |
-  |  northKoreaStandardTime  |   (UTC+09:00) Pyongyang   |
-  |  koreaStandardTime  |   (UTC+09:00) Seoul   |
-  |  yakutskStandardTime  |   (UTC+09:00) Yakutsk   |
-  |  cen.AustraliaStandardTime  |   (UTC+09:30) Adelaide   |
-  |  aUSCentralStandardTime  |   (UTC+09:30) Darwin   |
-  |  e.AustraliaStandardTime  |   (UTC+10:00) Brisbane   |
-  |  aUSEasternStandardTime  |   (UTC+10:00) Canberra, Melbourne, Sydney   |
-  |  westPacificStandardTime  |   (UTC+10:00) Guam, Port Moresby   |
-  |  tasmaniaStandardTime  |   (UTC+10:00) Hobart   |
-  |  vladivostokStandardTime  |   (UTC+10:00) Vladivostok   |
-  |  lordHoweStandardTime  |   (UTC+10:30) Lord Howe Island   |
-  |  bougainvilleStandardTime  |   (UTC+11:00) Bougainville Island   |
-  |  russiaTimeZone10  |   (UTC+11:00) Chokurdakh   |
-  |  magadanStandardTime  |   (UTC+11:00) Magadan   |
-  |  norfolkStandardTime  |   (UTC+11:00) Norfolk Island   |
-  |  sakhalinStandardTime  |   (UTC+11:00) Sakhalin   |
-  |  centralPacificStandardTime  |   (UTC+11:00) Solomon Is., New Caledonia   |
-  |  russiaTimeZone11  |   (UTC+12:00) Anadyr, Petropavlovsk-Kamchatsky   |
-  |  newZealandStandardTime  |   (UTC+12:00) Auckland, Wellington   |
-  |  utc+12  |   (UTC+12:00) Coordinated Universal Time+12   |
-  |  fijiStandardTime  |   (UTC+12:00) Fiji   |
-  |  kamchatkaStandardTime  |   (UTC+12:00) Petropavlovsk-Kamchatsky - Old   |
-  |  chathamIslandsStandardTime  |   (UTC+12:45) Chatham Islands   |
-  |  utc+13  |   (UTC+13:00) Coordinated Universal Time+13   |
-  |  tongaStandardTime  |   (UTC+13:00) Nuku'alofa   |
-  |  samoaStandardTime  |   (UTC+13:00) Samoa   |
-  |  lineIslandsStandardTime  |   (UTC+14:00) Kiritimati Island   |
-</div>
