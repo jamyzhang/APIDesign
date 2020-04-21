@@ -8613,7 +8613,7 @@ HTTP/1.1 204 No Content
 You need `Manage Custom Variable` permission to manage custom variable.
 
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
-- `GET /api/v3/livechat/campacustomVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
+- `GET /api/v3/livechat/customVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
 - `POST /api/v3/livechat/customVariables` - [Create a custom variable](#create-a-custom-variable)
 - `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable)
 - `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
