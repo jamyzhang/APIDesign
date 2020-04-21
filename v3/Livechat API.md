@@ -8653,6 +8653,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json"
 -X GET https://domain.comm100.com/api/v3/livechat/customvariables
+--header "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9y"
 ```
 
 Response
