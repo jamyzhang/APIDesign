@@ -11,7 +11,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 
 - Live Chat
   - [settings](#settings)
     - [auto distribution](#auto-distribution)
-    - [translation excluded word](#translation-excluded-word)
+    - [translation excluded words](#translation-excluded-words)
     <!-- - [dynamic campaign](#dynamic-campaign) -->
     - [mobile push](#mobile-push)
   - [customer segment](#customer-segment)
@@ -8644,7 +8644,7 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 
 #### Response
 
-the response is: An array of [Custom Variable](#custom-variable-object) Object.
+The response is an array of [Custom Variable](#custom-variable-object) object.
 
 ### Example
 
@@ -8715,7 +8715,7 @@ Content-Type:  application/json
 
 Request body
 
-The request body contains data with the [Custom Variable](#custom-variable-object) structure
+The request body contains data with the [Custom Variable](#custom-variable-object) structure.
 
 example:
 ```Json
@@ -8735,10 +8735,12 @@ the response is: [Custom Variable](#custom-variable-object) Object.
 
 Using curl
 ```shell
-curl -H "Content-Type: application/json" -d '"name": "test",
+curl -H "Content-Type: application/json" -d '{
+  "name": "test",
   "type": "text",
   "value": "'lizz'",
-  "hyperlink": "{!Visitor.IP}"' -X POST  https://domain.comm100.com/api/v3/livechat/customvariables
+  "hyperlink": "{!Visitor.IP}"
+  }' -X POST  https://domain.comm100.com/api/v3/livechat/customvariables
 ```
 
 Response
