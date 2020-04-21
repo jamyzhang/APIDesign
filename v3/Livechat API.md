@@ -136,7 +136,7 @@ You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permi
 
 Request body
 
-  The request body contains data with the [Settings](#settings-object) Object structure
+  The request body contains data with the [Settings](#settings-object) Object structure.
 
 example:
 
@@ -164,7 +164,7 @@ example:
 
 #### Response
 
-the response is a [Settings](#settings-object) object
+the response is a [Settings](#settings-object) object.
 
 #### Example
 
@@ -321,7 +321,7 @@ You need `Manage Settings` permission to update `Auto Distribution`.
 
 Request body
 
-  The request body contains data with the [Auto Distribution](#auto-distribution-object) Object structure
+  The request body contains data with the [Auto Distribution](#auto-distribution-object) object structure
 
 example:
 ```Json
@@ -577,7 +577,7 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
 
 #### Response
 
-  an array of [Customer Segment](#customer-segment-object) object
+  The response is an array of [Customer Segment](#customer-segment-object) objects.
 
 #### Example
 
@@ -632,7 +632,7 @@ Path parameters
 
 #### Response
 
-the response is: [customer segment](#customer-segment-object) Object.
+The response is a [customer segment](#customer-segment-object) object.
 
 #### Example
 
@@ -680,7 +680,7 @@ You need `Manage Settings` permission to create a `Customer Segment`.
 
 Request body
 
-  The request body contains data with the [customer segment](#customer-segment) structure
+  The request body contains data with the [customer segment](#customer-segment) structure.
 
 example:
 ```Json
@@ -709,7 +709,7 @@ example:
 
 #### Response
 
-the response is: [customer segment](#customer-segment-object) Object.
+The response is a [customer segment](#customer-segment-object) object.
 
 #### Example
 
@@ -782,7 +782,7 @@ Path parameters
 
 #### Response
 
-the response is: [customer segment](#customer-segment-object) Object.
+The response is a [customer segment](#customer-segment-object) object.
 
 #### Example
 
@@ -1118,7 +1118,7 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 
 #### Response
 
-the response is: [Mobile Push](#moble-push-object) Object.
+The response is [Mobile Push](#moble-push-object) object.
 
 #### Example
 
@@ -1159,7 +1159,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) Object structure
+  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) object structure.
 
 example:
 ```Json
@@ -1185,7 +1185,7 @@ example:
 
 #### Response
 
-the response is: [Mobile Push](#moble-push-object) Object.
+The response is a [Mobile Push](#moble-push-object) object.
 
 #### Example
 
@@ -1262,7 +1262,7 @@ agent is represented as simple flat JSON objects with the following keys:
 
 #### Response
 
-the response an array of [Live Chat Agent](#live-chat-agent-object) object
+The response is an array of [Live Chat Agent](#live-chat-agent-object) objects.
 
 #### Example
 
@@ -1300,7 +1300,7 @@ Path parameters
 
 #### Response
 
-the response is [Live Chat Agent](#live-chat-agent-object) object
+The response is a [Live Chat Agent](#live-chat-agent-object) object.
 
 #### Example
 
@@ -1335,7 +1335,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) Object structure
+  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) object structure.
 
 example:
 ```Json
@@ -1346,7 +1346,7 @@ example:
 
 #### Response
 
-the response is [Live Chat Agent](#live-chat-agent-object) object
+The response is a [Live Chat Agent](#live-chat-agent-object) object.
 
 #### Example
 
@@ -1451,7 +1451,7 @@ Query string
 
 #### Response
 
-the response is an array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+The response is an array of [Live Chat Visitor](#live-chat-visitor-object) object.
 
 #### Example
 
@@ -1522,7 +1522,7 @@ Path parameters
 
 #### Response
 
-the response is an array of [Live Chat Visitor](#live-chat-visitor-object) objects.
+The response is an array of [Live Chat Visitor](#live-chat-visitor-object) objects.
 
 #### Example
 
@@ -1585,7 +1585,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of online visitor|
+| `id` | Guid | yes  |  Id of online visitor|
 
 Request body 
 
@@ -1722,7 +1722,7 @@ Query string
 
 #### Response
 
-the response is a [Session](#session-json-format) object.
+The response is a [Session](#session-json-format) object.
 
 #### Example
 
@@ -1773,7 +1773,7 @@ Response
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | N/A | N/A | | id of the chat. |
+| `id` | Guid |  | N/A | N/A | | Id of the chat. |
 | `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
 | `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
 | `startTime` | datetime | | N/A | N/A | |  |
@@ -2011,7 +2011,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the chat. |
+| `id` | Guid | yes  |  The unique Id of the chat. |
 
 #### Response
 
@@ -2126,7 +2126,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the chat |
+| `id` | Guid | yes  |  The unique Id of the chat |
 
 #### Response
 
@@ -2152,7 +2152,7 @@ You need `Delete Transcripts` permission to delete `Chats` by batch.
 #### Parameters
 
 Request body
-- an array of chat id
+- An array of chat id
 
 example:
 ```json
@@ -2232,8 +2232,8 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `name` | string |  | no | no | | file name of this attachment |
-| `uri` | string | | no | no |  | uri for download this attachment |
+| `name` | string |  | no | no | | File name of this attachment |
+| `uri` | string | | no | no |  | Uri for download this attachment |
 
 ### Field Value JSON format
 
@@ -2256,16 +2256,16 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
-| `timeFrom` | datetime | no  | today |  the beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-| `timeTo` | datetime | no  | today |  the end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`|
-| `campaignId` | guid | no  |  | id of the campaign which the offline message |
-| `departmentId` | guid | no  |  | id of the department which the offline message belongs to |
-| `agentId` | integer | no  |  | id of the agent that this offline message belongs to |
-| `visitorSegmentId` | guid | no  |  | id of the visitor segment which the visitor belongs to |
-| `keywords` | string | no  |  | search subject or message by keywords |
-| `pageIndex` | integer | no  | 1 | the page index of query |
-| `pageSize` | integer | no  | 50 | page size  |
+| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session`. |
+| `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`.|
+| `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`.|
+| `campaignId` | guid | no  |  | Id of the campaign which the offline message. |
+| `departmentId` | guid | no  |  | Id of the department which the offline message belongs to. |
+| `agentId` | integer | no  |  | Id of the agent that this offline message belongs to. |
+| `visitorSegmentId` | guid | no  |  | Id of the visitor segment which the visitor belongs to. |
+| `keywords` | string | no  |  | Search subject or message by keywords. |
+| `pageIndex` | integer | no  | 1 | The page index of query. |
+| `pageSize` | integer | no  | 50 | Page size,  |
 
 #### Response
 
@@ -2276,7 +2276,7 @@ The response body contains data with the follow structure:
 | `total` | integer | no | no | total count of the list. |
 | `previousPage` | string | no | no | Url of the previous page. |
 | `nextPage` | string | no | no | Url of the next page. |
-| `offlineMessages` | [Offline Message](#offline-message-json-format)[] | no | no | an array of [Offline Message](#offline-message-json-format) |
+| `offlineMessages` | [Offline Message](#offline-message-json-format)[] | no | no | An array of [Offline Message](#offline-message-json-format). |
 
 #### Example
 
@@ -2368,7 +2368,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the offline message  |
+| `id` | Guid | yes  |  The id of the offline message  |
 
 Query string
 
@@ -2456,7 +2456,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the offline message  |
+| `id` | Guid | yes  |  The id of the offline message.  |
 
 
 #### Response
@@ -2481,7 +2481,7 @@ You need `Delete Transcripts` permission to delete `Offline Message` by batch.
 #### Parameters
 
 Request body 
-  - an array of offline message id
+  - An array of offline message id
 
   example:
   ```json
@@ -2542,7 +2542,7 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: list of [Campaign](#Campaign-Object) Object
+The response is an array of [Campaign](#Campaign-Object) objects.
 
 #### Example
 
@@ -2577,11 +2577,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
-the response is: [Campaign](#Campaign-Object) Object
+The response is a [Campaign](#Campaign-Object) object.
 
 #### Example
 
@@ -2626,7 +2626,7 @@ example:
 
 #### Response
 
-the response is: [Campaign](#Campaign-Object) Object
+The response is a [Campaign](#Campaign-Object) object.
 
 #### Example
 
@@ -2665,11 +2665,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Campaign](#Campaign-Object) structure
+  The request body contains data with the [Campaign](#Campaign-Object) structure.
 
 example:
 ```Json
@@ -2682,7 +2682,7 @@ example:
 
 #### Response
 
-the response is: [Campaign](#Campaign-Object) Object
+The response is a [Campaign](#Campaign-Object) object.
 
 #### Example
 
@@ -2719,7 +2719,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
@@ -2767,7 +2767,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Installation Code](#Installation-Code-Object) Object
+The response is a [Installation Code](#Installation-Code-Object) object.
 
 #### Example
 
@@ -2828,7 +2828,7 @@ Content-Type:  application/json
 | `imageButtonOnlineImageOnMobile` | Guid | yes | no | | The Image file key on mobile device when any agents is online. |
 | `imageButtonOfflineImageOnMobile` | Guid | yes | no | | The image file key on mobile device when no agent is online. |
 | `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
-| `textLinkButtonText` | string | no | no | | the content of the text link, available when `type` is `textLink`. |
+| `textLinkButtonText` | string | no | no | | The content of the text link, available when `type` is `textLink`. |
 
 ## Chat Button Endpoints
 
@@ -2846,7 +2846,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Chat Button](#Chat-Button-Object) Object
+The response is a [Chat Button](#Chat-Button-Object) object.
 
 #### Example
 
@@ -2899,11 +2899,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Chat Button](#Chat-Button-Object) structure
+  The request body contains data with the [Chat Button](#Chat-Button-Object) structure.
 
 example:
 ```Json
@@ -2931,7 +2931,7 @@ example:
 
 #### Response
 
-the response is: [Chat Button](#Chat-Button-Object) Object
+The response is a [Chat Button](#Chat-Button-Object) object.
 
 #### Example
 
@@ -3074,7 +3074,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Chat Window](#Chat-Window-Object) Object
+The response is a [Chat Window](#Chat-Window-Object) object.
 
 #### Example
 
@@ -3151,11 +3151,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Chat Window](#Chat-Window-Object) structure
+  The request body contains data with the [Chat Window](#Chat-Window-Object) structure.
 
 example:
 ```Json
@@ -3209,7 +3209,7 @@ example:
 
 #### Response
 
-the response is: [Chat Window](#Chat-Window-Object) Object
+The response is a [Chat Window](#Chat-Window-Object) object.
 
 #### Example
 
@@ -3355,11 +3355,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: [Pre-Chat](#Pre-Chat-Object) Object
+The response is a [Pre-Chat](#Pre-Chat-Object) object.
 
 #### Example
 
@@ -3440,7 +3440,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Pre-Chat](#Pre-Chat-Object) structure
+  The request body contains data with the [Pre-Chat](#Pre-Chat-Object) structure.
 
 example:
 ```Json
@@ -3461,7 +3461,7 @@ example:
 
 #### Response
 
-the response is: [Pre-Chat](#Pre-Chat-Object) Object
+The response is a [Pre-Chat](#Pre-Chat-Object) object.
 
 #### Example
 
@@ -3531,11 +3531,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: [Post Chat](#Post-Chat-Object) Object
+The response is a [Post Chat](#Post-Chat-Object) object.
 
 #### Example
 
@@ -3569,11 +3569,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Post Chat](#Post-Chat-Object) structure
+  The request body contains data with the [Post Chat](#Post-Chat-Object) structure.
 
 example:
 ```Json
@@ -3586,7 +3586,7 @@ example:
 
 #### Response
 
-the response is: [Post Chat](#Post-Chat-Object) Object
+The response is a [Post Chat](#Post-Chat-Object) object.
 
 #### Example
 
@@ -3657,7 +3657,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Object
+The response is a [Campaign Offline Message](#Campaign-Offline-Message-Object) object.
 
 #### Example
 
@@ -3702,7 +3702,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
@@ -3731,7 +3731,7 @@ example:
 
 #### Response
 
-the response is: [Campaign Offline Message](#Campaign-Offline-Message-Object) Object
+The response is a [Campaign Offline Message](#Campaign-Offline-Message-Object) object.
 
 #### Example
 
@@ -3809,11 +3809,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: [Invitation](#Invitation-Object) Object
+The response is a [Invitation](#Invitation-Object) object.
 
 #### Example
 
@@ -3899,11 +3899,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Invitation](#Invitation-Object) structure
+  The request body contains data with the [Invitation](#Invitation-Object) structure.
 
 example:
 ```Json
@@ -3914,7 +3914,7 @@ example:
 
 #### Response
 
-the response is: [Invitation](#Invitation-Object) Object
+The response is a [Invitation](#Invitation-Object) object.
 
 #### Example
 
@@ -3981,7 +3981,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Manual Invitation](#Manual-Invitation-Object) Object
+The response is a [Manual Invitation](#Manual-Invitation-Object) object.
 
 #### Example
 
@@ -4028,15 +4028,15 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Manual Invitation](#Manual-Invitation-Object) structure
+  The request body contains data with the [Manual Invitation](#Manual-Invitation-Object) structure.
 
 #### Response
 
-the response is: [Invitation](#Invitation-Object) Object
+The response is a [Invitation](#Invitation-Object) Object.
 
 example:
 ```Json
@@ -4161,11 +4161,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: list of [Auto Invitation](#Auto-Invitation-Object) Object
+The response is an array of [Auto Invitation](#Auto-Invitation-Object) objects.
 
 #### Example
 
@@ -4229,12 +4229,12 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
-| `id` | Guid | yes  |  the unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the auto invitation |
 
 #### Response
 
-the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+The response is: [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4300,11 +4300,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure
+  The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure.
 
 example:
 ```Json
@@ -4344,7 +4344,7 @@ example:
 
 #### Response
 
-the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+The response is a [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4439,12 +4439,12 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
-| `id` | Guid | yes  |  the unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique Id of the auto invitation. |
 
 Request Body
 
-  The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure
+  The request body contains data with the [Auto Invitation](#Auto-Invitation-Object) structure.
 
 example:
 ```Json
@@ -4484,7 +4484,7 @@ example:
 
 #### Response
 
-the response is: [Auto Invitation](#Auto-Invitation-Object) Object
+The response is a [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4577,8 +4577,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
-| `id` | Guid | yes  |  the unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the auto invitation |
 
 #### Response
 
@@ -4623,11 +4623,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
-the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
+The response is an [Agent Wrap-Up](#Agent-Wrap-Up-Object) object.
 
 #### Example
 
@@ -4658,11 +4658,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Agent Wrap-Up](#Agent-Wrap-Up-Object) structure
+  The request body contains data with the [Agent Wrap-Up](#Agent-Wrap-Up-Object) structure.
 
 example:
 ```Json
