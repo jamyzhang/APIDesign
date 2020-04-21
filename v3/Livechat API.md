@@ -8412,7 +8412,7 @@ You need `Manage Integration` permission to manage `Webhook`.
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | guid  || yes | no | | id of the webhook |
-| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, , `agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, ,`agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
 | `targetUrl` | string  || no | yes | | target url of the webhook. |
 
 ## Endpoints
@@ -8610,6 +8610,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Custom Variable
+
 You need `Manage Custom Variable` permission to manage custom variable.
 
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
@@ -8626,11 +8627,11 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 
 | Name | Type | Include | Read-only| Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid  || yes | no || id of the custom variable. |
-  | `name` | string  || no | yes || name of the custom variable |.
-  | `type` | string  || no | yes || type of the custom variable., including `text`, `integer` and `decimal`. |
-  | `value` | string  || no | no || value of the custom variable. |
-  |`hyperlink` | string  || no | no ||  hyperlink of the custom variable. |
+| `id` | Guid  || yes | no || Id of the custom variable. |
+  | `name` | string  || no | yes || Name of the custom variable. |
+  | `type` | string  || no | yes || Type of the custom variable, including `text`, `integer` and `decimal`. |
+  | `value` | string  || no | no || Value of the custom variable. |
+  |`hyperlink` | string  || no | no ||  Hyperlink of the custom variable. |
 
 ## Endpoints
 
@@ -8680,11 +8681,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the custom variable  |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 #### Response
 
-the response is: [Custom Variable](#custom-variable-object) Object.
+The response is a [Custom Variable](#custom-variable-object) object.
 
 #### Example
 
@@ -8729,7 +8730,7 @@ example:
 
 #### Response
 
-the response is: [Custom Variable](#custom-variable-object) Object.
+The response is a [Custom Variable](#custom-variable-object) object.
 
 #### Example
 
@@ -8767,11 +8768,11 @@ Content-Type:  application/json
 Path parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the custom variable  |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 Request body
 
-The request body contains data with the [Custom Variable](#custom-variable-object) structure
+The request body contains data with the [Custom Variable](#custom-variable-object) structure.
 
 example:
 ```Json
@@ -8785,7 +8786,7 @@ example:
 
 #### Response
 
-the response is: [Custom Variable](#custom-variable-object) Object.
+The response is a [Custom Variable](#custom-variable-object) object.
 
 #### Example
 
@@ -8824,7 +8825,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the custom variable  |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 #### Response
 
