@@ -7743,10 +7743,10 @@ Secure Form is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | string  | | yes | no | | id of the secure form. |
-| `name` | string  | | no | yes | | name of the secure form. |
-| `description` | string |  | no | no | |description of the secure form. |
-| `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | an array of [Field](#field-json-format) |
+| `id` | Guid  | | yes | no | | Id of the secure form. |
+| `name` | string  | | no | yes | | Name of the secure form. |
+| `description` | string |  | no | no | |Description of the secure form. |
+| `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | An array of [Field](#field-json-format). |
 
 ## Endpoint
 ### Get list of secure forms
@@ -7758,7 +7758,7 @@ Secure Form is represented as simple flat JSON objects with the following keys:
     No parameters
 
 #### Response
-An array of [Secure Form](#secure-form-json-format)
+The reponse is an array of [Secure Form](#secure-form-json-format).
 
 #### Example
 
@@ -7804,11 +7804,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form.  |
 
 #### Response
 
-the response is: [Secure Form](#secure-form-json-format) Object
+The response is a [Secure Form](#secure-form-json-format) object.
 
 
 #### Example
@@ -7850,7 +7850,7 @@ Content-Type:  application/json
 #### Parameters
 Request body
 
-  The request body contains data with the [Secure Form](#secure-form-json-format) structure
+  The request body contains data with the [Secure Form](#secure-form-json-format) structure.
 
   example:
 ```Json
@@ -7873,8 +7873,7 @@ Request body
 ```
 
 #### Response
-the response is:
-[Secure Form](#secure-form-json-format) Object
+The response is a [Secure Form](#secure-form-json-format) object.
 
 #### Example
 
@@ -7932,11 +7931,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form.|
 
 Request body
 
-  The request body contains data with the [Secure Form](#secure-form-json-format) structure
+  The request body contains data with the [Secure Form](#secure-form-json-format) structure.
 
   example:
 ```Json
@@ -7980,8 +7979,8 @@ Request body
 ```
 
 #### Response
-the response is:
-[Secure Form](#secure-form-json-format) Object
+The response is a [Secure Form](#secure-form-json-format) object.
+
 
 #### Example
 
@@ -8077,7 +8076,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form.|
 
 
 #### Response
@@ -8108,15 +8107,15 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | string | | yes | no | | id of the field |
-| `name` | string | | no | yes | | name of the field |
-| `displayName` | string | | no | yes | | name of the field |
-| `type` | string | | no | yes | | including `text`, `textArea`, `radioBox`, `checkbox`, `dropdownList`, `checkboxList`, `datePicker` |
-| `isSystem` | boolean | | yes | no | false | whether the field is system field or not. |
-| `isVisible` | boolean | | no | no | false | whether the field is visible or not. |
-| `isRequired` | boolean | | no | no | false | whether the field is required or not when submitting the form |
-| `order` | integer | | no | no |1  | the order of the field. |
-| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | no | | the options of the field. |
+| `id` | Guid | | yes | no | | Id of the field. |
+| `name` | string | | no | yes | | Name of the field. |
+| `displayName` | string | | no | yes | | Dispaly name of the field. |
+| `type` | string | | no | yes | | Including `text`, `textArea`, `radioBox`, `checkbox`, `dropdownList`, `checkboxList`, `datePicker` |
+| `isSystem` | boolean | | yes | no | false | Whether the field is system field or not. |
+| `isVisible` | boolean | | no | no | false | Whether the field is visible or not. |
+| `isRequired` | boolean | | no | no | false | Whether the field is required or not when submitting the form. |
+| `order` | integer | | no | no |1  | The order of the field. |
+| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | no | | The options of the field. |
 
 ### Secure Form Field Option JSON Format
 
@@ -8124,8 +8123,8 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `value` | string | | no | yes | | |
-| `order` | integer | | no | no |1  | the order of the field. |
+| `value` | string | | no | yes | | | Value of this field.
+| `order` | integer | | no | no |1  | The order of the field. |
 
 ## Endpoint
 ### Get list of secure form fields
@@ -8141,7 +8140,7 @@ Path parameters
 
 
 #### Response
-An array of [Secure Form Field](#secure-form-field-json-format)
+the response is an array of [Secure Form Field](#secure-form-field-json-format) object.
 
 #### Example
 
@@ -8197,12 +8196,12 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form field |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form field. |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 #### Response
 
-the response is: [Secure Form Field](#secure-form-field-json-format) Object
+The response is a [Secure Form Field](#secure-form-field-json-format) object.
 
 
 #### Example
@@ -8247,7 +8246,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 Request body
 
@@ -8267,8 +8266,8 @@ Request body
 ```
 
 #### Response
-the response is:
-[Secure Form Field](#secure-form-field-json-format) Object
+The response is a [Secure Form Field](#secure-form-field-json-format) object.
+
 
 #### Example
 
@@ -8311,12 +8310,12 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form field  |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form field.  |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 Request body
 
-  The request body contains data with the [Secure Form Field](#secure-form-field-json-format) structure
+  The request body contains data with the [Secure Form Field](#secure-form-field-json-format) structure.
 
   example:
 ```Json
@@ -8333,8 +8332,7 @@ Request body
 ```
 
 #### Response
-the response is:
-[Secure Form Field](#secure-form-field-json-format) Object
+The response is a [Secure Form Field](#secure-form-field-json-format) object.
 
 #### Example
 
@@ -8377,8 +8375,8 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the secure form field |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `id` | Guid | yes  |  The id of the secure form field. |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 #### Response
 HTTP/1.1 204 No Content
