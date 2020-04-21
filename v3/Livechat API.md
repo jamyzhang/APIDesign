@@ -8624,7 +8624,7 @@ You need `Manage Custom Variable` permission to manage custom variable.
 
 Custom Variable is represented as simple flat JSON objects with the following keys:  
 
-| Name | Type | Include | Read| Mandatory | Default | Description |
+| Name | Type | Include | Read-only| Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | Guid  || yes | no || id of the custom variable. |
   | `name` | string  || no | yes || name of the custom variable |.
