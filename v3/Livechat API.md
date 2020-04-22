@@ -7689,8 +7689,8 @@ The response is a [Conversion Achieved](#conversion-achieved-json-format) object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-    "conversion_name" : "justfortestupdate", 
-    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", 
+    "conversion_name" : "justfortestupdate",
+    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
     "value": 1.5
   }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions/achieved
 ```
@@ -7737,7 +7737,7 @@ Secure Form is represented as simple flat JSON objects with the following keys:
     No parameters
 
 #### Response
-The reponse is an array of [Secure Form](#secure-form-json-format).
+The reponse is an array of [Secure Form](#secure-form-json-format) objects.
 
 #### Example
 
@@ -8136,7 +8136,8 @@ Path parameters
 
 
 #### Response
-the response is an array of [Secure Form Field](#secure-form-field-json-format) object.
+
+The response is an array of [Secure Form Field](#secure-form-field-json-format) objects.
 
 #### Example
 
@@ -8246,7 +8247,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Secure Form Field](#secure-form-field-json-format) structure
+  The request body contains data with the [Secure Form Field](#secure-form-field-json-format) structure.
 
   example:
 ```Json
@@ -8405,9 +8406,9 @@ You need `Manage Integration` permission to manage `Webhook`.
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | guid  || yes | no | | id of the webhook |
-| `event` | string  || no | yes | | event of webhook, including `offlineMessageSubmitted`, ,`agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
-| `targetUrl` | string  || no | yes | | target url of the webhook. |
+| `id` | guid  || yes | no | | Id of the webhook |
+| `event` | string  || no | yes | | Event of webhook, including `offlineMessageSubmitted`, ,`agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `targetUrl` | string  || no | yes | | Target url of the webhook. |
 
 ## Endpoints
 
@@ -8421,7 +8422,7 @@ You need `Manage Integration` permission to manage `Webhook`.
 
 #### Response
 
-the response is: An array of [Webhook](#webhook-object)
+The response is An array of [Webhook](#webhook-object) objects.
 
 #### Example
 
@@ -8459,7 +8460,7 @@ Path parameters
 
 #### Response
 
-the response is: [Webhook](#webhook-object) Object.
+The response is a [Webhook](#webhook-object) object.
 
 #### Example
 
@@ -8488,7 +8489,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Webhook](#webhook-object) structure
+  The request body contains data with the [Webhook](#webhook-object) structure.
 
 example:
 ```Json
@@ -8500,7 +8501,8 @@ example:
 ```
 
 #### Response
-the response is: [Webhook](#webhook-object) Object.
+
+The response is a [Webhook](#webhook-object) object.
 
 ### Example
 
@@ -8536,11 +8538,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique id of the webhook|
+| `id` | Guid | yes  |  The unique id of the webhook.|
 
 Request body
 
-  The request body contains data with the [Webhook](#webhook-object) structure
+  The request body contains data with the [Webhook](#webhook-object) structure.
 
 example:
 ```Json
@@ -8552,7 +8554,8 @@ example:
 ```
 
 #### Response
-the response is: [Webhook](#webhook-object) Object.
+
+The response is a [Webhook](#webhook-object) object.
 
 #### Example
 
@@ -8586,7 +8589,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the webhook  |
+| `id` | Guid | yes  |  Id of the webhook.|
 
 #### Response
 HTTP/1.1 204 No Content
@@ -8639,7 +8642,7 @@ Custom Variable is represented as simple flat JSON objects with the following ke
 
 #### Response
 
-The response is an array of [Custom Variable](#custom-variable-object) object.
+The response is an array of [Custom Variable](#custom-variable-object) objects.
 
 ### Example
 
