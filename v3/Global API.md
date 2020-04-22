@@ -3640,6 +3640,7 @@ HTTP/1.1 204 No Content
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
+
 ## Private Canned Message Endpoints
 
 ### Get all Private Canned Messages in site
@@ -3941,13 +3942,6 @@ Response
   HTTP/1.1 204 No Content
 ```
 
-#### Similar Question Object
-
-  Similar Question Object is represented as simple flat JSON objects with the following keys:
-
-  | Name | Type | Read-only | Mandatory | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `question` | string  | no | no | | |
 
 # Agent Away Status
 

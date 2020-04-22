@@ -257,7 +257,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 | - | - | - | :-: | :-: | :-: | - |
 | `agentId` | integer ||  yes| yes|| Id of agent. |
 | `ifAutoAcceptChat` | boolean||  no| no|| If agent can auto accept chat.|
-| `maxConcurrentChats` | int ||  no| no|| Maximum concurrent chats, available when Is Chat Auto Accepted is true.|
+| `maxConcurrentChats` | int ||  no| no|| Maximum concurrent chats, available when  `ifAutoAcceptChat` is true.|
 
 ## Endpoint
 
@@ -287,7 +287,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "autoDistributionMethod": "load balancing",
+  "autoDistributionMethod": "loadBanlancing",
   "isLastChattedAgentPreferred": true,
   "isLimitMaxConcurrentChatsForAllAgents":true,
   "maxConcurrentChatsForAllAgents": 3,
@@ -326,7 +326,7 @@ Request body
 example:
 ```Json
 {
-  "autoDistributionMethod": "load balancing",
+  "autoDistributionMethod": "loadBanlancing",
   "isLastChattedAgentPreferred": true,
   "isLimitMaxConcurrentChatsForAllAgents":true,
   "maxConcurrentChatsForAllAgents": 3,
@@ -361,7 +361,7 @@ Using curl:
 
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "autoDistributionMethod": "load balancing",
+  "autoDistributionMethod": "loadBanlancing",
   "isLastChattedAgentPreferred": true,
   "isLimitMaxConcurrentChatsForAllAgents":true,
   "maxConcurrentChatsForAllAgents": 3,
@@ -391,7 +391,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "autoDistributionMethod": "load balancing",
+  "autoDistributionMethod": "loadBanlancing",
   "isLastChattedAgentPreferred": true,
   "isLimitMaxConcurrentChatsForAllAgents":true,
   "maxConcurrentChatsForAllAgents": 3,
@@ -419,7 +419,7 @@ Content-Type:  application/json
 
 You need `Manage Settings` permission to manage `Translation Excluded Words`.
 - `GET /api/v3/livechat/translationExcludedWords` - [Get translation excluded words](#get-a-list-of-translation-excluded-word)
-- `PUT /api/v3/livechat/translationExcludedWords` - [Update a translation excluded word](#update-a-translation-excluded-word)
+- `PUT /api/v3/livechat/translationExcludedWords` - [Update translation excluded words](#update-a-translation-excluded-word)
 
 ## Translation Excluded Word Related Objects Json Format
 
@@ -443,7 +443,7 @@ Translation Excluded Words is represented as simple flat JSON objects with the f
 
 #### Response
 
-The response is an array of [Translation Excluded Word](#translation-excluded-word).
+The response is a [Translation Excluded Words](#translation-excluded-words-object) object.
 
 #### Example
 
@@ -475,7 +475,7 @@ You need `Manage Settings` permission to manage `Translation Excluded Words`.
 
 Request body
 
-  The request body contains data with the [Translation Excluded Words](#translation-excluded-words) structure. 
+  The request body contains data with the [Translation Excluded Words](#translation-excluded-words) structure.
 
 example:
 ```Json
@@ -3017,8 +3017,8 @@ Content-Type:  application/json
 | `bannerImageType` | string | yes | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
 | `bannerImage` | Guid | no | yes | | Image file key of the banner, available when `headerType` is `bannerImage`. |
 | `isAvatarDisplayedWithMessage` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
-| `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
-| `backgroundTexture` | string | no | no | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
+| `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic` or `simple`. |
+| `backgroundTexture` | integer| no | no | | Including `0`(style 1), `1`(style 2), `2`(style 3), `3` (style 4 ) and `4`(style 5). |
 | `customCSS` | string | no | no | | |
 | `isTranscriptDownloadAllowed` | boolean | no | no | | Whether the visitor can download the chat transcript. |
 | `isTranscriptPrintAllowed` | boolean | no | no | | Whether the visitor can print the chat transcript. |
