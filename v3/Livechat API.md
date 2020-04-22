@@ -136,7 +136,7 @@ You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permi
 
 Request body
 
-  The request body contains data with the [Settings](#settings-object) object structure.
+  The request body contains data with the [Settings](#settings-object) structure.
 
 example:
 
@@ -423,9 +423,9 @@ You need `Manage Settings` permission to manage `Translation Excluded Words`.
 
 ## Translation Excluded Word Related Objects Json Format
 
-### Translation Excluded Word Object
+### Translation Excluded Words Object
 
-Translation Excluded Word is represented as simple flat JSON objects with the following keys:
+Translation Excluded Words is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -443,7 +443,7 @@ Translation Excluded Word is represented as simple flat JSON objects with the fo
 
 #### Response
 
-The response is an array of [Translation Excluded Word](#translation-excluded-word) objects
+The response is an array of [Translation Excluded Word](#translation-excluded-word).
 
 #### Example
 
@@ -467,15 +467,15 @@ Content-Type:  application/json
 
 ### Update translation excluded words
 
-You need `Manage Settings` permission to manage `Translation Excluded Word`.
+You need `Manage Settings` permission to manage `Translation Excluded Words`.
 
-  `PUT /api/v3/livechat/translationExcludedWords/{id}`
+  `PUT /api/v3/livechat/translationExcludedWords`
 
 #### Parameters
 
 Request body
 
-  The request body contains data with the [Translation Excluded Word](#translation-excluded-word) object. structure
+  The request body contains data with the [Translation Excluded Words](#translation-excluded-words) structure. 
 
 example:
 ```Json
@@ -488,7 +488,7 @@ example:
 ```
 #### Response
 
-The response is a [Translation Excluded Word](#translation-excluded-word) object.
+The response is a [Translation Excluded Words](#translation-excluded-word) object.
 
 #### Example
 
@@ -778,7 +778,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the customer segment  |
+| `id` | Guid | yes  |  Id of the customer segment.  |
 
 #### Response
 
@@ -851,7 +851,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Id of customer segment   |
+| `id` | Guid | yes  |  Id of customer segment. |
 
 #### Response
 
@@ -1517,7 +1517,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of live chat visitor|
+| `id` | Guid | yes  |  Id of live chat visitor|
 
 
 #### Response
@@ -1610,7 +1610,7 @@ Request body
 
 #### Response
 
-the response is an array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+The response is an array of [Live Chat Visitor](#live-chat-visitor-object) Object.
 
 #### Example
 
@@ -1696,7 +1696,7 @@ Content-Type:  application/json
 | `timeZone` | string |  | N/A | N/A | |  |
 | `landingPageURL` | string |  | N/A | N/A | |  |
 | `landingPageTitle` | string | | N/A | N/A | |  |
-| `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
+| `visitorId` | Guid | | N/A | N/A | | The id of the visitor |
 | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
 | `contactId` | integer | | N/A | N/A | | The id of the contact  |
 | `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
@@ -1712,7 +1712,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Integer | yes  |  the id of the session  |
+| `id` | Integer | yes  |  The id of the session  |
 
 Query string
 
@@ -2613,7 +2613,7 @@ You need `Manage Campaigns` permission to create a new `Campaign`.
 
 Request Body
 
-  The request body contains data with the [Campaign](#Campaign-Object) structure
+  The request body contains data with the [Campaign](#Campaign-Object) structure.
 
 example:
 ```Json
@@ -2763,7 +2763,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
@@ -2842,7 +2842,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 #### Response
 
@@ -4709,7 +4709,7 @@ example:
 
 #### Response
 
-the response is: [Agent Wrap-Up](#Agent-Wrap-Up-Object) Object
+The response is a [Agent Wrap-Up](#Agent-Wrap-Up-Object) object
 
 #### Example
 
@@ -4769,7 +4769,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
@@ -4810,11 +4810,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Request Body
 
-  The request body contains data with the [Language](#Language-Object) structure
+  The request body contains data with the [Language](#Language-Object) structure.
 
 example:
 ```Json
@@ -4830,7 +4830,7 @@ example:
 
 #### Response
 
-the response is: [Language](#Language-Object) Object
+The response is a [Language](#Language-Object) object.
 
 #### Example
 
@@ -4902,17 +4902,17 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Query string
 
 | Name  | Type | Required  | Default | Description |
 | - | - | - | - | - |
-| `include` | string | no  |  | Available value: `agent`, `department` |
+| `include` | string | no  |  | Available value: `agent`, `department`. |
 
 #### Response
 
-the response is: [Routing](#Routing-Object) Object
+The response is a [Routing](#Routing-Object) object.
 
 #### Example
 
@@ -4976,11 +4976,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Routing](#Routing-Object) structure
+  The request body contains data with the [Routing](#Routing-Object) structure.
 
 example:
 ```Json
@@ -5002,7 +5002,7 @@ example:
 
 #### Response
 
-the response is: [Routing](#Routing-Object) Object
+The response is a [Routing](#Routing-Object) object.
 
 #### Example
 
@@ -5072,7 +5072,7 @@ Content-Type:  application/json
 | `percentageToBot` | integer | | no | no | | |
 | `conditionMetType` | string | | no | no | | Including `all`, `any` and `logicalExpression`. |
 | `logicalExpression` | string | | no | no | | |
-| `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | no | no | |an array of [Live Chat Condition](#Live-Chat-Condition-Object) object.  |
+| `conditions` | [Live Chat Condition](#Live-Chat-Condition-Object)[] | | no | no | |An array of [Live Chat Condition](#Live-Chat-Condition-Object) object.  |
 
 ### Live Chat Condition Object
 
@@ -5097,13 +5097,13 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign |
 
 Query string
 
 | Name  | Type | Required  | Default | Description |
 | - | - | - | - | - |
-| `include` | string | no  |  | Available value: `agent`, `department` |
+| `include` | string | no  |  | Available value: `agent`, `department`. |
 
 #### Response
 
@@ -5168,14 +5168,14 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the custom rule |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Query string
 
 | Name  | Type | Required  | Default | Description |
 | - | - | - | - | - |
-| `include` | string | no  |  | Available value: `agent`, `department` |
+| `include` | string | no  |  | Available value: `agent`, `department`. |
 
 #### Response
 
@@ -5239,11 +5239,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
 
 Request Body
 
-  The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure
+  The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure.
 
 example:
 ```Json
@@ -5282,7 +5282,7 @@ example:
 
 #### Response
 
-the response is: [Custom Rule](#Custom-Rule-Object) Object
+The response is a [Custom Rule](#Custom-Rule-Object) object.
 
 #### Example
 
@@ -5373,8 +5373,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the custom rule |
-| `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+| `id` | Guid | yes  |  The unique Id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
 
 Request Body
 
@@ -5417,7 +5417,7 @@ example:
 
 #### Response
 
-the response is: [Custom Rule](#Custom-Rule-Object) Object
+The response is a [Custom Rule](#Custom-Rule-Object) object.
 
 #### Example
 
@@ -5506,8 +5506,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the custom rule |
-| `campaignId` | Guid | yes  |  the unique Id of the custom rule |
+| `id` | Guid | yes  |  The unique Id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
 
 #### Response
 
@@ -5560,17 +5560,17 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Query string
 
 | Name  | Type | Required  | Default | Description |
 | - | - | - | - | - |
-| `include` | string | no  |  | Available value: `chatbot` |
+| `include` | string | no  |  | Available value: `chatbot`. |
 
 #### Response
 
-the response is: [Chatbot Integration](#Chatbot-Integration-Object) Object
+The response is a [Chatbot Integration](#Chatbot-Integration-Object) object.
 
 #### Example
 
@@ -5635,11 +5635,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Chatbot Integration](#Chatbot-Integration-Object) structure
+  The request body contains data with the [Chatbot Integration](#Chatbot-Integration-Object) structure.
 
 example:
 ```Json
@@ -5657,7 +5657,7 @@ example:
 
 #### Response
 
-the response is: [Chatbot Integration](#Chatbot-Integration-Object) Object
+The response is a [Chatbot Integration](#Chatbot-Integration-Object) object.
 
 #### Example
 
@@ -5728,7 +5728,7 @@ Path Parameters
 
 #### Response
 
-the response is: [KB Integration](#KB-Integration-Object) Object
+The response is a [KB Integration](#KB-Integration-Object) object.
 
 #### Example
 
@@ -5765,11 +5765,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [KB Integration](#KB-Integration-Object) structure
+  The request body contains data with the [KB Integration](#KB-Integration-Object) structure.
 
 example:
 ```Json
@@ -5786,7 +5786,7 @@ example:
 
 #### Response
 
-the response is: [KB Integration](#KB-Integration-Object) Object
+The response is a [KB Integration](#KB-Integration-Object) object.
 
 #### Example
 
@@ -5945,7 +5945,7 @@ Path Parameters
 
 #### Response
 
-the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) objects.
 
 #### Example
 
@@ -6010,11 +6010,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure.
 
 example:
 ```Json
@@ -6055,7 +6055,7 @@ example:
 
 #### Response
 
-the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is a [Campaign Form Field](#Campaign-Form-Field-Object) object.
 
 #### Example
 
@@ -6148,11 +6148,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
-the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) object.
 
 #### Example
 
@@ -6217,11 +6217,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure.
 
 example:
 ```Json
@@ -6262,7 +6262,7 @@ example:
 
 #### Response
 
-the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is a [Campaign Form Field](#Campaign-Form-Field-Object) object.
 
 #### Example
 
@@ -6355,11 +6355,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
-the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) object.
 
 #### Example
 
@@ -6424,11 +6424,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure.
 
 example:
 ```Json
@@ -6469,7 +6469,7 @@ example:
 
 #### Response
 
-the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is a [Campaign Form Field](#Campaign-Form-Field-Object) object.
 
 #### Example
 
@@ -6562,11 +6562,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
-the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) objects.
 
 #### Example
 
@@ -6631,11 +6631,11 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure.
 
 example:
 ```Json
@@ -6676,7 +6676,7 @@ example:
 
 #### Response
 
-the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is a [Campaign Form Field](#Campaign-Form-Field-Object) object.
 
 #### Example
 
@@ -6769,12 +6769,12 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign form fields |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
-the response is: list of [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) objects.
 
 #### Example
 
@@ -6836,12 +6836,12 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign form fields |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 Request Body
 
-  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure
+  The request body contains data with the [Campaign Form Field](#Campaign-Form-Field-Object) structure.
 
 example:
 ```Json
@@ -6882,7 +6882,7 @@ example:
 
 #### Response
 
-the response is: [Campaign Form Field](#Campaign-Form-Field-Object) Object
+The response is a [Campaign Form Field](#Campaign-Form-Field-Object) object.
 
 #### Example
 
@@ -6975,8 +6975,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the unique Id of the campaign form fields |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
 
 #### Response
 
@@ -7012,16 +7012,16 @@ Response
 
 | Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | | yes | no| | id of the ban. |
-| `type` | string | | no | yes | |  type of ban, including `visitor` , `ip` and `ipRange` |
-| `visitorId` | Guid | | no | yes | | mandatory when `type` is `visitor` |
-| `visitor` | [Visitor](#visitor) | yes | no | no | |  available only when visitor is included  |
-| `ip` | string  |  | no | yes | | ip address of the ban, mandatory when `type` is `ip`. |
-| `ipRangeFrom` | string | | no | yes | | mandatory when `type` is `ipRange`. |
-| `ipRangeTo` | string | | no | yes | | mandatory when `type` is `ipRange`. |
-| `comment` | string | | no | no | | comment of the ban. |
+| `id` | Guid | | yes | no| | Id of the ban. |
+| `type` | string | | no | yes | |  Type of ban, including `visitor` , `ip` and `ipRange`. |
+| `visitorId` | Guid | | no | yes | | Mandatory when `type` is `visitor`. |
+| `visitor` | [Visitor](#visitor) | yes | no | no | |  Available only when visitor is included.|
+| `ip` | string  |  | no | yes | | Ip address of the ban, mandatory when `type` is `ip. |
+| `ipRangeFrom` | string | | no | yes | | Mandatory when `type` is `ipRange`. |
+| `ipRangeTo` | string | | no | yes | | Mandatory when `type` is `ipRange`. |
+| `comment` | string | | no | no | | Comment of the ban. |
 | `lastUpdatedByAgentId` | integer | | yes | no | | |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included  |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included.  |
 
 ## Endpoint
 
@@ -7035,10 +7035,11 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value: `visitor`, `agent` |
+| `include` | string | no  | |  Available value: `visitor`, `agent`. |
 
 #### Response
-An array of [Ban](#ban-json-format)
+
+The response is an array of [Ban](#ban-json-format) objects.
 
 #### Example
 
@@ -7087,17 +7088,17 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the ban  |
+| `id` | Guid | yes  |  The id of the ban.  |
 
 Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value: `visitor`, `agent` |
+| `include` | string | no  | |  Available value: `visitor`, `agent`. |
 
 #### Response
 
-the response is: [Ban](#ban-json-format) Object
+The response is a [Ban](#ban-json-format) object.
 
 #### Example
 
@@ -7138,7 +7139,7 @@ Response
 #### Parameters
 Request body
 
-  The request body contains data with the [Ban](#ban-json-format) structure
+  The request body contains data with the [Ban](#ban-json-format) structure.
 
   example:
 ```Json
@@ -7150,8 +7151,7 @@ Request body
 ```
 
 #### Response
-the response is:
-[Ban](#ban-json-format) Object
+The response is a [Ban](#ban-json-format) object.
 
 #### Example
 
@@ -7187,11 +7187,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the ban  |
+| `id` | Guid | yes  |  The id of the ban. |
 
-Request body 
+Request body
 
-  The request body contains data with the [Ban](#ban-json-format) structure
+  The request body contains data with the [Ban](#ban-json-format) structure.
 
   example:
 ```Json
@@ -7203,7 +7203,7 @@ Request body
 ```
 
 #### Response
-the response is: [Ban](#ban-json-format) Object
+The response is a [Ban](#ban-json-format) object.
 
 
 #### Example
@@ -7239,7 +7239,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the ban  |
+| `id` | Guid | yes  |  The id of the ban.|
 
 
 #### Response
@@ -7273,31 +7273,31 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | guid | | yes | no | | id of the conversion action. |
-| `name` | string | | no | yes |  | name of the conversion action. |
-| `isEnable` | boolean | | no | no | | whether the conversion action is enabled or not. |
-| `type` | string | | no | yes | | type of the conversion action, including `url`, `customVariable` and `api`. |
-| `customVariableUsedToDetermineConversion` | string  | | no | no |  | the name of the custom variable, available when `type` is `customVariable`. |
-| `operator` | string | | no | no | | including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
-| `value` | string | | no | no |  | match value of the conversion action, available when `type` is `customVariable` or `url`. |
-| `isCaseSensitive` | boolean | | no | no | | whether the conversion action is case sensitive or not, available when `type` is `url`. |
-| `isValueAssignedToConversion` | boolean | | no | no |  | whether a value is assigned for the conversion action or not. |
-| `valueSource` | string | | no | no |  | including `inputAValue`, `getFromCustomVariable` |
-| `assignedValueFromInputting` | integer | | no | no |  | the value assigned for the conversion action, between 1 and 999999999 |
-| `assignedValueFromCustomVariable` | string | | no | no |  | the value comes from the custom variable |
-| `chatAssociatedWithConversion` | string | | no | no |  | including `theFirstChat`, `theLastChat` |
+| `id` | guid | | yes | no | | Id of the conversion action. |
+| `name` | string | | no | yes |  | Name of the conversion action. |
+| `isEnable` | boolean | | no | no | | Whether the conversion action is enabled or not. |
+| `type` | string | | no | yes | | Type of the conversion action, including `url`, `customVariable` and `api`. |
+| `customVariableUsedToDetermineConversion` | string  | | no | no |  | The name of the custom variable, available when `type` is `customVariable`. |
+| `operator` | string | | no | no | | Including `is`, `beginsWith`, `contains`, `regularExpression`, `isLessThen`, `isMoreThen`, available when `type` is `customVariable` or `url`. |
+| `value` | string | | no | no |  | Match value of the conversion action, available when `type` is `customVariable` or `url`. |
+| `isCaseSensitive` | boolean | | no | no | | Whether the conversion action is case sensitive or not, available when `type` is `url`. |
+| `isValueAssignedToConversion` | boolean | | no | no |  | Whether a value is assigned for the conversion action or not. |
+| `valueSource` | string | | no | no |  | Including `inputAValue`, `getFromCustomVariable` |
+| `assignedValueFromInputting` | integer | | no | no |  | The value assigned for the conversion action, between 1 and 999999999 |
+| `assignedValueFromCustomVariable` | string | | no | no |  | The value comes from the custom variable |
+| `chatAssociatedWithConversion` | string | | no | no |  | Including `theFirstChat`, `theLastChat` |
 | `isChatInLastCertainDaysConsidered` | boolean | | no | no |  |  |
-| `chatInLastDays` | integer | | no | no |   | between 1 and 30 |
+| `chatInLastDays` | integer | | no | no |   | Between 1 and 30 |
 | `isChatWithAtLeastCertainVisitorMessagesConsidered` | boolean | | no | no | |  |
-| `visitorMessagesAtLeast` | integer | | no | no | | between 1 and 999  |
+| `visitorMessagesAtLeast` | integer | | no | no | | Between 1 and 999  |
 | `isVariableIncludedInTranscript` | boolean | | no | no |  |  |
 | `appendFieldList` | string[] | | no | no |  |  |
 | `createdTime` | datetime | | N/A | N/A |  |  |
 | `createdByAgentId` | integer | | N/A | N/A |  |  |
-| `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included  |
+| `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included.  |
 | `lastUpdatedTime` | datetime | | N/A | N/A |  | |
 | `lastUpdatedByAgentId` | integer | | N/A | N/A |  | |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included |
+| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included. |
 
 ## Endpoint
 
@@ -7314,7 +7314,7 @@ Query string
 | `include` | string | no  | |  Available value: `agent` |
 
 #### Response
-An array of [Conversion Action](#conversion-action-json-format)
+The response is an array of [Conversion Action](#conversion-action-json-format) objects.
 
 #### Example
 
@@ -7384,17 +7384,17 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the conversion action  |
+| `id` | Guid | yes  |  The id of the conversion action.|
 
 Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value:  `agent` |
+| `include` | string | no  | |  Available value:  `agent`. |
 
 #### Response
 
-the response is: [Conversion Action](#conversion-action-json-format) Object
+The response is a [Conversion Action](#conversion-action-json-format) object.
 
 #### Example
 
@@ -7460,7 +7460,7 @@ Content-Type:  application/json
 #### Parameters
 Request body
 
-  The request body contains data with the [Conversion Action](#conversion-action-json-format) structure
+  The request body contains data with the [Conversion Action](#conversion-action-json-format) structure.
 
   example:
 ```Json
@@ -7487,7 +7487,7 @@ Request body
 ```
 
 #### Response
-the response is:[Conversion Action](#conversion-action-json-format) Object
+The response is a [Conversion Action](#conversion-action-json-format) object.
 
 #### Example
 
@@ -7556,11 +7556,11 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  the id of the conversion action  |
+| `id` | Guid | yes  |  The id of the conversion action.|
 
 Request body 
 
-  The request body contains data with the [Conversion Action](#conversion-action-json-format) structure
+  The request body contains data with the [Conversion Action](#conversion-action-json-format) structure.
 
   example:
 ```Json
@@ -7588,7 +7588,8 @@ Request body
 ```
 
 #### Response
-the response is: [Conversion Action](#conversion-action-json-format) Object
+
+The response is a [Conversion Action](#conversion-action-json-format) object.
 
 
 #### Example
@@ -7660,14 +7661,14 @@ The request body contains data with the follow structure:
 
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `conversion_name` | string | yes | |  name of the conversion action. |
-| `visitorId` | string | yes |  | id of visitor|
-| `value` | string  | no |  |  the name of the custom variable, available when conversion action `type` is `customVariable`. |
+| `conversionName` | string | yes | |  Name of the conversion action. |
+| `visitorId` | string | yes |  | Id of visitor.|
+| `value` | string  | no |  |  The name of the custom variable, available when conversion action `type` is `customVariable`. |
 
 example:
 ```Json
   {
-    "conversion_name" : "justfortestupdate", 
+    "conversionName" : "justfortestupdate", 
     "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
   }
 ```
