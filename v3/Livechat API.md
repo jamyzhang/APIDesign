@@ -68,9 +68,9 @@ Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 
 | `isDepartmentEnabled` |boolean || no|  yes || Whether department is enabled or not in the site.|
 | `isAutoTranslationEnabled` |boolean || no | yes || Whether auto translation is enabled or not in the site.|
 | `isAudioAndVideoChatEnabled` |boolean || no | yes ||Whether audio&video chat is enabled or not in the site.|
-| `isCustomerSegmentEnabled` |boolean || no | yes ||Whether customer segment chat is enabled or not in the site.|
+| `isCustomerSegmentEnabled` |boolean || no | yes ||Whether customer segment is enabled or not in the site.|
 | `isVisitorSSOEnabled` |boolean || no | yes||Whether vistor SSO is enabled or not in the site.|
-| `isCreditCardMaskingEnabled` |boolean || no | yes ||Whether Credit card masking is enabled or not in the site.|
+| `isCreditCardMaskingEnabled` |boolean || no | yes ||Whether credit card masking is enabled or not in the site.|
 | `isCustomVariablesEnabled` |boolean || no | yes||Whether custom variables are enabled or not in the site.|
 | `isSalesforceEnabled` |boolean || no | yes ||Whether the Salesforce integration is enabled or not in the site.|
 | `isZendeskEnabled` |boolean || no | yes ||Whether the Zendesk integration is enabled or not in the site.|
@@ -2010,7 +2010,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the chat. |
+| `id` | Guid | yes  |  The unique id of the chat. |
 
 #### Response
 
@@ -2125,7 +2125,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the chat |
+| `id` | Guid | yes  |  The unique id of the chat |
 
 #### Response
 
@@ -2175,7 +2175,6 @@ curl -d '[
     "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
     "44878d68-92e6-4487-a2e8-8234fc9d1f48"
   ]' -X DELETE https://api1.comm100.io/api/v3/livechat/chats
-curl -X DELETE https://api1.comm100.io/api/v3/livechat/chats
 ```
 Response
 ```json
@@ -2199,31 +2198,31 @@ HTTP/1.1 204 No Content
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | yes | no | | Id of the offline message. |
 | `createdTime` | datetime | | no | no | | Time of this offline message submitted. |
-| `ssoUserId` | string | | no | no |  | SSO id of visitor |
-| `name` | string | | no | no |  | Name of the visitor |
-| `email` | string | | no | no |  | Email of the visitor |
-| `phone` | string | | no | no |  | Phone of the visitor |
-| `company` | string | | no | no |  | Company of the visitor |
-| `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to |
-| `department` | [Department](#department) | yes | no | no |  | Available only when department is included |
-| `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to |
-| `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included |
-| `ticketId` | integer | yes | no | no |  | id of the related ticket |
-| `subject` | string | | no | no |  | The subject of this offline message|
-| `message` | string | | no | no | | The content of this offline message |
+| `ssoUserId` | string | | no | no |  | SSO id of visitor. |
+| `name` | string | | no | no |  | Name of the visitor. |
+| `email` | string | | no | no |  | Email of the visitor. |
+| `phone` | string | | no | no |  | Phone of the visitor. |
+| `company` | string | | no | no |  | Company of the visitor. |
+| `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to. |
+| `department` | [Department](#department) | yes | no | no |  | Available only when department is included. |
+| `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to. |
+| `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included. |
+| `ticketId` | integer | yes | no | no |  | id of the related ticket. |
+| `subject` | string | | no | no |  | The subject of this offline message.|
+| `message` | string | | no | no | | The content of this offline message. |
 | `requestingPageTitle` | string | | no | no |  |  |
 | `requestingPageURL` | string | | no | no |  |  |
 | `source` | string | | no | no |  | Including `chatButton` and `autoInvitation` |
 | `autoInvitationId` | Guid | | no | no |  | Available when source is `autoInvitation` |
 | `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | no | no |  | Available only when autoInvitation is included |
-| `campaignId` | Guid | | no | no |  | Id of the campaign |
-| `campaign` | [Campaign](#campaign) | yes | no | no |  | Available only when campaign is included |
-| `sessionId` | Guid | | no | no |  | Id of the session |
-| `session` | [Session](#session) | yes | no | no |  | Available only when session is included |
-| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | An array of [Customer Segment](#customer-segment) |
+| `campaignId` | Guid | | no | no |  | Id of the campaign. |
+| `campaign` | [Campaign](#campaign) | yes | no | no |  | Available only when campaign is included. |
+| `sessionId` | Guid | | no | no |  | Id of the session. |
+| `session` | [Session](#session) | yes | no | no |  | Available only when session is included. |
+| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | An array of [Customer Segment](#customer-segment). |
 | `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | Values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
 | `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | Information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
-| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | The attachment file data |
+| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | The attachment file data. |
 
 ### Attachment JSON format
 
@@ -2264,7 +2263,7 @@ Query string
 | `visitorSegmentId` | guid | no  |  | Id of the visitor segment which the visitor belongs to. |
 | `keywords` | string | no  |  | Search subject or message by keywords. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
-| `pageSize` | integer | no  | 50 | Page size,  |
+| `pageSize` | integer | no  | 50 | Page size. |
 
 #### Response
 
@@ -2576,7 +2575,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2664,7 +2663,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -2718,7 +2717,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2762,7 +2761,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2841,7 +2840,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -2882,7 +2881,7 @@ Content-Type:  application/json
   "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "tset"
+  "textLinkButtonText": "test"
 }
 ```
 
@@ -2898,7 +2897,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -2924,7 +2923,7 @@ example:
   "imageButtonColorOnMobile": "#329fd9",
   "imageButtonTextColorOnMobile": "#329fd9",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "tset111111"
+  "textLinkButtonText": "test111111"
 }
 ```
 
@@ -2985,7 +2984,7 @@ Content-Type:  application/json
   "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "tset111111"
+  "textLinkButtonText": "test111111"
 }
 ```
 
@@ -3002,8 +3001,6 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `width` | integer | no | no | | |
-| `height` | integer | no | no | | |
 | `style` | string | no | no | |  Style of the window's theme, including `classic`, `circle` and `bubble`. |
 | `color` | string | no | no | |  Color of the window's theme. |
 | `type` | string | no | no | | Type of the chat window, including `embedded` and `popup`. |
@@ -3034,7 +3031,7 @@ Content-Type:  application/json
 | `isVideoChatEnabled` | boolean | no | no | | Whether the agent can use video chat. |
 | `isBrowserPopupNotificationEnabled` | boolean | no | no | | It is available for private server sites. For shared server clients, the push notification is disabled by default. |
 | `ifEndChatWhenVisitorIsInactive` | boolean | no | no | | Automatically end chats if visitors don't respond in period of time. |
-| `minutesOfVisitorInactivity` | integer | no | no | | Including `3`, `5`, `10`, `15`, `20`, `30` and `60`. |
+| `minutesOfVisitorInactivity` | integer | no | no | | Including `3`, `5`, `10`, `15`, `20`, `30` and `60`. (unit :minute) |
 | `isTranscriptSentForArchiving` | boolean | no | no | | |
 | `receivingEmailAddressesForArchivingTranscripts` | string | no | no | | |
 | `emailSubjectForArchivingTranscripts` | string | no | no | | |
@@ -3069,7 +3066,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3088,8 +3085,6 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#329fd9",
   "type": "popup",
@@ -3128,7 +3123,7 @@ Content-Type:  application/json
   "isVideoChatEnabled":  false,
   "isBrowserPopupNotificationEnabled": false,
   "ifEndChatWhenVisitorIsInactive":  false,
-  "minutesOfVisitorInactivity": 1,
+  "minutesOfVisitorInactivity": 3,
   "isTranscriptSentForArchiving": false,
   "receivingEmailAddressesForArchivingTranscripts": "",
   "emailSubjectForArchivingTranscripts": "",
@@ -3150,7 +3145,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3159,8 +3154,6 @@ Request Body
 example:
 ```Json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3196,7 +3189,7 @@ example:
   "isVideoChatEnabled":  false,
   "isBrowserPopupNotificationEnabled": false,
   "ifEndChatWhenVisitorIsInactive":  false,
-  "minutesOfVisitorInactivity": 1,
+  "minutesOfVisitorInactivity": 3,
   "isTranscriptSentForArchiving": false,
   "receivingEmailAddressesForArchivingTranscripts": "",
   "emailSubjectForArchivingTranscripts": "",
@@ -3215,8 +3208,6 @@ The response is a [Chat Window](#Chat-Window-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3252,7 +3243,7 @@ curl -H "Content-Type: application/json" -d '{
   "isVideoChatEnabled":  false,
   "isBrowserPopupNotificationEnabled": false,
   "ifEndChatWhenVisitorIsInactive":  false,
-  "minutesOfVisitorInactivity": 1,
+  "minutesOfVisitorInactivity": 3,
   "isTranscriptSentForArchiving": false,
   "receivingEmailAddressesForArchivingTranscripts": "",
   "emailSubjectForArchivingTranscripts": "",
@@ -3267,8 +3258,6 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3307,7 +3296,7 @@ Content-Type:  application/json
   "isVideoChatEnabled":  false,
   "isBrowserPopupNotificationEnabled": false,
   "ifEndChatWhenVisitorIsInactive":  false,
-  "minutesOfVisitorInactivity": 1,
+  "minutesOfVisitorInactivity": 3,
   "isTranscriptSentForArchiving": false,
   "receivingEmailAddressesForArchivingTranscripts": "",
   "emailSubjectForArchivingTranscripts": "",
@@ -3354,7 +3343,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3435,7 +3424,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 Request Body
 
@@ -3530,7 +3519,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3568,7 +3557,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3652,7 +3641,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 #### Response
 
@@ -3701,7 +3690,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3808,7 +3797,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3898,7 +3887,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3976,7 +3965,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 #### Response
 
@@ -4027,7 +4016,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -4160,7 +4149,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4228,8 +4217,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
-| `id` | Guid | yes  |  The unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
+| `id` | Guid | yes  |  The unique id of the auto invitation |
 
 #### Response
 
@@ -4299,7 +4288,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -4438,8 +4427,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
-| `id` | Guid | yes  |  The unique Id of the auto invitation. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the auto invitation. |
 
 Request Body
 
@@ -4576,8 +4565,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
-| `id` | Guid | yes  |  The unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
+| `id` | Guid | yes  |  The unique id of the auto invitation |
 
 #### Response
 
@@ -4622,7 +4611,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4657,7 +4646,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -4768,7 +4757,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -4809,7 +4798,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -4901,7 +4890,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -4975,7 +4964,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  the unique id of the campaign. |
 
 Request Body
 
@@ -5096,7 +5085,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Query string
 
@@ -5167,8 +5156,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the custom rule. |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -5238,7 +5227,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 Request Body
 
@@ -5372,8 +5361,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the custom rule. |
-| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 Request Body
 
@@ -5505,8 +5494,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the custom rule. |
-| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 #### Response
 
@@ -5559,7 +5548,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -5634,7 +5623,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -5723,7 +5712,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 #### Response
 
@@ -5764,7 +5753,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -5940,7 +5929,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 #### Response
 
@@ -6009,7 +5998,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6147,7 +6136,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6216,7 +6205,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6354,7 +6343,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6423,7 +6412,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6561,7 +6550,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6630,7 +6619,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6768,8 +6757,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6835,8 +6824,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6974,8 +6963,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
