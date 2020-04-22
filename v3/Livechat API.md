@@ -1,6 +1,6 @@
 ﻿# Live Chat Restful API
 
-Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 Live Chat into your own systems yes.
+Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 Live Chat into your own systems.
 
 | Change Version | API Version | Change note | Change Date | Author |
 | - | - | - | - | - |
@@ -91,7 +91,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 #### Response
 
-the response is a [Settings](#settings-object) object.
+The response is a [Settings](#settings-object) object.
 
 #### Example
 
@@ -136,7 +136,7 @@ You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permi
 
 Request body
 
-  The request body contains data with the [Settings](#settings-object) Object structure.
+  The request body contains data with the [Settings](#settings-object) object structure.
 
 example:
 
@@ -164,7 +164,7 @@ example:
 
 #### Response
 
-the response is a [Settings](#settings-object) object.
+The response is a [Settings](#settings-object) object.
 
 #### Example
 
@@ -271,7 +271,7 @@ Agent Auto Distribution Object is represented as simple flat JSON objects with t
 
 #### Response
 
-the response is an [Auto Distribution](#auto-distribution-object) object.
+The response is an [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
@@ -353,7 +353,7 @@ example:
 
 #### Response
 
-the response is an [Auto Distribution](#auto-distribution-object) object.
+The response is an [Auto Distribution](#auto-distribution-object) object.
 
 #### Example
 
@@ -417,8 +417,8 @@ Content-Type:  application/json
 
 # Translation Excluded Words
 
-You need `Manage Settings` permission to manage `Translation Excluded Word`.
-- `GET /api/v3/livechat/translationExcludedWords` - [Get a list of translation excluded word](#get-a-list-of-translation-excluded-word)
+You need `Manage Settings` permission to manage `Translation Excluded Words`.
+- `GET /api/v3/livechat/translationExcludedWords` - [Get translation excluded words](#get-a-list-of-translation-excluded-word)
 - `PUT /api/v3/livechat/translationExcludedWords` - [Update a translation excluded word](#update-a-translation-excluded-word)
 
 ## Translation Excluded Word Related Objects Json Format
@@ -429,11 +429,11 @@ Translation Excluded Word is represented as simple flat JSON objects with the fo
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `excludedWords` |string[]  || no | yes || content of translation excluded word.
+| `excludedWords` |string[]  || no | yes || Content of translation excluded word.
 
 ## Endpoints
 
-### Get a list of translation excluded word
+### Get translation excluded words
 
   `GET /api/v3/livechat/translationExcludedWords`
 
@@ -443,7 +443,7 @@ Translation Excluded Word is represented as simple flat JSON objects with the fo
 
 #### Response
 
-the response is an array of [Translation Excluded Word](#translation-excluded-word) objects
+The response is an array of [Translation Excluded Word](#translation-excluded-word) objects
 
 #### Example
 
@@ -465,7 +465,7 @@ Content-Type:  application/json
 }
 ```
 
-### Update a translation excluded word
+### Update translation excluded words
 
 You need `Manage Settings` permission to manage `Translation Excluded Word`.
 
@@ -475,7 +475,7 @@ You need `Manage Settings` permission to manage `Translation Excluded Word`.
 
 Request body
 
-  The request body contains data with the [Translation Excluded Word](#translation-excluded-word) object structure
+  The request body contains data with the [Translation Excluded Word](#translation-excluded-word) object. structure
 
 example:
 ```Json
@@ -488,7 +488,7 @@ example:
 ```
 #### Response
 
-the response is an [Translation Excluded Word](#translation-excluded-word) objects.
+The response is a [Translation Excluded Word](#translation-excluded-word) object.
 
 #### Example
 
