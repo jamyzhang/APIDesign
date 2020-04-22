@@ -221,19 +221,19 @@ Content-Type:  application/json
   | `isTrained` | bool  | | N/A | N/A | false | if the bot is trained |  
   | `greetingMessageInChannels` | [GreetingMessageInChannel](#GreetingMessageInChannel-object)[]  | yes | no | no | | Available only when greetingMessageInChannels are included | 
   | `noAnswerMessageInChannels` | [NoAnswerMessageInChannel](#NoAnswerMessageInChannel-Object)[]  | yes | no | no | | Available only when noAnswerMessageInChannels are included |  
-  | `messageWhenNotHelpful` | string  | | no | no |  I am sorry that this doesn't answer your question. Please click on following button to connect to an agent.  | not helpful message |  
+  | `messageWhenNotHelpful` | string  | | no | no |  I'm sorry to hear that wasn't helpful 😞. If you'd like, I can connect you to a human for assistance.  | not helpful message |  
   | `ifIncludeContactAgentOptionWhenNotHelpful` | bool  | | no | no | true | is show agent link when not helpful from bot |  
-  | `messageWhenProvidingPossibleAnswer` | string  | | no | no | It seems that none of these links answers your question. Please click on following button to connect to an agent. | The defined message which is displayed before listing the possible answers |  
+  | `messageWhenProvidingPossibleAnswer` | string  | | no | no | Hmm... Do any of these topics match what you're looking for? | The defined message which is displayed before listing the possible answers |  
   | `consecutiveTimesOfPossibleAnswers` | integer  | | no | no | 3 |The number of times bot can provide possible answers consecutively before displaying the customized message |  
   | `messageAfterSeveralConsecutivePossibleAnswersInChannels` | [MessageAfterSeveralConsecutivePossibleAnswersInChannel](#MessageAfterSeveralConsecutivePossibleAnswersInChannel-Object)[]  | yes | no | no | Available only when messageAfterSeveralConsecutivePossibleAnswersInChannels are included |  
-  | `messageAfterVisitorChooseToContactAgent` | string  | | no | no |  You may leave your message here for us to check later. Kinkly note that you cannot reconnect to bot at this stage. | If the visitor clicks Contact an Agent in Facebook Messenger or Twitter Direct Message, the bot will send this message to tell visitor that he can leave a message to agent now |  
+  | `messageAfterVisitorChooseToContactAgent` | string  | | no | no |  We are connecting you to a human agent. |  
   | `contactAgentButtonTextWhenOnline` | string  | | no | no | Chat with Human Agent | agent is online text|  
   | `contactAgentButtonTextWhenOffline` | string  | | no | no | Leave a Message | agent is offline text  |  
   | `formSubmitButtonText` | string  | | no | no | Submit | submit button text |  
   | `formCancelButtonText` | string  | | no | no | Cancel | cancel button text |  
   | `formConfirmButtonText` | string  | | no | no | Confirm | confirm button text |  
   | `highConfidenceScore` | integer  | | no | no | 40 | When visitors send a message, Bot will match it with all of your intents. If the top matching score(matching score ranges from 0 to 100) is higher than the High Confidence Answer Score, Bot will send the answer of the top score intent to visitors |  
-  | `noAnswerScore` | integer | | no | no | 20 | When visitors send a message, Bot will match it with all of your intents. If the top macthing score(matching score ranges from 0 to 100) is between the High Confidence Answer Score and No Answer Score, Bot will send the answer of the top score intent as a possible answer to visitors; if the top matching score is lower than the No Answer Score, Bot will send the message configured for When Visitor Question Is Not Recognized. |
+  | `noAnswerScore` | integer | | no | no | 10 | When visitors send a message, Bot will match it with all of your intents. If the top macthing score(matching score ranges from 0 to 100) is between the High Confidence Answer Score and No Answer Score, Bot will send the answer of the top score intent as a possible answer to visitors; if the top matching score is lower than the No Answer Score, Bot will send the message configured for When Visitor Question Is Not Recognized. |
   | `lastUpdatedTime` | datetime  | | N/A | N/A | | This attribute stores the last updated time for a chatbot. Once the chatbot or any sub attribute of the chatbot is edited, this value will be changed to the current time |
   |`thirdPartyWebhook` | [Webhook](#Webhook-object) | | no | no | | [Webhook](#Webhook-object) object, Only available when engineType is `thirdParty`  | 
   | `enabledChannels` | string[]  | | no | no | | list of channel, eg: [`Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`]  |  
@@ -280,7 +280,7 @@ Query string
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - |
   | `channel` | string | no  |  | filter by enabled channel |
-  | `include` | string | no  | |  Available value: `greetingMessageInChannel`,`noAnswerMessageInChannel`, `messageAfterSeveralConsecutivePossibleAnswersInChannel` |
+  | `include` | string | no  | |  Available value: `greetingMessageInChannels`,`noAnswerMessageInChannels`, `messageAfterSeveralConsecutivePossibleAnswersInChannels` |
 
 
 #### Response
@@ -594,7 +594,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - |  - | 
-  | `include` | string | no  | |  Available value: `greetingMessageInChannel`,`noAnswerMessageInChannel`, `messageAfterSeveralConsecutivePossibleAnswersInChannel`,`intent` |
+  | `include` | string | no  | |  Available value: `greetingMessageInChannels`,`noAnswerMessageInChannels`, `messageAfterSeveralConsecutivePossibleAnswersInChannels`,`intent` |
   
 #### Response
 the response is: [Bot](#bot-object) Object
@@ -2077,7 +2077,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |     
   | - | - | - | - | - | 
-  | `include` | string | no  |  | Available value: `category`, `question`, `answerInChannel` |
+  | `include` | string | no  |  | Available value: `category`, `questions`, `answerInChannels` |
   | `categoryId` | Guid | no  |  | id of the category, filter by category |
   | `keyword` | string | no  |  | search intents by intent name or question using the keyword |
 
@@ -5966,7 +5966,7 @@ Query string
   | Name  | Type | Required| Default  | Description |     
   | - | - | - | - | - | 
   | `keyword` | string | no  | |  search entity name or keyword or synonym by the keyword |
-  | `include` | string | no  | | Available value: `entityKeyword`  | 
+  | `include` | string | no  | | Available value: `keywords`  | 
 
 #### Response
 the response is: list of [Entity](#entity-object) Objects
@@ -5974,7 +5974,7 @@ the response is: list of [Entity](#entity-object) Objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities?include=entityKeyword
+curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/chatbot/bots/f9928d68-92e6-4487-a2e8-8234fc9d1f48/entities?include=keywords
 ```
 Response
 ```Json
@@ -5985,7 +5985,7 @@ Response
     {      
       "id":"aaa8sc9d-92e6-4487-a2e8-92e68d6892e6",
       "name": "size",
-      "keywords": [   //include entityKeyword
+      "keywords": [   //include keywords
         {
           "id":"11e8sc9d-92e6-4487-a2e8-92e68d6892e6",
           "content":"small",
@@ -5996,7 +5996,7 @@ Response
     {
       "id":"gg2341sa-92e6-4487-a2e8-92e68d6892e6",
       "name": "city",   
-      "keywords": [   //include entityKeyword
+      "keywords": [   //include keywords
         {
           "id":"22e8sc9d-92e6-4487-a2e8-92e68d6892e6",
           "content":"beijing",
@@ -6532,7 +6532,7 @@ Path parameters
 
   | Name  | Type | Required | Default | Description |     
   | - | - | - | - | - |  
-  | `include` | string | no  |  | Available value: `smartTriggerCondition`, `smartTriggerAction` |
+  | `include` | string | no  |  | Available value: `conditions`, `actions` |
 
 #### Response    
 the response is: list of [Smart Trigger](#Smart-Trigger) Objects
@@ -7402,7 +7402,7 @@ Query string
   | Name  | Type | Required | Default | Description |     
   | - | - | - | -  | - | 
   | `type` | string | no  | | Available value: `custom`, `canned` |
-  | `include` | string | no | |  Available value: `quickReplyItem`  |
+  | `include` | string | no | |  Available value: `items`  |
 
 #### Response
 the response is: list of [QuickReply](#quick-reply-object) Objects
