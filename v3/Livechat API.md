@@ -7299,6 +7299,18 @@ HTTP/1.1 204 No Content
 | `lastUpdatedByAgentId` | integer | | N/A | N/A |  | |
 | `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included. |
 
+
+### Conversion Achieved JSON Format
+
+  `Conversion Achieved` is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Include | Read-only | Mandatory | Default | Description |
+| - | - | - | :-: | :-: | :-: | - |
+| `conversionName` | string | | no | yes | | Name of the conversion action. |
+| `visitorId` | Guid | | no | yes | | Id of visitor, visitor must be online. |
+| `value` | double | | no| yes | | The value of this conversion.|
+
+
 ## Endpoint
 
 ### Get list of conversion actions
@@ -7657,29 +7669,20 @@ Response
 
 Request body
 
-The request body contains data with the follow structure:
-
-| Name | Type | Required | Default | Description |
-| - | - | :-: | :-: | - |
-| `conversionName` | string | yes | |  Name of the conversion action. |
-| `visitorId` | string | yes |  | Id of visitor.|
-| `value` | string  | no |  |  The name of the custom variable, available when conversion action `type` is `customVariable`. |
+ The request body contains data with the [Conversion Achieved](#conversion-achieved-json-format) structure.
 
 example:
 ```Json
   {
-    "conversionName" : "justfortestupdate", 
-    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
+    "conversionName" : "justfortestupdate",
+    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
+    "value": 1.5
   }
 ```
 
 #### Response
-The response body contains data with the follow structure:
 
-| Name | Type | Required | Default | Description |
-| - | - | :-: | :-: | - |
-| `code` | string | no | no |  0: ok; 1: the conversion name does not exist; 2: the visitorId does not exist; 3: error adding conversion-related Data to system. |
-| `message` | string | no | no | error message. |
+The response is a [Conversion Achieved](#conversion-achieved-json-format) object.
 
 #### Example
 
@@ -7687,7 +7690,8 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "conversion_name" : "justfortestupdate", 
-    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", "value": "test"
+    "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7", 
+    "value": 1.5
   }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions/achieved
 ```
 Response
@@ -7695,8 +7699,9 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-    "code": 0,
-    "message": "ok",
+  "conversionName" : "justfortestupdate",
+  "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
+  "value": 1.5
 }
 ```
 
