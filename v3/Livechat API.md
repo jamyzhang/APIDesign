@@ -98,7 +98,7 @@ The response is a [Settings](#settings-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/settings
+-X GET https://api1.comm100.io/api/v3/livechat/settings
 ```
 
 Response
@@ -188,7 +188,7 @@ curl -H "Content-Type: application/json" -d '{
     "isGotoMeetingEnabled": true,
     "isJoinmeEnabled": true,
     "isCobrowsingEnabled":true
-}' -X PUT https://domain.comm100.com/api/v3/livechat/settings
+}' -X PUT https://api1.comm100.io/api/v3/livechat/settings
 ```
 
 Response
@@ -279,7 +279,7 @@ Using curl:
 
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/autoDistribution
+-X GET https://api1.comm100.io/api/v3/livechat/autoDistribution
 ```
 
 Response
@@ -383,7 +383,7 @@ curl -H "Content-Type: application/json" -d '{
     },
     ...
   ]
-}' -X PUT https://domain.comm100.com/api/v3/livechat/autoDistribution
+}' -X PUT https://api1.comm100.io/api/v3/livechat/autoDistribution
 ```
 
 Response
@@ -450,7 +450,7 @@ The response is a [Translation Excluded Words](#translation-excluded-words-objec
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/translationExcludedWords
+-X GET https://api1.comm100.io/api/v3/livechat/translationExcludedWords
 ```
 
 Response
@@ -499,7 +499,7 @@ curl -H "Content-Type: application/json" -d '{
     "Hello",
     "Hi"
   ]
-}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
+}' -X PUT https://api1.comm100.io/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
 Response
@@ -584,7 +584,7 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET  https://domain.comm100.com/api/v3/livechat/customerSegments
+-X GET  https://api1.comm100.io/api/v3/livechat/customerSegments
 ```
 
 Response
@@ -639,7 +639,7 @@ The response is a [customer segment](#customer-segment-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -735,13 +735,13 @@ curl -H "Content-Type: application/json" -d '{
        "agentIds":[4,5],
        "departmentIds":[]
   }
-}' -X POST https://domain.comm100.com/api/v3/livechat/customerSegments
+}' -X POST https://api1.comm100.io/api/v3/livechat/customerSegments
 ```
 
 Response
 ```Json
 HTTP/1.1 201 Created
-Location: https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 Content-Type:  application/json
 {
   "name": "livechat15293908029",
@@ -808,7 +808,7 @@ curl -H "Content-Type: application/json" -d '{
        "agentIds":[4,5],
        "departmentIds":[]
   }
-}' -X PUT https://domain.comm100.com/api/v3/livechat/customerSegments
+}' -X PUT https://api1.comm100.io/api/v3/livechat/customerSegments
 ```
 
 Response
@@ -861,7 +861,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```shell
-curl -X DELETE  https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE  https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -925,7 +925,7 @@ the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/dynamicCampaign?include=Campaign
+-X GET https://api1.comm100.io/api/v3/livechat/dynamicCampaign?include=Campaign
 ```
 
 Response
@@ -1036,7 +1036,7 @@ curl -H "Content-Type: application/json" -d '
       "order":1
     }
   ]
-}' -X PUT https://domain.comm100.com/api/v3/livechat/dynamicCampaign
+}' -X PUT https://api1.comm100.io/api/v3/livechat/dynamicCampaign
 ```
 
 Response
@@ -1125,7 +1125,7 @@ The response is [Mobile Push](#moble-push-object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/mobilePush
+-X GET https://api1.comm100.io/api/v3/livechat/mobilePush
 ```
 Response
 ```Json
@@ -1208,7 +1208,7 @@ curl -H "Content-Type: application/json" -d '{
   "androidThirdPartyURL": "",
   "androidThirdPartyRequestHeaders": "",
   "androidThirdPartyRequestBody": "",
-}' -X PUT https://domain.comm100.com/api/v3/livechat/mobilePush
+}' -X PUT https://api1.comm100.io/api/v3/livechat/mobilePush
 ```
 Response
 ```Json
@@ -1269,7 +1269,7 @@ The response is an array of [Live Chat Agent](#live-chat-agent-object) objects.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/agents
+-X GET https://api1.comm100.io/api/v3/livechat/agents
 ```
 
 Response
@@ -1307,7 +1307,7 @@ The response is a [Live Chat Agent](#live-chat-agent-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/agents/1
+-X GET https://api1.comm100.io/api/v3/livechat/agents/1
 ```
 
 Response
@@ -1354,7 +1354,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
   "status": "Online"
-}' -X PUT https://domain.comm100.com/api/v3/livechat/agents/1
+}' -X PUT https://api1.comm100.io/api/v3/livechat/agents/1
 ```
 
 Response
@@ -1458,7 +1458,7 @@ The response is an array of [Live Chat Visitor](#live-chat-visitor-object) objec
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/visitors?status=chatting
+-X GET https://api1.comm100.io/api/v3/livechat/visitors?status=chatting
 ```
 Response
 ```Json
@@ -1473,7 +1473,7 @@ Content-Type:  application/json
       "city": "Changsha",
       "company": "",
       "country": "China",
-      "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "currentBrowsing": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "customFields": null,
       "customVariableResults": [
         {
@@ -1488,7 +1488,7 @@ Content-Type:  application/json
       "flash_version": "",
       "ip": "218.76.52.108",
       "searchKeywords": "",
-      "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "landing_page": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "language": "zh-CN",
       "name": "218.76.52.108",
       "operating_system": "Windows 10",
@@ -1529,7 +1529,7 @@ The response is an array of [Live Chat Visitor](#live-chat-visitor-object) objec
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+-X GET https://api1.comm100.io/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 Response
 ```Json
@@ -1543,7 +1543,7 @@ Content-Type:  application/json
   "city": "Changsha",
   "company": "",
   "country": "China",
-  "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "currentBrowsing": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "customFields": null,
   "customVariableResults": [
     {
@@ -1558,7 +1558,7 @@ Content-Type:  application/json
   "flash_version": "",
   "ip": "218.76.52.108",
   "searchKeywords": "",
-  "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "landing_page": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
   "operating_system": "Windows 10",
@@ -1624,7 +1624,7 @@ curl -H "Content-Type: application/json" -d '[
         },
         ...
       ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
 Response
@@ -1639,7 +1639,7 @@ Content-Type:  application/json
   "city": "Changsha",
   "company": "",
   "country": "China",
-  "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "currentBrowsing": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "customFields": null,
   "customVariableResults": [
     {
@@ -1654,7 +1654,7 @@ Content-Type:  application/json
   "flash_version": "",
   "ip": "218.76.52.108",
   "searchKeywords": "",
-  "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "landing_page": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
   "operating_system": "Windows 10",
@@ -1729,7 +1729,7 @@ The response is a [Session](#session-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/sessions/12?include=visitor
+-X GET https://api1.comm100.io/api/v3/livechat/sessions/12?include=visitor
 ```
 Response
 ```json  
@@ -1901,7 +1901,7 @@ The response body contains data with the follow structure:
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session&conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test
+-X GET https://api1.comm100.io/api/v3/livechat/chats?include=campaign,autoInvitation,session&conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test
 ```
 Response
 ```json  
@@ -1909,7 +1909,7 @@ Response
 {
     "totalCount": 28,
     "previousPage": "",
-    "nextPage": "https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session&pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/livechat/chats?include=campaign,autoInvitation,session&pageIndex=2",
     "list": [
         {
             "id": "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
@@ -2022,7 +2022,7 @@ the response is a [Chat](#Chat-object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231?include=campaign,autoInvitation,session
+-X GET https://api1.comm100.io/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231?include=campaign,autoInvitation,session
 ```
 Response
 ```json  
@@ -2136,7 +2136,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231
 ```
 Response
 ```json
@@ -2175,8 +2175,8 @@ curl -d '[
     "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
     "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
     "44878d68-92e6-4487-a2e8-8234fc9d1f48"
-  ]' -X DELETE https://domain.comm100.com/api/v3/livechat/chats
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats
+  ]' -X DELETE https://api1.comm100.io/api/v3/livechat/chats
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/chats
 ```
 Response
 ```json
@@ -2283,7 +2283,7 @@ The response body contains data with the follow structure:
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session
+-X GET https://api1.comm100.io/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session
 ```
 Response
 ```json  
@@ -2291,7 +2291,7 @@ Response
 {
     "total": 28,
     "previousPage": "",
-    "nextPage": "https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session&pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session&pageIndex=2",
     "offlineMessages": [
         {
             "id": "3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c",
@@ -2351,7 +2351,7 @@ Response
             "customerSegments": [],
             "attachment":{
               "name":"test.png",
-              "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+              "uri":"https://api1.comm100.io/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
             }
         },
         ...
@@ -2385,7 +2385,7 @@ the response is: [Offline Message](#offline-message-json-format) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation, session
+-X GET https://api1.comm100.io/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation, session
 ```
 Response
 ```json  
@@ -2440,7 +2440,7 @@ Response
     "customerSegments": [],
     "attachment":{
       "name":"test.png",
-      "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+      "uri":"https://api1.comm100.io/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
     }
 }
 ```
@@ -2465,7 +2465,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c
 ```
 Response
 ```json
@@ -2502,7 +2502,7 @@ curl -d '[
     "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
     "44878d68-92e6-4487-a2e8-8234fc9d1f48"
-  ]' -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages
+  ]' -X DELETE https://api1.comm100.io/api/v3/livechat/offlineMessages
 ```
 Response
 ```json
@@ -2549,7 +2549,7 @@ The response is an array of [Campaign](#Campaign-Object) objects.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns
 ```
 
 Response
@@ -2588,7 +2588,7 @@ The response is a [Campaign](#Campaign-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9
 ```
 
 Response
@@ -2636,14 +2636,14 @@ curl -H "Content-Type: application/json" -d '{
   "name": "campaigns11111",
   "description": "campaigns",
   "language": "English"
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 
 {
   "id": "FAE531BE-8CAD-207D-57B9-493BBCC6E585",
@@ -2692,7 +2692,7 @@ curl -H "Content-Type: application/json" -d '{
   "name": "campaigns2222",
   "description": "campaigns",
   "language": "English"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 ```
 
 Response
@@ -2729,7 +2729,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 ```
 
 Response
@@ -2774,7 +2774,7 @@ The response is a [Installation Code](#Installation-Code-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/installationCode
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/installationCode
 ```
 
 Response
@@ -2786,8 +2786,8 @@ Content-Type:  application/json
     <div id=\"livechat-button-1\"></div>
       <script type=\"text/javascript\">
         var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement(\"script\"),c=document.getElementsByTagName(\"script\")[0];a.type=\"text/javascript\",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:1,div_id:\"livechat-button-1\"}),t.site_id=[SiteId],t.main_code_plan=1,e(\"  
-        https://domain.comm100.com/chatserver/livechat.ashx?siteId=\"),setTimeout(function(){t.loaded||e(\"  
-        https://domain.comm100.com/chatserver/livechat.ashx?siteId=\")},5e3)})(Comm100API||{})
+        https://api1.comm100.io/chatserver/livechat.ashx?siteId=\"),setTimeout(function(){t.loaded||e(\"  
+        https://api1.comm100.io/chatserver/livechat.ashx?siteId=\")},5e3)})(Comm100API||{})
       </script>
     <!--End Tester Code-->"
 }
@@ -2853,7 +2853,7 @@ The response is a [Chat Button](#Chat-Button-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatButton
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatButton
 ```
 
 Response
@@ -2956,7 +2956,7 @@ curl -H "Content-Type: application/json" -d '{
   "imageButtonTextColorOnMobile": "#329fd9",
   "imageButtonPositionOnMobile": "bottomLeft",
   "textLinkButtonText": "tset111111"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatButton
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatButton
 ```
 
 Response
@@ -3081,7 +3081,7 @@ The response is a [Chat Window](#Chat-Window-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatWindow
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatWindow
 ```
 
 Response
@@ -3260,7 +3260,7 @@ curl -H "Content-Type: application/json" -d '{
   "greetingMessage": "",
   "isCustomJSEnabled": false,
   "customJS": ""
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatWindow
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatWindow
 ```
 
 Response
@@ -3366,7 +3366,7 @@ The response is a [Pre-Chat](#Pre-Chat-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat
 ```
 
 Response
@@ -3479,7 +3479,7 @@ curl -H "Content-Type: application/json" -d '{
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat
 ```
 
 Response
@@ -3542,7 +3542,7 @@ The response is a [Post Chat](#Post-Chat-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat
 ```
 
 Response
@@ -3597,7 +3597,7 @@ curl -H "Content-Type: application/json" -d '{
   "fields":  [],
   "greetingMessage": "",
   "formFieldLayoutStyle": "leftofInput"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
 ```
 
 Response
@@ -3664,7 +3664,7 @@ The response is a [Campaign Offline Message](#Campaign-Offline-Message-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage
 ```
 
 Response
@@ -3753,7 +3753,7 @@ curl -H "Content-Type: application/json" -d '{
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
   "fields":  []
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
 ```
 
 Response
@@ -3820,7 +3820,7 @@ The response is a [Invitation](#Invitation-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation
 ```
 
 Response
@@ -3922,7 +3922,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "style": "bubble"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
 ```
 
 Response
@@ -3988,7 +3988,7 @@ The response is a [Manual Invitation](#Manual-Invitation-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/manualInvitation
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/manualInvitation
 ```
 
 Response
@@ -4079,7 +4079,7 @@ curl -H "Content-Type: application/json" -d '{
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
   "manualInvitationTextColor": "#339FD9"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/manualInvitation
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/manualInvitation
 ```
 
 Response
@@ -4172,7 +4172,7 @@ The response is an array of [Auto Invitation](#Auto-Invitation-Object) objects.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations
 ```
 
 Response
@@ -4241,7 +4241,7 @@ The response is: [Auto Invitation](#Auto-Invitation-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 ```
 
 Response
@@ -4381,14 +4381,14 @@ curl -H "Content-Type: application/json" -d '{
     },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 
 {
   "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
@@ -4521,7 +4521,7 @@ curl -H "Content-Type: application/json" -d '{
     },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 ```
 
 Response
@@ -4588,7 +4588,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 ```
 
 Response
@@ -4634,7 +4634,7 @@ The response is an [Agent Wrap-Up](#Agent-Wrap-Up-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup
 ```
 
 Response
@@ -4718,7 +4718,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "fields":  []
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup
 ```
 
 Response
@@ -4780,7 +4780,7 @@ the response is: [Language](#Language-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/language
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/language
 ```
 
 Response
@@ -4843,7 +4843,7 @@ curl -H "Content-Type: application/json" -d '{
     "systemName": "chatwindow",
     "customText": "chatwindowcustom"
   }
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/language
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/language
 ```
 
 Response
@@ -4919,7 +4919,7 @@ The response is a [Routing](#Routing-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing?include=department
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing?include=department
 ```
 
 Response
@@ -5021,7 +5021,7 @@ curl -H "Content-Type: application/json" -d '{
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
   "emailsToReceiveOfflineMessage": ""
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing
 ```
 
 Response
@@ -5114,7 +5114,7 @@ the response is: [Custom Rule](#Custom-Rule-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules?include=department
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules?include=department
 ```
 
 Response
@@ -5186,7 +5186,7 @@ the response is: [Custom Rule](#Custom-Rule-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F?include=department
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F?include=department
 ```
 
 Response
@@ -5318,14 +5318,14 @@ curl -H "Content-Type: application/json" -d '{
     },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
 
 {
   "id": "02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F",
@@ -5453,7 +5453,7 @@ curl -H "Content-Type: application/json" -d '{
     },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
 ```
 
 Response
@@ -5517,7 +5517,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
 ```
 
 Response
@@ -5577,7 +5577,7 @@ The response is a [Chatbot Integration](#Chatbot-Integration-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatbotIntegration?include=chatbot
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatbotIntegration?include=chatbot
 ```
 
 Response
@@ -5672,7 +5672,7 @@ curl -H "Content-Type: application/json" -d '{
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatbotIntegration
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatbotIntegration
 ```
 
 Response
@@ -5735,7 +5735,7 @@ The response is a [KB Integration](#KB-Integration-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/KBIntegration
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/KBIntegration
 ```
 
 Response
@@ -5800,7 +5800,7 @@ curl -H "Content-Type: application/json" -d '{
   "isSearchAllowedBeforeOfflineMessage": false,
   "greetingMessageBeforeOfflineMessage": "",
   "articlesShowedInSearchResult": 1
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/KBIntegration
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/KBIntegration
 ```
 
 Response
@@ -5952,7 +5952,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat/campaignFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat/campaignFormFields
 ```
 
 Response
@@ -6093,14 +6093,14 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat/campaignFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat/campaignFormFields
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
 
 {
   "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
@@ -6159,7 +6159,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat/campaignFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat/campaignFormFields
 ```
 
 Response
@@ -6300,14 +6300,14 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat/campaignFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat/campaignFormFields
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
 
 {
   "id": "8FD2DBE6-4653-1705-F791-F2C648A11FC7",
@@ -6366,7 +6366,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage/campaignFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage/campaignFormFields
 ```
 
 Response
@@ -6507,14 +6507,14 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage/campaignFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage/campaignFormFields
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
 
 {
   "id": "6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA",
@@ -6573,7 +6573,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup/campaignFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup/campaignFormFields
 ```
 
 Response
@@ -6714,14 +6714,14 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup/campaignFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup/campaignFormFields
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
 
 {
   "id": "5994A98C-CF88-1B8E-2909-CA81E0C1B469",
@@ -6781,7 +6781,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6920,7 +6920,7 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6986,7 +6986,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -7046,7 +7046,7 @@ The response is an array of [Ban](#ban-json-format) objects.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/bans?include=visitor,agent
+-X GET https://api1.comm100.io/api/v3/livechat/bans?include=visitor,agent
 ```
 Response
 ``` json
@@ -7105,7 +7105,7 @@ The response is a [Ban](#ban-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor,agent
+-X GET https://api1.comm100.io/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor,agent
 ```
 Response
 ```json
@@ -7161,13 +7161,13 @@ curl -H "Content-Type: application/json" -d '{
     "type": "ip",
     "ip": "192.168.1.1",
     "comment": "block this ip"
-  }' -X POST https://domain.comm100.com/api/v3/livechat/bans
+  }' -X POST https://api1.comm100.io/api/v3/livechat/bans
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/bans/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/livechat/bans/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
     "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -7214,7 +7214,7 @@ curl -H "Content-Type: application/json" -d '{
     "type": "ip",
     "ip": "192.168.1.2",
     "comment": ""
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/bans/27c48ac9-2553-4066-bf94-e30957aa390e
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/bans/27c48ac9-2553-4066-bf94-e30957aa390e
 ```
 Response
 ```Json
@@ -7248,7 +7248,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
 ```
 Response
 ```json
@@ -7333,7 +7333,7 @@ The response is an array of [Conversion Action](#conversion-action-json-format) 
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/conversionActions?include=agent
+-X GET https://api1.comm100.io/api/v3/livechat/conversionActions?include=agent
 ```
 Response
 ``` json
@@ -7413,7 +7413,7 @@ The response is a [Conversion Action](#conversion-action-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/conversionActions/5728600f-0e75-432f-8638-db189f1e4e44?include=agent
+-X GET https://api1.comm100.io/api/v3/livechat/conversionActions/5728600f-0e75-432f-8638-db189f1e4e44?include=agent
 ```
 Response
 ``` json
@@ -7524,13 +7524,13 @@ curl -H "Content-Type: application/json" -d '{
     "visitorMessagesAtLeast": 1,
     "isVariableIncludedInTranscript": false,
     "appendFieldList": ""
-  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions
+  }' -X POST https://api1.comm100.io/api/v3/livechat/conversionActions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/conversionActions/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/livechat/conversionActions/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
     "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -7627,7 +7627,7 @@ curl -H "Content-Type: application/json" -d '{
     "visitorMessagesAtLeast": 1,
     "isVariableIncludedInTranscript": false,
     "appendFieldList": ""
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/conversionActions/60a555fd-b5db-40ac-9043-57fcee181f78
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/conversionActions/60a555fd-b5db-40ac-9043-57fcee181f78
 ```
 Response
 ```Json
@@ -7692,7 +7692,7 @@ curl -H "Content-Type: application/json" -d '{
     "conversion_name" : "justfortestupdate",
     "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
     "value": 1.5
-  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions/achieved
+  }' -X POST https://api1.comm100.io/api/v3/livechat/conversionActions/achieved
 ```
 Response
 ```json
@@ -7744,7 +7744,7 @@ The reponse is an array of [Secure Form](#secure-form-json-format) objects.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/secureForms
+-X GET https://api1.comm100.io/api/v3/livechat/secureForms
 ```
 Response
 ``` json
@@ -7804,7 +7804,7 @@ The response is a [Secure Form](#secure-form-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/secureforms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2
+-X GET https://api1.comm100.io/api/v3/livechat/secureforms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2
 ```
 Response
 ``` json
@@ -7890,13 +7890,13 @@ curl -H "Content-Type: application/json" -d '{
         },
         ...
     ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/secureForms
+  }' -X POST https://api1.comm100.io/api/v3/livechat/secureForms
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
     "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -8018,7 +8018,7 @@ curl -H "Content-Type: application/json" -d '{
             "order": 2
         }
     ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -8081,7 +8081,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureForms/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/secureForms/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
 ```
 Response
 ```json
@@ -8144,7 +8144,7 @@ The response is an array of [Secure Form Field](#secure-form-field-json-format) 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields
 ```
 Response
 ``` json
@@ -8206,7 +8206,7 @@ The response is a [Secure Form Field](#secure-form-field-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/vc21qa68-92e6-4487-a2e8-8234fc9d1f48
+-X GET https://api1.comm100.io/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/vc21qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ``` json
@@ -8278,13 +8278,13 @@ curl -H "Content-Type: application/json" -d '{
     "isVisible": false,
     "isRequired": false,
     "order": 1 
-  }' -X POST https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48/secureFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48/secureFormFields
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/livechat/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
     "id": "3222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -8344,7 +8344,7 @@ curl -H "Content-Type: application/json" -d '{
     "isVisible": false,
     "isRequired": false,
     "order": 1
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -8381,7 +8381,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
 ```
 Response
 ```json
@@ -8429,7 +8429,7 @@ The response is An array of [Webhook](#webhook-object) objects.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/webhooks
+-X GET https://api1.comm100.io/api/v3/livechat/webhooks
 ```
 
 Response
@@ -8467,7 +8467,7 @@ The response is a [Webhook](#webhook-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://api1.comm100.io/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8512,7 +8512,7 @@ Using curl:
 curl -H "Content-Type: application/json" -d '{
   "event": "chatWrappedUp",
   "targetUrl": "http://www.aa.com"
-}' -X POST https://domain.comm100.com/api/v3/livechat/webhooks
+}' -X POST https://api1.comm100.io/api/v3/livechat/webhooks
 ```
 
 Sample response:
@@ -8520,7 +8520,7 @@ Sample response:
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
@@ -8565,7 +8565,7 @@ Using curl:
 curl -H "Content-Type: application/json" -d '{
   "event": "chatWrappedUp",
   "targetUrl": "http://www.aa.com"
-}' -X PUSThttps://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+}' -X PUSThttps://api1.comm100.io/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8599,7 +8599,7 @@ HTTP/1.1 204 No Content
 Using curl:
 
 ```shell
-curl  -X DELETE  https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl  -X DELETE  https://api1.comm100.io/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -8649,7 +8649,7 @@ The response is an array of [Custom Variable](#custom-variable-object) objects.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/customvariables
+-X GET https://api1.comm100.io/api/v3/livechat/customvariables
 --header "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9y"
 ```
 
@@ -8690,7 +8690,7 @@ The response is a [Custom Variable](#custom-variable-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://api1.comm100.io/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 --header "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9y"
 ```
 
@@ -8740,13 +8740,13 @@ curl -H "Content-Type: application/json" -d '{
   "type": "text",
   "value": "'lizz'",
   "hyperlink": "{!Visitor.IP}"
-  }' -X POST  https://domain.comm100.com/api/v3/livechat/customvariables
+  }' -X POST  https://api1.comm100.io/api/v3/livechat/customvariables
 ```
 
 Response
 ```Json
 HTTP/1.1 201 Created
-Location: https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 Content-Type:  application/json
 
 {
@@ -8798,7 +8798,7 @@ curl -H "Content-Type: application/json" -d '{
   "type": "text",
   "value": "'lizz'",
   "hyperlink": "{!Visitor.IP}"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8833,7 +8833,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -H -X DELETE https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H -X DELETE https://api1.comm100.io/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
