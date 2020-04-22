@@ -1522,7 +1522,7 @@ Path parameters
 
 #### Response
 
-The response is an array of [Live Chat Visitor](#live-chat-visitor-object) objects.
+The response is a [Live Chat Visitor](#live-chat-visitor-object) object.
 
 #### Example
 
@@ -8111,7 +8111,7 @@ HTTP/1.1 204 No Content
 | `isVisible` | boolean | | no | no | false | Whether the field is visible or not. |
 | `isRequired` | boolean | | no | no | false | Whether the field is required or not when submitting the form. |
 | `order` | integer | | no | no |1  | The order of the field. |
-| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | no | | The options of the field. |
+| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | yes| | The options of the field, mandatory when the `type` is `radioBox`,`dropdownList`,`checkboxList`.|
 
 ### Secure Form Field Option JSON Format
 
@@ -8173,11 +8173,11 @@ Content-Type:  application/json
         "options":[
             {
             "value": "beijing",
-            "order":0,
+            "order":1,
             },
             {
             "value": "hangzhou",
-            "order":1,
+            "order":2,
             }],
         "order": 2
     }
@@ -8224,11 +8224,11 @@ Content-Type:  application/json
     "options":[
         {
         "value": "beijing",
-        "order":0,
+        "order":1,
         },
         {
         "value": "hangzhou",
-        "order":1,
+        "order":2,
         }],
     "order": 2
 }
@@ -8258,7 +8258,7 @@ Request body
     "isSystem": true,
     "isVisible": false,
     "isRequired": false,
-    "order": 1     
+    "order": 1
   }
 ```
 
@@ -8407,7 +8407,7 @@ You need `Manage Integration` permission to manage `Webhook`.
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | guid  || yes | no | | Id of the webhook |
-| `event` | string  || no | yes | | Event of webhook, including `offlineMessageSubmitted`, ,`agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `event` | string  || no | yes | | Event of webhook, including `offlineMessageSubmitted`, `agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
 | `targetUrl` | string  || no | yes | | Target url of the webhook. |
 
 ## Endpoints

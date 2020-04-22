@@ -2823,7 +2823,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Visitor](#visitor-object) Object
+The response is a [Visitor](#visitor-object) object.
 
 #### Example
 
@@ -2868,7 +2868,7 @@ Content-Type:  application/json
   | - | - | :-: | :-: | :-: | - |
   |`id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
-  | `parentId` | Guid | no | yes | | Id of the public canned message category. |
+  | `parentId` | Guid | no | yes | | Id of the public canned message category. If it does not have parent category, parentId is '00000000-0000-0000-0000-000000000000'|
 
 ## Public Canned Message Endpoints
 
