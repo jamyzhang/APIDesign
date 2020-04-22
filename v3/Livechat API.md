@@ -1,6 +1,6 @@
 ﻿# Live Chat Restful API
 
-Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 Live Chat into your own systems.
+Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 Live Chat into your own systems yes.
 
 | Change Version | API Version | Change note | Change Date | Author |
 | - | - | - | - | - |
