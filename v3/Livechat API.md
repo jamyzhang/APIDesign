@@ -57,7 +57,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 
 
 ### Settings Object
 
-Customer Segment is represented as simple flat JSON objects with the following keys:  
+`Settings` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -225,7 +225,7 @@ HTTP/1.1 200 OK
 
 ### Auto Distribution Object
 
-  Auto Distribution is represented as simple flat JSON objects with the following keys:
+  `Auto Distribution` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -240,7 +240,7 @@ HTTP/1.1 200 OK
 
 ### Department Auto Distribution Object
 
-Department Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+`Department Auto Distribution` object is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -251,7 +251,7 @@ Department Auto Distribution Object is represented as simple flat JSON objects w
 
 ### Agent Auto Distribution Object
 
-Agent Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+`Agent Auto Distribution` object is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -425,7 +425,7 @@ You need `Manage Settings` permission to manage `Translation Excluded Words`.
 
 ### Translation Excluded Words Object
 
-Translation Excluded Words is represented as simple flat JSON objects with the following keys:
+`Translation Excluded Words` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -530,7 +530,7 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
 ### Customer Segment Object
 
-Customer Segment is represented as simple flat JSON objects with the following keys:  
+`Customer Segment` is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
@@ -547,7 +547,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 ### Alert To Segment Object
 
-Alert To is represented as simple flat JSON objects with the following keys:  
+`Alert To` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -556,7 +556,7 @@ Alert To is represented as simple flat JSON objects with the following keys:
 
 ### Live Chat Condition object
 
-Live Chat Condition is represented as simple flat JSON objects with the following keys:
+`Live Chat Condition` is represented as simple flat JSON objects with the following keys:
 
   | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
@@ -1084,7 +1084,7 @@ Content-Type:  application/json
 
 ### Mobile Push JSON Format
 
-Mobile Push is represented as simple flat JSON objects with the following keys:
+`Mobile Push` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1118,7 +1118,7 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 
 #### Response
 
-The response is [Mobile Push](#moble-push-object) object.
+The response is [Mobile Push](#mobile-push-json-format) object.
 
 #### Example
 
@@ -1159,7 +1159,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) object structure.
+  The request body contains data with the [Mobile Push](#mobile-push-json-format) object structure.
 
 example:
 ```Json
@@ -1185,7 +1185,7 @@ example:
 
 #### Response
 
-The response is a [Mobile Push](#moble-push-object) object.
+The response is a [Mobile Push](#mobile-push-json-format) object.
 
 #### Example
 
@@ -1244,7 +1244,7 @@ You need `Manage Agent & Agent Roles` permission to manage `Live Chat Agent`.
 
 ### Live Chat Agent Object
 
-agent is represented as simple flat JSON objects with the following keys:  
+`Live Chat Agent` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1331,7 +1331,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  id of live chat agent   |
+| `id` | integer | yes  |  Id of live chat agent   |
 
 Request body
 
@@ -1378,7 +1378,7 @@ Content-Type:  application/json
 
 ### Live Chat Visitor Object
 
-online visitor is represented as simple flat JSON objects with the following keys:  
+`Live Chat Visitor` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1416,7 +1416,7 @@ online visitor is represented as simple flat JSON objects with the following key
 
 ### Custom Field Object
 
-Custom Field is represented as simple flat JSON objects with the following keys:  
+`Custom Field` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1426,7 +1426,7 @@ Custom Field is represented as simple flat JSON objects with the following keys:
 
 ### Custom Variable Result Object
 
-Custom variable result is represented as simple flat JSON objects with the following keys: 
+`Custom variable result` is represented as simple flat JSON objects with the following keys: 
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1678,7 +1678,7 @@ Content-Type:  application/json
 ## Related Object Json Format
 ### Session JSON format
 
- Session is represented as simple flat JSON objects with the following keys:  
+ `Session` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1769,7 +1769,7 @@ Response
 
 ### Chat Object
 
- Chat is represented as simple flat JSON objects with the following keys:  
+ `Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1809,7 +1809,7 @@ Response
 
 ### Chat Message Object
 
-  Chat Message Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Message` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -1822,7 +1822,7 @@ Response
 
 ### Chat Pre-Chat Object
 
-  Pre-Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Pre-Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -1838,9 +1838,9 @@ Response
 | `departmentId` | Guid | N/A  | N/A | | |
 | `department` | [Department](#department) | N/A  | N/A | | |
 
-### Chat Post Chat  Object
+### Chat Post Chat Object
 
-  Chat Post Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Post Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -1851,7 +1851,7 @@ Response
 
 ### Chat Agent Wrap-Up Object
 
-  Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
+  `Agent Wrap-Up` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -2194,7 +2194,7 @@ HTTP/1.1 204 No Content
 
 ### Offline Message JSON format
 
- Offline Message is represented as simple flat JSON objects with the following keys:  
+ `Offline Message` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -2228,7 +2228,7 @@ HTTP/1.1 204 No Content
 
 ### Attachment JSON format
 
- Attachment is represented as simple flat JSON objects with the following keys:  
+ `Attachment` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -2237,7 +2237,7 @@ HTTP/1.1 204 No Content
 
 ### Field Value JSON format
 
- Field Value is represented as simple flat JSON objects with the following keys:  
+ `Field Value` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -2378,7 +2378,7 @@ Query string
 
 #### Response
 
-the response is: [Offline Message](#offline-message-json-format) Object
+The response is a [Offline Message](#offline-message-json-format) object.
 
 #### Example
 
@@ -2521,7 +2521,7 @@ HTTP/1.1 204 No Content
 
 ### Campaign Object
 
-  Campaign Object is represented as simple flat JSON objects with the following keys:  
+  `Campaign` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -2802,7 +2802,7 @@ Content-Type:  application/json
 
 ### Chat Button Object
 
-  Chat Button Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Button` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -2999,7 +2999,7 @@ Content-Type:  application/json
 
 ### Chat Window Object
 
-  Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Window` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3045,7 +3045,7 @@ Content-Type:  application/json
 
 ### Custom SMTP Server Object
 
-  Custom SMTP Server Object is represented as simple flat JSON objects with the following keys:  
+  `Custom SMTP Server` object is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3327,7 +3327,7 @@ Content-Type:  application/json
 
 ### Pre-Chat Object
 
-  Pre-Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Pre-Chat`is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3510,7 +3510,7 @@ Content-Type:  application/json
 
 ### Post Chat  Object
 
-  Post Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Post Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3621,7 +3621,7 @@ Content-Type:  application/json
 
 ### Campaign Offline Message Object
 
-  Offline Message Object is represented as simple flat JSON objects with the following keys:  
+  `Campaign Offline Message` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3788,7 +3788,7 @@ Content-Type:  application/json
 
 ### Invitation Object
 
-  Invitation Object is represented as simple flat JSON objects with the following keys:  
+  `Invitation` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3943,7 +3943,7 @@ Content-Type:  application/json
 
 ### Manual Invitation Object
 
-  Manual Invitation Object is represented as simple flat JSON objects with the following keys:  
+  `Manual Invitation` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -4119,7 +4119,7 @@ Content-Type:  application/json
 
 ### Auto Invitation Object
 
-  Auto Invitation Object is represented as simple flat JSON objects with the following keys:
+  `Auto Invitation` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -4605,7 +4605,7 @@ Response
 
 ### Agent Wrap-Up Object
 
-  Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
+  `Agent Wrap-Up` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -4739,7 +4739,7 @@ Content-Type:  application/json
 
 ### Language Object
 
-  Language Object is represented as simple flat JSON objects with the following keys:  
+  `Language` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -4869,7 +4869,7 @@ Content-Type:  application/json
 
 ### Routing Object
 
-  Routing Object is represented as simple flat JSON objects with the following keys:  
+  `Routing` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -5056,7 +5056,7 @@ Content-Type:  application/json
 
 ### Custom Rule Object
 
-  Custom Rule Object is represented as simple flat JSON objects with the following keys:  
+  `Custom Rule` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -5076,7 +5076,7 @@ Content-Type:  application/json
 
 ### Live Chat Condition Object
 
-  Live Chat Condition Object is represented as simple flat JSON objects with the following keys:
+  `Live Chat Condition` Object is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5107,7 +5107,7 @@ Query string
 
 #### Response
 
-the response is: [Custom Rule](#Custom-Rule-Object) Object
+The response is a [Custom Rule](#Custom-Rule-Object) object.
 
 #### Example
 
@@ -5179,7 +5179,7 @@ Query string
 
 #### Response
 
-the response is: [Custom Rule](#Custom-Rule-Object) Object
+The response is a [Custom Rule](#Custom-Rule-Object) object.
 
 #### Example
 
@@ -5534,7 +5534,7 @@ Response
 
 ### Chatbot Integration Object
 
-  Chatbot Integration Object is represented as simple flat JSON objects with the following keys:
+  `Chatbot Integration` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -5700,7 +5700,7 @@ Content-Type:  application/json
 
 ### KB Integration Object
 
-  KB Integration Object is represented as simple flat JSON objects with the following keys:
+  `KB Integration` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5836,7 +5836,7 @@ Content-Type:  application/json
 
 ### Campaign Form Field Object
 
-  Campaign Form Field is represented as simple flat JSON objects with the following keys:  
+  `Campaign Form Field` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5849,7 +5849,7 @@ Content-Type:  application/json
 
 ### Rating Grade Object
 
-  Rating Grade is represented as simple flat JSON objects with the following keys:  
+  `Rating Grade` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5859,7 +5859,7 @@ Content-Type:  application/json
 
 ### Live Chat Field Object
 
-  Live Chat Field is represented as simple flat JSON objects with the following keys:  
+  `Live Chat Field` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5874,7 +5874,7 @@ Content-Type:  application/json
 
 ### Live Chat System Field
 
-  Live Chat System Field is one key of the following keys:
+  `Live Chat System Field` is one key of the following keys:
 
 | System Field | Type | Only Available Forms | Is Required |
 | - | - | :-: | - |
@@ -5895,7 +5895,7 @@ Content-Type:  application/json
 
 ### Live Chat Field Type
 
-  Live Chat Field Type is one key of the following keys:
+  `Live Chat Field Type` is one key of the following keys:
 
 | Name | Available Forms |
 | - | :-: |
@@ -5912,7 +5912,7 @@ Content-Type:  application/json
 
 ### Live Chat Field Option Object
 
-  Live Chat Field Option Object is represented as simple flat JSON objects with the following keys:  
+  `Live Chat Field Option` Object is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5921,7 +5921,7 @@ Content-Type:  application/json
 
 ### Live Chat Field Option Group Object
 
-  Live Chat Field Option Group Object is represented as simple flat JSON objects with the following keys:  
+  `Live Chat Field Option Group` Object is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -7008,7 +7008,7 @@ Response
 
 ### Ban JSON Format
 
-  Ban is represented as simple flat JSON objects with the following keys:  
+  `Ban` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -7269,7 +7269,7 @@ HTTP/1.1 204 No Content
 
 ### Conversion Action JSON Format
 
-  Conversion Action is represented as simple flat JSON objects with the following keys:  
+  `Conversion Action` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -7718,7 +7718,7 @@ You need `Manage Security` permission to manage `Secure Form`.
 ## Related Object Json Format
 ### Secure Form JSON Format
 
-Secure Form is represented as simple flat JSON objects with the following keys:  
+`Secure Form` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -8099,7 +8099,7 @@ HTTP/1.1 204 No Content
 ## Related Object Json Format
 ### Secure Form Field JSON Format
 
-  Secure Form Field is represented as simple flat JSON objects with the following keys:  
+  `Secure Form Field` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -8115,7 +8115,7 @@ HTTP/1.1 204 No Content
 
 ### Secure Form Field Option JSON Format
 
-  Secure Form Field Option is represented as simple flat JSON objects with the following keys:  
+  `Secure Form Field Option` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -8402,7 +8402,7 @@ You need `Manage Integration` permission to manage `Webhook`.
 
 ### Webhook Object
 
-  Webhook is represented as simple flat JSON objects with the following keys:
+  `Webhook` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -8620,7 +8620,7 @@ You need `Manage Custom Variable` permission to manage custom variable.
 
 ### Custom Variable Object
 
-Custom Variable is represented as simple flat JSON objects with the following keys:  
+`Custom Variable` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only| Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
