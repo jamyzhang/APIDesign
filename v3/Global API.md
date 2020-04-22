@@ -33,7 +33,7 @@
 
 
 # Site
-  You need `Manage Site` permission to manage site
+  You need the `Manage Site` permission to manage site
 
   + `GET /api/v3/globalSettings/site` - [Get profile of a site](#get-profile-of-a-site)
   + `PUT /api/v3/globalSettings/site` - [Update profile of a site](#update-profile-of-a-site)
@@ -166,7 +166,7 @@ Content-Type:  application/json
 
 # Agent
 
-You need `Manage Agent & Agent Roles` permission to manage agents.
+You need the `Manage Agent & Agent Roles` permission to manage agents.
 
   + `GET /api/v3/globalSettings/agents` - [Get a list of agents in site](#get-a-list-of-agents-in-site)
   + `GET /api/v3/globalSettings/agents/{id}` - [Get an agent by id](#get-an-agent-by-id)
@@ -184,12 +184,12 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 ## Agent Related Object Json Format
 
 ### Agent Object
-  This is the entity details of the Agent.
+  This is the entity details for Agents.
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer  | | yes | no |  |  |
-  |`email` | string| | yes | yes | | Agent login email address, can not change |
+  |`email` | string| | yes | yes | | Agent login email address, can not be changed |
   |`displayName` | string  | | no | no | | Different Agents can have the same Display Name. If not offered, will set by first name.|
   |`firstName` | string  | | no | yes | | The first name of the agent|
   |`lastName` | string  | | no | yes | | The last name of agent|
@@ -198,11 +198,11 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
   |`phone` | string | | no | no | | Mobile phone number of the agent.|
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
-  |`timeZone` | string| | no | no |  | Time zone of agent. value include all [Time Zone Option](#time-zone-options) Ids, if not offered, will set by site time zone. |
-  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site,value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
+  |`timeZone` | string| | no | no |  | Time zone of the agent. Value includes all [Time Zone Option](#time-zone-options) Ids, if not offered, will use the site time zone.|
+  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site, Value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
   |`createdTime` | DateTime | | no | no | UTC | The create time of the agent.|
   |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
-  |`lockedTime` | DateTime | | no | no | UTC | When the agent is locked.|
+  |`lockedTime` | DateTime | | no | no | UTC | When the agent was locked.|
   |`lastLoginTime` | DateTime | | no | no | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
   |`permissionIds` | integer[]  |  | no | no | NULL | Agent permission settings.|
   |`permissions` | [Permission](#permission)[]  | yes| no | no | | Agent permission settings. |
@@ -221,7 +221,7 @@ You need `Manage Agent & Agent Roles` permission to manage agents.
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`count` | integer  | no | yes | no | | The total count of the query  |
+  |`count` | integer  | no | yes | no | | The total count of queries |
   |`nextPage` | string  | no | yes | no | | The next page url of the query  |
   |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
   |`agents`|   [Agent](#agent-object)[]| no | yes| no | | A list of agents. |
@@ -430,7 +430,7 @@ Content-Type:  application/json
 
 #### Response
 
-The response is a [Agent](#agent-object) Object
+The response is an [Agent](#agent-object) Object
 
 #### Example
 Using curl
@@ -519,7 +519,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
 ```
 
 
-### unlock the agent
+### Unlock the agent
   `POST /api/v3/globalSettings/agents/{id}:unlock`
 
 ####  Parameters
@@ -618,7 +618,7 @@ HTTP/1.1 204 No Content
 ```
 
 
-### Update an agent
+### Update agent info
   `PUT /api/v3/globalSettings/agents/{id}`
 
 ####  Parameters
@@ -689,7 +689,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
 }
 ```
 
-### Update current agent
+### Update current agent info
 
   `PUT /api/v3/globalSettings/agents/me`
 
@@ -717,7 +717,8 @@ example:
 ```
 
 #### Response
-The response is: [Agent](#agent-object) Object
+The response is: 
+  [Agent](#agent-object) Object
 
 #### Example
 Using curl
@@ -800,7 +801,7 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
   |`id` | Guid| | yes | no | |  |
   |`name` | string| | no | yes | | Name.|
   |`description` | string| | no | no | | Description of this role.|
-  |`type` | string | | yes | no | custom | The options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
+  |`type` | string | | yes | no | custom | Options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
   |`agentIds` | int[] | | no | no | NULL | The selected agents for this role. |
   |`agents` | [Agent](#agent)[] | yes | no | no | | The selected agents for this role.|
   |`permissionIds` | int[] | | no | no | NULL | Permissions assigned to this role.|
@@ -821,7 +822,7 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
 
 #### Response
 
-The response is a list of [Role](#role) Object
+The response is a list of [Role](#role) objects
 
 #### Example
 Using curl
@@ -880,7 +881,7 @@ Content-Type:  application/json
 
 #### Response
 
-The response is a [Role](#role) Object
+The response is a [Role](#role) object
 
 #### Example
 Using curl
@@ -940,8 +941,7 @@ Request body
 ```
 
 #### Response
-The response is:
-   [Role](#role-object) Object
+The response is a [Role](#role-object) object
 
 #### Example
 Using curl
@@ -1024,8 +1024,7 @@ Request body
 ```
 
 #### Response
-The response is:
-  [Role](#role-object) Object
+The response is a [Role](#role-object) object
 
 #### Example
 Using curl
@@ -1096,7 +1095,7 @@ HTTP/1.1 204 No Content
 
 # Department
 
-You need `Manage departments` permission to manage departments.
+You need the `Manage departments` permission to manage departments.
 
   + `GET /api/v3/globalSettings/departments` - [Get a list of departments in site](#get-all-departments)
   + `GET /api/v3/globalSettings/departments/{id}` - [Get a department by id](#get-a-department)
@@ -1114,10 +1113,10 @@ You need `Manage departments` permission to manage departments.
   |`id` | Guid| | yes | no | |  |
   |`name` | string | | no | yes | |  |
   |`description` | string | | no | no | |  |
-  |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window Department drop down list, routing rules, chat transfer etc. Default: true.|
+  |`isAvailableInChat` | bool| | no | no | false | When it is false, the Department will not be displayed in the Pre-chat window, Department drop down list, routing rules, chat transfer rules etc. Default: true.|
   |`isAvailableInTicketingAndMessaging` | bool| | no | no | false | When it is false, the department name will not be displayed in the 'Assigned Department' field. Default: true.|
   |`offlineMessageMailTo` | string | | no | no | All agents in the department | The value options: All agents in the department, The email address(es).  |
-  |`offlineMessageEmailAddresses` | string  | | no | no | | Specific email addresses that mail offline message to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
+  |`offlineMessageEmailAddresses` | string  | | no | no | | Specific email addresses that offline message are send to. Available and required when Offline Message Mail Type is ‘The email address(es)’.|
   |`agentIds` | int[] | | no | no | NULL | The selected agents for this department.|
   |`agents` | [Agent](#agent)[]| yes | no | no |  |  |
   |`shiftIds` | Guid[]  |  | no | no | NULL | The list of the shift ids which the department belongs to.|
@@ -1237,8 +1236,7 @@ Request body
 ```
 
 #### Response
-The response is:
-    [Department](#department-object) Object
+The response is a [Department](#department-object) object
 
 #### Example
 Using curl
@@ -1309,8 +1307,7 @@ Request body
 ```
 
 #### Response
-The response is:
-   [Department](#department-object)  Object
+The response is a [Department](#department-object) Object
 
 #### Example
 Using curl
@@ -1558,8 +1555,7 @@ Request body
 ```
 
 #### Response
-the response is:
-role [Permission](#permission-object) Object list
+the response is a: role [Permission](#permission-object) Object list
 
 #### Example
 Using curl
@@ -1609,8 +1605,7 @@ Request body
 ```
 
 #### Response
-The response is:
-   agent [Permission](#permission-object) Object list
+The response is: agent [Permission](#permission-object) Object list
 
 #### Example
 Using curl
@@ -1704,7 +1699,7 @@ Query string
 
 #### Response
 
-the response is: list of [Shift](#shift-object) Object
+the response is: list of [Shift](#shift-object) Objects
 
 #### Example
 
@@ -1779,7 +1774,7 @@ Query string
 
 #### Response
 
-the response is: [Shift](#shift-object) Object
+the response is a: [Shift](#shift-object) Object
 
 #### Example
 
@@ -1845,7 +1840,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Shift](#shift-object) Object
+the response is a: [Shift](#shift-object) Object
 
 #### Example
 
@@ -1901,7 +1896,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Shift](#shift-object) Object
+the response is a: [Shift](#shift-object) Object
 
 #### Example
 
@@ -1980,7 +1975,7 @@ example:
 
 #### Response
 
-the response is: [Shift](#shift-object) Object
+the response is a: [Shift](#shift-object) Object
 
 #### Example
 
@@ -2082,7 +2077,7 @@ example:
 
 #### Response
 
-the response is: [Shift](#shift-object) Object
+the response is a: [Shift](#shift-object) Object
 
 #### Example
 
@@ -2182,7 +2177,7 @@ Response
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer  | | yes | no |  |  |
-  |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has Name and Avatar, like Facebook Account, display Name and Avatar from that Identity in Agent Console. In other situations, display Contact Name and Avatar.|
+  |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has a Name and an Avatar, like a Facebook Account, will the display Name and Avatar be used instead of the drawn from the contact profiile. In all other situations, display will be drawn from the Contact Name and Avatar.|
   |`description` | string | | no | no | |  |
   |`firstName` | string | | no | no | |  |
   |`lastName` | string | | no | no | |  |
@@ -2271,7 +2266,7 @@ Response
   ```
 
 
-### Get an contact
+### Get a contact
   `GET /api/v3/globalSettings/contacts/{id}`
 
 #### Parameters
@@ -2290,7 +2285,7 @@ Path parameters
 
 
 #### Response
-  The response is an [Contact](#contact-object) Object
+  The response is a [Contact](#contact-object) Object
 
 #### Example
 Using curl
@@ -2340,8 +2335,7 @@ example:
 
 #### Response
 
-The response is:
-  [Contact](#contact-object) Object
+The response is a [Contact](#contact-object) Object
 
 #### Example
 Using curl
@@ -2375,7 +2369,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
 }
 ```
 
-### Update an contact
+### Update a contact
   `PUT /api/v3/globalSettings/contacts/{id}`
 
 ####  Parameters
@@ -2405,8 +2399,7 @@ Request body
 ```
 
 #### Response
-The response is:
-  [Contact](#contact-object) Object
+The response is a [Contact](#contact-object) Object
 
 #### Example
 Using curl
@@ -2439,7 +2432,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
 ```
 
 
-### Delete an contact
+### Delete a contact
   `DELETE /api/v3/globalSettings/contacts/{id}`
 
 #### Parameters
@@ -2467,7 +2460,7 @@ HTTP/1.1 204 No Content
 # Contact Identity
  + `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities` - [Get a list of contact identities in a contact](#get-all-contact-identity)
  + `GET /api/v3/globalSettings/contactIdentities/{id}` - [Get an contact identity by id](#get-an-contact-identity)
- + `POST /api/v3/globalSettings/contacts/contactIdentities` - [create a new contact identity](#create-a-new-contact-identity)
+ + `POST /api/v3/globalSettings/contactIdentities` - [create a new contact identity](#create-a-new-contact-identity)
  + `PUT /api/v3/globalSettings/contactIdentities/{id}` - [update an contact identity](#update-an-contact-identity)
  + `DELETE /api/v3/globalSettings/contactIdentities/{id}` - [delete an contact identity](#delete-an-contact-identity)
 
@@ -2479,17 +2472,17 @@ HTTP/1.1 204 No Content
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer| | yes | no | |  |
   |`contactId` | integer| | no | no | | Mandatory when post by contact identity api. |
-  |`name` | string | | no | no | | The name used in a certain type, like the name of a user in Facebook. Not every type has name, for example, SMS Number doesn’t have one.|
-  |`type` | string| | no | yes | | the options of the value are:  visitor, email, sms, facebook, twitter, wechat, ssoid, externalid, whatsapp, inphase.|
+  |`name` | string | | no | no | | The name used for a specific channel, like the name of a Facebook user. Not every channel will yield a name, for example, SMS Numbers will display a number instead of a name.|
+  |`type` | string| | no | yes | | The options for the value are: visitor, email, SMS, Facebook, Twitter, Wechat, ssoid, externalid, Whatsapp, inphase.|
   |`value` | string  | | no | yes | | The value of the identity.|
-  |`avatarURL` | string | | no | no | | The avatar used in a certain type, like the avatar of a user in Facebook. Not every type has avatar, for example, SMS Number doesn’t have one.|
-  |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets of the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
+  |`avatarURL` | string | | no | no | | The avatar used in a certain channel, like the avatar of a Facebook user. Not every channel yields an avatar, for example, SMS Numbers won't produce one.|
+  |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets from the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
   |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp. |
   |`originalContactPageURL` | string | | no | no | | The contact profile URL on Facebook or Twitter.|
 
 ## Contact Identity  Endpoints
 
-### get all contact identity
+### Get all contact identity
 
   `GET /api/v3/globalSettings/contacts/{contactId}/contactIdentities`
 
@@ -2534,7 +2527,7 @@ Content-Type:  application/json[
 
 
 
-### get an contact identity
+### Get a contact identity
   `GET /api/v3/globalSettings/contactIdentities/{id}`
 
 #### Parameters
@@ -2546,7 +2539,7 @@ Path parameters
 
 #### Response
 
-  The response is an [Contact Identity](#contact-identity-object) Object
+  The response is a [Contact Identity](#contact-identity-object) Object
 
 #### Example
 
@@ -2574,7 +2567,7 @@ Content-Type:  application/json
 ```
 
 
-### create a new contact identity
+### Create a new contact identity
   `POST /api/v3/globalSettings/contacts/contactIdentities`
 
 ####  Parameters
@@ -2601,8 +2594,7 @@ Request body
 
 #### Response
 
-The response is:
-  [Contact Identity](#contact-identity-object) Object
+The response is a: [Contact Identity](#contact-identity-object) Object
 
 #### Example
 
@@ -2641,7 +2633,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
   }
 ```
 
-### Update an contact identity
+### Update a contact identity
 
   `PUT /api/v3/globalSettings/contactIdentities/{id}`
 
@@ -2675,8 +2667,7 @@ Request body
 
 #### Response
 
-The response is:
-  [Contact Identity](#contact-identity-object) Object
+The response is a: [Contact Identity](#contact-identity-object) Object
 
 #### Example
 Using curl
@@ -2714,7 +2705,7 @@ Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
   }
 ```
 
-### delete an contact identity
+### Delete a contact identity
   `DELETE /api/v3/globalSettings/contactIdentities/{id}`
 
 #### Parameters
@@ -2930,7 +2921,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -2972,7 +2963,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -3023,7 +3014,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
 
 #### Example
 
@@ -3119,7 +3110,7 @@ Query string
 
 #### Response
 
-the response is: list of [Public Canned Message](#public-Canned-Message-object) Object
+the response is a: list of [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3174,7 +3165,7 @@ Query string
 
 #### Response
 
-the response is: [Public Canned Message](#public-Canned-Message-object) Object
+the response is a: [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3231,7 +3222,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message](#public-Canned-Message-object) Object
+the response is a: [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3283,7 +3274,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message](#public-Canned-Message-object) Object
+the response is a: [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3343,7 +3334,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message](#public-Canned-Message-object) Object
+the response is a: [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -4287,8 +4278,7 @@ Request body
 
 #### Response
 
-The response is:
-  [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+The response is a: [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
 
 #### Example
 
@@ -4338,8 +4328,7 @@ Request body
 
 #### Response
 
-The response is:
-  [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+The response is a: [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
 
 #### Example
 Using curl
