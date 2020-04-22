@@ -1286,7 +1286,7 @@ Content-Type:  application/json
 ]
 ```
 
-### Get an live chat agent by id
+### Get a live chat agent by id
 
 `GET /api/v3/livechat/agents/{id}`
 
@@ -1372,7 +1372,7 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
-- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable](#update-a-visitor's-custom-variable)  
+- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable)  
 
 ## Related Object JSON Format
 
@@ -1383,9 +1383,9 @@ Content-Type:  application/json
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  |  yes| no | | Id of the visitor. |
-| `name` | name |  |  yes| no | | Name of the visitor. |
+| `name` | string |  |  yes| no | | Name of the visitor. |
 | `email` | string |  | yes | no | | Email of the visitor.|
-| `status` | String|  | yes | no| |Status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
+| `status` | string|  | yes | no| |Status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
 | `pageViews` | integer|  | yes | no | |The total number of web pages the visitor viewed on your website. |
 | `browser` | string|  | yes | no | |The browser the visitor is using. |
 | `chats` | integer|  | yes | no | |The total times of chats a visitor has made on your website from the first time to present. |
@@ -1395,7 +1395,7 @@ Content-Type:  application/json
 | `currentBrowsing` | string|  | yes | no | |The page the visitor is currently looking at. |
 | `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |The values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
 | `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | yes | |The information of custom variables captured from the web page visitors viewed.|
-| `departmentId` | Guid|  | yes | no ||The department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
+| `departmentId` | Guid|  | yes | no ||The department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
 | `firstVisitTime` | datetime|  | yes | no | |The time the visitor first visited a web page pasted with Comm100 Live Chat code.|
 | `flashVersion` | string|  | yes | no| |The flash version of the browser the visitor is using.|
 | `ip` | string|  | yes | no | |The IP of the visitor.|
@@ -1410,8 +1410,8 @@ Content-Type:  application/json
 | `searchEngine` | string|  | yes | no | |The search engine the visitor used to search for your website.|
 | `state` | string|  | yes | no | |The state of the visitor.|
 | `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids.|
-| `visitTime` | string|  | yes | no | |The starting time when this visitor visits your website this session.|
-| `visits` | string|  | yes | no | |The total number of visits a visitor has made on your website from the first time to present|
+| `visitTime` | datetime|  | yes | no | |The starting time when this visitor visits your website this session.|
+| `visits` | integer|  | yes | no | |The total number of visits a visitor has made on your website from the first time to present|
 
 
 ### Custom Field Object
@@ -1484,23 +1484,23 @@ Content-Type:  application/json
       ],
       "department": "",
       "email": "",
-      "first_visit_time": "2019-06-11T03:05:42.537Z",
-      "flash_version": "",
+      "firstVisitTime": "2019-06-11T03:05:42.537Z",
+      "flashVersion": "",
       "ip": "218.76.52.108",
       "searchKeywords": "",
-      "landing_page": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "landingPage": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "language": "zh-CN",
       "name": "218.76.52.108",
-      "operating_system": "Windows 10",
+      "operatingSystem": "Windows 10",
       "phone": "",
-      "product_service": "",
-      "referrer_url": "",
-      "screen_resolution": "1920x1080",
-      "search_engine": "",
+      "productService": "",
+      "referrerUrl": "",
+      "screenResolution": "1920x1080",
+      "searchEngine": "",
       "state": "Hunan",
       "status": 3,
-      "time_zone": "GMT +08:00",
-      "visit_time": "2019-06-12T07:41:40.486Z",
+      "timeZone": "GMT +08:00",
+      "visitTime": "2019-06-12T07:41:40.486Z",
       "visits": 4
   },
   ...
@@ -1554,28 +1554,28 @@ Content-Type:  application/json
   ],
   "department": "",
   "email": "",
-  "first_visit_time": "2019-06-11T03:05:42.537Z",
-  "flash_version": "",
+  "firstVisitTime": "2019-06-11T03:05:42.537Z",
+  "flashVersion": "",
   "ip": "218.76.52.108",
   "searchKeywords": "",
-  "landing_page": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "landingPage": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
-  "operating_system": "Windows 10",
+  "operatingSystem": "Windows 10",
   "phone": "",
-  "product_service": "",
-  "referrer_url": "",
-  "screen_resolution": "1920x1080",
-  "search_engine": "",
+  "productService": "",
+  "referrerUrl": "",
+  "screenResolution": "1920x1080",
+  "searchEngine": "",
   "state": "Hunan",
   "status": 3,
-  "time_zone": "GMT +08:00",
-  "visit_time": "2019-06-12T07:41:40.486Z",
+  "timeZone": "GMT +08:00",
+  "visitTime": "2019-06-12T07:41:40.486Z",
   "visits": 4
 }
 ```
 
-### update a visitor's custom variable
+### update a visitor's custom variable results
 
 `PUT /api/v3/livechat/visitors/{id}`
 
@@ -1610,7 +1610,7 @@ Request body
 
 #### Response
 
-The response is an array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+The response is a [Live Chat Visitor](#live-chat-visitor-object) object.
 
 #### Example
 
@@ -1621,8 +1621,7 @@ curl -H "Content-Type: application/json" -d '[
           "name": "justfortestupdate",
           "value": "text",
           "url": "bbbbb"
-        },
-        ...
+        }
       ]
   }' -X PUT https://api1.comm100.io/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
@@ -1650,23 +1649,23 @@ Content-Type:  application/json
   ],
   "department": "",
   "email": "",
-  "first_visit_time": "2019-06-11T03:05:42.537Z",
-  "flash_version": "",
+  "firstVisitTime": "2019-06-11T03:05:42.537Z",
+  "flashVersion": "",
   "ip": "218.76.52.108",
   "searchKeywords": "",
-  "landing_page": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "landingPage": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
-  "operating_system": "Windows 10",
+  "operatingSystem": "Windows 10",
   "phone": "",
-  "product_service": "",
-  "referrer_url": "",
-  "screen_resolution": "1920x1080",
-  "search_engine": "",
+  "productService": "",
+  "referrerUrl": "",
+  "screenResolution": "1920x1080",
+  "searchEngine": "",
   "state": "Hunan",
   "status": 3,
-  "time_zone": "GMT +08:00",
-  "visit_time": "2019-06-12T07:41:40.486Z",
+  "timeZone": "GMT +08:00",
+  "visitTime": "2019-06-12T07:41:40.486Z",
   "visits": 4
 }
 ```
@@ -1692,7 +1691,7 @@ Content-Type:  application/json
 | `flashVersion` | string |  | N/A | N/A | |  |
 | `language` | string |  | N/A | N/A | |  |
 | `screenResolution` | string |  | N/A | N/A | |  |
-| `operatingSystem` | integer |  | N/A | N/A | |  |
+| `operatingSystem` | string |  | N/A | N/A | |  |
 | `timeZone` | string |  | N/A | N/A | |  |
 | `landingPageURL` | string |  | N/A | N/A | |  |
 | `landingPageTitle` | string | | N/A | N/A | |  |
@@ -1793,7 +1792,7 @@ Response
 | `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) |  | N/A | N/A |  |  |
 | `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) |  | N/A | N/A |  |  |
 | `requestedTime` | datetime | | N/A | N/A | | The time when the chat is requested. |
-| `offlineMessageId` | integer | | N/A | N/A | |  |
+| `offlineMessageId` | Guid | | N/A | N/A | |  |
 | `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | N/A | N/A |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
 | `avgResponseTime` | float | | N/A | N/A | |  |
 | `visitorMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Visitors. |
@@ -1802,7 +1801,7 @@ Response
 | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
 | `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
 | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | |
-| `sessionId` | integer | | N/A | N/A |  | id of session |
+| `sessionId` | Guid | | N/A | N/A |  | id of session |
 | `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
 | `botId` | Guid | | N/A | N/A |  | id of chatbot |
 | `chatBot` | [ChatBot](#chatBot) | yes | N/A | N/A |  |  the related [ChatBot](#chatBot) object|
@@ -1883,7 +1882,7 @@ Query string
 | `visitorId` | guid | no  |  | |
 | `agentId` | integer | no  |  | |
 | `keywords` | string | no  |  | |
-| `conditions` | string | no  |  | The condition list of inquiring the chat. available field: `name`,`email`,`company`,`phone`,`campaign`. avaiable operate: `contains`,`notContains`. e.g. `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test` |
+| `conditions` | string | no  |  | The condition list of inquiring the chat. Available field: `name`,`email`,`company`,`phone`,`campaign`. Avaiable operate: `contains`,`notContains`. e.g. `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test` |
 
 #### Response
 
