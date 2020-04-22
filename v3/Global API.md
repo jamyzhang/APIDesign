@@ -2882,7 +2882,7 @@ Content-Type:  application/json
 
 #### Response
 
-the response is: list of [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+The response is an array of [Public Canned Message Category](#Public-Canned-Message-Category-Object) objects.
 
 #### Example
 
@@ -2917,11 +2917,11 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The id of the public canned message category |
+  | `id` | Guid | yes  |  The id of the public canned message category. |
 
 #### Response
 
-the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+The response is a [Public Canned Message Category](#public-Canned-Message-Category-object) object.
 
 #### Example
 
@@ -2951,7 +2951,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure
+  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure.
 
 example:
 ```Json
@@ -2963,7 +2963,7 @@ example:
 
 #### Response
 
-the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+The response is a [Public Canned Message Category](#public-Canned-Message-Category-object) object.
 
 #### Example
 
@@ -2998,11 +2998,11 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the public canned message category |
+  | `id` | Guid | yes  |  The unique Id of the public canned message category. |
 
 Request Body
 
-  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure
+  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure.
 
 example:
 ```Json
@@ -3014,7 +3014,7 @@ example:
 
 #### Response
 
-the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+The response is a [Public Canned Message Category](#public-Canned-Message-Category-object) object.
 
 #### Example
 
@@ -3048,7 +3048,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the public canned message category |
+  | `id` | Guid | yes  |  The unique Id of the public canned message category.|
 
 #### Response
 
@@ -3110,7 +3110,7 @@ Query string
 
 #### Response
 
-the response is a: list of [Public Canned Message](#public-Canned-Message-object) Object
+The response is an array of [Public Canned Message](#public-Canned-Message-object) objects.
 
 #### Example
 
@@ -3155,7 +3155,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the public canned message |
+  | `id` | Guid | yes  |  The unique Id of the public canned message. |
 
 Query string
 
@@ -3165,7 +3165,7 @@ Query string
 
 #### Response
 
-the response is a: [Public Canned Message](#public-Canned-Message-object) Object
+The response is a [Public Canned Message](#public-Canned-Message-object) object.
 
 #### Example
 
@@ -3205,7 +3205,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure
+  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure.
 
 example:
 ```Json
@@ -3222,7 +3222,7 @@ example:
 
 #### Response
 
-the response is a: [Public Canned Message](#public-Canned-Message-object) Object
+The response is a [Public Canned Message](#public-Canned-Message-object) object.
 
 #### Example
 
@@ -3978,7 +3978,7 @@ Response
 
 #### Response
 
-the response is: list of [Agent Away Status](#agent-Away-Status-object) Object
+The response is an array of [Agent Away Status](#agent-Away-Status-object) objects.
 
 #### Example
 
@@ -4014,11 +4014,11 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the agent away status |
+  | `id` | Guid | yes  |  The unique Id of the agent away status. |
 
 #### Response
 
-the response is: [Agent Away Status](#agent-Away-Status-object) Object
+The response is an [Agent Away Status](#agent-Away-Status-object) object.
 
 #### Example
 
@@ -4049,7 +4049,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure
+  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure.
 
 example:
 ```Json
@@ -4062,7 +4062,7 @@ example:
 
 #### Response
 
-the response is: [Agent Away Status](#agent-Away-Status-object) Object
+The response is an [Agent Away Status](#agent-Away-Status-object) object.
 
 #### Example
 
@@ -4097,7 +4097,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the agent away status |
+  | `id` | Guid | yes  |  The unique Id of the agent away status.|
 
 Request Body
 
@@ -4112,7 +4112,7 @@ example:
 
 #### Response
 
-the response is: [Agent Away Status](#agent-Away-Status-object) Object
+The response is an [Agent Away Status](#agent-Away-Status-object) object.
 
 #### Example
 
@@ -4148,7 +4148,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the agent away status |
+  | `id` | Guid | yes  |  The unique Id of the agent away status.|
 
 #### Response
 
@@ -4384,14 +4384,14 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `isEnabled` | bool  | | no | no|| false|
-  | `protocolType` | string |  | no | yes | | including `SAML` and `JWT`. |
-  | `samlSSOURL` | string |  | no |yes | |mandatory when Type is `SAML`. |
-  | `samlLogoutURL` | string |  | no | no | | only available when Type is `SAML`. |
+  | `isEnabled` | bool  | | no | no|false| |
+  | `protocolType` | string |  | no | yes | | Including `SAML` and `JWT`. |
+  | `samlSSOURL` | string |  | no |yes | |Mandatory when Type is `SAML`. |
+  | `samlLogoutURL` | string |  | no | no | | Only available when Type is `SAML`. |
   | `samlCertificate` | string |  | no | yes | | SAML certificate, mandatory when Type is `SAML`.|
-  | `jwtLoginURL` | string |  | no | yes | | mandatory when Type is `JWT`. |
-  | `jwtLogoutURL` | string |  | no | no | | only available when Type is `JWT`.  |
-  | `jwtSecret` | string |  | no | no | | mandatory when Type is `JWT`.  |
+  | `jwtLoginURL` | string |  | no | yes | | Mandatory when Type is `JWT`. |
+  | `jwtLogoutURL` | string |  | no | no | | Only available when Type is `JWT`.  |
+  | `jwtSecret` | string |  | no | no | | Mandatory when Type is `JWT`.  |
 
 ## Agent SSO Endpoints
 
@@ -4405,7 +4405,7 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: [Agent SSO](#agent-SSO-object) Object
+The response is an [Agent SSO](#agent-SSO-object) object.
 
 #### Example
 
@@ -4439,7 +4439,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Agent SSO](#agent-SSO-object) structure
+  The request body contains data with the [Agent SSO](#agent-SSO-object) structure.
 
  example:
 ```Json
@@ -4454,7 +4454,7 @@ Request Body
 
 #### Response
 
-the response is: [Agent SSO](#agent-SSO-object) Object
+The response is an [Agent SSO](#agent-SSO-object) object.
 
 #### Example
 Using curl
@@ -4513,7 +4513,7 @@ Field Mapping is represented as simple flat JSON objects with the following keys
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `attribute` | string | | no | yes | | SSO attribute name. |
-  | `comm100Field` | string | | no | yes | | the Comm100 field name |
+  | `comm100Field` | string | | no | yes | | The Comm100 field name.|
 
 ### Visitor SSO Campaign Object
 
@@ -4542,7 +4542,7 @@ Query string
 
 #### Response
 
-the response is: [Visitor SSO](#visitor-SSO-object) Object
+The response is a [Visitor SSO](#visitor-SSO-object) object.
 
 #### Example
 
@@ -4594,7 +4594,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Visitor SSO](#visitor-SSO-object) structure
+  The request body contains data with the [Visitor SSO](#visitor-SSO-object) structure.
 
 example:
 ```Json
@@ -4625,7 +4625,7 @@ example:
 
 #### Response
 
-the response is: [Visitor SSO](#visitor-SSO-object) Object
+The response is a [Visitor SSO](#visitor-SSO-object) object.
 
 #### Example
 Using curl
