@@ -3315,7 +3315,7 @@ Content-Type:  application/json
 
 ### Pre-Chat Object
 
-  `Pre-Chat`is represented as simple flat JSON objects with the following keys:  
+  `Pre-Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
