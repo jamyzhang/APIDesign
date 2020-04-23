@@ -1737,7 +1737,8 @@ Content-Type:  application/json
           "isAvailableInTicketingAndMessaging": false,
           "offlineMessageMailTo": "The email address(es)",
           "offlineMessageEmailAddresses": "test@comm100.com",
-          "agentId": 68
+          "agentId": 68,
+          ...
         },
         ...
         ],
@@ -1811,7 +1812,8 @@ Content-Type:  application/json
     "isAvailableInTicketingAndMessaging": false,
     "offlineMessageMailTo": "The email address(es)",
     "offlineMessageEmailAddresses": "test@comm100.com",
-    "agentId": 68
+    "agentId": 68,
+    ...
   },
   ...
   ],
