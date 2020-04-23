@@ -1555,7 +1555,7 @@ Request body
 ```
 
 #### Response
-the response is a: role [Permission](#permission-object) Object list
+the response is a role [Permission](#permission-object) Object list
 
 #### Example
 Using curl
@@ -1842,7 +1842,7 @@ Path Parameters
 
 #### Response
 
-the response is a: [Shift](#shift-object) Object
+the response is a [Shift](#shift-object) Object
 
 #### Example
 
@@ -1898,7 +1898,7 @@ Path Parameters
 
 #### Response
 
-the response is a: [Shift](#shift-object) Object
+the response is a [Shift](#shift-object) Object
 
 #### Example
 
@@ -1977,7 +1977,7 @@ example:
 
 #### Response
 
-the response is a: [Shift](#shift-object) Object
+the response is a [Shift](#shift-object) Object
 
 #### Example
 
@@ -2079,7 +2079,7 @@ example:
 
 #### Response
 
-the response is a: [Shift](#shift-object) Object
+the response is a [Shift](#shift-object) Object
 
 #### Example
 
@@ -2596,7 +2596,7 @@ Request body
 
 #### Response
 
-The response is a: [Contact Identity](#contact-identity-object) Object
+The response is a [Contact Identity](#contact-identity-object) Object
 
 #### Example
 
@@ -2669,7 +2669,7 @@ Request body
 
 #### Response
 
-The response is a: [Contact Identity](#contact-identity-object) Object
+The response is a [Contact Identity](#contact-identity-object) Object
 
 #### Example
 Using curl
@@ -3276,7 +3276,7 @@ example:
 
 #### Response
 
-the response is a: [Public Canned Message](#public-Canned-Message-object) Object
+the response is a [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -3336,7 +3336,7 @@ example:
 
 #### Response
 
-the response is a: [Public Canned Message](#public-Canned-Message-object) Object
+the response is a [Public Canned Message](#public-Canned-Message-object) Object
 
 #### Example
 
@@ -4274,7 +4274,7 @@ Request body
 
 #### Response
 
-The response is a: [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
 
 #### Example
 
@@ -4324,7 +4324,7 @@ Request body
 
 #### Response
 
-The response is a: [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
 
 #### Example
 Using curl
