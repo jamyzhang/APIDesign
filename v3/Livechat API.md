@@ -3424,7 +3424,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3641,7 +3641,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3965,7 +3965,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4964,7 +4964,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -5929,7 +5929,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
