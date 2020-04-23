@@ -4448,8 +4448,8 @@ Request Body
   {
     "isEnabled": true,
     "protocolType": "JWT",
-    "jwtLoginURL": "",
-    "jwtLogoutURL": "",
+    "jwtLoginURL": "https://api1.comm100.io/JWT/SSOLogin",
+    "jwtLogoutURL": "https://api1.comm100.io/JWT/SSOLogout",
     "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
   }
 ```
@@ -4464,8 +4464,8 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
     "isEnabled": true,
     "protocolType": "JWT",
-    "jwtLoginURL": "",
-    "jwtLogoutURL": "",
+    "jwtLoginURL": "https://api1.comm100.io/JWT/SSOLogin",
+    "jwtLogoutURL": "https://api1.comm100.io/JWT/SSOLogout",
     "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
   }' -X PUT https://api1.comm100.io/api/v3/globalSettings/agentSSO
 ```
@@ -4481,7 +4481,7 @@ Content-Type:  application/json
   "samlLogoutURL": "",
   "samlCertificate": "",
   "jwtLoginURL": "https://api1.comm100.io/JWT/SSOLogin",
-  "jwtLogoutURL": "https://api1.comm100.io/JWT/SSOLogin",
+  "jwtLogoutURL": "https://api1.comm100.io/JWT/SSOLogout",
   "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
 }
 ```
