@@ -3781,7 +3781,7 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `id` | Guid | yes | no | | Id of the current item. |
-| `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
+| `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow` when chat button's style is adaptive, otherwise including `popup` and `chatWindow` only. |
 | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
 | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object) | no | no | | |
 
