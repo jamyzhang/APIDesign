@@ -4506,7 +4506,7 @@ Content-Type:  application/json
   | `certificate` | string  | | no | yes | | Base64 data of certificate file. |
   | `certificateFileName` | string  | | no | yes | | |
   | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | no | | |
-  | `perCampaign` | [Visitor SSO Campaign](./Livechat%20API.md#visitor-SSO-Campaign-object)[]  |  | no | no | | |
+  | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | no | | |
 
 ### Field Mapping Object
 
@@ -4524,7 +4524,7 @@ Visitor SSO Campaign is represented as simple flat JSON objects with the followi
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
-  | `campaign` | [Campaign](#campaign-object)  | yes | no | no | | Available only when campaign is included  |
+  | `campaign` | [Campaign](./Livechat%20API.md#campaign-object)  | yes | no | no | | Available only when campaign is included  |
   | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
   | `isPrechatFromSkipped` | bool |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
 
