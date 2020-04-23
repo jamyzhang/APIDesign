@@ -6985,7 +6985,7 @@ Response
 
   You need `Manage Ban List` permission to manage the ban list.
 
-- `GET /api/v3/livechat/bans` - [Get a list of bans](#get-list-of-bans) include visitor, agent
+- `GET /api/v3/livechat/bans` - [Get a list of bans](#get-a-list-of-bans) include visitor, agent
 - `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-single-ban) include visitor, agent
 - `POST /api/v3/livechat/bans` - [Create a ban](#create-a-ban)
 - `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban)
