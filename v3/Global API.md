@@ -1775,7 +1775,7 @@ Query string
 
 #### Response
 
-the response is a: [Shift](#shift-object) Object
+the response is a [Shift](#shift-object) Object
 
 #### Example
 
