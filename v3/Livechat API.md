@@ -2780,14 +2780,12 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "code": "<!--Begin Tester Code-->
-    <div id=\"livechat-button-1\"></div>
-      <script type=\"text/javascript\">
-        var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement(\"script\"),c=document.getElementsByTagName(\"script\")[0];a.type=\"text/javascript\",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:1,div_id:\"livechat-button-1\"}),t.site_id=[SiteId],t.main_code_plan=1,e(\"  
-        https://api1.comm100.io/chatserver/livechat.ashx?siteId=\"),setTimeout(function(){t.loaded||e(\"  
-        https://api1.comm100.io/chatserver/livechat.ashx?siteId=\")},5e3)})(Comm100API||{})
-      </script>
-    <!--End Tester Code-->"
+  "code": "<!--Begin Comm100 Live Chat Code-->
+          <div id=\"comm100-button-eb6f743d-d9ab-45cc-8be1-623a7cb22558\"></div>
+          <script type=\"text/javascript\">
+            var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement(\"script\"),c=document.getElementsByTagName(\"script\")[0];a.type=\"text/javascript\",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:\"eb6f743d-d9ab-45cc-8be1-623a7cb22558\",div_id:\"comm100-button-eb6f743d-d9ab-45cc-8be1-623a7cb22558\"}),t.site_id=10013,t.main_code_plan=\"eb6f743d-d9ab-45cc-8be1-623a7cb22558\",e(\"https://vue.comm100dev.com/livechat.ashx?siteId=\"),setTimeout(function(){t.loaded||e(\"https://vuestandby.comm100dev.com/livechat.ashx?siteId=\")},5e3)})(Comm100API||{})
+          </script>
+          <!--End Comm100 Live Chat Code-->"
 }
 ```
 
