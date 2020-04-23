@@ -2526,7 +2526,7 @@ HTTP/1.1 204 No Content
 |`id` | Guid | yes | no | | Id of the current item.  |
 | `name` | string  | no | yes | `Default Plan` | |
 | `description` | string  | no | no | | |
-| `language` | string | no | no | `English` | The languages are defined in cPanel.  |
+| `language` | string | no | no | `English` | The languages are defined in cpanel.  |
 
 ## Campaign Endpoints
 
@@ -3034,7 +3034,7 @@ Content-Type:  application/json
 | `receivingEmailAddressesForArchivingTranscripts` | string | no | no | | |
 | `emailSubjectForArchivingTranscripts` | string | no | no | | |
 | `greetingMessage` | string | no | no | | |
-| `isCustomJSEnabled:` | boolean | no | no | | |
+| `isCustomJSEnabled` | boolean | no | no | | |
 | `customJS` | string | no | no | | |
 
 ### Custom SMTP Server Object
@@ -4729,7 +4729,7 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `defaultLanguage` | string | no | no | | The languages are defined in cPanel.  |
+| `defaultLanguage` | string | no | no | | The languages are defined in cpanel.  |
 | `isCustomLanguageEnabled` | boolean | no | no | | |
 | `isTextDirectionRightToLeft` | boolean | no | no | | |
 | `customLanguageItems` | [Custom Language](#Custom-Language-Object)[] | no | no | | |
