@@ -5352,7 +5352,7 @@ Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-5
 
 ### Update a Custom Rule
 
-You need `Manage Campaigns` permission to create a update a `Custom Rule`.
+You need `Manage Campaigns` permission to create or update a `Custom Rule`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
 
@@ -6141,7 +6141,7 @@ Path Parameters
 
 #### Response
 
-The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) object.
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) objects.
 
 #### Example
 
@@ -6348,7 +6348,7 @@ Path Parameters
 
 #### Response
 
-The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) object.
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) objects.
 
 #### Example
 
@@ -6985,9 +6985,9 @@ Response
 
 # Ban
 
-  You need `Manage Ban List` permission to manage ban list.
+  You need `Manage Ban List` permission to manage the ban list.
 
-- `GET /api/v3/livechat/bans` - [Get a list of bans](#get-site-bans) include visitor, agent
+- `GET /api/v3/livechat/bans` - [Get a list of bans](#get-a-list-of-bans) include visitor, agent
 - `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
 - `POST /api/v3/livechat/bans` - [Create a ban](#create-a-ban)
 - `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban)
@@ -7014,7 +7014,7 @@ Response
 
 ## Endpoint
 
-### Get list of bans
+### Get a list of bans
 
   `GET /api/v3/livechat/bans`
 
@@ -7302,7 +7302,7 @@ HTTP/1.1 204 No Content
 
 ## Endpoint
 
-### Get list of conversion actions
+### Get a list of conversion actions
 
   `GET /api/v3/livechat/conversionActions`
 
@@ -7698,7 +7698,7 @@ Content-Type:  application/json
 
 You need `Manage Security` permission to manage `Secure Form`.
 
-- `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-list-of-secure-forms)
+- `GET /api/v3/livechat/secureForms` - [Get a list of secure forms](#get-a-list-of-secure-forms)
 - `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-single-secure-form)
 - `POST /api/v3/livechat/secureForms` - [Create a secure form](#create-a-secure-form)
 - `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form)
@@ -7718,7 +7718,8 @@ You need `Manage Security` permission to manage `Secure Form`.
 | `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | An array of [Secure Form Field](#secure-form-field-json-format). |
 
 ## Endpoint
-### Get list of secure forms
+
+### Get a  list of secure forms
 
   `GET /api/v3/livechat/secureForms`
 
@@ -8080,7 +8081,7 @@ HTTP/1.1 204 No Content
 
 # Secure Form Field
 
-- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-list-of-secure-form-fields)
+- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-a-list-of-secure-form-fields)
 - `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
 - `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#ceate-a-secure-form-field)
 - `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
@@ -8113,7 +8114,7 @@ HTTP/1.1 204 No Content
 | `order` | integer | | no | no |1  | The order of the field. |
 
 ## Endpoint
-### Get list of secure form fields
+### Get a list of secure form fields
 
   `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields`
 
@@ -8598,7 +8599,7 @@ HTTP/1.1 204 No Content
 
 # Custom Variable
 
-You need `Manage Custom Variable` permission to manage custom variable.
+You need `Manage Custom Variable` permission to manage custom variables.
 
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
 - `GET /api/v3/livechat/customVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
