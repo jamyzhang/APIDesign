@@ -1681,7 +1681,7 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | N/A | N/A | | id of the session. |
+| `id` | Guid |  | N/A | N/A | | Id of the session. |
 | `startTime` | datetime | | N/A | N/A |  | Time when the session started. |
 | `ip` | string |  | N/A | N/A | |  |
 | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
@@ -1801,10 +1801,10 @@ Response
 | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
 | `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
 | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | |
-| `sessionId` | Guid | | N/A | N/A |  | id of session |
-| `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
-| `botId` | Guid | | N/A | N/A |  | id of chatbot |
-| `chatBot` | [ChatBot](#chatBot) | yes | N/A | N/A |  |  the related [ChatBot](#chatBot) object|
+| `sessionId` | Guid | | N/A | N/A |  | Id of session |
+| `session` | [Session](#session) | yes | N/A | N/A |  |  The related [Session](#session) object|
+| `botId` | Guid | | N/A | N/A |  | Id of chatbot |
+| `chatBot` | [ChatBot](#chatBot) | yes | N/A | N/A |  |  The related [ChatBot](#chatBot) object|
 
 ### Chat Message Object
 
@@ -2151,7 +2151,8 @@ You need `Delete Transcripts` permission to delete `Chats` by batch.
 #### Parameters
 
 Request body
-- An array of chat id
+
+An array of chat id.
 
 example:
 ```json
@@ -2478,8 +2479,9 @@ You need `Delete Transcripts` permission to delete `Offline Message` by batch.
 
 #### Parameters
 
-Request body 
-  - An array of offline message id
+Request body
+
+  An array of offline message id.
 
   example:
   ```json
