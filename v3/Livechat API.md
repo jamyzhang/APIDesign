@@ -1835,7 +1835,7 @@ Response
 | `ticketID` | string | N/A  | N/A | | |
 | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 | `departmentId` | Guid | N/A  | N/A | | |
-| `department` | [Department](#department) | N/A  | N/A | | |
+| `department` | [Department](./Global%20API.md#department-object) | N/A  | N/A | | |
 
 ### Chat Post Chat Object
 
@@ -2204,7 +2204,7 @@ HTTP/1.1 204 No Content
 | `phone` | string | | no | no |  | Phone of the visitor. |
 | `company` | string | | no | no |  | Company of the visitor. |
 | `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to. |
-| `department` | [Department](#department) | yes | no | no |  | Available only when department is included. |
+| `department` | [Department](./Global%20API.md#department-object) | yes | no | no |  | Available only when department is included. |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to. |
 | `agent` | [Agent](./Global%20API.md#agent-object) | yes | no | no |  | Available only when agent is included. |
 | `ticketId` | integer | yes | no | no |  | id of the related ticket. |
@@ -4863,15 +4863,15 @@ Content-Type:  application/json
 | `type` | string |  | no | no | | Including `simple` and `customRule`. |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. |
 | `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
-| `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
+| `routeToAgent` | [Agent](./Global%20API.md#agent-object) | yes | no | no | |  |
+| `routeToDepartment` | [Department](./Global%20API.md#department-object) | yes | no | no | |  |
 | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBot` | integer |  | no | no | | |
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
 | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
 | `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
 | `routeToAgentWhenNoRuleMatched` | [Agent](./Global%20API.md#agent-object) | yes | no | no | |  |
-| `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
+| `routeToDepartmentWhenNoRuleMatched` | [Department](./Global%20API.md#department-object) | yes | no | no | |  |
 | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBotWhenNoRuleMatched` | integer |  | no | no | | |
 | `emailsToReceiveOfflineMessage` | string |  | no | no | |  |
@@ -5052,8 +5052,8 @@ Content-Type:  application/json
 | `order` | integer | | no | no | | |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. |
 | `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
-| `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
+| `routeToAgent` | [Agent](./Global%20API.md#agent-object) | yes | no | no | |  |
+| `routeToDepartment` | [Department](./Global%20API.md#department-object) | yes | no | no | |  |
 | `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBot` | integer | | no | no | | |
 | `conditionMetType` | string | | no | no | | Including `all`, `any` and `logicalExpression`. |
@@ -7007,7 +7007,7 @@ Response
 | `ipRangeTo` | string | | no | yes | | Mandatory when `type` is `ipRange`. |
 | `comment` | string | | no | no | | Comment of the ban. |
 | `lastUpdatedByAgentId` | integer | | yes | no | | |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included.  |
+| `lastUpdatedAgent` | [Agent](./Global%20API.md#agent-object) | yes | no | no | | Available only when agent is included.  |
 
 ## Endpoint
 
@@ -7280,10 +7280,10 @@ HTTP/1.1 204 No Content
 | `appendFieldList` | string[] | | no | no |  |  |
 | `createdTime` | datetime | | N/A | N/A |  |  |
 | `createdByAgentId` | integer | | N/A | N/A |  |  |
-| `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included.  |
+| `createdAgent` | [Agent](./Global%20API.md#agent-object) | yes | N/A | N/A | | Available only when agent is included.  |
 | `lastUpdatedTime` | datetime | | N/A | N/A |  | |
 | `lastUpdatedByAgentId` | integer | | N/A | N/A |  | |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included. |
+| `lastUpdatedAgent` | [Agent](./Global%20API.md#agent-object) | yes | N/A | N/A |  | Available only when agent is included. |
 
 
 ### Conversion Achieved JSON Format
