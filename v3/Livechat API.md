@@ -1159,7 +1159,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Mobile Push](#mobile-push-json-format) object structure.
+  The request body contains data with the [Mobile Push](#mobile-push-json-format) structure.
 
 example:
 ```Json
@@ -1335,7 +1335,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) object structure.
+  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) structure.
 
 example:
 ```Json
@@ -1372,7 +1372,7 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
-- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable)  
+- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable-results)  
 
 ## Related Object JSON Format
 
@@ -4698,7 +4698,7 @@ example:
 
 #### Response
 
-The response is a [Agent Wrap-Up](#Agent-Wrap-Up-Object) object
+The response is an [Agent Wrap-Up](#Agent-Wrap-Up-Object) object
 
 #### Example
 
@@ -5713,7 +5713,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 

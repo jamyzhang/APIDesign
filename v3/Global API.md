@@ -39,7 +39,7 @@
   + `PUT /api/v3/globalSettings/site` - [Update profile of a site](#update-profile-of-a-site)
 
 
-## Site Related Object Json Format
+## Site Related Object JSON format
 
 ### Site Object
   Each Comm100 account is treated as a Site and has a unique Site ID.
@@ -181,7 +181,7 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
   + `PUT /api/v3/globalSettings/agents/me` - [Update current agent](#update-current-agent)
   + `DELETE /api/v3/globalSettings/agents/{id}` - [Delete an agent](#delete-an-agent)
 
-## Agent Related Object Json Format
+## Agent Related Object JSON format
 
 ### Agent Object
   This is the entity details for Agents.
@@ -793,7 +793,7 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
   + `PUT /api/v3/globalSettings/roles/{id}` - [Update a role](#update-a-role)
   + `DELETE /api/v3/globalSettings/roles/{id}` - [Delete a role](#delete-a-role)
 
-## Role Related Object Json Format
+## Role Related Object JSON format
 
 ### Role Object
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
@@ -1104,7 +1104,7 @@ You need the `Manage departments` permission to manage departments.
   + `DELETE /api/v3/globalSettings/departments/{id}` - [Delete a department](#delete-a-department)
 
 
-## Department Related Object Json Format
+## Department Related Object JSON format
 
 ### Department Object
 
@@ -1382,7 +1382,7 @@ HTTP/1.1 204 No Content
   + `PUT /api/v3/globalSettings/agents/{agentId}/permissions` - [Update agent permissions](#update-agent-permissions)
 
 
-## Permission Related Object Json Format
+## Permission Related Object JSON format
 
 ### Permission Object
 
@@ -1643,7 +1643,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/agents/68/permissions
 - `PUT /api/v3/globalSettings/shifts/{id}` - [update a shift](#update-a-shift)
 - `DELETE /api/v3/globalSettings/shifts/{id}` - [delete a shift](#delete-a-shift)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Shift Object
 
@@ -2172,7 +2172,7 @@ Response
  + `PUT /api/v3/globalSettings/contacts/{id}` - [Update a contact](#update-a-contact)
  + `DELETE /api/v3/globalSettings/contacts/{id}` - [Delete a contact](#delete-a-contact)
 
-## Contact Related Object Json Format
+## Contact Related Object JSON format
 
 ### Contact Object
 
@@ -2466,7 +2466,7 @@ HTTP/1.1 204 No Content
  + `PUT /api/v3/globalSettings/contactIdentities/{id}` - [update an contact identity](#update-an-contact-identity)
  + `DELETE /api/v3/globalSettings/contactIdentities/{id}` - [delete an contact identity](#delete-an-contact-identity)
 
- ## Contact Identity Related Object Json Format
+ ## Contact Identity Related Object JSON format
 
 ### Contact Identity Object
 
@@ -2738,7 +2738,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/globalSettings/visitors` - [Get all visitors in site](#get-all-visitors-in-site)
 - `GET /api/v3/globalSettings/visitors/{id}` - [Get a visitor by id](#get-a-visitor-by-id)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Visitor Object
 
@@ -2852,7 +2852,7 @@ Content-Type:  application/json
 
 # Public Canned Message Category
 
-  You need `Manage Pulbic Canned Messages` permission to manage canned message category.
+  You need `Manage Pulbic Canned Messages` permission to manage the canned message category.
 
 - `GET /api/v3/globalSettings/publicCannedMessageCategories` - [Get all public canned message categories in site](#get-all-Public-Canned-Message-Categories-in-site)
 - `GET /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [Get a public canned message category by id](#get-a-Public-Canned-Message-Category-by-id)
@@ -2860,7 +2860,7 @@ Content-Type:  application/json
 - `PUT /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [update a public canned message category](#update-a-Public-Canned-Message-Category)
 - `DELETE /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [delete a public canned message category](#delete-a-Public-Canned-Message-Category)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Public Canned Message Category Object
 
@@ -3069,7 +3069,7 @@ HTTP/1.1 204 No Content
 
 # Public Canned Message
 
-  You need `Manage Pulbic Canned Messages` permission to manage canned message.
+  You need `Manage Pulbic Canned Messages` permission to manage the canned message.
 
 - `GET /api/v3/globalSettings/publicCannedMessages` - [Get all public canned messages in site](#get-all-Public-Canned-Messages-in-site)
 - `GET /api/v3/globalSettings/publicCannedMessages/{id}` - [Get a public canned message by id](#get-a-Public-Canned-Message-by-id)
@@ -3078,7 +3078,7 @@ HTTP/1.1 204 No Content
 - `PUT /api/v3/globalSettings/publicCannedMessages/{id}` - [update a public canned message](#update-a-Public-Canned-Message)
 - `DELETE /api/v3/globalSettings/publicCannedMessages/{id}` - [delete a public canned message](#delete-a-Public-Canned-Message)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Public Canned Message Object
 
@@ -3400,7 +3400,7 @@ Response
 
 # Private Canned Message Category
 
-You need `Manage Private Canned Messages` permission to manage canned message category.
+You need `Manage Private Canned Messages` permission to manage the canned message category.
 
 - `GET /api/v3/globalSettings/privateCannedMessageCategories` - [Get all private canned message categories in site](#get-all-Private-Canned-Message-Categories-in-site)
 - `GET /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [Get a private canned message category by id](#get-a-Private-Canned-Message-Category-by-id)
@@ -3408,7 +3408,7 @@ You need `Manage Private Canned Messages` permission to manage canned message ca
 - `PUT /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [update a private canned message category](#update-a-Private-Canned-Message-Category)
 - `DELETE /api/v3/globalSettings/privateCannedMessageCategories/{id}` - [delete a private canned message category](#delete-a-Private-Canned-Message-Category)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Private Canned Message Category Object
 
@@ -3617,6 +3617,8 @@ HTTP/1.1 204 No Content
 
 # Private Canned Message
 
+You need `Manage Private Canned Messages` permission to manage the canned message.
+
 - `GET /api/v3/globalSettings/privateCannedMessages` - [Get all private canned messages in site](#get-all-Private-Canned-Messages-in-site)
 - `GET /api/v3/globalSettings/privateCannedMessages/{id}` - [Get a private canned message by id](#get-a-Private-Canned-Message-by-id)
 - `POST /api/v3/globalSettings/privateCannedMessages` - [create a new private canned message](#create-a-new-Private-Canned-Message)
@@ -3624,7 +3626,7 @@ HTTP/1.1 204 No Content
 - `PUT /api/v3/globalSettings/privateCannedMessages/{id}` - [update a private canned message](#update-a-Private-Canned-Message)
 - `DELETE /api/v3/globalSettings/privateCannedMessages/{id}` - [delete a private canned message](#delete-a-Private-Canned-Message)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Private Canned Message Object
 
@@ -3950,12 +3952,12 @@ Response
   You need `Manage Custom Away Status` permission to manage `Agent Away Status`.
 
 - `GET /api/v3/globalSettings/agentAwayStatuses` - [Get all agent away statuses in site](#get-all-Agent-Away-Statuses-in-site)
-- `GET /api/v3/globalSettings/agentAwayStatuses/{id}` - [Get an agent away status by id](#get-a-Agent-Away-Status-by-id)
+- `GET /api/v3/globalSettings/agentAwayStatuses/{id}` - [Get an agent away status by id](#get-an-Agent-Away-Status-by-id)
 - `POST /api/v3/globalSettings/agentAwayStatuses` - [create a new agent away status](#create-a-new-Agent-Away-Status)
-- `PUT /api/v3/globalSettings/agentAwayStatuses/{id}` - [update an agent away status](#update-a-Agent-Away-Status)
-- `DELETE /api/v3/globalSettings/agentAwayStatuses/{id}` - [delete an agent away status](#delete-a-Agent-Away-Status)
+- `PUT /api/v3/globalSettings/agentAwayStatuses/{id}` - [update an agent away status](#update-an-Agent-Away-Status)
+- `DELETE /api/v3/globalSettings/agentAwayStatuses/{id}` - [delete an agent away status](#delete-an-Agent-Away-Status)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Agent Away Status Object
 
@@ -4006,7 +4008,7 @@ Content-Type:  application/json
 ]
 ```
 
-### Get a Agent Away Status by id
+### Get an Agent Away Status by id
 
   `GET /api/v3/globalSettings/agentAwayStatuses/{id}`
 
@@ -4089,7 +4091,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/agentAwayStatuses/D4F6BA
 }
 ```
 
-### Update a Agent Away Status
+### Update an Agent Away Status
 
   `PUT /api/v3/globalSettings/agentAwayStatuses/{id}`
 
@@ -4140,7 +4142,7 @@ Content-Type:  application/json
 }
 ```
 
-### Delete a Agent Away Status
+### Delete an Agent Away Status
 
   `DELETE /api/v3/globalSettings/agentAwayStatuses/{id}`
 
@@ -4180,7 +4182,7 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
   + `PUT /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [update a whitelisted login IP range](#update-a-whitelisted-login-ip-range)
   + `DELETE /api/v3/globalSettings/whitelistedLoginIPRanges/{id}` - [delete a whitelisted login IP range](#delete-a-whitelisted-login-ip-range)
 
-## Whitelisted Login IP Range Related Object Json Format
+## Whitelisted Login IP Range Related Object JSON format
 
 ### Whitelisted Login IP Range Object
 
@@ -4378,7 +4380,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/globalSettings/agentSSO` - [Get Agent SSO](#get-agent-sso)
 - `PUT /api/v3/globalSettings/agentSSO` - [update Agent SSO](#update-agent-sso)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Agent SSO Object
 
@@ -4493,7 +4495,7 @@ Content-Type:  application/json
 - `GET /api/v3/globalSettings/visitorSSO` - [Get Visitor SSO](#get-visitor-sso)
 - `PUT /api/v3/globalSettings/visitorSSO` - [update Visitor SSO](#update-visitor-sso)
 
-## Related Object Json Format
+## Related Object JSON format
 
 ### Visitor SSO Object
 
@@ -4691,7 +4693,7 @@ Response
 
   + `GET /api/v3/globalSettings/auditLogs` - [Get audit logs list](#get-audit-logs-list)
 
-## Audit Log Object Json Format
+## Audit Log Object JSON format
 
 ### Audit Log Object
 
