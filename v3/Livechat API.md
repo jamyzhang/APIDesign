@@ -2206,7 +2206,7 @@ HTTP/1.1 204 No Content
 | `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to. |
 | `department` | [Department](#department) | yes | no | no |  | Available only when department is included. |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to. |
-| `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included. |
+| `agent` | [Agent](./Global%20API.md#agent-object) | yes | no | no |  | Available only when agent is included. |
 | `ticketId` | integer | yes | no | no |  | id of the related ticket. |
 | `subject` | string | | no | no |  | The subject of this offline message.|
 | `message` | string | | no | no | | The content of this offline message. |
@@ -4870,7 +4870,7 @@ Content-Type:  application/json
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
 | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
 | `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
-| `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
+| `routeToAgentWhenNoRuleMatched` | [Agent](./Global%20API.md#agent-object) | yes | no | no | |  |
 | `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
 | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBotWhenNoRuleMatched` | integer |  | no | no | | |
