@@ -53,7 +53,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 
 - `GET /api/v3/livechat/settings` - [Get settings of a site](#get-settings-of-a-site)
 - `PUT /api/v3/livechat/settings` - [Update settings of a site](#update-settings-of-a-site)
 
-## Settings Related Objects Json Format
+## Settings Related Objects JSON Format
 
 ### Settings Object
 
@@ -221,7 +221,7 @@ HTTP/1.1 200 OK
 - `GET /api/v3/livechat/autoDistribution` - [Get auto distribution](#get-auto-distribution)
 - `PUT /api/v3/livechat/autoDistribution` - [Update auto distribution](#update-auto-distribution)
 
-## Auto Distribution Related Objects Json Format
+## Auto Distribution Related Objects JSON Format
 
 ### Auto Distribution Object
 
@@ -421,7 +421,7 @@ You need `Manage Settings` permission to manage `Translation Excluded Words`.
 - `GET /api/v3/livechat/translationExcludedWords` - [Get translation excluded words](#get-translation-excluded-words)
 - `PUT /api/v3/livechat/translationExcludedWords` - [Update translation excluded words](#update-translation-excluded-words)
 
-## Translation Excluded Word Related Objects Json Format
+## Translation Excluded Word Related Objects JSON Format
 
 ### Translation Excluded Words Object
 
@@ -520,13 +520,13 @@ Content-Type:  application/json
 
 You need `Manage Settings` permission to manage `Customer Segment`.
 
-- `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-list-of-customer-segments)
+- `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-a-list-of-customer-segments)
 - `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-a-cusomer-segment-by-id)
 - `POST /api/v3/livechat/customerSegments` - [Create a customer segment](#create-a-customer-segment)
 - `PUT /api/v3/livechat/customerSegments/{id}` - [Update a customer segment](#update-a-info-customer-segment)
 - `DELETE /api/v3/livechat/customerSegments/{id}` - [Delete a customer segment](#delete-a-customer-segment)
 
-## Customer Segment Related Objects Json Format
+## Customer Segment Related Objects JSON Format
 
 ### Customer Segment Object
 
@@ -567,7 +567,7 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
 ## Endpoint
 
-### Get list of Customer Segments
+### Get a list of Customer Segments
 
   `GET /api/v3/livechat/customerSegments`
 
@@ -1118,7 +1118,7 @@ Content-Type:  application/json
 
 #### Response
 
-The response is [Mobile Push](#mobile-push-json-format) object.
+The response is a [Mobile Push](#mobile-push-json-format) object.
 
 #### Example
 
@@ -1159,7 +1159,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Mobile Push](#mobile-push-json-format) object structure.
+  The request body contains data with the [Mobile Push](#mobile-push-json-format) structure.
 
 example:
 ```Json
@@ -1240,7 +1240,7 @@ You need `Manage Agent & Agent Roles` permission to manage `Live Chat Agent`.
 - `GET /api/v3/livechat/agents/{id}` - [Get a live chat agent by id](#get-a-live-chat-agent-by-id)  
 - `PUT /api/v3/livechat/agents/{id}` - [Update a live chat agent](#update-a-live-chat-agent)  
   
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Live Chat Agent Object
 
@@ -1335,7 +1335,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) object structure.
+  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) structure.
 
 example:
 ```Json
@@ -1372,7 +1372,7 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
-- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable)  
+- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable-results)  
 
 ## Related Object JSON Format
 
@@ -1674,7 +1674,8 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/sessions/{id}` - [Get a session by id](#get-a-session-by-id) include visitor, contact
 
-## Related Object Json Format
+## Related Object JSON Format
+
 ### Session JSON format
 
  `Session` is represented as simple flat JSON objects with the following keys:  
@@ -1764,7 +1765,7 @@ Response
 - `DELETE /api/v3/livechat/chats/{id}` - [Delete a chat](#delete-a-chat)
 - `DELETE /api/v3/livechat/chats` - [Batch Delete chats](#Batch-delete-chats)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Chat Object
 
@@ -2187,7 +2188,7 @@ HTTP/1.1 204 No Content
 - `DELETE /api/v3/livechat/offlineMessages/{id}` - [Delete an offline message by id](#delete-an-offline-message-by-id)
 - `DELETE /api/v3/livechat/offlineMessages` - [Batch delete offline messages](#batch-delete-offline-messages)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Offline Message JSON format
 
@@ -2375,7 +2376,7 @@ Query string
 
 #### Response
 
-The response is a [Offline Message](#offline-message-json-format) object.
+The response is an [Offline Message](#offline-message-json-format) object.
 
 #### Example
 
@@ -2515,7 +2516,7 @@ HTTP/1.1 204 No Content
 - `PUT /api/v3/livechat/campaigns/{id}` - [Update a campaign](#update-a-campaign)
 - `DELETE /api/v3/livechat/campaigns/{id}` - [Delete a campaign](#delete-a-campaign)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Campaign Object
 
@@ -2739,7 +2740,7 @@ Response
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/installationCode` - [Get installation code of a campaign](#get-installation-code-of-a-campaign)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Installation Code Object
 
@@ -2765,7 +2766,7 @@ Path Parameters
 
 #### Response
 
-The response is a [Installation Code](#Installation-Code-Object) object.
+The response is an [Installation Code](#Installation-Code-Object) object.
 
 #### Example
 
@@ -2794,7 +2795,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Get settings of ChatButton for a campaign](#get-chat-button)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/chatButton` - [Update settings of ChatButton for a campaign](#update-chat-button)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Chat Button Object
 
@@ -2991,7 +2992,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/chatWindow` - [Get settings of ChatWindow for a campaign](#get-chat-window)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/chatWindow` - [Update settings of ChatWindow for a campaign](#update-chat-window)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Chat Window Object
 
@@ -3095,7 +3096,7 @@ Content-Type:  application/json
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
-  "backgroundTexture": "style1",
+  "backgroundTexture": 1,
   "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
@@ -3161,7 +3162,7 @@ example:
   "isLogoDisplayed": false,
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
-  "backgroundTexture": "style1",
+  "backgroundTexture": 1,
   "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
@@ -3215,7 +3216,7 @@ curl -H "Content-Type: application/json" -d '{
   "isLogoDisplayed": false,
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
-  "backgroundTexture": "style1",
+  "backgroundTexture": 1,
   "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
@@ -3268,7 +3269,7 @@ Content-Type:  application/json
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
-  "backgroundTexture": "style1",
+  "backgroundTexture": 1,
   "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
@@ -3309,11 +3310,11 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/preChat` - [Get settings of Pre-Chat for a campaign](#get-Pre-Chat)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/preChat` - [Update settings of Pre-Chat for a campaign](#update-Pre-Chat)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Pre-Chat Object
 
-  `Pre-Chat`is represented as simple flat JSON objects with the following keys:  
+  `Pre-Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3492,7 +3493,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/postChat` - [Get settings of PostChat for a campaign](#get-Post-Chat)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/postChat` - [Update settings of PostChat for a campaign](#update-Post-Chat)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Post Chat Object
 
@@ -3603,7 +3604,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/offlineMessage` - [Get settings of OfflineMessage for a campaign](#get-Campaign-Offline-Message)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/offlineMessage` - [Update settings of OfflineMessage for a campaign](#update-Campaign-Offline-Message)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Campaign Offline Message Object
 
@@ -3770,7 +3771,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/invitation` - [Get settings of invitation  for a campaign](#get-Invitation)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/invitation` - [Update settings of invitation  for a campaign](#update-Invitation)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Invitation Object
 
@@ -3779,7 +3780,7 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `id` | Guid | yes | no | | Id of the current item. |
-| `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow`. |
+| `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow` when chat button's style is adaptive, otherwise including `popup` and `chatWindow` only. |
 | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
 | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object) | no | no | | |
 
@@ -3799,7 +3800,7 @@ Path Parameters
 
 #### Response
 
-The response is a [Invitation](#Invitation-Object) object.
+The response is an [Invitation](#Invitation-Object) object.
 
 #### Example
 
@@ -3900,7 +3901,7 @@ example:
 
 #### Response
 
-The response is a [Invitation](#Invitation-Object) object.
+The response is an [Invitation](#Invitation-Object) object.
 
 #### Example
 
@@ -3925,7 +3926,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation` - [Get settings of manual invitation  for a campaign](#get-Manual-Invitation)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/manualInvitation` - [Update settings of manual invitation  for a campaign](#update-Manual-Invitation)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Manual Invitation Object
 
@@ -4096,12 +4097,12 @@ Content-Type:  application/json
 # Auto Invitation
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Get all auto invitations in a campaign](#get-all-Auto-Invitations-in-a-campaign)
-- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get a auto invitation by id](#get-a-Auto-Invitation-by-id)
+- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get an auto invitation by id](#get-an-Auto-Invitation-by-id)
 - `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Create a new auto invitation](#create-a-new-Auto-Invitation)
-- `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update a auto invitation](#update-a-Auto-Invitation)
-- `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete a auto invitation](#delete-a-Auto-Invitation)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update an auto invitation](#update-an-Auto-Invitation)
+- `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete an auto invitation](#delete-an-Auto-Invitation)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Auto Invitation Object
 
@@ -4205,7 +4206,7 @@ Content-Type:  application/json
   ]
 ```
 
-### Get a Auto Invitation by id
+### Get an Auto Invitation by id
 
   `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
@@ -4220,7 +4221,7 @@ Path Parameters
 
 #### Response
 
-The response is: [Auto Invitation](#Auto-Invitation-Object) object.
+The response is an [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4276,7 +4277,7 @@ Content-Type:  application/json
 
 ### Create a new Auto Invitation
 
-You need `Manage Campaigns` permission to create a `Auto Invitation`.
+You need `Manage Campaigns` permission to create an `Auto Invitation`.
 
   `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations`
 
@@ -4330,7 +4331,7 @@ example:
 
 #### Response
 
-The response is a [Auto Invitation](#Auto-Invitation-Object) object.
+The response is an [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4413,9 +4414,9 @@ Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-5
 }
 ```
 
-### Update a Auto Invitation
+### Update an Auto Invitation
 
-You need `Manage Campaigns` permission to update a `Auto Invitation`.
+You need `Manage Campaigns` permission to update an `Auto Invitation`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
@@ -4470,7 +4471,7 @@ example:
 
 #### Response
 
-The response is a [Auto Invitation](#Auto-Invitation-Object) object.
+The response is an [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4551,9 +4552,9 @@ Content-Type:  application/json
 }
 ```
 
-### Delete a Auto Invitation
+### Delete an Auto Invitation
 
-You need `Manage Campaigns` permission to delete a `Auto Invitation`.
+You need `Manage Campaigns` permission to delete an `Auto Invitation`.
 
   `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
@@ -4587,7 +4588,7 @@ Response
 - `GET /api/v3/livechat/campaigns/{campaignId}/agentWrapup` - [Get settings of agent wrap-Up  for a campaign](#get-Agent-Wrap-Up)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/agentWrapup` - [Update settings of agent wrap-Up  for a campaign](#update-Agent-Wrap-Up)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Agent Wrap-Up Object
 
@@ -4695,7 +4696,7 @@ example:
 
 #### Response
 
-The response is a [Agent Wrap-Up](#Agent-Wrap-Up-Object) object
+The response is an [Agent Wrap-Up](#Agent-Wrap-Up-Object) object
 
 #### Example
 
@@ -4721,7 +4722,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/language` - [Get settings of language for a campaign](#get-Language)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/language` - [Update settings of language for a campaign](#update-Language)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Language Object
 
@@ -4851,7 +4852,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/routing` - [Get settings of routing for a campaign](#get-Routing)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/routing` - [Update settings of routing for a campaign](#update-Routing)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Routing Object
 
@@ -5038,7 +5039,7 @@ Content-Type:  application/json
 - `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Update a custom rule](#update-a-Custom-Rule)
 - `DELETE /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}` - [Delete a custom rule](#delete-a-Custom-Rule)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Custom Rule Object
 
@@ -5349,7 +5350,7 @@ Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-5
 
 ### Update a Custom Rule
 
-You need `Manage Campaigns` permission to create a update a `Custom Rule`.
+You need `Manage Campaigns` permission to create or update a `Custom Rule`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/routing/customRules/{id}`
 
@@ -5516,7 +5517,7 @@ Response
 - `GET /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration` - [Get settings of Chatbot Integration for a campaign](#get-Chatbot-Integration)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/chatbotIntegration` - [Update settings of Chatbot Integration for a campaign](#update-Chatbot-Integration)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Chatbot Integration Object
 
@@ -5526,7 +5527,7 @@ Response
 | - | - |- | :-: | :-: | :-: | - |
 | `isEnable` | boolean | | no | no | | Whether the chatbot integration is enabled or not. |
 | `selectedChatbotId` | Guid | | no | no | | |
-| `selectedChatbot` | [Bot](#Bot-Object) | yes | no | no | | |
+| `selectedChatbot` | [Bot](./Bot%20API.md#Bot-Object) | yes | no | no | | |
 | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | no | | |
 | `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
 | `ifDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
@@ -5682,7 +5683,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Get settings of KB Integration for a campaign](#get-KB-Integration)
 - `PUT /api/v3/livechat/campaigns/{campaignId}/kbIntegration` - [Update settings of KB Integration for a campaign](#update-KB-Integration)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### KB Integration Object
 
@@ -5710,7 +5711,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -5818,7 +5819,7 @@ Content-Type:  application/json
 - `PUT /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Update a campaign form field](#update-a-campaign-form-field)
 - `DELETE /api/v3/livechat/campaigns/{campaignId}/campaignFormFields/{id}` - [Delete a campaign form field](#delete-a-campaign-form-field)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Campaign Form Field Object
 
@@ -5856,7 +5857,7 @@ Content-Type:  application/json
 | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | no | no | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
 | `leftText` | string | no | no | | Available whey Type is NPS. |
 | `rightText` | string | no | no | | Available whey Type is NPS. |
-| `optionGroups` | [Live Chat Field Option Group](#Live-Chat-Field-Option-Group-Object)[] | no | no | | Live Chat Field Option Group, available whey Type is `checkboxListwithOptionGroups`. |
+| `optionGroups` | [Live Chat Field Option Group](#Live-Chat-Field-Option-Group-Object)[] | no | no | | Live Chat Field Option Group, available when type is `checkboxListwithOptionGroups`. |
 
 ### Live Chat System Field
 
@@ -6138,7 +6139,7 @@ Path Parameters
 
 #### Response
 
-The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) object.
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) objects.
 
 #### Example
 
@@ -6345,7 +6346,7 @@ Path Parameters
 
 #### Response
 
-The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) object.
+The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) objects.
 
 #### Example
 
@@ -6982,7 +6983,7 @@ Response
 
 # Ban
 
-  You need `Manage Ban List` permission to manage ban list.
+  You need `Manage Ban List` permission to manage the ban list.
 
 - `GET /api/v3/livechat/bans` - [Get a list of bans](#get-list-of-bans) include visitor, agent
 - `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-single-ban) include visitor, agent
@@ -6990,7 +6991,7 @@ Response
 - `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban)
 - `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Ban JSON Format
 
@@ -7011,7 +7012,7 @@ Response
 
 ## Endpoint
 
-### Get list of bans
+### Get a list of bans
 
   `GET /api/v3/livechat/bans`
 
@@ -7251,7 +7252,7 @@ HTTP/1.1 204 No Content
 - `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-conversion-action)
 - `POST /api/v3/livechat/conversionActions/achieved` - [Make api conversion successful](#make-api-conversion-successful)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Conversion Action JSON Format
 
@@ -7299,7 +7300,7 @@ HTTP/1.1 204 No Content
 
 ## Endpoint
 
-### Get list of conversion actions
+### Get a list of conversion actions
 
   `GET /api/v3/livechat/conversionActions`
 
@@ -7695,13 +7696,14 @@ Content-Type:  application/json
 
 You need `Manage Security` permission to manage `Secure Form`.
 
-- `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-list-of-secure-forms)
-- `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
+- `GET /api/v3/livechat/secureForms` - [Get a list of secure forms](#get-a-list-of-secure-forms)
+- `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-single-secure-form)
 - `POST /api/v3/livechat/secureForms` - [Create a secure form](#create-a-secure-form)
 - `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form)
 - `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
 
-## Related Object Json Format
+## Related Object JSON Format
+
 ### Secure Form JSON Format
 
 `Secure Form` is represented as simple flat JSON objects with the following keys:  
@@ -7714,7 +7716,8 @@ You need `Manage Security` permission to manage `Secure Form`.
 | `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | An array of [Secure Form Field](#secure-form-field-json-format). |
 
 ## Endpoint
-### Get list of secure forms
+
+### Get a  list of secure forms
 
   `GET /api/v3/livechat/secureForms`
 
@@ -8049,7 +8052,7 @@ Content-Type:  application/json
   }
 ```
 
-### Remove a secure form
+### Delete a secure form
 
   `DELETE /api/v3/livechat/secureForms/{id}`
 
@@ -8076,7 +8079,7 @@ HTTP/1.1 204 No Content
 
 # Secure Form Field
 
-- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-list-of-secure-form-fields)
+- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-a-list-of-secure-form-fields)
 - `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
 - `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#ceate-a-secure-form-field)
 - `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
@@ -8109,7 +8112,7 @@ HTTP/1.1 204 No Content
 | `order` | integer | | no | no |1  | The order of the field. |
 
 ## Endpoint
-### Get list of secure form fields
+### Get a list of secure form fields
 
   `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields`
 
@@ -8349,7 +8352,7 @@ Content-Type:  application/json
   }
 ```
 
-### Remove a secure form field
+### Delete a secure form field
 
   `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}`
 
@@ -8408,7 +8411,7 @@ You need `Manage Integration` permission to manage `Webhook`.
 
 #### Response
 
-The response is An array of [Webhook](#webhook-object) objects.
+The response is an array of [Webhook](#webhook-object) objects.
 
 #### Example
 
@@ -8594,7 +8597,7 @@ HTTP/1.1 204 No Content
 
 # Custom Variable
 
-You need `Manage Custom Variable` permission to manage custom variable.
+You need `Manage Custom Variable` permission to manage custom variables.
 
 - `GET /api/v3/livechat/customVariables` - [Get a list of custom variables](#get-a-list-of-custom-variables)
 - `GET /api/v3/livechat/customVariables/{id}` - [Get a custom variable by id](#get-a-custom-variable-by-id)
