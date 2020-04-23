@@ -1757,7 +1757,7 @@ Content-Type:  application/json
 
 ### Get a Shift by id
 
-  `GET /api/v3/livechat/shift/{id}`
+  `GET /api/v3/livechat/shifts/{id}`
 
 #### Parameters
 
@@ -1765,7 +1765,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the private canned message |
+  | `id` | Guid | yes  |  The unique id of the private canned message |
 
 Query string
 
