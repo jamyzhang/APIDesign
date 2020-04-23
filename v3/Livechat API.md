@@ -520,7 +520,7 @@ Content-Type:  application/json
 
 You need `Manage Settings` permission to manage `Customer Segment`.
 
-- `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-list-of-customer-segments)
+- `GET /api/v3/livechat/customerSegments` - [Get a list of customer segments](#get-a-list-of-customer-segments)
 - `GET /api/v3/livechat/customerSegments/{id}` - [Get a customer segment by id](#get-a-cusomer-segment-by-id)
 - `POST /api/v3/livechat/customerSegments` - [Create a customer segment](#create-a-customer-segment)
 - `PUT /api/v3/livechat/customerSegments/{id}` - [Update a customer segment](#update-a-info-customer-segment)
@@ -567,7 +567,7 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
 ## Endpoint
 
-### Get list of Customer Segments
+### Get a list of Customer Segments
 
   `GET /api/v3/livechat/customerSegments`
 
@@ -1118,7 +1118,7 @@ Content-Type:  application/json
 
 #### Response
 
-The response is [Mobile Push](#mobile-push-json-format) object.
+The response is a [Mobile Push](#mobile-push-json-format) object.
 
 #### Example
 
@@ -2377,7 +2377,7 @@ Query string
 
 #### Response
 
-The response is a [Offline Message](#offline-message-json-format) object.
+The response is an [Offline Message](#offline-message-json-format) object.
 
 #### Example
 
@@ -2767,7 +2767,7 @@ Path Parameters
 
 #### Response
 
-The response is a [Installation Code](#Installation-Code-Object) object.
+The response is an [Installation Code](#Installation-Code-Object) object.
 
 #### Example
 
@@ -3315,7 +3315,7 @@ Content-Type:  application/json
 
 ### Pre-Chat Object
 
-  `Pre-Chat`is represented as simple flat JSON objects with the following keys:  
+  `Pre-Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3801,7 +3801,7 @@ Path Parameters
 
 #### Response
 
-The response is a [Invitation](#Invitation-Object) object.
+The response is an [Invitation](#Invitation-Object) object.
 
 #### Example
 
@@ -3902,7 +3902,7 @@ example:
 
 #### Response
 
-The response is a [Invitation](#Invitation-Object) object.
+The response is an [Invitation](#Invitation-Object) object.
 
 #### Example
 
@@ -4098,10 +4098,10 @@ Content-Type:  application/json
 # Auto Invitation
 
 - `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Get all auto invitations in a campaign](#get-all-Auto-Invitations-in-a-campaign)
-- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get a auto invitation by id](#get-a-Auto-Invitation-by-id)
+- `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Get an auto invitation by id](#get-an-Auto-Invitation-by-id)
 - `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations` - [Create a new auto invitation](#create-a-new-Auto-Invitation)
-- `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update a auto invitation](#update-a-Auto-Invitation)
-- `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete a auto invitation](#delete-a-Auto-Invitation)
+- `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Update an auto invitation](#update-an-Auto-Invitation)
+- `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}` - [Delete an auto invitation](#delete-an-Auto-Invitation)
 
 ## Related Object Json Format
 
@@ -4207,7 +4207,7 @@ Content-Type:  application/json
   ]
 ```
 
-### Get a Auto Invitation by id
+### Get an Auto Invitation by id
 
   `GET /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
@@ -4222,7 +4222,7 @@ Path Parameters
 
 #### Response
 
-The response is: [Auto Invitation](#Auto-Invitation-Object) object.
+The response is an [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4278,7 +4278,7 @@ Content-Type:  application/json
 
 ### Create a new Auto Invitation
 
-You need `Manage Campaigns` permission to create a `Auto Invitation`.
+You need `Manage Campaigns` permission to create an `Auto Invitation`.
 
   `POST /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations`
 
@@ -4332,7 +4332,7 @@ example:
 
 #### Response
 
-The response is a [Auto Invitation](#Auto-Invitation-Object) object.
+The response is an [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4415,9 +4415,9 @@ Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-5
 }
 ```
 
-### Update a Auto Invitation
+### Update an Auto Invitation
 
-You need `Manage Campaigns` permission to update a `Auto Invitation`.
+You need `Manage Campaigns` permission to update an `Auto Invitation`.
 
   `PUT /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 
@@ -4472,7 +4472,7 @@ example:
 
 #### Response
 
-The response is a [Auto Invitation](#Auto-Invitation-Object) object.
+The response is an [Auto Invitation](#Auto-Invitation-Object) object.
 
 #### Example
 
@@ -4553,9 +4553,9 @@ Content-Type:  application/json
 }
 ```
 
-### Delete a Auto Invitation
+### Delete an Auto Invitation
 
-You need `Manage Campaigns` permission to delete a `Auto Invitation`.
+You need `Manage Campaigns` permission to delete an `Auto Invitation`.
 
   `DELETE /api/v3/livechat/campaigns/{campaignId}/invitation/autoInvitations/{id}`
 

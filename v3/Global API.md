@@ -4373,7 +4373,7 @@ HTTP/1.1 204 No Content
 
 # Agent SSO
 
-  You need `Manage Security` permission to setting sso for a site.
+  You need `Manage Security` permission to set sso for a site.
 
 - `GET /api/v3/globalSettings/agentSSO` - [Get Agent SSO](#get-agent-sso)
 - `PUT /api/v3/globalSettings/agentSSO` - [update Agent SSO](#update-agent-sso)
@@ -4382,18 +4382,18 @@ HTTP/1.1 204 No Content
 
 ### Agent SSO Object
 
-  Agent SSO Object is represented as simple flat JSON objects with the following keys:
+  `Agent SSO` Object is represented as simple flat JSON objects with the following keys:
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
   | `isEnabled` | bool  | | no | no|false| |
   | `protocolType` | string |  | no | yes | | Including `SAML` and `JWT`. |
-  | `samlSSOURL` | string |  | no |yes | |Mandatory when Type is `SAML`. |
-  | `samlLogoutURL` | string |  | no | no | | Only available when Type is `SAML`. |
-  | `samlCertificate` | string |  | no | yes | | SAML certificate, mandatory when Type is `SAML`.|
-  | `jwtLoginURL` | string |  | no | yes | | Mandatory when Type is `JWT`. |
-  | `jwtLogoutURL` | string |  | no | no | | Only available when Type is `JWT`.  |
-  | `jwtSecret` | string |  | no | no | | Mandatory when Type is `JWT`.  |
+  | `samlSSOURL` | string |  | no |yes | |Mandatory when type is `SAML`. |
+  | `samlLogoutURL` | string |  | no | no | | Only available when type is `SAML`. |
+  | `samlCertificate` | string |  | no | yes | | SAML certificate, mandatory when type is `SAML`.|
+  | `jwtLoginURL` | string |  | no | yes | | Mandatory when type is `JWT`. |
+  | `jwtLogoutURL` | string |  | no | no | | Only available when type is `JWT`.  |
+  | `jwtSecret` | string |  | no | no | | Mandatory when type is `JWT`.  |
 
 ## Agent SSO Endpoints
 
@@ -4488,7 +4488,7 @@ Content-Type:  application/json
 
 # Visitor SSO
 
-  You need `Manage Settings` permission to setting sso for a site.
+  You need `Manage Settings` permission to sso for a site.
 
 - `GET /api/v3/globalSettings/visitorSSO` - [Get Visitor SSO](#get-visitor-sso)
 - `PUT /api/v3/globalSettings/visitorSSO` - [update Visitor SSO](#update-visitor-sso)
