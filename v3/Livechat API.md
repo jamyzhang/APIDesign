@@ -543,7 +543,7 @@ You need `Manage Settings` permission to manage `Customer Segment`.
   | `conditionMetType` |string  || no | no |all| Met type of condtion , including `all`,`any`,`logicalExpression`.
   | `logicalExpression` |string  || no | no || The logical expression for conditions.
   | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || An array of [Live Chat Condition](#live-chat-condition-object) object. |
-  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent id or department Id.|
+  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent id or department id.|
 
 ### Alert To Segment Object
 
@@ -1774,7 +1774,7 @@ Response
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | N/A | N/A | | Id of the chat. |
 | `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
-| `agents` | [Agent](#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
+| `agents` | [Agent](./Global%20API.md#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
 | `startTime` | datetime | | N/A | N/A | |  |
 | `endTime` | datetime | | N/A | N/A | |  |
 | `ifQueued` | boolean | | N/A | N/A | |  |
@@ -1835,7 +1835,7 @@ Response
 | `ticketID` | string | N/A  | N/A | | |
 | `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
 | `departmentId` | Guid | N/A  | N/A | | |
-| `department` | [Department](#department) | N/A  | N/A | | |
+| `department` | [Department](./Global%20API.md#department-object) | N/A  | N/A | | |
 
 ### Chat Post Chat Object
 
@@ -2204,9 +2204,9 @@ HTTP/1.1 204 No Content
 | `phone` | string | | no | no |  | Phone of the visitor. |
 | `company` | string | | no | no |  | Company of the visitor. |
 | `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to. |
-| `department` | [Department](#department) | yes | no | no |  | Available only when department is included. |
+| `department` | [Department](./Global%20API.md#department-object) | yes | no | no |  | Available only when department is included. |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to. |
-| `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included. |
+| `agent` | [Agent](./Global%20API.md#agent-object) | yes | no | no |  | Available only when agent is included. |
 | `ticketId` | integer | yes | no | no |  | id of the related ticket. |
 | `subject` | string | | no | no |  | The subject of this offline message.|
 | `message` | string | | no | no | | The content of this offline message. |
@@ -2383,7 +2383,7 @@ The response is a [Offline Message](#offline-message-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://api1.comm100.io/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation, session
+-X GET https://api1.comm100.io/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation,session
 ```
 Response
 ```json  
@@ -2526,7 +2526,7 @@ HTTP/1.1 204 No Content
 |`id` | Guid | yes | no | | Id of the current item.  |
 | `name` | string  | no | yes | `Default Plan` | |
 | `description` | string  | no | no | | |
-| `language` | string | no | no | `English` | The languages are defined in cPanel.  |
+| `language` | string | no | no | `English` | The languages are defined in cpanel.  |
 
 ## Campaign Endpoints
 
@@ -3034,7 +3034,7 @@ Content-Type:  application/json
 | `receivingEmailAddressesForArchivingTranscripts` | string | no | no | | |
 | `emailSubjectForArchivingTranscripts` | string | no | no | | |
 | `greetingMessage` | string | no | no | | |
-| `isCustomJSEnabled:` | boolean | no | no | | |
+| `isCustomJSEnabled` | boolean | no | no | | |
 | `customJS` | string | no | no | | |
 
 ### Custom SMTP Server Object
@@ -4729,7 +4729,7 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `defaultLanguage` | string | no | no | | The languages are defined in cPanel.  |
+| `defaultLanguage` | string | no | no | | The languages are defined in cpanel.  |
 | `isCustomLanguageEnabled` | boolean | no | no | | |
 | `isTextDirectionRightToLeft` | boolean | no | no | | |
 | `customLanguageItems` | [Custom Language](#Custom-Language-Object)[] | no | no | | |
@@ -4863,15 +4863,15 @@ Content-Type:  application/json
 | `type` | string |  | no | no | | Including `simple` and `customRule`. |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. |
 | `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
-| `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
+| `routeToAgent` | [Agent](./Global%20API.md#agent-object) | yes | no | no | |  |
+| `routeToDepartment` | [Department](./Global%20API.md#department-object) | yes | no | no | |  |
 | `priority` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBot` | integer |  | no | no | | |
 | `customRules` | [Custom Rule](#Custom-Rule-Object)[] |  | no | no | | |
 | `actionWhenNoRuleMatched` | string |  | no | no | | Including `routeToSite`, `routeToDepartment`, `routeToAgent` and `redirectToOfflineMessage`. |
 | `routeToIdWhenNoRuleMatched` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
-| `routeToAgentWhenNoRuleMatched` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartmentWhenNoRuleMatched` | [Department](#Department-Object) | yes | no | no | |  |
+| `routeToAgentWhenNoRuleMatched` | [Agent](./Global%20API.md#agent-object) | yes | no | no | |  |
+| `routeToDepartmentWhenNoRuleMatched` | [Department](./Global%20API.md#department-object) | yes | no | no | |  |
 | `priorityWhenNoRuleMatched` | string |  | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBotWhenNoRuleMatched` | integer |  | no | no | | |
 | `emailsToReceiveOfflineMessage` | string |  | no | no | |  |
@@ -5052,8 +5052,8 @@ Content-Type:  application/json
 | `order` | integer | | no | no | | |
 | `routeTo` | string | | no | no | | Including `agent` and `department`. |
 | `routeToId` | String | | no | no | | AgentId or DepartmentId. AgentId is integer, DepartmentId is guid. |
-| `routeToAgent` | [Agent](#Agent-Object) | yes | no | no | |  |
-| `routeToDepartment` | [Department](#Department-Object) | yes | no | no | |  |
+| `routeToAgent` | [Agent](./Global%20API.md#agent-object) | yes | no | no | |  |
+| `routeToDepartment` | [Department](./Global%20API.md#department-object) | yes | no | no | |  |
 | `priority` | string | | no | no | | Including `lowest`, `low`, `normal`, `high` and `highest`. |
 | `percentageToBot` | integer | | no | no | | |
 | `conditionMetType` | string | | no | no | | Including `all`, `any` and `logicalExpression`. |
@@ -7007,7 +7007,7 @@ Response
 | `ipRangeTo` | string | | no | yes | | Mandatory when `type` is `ipRange`. |
 | `comment` | string | | no | no | | Comment of the ban. |
 | `lastUpdatedByAgentId` | integer | | yes | no | | |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | no | no | | Available only when agent is included.  |
+| `lastUpdatedAgent` | [Agent](./Global%20API.md#agent-object) | yes | no | no | | Available only when agent is included.  |
 
 ## Endpoint
 
@@ -7280,10 +7280,10 @@ HTTP/1.1 204 No Content
 | `appendFieldList` | string[] | | no | no |  |  |
 | `createdTime` | datetime | | N/A | N/A |  |  |
 | `createdByAgentId` | integer | | N/A | N/A |  |  |
-| `createdAgent` | [Agent](#agent) | yes | N/A | N/A | | Available only when agent is included.  |
+| `createdAgent` | [Agent](./Global%20API.md#agent-object) | yes | N/A | N/A | | Available only when agent is included.  |
 | `lastUpdatedTime` | datetime | | N/A | N/A |  | |
 | `lastUpdatedByAgentId` | integer | | N/A | N/A |  | |
-| `lastUpdatedAgent` | [Agent](#agent) | yes | N/A | N/A |  | Available only when agent is included. |
+| `lastUpdatedAgent` | [Agent](./Global%20API.md#agent-object) | yes | N/A | N/A |  | Available only when agent is included. |
 
 
 ### Conversion Achieved JSON Format
