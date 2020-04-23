@@ -2207,7 +2207,7 @@ HTTP/1.1 204 No Content
 | `department` | [Department](./Global%20API.md#department-object) | yes | no | no |  | Available only when department is included. |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to. |
 | `agent` | [Agent](./Global%20API.md#agent-object) | yes | no | no |  | Available only when agent is included. |
-| `ticketId` | integer | yes | no | no |  | id of the related ticket. |
+| `ticketId` | integer | yes | no | no |  | Id of the related ticket. |
 | `subject` | string | | no | no |  | The subject of this offline message.|
 | `message` | string | | no | no | | The content of this offline message. |
 | `requestingPageTitle` | string | | no | no |  |  |
@@ -2803,7 +2803,7 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `type` | string | no | no | `adaptive` | Type of the button, including `adaptive`, `image` and `textLink`. |
-| `isHideWhenOffline` | boolean | no | no | | Whether the chat button is visible when no agent is online. `true` means that button is invisible. |
+| `isHideWhenOffline` | boolean | no | no | | Whether the chat button is visible when no agent is online. `True` means that button is invisible. |
 | `isDomainRestrictionEnabled` | boolean | no | no | | Whether the domain restriction is enabled or not. |
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
 | `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
@@ -8118,7 +8118,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `secureFormId` | Guid | yes  |  the id of the secure form  |
+| `secureFormId` | Guid | yes  |  The id of the secure form  |
 
 
 #### Response
@@ -8442,7 +8442,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  id of the webhook  |
+| `id` | Guid | yes  |  Id of the webhook  |
 
 #### Response
 
