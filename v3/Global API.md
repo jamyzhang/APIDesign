@@ -4373,7 +4373,7 @@ HTTP/1.1 204 No Content
 
 # Agent SSO
 
-  You need `Manage Security` permission to setting sso for a site.
+  You need `Manage Security` permission to set sso for a site.
 
 - `GET /api/v3/globalSettings/agentSSO` - [Get Agent SSO](#get-agent-sso)
 - `PUT /api/v3/globalSettings/agentSSO` - [update Agent SSO](#update-agent-sso)
@@ -4488,7 +4488,7 @@ Content-Type:  application/json
 
 # Visitor SSO
 
-  You need `Manage Settings` permission to setting sso for a site.
+  You need `Manage Settings` permission to sso for a site.
 
 - `GET /api/v3/globalSettings/visitorSSO` - [Get Visitor SSO](#get-visitor-sso)
 - `PUT /api/v3/globalSettings/visitorSSO` - [update Visitor SSO](#update-visitor-sso)
