@@ -2,17 +2,7 @@
 
 Welcome to the Comm100 RESTful API help guide. Our APIs make it possible for you to integrate your applications with Comm100 Live Chat to achieve seamless data sharing. It is our goal to help the business to automate and enhance their customer support with innovative projects you can create using Comm100 API.
 
-Please note that this documentation refers to the latest API version: 2.0. Please use 2 as the version number in the url. If you are looking for the previous version, check out the [API 1.0 documentation](https://www.comm100.com/doc/api/v1/introduction.htm#/).
-
-**Important Notice: We will stop support for the following old domains in API calls permanently at 12:00 AM Pacific time on Mar. 20th, 2020. To avoid any service disruption, please make sure that your applications have been updated to use the new domains.**
-
-| Old domain | New domain |
-| - | - |
-|`eu.comm100.com` | `euportal.comm100.com`  |
-|`ent.comm100.com` | `ent1portal.comm100.com`  |
-|`ent7.comm100.com` | `ent7portal.comm100.com`  |
-|`app.comm100.chat` | `appportal.comm100.chat`  |
-|`enterprise.comm100.com` | `enterpriseportal.comm100.com`  |
+Please note that this documentation refers to the latest API version: 3.0. Please use 3 as the version number in the url. If you are looking for the previous version, check out the [API 2.0 documentation](https://www.comm100.com/doc/api/introduction.htm#/).
 
 <div>
 
@@ -20,32 +10,19 @@ Please note that this documentation refers to the latest API version: 2.0. Pleas
 
 Comm100 RESTful API must use **https** protocol. What the API requests should start with depends on your platform domain, which can be accessed from both your Control Panel and web version Agent Console after successful login. For example:
 
-- If the domain of your Control Panel is hosted3.comm100.com, all API requests should start with https://hosted3.comm100.com/api/v2/.
-- If the domain of your Control Panel is euportal.comm100.com, all API requests should start with https://euportal.comm100.com/api/v2/.
-- If the domain of your Control Panel is Appportal.comm100.chat, all API requests should start with https://Appportal.comm100.chat/api/v2/.
-- If the domain of your Control Panel is ent7portal.comm100.com, all API requests should start with https://ent7portal.comm100.com/api/v2/.
-- If the domain of your Control Panel is enterpriseportal.comm100.com, all API requests should start with https://enterpriseportal.comm100.com/api/v2/.
-- If the domain of your Control Panel is ent1portal.comm100.com, all API requests should start with https://ent1portal.comm100.com/api/v2/.
-- If the domain of your Control Panel is hosted.comm100.com, all API requests should start with https://hosted.comm100.com/api/v2/.
+- If the domain of your Control Panel is portal1.comm100.io, all API requests should start with https://api1.comm100.com/api/v3/.
 
 </div>
 <div>
 
 ## Authentication
 
-Comm100 provides 2 authentication methods.
+Comm100 provides only supports 1 authentication method(New authentication method may be added in the future).
 
-- [API_key Authentication](#API_key-Authentication)
 - [JWT Authentication](#JWT-Authentication)
 
 </div>
-<div>
 
-## API_key Authentication
-
-For each method call, you must use your email and API_KEY.Authentication to the API is done via HTTP Basic Auth. Provide your email as the basic auth username and API_KEY as the password. You must authenticate for API requests. Even though we still support this type of authentication, we recommend using JWT authentication.
-
-</div>
 <div>
 
 ## JWT Authentication
