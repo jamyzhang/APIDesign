@@ -3025,8 +3025,8 @@ Content-Type:  application/json
 | `isSwitchToOfflineMessageAllow` | boolean | no | no | | Allow visitors to switch to Offline Message Window while waiting for chat. |
 | `isFileSendAllow` | boolean | no | no | | Whether the agent can send file or not. |
 | `ifMarkUnreadMessage` | boolean | no | no | | |
-| `isAudioChatEnabled` | boolean | no | no | | Whether the agent can use audio chat. |
-| `isVideoChatEnabled` | boolean | no | no | | Whether the agent can use video chat. |
+| `isAudioChatEnabled` | boolean | no | no | | Whether the agent can use audio chat. The function must be turned on in [settings](#settings) before it can be used. |
+| `isVideoChatEnabled` | boolean | no | no | | Whether the agent can use video chat. The function must be turned on in [settings](#settings) before it can be used. |
 | `isBrowserPopupNotificationEnabled` | boolean | no | no | | It is available for private server sites. For shared server clients, the push notification is disabled by default. |
 | `ifEndChatWhenVisitorIsInactive` | boolean | no | no | | Automatically end chats if visitors don't respond in period of time. |
 | `minutesOfVisitorInactivity` | integer | no | no | | Including `3`, `5`, `10`, `15`, `20`, `30` and `60`. (unit :minute) |
