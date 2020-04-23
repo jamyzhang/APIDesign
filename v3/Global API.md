@@ -4506,7 +4506,7 @@ Content-Type:  application/json
   | `certificate` | string  | | no | yes | | Base64 data of certificate file. |
   | `certificateFileName` | string  | | no | yes | | |
   | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | no | | |
-  | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | no | | |
+  | `perCampaign` | [Visitor SSO Campaign](./Livechat%20API.md#visitor-SSO-Campaign-object)[]  |  | no | no | | |
 
 ### Field Mapping Object
 
