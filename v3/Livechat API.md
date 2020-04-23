@@ -2383,7 +2383,7 @@ The response is a [Offline Message](#offline-message-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://api1.comm100.io/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation, session
+-X GET https://api1.comm100.io/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation,session
 ```
 Response
 ```json  
