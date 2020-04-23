@@ -7246,7 +7246,7 @@ HTTP/1.1 204 No Content
 
   You need `Manage Settings` permission to manage conversion action.
 
-- `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-list-of-conversion-actions) include agent
+- `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-a-list-of-conversion-actions) include agent
 - `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-single-conversion-action)  include agent
 - `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#create-a-new-conversion-action)
 - `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-conversion-action)
