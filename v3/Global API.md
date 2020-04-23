@@ -2854,7 +2854,7 @@ Content-Type:  application/json
 
 # Public Canned Message Category
 
-  You need `Manage Pulbic Canned Messages` permission to manage the canned message category.
+  You need `Manage Public Canned Messages` permission to manage the canned message category.
 
 - `GET /api/v3/globalSettings/publicCannedMessageCategories` - [Get all public canned message categories in site](#get-all-Public-Canned-Message-Categories-in-site)
 - `GET /api/v3/globalSettings/publicCannedMessageCategories/{id}` - [Get a public canned message category by id](#get-a-Public-Canned-Message-Category-by-id)
@@ -3071,7 +3071,7 @@ HTTP/1.1 204 No Content
 
 # Public Canned Message
 
-  You need `Manage Pulbic Canned Messages` permission to manage the canned message.
+  You need `Manage Public Canned Messages` permission to manage the canned message.
 
 - `GET /api/v3/globalSettings/publicCannedMessages` - [Get all public canned messages in site](#get-all-Public-Canned-Messages-in-site)
 - `GET /api/v3/globalSettings/publicCannedMessages/{id}` - [Get a public canned message by id](#get-a-Public-Canned-Message-by-id)
@@ -3434,7 +3434,7 @@ You need `Manage Private Canned Messages` permission to manage the canned messag
 
 #### Response
 
-the response is: list of [Private Canned Message Category](#private-Canned-Message-Category-object) Object
+The response is an array of [Private Canned Message Category](#private-Canned-Message-Category-object) objects.
 
 #### Example
 
