@@ -5529,7 +5529,7 @@ Response
 | - | - |- | :-: | :-: | :-: | - |
 | `isEnable` | boolean | | no | no | | Whether the chatbot integration is enabled or not. |
 | `selectedChatbotId` | Guid | | no | no | | |
-| `selectedChatbot` | [Bot](#Bot-Object) | yes | no | no | | |
+| `selectedChatbot` | [Bot](./Bot%20API.md#Bot-Object) | yes | no | no | | |
 | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | no | | |
 | `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
 | `ifDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
