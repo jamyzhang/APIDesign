@@ -7699,7 +7699,7 @@ Content-Type:  application/json
 You need `Manage Security` permission to manage `Secure Form`.
 
 - `GET /api/v3/livechat/secureForms` - [Get a list of secureForms](#get-list-of-secure-forms)
-- `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-secure-form)
+- `GET /api/v3/livechat/secureForms/{id}` - [Get a secure form by id](#get-a-single-secure-form)
 - `POST /api/v3/livechat/secureForms` - [Create a secure form](#create-a-secure-form)
 - `PUT /api/v3/livechat/secureForms/{id}` - [Update a secure form](#update-a-secure-form)
 - `DELETE /api/v3/livechat/secureForms/{id}` - [Delete a secure form](#delete-a-secure-form)
@@ -8053,7 +8053,7 @@ Content-Type:  application/json
   }
 ```
 
-### Remove a secure form
+### Delete a secure form
 
   `DELETE /api/v3/livechat/secureForms/{id}`
 
@@ -8353,7 +8353,7 @@ Content-Type:  application/json
   }
 ```
 
-### Remove a secure form field
+### Delete a secure form field
 
   `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}`
 
