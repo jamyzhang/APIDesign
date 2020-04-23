@@ -3496,7 +3496,7 @@ Content-Type:  application/json
 
 ## Related Object Json Format
 
-### Post Chat  Object
+### Post Chat Object
 
   `Post Chat` is represented as simple flat JSON objects with the following keys:  
 

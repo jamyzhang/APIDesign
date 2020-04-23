@@ -1737,7 +1737,8 @@ Content-Type:  application/json
           "isAvailableInTicketingAndMessaging": false,
           "offlineMessageMailTo": "The email address(es)",
           "offlineMessageEmailAddresses": "test@comm100.com",
-          "agentId": 68
+          "agentId": 68,
+          ...
         },
         ...
         ],
@@ -1756,7 +1757,7 @@ Content-Type:  application/json
 
 ### Get a Shift by id
 
-  `GET /api/v3/livechat/shift/{id}`
+  `GET /api/v3/livechat/shifts/{id}`
 
 #### Parameters
 
@@ -1764,7 +1765,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the private canned message |
+  | `id` | Guid | yes  |  The unique id of the private canned message |
 
 Query string
 
@@ -1774,7 +1775,7 @@ Query string
 
 #### Response
 
-the response is a: [Shift](#shift-object) Object
+the response is a [Shift](#shift-object) Object
 
 #### Example
 
@@ -1811,7 +1812,8 @@ Content-Type:  application/json
     "isAvailableInTicketingAndMessaging": false,
     "offlineMessageMailTo": "The email address(es)",
     "offlineMessageEmailAddresses": "test@comm100.com",
-    "agentId": 68
+    "agentId": 68,
+    ...
   },
   ...
   ],
