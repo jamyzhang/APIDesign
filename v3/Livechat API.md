@@ -1774,7 +1774,7 @@ Response
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | N/A | N/A | | Id of the chat. |
 | `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
-| `agents` | [Agent](./Contact%20API.md#agent)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
+| `agents` | [Agent](./Gloabl%20API.md#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
 | `startTime` | datetime | | N/A | N/A | |  |
 | `endTime` | datetime | | N/A | N/A | |  |
 | `ifQueued` | boolean | | N/A | N/A | |  |
