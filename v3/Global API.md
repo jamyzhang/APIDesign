@@ -1635,6 +1635,8 @@ Location: https://api1.comm100.io/api/v3/globalSettings/agents/68/permissions
 
 # Shift
 
+You need `Manage Security` permission to set shift for a site.
+
 - `GET /api/v3/globalSettings/shifts` - [Get all shifts in site](#get-all-shifts-in-site)
 - `GET /api/v3/globalSettings/departments/{departmentId}/shifts` - [Get all shifts by department id](#get-all-shifts-by-department-id)
 - `GET /api/v3/globalSettings/agents/{agentId}/shifts` - [Get all shifts by agent id](#get-all-shifts-by-agent-id)
