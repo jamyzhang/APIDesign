@@ -57,7 +57,7 @@ Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 
 
 ### Settings Object
 
-Customer Segment is represented as simple flat JSON objects with the following keys:  
+`Settings` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -68,9 +68,9 @@ Customer Segment is represented as simple flat JSON objects with the following k
 | `isDepartmentEnabled` |boolean || no|  yes || Whether department is enabled or not in the site.|
 | `isAutoTranslationEnabled` |boolean || no | yes || Whether auto translation is enabled or not in the site.|
 | `isAudioAndVideoChatEnabled` |boolean || no | yes ||Whether audio&video chat is enabled or not in the site.|
-| `isCustomerSegmentEnabled` |boolean || no | yes ||Whether customer segment chat is enabled or not in the site.|
+| `isCustomerSegmentEnabled` |boolean || no | yes ||Whether customer segment is enabled or not in the site.|
 | `isVisitorSSOEnabled` |boolean || no | yes||Whether vistor SSO is enabled or not in the site.|
-| `isCreditCardMaskingEnabled` |boolean || no | yes ||Whether Credit card masking is enabled or not in the site.|
+| `isCreditCardMaskingEnabled` |boolean || no | yes ||Whether credit card masking is enabled or not in the site.|
 | `isCustomVariablesEnabled` |boolean || no | yes||Whether custom variables are enabled or not in the site.|
 | `isSalesforceEnabled` |boolean || no | yes ||Whether the Salesforce integration is enabled or not in the site.|
 | `isZendeskEnabled` |boolean || no | yes ||Whether the Zendesk integration is enabled or not in the site.|
@@ -98,7 +98,7 @@ The response is a [Settings](#settings-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/settings
+-X GET https://api1.comm100.io/api/v3/livechat/settings
 ```
 
 Response
@@ -188,7 +188,7 @@ curl -H "Content-Type: application/json" -d '{
     "isGotoMeetingEnabled": true,
     "isJoinmeEnabled": true,
     "isCobrowsingEnabled":true
-}' -X PUT https://domain.comm100.com/api/v3/livechat/settings
+}' -X PUT https://api1.comm100.io/api/v3/livechat/settings
 ```
 
 Response
@@ -225,7 +225,7 @@ HTTP/1.1 200 OK
 
 ### Auto Distribution Object
 
-  Auto Distribution is represented as simple flat JSON objects with the following keys:
+  `Auto Distribution` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -240,7 +240,7 @@ HTTP/1.1 200 OK
 
 ### Department Auto Distribution Object
 
-Department Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+`Department Auto Distribution` object is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -251,13 +251,13 @@ Department Auto Distribution Object is represented as simple flat JSON objects w
 
 ### Agent Auto Distribution Object
 
-Agent Auto Distribution Object is represented as simple flat JSON objects with the following keys:
+`Agent Auto Distribution` object is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `agentId` | integer ||  yes| yes|| Id of agent. |
 | `ifAutoAcceptChat` | boolean||  no| no|| If agent can auto accept chat.|
-| `maxConcurrentChats` | int ||  no| no|| Maximum concurrent chats, available when Is Chat Auto Accepted is true.|
+| `maxConcurrentChats` | int ||  no| no|| Maximum concurrent chats, available when  `ifAutoAcceptChat` is true.|
 
 ## Endpoint
 
@@ -279,7 +279,7 @@ Using curl:
 
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/autoDistribution
+-X GET https://api1.comm100.io/api/v3/livechat/autoDistribution
 ```
 
 Response
@@ -287,7 +287,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "autoDistributionMethod": "load balancing",
+  "autoDistributionMethod": "loadBanlancing",
   "isLastChattedAgentPreferred": true,
   "isLimitMaxConcurrentChatsForAllAgents":true,
   "maxConcurrentChatsForAllAgents": 3,
@@ -326,7 +326,7 @@ Request body
 example:
 ```Json
 {
-  "autoDistributionMethod": "load balancing",
+  "autoDistributionMethod": "loadBanlancing",
   "isLastChattedAgentPreferred": true,
   "isLimitMaxConcurrentChatsForAllAgents":true,
   "maxConcurrentChatsForAllAgents": 3,
@@ -361,7 +361,7 @@ Using curl:
 
 ```shell
 curl -H "Content-Type: application/json" -d '{
-  "autoDistributionMethod": "load balancing",
+  "autoDistributionMethod": "loadBanlancing",
   "isLastChattedAgentPreferred": true,
   "isLimitMaxConcurrentChatsForAllAgents":true,
   "maxConcurrentChatsForAllAgents": 3,
@@ -383,7 +383,7 @@ curl -H "Content-Type: application/json" -d '{
     },
     ...
   ]
-}' -X PUT https://domain.comm100.com/api/v3/livechat/autoDistribution
+}' -X PUT https://api1.comm100.io/api/v3/livechat/autoDistribution
 ```
 
 Response
@@ -391,7 +391,7 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "autoDistributionMethod": "load balancing",
+  "autoDistributionMethod": "loadBanlancing",
   "isLastChattedAgentPreferred": true,
   "isLimitMaxConcurrentChatsForAllAgents":true,
   "maxConcurrentChatsForAllAgents": 3,
@@ -419,13 +419,13 @@ Content-Type:  application/json
 
 You need `Manage Settings` permission to manage `Translation Excluded Words`.
 - `GET /api/v3/livechat/translationExcludedWords` - [Get translation excluded words](#get-a-list-of-translation-excluded-word)
-- `PUT /api/v3/livechat/translationExcludedWords` - [Update a translation excluded word](#update-a-translation-excluded-word)
+- `PUT /api/v3/livechat/translationExcludedWords` - [Update translation excluded words](#update-a-translation-excluded-word)
 
 ## Translation Excluded Word Related Objects Json Format
 
 ### Translation Excluded Words Object
 
-Translation Excluded Words is represented as simple flat JSON objects with the following keys:
+`Translation Excluded Words` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -443,14 +443,14 @@ Translation Excluded Words is represented as simple flat JSON objects with the f
 
 #### Response
 
-The response is an array of [Translation Excluded Word](#translation-excluded-word).
+The response is a [Translation Excluded Words](#translation-excluded-words-object) object.
 
 #### Example
 
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/translationExcludedWords
+-X GET https://api1.comm100.io/api/v3/livechat/translationExcludedWords
 ```
 
 Response
@@ -475,7 +475,7 @@ You need `Manage Settings` permission to manage `Translation Excluded Words`.
 
 Request body
 
-  The request body contains data with the [Translation Excluded Words](#translation-excluded-words) structure. 
+  The request body contains data with the [Translation Excluded Words](#translation-excluded-words) structure.
 
 example:
 ```Json
@@ -499,7 +499,7 @@ curl -H "Content-Type: application/json" -d '{
     "Hello",
     "Hi"
   ]
-}' -X PUT https://domain.comm100.com/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
+}' -X PUT https://api1.comm100.io/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
 ```
 
 Response
@@ -530,7 +530,7 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
 ### Customer Segment Object
 
-Customer Segment is represented as simple flat JSON objects with the following keys:  
+`Customer Segment` is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
@@ -547,7 +547,7 @@ Customer Segment is represented as simple flat JSON objects with the following k
 
 ### Alert To Segment Object
 
-Alert To is represented as simple flat JSON objects with the following keys:  
+`Alert To` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -556,7 +556,7 @@ Alert To is represented as simple flat JSON objects with the following keys:
 
 ### Live Chat Condition object
 
-Live Chat Condition is represented as simple flat JSON objects with the following keys:
+`Live Chat Condition` is represented as simple flat JSON objects with the following keys:
 
   | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
@@ -584,7 +584,7 @@ Live Chat Condition is represented as simple flat JSON objects with the followin
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET  https://domain.comm100.com/api/v3/livechat/customerSegments
+-X GET  https://api1.comm100.io/api/v3/livechat/customerSegments
 ```
 
 Response
@@ -639,7 +639,7 @@ The response is a [customer segment](#customer-segment-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -735,13 +735,13 @@ curl -H "Content-Type: application/json" -d '{
        "agentIds":[4,5],
        "departmentIds":[]
   }
-}' -X POST https://domain.comm100.com/api/v3/livechat/customerSegments
+}' -X POST https://api1.comm100.io/api/v3/livechat/customerSegments
 ```
 
 Response
 ```Json
 HTTP/1.1 201 Created
-Location: https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 Content-Type:  application/json
 {
   "name": "livechat15293908029",
@@ -808,7 +808,7 @@ curl -H "Content-Type: application/json" -d '{
        "agentIds":[4,5],
        "departmentIds":[]
   }
-}' -X PUT https://domain.comm100.com/api/v3/livechat/customerSegments
+}' -X PUT https://api1.comm100.io/api/v3/livechat/customerSegments
 ```
 
 Response
@@ -861,7 +861,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```shell
-curl -X DELETE  https://domain.comm100.com/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE  https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -925,7 +925,7 @@ the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/dynamicCampaign?include=Campaign
+-X GET https://api1.comm100.io/api/v3/livechat/dynamicCampaign?include=Campaign
 ```
 
 Response
@@ -1036,7 +1036,7 @@ curl -H "Content-Type: application/json" -d '
       "order":1
     }
   ]
-}' -X PUT https://domain.comm100.com/api/v3/livechat/dynamicCampaign
+}' -X PUT https://api1.comm100.io/api/v3/livechat/dynamicCampaign
 ```
 
 Response
@@ -1084,7 +1084,7 @@ Content-Type:  application/json
 
 ### Mobile Push JSON Format
 
-Mobile Push is represented as simple flat JSON objects with the following keys:
+`Mobile Push` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1118,14 +1118,14 @@ Mobile Push is represented as simple flat JSON objects with the following keys:
 
 #### Response
 
-The response is [Mobile Push](#moble-push-object) object.
+The response is [Mobile Push](#mobile-push-json-format) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/mobilePush
+-X GET https://api1.comm100.io/api/v3/livechat/mobilePush
 ```
 Response
 ```Json
@@ -1159,7 +1159,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) object structure.
+  The request body contains data with the [Mobile Push](#mobile-push-json-format) object structure.
 
 example:
 ```Json
@@ -1185,7 +1185,7 @@ example:
 
 #### Response
 
-The response is a [Mobile Push](#moble-push-object) object.
+The response is a [Mobile Push](#mobile-push-json-format) object.
 
 #### Example
 
@@ -1208,7 +1208,7 @@ curl -H "Content-Type: application/json" -d '{
   "androidThirdPartyURL": "",
   "androidThirdPartyRequestHeaders": "",
   "androidThirdPartyRequestBody": "",
-}' -X PUT https://domain.comm100.com/api/v3/livechat/mobilePush
+}' -X PUT https://api1.comm100.io/api/v3/livechat/mobilePush
 ```
 Response
 ```Json
@@ -1244,7 +1244,7 @@ You need `Manage Agent & Agent Roles` permission to manage `Live Chat Agent`.
 
 ### Live Chat Agent Object
 
-agent is represented as simple flat JSON objects with the following keys:  
+`Live Chat Agent` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1269,7 +1269,7 @@ The response is an array of [Live Chat Agent](#live-chat-agent-object) objects.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/agents
+-X GET https://api1.comm100.io/api/v3/livechat/agents
 ```
 
 Response
@@ -1286,7 +1286,7 @@ Content-Type:  application/json
 ]
 ```
 
-### Get an live chat agent by id
+### Get a live chat agent by id
 
 `GET /api/v3/livechat/agents/{id}`
 
@@ -1307,7 +1307,7 @@ The response is a [Live Chat Agent](#live-chat-agent-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/agents/1
+-X GET https://api1.comm100.io/api/v3/livechat/agents/1
 ```
 
 Response
@@ -1331,7 +1331,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  id of live chat agent   |
+| `id` | integer | yes  |  Id of live chat agent   |
 
 Request body
 
@@ -1354,7 +1354,7 @@ Using curl
 ```shell
 curl -H "Content-Type: application/json" -d '{
   "status": "Online"
-}' -X PUT https://domain.comm100.com/api/v3/livechat/agents/1
+}' -X PUT https://api1.comm100.io/api/v3/livechat/agents/1
 ```
 
 Response
@@ -1372,20 +1372,20 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
-- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable](#update-a-visitor's-custom-variable)  
+- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable)  
 
 ## Related Object JSON Format
 
 ### Live Chat Visitor Object
 
-online visitor is represented as simple flat JSON objects with the following keys:  
+`Live Chat Visitor` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  |  yes| no | | Id of the visitor. |
-| `name` | name |  |  yes| no | | Name of the visitor. |
+| `name` | string |  |  yes| no | | Name of the visitor. |
 | `email` | string |  | yes | no | | Email of the visitor.|
-| `status` | String|  | yes | no| |Status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
+| `status` | string|  | yes | no| |Status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
 | `pageViews` | integer|  | yes | no | |The total number of web pages the visitor viewed on your website. |
 | `browser` | string|  | yes | no | |The browser the visitor is using. |
 | `chats` | integer|  | yes | no | |The total times of chats a visitor has made on your website from the first time to present. |
@@ -1395,7 +1395,7 @@ online visitor is represented as simple flat JSON objects with the following key
 | `currentBrowsing` | string|  | yes | no | |The page the visitor is currently looking at. |
 | `customFields` | [Custom Field](#custom-field-object)[]|  | yes | no | |The values of custom fields entered by visitors in the pre-chat window. Operators can also update the value(s) during chat in Visitor Monitor.|
 | `customVariableResults` | [Custom Variable result](#custom-variable-result-object)[]|  | yes | yes | |The information of custom variables captured from the web page visitors viewed.|
-| `departmentId` | Guid|  | yes | no ||The department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.. |
+| `departmentId` | Guid|  | yes | no ||The department the visitor selected in the pre-chat window. Operators can also update their value while chatting with visitors.|
 | `firstVisitTime` | datetime|  | yes | no | |The time the visitor first visited a web page pasted with Comm100 Live Chat code.|
 | `flashVersion` | string|  | yes | no| |The flash version of the browser the visitor is using.|
 | `ip` | string|  | yes | no | |The IP of the visitor.|
@@ -1410,13 +1410,13 @@ online visitor is represented as simple flat JSON objects with the following key
 | `searchEngine` | string|  | yes | no | |The search engine the visitor used to search for your website.|
 | `state` | string|  | yes | no | |The state of the visitor.|
 | `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids.|
-| `visitTime` | string|  | yes | no | |The starting time when this visitor visits your website this session.|
-| `visits` | string|  | yes | no | |The total number of visits a visitor has made on your website from the first time to present|
+| `visitTime` | datetime|  | yes | no | |The starting time when this visitor visits your website this session.|
+| `visits` | integer|  | yes | no | |The total number of visits a visitor has made on your website from the first time to present|
 
 
 ### Custom Field Object
 
-Custom Field is represented as simple flat JSON objects with the following keys:  
+`Custom Field` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1426,7 +1426,7 @@ Custom Field is represented as simple flat JSON objects with the following keys:
 
 ### Custom Variable Result Object
 
-Custom variable result is represented as simple flat JSON objects with the following keys: 
+`Custom variable result` is represented as simple flat JSON objects with the following keys: 
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1458,7 +1458,7 @@ The response is an array of [Live Chat Visitor](#live-chat-visitor-object) objec
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/visitors?status=chatting
+-X GET https://api1.comm100.io/api/v3/livechat/visitors?status=chatting
 ```
 Response
 ```Json
@@ -1473,7 +1473,7 @@ Content-Type:  application/json
       "city": "Changsha",
       "company": "",
       "country": "China",
-      "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "currentBrowsing": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "customFields": null,
       "customVariableResults": [
         {
@@ -1484,23 +1484,23 @@ Content-Type:  application/json
       ],
       "department": "",
       "email": "",
-      "first_visit_time": "2019-06-11T03:05:42.537Z",
-      "flash_version": "",
+      "firstVisitTime": "2019-06-11T03:05:42.537Z",
+      "flashVersion": "",
       "ip": "218.76.52.108",
       "searchKeywords": "",
-      "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+      "landingPage": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
       "language": "zh-CN",
       "name": "218.76.52.108",
-      "operating_system": "Windows 10",
+      "operatingSystem": "Windows 10",
       "phone": "",
-      "product_service": "",
-      "referrer_url": "",
-      "screen_resolution": "1920x1080",
-      "search_engine": "",
+      "productService": "",
+      "referrerUrl": "",
+      "screenResolution": "1920x1080",
+      "searchEngine": "",
       "state": "Hunan",
       "status": 3,
-      "time_zone": "GMT +08:00",
-      "visit_time": "2019-06-12T07:41:40.486Z",
+      "timeZone": "GMT +08:00",
+      "visitTime": "2019-06-12T07:41:40.486Z",
       "visits": 4
   },
   ...
@@ -1522,14 +1522,14 @@ Path parameters
 
 #### Response
 
-The response is an array of [Live Chat Visitor](#live-chat-visitor-object) objects.
+The response is a [Live Chat Visitor](#live-chat-visitor-object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+-X GET https://api1.comm100.io/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 Response
 ```Json
@@ -1543,7 +1543,7 @@ Content-Type:  application/json
   "city": "Changsha",
   "company": "",
   "country": "China",
-  "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "currentBrowsing": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "customFields": null,
   "customVariableResults": [
     {
@@ -1554,28 +1554,28 @@ Content-Type:  application/json
   ],
   "department": "",
   "email": "",
-  "first_visit_time": "2019-06-11T03:05:42.537Z",
-  "flash_version": "",
+  "firstVisitTime": "2019-06-11T03:05:42.537Z",
+  "flashVersion": "",
   "ip": "218.76.52.108",
   "searchKeywords": "",
-  "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "landingPage": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
-  "operating_system": "Windows 10",
+  "operatingSystem": "Windows 10",
   "phone": "",
-  "product_service": "",
-  "referrer_url": "",
-  "screen_resolution": "1920x1080",
-  "search_engine": "",
+  "productService": "",
+  "referrerUrl": "",
+  "screenResolution": "1920x1080",
+  "searchEngine": "",
   "state": "Hunan",
   "status": 3,
-  "time_zone": "GMT +08:00",
-  "visit_time": "2019-06-12T07:41:40.486Z",
+  "timeZone": "GMT +08:00",
+  "visitTime": "2019-06-12T07:41:40.486Z",
   "visits": 4
 }
 ```
 
-### update a visitor's custom variable
+### update a visitor's custom variable results
 
 `PUT /api/v3/livechat/visitors/{id}`
 
@@ -1610,7 +1610,7 @@ Request body
 
 #### Response
 
-The response is an array of [Live Chat Visitor](#live-chat-visitor-object) Object.
+The response is a [Live Chat Visitor](#live-chat-visitor-object) object.
 
 #### Example
 
@@ -1621,10 +1621,9 @@ curl -H "Content-Type: application/json" -d '[
           "name": "justfortestupdate",
           "value": "text",
           "url": "bbbbb"
-        },
-        ...
+        }
       ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
 Response
@@ -1639,7 +1638,7 @@ Content-Type:  application/json
   "city": "Changsha",
   "company": "",
   "country": "China",
-  "currentBrowsing": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "currentBrowsing": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "customFields": null,
   "customVariableResults": [
     {
@@ -1650,23 +1649,23 @@ Content-Type:  application/json
   ],
   "department": "",
   "email": "",
-  "first_visit_time": "2019-06-11T03:05:42.537Z",
-  "flash_version": "",
+  "firstVisitTime": "2019-06-11T03:05:42.537Z",
+  "flashVersion": "",
   "ip": "218.76.52.108",
   "searchKeywords": "",
-  "landing_page": "https://domain.comm100.com/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
+  "landingPage": "https://api1.comm100.io/LiveChatFunc/PlanPreview.aspx?codePlanId=5000329&SSL=1&siteid=10000",
   "language": "zh-CN",
   "name": "218.76.52.108",
-  "operating_system": "Windows 10",
+  "operatingSystem": "Windows 10",
   "phone": "",
-  "product_service": "",
-  "referrer_url": "",
-  "screen_resolution": "1920x1080",
-  "search_engine": "",
+  "productService": "",
+  "referrerUrl": "",
+  "screenResolution": "1920x1080",
+  "searchEngine": "",
   "state": "Hunan",
   "status": 3,
-  "time_zone": "GMT +08:00",
-  "visit_time": "2019-06-12T07:41:40.486Z",
+  "timeZone": "GMT +08:00",
+  "visitTime": "2019-06-12T07:41:40.486Z",
   "visits": 4
 }
 ```
@@ -1678,7 +1677,7 @@ Content-Type:  application/json
 ## Related Object Json Format
 ### Session JSON format
 
- Session is represented as simple flat JSON objects with the following keys:  
+ `Session` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1692,7 +1691,7 @@ Content-Type:  application/json
 | `flashVersion` | string |  | N/A | N/A | |  |
 | `language` | string |  | N/A | N/A | |  |
 | `screenResolution` | string |  | N/A | N/A | |  |
-| `operatingSystem` | integer |  | N/A | N/A | |  |
+| `operatingSystem` | string |  | N/A | N/A | |  |
 | `timeZone` | string |  | N/A | N/A | |  |
 | `landingPageURL` | string |  | N/A | N/A | |  |
 | `landingPageTitle` | string | | N/A | N/A | |  |
@@ -1729,7 +1728,7 @@ The response is a [Session](#session-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/sessions/12?include=visitor
+-X GET https://api1.comm100.io/api/v3/livechat/sessions/12?include=visitor
 ```
 Response
 ```json  
@@ -1769,7 +1768,7 @@ Response
 
 ### Chat Object
 
- Chat is represented as simple flat JSON objects with the following keys:  
+ `Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -1793,7 +1792,7 @@ Response
 | `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) |  | N/A | N/A |  |  |
 | `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) |  | N/A | N/A |  |  |
 | `requestedTime` | datetime | | N/A | N/A | | The time when the chat is requested. |
-| `offlineMessageId` | integer | | N/A | N/A | |  |
+| `offlineMessageId` | Guid | | N/A | N/A | |  |
 | `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | N/A | N/A |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
 | `avgResponseTime` | float | | N/A | N/A | |  |
 | `visitorMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Visitors. |
@@ -1802,14 +1801,14 @@ Response
 | `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
 | `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
 | `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | |
-| `sessionId` | integer | | N/A | N/A |  | id of session |
+| `sessionId` | Guid | | N/A | N/A |  | id of session |
 | `session` | [Session](#session) | yes | N/A | N/A |  |  the related [Session](#session) object|
 | `botId` | Guid | | N/A | N/A |  | id of chatbot |
 | `chatBot` | [ChatBot](#chatBot) | yes | N/A | N/A |  |  the related [ChatBot](#chatBot) object|
 
 ### Chat Message Object
 
-  Chat Message Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Message` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -1822,7 +1821,7 @@ Response
 
 ### Chat Pre-Chat Object
 
-  Pre-Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Pre-Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -1838,9 +1837,9 @@ Response
 | `departmentId` | Guid | N/A  | N/A | | |
 | `department` | [Department](#department) | N/A  | N/A | | |
 
-### Chat Post Chat  Object
+### Chat Post Chat Object
 
-  Chat Post Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Post Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -1851,7 +1850,7 @@ Response
 
 ### Chat Agent Wrap-Up Object
 
-  Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
+  `Agent Wrap-Up` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -1883,7 +1882,7 @@ Query string
 | `visitorId` | guid | no  |  | |
 | `agentId` | integer | no  |  | |
 | `keywords` | string | no  |  | |
-| `conditions` | string | no  |  | The condition list of inquiring the chat. available field: `name`,`email`,`company`,`phone`,`campaign`. avaiable operate: `contains`,`notContains`. e.g. `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test` |
+| `conditions` | string | no  |  | The condition list of inquiring the chat. Available field: `name`,`email`,`company`,`phone`,`campaign`. Avaiable operate: `contains`,`notContains`. e.g. `conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test` |
 
 #### Response
 
@@ -1901,7 +1900,7 @@ The response body contains data with the follow structure:
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session&conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test
+-X GET https://api1.comm100.io/api/v3/livechat/chats?include=campaign,autoInvitation,session&conditions[0][field]=email&conditions[0][operate]=contains&conditions[0][value]=test&conditions[1][field]=company&conditions[1][operate]=notContains&conditions[1][value]=test
 ```
 Response
 ```json  
@@ -1909,7 +1908,7 @@ Response
 {
     "totalCount": 28,
     "previousPage": "",
-    "nextPage": "https://domain.comm100.com/api/v3/livechat/chats?include=campaign,autoInvitation,session&pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/livechat/chats?include=campaign,autoInvitation,session&pageIndex=2",
     "list": [
         {
             "id": "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
@@ -2011,7 +2010,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the chat. |
+| `id` | Guid | yes  |  The unique id of the chat. |
 
 #### Response
 
@@ -2022,7 +2021,7 @@ the response is a [Chat](#Chat-object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231?include=campaign,autoInvitation,session
+-X GET https://api1.comm100.io/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231?include=campaign,autoInvitation,session
 ```
 Response
 ```json  
@@ -2126,7 +2125,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the chat |
+| `id` | Guid | yes  |  The unique id of the chat |
 
 #### Response
 
@@ -2136,7 +2135,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/chats/2BCB61DA-FC7D-67D8-43A5-5EB453B63231
 ```
 Response
 ```json
@@ -2175,8 +2174,7 @@ curl -d '[
     "2BCB61DA-FC7D-67D8-43A5-5EB453B63231",
     "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
     "44878d68-92e6-4487-a2e8-8234fc9d1f48"
-  ]' -X DELETE https://domain.comm100.com/api/v3/livechat/chats
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/chats
+  ]' -X DELETE https://api1.comm100.io/api/v3/livechat/chats
 ```
 Response
 ```json
@@ -2194,41 +2192,41 @@ HTTP/1.1 204 No Content
 
 ### Offline Message JSON format
 
- Offline Message is represented as simple flat JSON objects with the following keys:  
+ `Offline Message` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | yes | no | | Id of the offline message. |
 | `createdTime` | datetime | | no | no | | Time of this offline message submitted. |
-| `ssoUserId` | string | | no | no |  | SSO id of visitor |
-| `name` | string | | no | no |  | Name of the visitor |
-| `email` | string | | no | no |  | Email of the visitor |
-| `phone` | string | | no | no |  | Phone of the visitor |
-| `company` | string | | no | no |  | Company of the visitor |
-| `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to |
-| `department` | [Department](#department) | yes | no | no |  | Available only when department is included |
-| `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to |
-| `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included |
-| `ticketId` | integer | yes | no | no |  | id of the related ticket |
-| `subject` | string | | no | no |  | The subject of this offline message|
-| `message` | string | | no | no | | The content of this offline message |
+| `ssoUserId` | string | | no | no |  | SSO id of visitor. |
+| `name` | string | | no | no |  | Name of the visitor. |
+| `email` | string | | no | no |  | Email of the visitor. |
+| `phone` | string | | no | no |  | Phone of the visitor. |
+| `company` | string | | no | no |  | Company of the visitor. |
+| `departmentId` | Guid | | no | no |  | The Department which the Offline Message belongs to. |
+| `department` | [Department](#department) | yes | no | no |  | Available only when department is included. |
+| `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to. |
+| `agent` | [Agent](#agent) | yes | no | no |  | Available only when agent is included. |
+| `ticketId` | integer | yes | no | no |  | id of the related ticket. |
+| `subject` | string | | no | no |  | The subject of this offline message.|
+| `message` | string | | no | no | | The content of this offline message. |
 | `requestingPageTitle` | string | | no | no |  |  |
 | `requestingPageURL` | string | | no | no |  |  |
 | `source` | string | | no | no |  | Including `chatButton` and `autoInvitation` |
 | `autoInvitationId` | Guid | | no | no |  | Available when source is `autoInvitation` |
 | `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | no | no |  | Available only when autoInvitation is included |
-| `campaignId` | Guid | | no | no |  | Id of the campaign |
-| `campaign` | [Campaign](#campaign) | yes | no | no |  | Available only when campaign is included |
-| `sessionId` | Guid | | no | no |  | Id of the session |
-| `session` | [Session](#session) | yes | no | no |  | Available only when session is included |
-| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | An array of [Customer Segment](#customer-segment) |
+| `campaignId` | Guid | | no | no |  | Id of the campaign. |
+| `campaign` | [Campaign](#campaign) | yes | no | no |  | Available only when campaign is included. |
+| `sessionId` | Guid | | no | no |  | Id of the session. |
+| `session` | [Session](#session) | yes | no | no |  | Available only when session is included. |
+| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | An array of [Customer Segment](#customer-segment). |
 | `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | Values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
 | `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | Information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
-| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | The attachment file data |
+| `attachment` | [Attachment](#attachment-json-format) | | no | no |  | The attachment file data. |
 
 ### Attachment JSON format
 
- Attachment is represented as simple flat JSON objects with the following keys:  
+ `Attachment` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -2237,7 +2235,7 @@ HTTP/1.1 204 No Content
 
 ### Field Value JSON format
 
- Field Value is represented as simple flat JSON objects with the following keys:  
+ `Field Value` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -2265,7 +2263,7 @@ Query string
 | `visitorSegmentId` | guid | no  |  | Id of the visitor segment which the visitor belongs to. |
 | `keywords` | string | no  |  | Search subject or message by keywords. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
-| `pageSize` | integer | no  | 50 | Page size,  |
+| `pageSize` | integer | no  | 50 | Page size. |
 
 #### Response
 
@@ -2283,7 +2281,7 @@ The response body contains data with the follow structure:
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session
+-X GET https://api1.comm100.io/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session
 ```
 Response
 ```json  
@@ -2291,7 +2289,7 @@ Response
 {
     "total": 28,
     "previousPage": "",
-    "nextPage": "https://domain.comm100.com/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session&pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/livechat/offlineMessages?include=department,agent,campaign,autoInvitation,session&pageIndex=2",
     "offlineMessages": [
         {
             "id": "3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c",
@@ -2351,7 +2349,7 @@ Response
             "customerSegments": [],
             "attachment":{
               "name":"test.png",
-              "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+              "uri":"https://api1.comm100.io/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
             }
         },
         ...
@@ -2378,14 +2376,14 @@ Query string
 
 #### Response
 
-the response is: [Offline Message](#offline-message-json-format) Object
+The response is a [Offline Message](#offline-message-json-format) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation, session
+-X GET https://api1.comm100.io/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c?include=department,agent,campaign,autoInvitation, session
 ```
 Response
 ```json  
@@ -2440,7 +2438,7 @@ Response
     "customerSegments": [],
     "attachment":{
       "name":"test.png",
-      "uri":"https://domain.comm100.com/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
+      "uri":"https://api1.comm100.io/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
     }
 }
 ```
@@ -2465,7 +2463,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/offlineMessages/3d45dadd-a7c3-4b7b-ba1c-bc9eaea34f8c
 ```
 Response
 ```json
@@ -2502,7 +2500,7 @@ curl -d '[
     "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "92e68d68-92e6-4487-a2e8-8234fc9d1f48",
     "44878d68-92e6-4487-a2e8-8234fc9d1f48"
-  ]' -X DELETE https://domain.comm100.com/api/v3/livechat/offlineMessages
+  ]' -X DELETE https://api1.comm100.io/api/v3/livechat/offlineMessages
 ```
 Response
 ```json
@@ -2521,7 +2519,7 @@ HTTP/1.1 204 No Content
 
 ### Campaign Object
 
-  Campaign Object is represented as simple flat JSON objects with the following keys:  
+  `Campaign` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -2549,7 +2547,7 @@ The response is an array of [Campaign](#Campaign-Object) objects.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns
 ```
 
 Response
@@ -2577,7 +2575,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2588,7 +2586,7 @@ The response is a [Campaign](#Campaign-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9
 ```
 
 Response
@@ -2636,14 +2634,14 @@ curl -H "Content-Type: application/json" -d '{
   "name": "campaigns11111",
   "description": "campaigns",
   "language": "English"
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 
 {
   "id": "FAE531BE-8CAD-207D-57B9-493BBCC6E585",
@@ -2665,7 +2663,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -2692,7 +2690,7 @@ curl -H "Content-Type: application/json" -d '{
   "name": "campaigns2222",
   "description": "campaigns",
   "language": "English"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 ```
 
 Response
@@ -2719,7 +2717,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2729,7 +2727,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585
 ```
 
 Response
@@ -2763,7 +2761,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2774,7 +2772,7 @@ The response is a [Installation Code](#Installation-Code-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/installationCode
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/installationCode
 ```
 
 Response
@@ -2786,8 +2784,8 @@ Content-Type:  application/json
     <div id=\"livechat-button-1\"></div>
       <script type=\"text/javascript\">
         var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement(\"script\"),c=document.getElementsByTagName(\"script\")[0];a.type=\"text/javascript\",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:1,div_id:\"livechat-button-1\"}),t.site_id=[SiteId],t.main_code_plan=1,e(\"  
-        https://domain.comm100.com/chatserver/livechat.ashx?siteId=\"),setTimeout(function(){t.loaded||e(\"  
-        https://domain.comm100.com/chatserver/livechat.ashx?siteId=\")},5e3)})(Comm100API||{})
+        https://api1.comm100.io/chatserver/livechat.ashx?siteId=\"),setTimeout(function(){t.loaded||e(\"  
+        https://api1.comm100.io/chatserver/livechat.ashx?siteId=\")},5e3)})(Comm100API||{})
       </script>
     <!--End Tester Code-->"
 }
@@ -2802,7 +2800,7 @@ Content-Type:  application/json
 
 ### Chat Button Object
 
-  Chat Button Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Button` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -2842,7 +2840,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -2853,7 +2851,7 @@ The response is a [Chat Button](#Chat-Button-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatButton
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatButton
 ```
 
 Response
@@ -2883,7 +2881,7 @@ Content-Type:  application/json
   "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "tset"
+  "textLinkButtonText": "test"
 }
 ```
 
@@ -2899,7 +2897,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -2925,7 +2923,7 @@ example:
   "imageButtonColorOnMobile": "#329fd9",
   "imageButtonTextColorOnMobile": "#329fd9",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "tset111111"
+  "textLinkButtonText": "test111111"
 }
 ```
 
@@ -2956,7 +2954,7 @@ curl -H "Content-Type: application/json" -d '{
   "imageButtonTextColorOnMobile": "#329fd9",
   "imageButtonPositionOnMobile": "bottomLeft",
   "textLinkButtonText": "tset111111"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatButton
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatButton
 ```
 
 Response
@@ -2986,7 +2984,7 @@ Content-Type:  application/json
   "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "tset111111"
+  "textLinkButtonText": "test111111"
 }
 ```
 
@@ -2999,12 +2997,10 @@ Content-Type:  application/json
 
 ### Chat Window Object
 
-  Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Chat Window` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `width` | integer | no | no | | |
-| `height` | integer | no | no | | |
 | `style` | string | no | no | |  Style of the window's theme, including `classic`, `circle` and `bubble`. |
 | `color` | string | no | no | |  Color of the window's theme. |
 | `type` | string | no | no | | Type of the chat window, including `embedded` and `popup`. |
@@ -3017,8 +3013,8 @@ Content-Type:  application/json
 | `bannerImageType` | string | yes | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
 | `bannerImage` | Guid | no | yes | | Image file key of the banner, available when `headerType` is `bannerImage`. |
 | `isAvatarDisplayedWithMessage` | boolean | no | no   | | Whether the avatar of the agent is visible or not in the message body, available when `style` is `classic`or `simple`. |
-| `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic`or `simple`. |
-| `backgroundTexture` | string | no | no | | Including `style1`, `style2`, `style3`, `style4` and `style5`. |
+| `isBackgroundDisplayed` | boolean | no | no | |  Whether the texture and picture of the background is visible or not in the message body, available when `style` is `classic` or `simple`. |
+| `backgroundTexture` | integer| no | no | | Including `0`(style 1), `1`(style 2), `2`(style 3), `3` (style 4 ) and `4`(style 5). |
 | `customCSS` | string | no | no | | |
 | `isTranscriptDownloadAllowed` | boolean | no | no | | Whether the visitor can download the chat transcript. |
 | `isTranscriptPrintAllowed` | boolean | no | no | | Whether the visitor can print the chat transcript. |
@@ -3035,7 +3031,7 @@ Content-Type:  application/json
 | `isVideoChatEnabled` | boolean | no | no | | Whether the agent can use video chat. |
 | `isBrowserPopupNotificationEnabled` | boolean | no | no | | It is available for private server sites. For shared server clients, the push notification is disabled by default. |
 | `ifEndChatWhenVisitorIsInactive` | boolean | no | no | | Automatically end chats if visitors don't respond in period of time. |
-| `minutesOfVisitorInactivity` | integer | no | no | | Including `3`, `5`, `10`, `15`, `20`, `30` and `60`. |
+| `minutesOfVisitorInactivity` | integer | no | no | | Including `3`, `5`, `10`, `15`, `20`, `30` and `60`. (unit :minute) |
 | `isTranscriptSentForArchiving` | boolean | no | no | | |
 | `receivingEmailAddressesForArchivingTranscripts` | string | no | no | | |
 | `emailSubjectForArchivingTranscripts` | string | no | no | | |
@@ -3045,7 +3041,7 @@ Content-Type:  application/json
 
 ### Custom SMTP Server Object
 
-  Custom SMTP Server Object is represented as simple flat JSON objects with the following keys:  
+  `Custom SMTP Server` object is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3070,7 +3066,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3081,7 +3077,7 @@ The response is a [Chat Window](#Chat-Window-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatWindow
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatWindow
 ```
 
 Response
@@ -3089,8 +3085,6 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#329fd9",
   "type": "popup",
@@ -3129,7 +3123,7 @@ Content-Type:  application/json
   "isVideoChatEnabled":  false,
   "isBrowserPopupNotificationEnabled": false,
   "ifEndChatWhenVisitorIsInactive":  false,
-  "minutesOfVisitorInactivity": 1,
+  "minutesOfVisitorInactivity": 3,
   "isTranscriptSentForArchiving": false,
   "receivingEmailAddressesForArchivingTranscripts": "",
   "emailSubjectForArchivingTranscripts": "",
@@ -3151,7 +3145,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3160,8 +3154,6 @@ Request Body
 example:
 ```Json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3197,7 +3189,7 @@ example:
   "isVideoChatEnabled":  false,
   "isBrowserPopupNotificationEnabled": false,
   "ifEndChatWhenVisitorIsInactive":  false,
-  "minutesOfVisitorInactivity": 1,
+  "minutesOfVisitorInactivity": 3,
   "isTranscriptSentForArchiving": false,
   "receivingEmailAddressesForArchivingTranscripts": "",
   "emailSubjectForArchivingTranscripts": "",
@@ -3216,8 +3208,6 @@ The response is a [Chat Window](#Chat-Window-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3253,14 +3243,14 @@ curl -H "Content-Type: application/json" -d '{
   "isVideoChatEnabled":  false,
   "isBrowserPopupNotificationEnabled": false,
   "ifEndChatWhenVisitorIsInactive":  false,
-  "minutesOfVisitorInactivity": 1,
+  "minutesOfVisitorInactivity": 3,
   "isTranscriptSentForArchiving": false,
   "receivingEmailAddressesForArchivingTranscripts": "",
   "emailSubjectForArchivingTranscripts": "",
   "greetingMessage": "",
   "isCustomJSEnabled": false,
   "customJS": ""
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatWindow
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatWindow
 ```
 
 Response
@@ -3268,8 +3258,6 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "width": 10,
-  "height": 10,
   "style": "classic",
   "color": "#4f527d",
   "type": "popup",
@@ -3308,7 +3296,7 @@ Content-Type:  application/json
   "isVideoChatEnabled":  false,
   "isBrowserPopupNotificationEnabled": false,
   "ifEndChatWhenVisitorIsInactive":  false,
-  "minutesOfVisitorInactivity": 1,
+  "minutesOfVisitorInactivity": 3,
   "isTranscriptSentForArchiving": false,
   "receivingEmailAddressesForArchivingTranscripts": "",
   "emailSubjectForArchivingTranscripts": "",
@@ -3327,7 +3315,7 @@ Content-Type:  application/json
 
 ### Pre-Chat Object
 
-  Pre-Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Pre-Chat`is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3355,7 +3343,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3366,7 +3354,7 @@ The response is a [Pre-Chat](#Pre-Chat-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat
 ```
 
 Response
@@ -3436,7 +3424,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 Request Body
 
@@ -3479,7 +3467,7 @@ curl -H "Content-Type: application/json" -d '{
   "fields":  [],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat
 ```
 
 Response
@@ -3510,7 +3498,7 @@ Content-Type:  application/json
 
 ### Post Chat  Object
 
-  Post Chat Window Object is represented as simple flat JSON objects with the following keys:  
+  `Post Chat` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3531,7 +3519,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3542,7 +3530,7 @@ The response is a [Post Chat](#Post-Chat-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat
 ```
 
 Response
@@ -3569,7 +3557,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3597,7 +3585,7 @@ curl -H "Content-Type: application/json" -d '{
   "fields":  [],
   "greetingMessage": "",
   "formFieldLayoutStyle": "leftofInput"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
 ```
 
 Response
@@ -3621,7 +3609,7 @@ Content-Type:  application/json
 
 ### Campaign Offline Message Object
 
-  Offline Message Object is represented as simple flat JSON objects with the following keys:  
+  `Campaign Offline Message` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3653,7 +3641,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 #### Response
 
@@ -3664,7 +3652,7 @@ The response is a [Campaign Offline Message](#Campaign-Offline-Message-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage
 ```
 
 Response
@@ -3702,7 +3690,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3753,7 +3741,7 @@ curl -H "Content-Type: application/json" -d '{
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
   "fields":  []
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
 ```
 
 Response
@@ -3788,7 +3776,7 @@ Content-Type:  application/json
 
 ### Invitation Object
 
-  Invitation Object is represented as simple flat JSON objects with the following keys:  
+  `Invitation` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3809,7 +3797,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3820,7 +3808,7 @@ The response is a [Invitation](#Invitation-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation
 ```
 
 Response
@@ -3899,7 +3887,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3922,7 +3910,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "style": "bubble"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation
 ```
 
 Response
@@ -3943,7 +3931,7 @@ Content-Type:  application/json
 
 ### Manual Invitation Object
 
-  Manual Invitation Object is represented as simple flat JSON objects with the following keys:  
+  `Manual Invitation` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -3977,7 +3965,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 #### Response
 
@@ -3988,7 +3976,7 @@ The response is a [Manual Invitation](#Manual-Invitation-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/manualInvitation
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/manualInvitation
 ```
 
 Response
@@ -4028,7 +4016,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -4079,7 +4067,7 @@ curl -H "Content-Type: application/json" -d '{
   "isManualInvitationTextBold": false,
   "isManualInvitationTextItalic": false,
   "manualInvitationTextColor": "#339FD9"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/manualInvitation
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/manualInvitation
 ```
 
 Response
@@ -4119,7 +4107,7 @@ Content-Type:  application/json
 
 ### Auto Invitation Object
 
-  Auto Invitation Object is represented as simple flat JSON objects with the following keys:
+  `Auto Invitation` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -4161,7 +4149,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4172,7 +4160,7 @@ The response is an array of [Auto Invitation](#Auto-Invitation-Object) objects.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations
 ```
 
 Response
@@ -4229,8 +4217,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
-| `id` | Guid | yes  |  The unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
+| `id` | Guid | yes  |  The unique id of the auto invitation |
 
 #### Response
 
@@ -4241,7 +4229,7 @@ The response is: [Auto Invitation](#Auto-Invitation-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 ```
 
 Response
@@ -4300,7 +4288,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -4381,14 +4369,14 @@ curl -H "Content-Type: application/json" -d '{
     },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 
 {
   "id": "8CAE01CB-F74D-254C-A42B-84C00546C31E",
@@ -4439,8 +4427,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
-| `id` | Guid | yes  |  The unique Id of the auto invitation. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the auto invitation. |
 
 Request Body
 
@@ -4521,7 +4509,7 @@ curl -H "Content-Type: application/json" -d '{
     },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 ```
 
 Response
@@ -4577,8 +4565,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
-| `id` | Guid | yes  |  The unique Id of the auto invitation |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
+| `id` | Guid | yes  |  The unique id of the auto invitation |
 
 #### Response
 
@@ -4588,7 +4576,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/invitation/autoInvitations/8CAE01CB-F74D-254C-A42B-84C00546C31E
 ```
 
 Response
@@ -4605,7 +4593,7 @@ Response
 
 ### Agent Wrap-Up Object
 
-  Agent Wrap-Up Object is represented as simple flat JSON objects with the following keys:  
+  `Agent Wrap-Up` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -4623,7 +4611,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4634,7 +4622,7 @@ The response is an [Agent Wrap-Up](#Agent-Wrap-Up-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup
 ```
 
 Response
@@ -4658,7 +4646,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -4718,7 +4706,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "fields":  []
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup
 ```
 
 Response
@@ -4739,7 +4727,7 @@ Content-Type:  application/json
 
 ### Language Object
 
-  Language Object is represented as simple flat JSON objects with the following keys:  
+  `Language` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -4769,7 +4757,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -4780,7 +4768,7 @@ the response is: [Language](#Language-Object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/language
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/language
 ```
 
 Response
@@ -4810,7 +4798,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -4843,7 +4831,7 @@ curl -H "Content-Type: application/json" -d '{
     "systemName": "chatwindow",
     "customText": "chatwindowcustom"
   }
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/language
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/language
 ```
 
 Response
@@ -4869,7 +4857,7 @@ Content-Type:  application/json
 
 ### Routing Object
 
-  Routing Object is represented as simple flat JSON objects with the following keys:  
+  `Routing` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -4902,7 +4890,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -4919,7 +4907,7 @@ The response is a [Routing](#Routing-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing?include=department
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing?include=department
 ```
 
 Response
@@ -4976,7 +4964,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  the unique id of the campaign. |
 
 Request Body
 
@@ -5021,7 +5009,7 @@ curl -H "Content-Type: application/json" -d '{
   "priorityWhenNoRuleMatched": "lowest",
   "percentageToBotWhenNoRuleMatched": 10,
   "emailsToReceiveOfflineMessage": ""
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing
 ```
 
 Response
@@ -5056,7 +5044,7 @@ Content-Type:  application/json
 
 ### Custom Rule Object
 
-  Custom Rule Object is represented as simple flat JSON objects with the following keys:  
+  `Custom Rule` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -5076,7 +5064,7 @@ Content-Type:  application/json
 
 ### Live Chat Condition Object
 
-  Live Chat Condition Object is represented as simple flat JSON objects with the following keys:
+  `Live Chat Condition` Object is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5097,7 +5085,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Query string
 
@@ -5107,14 +5095,14 @@ Query string
 
 #### Response
 
-the response is: [Custom Rule](#Custom-Rule-Object) Object
+The response is a [Custom Rule](#Custom-Rule-Object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules?include=department
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules?include=department
 ```
 
 Response
@@ -5168,8 +5156,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the custom rule. |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -5179,14 +5167,14 @@ Query string
 
 #### Response
 
-the response is: [Custom Rule](#Custom-Rule-Object) Object
+The response is a [Custom Rule](#Custom-Rule-Object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F?include=department
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F?include=department
 ```
 
 Response
@@ -5239,7 +5227,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 Request Body
 
@@ -5318,14 +5306,14 @@ curl -H "Content-Type: application/json" -d '{
     },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
 
 {
   "id": "02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F",
@@ -5373,8 +5361,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the custom rule. |
-| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 Request Body
 
@@ -5453,7 +5441,7 @@ curl -H "Content-Type: application/json" -d '{
     },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
 ```
 
 Response
@@ -5506,8 +5494,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the custom rule. |
-| `campaignId` | Guid | yes  |  The unique Id of the custom rule. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 #### Response
 
@@ -5517,7 +5505,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/routing/customRules/02F842BF-70DA-95D0-8F6A-0D3C6CDCBB9F
 ```
 
 Response
@@ -5534,7 +5522,7 @@ Response
 
 ### Chatbot Integration Object
 
-  Chatbot Integration Object is represented as simple flat JSON objects with the following keys:
+  `Chatbot Integration` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
@@ -5560,7 +5548,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -5577,7 +5565,7 @@ The response is a [Chatbot Integration](#Chatbot-Integration-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatbotIntegration?include=chatbot
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/chatbotIntegration?include=chatbot
 ```
 
 Response
@@ -5635,7 +5623,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -5672,7 +5660,7 @@ curl -H "Content-Type: application/json" -d '{
   "queueLength": 1,
   "percentageToChatbot": 1,
   "isChatbotAllocatedWhenAgentOffline": false
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatbotIntegration
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatbotIntegration
 ```
 
 Response
@@ -5700,7 +5688,7 @@ Content-Type:  application/json
 
 ### KB Integration Object
 
-  KB Integration Object is represented as simple flat JSON objects with the following keys:
+  `KB Integration` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5724,7 +5712,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 #### Response
 
@@ -5735,7 +5723,7 @@ The response is a [KB Integration](#KB-Integration-Object) object.
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/KBIntegration
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/KBIntegration
 ```
 
 Response
@@ -5765,7 +5753,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -5800,7 +5788,7 @@ curl -H "Content-Type: application/json" -d '{
   "isSearchAllowedBeforeOfflineMessage": false,
   "greetingMessageBeforeOfflineMessage": "",
   "articlesShowedInSearchResult": 1
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/KBIntegration
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/KBIntegration
 ```
 
 Response
@@ -5836,7 +5824,7 @@ Content-Type:  application/json
 
 ### Campaign Form Field Object
 
-  Campaign Form Field is represented as simple flat JSON objects with the following keys:  
+  `Campaign Form Field` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5849,7 +5837,7 @@ Content-Type:  application/json
 
 ### Rating Grade Object
 
-  Rating Grade is represented as simple flat JSON objects with the following keys:  
+  `Rating Grade` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5859,7 +5847,7 @@ Content-Type:  application/json
 
 ### Live Chat Field Object
 
-  Live Chat Field is represented as simple flat JSON objects with the following keys:  
+  `Live Chat Field` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5874,7 +5862,7 @@ Content-Type:  application/json
 
 ### Live Chat System Field
 
-  Live Chat System Field is one key of the following keys:
+  `Live Chat System Field` is one key of the following keys:
 
 | System Field | Type | Only Available Forms | Is Required |
 | - | - | :-: | - |
@@ -5895,7 +5883,7 @@ Content-Type:  application/json
 
 ### Live Chat Field Type
 
-  Live Chat Field Type is one key of the following keys:
+  `Live Chat Field Type` is one key of the following keys:
 
 | Name | Available Forms |
 | - | :-: |
@@ -5912,7 +5900,7 @@ Content-Type:  application/json
 
 ### Live Chat Field Option Object
 
-  Live Chat Field Option Object is represented as simple flat JSON objects with the following keys:  
+  `Live Chat Field Option` Object is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5921,7 +5909,7 @@ Content-Type:  application/json
 
 ### Live Chat Field Option Group Object
 
-  Live Chat Field Option Group Object is represented as simple flat JSON objects with the following keys:  
+  `Live Chat Field Option Group` Object is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
@@ -5941,7 +5929,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique Id of the campaign |
+| `campaignId` | Guid | yes  |  the unique id of the campaign |
 
 #### Response
 
@@ -5952,7 +5940,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat/campaignFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/preChat/campaignFormFields
 ```
 
 Response
@@ -6010,7 +5998,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6093,14 +6081,14 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat/campaignFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat/campaignFormFields
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5062B231-E0D6-AFD3-2E72-4D143792DC03
 
 {
   "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
@@ -6148,7 +6136,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6159,7 +6147,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat/campaignFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/postChat/campaignFormFields
 ```
 
 Response
@@ -6217,7 +6205,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6300,14 +6288,14 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat/campaignFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat/campaignFormFields
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/8FD2DBE6-4653-1705-F791-F2C648A11FC7
 
 {
   "id": "8FD2DBE6-4653-1705-F791-F2C648A11FC7",
@@ -6355,7 +6343,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6366,7 +6354,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage/campaignFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/offlineMessage/campaignFormFields
 ```
 
 Response
@@ -6424,7 +6412,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6507,14 +6495,14 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage/campaignFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage/campaignFormFields
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA
 
 {
   "id": "6BE9D31D-C9C7-0B0B-BC84-89FC948C81BA",
@@ -6562,7 +6550,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6573,7 +6561,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup/campaignFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/CE76FDBC-B451-F4C9-FE00-89360F86E9F9/agentWrapup/campaignFormFields
 ```
 
 Response
@@ -6631,7 +6619,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6714,14 +6702,14 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup/campaignFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup/campaignFormFields
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
+Location: https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/5994A98C-CF88-1B8E-2909-CA81E0C1B469
 
 {
   "id": "5994A98C-CF88-1B8E-2909-CA81E0C1B469",
@@ -6769,8 +6757,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6781,7 +6769,7 @@ The response is an array of [Campaign Form Field](#Campaign-Form-Field-Object) o
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+-X GET https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6836,8 +6824,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6920,7 +6908,7 @@ curl -H "Content-Type: application/json" -d '{
   },
   ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -6975,8 +6963,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The unique Id of the campaign form fields. |
-| `campaignId` | Guid | yes  |  The unique Id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6986,7 +6974,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/campaignFormFields/A721F271-D59C-2724-23D4-F66418676DD3
 ```
 
 Response
@@ -7008,7 +6996,7 @@ Response
 
 ### Ban JSON Format
 
-  Ban is represented as simple flat JSON objects with the following keys:  
+  `Ban` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -7046,7 +7034,7 @@ The response is an array of [Ban](#ban-json-format) objects.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/bans?include=visitor,agent
+-X GET https://api1.comm100.io/api/v3/livechat/bans?include=visitor,agent
 ```
 Response
 ``` json
@@ -7105,7 +7093,7 @@ The response is a [Ban](#ban-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor,agent
+-X GET https://api1.comm100.io/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e?include=visitor,agent
 ```
 Response
 ```json
@@ -7161,13 +7149,13 @@ curl -H "Content-Type: application/json" -d '{
     "type": "ip",
     "ip": "192.168.1.1",
     "comment": "block this ip"
-  }' -X POST https://domain.comm100.com/api/v3/livechat/bans
+  }' -X POST https://api1.comm100.io/api/v3/livechat/bans
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/bans/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/livechat/bans/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
     "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -7214,7 +7202,7 @@ curl -H "Content-Type: application/json" -d '{
     "type": "ip",
     "ip": "192.168.1.2",
     "comment": ""
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/bans/27c48ac9-2553-4066-bf94-e30957aa390e
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/bans/27c48ac9-2553-4066-bf94-e30957aa390e
 ```
 Response
 ```Json
@@ -7248,7 +7236,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/bans/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
 ```
 Response
 ```json
@@ -7269,7 +7257,7 @@ HTTP/1.1 204 No Content
 
 ### Conversion Action JSON Format
 
-  Conversion Action is represented as simple flat JSON objects with the following keys:  
+  `Conversion Action` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -7333,7 +7321,7 @@ The response is an array of [Conversion Action](#conversion-action-json-format) 
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/conversionActions?include=agent
+-X GET https://api1.comm100.io/api/v3/livechat/conversionActions?include=agent
 ```
 Response
 ``` json
@@ -7413,7 +7401,7 @@ The response is a [Conversion Action](#conversion-action-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/conversionActions/5728600f-0e75-432f-8638-db189f1e4e44?include=agent
+-X GET https://api1.comm100.io/api/v3/livechat/conversionActions/5728600f-0e75-432f-8638-db189f1e4e44?include=agent
 ```
 Response
 ``` json
@@ -7524,13 +7512,13 @@ curl -H "Content-Type: application/json" -d '{
     "visitorMessagesAtLeast": 1,
     "isVariableIncludedInTranscript": false,
     "appendFieldList": ""
-  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions
+  }' -X POST https://api1.comm100.io/api/v3/livechat/conversionActions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/conversionActions/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/livechat/conversionActions/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
     "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -7627,7 +7615,7 @@ curl -H "Content-Type: application/json" -d '{
     "visitorMessagesAtLeast": 1,
     "isVariableIncludedInTranscript": false,
     "appendFieldList": ""
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/conversionActions/60a555fd-b5db-40ac-9043-57fcee181f78
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/conversionActions/60a555fd-b5db-40ac-9043-57fcee181f78
 ```
 Response
 ```Json
@@ -7692,7 +7680,7 @@ curl -H "Content-Type: application/json" -d '{
     "conversion_name" : "justfortestupdate",
     "visitorId": "ae165aad-b561-145b-427c-ba89849ff3c7",
     "value": 1.5
-  }' -X POST https://domain.comm100.com/api/v3/livechat/conversionActions/achieved
+  }' -X POST https://api1.comm100.io/api/v3/livechat/conversionActions/achieved
 ```
 Response
 ```json
@@ -7718,7 +7706,7 @@ You need `Manage Security` permission to manage `Secure Form`.
 ## Related Object Json Format
 ### Secure Form JSON Format
 
-Secure Form is represented as simple flat JSON objects with the following keys:  
+`Secure Form` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -7744,7 +7732,7 @@ The reponse is an array of [Secure Form](#secure-form-json-format) objects.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/secureForms
+-X GET https://api1.comm100.io/api/v3/livechat/secureForms
 ```
 Response
 ``` json
@@ -7804,7 +7792,7 @@ The response is a [Secure Form](#secure-form-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/secureforms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2
+-X GET https://api1.comm100.io/api/v3/livechat/secureforms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2
 ```
 Response
 ``` json
@@ -7890,13 +7878,13 @@ curl -H "Content-Type: application/json" -d '{
         },
         ...
     ]
-  }' -X POST https://domain.comm100.com/api/v3/livechat/secureForms
+  }' -X POST https://api1.comm100.io/api/v3/livechat/secureForms
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
     "id": "b222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -8018,7 +8006,7 @@ curl -H "Content-Type: application/json" -d '{
             "order": 2
         }
     ]
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -8081,7 +8069,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureForms/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/secureForms/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
 ```
 Response
 ```json
@@ -8099,7 +8087,7 @@ HTTP/1.1 204 No Content
 ## Related Object Json Format
 ### Secure Form Field JSON Format
 
-  Secure Form Field is represented as simple flat JSON objects with the following keys:  
+  `Secure Form Field` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -8111,11 +8099,11 @@ HTTP/1.1 204 No Content
 | `isVisible` | boolean | | no | no | false | Whether the field is visible or not. |
 | `isRequired` | boolean | | no | no | false | Whether the field is required or not when submitting the form. |
 | `order` | integer | | no | no |1  | The order of the field. |
-| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | no | | The options of the field. |
+| `options` | [Secure Form Field Option](#Secure-Form-Field-Option-JSON-Format) |  | no | yes| | The options of the field, mandatory when the `type` is `radioBox`,`dropdownList`,`checkboxList`.|
 
 ### Secure Form Field Option JSON Format
 
-  Secure Form Field Option is represented as simple flat JSON objects with the following keys:  
+  `Secure Form Field Option` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -8144,7 +8132,7 @@ The response is an array of [Secure Form Field](#secure-form-field-json-format) 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields
+-X GET https://api1.comm100.io/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields
 ```
 Response
 ``` json
@@ -8173,11 +8161,11 @@ Content-Type:  application/json
         "options":[
             {
             "value": "beijing",
-            "order":0,
+            "order":1,
             },
             {
             "value": "hangzhou",
-            "order":1,
+            "order":2,
             }],
         "order": 2
     }
@@ -8206,7 +8194,7 @@ The response is a [Secure Form Field](#secure-form-field-json-format) object.
 Using curl
 ```
 curl -H "Content-Type: application/json" 
--X GET https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/vc21qa68-92e6-4487-a2e8-8234fc9d1f48
+-X GET https://api1.comm100.io/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/vc21qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ``` json
@@ -8224,11 +8212,11 @@ Content-Type:  application/json
     "options":[
         {
         "value": "beijing",
-        "order":0,
+        "order":1,
         },
         {
         "value": "hangzhou",
-        "order":1,
+        "order":2,
         }],
     "order": 2
 }
@@ -8258,7 +8246,7 @@ Request body
     "isSystem": true,
     "isVisible": false,
     "isRequired": false,
-    "order": 1     
+    "order": 1
   }
 ```
 
@@ -8278,13 +8266,13 @@ curl -H "Content-Type: application/json" -d '{
     "isVisible": false,
     "isRequired": false,
     "order": 1 
-  }' -X POST https://domain.comm100.com/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48/secureFormFields
+  }' -X POST https://api1.comm100.io/api/v3/livechat/secureForms/b222qa68-92e6-4487-a2e8-8234fc9d1f48/secureFormFields
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/livechat/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
 
 {
     "id": "3222qa68-92e6-4487-a2e8-8234fc9d1f48",
@@ -8344,7 +8332,7 @@ curl -H "Content-Type: application/json" -d '{
     "isVisible": false,
     "isRequired": false,
     "order": 1
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/3222qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -8381,7 +8369,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
+curl -X DELETE https://api1.comm100.io/api/v3/livechat/secureForms/5721c1ac-f18b-43ed-9ff1-597acd9f48e2/secureFormFields/f2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8e
 ```
 Response
 ```json
@@ -8402,12 +8390,12 @@ You need `Manage Integration` permission to manage `Webhook`.
 
 ### Webhook Object
 
-  Webhook is represented as simple flat JSON objects with the following keys:
+  `Webhook` is represented as simple flat JSON objects with the following keys:
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `id` | guid  || yes | no | | Id of the webhook |
-| `event` | string  || no | yes | | Event of webhook, including `offlineMessageSubmitted`, ,`agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
+| `event` | string  || no | yes | | Event of webhook, including `offlineMessageSubmitted`, `agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
 | `targetUrl` | string  || no | yes | | Target url of the webhook. |
 
 ## Endpoints
@@ -8429,7 +8417,7 @@ The response is An array of [Webhook](#webhook-object) objects.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/webhooks
+-X GET https://api1.comm100.io/api/v3/livechat/webhooks
 ```
 
 Response
@@ -8467,7 +8455,7 @@ The response is a [Webhook](#webhook-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://api1.comm100.io/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8512,7 +8500,7 @@ Using curl:
 curl -H "Content-Type: application/json" -d '{
   "event": "chatWrappedUp",
   "targetUrl": "http://www.aa.com"
-}' -X POST https://domain.comm100.com/api/v3/livechat/webhooks
+}' -X POST https://api1.comm100.io/api/v3/livechat/webhooks
 ```
 
 Sample response:
@@ -8520,7 +8508,7 @@ Sample response:
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 {
   "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "event": "chatWrappedUp",
@@ -8565,7 +8553,7 @@ Using curl:
 curl -H "Content-Type: application/json" -d '{
   "event": "chatWrappedUp",
   "targetUrl": "http://www.aa.com"
-}' -X PUSThttps://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+}' -X PUSThttps://api1.comm100.io/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8599,7 +8587,7 @@ HTTP/1.1 204 No Content
 Using curl:
 
 ```shell
-curl  -X DELETE  https://domain.comm100.com/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl  -X DELETE  https://api1.comm100.io/api/v3/livechat/webhooks/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -8620,7 +8608,7 @@ You need `Manage Custom Variable` permission to manage custom variable.
 
 ### Custom Variable Object
 
-Custom Variable is represented as simple flat JSON objects with the following keys:  
+`Custom Variable` is represented as simple flat JSON objects with the following keys:  
 
 | Name | Type | Include | Read-only| Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
@@ -8649,7 +8637,7 @@ The response is an array of [Custom Variable](#custom-variable-object) objects.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/customvariables
+-X GET https://api1.comm100.io/api/v3/livechat/customvariables
 --header "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9y"
 ```
 
@@ -8690,7 +8678,7 @@ The response is a [Custom Variable](#custom-variable-object) object.
 Using curl
 ```shell
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+-X GET https://api1.comm100.io/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 --header "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9y"
 ```
 
@@ -8740,13 +8728,13 @@ curl -H "Content-Type: application/json" -d '{
   "type": "text",
   "value": "'lizz'",
   "hyperlink": "{!Visitor.IP}"
-  }' -X POST  https://domain.comm100.com/api/v3/livechat/customvariables
+  }' -X POST  https://api1.comm100.io/api/v3/livechat/customvariables
 ```
 
 Response
 ```Json
 HTTP/1.1 201 Created
-Location: https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 Content-Type:  application/json
 
 {
@@ -8798,7 +8786,7 @@ curl -H "Content-Type: application/json" -d '{
   "type": "text",
   "value": "'lizz'",
   "hyperlink": "{!Visitor.IP}"
-  }' -X PUT https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+  }' -X PUT https://api1.comm100.io/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response
@@ -8833,7 +8821,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -H -X DELETE https://domain.comm100.com/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H -X DELETE https://api1.comm100.io/api/v3/livechat/customvariables/1487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 
 Response

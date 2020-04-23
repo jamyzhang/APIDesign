@@ -77,7 +77,7 @@
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/site
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/site
 ```
 Response
 ```json
@@ -137,7 +137,7 @@ curl -H "Content-Type: application/json" -d '{
     "firstName"："Jasn"，
     "lastName"："Statham"，
     ...,
-}' -X PUT https://domain.comm100.com/api/v3/globalSettings/site
+}' -X PUT https://api1.comm100.io/api/v3/globalSettings/site
 ```
 Response
 ```json
@@ -251,7 +251,7 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/agents
 ```
 Response
 ```json
@@ -259,7 +259,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
     "count": 1234,
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/agents?pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/globalSettings/agents?pageIndex=2",
     "previousPage": "",
     "agents": [{
         "id": 68,
@@ -299,7 +299,7 @@ The response is a [Agent](#agent-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/68?include=role,department
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/agents/68?include=role,department
 ```
 Response
 ```json
@@ -342,7 +342,7 @@ The response is a [Agent List Response](#agent-list-response-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents
 ```
 Response
 ```json
@@ -350,7 +350,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
     "count": 1234,
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents?pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6/agents?pageIndex=2",
     "previousPage": "",
     "agents": [{
         "id": 68,
@@ -393,7 +393,7 @@ The response is a [Agent List Response](#agent-list-response-object) Object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents
 ```
 Response
 ```json
@@ -401,7 +401,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
     "count": 1234,
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents?pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/globalSettings/departments/42dwdaww-92e6-4487-a2e8-92e68d68a2e8/agents?pageIndex=2",
     "previousPage": "",
     "agents": [{
         "id": 68,
@@ -436,7 +436,7 @@ The response is an [Agent](#agent-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/agents/me?include=role,department
+-X GET https://api1.comm100.io/api/v3/globalSettings/agents/me?include=role,department
 ```
 Response
 ```json
@@ -496,13 +496,13 @@ curl -H "Content-Type: application/json" -d '{
       ...,
     ]
     ...,
-} ' -X POST https://domain.comm100.com/api/v3/globalSettings/agents
+} ' -X POST https://api1.comm100.io/api/v3/globalSettings/agents
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
+Location: https://api1.comm100.io/api/v3/globalSettings/agents/68
 {
     "id": 68,
     "email": "Tom@gmail.com",
@@ -535,7 +535,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -d '{} ' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/68:unlock
+curl -H "Content-Type: application/json" -d '{} ' -X POST https://api1.comm100.io/api/v3/globalSettings/agents/68:unlock
 ```
 Response
 ```json
@@ -573,7 +573,7 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "password": "Aa5847lkdsc&d",
-}' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/68:changePassword
+}' -X POST https://api1.comm100.io/api/v3/globalSettings/agents/68:changePassword
 ```
 Response
 ```json
@@ -609,7 +609,7 @@ Using curl
 curl -H "Content-Type: application/json" -d ' {
     "currentPassword": "Aa2541554",
     "newPassword": "Aa5847lkdsc&d",
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/agents/me:changePassword
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/agents/me:changePassword
 ```
 
 Response
@@ -667,13 +667,13 @@ curl -H "Content-Type: application/json" -d '{
       ...,
     ]
     ...,
-} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68
+} ' -X PUT https://api1.comm100.io/api/v3/globalSettings/agents/68
 ```
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/agents/68
+Location: https://api1.comm100.io/api/v3/globalSettings/agents/68
 {
     "id": 68,
     "email": "Tom@gmail.com",
@@ -735,14 +735,14 @@ curl -H "Content-Type: application/json" -d '{
       ...,
     ]
     ...,
-} ' -X PUT https://domain.comm100.com/api/v3/globalSettings/me
+} ' -X PUT https://api1.comm100.io/api/v3/globalSettings/me
 ```
 
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/agents/me
+Location: https://api1.comm100.io/api/v3/globalSettings/agents/me
 {
     "id": 68,
     "email": "Tom@gmail.com",
@@ -775,7 +775,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/agents/68
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/agents/68
 ```
 Response
 ```json
@@ -827,7 +827,7 @@ The response is a list of [Role](#role) objects
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles?include=permission
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/roles?include=permission
 ```
 Response
 ```json
@@ -886,7 +886,7 @@ The response is a [Role](#role) object
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -963,13 +963,13 @@ curl -H "Content-Type: application/json" -d ' {
         ],
         ...,
     },
-    }' -X POST https://domain.comm100.com/api/v3/globalSettings/roles
+    }' -X POST https://api1.comm100.io/api/v3/globalSettings/roles
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
  {
       "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
       "name": "markting",
@@ -1044,13 +1044,13 @@ curl -H "Content-Type: application/json" -d ' {
          ...,
         ],
     },
-    } ' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+    } ' -X PUT https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 {
   "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
   "name": "markting",
@@ -1085,7 +1085,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1141,7 +1141,7 @@ You need the `Manage departments` permission to manage departments.
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/departments
 ```
 Response
 ```json
@@ -1188,7 +1188,7 @@ Query string
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
@@ -1252,13 +1252,13 @@ curl -H "Content-Type: application/json" -d '{
         68,
         ...,
       ],
-    }' -X POST https://domain.comm100.com/api/v3/globalSettings/roles
+    }' -X POST https://api1.comm100.io/api/v3/globalSettings/roles
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/departments
+Location: https://api1.comm100.io/api/v3/globalSettings/departments
 {
       "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
       "name": "markting",
@@ -1323,13 +1323,13 @@ curl -H "Content-Type: application/json" -d '{
     68,
     ...,
   ],
-}' -X PUT https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+}' -X PUT https://api1.comm100.io/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
+Location: https://api1.comm100.io/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 {
       "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
       "name": "markting",
@@ -1362,7 +1362,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/departments/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/departments/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -1408,7 +1408,7 @@ HTTP/1.1 204 No Content
 #### Example
   Using curl
   ```
-  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/permissions
+  curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/permissions
   ```
   Response
   ```json
@@ -1444,7 +1444,7 @@ The response is a [Permission](#permission) Object
 #### Example
   Using curl
   ```
-  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
+  curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
   ```
   Response
   ```json
@@ -1479,7 +1479,7 @@ Path parameters
   #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/agents/68/permissions
 ```
 Response
 ```json
@@ -1514,7 +1514,7 @@ Path parameters
   #### Example
   Using curl
   ```
-  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions:effective
+  curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/agents/68/permissions:effective
   ```
   Response
   ```json
@@ -1564,13 +1564,13 @@ curl -H "Content-Type: application/json" -d '[
   201,
   205,
   ...,
-]' -X PUT https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
+]' -X PUT https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
+Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
 [{
       "id": 201,
       "name": "Accept Chats",
@@ -1614,13 +1614,13 @@ curl -H "Content-Type: application/json" -d '[
   201,
   205,
   ...,
-]' -X PUT https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
+]' -X PUT https://api1.comm100.io/api/v3/globalSettings/agents/68/permissions
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/agents/68/permissions
+Location: https://api1.comm100.io/api/v3/globalSettings/agents/68/permissions
 [{
       "id": 201,
       "name": "Accept Chats",
@@ -1706,7 +1706,7 @@ the response is: list of [Shift](#shift-object) Objects
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/shifts?include=department
+-X GET https://api1.comm100.io/api/v3/globalSettings/shifts?include=department
 ```
 
 Response
@@ -1781,7 +1781,7 @@ the response is a: [Shift](#shift-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED?include=department
+-X GET https://api1.comm100.io/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED?include=department
 ```
 
 Response
@@ -1847,7 +1847,7 @@ the response is a: [Shift](#shift-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/departments/1DC43077-E36F-F9EA-C7BA-C29620102F7E/shifts
+-X GET https://api1.comm100.io/api/v3/globalSettings/departments/1DC43077-E36F-F9EA-C7BA-C29620102F7E/shifts
 ```
 
 Response
@@ -1903,7 +1903,7 @@ the response is a: [Shift](#shift-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/agents/68/shifts
+-X GET https://api1.comm100.io/api/v3/globalSettings/agents/68/shifts
 ```
 
 Response
@@ -2001,14 +2001,14 @@ curl -H "Content-Type: application/json" -d '{
     },
     ...
   ]
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/shifts
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/shifts
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
+Location: https://api1.comm100.io/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
 
 {
   "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
@@ -2103,7 +2103,7 @@ curl -H "Content-Type: application/json" -d '{
     },
     ...
   ]
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
 ```
 
 Response
@@ -2155,7 +2155,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/shifts/3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED
 ```
 
 Response
@@ -2239,7 +2239,7 @@ Response
 #### Example
   Using curl
   ```
-  curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vincent
+  curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/contacts?name=Vincent
   ```
   Response
   ```json
@@ -2247,7 +2247,7 @@ Response
   Content-Type:  application/json
   {
     "count": 1234,
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/contacts?name=Vincent&pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/globalSettings/contacts?name=Vincent&pageIndex=2",
     "previousPage": "",
     "contacts": [{
       "id": 7,
@@ -2290,7 +2290,7 @@ Path parameters
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts/7
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/contacts/7
 ```
 Response
 ```json
@@ -2349,13 +2349,13 @@ curl -H "Content-Type: application/json" -d '{
       "title": "CEO",
       "company": "BMW",
       ...
-    }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts
+    }' -X POST https://api1.comm100.io/api/v3/globalSettings/contacts
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
+Location: https://api1.comm100.io/api/v3/globalSettings/contacts/7
 {
   "id": 7,
   "name": "Vincent",
@@ -2413,13 +2413,13 @@ curl -H "Content-Type: application/json" -d '{
   "title": "CEO",
   "company": "BMW",
   ...
-}' -X PUT https://domain.comm100.com/api/v3/globalSettings/contacts
+}' -X PUT https://api1.comm100.io/api/v3/globalSettings/contacts
 ```
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/contacts/7
+Location: https://api1.comm100.io/api/v3/globalSettings/contacts/7
 {
     "id": 7,
     "email": "Tom@gmail.com",
@@ -2449,7 +2449,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contacts/7
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/contacts/7
 ```
 
 Response
@@ -2502,7 +2502,7 @@ Path parameters
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contacts/7/contactIdentities
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/contacts/7/contactIdentities
 ```
 Response
 ```json
@@ -2545,7 +2545,7 @@ Path parameters
 
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
 ```
 Response
 ```json
@@ -2611,13 +2611,13 @@ curl -H "Content-Type: application/json" -d ' {
         \"screenName\": \"@Comm100Corp\",
         \"originalContactPageURL\": \"\",
     }",
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/contacts/contactIdentities
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/contacts/contactIdentities
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+Location: https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
 {
     "id": 25,
     "contactId": 7,
@@ -2683,13 +2683,13 @@ curl -H "Content-Type: application/json" -d ' {
         \"screenName\": \"@Comm100Corp\",
         \"originalContactPageURL\": \"\",
     }",
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
 ```
 Response
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+Location: https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
  {
     "id": 25,
     "contactId": 7,
@@ -2722,7 +2722,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/contactIdentities/25
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
 ```
 Response
 ```json
@@ -2784,7 +2784,7 @@ The response body contains data with the follow structure:
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/visitors
+-X GET https://api1.comm100.io/api/v3/globalSettings/visitors
 ```
 
 Response
@@ -2823,14 +2823,14 @@ Path Parameters
 
 #### Response
 
-the response is: [Visitor](#visitor-object) Object
+The response is a [Visitor](#visitor-object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
+-X GET https://api1.comm100.io/api/v3/globalSettings/visitors/7273e957-02cb-4c03-a84c-44283fcfd47d
 ```
 
 Response
@@ -2868,7 +2868,7 @@ Content-Type:  application/json
   | - | - | :-: | :-: | :-: | - |
   |`id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
-  | `parentId` | Guid | no | yes | | Id of the public canned message category. |
+  | `parentId` | Guid | no | yes | | Id of the public canned message category. If it does not have parent category, parentId is '00000000-0000-0000-0000-000000000000'|
 
 ## Public Canned Message Endpoints
 
@@ -2882,14 +2882,14 @@ Content-Type:  application/json
 
 #### Response
 
-the response is: list of [Public Canned Message Category](#Public-Canned-Message-Category-Object) Object
+The response is an array of [Public Canned Message Category](#Public-Canned-Message-Category-Object) objects.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories
+-X GET https://api1.comm100.io/api/v3/globalSettings/publicCannedMessageCategories
 ```
 
 Response
@@ -2917,18 +2917,18 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The id of the public canned message category |
+  | `id` | Guid | yes  |  The id of the public canned message category. |
 
 #### Response
 
-the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+The response is a [Public Canned Message Category](#public-Canned-Message-Category-object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/5A563046-374D-3C4E-4D4A-2CA3812A42C8
+-X GET https://api1.comm100.io/api/v3/globalSettings/publicCannedMessageCategories/5A563046-374D-3C4E-4D4A-2CA3812A42C8
 ```
 
 Response
@@ -2951,7 +2951,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure
+  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure.
 
 example:
 ```Json
@@ -2963,7 +2963,7 @@ example:
 
 #### Response
 
-the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+The response is a [Public Canned Message Category](#public-Canned-Message-Category-object) object.
 
 #### Example
 
@@ -2972,14 +2972,14 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "testtest",
   "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/publicCannedMessageCategories
 ```
 
 Response
 ```Json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
+Location: https://api1.comm100.io/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
 
 {
   "id": "7D3E7435-F956-29FE-C089-57241AFBB297",
@@ -2998,11 +2998,11 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the public canned message category |
+  | `id` | Guid | yes  |  The unique Id of the public canned message category. |
 
 Request Body
 
-  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure
+  The request body contains data with the [Public Canned Message Category](#public-Canned-Message-Category-object) structure.
 
 example:
 ```Json
@@ -3014,7 +3014,7 @@ example:
 
 #### Response
 
-the response is a: [Public Canned Message Category](#public-Canned-Message-Category-object) Object
+The response is a [Public Canned Message Category](#public-Canned-Message-Category-object) object.
 
 #### Example
 
@@ -3023,7 +3023,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "testtest22222",
   "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
 ```
 
 Response
@@ -3048,7 +3048,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the public canned message category |
+  | `id` | Guid | yes  |  The unique Id of the public canned message category.|
 
 #### Response
 
@@ -3058,7 +3058,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/publicCannedMessageCategories/7D3E7435-F956-29FE-C089-57241AFBB297
 ```
 Response
 ```json
@@ -3110,14 +3110,14 @@ Query string
 
 #### Response
 
-the response is a: list of [Public Canned Message](#public-Canned-Message-object) Object
+The response is an array of [Public Canned Message](#public-Canned-Message-object) objects.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages?include=publicCannedMessageCategory
+-X GET https://api1.comm100.io/api/v3/globalSettings/publicCannedMessages?include=publicCannedMessageCategory
 ```
 
 Response
@@ -3155,7 +3155,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the public canned message |
+  | `id` | Guid | yes  |  The unique Id of the public canned message. |
 
 Query string
 
@@ -3165,14 +3165,14 @@ Query string
 
 #### Response
 
-the response is a: [Public Canned Message](#public-Canned-Message-object) Object
+The response is a [Public Canned Message](#public-Canned-Message-object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/C354EA75-BAAF-9994-9307-D001FBE1882A?include=publicCannedMessageCategory
+-X GET https://api1.comm100.io/api/v3/globalSettings/publicCannedMessages/C354EA75-BAAF-9994-9307-D001FBE1882A?include=publicCannedMessageCategory
 ```
 
 Response
@@ -3205,7 +3205,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure
+  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure.
 
 example:
 ```Json
@@ -3222,7 +3222,7 @@ example:
 
 #### Response
 
-the response is a: [Public Canned Message](#public-Canned-Message-object) Object
+The response is a [Public Canned Message](#public-Canned-Message-object) object.
 
 #### Example
 
@@ -3236,14 +3236,14 @@ curl -H "Content-Type: application/json" -d '{
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/publicCannedMessages
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
+Location: https://api1.comm100.io/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
 
 {
   "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
@@ -3282,14 +3282,14 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   ["not ok?"]
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
+Location: https://api1.comm100.io/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE/similarQuestions
 
 {
   "id": "19B21FEE-B0C5-2A61-0D34-26FB057D15EE",
@@ -3348,7 +3348,7 @@ curl -H "Content-Type: application/json" -d '{
   "categoryId": "5A563046-374D-3C4E-4D4A-2CA3812A42C8",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
 ```
 
 Response
@@ -3388,7 +3388,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/publicCannedMessages/19B21FEE-B0C5-2A61-0D34-26FB057D15EE
 ```
 
 Response
@@ -3437,7 +3437,7 @@ the response is: list of [Private Canned Message Category](#private-Canned-Messa
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories
+-X GET https://api1.comm100.io/api/v3/globalSettings/privateCannedMessageCategories
 ```
 
 Response
@@ -3476,7 +3476,7 @@ the response is: [Private Canned Message Category](#private-Canned-Message-Categ
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/119043D0-76A6-D3C1-B594-493111CE1552
+-X GET https://api1.comm100.io/api/v3/globalSettings/privateCannedMessageCategories/119043D0-76A6-D3C1-B594-493111CE1552
 ```
 
 Response
@@ -3520,14 +3520,14 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "testtest111111",
   "parentId": "841193BB-8A51-E4F3-EB17-6B4C222D744F"
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/privateCannedMessageCategories
 ```
 
 Response
 ```Json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
+Location: https://api1.comm100.io/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
 {
   "id": "FFD377AA-81FA-EC53-1E57-DD73C0B36F6C",
   "name": "testtest111111",
@@ -3570,7 +3570,7 @@ Using curl
 curl -H "Content-Type: application/json" -d '{
   "name": "testtest22222",
   "parentId": "D5673FC9-9B1A-7030-C7C5-0B4C7A641EFC"
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
 ```
 
 Response
@@ -3593,7 +3593,7 @@ Response
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/privateCannedMessageCategories/FFD377AA-81FA-EC53-1E57-DD73C0B36F6C
 ```
 
 Response
@@ -3640,6 +3640,7 @@ HTTP/1.1 204 No Content
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
+
 ## Private Canned Message Endpoints
 
 ### Get all Private Canned Messages in site
@@ -3663,7 +3664,7 @@ the response is: list of [Private Canned Message](#private-Canned-Message-object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages?include=privateCannedMessageCategory
+-X GET https://api1.comm100.io/api/v3/globalSettings/privateCannedMessages?include=privateCannedMessageCategory
 ```
 
 Response
@@ -3718,7 +3719,7 @@ the response is: [Private Canned Message](#private-Canned-Message-object) Object
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/AB71E95A-1FA5-E19D-9BA4-9C2144598C57?include=privateCannedMessageCategory
+-X GET https://api1.comm100.io/api/v3/globalSettings/privateCannedMessages/AB71E95A-1FA5-E19D-9BA4-9C2144598C57?include=privateCannedMessageCategory
 ```
 
 Response
@@ -3782,14 +3783,14 @@ curl -H "Content-Type: application/json" -d '{
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/privateCannedMessages
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
+Location: https://api1.comm100.io/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
 
 {
   "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
@@ -3828,14 +3829,14 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   ["not ok?"]
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
+Location: https://api1.comm100.io/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F/similarQuestions
 
 {
   "id": "822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F",
@@ -3893,7 +3894,7 @@ curl -H "Content-Type: application/json" -d '{
   "categoryId": "579BCAE9-F43A-CD32-CAF8-BD56786F1447",
   "shortcuts": "",
   "similarQuestions": ["are you ok?"]
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
 ```
 
 Response
@@ -3933,7 +3934,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/privateCannedMessages/822B7B6A-05E9-5DA2-A1B0-1D0FB034AA0F
 ```
 
 Response
@@ -3941,13 +3942,6 @@ Response
   HTTP/1.1 204 No Content
 ```
 
-#### Similar Question Object
-
-  Similar Question Object is represented as simple flat JSON objects with the following keys:
-
-  | Name | Type | Read-only | Mandatory | Default | Description |
-  | - | - | :-: | :-: | :-: | - |
-  | `question` | string  | no | no | | |
 
 # Agent Away Status
 
@@ -3984,14 +3978,14 @@ Response
 
 #### Response
 
-the response is: list of [Agent Away Status](#agent-Away-Status-object) Object
+The response is an array of [Agent Away Status](#agent-Away-Status-object) objects.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses
+-X GET https://api1.comm100.io/api/v3/globalSettings/agentAwayStatuses
 ```
 
 Response
@@ -4020,18 +4014,18 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the agent away status |
+  | `id` | Guid | yes  |  The unique Id of the agent away status. |
 
 #### Response
 
-the response is: [Agent Away Status](#agent-Away-Status-object) Object
+The response is an [Agent Away Status](#agent-Away-Status-object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/BAACB779-2E41-27C5-B23D-1C8F2058862D
+-X GET https://api1.comm100.io/api/v3/globalSettings/agentAwayStatuses/BAACB779-2E41-27C5-B23D-1C8F2058862D
 ```
 
 Response
@@ -4055,7 +4049,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure
+  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure.
 
 example:
 ```Json
@@ -4068,7 +4062,7 @@ example:
 
 #### Response
 
-the response is: [Agent Away Status](#agent-Away-Status-object) Object
+The response is an [Agent Away Status](#agent-Away-Status-object) object.
 
 #### Example
 
@@ -4076,14 +4070,14 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "name": "agentAwayStatuses11"
-  }' -X POST https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses
+  }' -X POST https://api1.comm100.io/api/v3/globalSettings/agentAwayStatuses
 ```
 
 Response
 ``` json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
+Location: https://api1.comm100.io/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
 
 {
   "id": "D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2",
@@ -4103,7 +4097,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the agent away status |
+  | `id` | Guid | yes  |  The unique Id of the agent away status.|
 
 Request Body
 
@@ -4118,7 +4112,7 @@ example:
 
 #### Response
 
-the response is: [Agent Away Status](#agent-Away-Status-object) Object
+The response is an [Agent Away Status](#agent-Away-Status-object) object.
 
 #### Example
 
@@ -4128,7 +4122,7 @@ curl -H "Content-Type: application/json" -d '{
   "name": "agentAwayStatuses22",
   "isSystem": false,
   "order": 1
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
 ```
 
 Response
@@ -4154,7 +4148,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the agent away status |
+  | `id` | Guid | yes  |  The unique Id of the agent away status.|
 
 #### Response
 
@@ -4164,7 +4158,7 @@ HTTP/1.1 204 No Content
 
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/agentAwayStatuses/D4F6BA7F-9BB6-C509-8BB9-0705B3E500F2
 ```
 
 Response
@@ -4211,7 +4205,7 @@ You need `Manage Security` permission to manage whitelisted login ip restriction
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/whitelistedLoginIPRanges
 ```
 Response
 ```json
@@ -4245,7 +4239,7 @@ The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-objec
 #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -4287,13 +4281,13 @@ Using curl
 curl -H "Content-Type: application/json" -d ' {
       "ipFrom": "201.195.21.5",
       "ipTo": "201.195.21.8",
-    }' -X POST https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges
+    }' -X POST https://api1.comm100.io/api/v3/globalSettings/whitelistedLoginIPRanges
 ```
 Response
 ```json
 HTTP/1.1 201 Created
 Content-Type:  application/json
-Location: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+Location: https://api1.comm100.io/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
     "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "ipFrom": "201.195.21.5",
@@ -4336,12 +4330,12 @@ Using curl
 curl -H "Content-Type: application/json" -d ' {
       "ipFrom": "201.195.21.5",
       "ipTo": "201.195.21.8",
-    }' -X PUT https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+    }' -X PUT https://api1.comm100.io/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
   HTTP/1.1 200 OK
-  Content-Type: https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
+  Content-Type: https://api1.comm100.io/api/v3/globalSettings/whitelistedLoginIPRanges/42dwdaww-92e6-4487-a2e8-92e68d6892e6
  {
     "id": "42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "ipFrom": "201.195.21.5",
@@ -4368,7 +4362,7 @@ HTTP/1.1 204 No Content
 #### Example
 Using curl
 ```
-curl -X DELETE https://domain.comm100.com/api/v3/globalSettings/whitelistedLoginIPRanges/4487fc9d-92e6-4487-a2e8-92e68d6892e6
+curl -X DELETE https://api1.comm100.io/api/v3/globalSettings/whitelistedLoginIPRanges/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
 ```json
@@ -4390,14 +4384,14 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `isEnabled` | bool  | | no | no|| false|
-  | `protocolType` | string |  | no | yes | | including `SAML` and `JWT`. |
-  | `samlSSOURL` | string |  | no |yes | |mandatory when Type is `SAML`. |
-  | `samlLogoutURL` | string |  | no | no | | only available when Type is `SAML`. |
+  | `isEnabled` | bool  | | no | no|false| |
+  | `protocolType` | string |  | no | yes | | Including `SAML` and `JWT`. |
+  | `samlSSOURL` | string |  | no |yes | |Mandatory when Type is `SAML`. |
+  | `samlLogoutURL` | string |  | no | no | | Only available when Type is `SAML`. |
   | `samlCertificate` | string |  | no | yes | | SAML certificate, mandatory when Type is `SAML`.|
-  | `jwtLoginURL` | string |  | no | yes | | mandatory when Type is `JWT`. |
-  | `jwtLogoutURL` | string |  | no | no | | only available when Type is `JWT`.  |
-  | `jwtSecret` | string |  | no | no | | mandatory when Type is `JWT`.  |
+  | `jwtLoginURL` | string |  | no | yes | | Mandatory when Type is `JWT`. |
+  | `jwtLogoutURL` | string |  | no | no | | Only available when Type is `JWT`.  |
+  | `jwtSecret` | string |  | no | no | | Mandatory when Type is `JWT`.  |
 
 ## Agent SSO Endpoints
 
@@ -4411,14 +4405,14 @@ HTTP/1.1 204 No Content
 
 #### Response
 
-the response is: [Agent SSO](#agent-SSO-object) Object
+The response is an [Agent SSO](#agent-SSO-object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/agentSSO
+-X GET https://api1.comm100.io/api/v3/globalSettings/agentSSO
 ```
 Response
 ``` json
@@ -4428,8 +4422,8 @@ Content-Type:  application/json
 {
   "isEnabled": true,
   "protocolType": "SAML",
-  "samlSSOURL": "https://domain.comm100.com/SAML/SSOLogin",
-  "samlLogoutURL": "https://domain.comm100.com/SAML/SSOLogout",
+  "samlSSOURL": "https://api1.comm100.io/SAML/SSOLogin",
+  "samlLogoutURL": "https://api1.comm100.io/SAML/SSOLogout",
   "samlCertificate": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----",
   "jwtLoginURL": "",
   "jwtLogoutURL": "",
@@ -4445,7 +4439,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Agent SSO](#agent-SSO-object) structure
+  The request body contains data with the [Agent SSO](#agent-SSO-object) structure.
 
  example:
 ```Json
@@ -4460,7 +4454,7 @@ Request Body
 
 #### Response
 
-the response is: [Agent SSO](#agent-SSO-object) Object
+The response is an [Agent SSO](#agent-SSO-object) object.
 
 #### Example
 Using curl
@@ -4471,7 +4465,7 @@ curl -H "Content-Type: application/json" -d '{
     "jwtLoginURL": "",
     "jwtLogoutURL": "",
     "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/agentSSO
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/agentSSO
 ```
 Response
 ```Json
@@ -4484,8 +4478,8 @@ Content-Type:  application/json
   "samlSSOURL": "",
   "samlLogoutURL": "",
   "samlCertificate": "",
-  "jwtLoginURL": "https://domain.comm100.com/JWT/SSOLogin",
-  "jwtLogoutURL": "https://domain.comm100.com/JWT/SSOLogin",
+  "jwtLoginURL": "https://api1.comm100.io/JWT/SSOLogin",
+  "jwtLogoutURL": "https://api1.comm100.io/JWT/SSOLogin",
   "jwtSecret": "9F4709DB-C391-4896-94BA-3A17BE12D9E2jji-----"
 }
 ```
@@ -4519,7 +4513,7 @@ Field Mapping is represented as simple flat JSON objects with the following keys
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `attribute` | string | | no | yes | | SSO attribute name. |
-  | `comm100Field` | string | | no | yes | | the Comm100 field name |
+  | `comm100Field` | string | | no | yes | | The Comm100 field name.|
 
 ### Visitor SSO Campaign Object
 
@@ -4548,14 +4542,14 @@ Query string
 
 #### Response
 
-the response is: [Visitor SSO](#visitor-SSO-object) Object
+The response is a [Visitor SSO](#visitor-SSO-object) object.
 
 #### Example
 
 Using curl
 ```
 curl -H "Content-Type: application/json"
--X GET https://domain.comm100.com/api/v3/globalSettings/visitorSSO?include=campaign
+-X GET https://api1.comm100.io/api/v3/globalSettings/visitorSSO?include=campaign
 ```
 Response
 ``` json
@@ -4600,7 +4594,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Visitor SSO](#visitor-SSO-object) structure
+  The request body contains data with the [Visitor SSO](#visitor-SSO-object) structure.
 
 example:
 ```Json
@@ -4631,7 +4625,7 @@ example:
 
 #### Response
 
-the response is: [Visitor SSO](#visitor-SSO-object) Object
+The response is a [Visitor SSO](#visitor-SSO-object) object.
 
 #### Example
 Using curl
@@ -4658,7 +4652,7 @@ curl -H "Content-Type: application/json" -d '{
             "isPrechatFromSkipped": false
         }
     ]
-  }' -X PUT https://domain.comm100.com/api/v3/globalSettings/visitorSSO
+  }' -X PUT https://api1.comm100.io/api/v3/globalSettings/visitorSSO
 ```
 Response
 ```Json
@@ -4774,7 +4768,7 @@ Response
   #### Example
 Using curl
 ```
-curl -H "Content-Type: application/json" -X GET https://domain.comm100.com/api/v3/globalSettings/auditLogs
+curl -H "Content-Type: application/json" -X GET https://api1.comm100.io/api/v3/globalSettings/auditLogs
 ```
 Response
 ```json
@@ -4782,7 +4776,7 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
     "count": 1234,
-    "nextPage": "https://domain.comm100.com/api/v3/globalSettings/auditLogs?pageIndex=2",
+    "nextPage": "https://api1.comm100.io/api/v3/globalSettings/auditLogs?pageIndex=2",
     "previousPage": "",
     "auditLogs": [
       {
