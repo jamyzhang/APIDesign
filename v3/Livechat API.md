@@ -3098,7 +3098,7 @@ Content-Type:  application/json
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
-  "backgroundTexture": "style1",
+  "backgroundTexture": 1,
   "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
@@ -3164,7 +3164,7 @@ example:
   "isLogoDisplayed": false,
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
-  "backgroundTexture": "style1",
+  "backgroundTexture": 1,
   "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
@@ -3218,7 +3218,7 @@ curl -H "Content-Type: application/json" -d '{
   "isLogoDisplayed": false,
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
-  "backgroundTexture": "style1",
+  "backgroundTexture": 1,
   "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
@@ -3271,7 +3271,7 @@ Content-Type:  application/json
   "bannerImage": "0892A3D3-C934-21AB-7499-A44D77C4E2F7",
   "isAvatarDisplayedWithMessage":  false,
   "isBackgroundDisplayed": false,
-  "backgroundTexture": "style1",
+  "backgroundTexture": 1,
   "customCSS": "",
   "isTranscriptDownloadAllowed":  false,
   "isTranscriptPrintAllowed": false,
@@ -5529,7 +5529,7 @@ Response
 | - | - |- | :-: | :-: | :-: | - |
 | `isEnable` | boolean | | no | no | | Whether the chatbot integration is enabled or not. |
 | `selectedChatbotId` | Guid | | no | no | | |
-| `selectedChatbot` | [Bot](#Bot-Object) | yes | no | no | | |
+| `selectedChatbot` | [Bot](./Bot%20API.md#Bot-Object) | yes | no | no | | |
 | `isChatbotAllocatedWhenAgentOnline` | boolean | | no | no | | |
 | `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
 | `ifDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
