@@ -1684,19 +1684,19 @@ Content-Type:  application/json
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | N/A | N/A | | id of the session. |
 | `startTime` | datetime | | N/A | N/A |  | Time when the session started. |
-| `ip` | string |  | N/A | N/A | |  |
+| `ip` | string |  | N/A | N/A | | The IP of the visitor. |
 | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
-| `searchEngine` | string |  | N/A | N/A | |  |
-| `keywords` | string |  | N/A | N/A | |  |
-| `browser` | string | | N/A | N/A | |  |
-| `flashVersion` | string |  | N/A | N/A | |  |
-| `language` | string |  | N/A | N/A | |  |
-| `screenResolution` | string |  | N/A | N/A | |  |
-| `operatingSystem` | integer |  | N/A | N/A | |  |
-| `timeZone` | string |  | N/A | N/A | |  |
-| `landingPageURL` | string |  | N/A | N/A | |  |
-| `landingPageTitle` | string | | N/A | N/A | |  |
-| `visitorId` | Guid | | N/A | N/A | | the id of the visitor |
+| `searchEngine` | string |  | N/A | N/A | | The search engine the visitor used to search for your website. |
+| `keywords` | string |  | N/A | N/A | | The keywords the visitor used to search for your website. |
+| `browser` | string | | N/A | N/A | | The browser the visitor is using. |
+| `flashVersion` | string |  | N/A | N/A | | The flash version of the browser the visitor is using. |
+| `language` | string |  | N/A | N/A | | The language the visitor is using. |
+| `screenResolution` | string |  | N/A | N/A | | The screen resolution of the visitor's device. |
+| `operatingSystem` | integer |  | N/A | N/A | | The operating system of the visitor's device. |
+| `timeZone` | string |  | N/A | N/A | | The time zone of the visitor. |
+| `landingPageURL` | string |  | N/A | N/A | | The URL of the first page of your website the visitor visited. |
+| `landingPageTitle` | string | | N/A | N/A | | The title of the first page of your website the visitor visited. |
+| `visitorId` | Guid | | N/A | N/A | | The id of the visitor |
 | `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
 | `contactId` | integer | | N/A | N/A | | The id of the contact  |
 | `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
