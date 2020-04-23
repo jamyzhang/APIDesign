@@ -543,7 +543,7 @@ You need `Manage Settings` permission to manage `Customer Segment`.
   | `conditionMetType` |string  || no | no |all| Met type of condtion , including `all`,`any`,`logicalExpression`.
   | `logicalExpression` |string  || no | no || The logical expression for conditions.
   | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || An array of [Live Chat Condition](#live-chat-condition-object) object. |
-  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent id or department Id.|
+  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent id or department id.|
 
 ### Alert To Segment Object
 
