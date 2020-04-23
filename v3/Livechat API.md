@@ -2220,8 +2220,8 @@ HTTP/1.1 204 No Content
 | `sessionId` | Guid | | no | no |  | Id of the session. |
 | `session` | [Session](#session) | yes | no | no |  | Available only when session is included. |
 | `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | An array of [Customer Segment](#customer-segment). |
-| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | Values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
-| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | Information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
+| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | Values from custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
+| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | Information from custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
 | `attachment` | [Attachment](#attachment-json-format) | | no | no |  | The attachment file data. |
 
 ### Attachment JSON format
@@ -2803,7 +2803,7 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `type` | string | no | no | `adaptive` | Type of the button, including `adaptive`, `image` and `textLink`. |
+| `type` | string | no | no | `adaptive` | Type of the button, includes:`adaptive`, `image` and `textLink`. |
 | `isHideWhenOffline` | boolean | no | no | | Whether the chat button is visible when no agent is online. `True` means that button is invisible. |
 | `isDomainRestrictionEnabled` | boolean | no | no | | Whether the domain restriction is enabled or not. |
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
