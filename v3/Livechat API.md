@@ -7898,9 +7898,9 @@ Content-Type:  application/json
         "fields": [
             {
                 "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
-                "name": "Card Number",
-                "type": "cardNumber",
-                "displayName": "Card Number",
+                "name": "city",
+                "type": "dropDownList",
+                "displayName": "city",
                 "isSystem": true,
                 "isVisible": false,
                 "isRequired": false,
@@ -7908,11 +7908,11 @@ Content-Type:  application/json
                 "options":[
                   {
                     "value": "beijing",
-                    "order":0,
+                    "order":1,
                   },
                   {
                     "value": "hangzhou",
-                    "order":1,
+                    "order":2,
                   }],
             },
             ...
@@ -7957,22 +7957,22 @@ Content-Type:  application/json
   "fields": [
     {
       "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
-      "name": "Card Number",
-      "type": "cardNumber",
-      "displayName": "Card Number",
-      "isSystem": true,
-      "isVisible": false,
-      "isRequired": false,
-      "order": 1,
+      "type":"dropDownList",
+      "name":"city",
+      "displayName": "City",
+      "isRequired":true,
+      "isSystem": false,
+      "isVisible": true,
       "options":[
-        {
-          "value": "beijing",
-          "order":0,
-        },
-        {
-          "value": "hangzhou",
-          "order":1,
-        }
+      {
+        "value": "beijing",
+        "order":1,
+      },
+      {
+        "value": "hangzhou",
+        "order":2,
+      }],
+      "order": 1
     },
     ...
   ]
@@ -7995,12 +7995,21 @@ Request body
     "description": "",
     "fields": [
         {
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":1,
+              },
+              {
+                "value": "hangzhou",
+                "order":2,
+              }],
             "order": 1
         }
     ]
@@ -8019,15 +8028,23 @@ curl -H "Content-Type: application/json" -d '{
     "description": "",
     "fields": [
         {
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":1,
+              },
+              {
+                "value": "hangzhou",
+                "order":2,
+              }],
             "order": 1
-        },
-        ...
+        }
     ]
   }' -X POST https://api1.comm100.io/api/v3/livechat/secureForms
 ```
@@ -8044,12 +8061,21 @@ Location: https://api1.comm100.io/api/v3/livechat/secureForms/b222qa68-92e6-4487
     "fields": [
         {
             "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":1,
+              },
+              {
+                "value": "hangzhou",
+                "order":2,
+              }],
             "order": 1
         },
         ...
@@ -8079,19 +8105,9 @@ Request body
     "name": "justfortest",
     "description": "",
     "fields": [
-        {
+      {
             //update
             "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
-            "order": 1
-        },
-        {
-            //create
             "type":"dropDownList",
             "name":"city",
             "displayName": "City",
@@ -8101,12 +8117,22 @@ Request body
             "options":[
               {
                 "value": "beijing",
-                "order":0,
+                "order":1,
               },
               {
                 "value": "hangzhou",
-                "order":1,
+                "order":2,
               }],
+            "order": 1
+        },
+        {
+            //create
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
             "order": 2
         }
     ]
@@ -8129,16 +8155,6 @@ curl -H "Content-Type: application/json" -d '{
         {
             //update
             "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
-            "order": 1
-        },
-        {
-            //create
             "type":"dropDownList",
             "name":"city",
             "displayName": "City",
@@ -8148,12 +8164,22 @@ curl -H "Content-Type: application/json" -d '{
             "options":[
               {
                 "value": "beijing",
-                "order":0,
+                "order":1,
               },
               {
                 "value": "hangzhou",
-                "order":1,
+                "order":2,
               }],
+            "order": 1
+        },
+        {
+            //create
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
             "order": 2
         }
     ]
@@ -8171,16 +8197,6 @@ Content-Type:  application/json
     "fields": [
         {
             "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
-            "order": 1
-        },
-        {
-            "id": "vc21qa68-92e6-4487-a2e8-8234fc9d1f48",
             "type":"dropDownList",
             "name":"city",
             "displayName": "City",
@@ -8190,12 +8206,22 @@ Content-Type:  application/json
             "options":[
               {
                 "value": "beijing",
-                "order":0,
+                "order":1,
               },
               {
                 "value": "hangzhou",
-                "order":1,
+                "order":2,
               }],
+            "order": 1
+        },
+        {
+            "id": "vc21qa68-92e6-4487-a2e8-8234fc9d1f48",
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
             "order": 2
         }
     ]
@@ -8230,8 +8256,8 @@ HTTP/1.1 204 No Content
 # Secure Form Field
 
 - `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-a-list-of-secure-form-fields)
-- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
-- `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#ceate-a-secure-form-field)
+- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field-by-id)
+- `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#create-a-secure-form-field)
 - `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
 - `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
 
@@ -8323,7 +8349,7 @@ Content-Type:  application/json
 ]
 ```
 
-### Get a single secure form field
+### Get a secure form field by id
 
   `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}`
 
@@ -8373,7 +8399,7 @@ Content-Type:  application/json
 }
 ```
 
-### Create a new secure form field
+### Create a secure form field
 
   `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields`
 
