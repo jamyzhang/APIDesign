@@ -849,9 +849,7 @@ Content-Type:  application/json
       205,
       ...,
     ],
-    "permissions": [],
-      ...,
-    ],
+    "permissions": []
 },
 ...,
 ]
@@ -963,8 +961,6 @@ curl -H "Content-Type: application/json" -d ' {
          ...,
         ],
       "permissions": []
-        ...,
-    },
     }' -X POST https://api1.comm100.io/api/v3/globalSettings/roles
 ```
 Response
@@ -973,23 +969,23 @@ HTTP/1.1 201 Created
 Content-Type:  application/json
 Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
  {
-      "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "name": "markting",
-      "description": "yyyy-MM-dd hh:mm:ss",
-      "type": "custom",
-      "agentIds":  [
-        68,
+    "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "name": "markting",
+    "description": "yyyy-MM-dd hh:mm:ss",
+    "type": "custom",
+    "agentIds":  [
+      68,
+      ...,
+    ],
+    "agents": [],
+    "permissionIds" :
+      [
+        201,
+        205,
         ...,
       ],
-      "agents": [],
-      "permissionIds" :
-        [
-         201,
-         205,
-         ...,
-        ],
-      "permissions": []
-    }
+    "permissions": []
+  }
 ```
 
 
@@ -1010,23 +1006,23 @@ Request body
   example:
 ```json
  {
-      "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
-      "name": "markting",
-      "description": "yyyy-MM-dd hh:mm:ss",
-      "type": "custom",
-      "agentIds":  [
-        68,
+    "id": "4487fc9d-92e6-4487-a2e8-92e68d6892e6",
+    "name": "markting",
+    "description": "yyyy-MM-dd hh:mm:ss",
+    "type": "custom",
+    "agentIds":  [
+      68,
+      ...,
+    ],
+    "agents": [],
+    "permissionIds" :
+      [
+        201,
+        205,
         ...,
       ],
-      "agents": [],
-      "permissionIds" :
-        [
-         201,
-         205,
-         ...,
-        ],
-      "permissions": []
-    }
+    "permissions": []
+  }
 ```
 
 #### Response
@@ -1051,7 +1047,6 @@ curl -H "Content-Type: application/json" -d ' {
         ...,
       ],
       "permissions": []
-    },
     } ' -X PUT https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
 Response
@@ -1274,19 +1269,19 @@ HTTP/1.1 201 Created
 Content-Type:  application/json
 Location: https://api1.comm100.io/api/v3/globalSettings/departments
 {
-      "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
-      "name": "markting",
-      "description": "markting departments",
-      "isAvailableInChat": "yes",
-      "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailTo": "All agents in the department",
-      "offlineMessageEmailAddresses": "",
-      "agentIds":  [
-        68,
-        ...,
-      ],
-      ...
-    }
+  "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
+  "name": "markting",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+  ...
+}
 ```
 
 
@@ -1308,18 +1303,18 @@ Request body
   example:
 ```json
 {
-      "name": "markting",
-      "description": "markting departments",
-      "isAvailableInChat": "yes",
-      "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailTo": "All agents in the department",
-      "offlineMessageEmailAddresses": "",
-      "agentIds":  [
-        68,
-        ...,
-      ],
-      ...
-    }
+  "name": "markting",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+  ...
+}
 ```
 
 #### Response
@@ -1348,19 +1343,19 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 Location: https://api1.comm100.io/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 {
-      "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
-      "name": "markting",
-      "description": "markting departments",
-      "isAvailableInChat": "yes",
-      "isAvailableInTicketingAndMessaging": "yes",
-      "offlineMessageMailTo": "All agents in the department",
-      "offlineMessageEmailAddresses": "",
-      "agentIds":  [
-        68,
-        ...,
-      ],
-      ...
-    }
+  "id": "bs22qa68-92e6-4487-a2e8-8234fc9d1f48",
+  "name": "markting",
+  "description": "markting departments",
+  "isAvailableInChat": "yes",
+  "isAvailableInTicketingAndMessaging": "yes",
+  "offlineMessageMailTo": "All agents in the department",
+  "offlineMessageEmailAddresses": "",
+  "agentIds":  [
+    68,
+    ...,
+  ],
+  ...
+}
 ```
 
 ### Delete a department
@@ -1468,13 +1463,13 @@ The response is a [Permission](#permission) Object.
   ```json
   HTTP/1.1 200 OK
   Content-Type:  application/json[
-  {
-    "id": 201,
-    "name": "Accept Chats",
-    "description": "Accept Chats",
-    "category": "Live Chat",
-  },
-  ...,
+    {
+      "id": 201,
+      "name": "Accept Chats",
+      "description": "Accept Chats",
+      "category": "Live Chat",
+    },
+    ...,
   ]
   ```
 
@@ -1503,13 +1498,13 @@ Response
 ```json
 HTTP/1.1 200 OK
 Content-Type:  application/json[
-{
-  "id": 201,
-  "name": "Accept Chats",
-  "description": "Accept Chats",
-  "category": "Live Chat",
-},
-...,
+  {
+    "id": 201,
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
 ]
 ```
 
@@ -1538,13 +1533,13 @@ Path parameters
   ```json
   HTTP/1.1 200 OK
   Content-Type:  application/json[
-  {
-    "id": 201,
-    "name": "Accept Chats",
-    "description": "Accept Chats",
-    "category": "Live Chat",
-  },
-  ...,
+    {
+      "id": 201,
+      "name": "Accept Chats",
+      "description": "Accept Chats",
+      "category": "Live Chat",
+    },
+    ...,
   ]
   ```
 
@@ -1590,12 +1585,12 @@ HTTP/1.1 201 Created
 Content-Type:  application/json
 Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d68927777/permissions
 [{
-      "id": 201,
-      "name": "Accept Chats",
-      "description": "Accept Chats",
-      "category": "Live Chat",
-    },
-    ...,
+    "id": 201,
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
 ]
 ```
 
@@ -1640,12 +1635,12 @@ HTTP/1.1 201 Created
 Content-Type:  application/json
 Location: https://api1.comm100.io/api/v3/globalSettings/agents/68/permissions
 [{
-      "id": 201,
-      "name": "Accept Chats",
-      "description": "Accept Chats",
-      "category": "Live Chat",
-    },
-    ...,
+    "id": 201,
+    "name": "Accept Chats",
+    "description": "Accept Chats",
+    "category": "Live Chat",
+  },
+  ...,
 ]
 ```
 
@@ -1735,43 +1730,43 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 [
-    {
-        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
-        "name": "Shifts",
-        "timeZone": "(GMT) Coordinated Universal Time",
-        "ifAutoDetectDayLight": false,
-        "holidays": [{
-          "name": "summary",
-          "date": "2019-11-11"
-        },
-        ...
-        ],
-        "agentIds": [68],
-        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
-        "departments": [{// include department
-          "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
-          "name": "departments",
-          "siteId": "FEF12049-BF08-2CD4-C405-A5FC8AE75D0F",
-          "description": "departments",
-          "isAvailableInChat": false,
-          "isAvailableInTicketingAndMessaging": false,
-          "offlineMessageMailTo": "The email address(es)",
-          "offlineMessageEmailAddresses": "test@comm100.com",
-          "agentId": 68,
-          ...
-        },
-        ...
-        ],
-        "workingHours": [{
-          "dayOfWeek": "sunday",
-          "startTime": "12:00",
-          "endTime": "14:00",
-          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
-        },
-        ...
-        ]
+  {
+    "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+    "name": "Shifts",
+    "timeZone": "(GMT) Coordinated Universal Time",
+    "ifAutoDetectDayLight": false,
+    "holidays": [{
+      "name": "summary",
+      "date": "2019-11-11"
     },
     ...
+    ],
+    "agentIds": [68],
+    "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+    "departments": [{// include department
+      "id": "1DC43077-E36F-F9EA-C7BA-C29620102F7E",
+      "name": "departments",
+      "siteId": "FEF12049-BF08-2CD4-C405-A5FC8AE75D0F",
+      "description": "departments",
+      "isAvailableInChat": false,
+      "isAvailableInTicketingAndMessaging": false,
+      "offlineMessageMailTo": "The email address(es)",
+      "offlineMessageEmailAddresses": "test@comm100.com",
+      "agentId": 68,
+      ...
+      },
+      ...,
+    ],
+    "workingHours": [{
+      "dayOfWeek": "sunday",
+      "startTime": "12:00",
+      "endTime": "14:00",
+      "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+      },
+      ...
+    ]
+  },
+  ...
 ]
 ```
 
@@ -1834,8 +1829,8 @@ Content-Type:  application/json
     "offlineMessageEmailAddresses": "test@comm100.com",
     "agentId": 68,
     ...
-  },
-  ...
+    },
+    ...
   ],
   "workingHours": [{
     "dayOfWeek": "sunday",
@@ -1878,29 +1873,29 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 [
-    {
-        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
-        "name": "Shifts",
-        "timeZone": "(GMT) Coordinated Universal Time",
-        "ifAutoDetectDayLight": false,
-        "holidays": [{
-          "name": "summary",
-          "date": "2019-11-11"
-        },
-        ...
-        ],
-        "agentIds": [68],
-        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
-        "workingHours": [{
-          "dayOfWeek": "sunday",
-          "startTime": "12:00",
-          "endTime": "14:00",
-          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
-        },
-        ...
-        ]
+  {
+    "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+    "name": "Shifts",
+    "timeZone": "(GMT) Coordinated Universal Time",
+    "ifAutoDetectDayLight": false,
+    "holidays": [{
+      "name": "summary",
+      "date": "2019-11-11"
     },
     ...
+    ],
+    "agentIds": [68],
+    "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+    "workingHours": [{
+      "dayOfWeek": "sunday",
+      "startTime": "12:00",
+      "endTime": "14:00",
+      "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+    ]
+  },
+  ...
 ]
 ```
 
@@ -1934,29 +1929,29 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 
 [
-    {
-        "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
-        "name": "Shifts",
-        "timeZone": "(GMT) Coordinated Universal Time",
-        "ifAutoDetectDayLight": false,
-        "holidays": [{
-          "name": "summary",
-          "date": "2019-11-11"
-        },
-        ...
-        ],
-        "agentIds": [68],
-        "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
-        "workingHours": [{
-          "dayOfWeek": "sunday",
-          "startTime": "12:00",
-          "endTime": "14:00",
-          "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
-        },
-        ...
-        ]
+  {
+    "id": "3964B5AE-6DAD-D774-BFCB-8C1F6B58ACED",
+    "name": "Shifts",
+    "timeZone": "(GMT) Coordinated Universal Time",
+    "ifAutoDetectDayLight": false,
+    "holidays": [{
+      "name": "summary",
+      "date": "2019-11-11"
     },
     ...
+    ],
+    "agentIds": [68],
+    "departmentIds": ["1DC43077-E36F-F9EA-C7BA-C29620102F7E"],
+    "workingHours": [{
+      "dayOfWeek": "sunday",
+      "startTime": "12:00",
+      "endTime": "14:00",
+      "awayStatusId": "BAACB779-2E41-27C5-B23D-1C8F2058862D"
+    },
+    ...
+    ]
+  },
+  ...
 ]
 ```
 
@@ -2502,7 +2497,7 @@ HTTP/1.1 204 No Content
   |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp. |
   |`originalContactPageURL` | string | | no | no | | The contact profile URL on Facebook or Twitter.|
 
-## Contact Identity  Endpoints
+## Contact Identity Endpoints
 
 ### Get all contact identity
 
@@ -2538,10 +2533,9 @@ Content-Type:  application/json[
   "value": "",
   "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
   "infoURL": "",
-  "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\",
-        \"originalContactPageURL\": \"\",
-    }",
+  "screenName": "@Comm100Corp",
+  "originalContactPageURL": "",
+  ...
 },
 ...,
 ]
@@ -2581,10 +2575,9 @@ Content-Type:  application/json
   "value": "",
   "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
   "infoURL": "",
-  "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\",
-        \"originalContactPageURL\": \"\",
-    }",
+  "screenName": "@Comm100Corp",
+  "originalContactPageURL": "",
+  ...
 }
 ```
 
@@ -2607,10 +2600,9 @@ Request body
     "value": "",
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
-    "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\",
-        \"originalContactPageURL\": \"\",
-    }",
+    "screenName": "@Comm100Corp",
+    "originalContactPageURL": "",
+    ...
   }
 ```
 
@@ -2629,10 +2621,9 @@ curl -H "Content-Type: application/json" -d ' {
     "value": "",
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
-    "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\",
-        \"originalContactPageURL\": \"\",
-    }",
+    "screenName": "@Comm100Corp",
+    "originalContactPageURL": "",
+    ...
   }' -X POST https://api1.comm100.io/api/v3/globalSettings/contacts/contactIdentities
 ```
 Response
@@ -2648,10 +2639,9 @@ Location: https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
     "value": "",
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
-    "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\",
-        \"originalContactPageURL\": \"\",
-    }",
+    "screenName": "@Comm100Corp",
+    "originalContactPageURL": "",
+    ...
   }
 ```
 
@@ -2680,10 +2670,9 @@ Request body
     "value": "",
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
-    "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\",
-        \"originalContactPageURL\": \"\",
-    }",
+    "screenName": "@Comm100Corp",
+    "originalContactPageURL": "",
+    ...
   }
 ```
 
@@ -2701,10 +2690,9 @@ curl -H "Content-Type: application/json" -d ' {
     "value": "",
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
-    "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\",
-        \"originalContactPageURL\": \"\",
-    }",
+    "screenName": "@Comm100Corp",
+    "originalContactPageURL": "",
+    ...
   }' -X PUT https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
 ```
 Response
@@ -2720,10 +2708,9 @@ Location: https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
     "value": "",
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
-    "extraAttributes" : "{
-        \"screenName\": \"@Comm100Corp\",
-        \"originalContactPageURL\": \"\",
-    }",
+    "screenName": "@Comm100Corp",
+    "originalContactPageURL": "",
+    ...
   }
 ```
 
