@@ -1671,7 +1671,7 @@ You need `Manage Security` permission to set shift for a site.
 
 ## Related Object JSON format
 
-### Shift Object
+### Shift Object 
 
   Shift Object is represented as simple flat JSON objects with the following keys:
 
