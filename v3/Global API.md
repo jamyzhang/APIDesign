@@ -177,8 +177,8 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
   + `POST /api/v3/globalSettings/agents/{id}:unlock` - [Unlock the agent](#unlock-the-agent)
   + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#admin-set-an-agents-password)
   + `POST /api/v3/globalSettings/agents/me:changePassword` - [Change own password](#change-own-password)
-  + `PUT /api/v3/globalSettings/agents/{id}` - [Update an agent](#update-an-agent)
-  + `PUT /api/v3/globalSettings/agents/me` - [Update current agent](#update-current-agent)
+  + `PUT /api/v3/globalSettings/agents/{id}` - [Update an agent](#Update-agent-info)
+  + `PUT /api/v3/globalSettings/agents/me` - [Update current agent](#Update-current-agent-info)
   + `DELETE /api/v3/globalSettings/agents/{id}` - [Delete an agent](#delete-an-agent)
 
 ## Agent Related Object JSON format
@@ -199,12 +199,12 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
   |`timeZone` | string| | no | no |  | Time zone of the agent. Value includes all [Time Zone Option](#time-zone-options) Ids, if not offered, will use the site time zone.|
-  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date/time format selected by agent to display on the site, Value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
+  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date & Time format selected by agent to display on the site, Value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
   |`createdTime` | DateTime | | no | no | UTC | The create time of the agent.|
   |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
   |`lockedTime` | DateTime | | no | no | UTC | When the agent was locked.|
   |`lastLoginTime` | DateTime | | no | no | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
-  |`permissionIds` | integer[]  |  | no | no | NULL | Agent permission settings.|
+  |`permissionIds` | integer[]  |  | no | no | NULL | The list of permission ids.|
   |`permissions` | [Permission](#permission)[]  | yes| no | no | | Agent permission settings. |
   |`roleIds` | Guid[]  |  | no | no | NULL | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
   |`roles` | [Role](#role)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
@@ -246,7 +246,7 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
 
 #### Response
 
-  The response is a [Agent List Response ](#agent-list-response-object) Object.
+  The response is an [Agent List Response ](#agent-list-response-object) Object.
 
 #### Example
 Using curl
@@ -269,7 +269,7 @@ Content-Type:  application/json
         "lastName":"Green",
         "title":"CEO",
         ...
-    }
+    },
     ...
     ]
 }
@@ -294,7 +294,7 @@ Query string
 
 #### Response
 
-The response is a [Agent](#agent-object) Object.
+The response is an [Agent](#agent-object) Object.
 
 #### Example
 Using curl
@@ -337,7 +337,7 @@ Path parameters
 
 #### Response
 
-The response is a [Agent List Response](#agent-list-response-object) Object.
+The response is an [Agent List Response](#agent-list-response-object) Object.
 
 #### Example
 Using curl
@@ -360,7 +360,7 @@ Content-Type:  application/json
         "lastName":"Green",
         "title":"CEO",
         ...
-    }
+    },
     ...
     ]
 }
@@ -388,7 +388,7 @@ Content-Type:  application/json
 
 #### Response
 
-The response is a [Agent List Response](#agent-list-response-object) Object.
+The response is an [Agent List Response](#agent-list-response-object) Object.
 
 #### Example
 Using curl
@@ -411,7 +411,7 @@ Content-Type:  application/json
         "lastName":"Green",
         "title":"CEO",
         ...
-    }
+    },
     ...
     ]
 }
@@ -785,7 +785,7 @@ HTTP/1.1 204 No Content
 
 
 # Role
-You need `Manage Agent & Agent Roles` permission to manage roles.
+You need the `Manage Agent & Agent Roles` permission to manage roles.
 
   + `GET /api/v3/globalSettings/roles` - [Get a list of roles in site](#get-a-list-of-roles-in-site)
   + `GET /api/v3/globalSettings/roles/{id}` - [Get a role by id](#get-a-role-by-id)
@@ -804,14 +804,14 @@ You need `Manage Agent & Agent Roles` permission to manage roles.
   |`type` | string | | yes | no | custom | Options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
   |`agentIds` | int[] | | no | no | NULL | The selected agents for this role. |
   |`agents` | [Agent](#agent)[] | yes | no | no | | The selected agents for this role.|
-  |`permissionIds` | int[] | | no | no | NULL | Permissions assigned to this role.|
+  |`permissionIds` | int[] | | no | no | NULL | The list of permission ids assigned to this role.|
   |`permissions` | [Permission](#permission)[] | yes | no | no | | Permissions assigned to this role.|
 
 
 ## Role Endpoints
 
 ### Get a list of roles in site
-  `GET GET /api/v3/globalSettings/roles`
+  `GET /api/v3/globalSettings/roles`
 
 #### Parameters
   Query string
@@ -842,6 +842,7 @@ Content-Type:  application/json
     68,
     ...,
   ],
+  "agents": [],
   "permissionIds" :
     [
       201,
@@ -855,7 +856,8 @@ Content-Type:  application/json
         "category": "Live Chat",
       },
       ...,
-    ]
+    ],
+    "permissions": []
 },
 ...,
 ]
@@ -897,6 +899,7 @@ Content-Type:  application/json
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "custom",
+  "agents": [],
   "agentIds":  [
     68,
     ...,
@@ -907,6 +910,7 @@ Content-Type:  application/json
       205,
       ...,
     ],
+    "permissions": []
 }
 ```
 
@@ -927,6 +931,7 @@ Request body
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "custom",
+      "agents": [],
       "agentIds":  [
         68,
         ...,
@@ -937,6 +942,7 @@ Request body
          205,
          ...,
         ],
+      "permissions": []
     }
 ```
 
@@ -951,6 +957,7 @@ curl -H "Content-Type: application/json" -d ' {
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "custom",
+      "agents": [],
       "agentIds":  [
         68,
         ...,
@@ -961,6 +968,7 @@ curl -H "Content-Type: application/json" -d ' {
          205,
          ...,
         ],
+      "permissions": []
         ...,
     },
     }' -X POST https://api1.comm100.io/api/v3/globalSettings/roles
@@ -975,6 +983,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
+      "agents": [],
       "agentIds":  [
         68,
         ...,
@@ -985,6 +994,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487
          205,
          ...,
         ],
+      "permissions": []
     }
 ```
 
@@ -1010,6 +1020,7 @@ Request body
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
+      "agents": [],
       "agentIds":  [
         68,
         ...,
@@ -1020,6 +1031,7 @@ Request body
          205,
          ...,
         ],
+      "permissions": []
     }
 ```
 
@@ -1033,6 +1045,7 @@ curl -H "Content-Type: application/json" -d ' {
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
+      "agents": [],
       "agentIds":  [
         68,
         ...,
@@ -1043,6 +1056,7 @@ curl -H "Content-Type: application/json" -d ' {
          205,
          ...,
         ],
+      "permissions": []
     },
     } ' -X PUT https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
 ```
@@ -1056,6 +1070,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "custom",
+  "agents": [],
   "agentIds":  [
     68,
     ...,
@@ -1066,6 +1081,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487
       205,
       ...,
     ],
+  "permissions": []
 }
 ```
 
@@ -1159,6 +1175,7 @@ Content-Type:  application/json
     68,
     ...,
   ],
+  ...
 },
 ...,
 ]
@@ -1206,6 +1223,7 @@ Content-Type:  application/json
     68,
     ...,
   ],
+  ...
 }
 ```
 
@@ -1232,6 +1250,7 @@ Request body
         68,
         ...,
       ],
+      ...
     }
 ```
 
@@ -1252,6 +1271,7 @@ curl -H "Content-Type: application/json" -d '{
         68,
         ...,
       ],
+      ...
     }' -X POST https://api1.comm100.io/api/v3/globalSettings/roles
 ```
 Response
@@ -1271,6 +1291,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/departments
         68,
         ...,
       ],
+      ...
     }
 ```
 
@@ -1303,6 +1324,7 @@ Request body
         68,
         ...,
       ],
+      ...
     }
 ```
 
@@ -1323,6 +1345,7 @@ curl -H "Content-Type: application/json" -d '{
     68,
     ...,
   ],
+  ...
 }' -X PUT https://api1.comm100.io/api/v3/globalSettings/departments/bs22qa68-92e6-4487-a2e8-8234fc9d1f48
 ```
 Response
@@ -1342,6 +1365,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/departments/bs22qa68-92e
         68,
         ...,
       ],
+      ...
     }
 ```
 
@@ -1653,13 +1677,13 @@ You need `Manage Security` permission to set shift for a site.
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | no | | Id of the current item.  |
+  | `id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | yes | | Name of the shift. |
   | `timeZone` | string  | | no | no | | Time zone of shift. value include all [Time Zone Option](#time-zone-options) Ids. |
   | `ifAutoDetectDayLight` | boolean  | | no | no | |  |
   | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
-  |`agentIds` | int[] | | yes | no | NULL | |
-  |`departmentIds` | Guid[] | | yes | no | NULL | |
+  | `agentIds` | int[] | | yes | no | NULL | |
+  | `departmentIds` | Guid[] | | yes | no | NULL | |
   | `agents` | [Agent](#Agent-Object)[] | yes | no | no | | |
   | `departments` | [Department](#Department-Object)[] | yes | no | no | | |
   | `workingHours` | [Working Hours](#Working-Hours-Object)[]  | | no | no | | |
@@ -1701,7 +1725,7 @@ Query string
 
 #### Response
 
-The response is a list of [Shift](#shift-object) Objects
+The response is a list of [Shift](#shift-object) Objects.
 
 #### Example
 
@@ -2181,7 +2205,7 @@ Response
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer  | | yes | no |  |  |
-  |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has a Name and an Avatar, like a Facebook Account, will the display Name and Avatar be used instead of the drawn from the contact profiile. In all other situations, display will be drawn from the Contact Name and Avatar.|
+  |`name` | string  | | no | yes | | Contact Name can be edited by Agents. Default value is read from the first Identity. Only when a Contact sends a message in a specific channel that has a Name and an Avatar, like a Facebook Account, will the display Name and Avatar be used instead of the drawn from the contact profile. In all other situations, display will be drawn from the Contact Name and Avatar.|
   |`description` | string | | no | no | |  |
   |`firstName` | string | | no | no | |  |
   |`lastName` | string | | no | no | |  |
@@ -2195,7 +2219,7 @@ Response
   |`stateOrProvince` | string  | | no | no | |  |
   |`countryOrRegion` | string  | | no | no | |  |
   |`postalOrZipCode` | string  | | no | no | |  |
-  |`timeZone` | string | | no | no | |  Time zone of contact. value include all [Time Zone Option](#time-zone-options) Ids.|
+  |`timeZone` | string | | no | no | |  Time zone of contact. value includes all [Time Zone Option](#time-zone-options) Ids.|
   |`createdTime` | DateTime | | no | no | | When the contact is created.|
   |`lastUpdatedTime` | DateTime | | no | no | |  |
   |`contactIdentities` | [ContactIdentity](#Contact-Identity)[] | yes | no | no | | Contact Identities. |
@@ -2475,12 +2499,12 @@ HTTP/1.1 204 No Content
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer| | yes | no | |  |
-  |`contactId` | integer| | no | no | | Mandatory when post by contact identity api. |
+  |`contactId` | integer| | no | yes | | Mandatory when post by contact identity api. |
   |`name` | string | | no | no | | The name used for a specific channel, like the name of a Facebook user. Not every channel will yield a name, for example, SMS Numbers will display a number instead of a name.|
-  |`type` | string| | no | yes | | The options for the value are: visitor, email, SMS, Facebook, Twitter, Wechat, ssoid, externalid, Whatsapp, inphase.|
+  |`type` | string| | no | yes | | The options for the value are: visitor, email, SMS, Facebook, Twitter, WeChat, ssoid, externalid, Whatsapp, inphase.|
   |`value` | string  | | no | yes | | The value of the identity.|
   |`avatarURL` | string | | no | no | | The avatar used in a certain channel, like the avatar of a Facebook user. Not every channel yields an avatar, for example, SMS Numbers won't produce one.|
-  |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets from the twitter identity. The info is displayed in an iframe in agent console. Available for Twitter, Facebook, SMS, WeChat.|
+  |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets from the twitter identity. The info is displayed in an iframe in the agent console. Available for Twitter, Facebook, SMS, WeChat.|
   |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp. |
   |`originalContactPageURL` | string | | no | no | | The contact profile URL on Facebook or Twitter.|
 
@@ -2748,7 +2772,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | no | | Id of the current item.  |
+  | `id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | no | | Name of the visitor. |
   | `email` | string  | no | no | | Email of the visitor. |
   | `numberOfVisits` | integer  | no | no | | The total number of web pages the visitor viewed on your website. |
@@ -2870,7 +2894,7 @@ Content-Type:  application/json
 
   | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | no | | Id of the current item.  |
+  | `id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid | no | yes | | Id of the public canned message category. If it does not have parent category, parentId is '00000000-0000-0000-0000-000000000000'|
 
@@ -3088,7 +3112,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | no | | Id of the canned message.  |
+  | `id` | Guid | | yes | no | | Id of the canned message.  |
   | `name` | string | | no | yes | | Name of the canned message. |
   | `message` | string | | no | yes | | |
   | `IfSetHtmlMessageForEmail` | boolean  | | no | no | false | |
@@ -3418,7 +3442,7 @@ You need `Manage Private Canned Messages` permission to manage the canned messag
 
   | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | no | | Id of the current item.  |
+  | `id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid  | no | yes | | Parent of the canned message category. |
 
@@ -3636,7 +3660,7 @@ You need `Manage Private Canned Messages` permission to manage the canned messag
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  |`id` | Guid | | yes | no | | Id of the current item.  |
+  | `id` | Guid | | yes | no | | Id of the current item.  |
   | `name` | string  | | no | no | | Name of the canned message. |
   | `message` | string  | | no | no | | |
   | `IfSetHtmlMessageForEmail` | bool | | no | no | false | |
@@ -3967,7 +3991,7 @@ Response
 
   | Name | Type | Read-only | Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  |`id` | Guid | yes | no | | Id of the current item.  |
+  | `id` | Guid | yes | no | | Id of the current item.  |
   | `name` | string  | no | yes | | Name of the agent away status. |
   | `isSystem` | boolean  | yes | no | false | Whether the agent away status is system or not. |
   | `order` | integer  | yes | no | | The order of the agent away status. |
@@ -4703,7 +4727,7 @@ Response
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer | | yes | no | |  |
   |`category` | string| | no | no | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
-  |`createdTime` | DateTime | | no | no |  |  |
+  |`actionTime` | DateTime | | no | no |  |  |
   |`actionType` | string | | no  | no  | | [action types for different applications](#action-types-for-different-applications) |
   |`actionSummary` | string| | no  | no  | |  |
   |`actionDetails` | string| | no  | no  | |  |
