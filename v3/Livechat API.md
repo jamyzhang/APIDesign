@@ -1372,7 +1372,7 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
-- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable-results)  
+- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitors-custom-variable-results)  
 
 ## Related Object JSON Format
 

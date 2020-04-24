@@ -16,7 +16,7 @@ Below is a glance at what reports are available in the Business and Enterprise e
 | Agent Status | Yes | Yes
 | Agent Performance | Metrics in these reports are available either in the Workload or Efficiency report. | Yes
 | Rating | Yes | Yes
-| Post Chat Survey | Yes | Yes
+| Post-Chat Survey | Yes | Yes
 | Pre-Chat Survey | Yes | Yes
 | Wrap-up | Yes | Yes
 | Offline Message | Yes | Yes
