@@ -69,7 +69,7 @@
   `GET /api/v3/globalSettings/site`
 
 #### Parameters
-    No parameters
+    No parameters 
 #### Response
 
   The response is [Site](#site-object) Object, just include base informations.
