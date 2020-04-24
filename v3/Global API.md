@@ -140,7 +140,7 @@ curl -H "Content-Type: application/json" -d '{
 }' -X PUT https://api1.comm100.io/api/v3/globalSettings/site
 ```
 Response
-```json
+```json 
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
@@ -177,8 +177,8 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
   + `POST /api/v3/globalSettings/agents/{id}:unlock` - [Unlock the agent](#unlock-the-agent)
   + `POST /api/v3/globalSettings/agents/{id}:changePassword` - [Admin set an agent's password](#admin-set-an-agents-password)
   + `POST /api/v3/globalSettings/agents/me:changePassword` - [Change own password](#change-own-password)
-  + `PUT /api/v3/globalSettings/agents/{id}` - [Update an agent](#Update-agent-info)
-  + `PUT /api/v3/globalSettings/agents/me` - [Update current agent](#Update-current-agent-info)
+  + `PUT /api/v3/globalSettings/agents/{id}` - [Update agent info](#Update-agent-info)
+  + `PUT /api/v3/globalSettings/agents/me` - [Update current agent info](#Update-current-agent-info)
   + `DELETE /api/v3/globalSettings/agents/{id}` - [Delete an agent](#delete-an-agent)
 
 ## Agent Related Object JSON format
@@ -199,7 +199,7 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
   |`timeZone` | string| | no | no |  | Time zone of the agent. Value includes all [Time Zone Option](#time-zone-options) Ids, if not offered, will use the site time zone.|
-  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date & Time format selected by agent to display on the site, Value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
+  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date & Time Format selected by agents to display on the site, Value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
   |`createdTime` | DateTime | | no | no | UTC | The create time of the agent.|
   |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
   |`lockedTime` | DateTime | | no | no | UTC | When the agent was locked.|
@@ -849,15 +849,9 @@ Content-Type:  application/json
       205,
       ...,
     ],
-    "permission" :[
-      {
-        "name": "Accept Chats",
-        "description": "Accept Chats",
-        "category": "Live Chat",
-      },
+    "permissions": [],
       ...,
     ],
-    "permissions": []
 },
 ...,
 ]
@@ -899,11 +893,11 @@ Content-Type:  application/json
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "custom",
-  "agents": [],
   "agentIds":  [
     68,
     ...,
   ],
+  "agents": [],
   "permissionIds" :
     [
       201,
@@ -931,11 +925,11 @@ Request body
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "custom",
-      "agents": [],
       "agentIds":  [
         68,
         ...,
       ],
+      "agents": [],
       "permissionIds" :
         [
          201,
@@ -957,11 +951,11 @@ curl -H "Content-Type: application/json" -d ' {
       "Name": "markting",
       "Description": "yyyy-MM-dd hh:mm:ss",
       "Type": "custom",
-      "agents": [],
       "agentIds":  [
         68,
         ...,
       ],
+      "agents": [],
       "permissionIds" :
         [
          201,
@@ -983,11 +977,11 @@ Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
-      "agents": [],
       "agentIds":  [
         68,
         ...,
       ],
+      "agents": [],
       "permissionIds" :
         [
          201,
@@ -1020,11 +1014,11 @@ Request body
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
-      "agents": [],
       "agentIds":  [
         68,
         ...,
       ],
+      "agents": [],
       "permissionIds" :
         [
          201,
@@ -1045,17 +1039,17 @@ curl -H "Content-Type: application/json" -d ' {
       "name": "markting",
       "description": "yyyy-MM-dd hh:mm:ss",
       "type": "custom",
-      "agents": [],
       "agentIds":  [
         68,
         ...,
       ],
-        "permissionIds" :
-        [
-         201,
-         205,
-         ...,
-        ],
+      "agents": [],
+      "permissionIds" :
+      [
+        201,
+        205,
+        ...,
+      ],
       "permissions": []
     },
     } ' -X PUT https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487-a2e8-92e68d6892e6
@@ -1070,11 +1064,11 @@ Location: https://api1.comm100.io/api/v3/globalSettings/roles/4487fc9d-92e6-4487
   "name": "markting",
   "description": "yyyy-MM-dd hh:mm:ss",
   "type": "custom",
-  "agents": [],
   "agentIds":  [
     68,
     ...,
   ],
+  "agents": [],
   "permissionIds" :
     [
       201,
@@ -4813,7 +4807,7 @@ Content-Type:  application/json
         "id": 201,
         "name": "add Agent",
         "category": "My Account Global Settings",
-        "createdTime": "2020-02-02",
+        "actionTime": "2020-02-02",
         "createdBy": 68,
         "actionType": "Add Agent",
         "actionSummary": "Add Agent",
