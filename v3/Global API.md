@@ -2534,8 +2534,7 @@ Content-Type:  application/json[
   "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
   "infoURL": "",
   "screenName": "@Comm100Corp",
-  "originalContactPageURL": "",
-  ...
+  "originalContactPageURL": ""
 },
 ...,
 ]
@@ -2576,8 +2575,7 @@ Content-Type:  application/json
   "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
   "infoURL": "",
   "screenName": "@Comm100Corp",
-  "originalContactPageURL": "",
-  ...
+  "originalContactPageURL": ""
 }
 ```
 
@@ -2601,8 +2599,7 @@ Request body
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
     "screenName": "@Comm100Corp",
-    "originalContactPageURL": "",
-    ...
+    "originalContactPageURL": ""
   }
 ```
 
@@ -2622,8 +2619,7 @@ curl -H "Content-Type: application/json" -d ' {
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
     "screenName": "@Comm100Corp",
-    "originalContactPageURL": "",
-    ...
+    "originalContactPageURL": ""
   }' -X POST https://api1.comm100.io/api/v3/globalSettings/contacts/contactIdentities
 ```
 Response
@@ -2640,8 +2636,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
     "screenName": "@Comm100Corp",
-    "originalContactPageURL": "",
-    ...
+    "originalContactPageURL": ""
   }
 ```
 
@@ -2671,8 +2666,7 @@ Request body
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
     "screenName": "@Comm100Corp",
-    "originalContactPageURL": "",
-    ...
+    "originalContactPageURL": ""
   }
 ```
 
@@ -2691,8 +2685,7 @@ curl -H "Content-Type: application/json" -d ' {
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
     "screenName": "@Comm100Corp",
-    "originalContactPageURL": "",
-    ...
+    "originalContactPageURL": ""
   }' -X PUT https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
 ```
 Response
@@ -2709,8 +2702,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/contactIdentities/25
     "avatarURL": "https://bot.comm100.com/api/v3/chatbot/images/42dwdaww-92e6-4487-a2e8-92e68d6892e6",
     "infoURL": "",
     "screenName": "@Comm100Corp",
-    "originalContactPageURL": "",
-    ...
+    "originalContactPageURL": ""
   }
 ```
 
