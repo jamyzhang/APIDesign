@@ -4629,7 +4629,57 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "fields":  []
+  "fields":  [
+    {
+      "id": "5663e4fc-1bcc-4556-9a74-3aed5fd9868b",
+      "field": {
+         "isSystem": true,
+         "name": "Category",
+         "type": "checkboxListWithOptionGroups",
+         "options": [
+            {
+               "order": 1,
+               "value": "Inquiry"
+            },
+            {
+               "order": 2,
+               "value": "Suggestion"
+            },
+            {
+               "order": 3,
+               "value": "Complaint"
+            },
+            {
+               "order": 4,
+               "value": "Junk"
+            }
+         ],
+         "leftText": "",
+         "rightText": "",
+         "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": false,
+      "order": 1,
+      "ratingGrades": []
+   },
+   {
+      "id": "c337df61-2c02-4da6-85a1-9c392652e8c2",
+      "field": {
+         "isSystem": true,
+         "name": "Comment",
+         "type": "wrapupcomment",
+         "options": [],
+         "leftText": "",
+         "rightText": "",
+         "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": false,
+      "order": 2,
+      "ratingGrades": []
+   }
+  ]
 }
 ```
 
@@ -4704,7 +4754,57 @@ The response is an [Agent Wrap-Up](#Agent-Wrap-Up-Object) object
 Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
-  "fields":  []
+  "fields":  [
+    {
+      "id": "5663e4fc-1bcc-4556-9a74-3aed5fd9868b",
+      "field": {
+         "isSystem": true,
+         "name": "Category",
+         "type": "checkboxListWithOptionGroups",
+         "options": [
+            {
+               "order": 1,
+               "value": "Inquiry"
+            },
+            {
+               "order": 2,
+               "value": "Suggestion"
+            },
+            {
+               "order": 3,
+               "value": "Complaint"
+            },
+            {
+               "order": 4,
+               "value": "Junk"
+            }
+         ],
+         "leftText": "",
+         "rightText": "",
+         "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": false,
+      "order": 1,
+      "ratingGrades": []
+   },
+   {
+      "id": "c337df61-2c02-4da6-85a1-9c392652e8c2",
+      "field": {
+         "isSystem": true,
+         "name": "Comment",
+         "type": "wrapupcomment",
+         "options": [],
+         "leftText": "",
+         "rightText": "",
+         "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": false,
+      "order": 2,
+      "ratingGrades": []
+   }
+  ]
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/agentWrapup
 ```
 
@@ -4713,7 +4813,57 @@ Response
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
-  "fields":  []
+  "fields":  [
+    {
+      "id": "5663e4fc-1bcc-4556-9a74-3aed5fd9868b",
+      "field": {
+         "isSystem": true,
+         "name": "Category",
+         "type": "checkboxListWithOptionGroups",
+         "options": [
+            {
+               "order": 1,
+               "value": "Inquiry"
+            },
+            {
+               "order": 2,
+               "value": "Suggestion"
+            },
+            {
+               "order": 3,
+               "value": "Complaint"
+            },
+            {
+               "order": 4,
+               "value": "Junk"
+            }
+         ],
+         "leftText": "",
+         "rightText": "",
+         "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": false,
+      "order": 1,
+      "ratingGrades": []
+   },
+   {
+      "id": "c337df61-2c02-4da6-85a1-9c392652e8c2",
+      "field": {
+         "isSystem": true,
+         "name": "Comment",
+         "type": "wrapupcomment",
+         "options": [],
+         "leftText": "",
+         "rightText": "",
+         "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": false,
+      "order": 2,
+      "ratingGrades": []
+   }
+  ]
 }
 ```
 
@@ -5532,7 +5682,7 @@ Response
 | `ifDistributeChatsToChatbotByQueueLength` | boolean | | no | no | | |
 | `ifDistributeChatsToChatbotByPercentage` | boolean | | no | no | | |
 | `queueLength` | integer | | no | no | | Allocate chats to Chatbot when the queue reaches the preset length. |
-| `percentageToChatbot` | smallint | | no | no | | |
+| `percentageToChatbot` | smallint | | no | no | | Allocate chats to Chatbot by percentage. |
 | `isChatbotAllocatedWhenAgentOffline` | boolean | | no | no | | |
 
 ## Chatbot Integration Endpoints
