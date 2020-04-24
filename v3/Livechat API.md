@@ -875,7 +875,7 @@ HTTP/1.1 204 No Content
 - `GET /api/v3/livechat/dynamicCampaign` - [Get dynamic campaign](#get-dynamic-campaign) include campaign
 - `PUT /api/v3/livechat/dynamicCampaign` - [Update dynamic campaign](#update-dynamic-campaign)
 
-## Dynamic Campaign Related Objects Json Format
+## Dynamic Campaign Related Objects JSON Format
 
 ### Dynamic Campaign Object
 
@@ -918,7 +918,7 @@ Query string
 
 #### Response
 
-the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
+The response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 #### Example
 
@@ -1006,7 +1006,7 @@ example:
 
 #### Response
 
-the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
+The response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 #### Example
 
@@ -1080,7 +1080,7 @@ Content-Type:  application/json
 - `GET /api/v3/livechat/mobilePush` - [Get mobile push](#get-mobile-push)
 - `PUT /api/v3/livechat/mobilePush` - [Update mobile push](#update-mobile-push)
 
-## Related Object Json Format
+## Related Object JSON Format
 
 ### Mobile Push JSON Format
 
@@ -2014,7 +2014,7 @@ Path Parameters
 
 #### Response
 
-the response is a [Chat](#Chat-object) object.
+The response is a [Chat](#Chat-object) object.
 
 #### Example
 
@@ -4910,7 +4910,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Language](#Language-Object) Object
+The response is: [Language](#Language-Object) Object.
 
 #### Example
 
@@ -5515,7 +5515,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure
+  The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure.
 
 example:
 ```Json
@@ -7867,7 +7867,7 @@ You need `Manage Security` permission to manage `Secure Form`.
 
 ## Endpoint
 
-### Get a  list of secure forms
+### Get a list of secure forms
 
   `GET /api/v3/livechat/secureForms`
 
@@ -8235,7 +8235,7 @@ HTTP/1.1 204 No Content
 - `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
 - `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
 
-## Related Object Json Format
+## Related Object JSON Format
 ### Secure Form Field JSON Format
 
   `Secure Form Field` is represented as simple flat JSON objects with the following keys:  
@@ -8537,7 +8537,7 @@ You need `Manage Integration` permission to manage `Webhook`.
 + `PUT /api/v3/livechat/webhooks/{id}` - [Update a webhook](#update-a-webhook) 
 + `DELETE /api/v3/livechat/webhooks/{id}` - [Delete a webhook](#delete-a-webhook)
 
-## Webhook Related Objects Json Format
+## Webhook Related Objects JSON Format
 
 ### Webhook Object
 
@@ -8755,7 +8755,7 @@ You need `Manage Custom Variable` permission to manage custom variables.
 - `PUT /api/v3/livechat/customVariables/{id}` - [Update a custom variable](#update-a-custom-variable)
 - `DELETE /api/v3/livechat/customVariables/{id}` - [Delete a custom variable](#delete-a-custom-variable)
 
-## Custom Variable Related Objects Json Format
+## Custom Variable Related Objects JSON Format
 
 ### Custom Variable Object
 
