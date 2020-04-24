@@ -43,27 +43,27 @@ Below is a glance at what reports are available in the Business and Enterprise e
 
   | Methods | Name | Path
   | --- | --- | ---
-  | GET | [Chat volume](#chat-volume) | /api/v2/livechat/reports/chatVolume
-  | GET | [Visits](#visits) | /api/v2/livechat/reports/visits
-  | GET | [Chat Source](#chat-source) | /api/v2/livechat/reports/chatSource<br />/api/v2/livechat/reports/chatSourceRequestPage
-  | GET | [Queue](#queue) | /api/v2/livechat/reports/queue
-  | GET | [Wait Time](#wait-time) | /api/v2/livechat/reports/waitTime
-  | GET | [Chat Transfer](#chat-transfer) | /api/v2/livechat/reports/chatTransfer
-  | GET | [Availability](#availability) | /api/v2/livechat/reports/availability
-  | GET | [Agent Status](#agent-status) | /api/v2/livechat/reports/agentStatus
-  | GET | [Agent Performance](#agent-performance) | /api/v2/livechat/reports/agentPerformance
-  | GET | [Workload](#workload) | /api/v2/livechat/reports/workload
-  | GET | [Efficiency](#efficiency) | /api/v2/livechat/reports/efficiency
-  | GET | [Rating](#rating) | /api/v2/livechat/reports/rating
-  | GET | [Post Chat Survey](#post-chat-survey) | /api/v2/livechat/reports/postChatSurvey
-  | GET | [Pre-Chat Survey](#pre-chat-survey) | /api/v2/livechat/reports/prechatSurvey
-  | GET | [Wrap-up](#wrap-up) | /api/v2/livechat/reports/wrapup/survey<br />/api/v2/livechat/reports/wrapup/completion
-  | GET | [Conversions](#conversions) | /api/v2/livechat/reports/conversions
-  | GET | [Manual Invitation](#manual-invitation) | /api/v2/livechat/reports/manualInvitation
-  | GET | [Auto Invitation](#auto-invitation) | /api/v2/livechat/reports/autoInvitation
-  | GET | [Offline Message](#offline-message) | /api/v2/livechat/reports/offlineMessage
-  | GET | [Canned Message](#canned-message) | /api/v2/livechat/reports/cannedMessage
-  | GET | [Real Time](#real-time) | /api/v2/livechat/reports/realtime/rightNow<br />/api/v2/livechat/reports/realtime/today<br />/api/v2/livechat/reports/realtime/today/customMetrics<br />/api/v2/livechat/reports/realtime/agents<br />/api/v2/livechat/reports/realtime/queue
+  | GET | [Chat volume](#chat-volume) | /api/v3/livechat/reports/chatVolume
+  | GET | [Visits](#visits) | /api/v3/livechat/reports/visits
+  | GET | [Chat Source](#chat-source) | /api/v3/livechat/reports/chatSource<br />/api/v3/livechat/reports/chatSourceRequestPage
+  | GET | [Queue](#queue) | /api/v3/livechat/reports/queue
+  | GET | [Wait Time](#wait-time) | /api/v3/livechat/reports/waitTime
+  | GET | [Chat Transfer](#chat-transfer) | /api/v3/livechat/reports/chatTransfer
+  | GET | [Availability](#availability) | /api/v3/livechat/reports/availability
+  | GET | [Agent Status](#agent-status) | /api/v3/livechat/reports/agentStatus
+  | GET | [Agent Performance](#agent-performance) | /api/v3/livechat/reports/agentPerformance
+  | GET | [Workload](#workload) | /api/v3/livechat/reports/workload
+  | GET | [Efficiency](#efficiency) | /api/v3/livechat/reports/efficiency
+  | GET | [Rating](#rating) | /api/v3/livechat/reports/rating
+  | GET | [Post Chat Survey](#post-chat-survey) | /api/v3/livechat/reports/postChatSurvey
+  | GET | [Pre-Chat Survey](#pre-chat-survey) | /api/v3/livechat/reports/prechatSurvey
+  | GET | [Wrap-up](#wrap-up) | /api/v3/livechat/reports/wrapup/survey<br />/api/v3/livechat/reports/wrapup/completion
+  | GET | [Conversions](#conversions) | /api/v3/livechat/reports/conversions
+  | GET | [Manual Invitation](#manual-invitation) | /api/v3/livechat/reports/manualInvitation
+  | GET | [Auto Invitation](#auto-invitation) | /api/v3/livechat/reports/autoInvitation
+  | GET | [Offline Message](#offline-message) | /api/v3/livechat/reports/offlineMessage
+  | GET | [Canned Message](#canned-message) | /api/v3/livechat/reports/cannedMessage
+  | GET | [Real Time](#real-time) | /api/v3/livechat/reports/realtime/rightNow<br />/api/v3/livechat/reports/realtime/today<br />/api/v3/livechat/reports/realtime/today/customMetrics<br />/api/v3/livechat/reports/realtime/agents<br />/api/v3/livechat/reports/realtime/queue
 
 </div>
 <div>
@@ -91,7 +91,7 @@ Shows the chat requests occurring on the website, as well as how many chat reque
 
 ### Path
 
-    GET https://hosted.comm100.com/api/v2/livechat/reports/chatVolume
+    GET https://hosted.comm100.com/api/v3/livechat/reports/chatVolume
 
 ### Parameters
 
@@ -133,7 +133,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/chatVolume?
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/chatVolume?
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=day"
 ```
 
@@ -167,7 +167,7 @@ Shows the visits occurring on the website.
 
 ### Path
 
-    GET https://hosted.comm100.com/api/v2/livechat/reports/visits
+    GET https://hosted.comm100.com/api/v3/livechat/reports/visits
 
 ### Parameters
 
@@ -201,7 +201,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/visits?
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/visits?
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00& 
      group=halfHourDistribution"
 ```
@@ -233,7 +233,7 @@ Shows the number of chats requested by visitors, initiated by agents manually, a
 
 ### Path
 
-    GET https://hosted.comm100.com/api/v2/livechat/reports/chatSource
+    GET https://hosted.comm100.com/api/v3/livechat/reports/chatSource
 
 ### Parameters
 
@@ -273,7 +273,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/chatSource?
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/chatSource?
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00& 
      group=24*7Distribution"
 ```
@@ -308,7 +308,7 @@ Shows the which webpages chats originate from.
 
 ### Path
 
-    GET https://hosted.comm100.com/api/v2/livechat/reports/chatSource/requestPage
+    GET https://hosted.comm100.com/api/v3/livechat/reports/chatSource/requestPage
 
 ### Parameters
 
@@ -331,7 +331,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/chatSource/requestPage? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/chatSource/requestPage? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00"
 ```
 
@@ -361,7 +361,7 @@ Chats can be routed to one agent or multiple agents in a department. When agents
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/queue
+GET https://hosted.comm100.com/api/v3/livechat/reports/queue
 ```
 
 ### Parameters
@@ -406,7 +406,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/queue? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/queue? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=day"
 ```
 
@@ -443,7 +443,7 @@ Shows more in-depth information on wait time in the queue.
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/waitTime
+GET https://hosted.comm100.com/api/v3/livechat/reports/waitTime
 ```
 
 ### Parameters
@@ -484,7 +484,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/waitTime? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/waitTime? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=day"
 ```
 
@@ -519,7 +519,7 @@ Shows the number of chats that were transferred to another agent or department w
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/chatTransfer
+GET https://hosted.comm100.com/api/v3/livechat/reports/chatTransfer
 ```
 
 ### Parameters
@@ -559,7 +559,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/chatTransfer? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/chatTransfer? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=departmemt"
 ```
 
@@ -571,7 +571,7 @@ Sample response:
         "departmentTransferredInChats": 4.0,
         "departmentTransferredOutChats": 2.0,
         "chats": 10.0,
-        "departmentId": 1
+        "departmentId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
     },
     ...
 ]
@@ -590,7 +590,7 @@ Shows data on how long your live chat team or a specific department was online f
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/availability
+GET https://hosted.comm100.com/api/v3/livechat/reports/availability
 ```
 
 ### Parameters
@@ -620,7 +620,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/availability? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/availability? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=agent"
 ```
 
@@ -687,7 +687,7 @@ Shows a log of agent status changes within a defined time range.
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/agentStatus
+GET https://hosted.comm100.com/api/v3/livechat/reports/agentStatus
 ```
 
 ### Parameters
@@ -714,7 +714,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/agentStatus?
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/agentStatus?
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00"
 ```
 
@@ -757,7 +757,7 @@ Shows the overall performance of agents.
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/agentPerformance
+GET https://hosted.comm100.com/api/v3/livechat/reports/agentPerformance
 ```
 
 ### Parameters
@@ -789,7 +789,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/agentPerformance? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/agentPerformance? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=day"
 ```
 
@@ -824,7 +824,7 @@ Shows agent utilization by comparing time spent chatting with idle time.
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/workload
+GET https://hosted.comm100.com/api/v3/livechat/reports/workload
 ```
 
 ### Parameters
@@ -870,7 +870,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/workload? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/workload? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=day"
 ```
 
@@ -907,7 +907,7 @@ Shows the average response time, wait time and chat time for each agent, departm
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/efficiency
+GET https://hosted.comm100.com/api/v3/livechat/reports/efficiency
 ```
 
 ### Parameters
@@ -942,7 +942,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/efficiency? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/efficiency? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=day"
 ```
 
@@ -980,7 +980,7 @@ Shows how visitors are rating the chat quality of an agent, a department, and yo
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/rating
+GET https://hosted.comm100.com/api/v3/livechat/reports/rating
 ```
 
 ### Parameters
@@ -1024,7 +1024,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/rating? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/rating? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=agent"
 ```
 
@@ -1057,7 +1057,7 @@ Shows the statistics on survey questions that allow visitors to select one or mo
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/postChatSurvey
+GET https://hosted.comm100.com/api/v3/livechat/reports/postChatSurvey
 ```
 
 ### Parameters
@@ -1106,7 +1106,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/postChatSurvey? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/postChatSurvey? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00"
 ```
 
@@ -1115,10 +1115,10 @@ Sample response:
 ```json
 [
     {
-        "campaignId": 1,
+        "campaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "fields": [
             {
-                "fieldId": 1,
+                "fieldId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
                 "fieldName": "This is a check box.",
                 "options": [
                     {
@@ -1132,7 +1132,7 @@ Sample response:
                 ]
             },
             {
-                "fieldId": 2,
+                "fieldId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
                 "fieldName": "This is a check box.",
                 "options": [
                     {
@@ -1148,10 +1148,10 @@ Sample response:
         ]
     },
     {
-        "campaignId": 2,
+        "campaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "fields": [
             {
-                "fieldId": 3,
+                "fieldId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
                 "fieldName": "This is a radio box.",
                 "options": [
                     {
@@ -1182,7 +1182,7 @@ Shows the statistics on survey questions that allow visitors to select one or mo
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/prechatSurvey
+GET https://hosted.comm100.com/api/v3/livechat/reports/prechatSurvey
 ```
 
 ### Parameters
@@ -1217,7 +1217,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/prechatSurvey? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/prechatSurvey? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&filterName=campaign&filterValue=1"
 ```
 
@@ -1226,10 +1226,10 @@ Sample response:
 ```json
 [
     {
-        "campaignId": 1,
+        "campaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "fields": [
             {
-                "fieldId": 1,
+                "fieldId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
                 "fieldName": "This is a check box.",
                 "options": [
                     {
@@ -1262,7 +1262,7 @@ Shows details of the percentage of each wrap-up category used by agents.
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/wrapup/survey
+GET https://hosted.comm100.com/api/v3/livechat/reports/wrapup/survey
 ```
 
 ### Parameters
@@ -1304,7 +1304,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/wrapup/survey? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/wrapup/survey? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00"
 ```
 
@@ -1313,10 +1313,10 @@ Sample response:
 ```json
 [
     {
-        "campaignId": 1,
+        "campaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "fields": [
             {
-                "fieldId": 105,
+                "fieldId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
                 "fieldName": "Category",
                 "groups": [
                     {
@@ -1353,7 +1353,7 @@ Shows the proportion of chats where agents' wrap-up comments are completed.
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/wrapup/completion
+GET https://hosted.comm100.com/api/v3/livechat/reports/wrapup/completion
 ```
 
 ### Parameters
@@ -1383,7 +1383,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/wrapup/completion? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/wrapup/completion? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=day"
 ```
 
@@ -1416,7 +1416,7 @@ Shows all achieved conversions, total conversion value, and your live chat conve
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/conversions
+GET https://hosted.comm100.com/api/v3/livechat/reports/conversions
 ```
 
 ### Parameters
@@ -1448,7 +1448,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/conversions? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/conversions? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=day"
 ```
 
@@ -1485,7 +1485,7 @@ Shows the number of manual invitations sent by agents within a specific time.
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/manualInvitation
+GET https://hosted.comm100.com/api/v3/livechat/reports/manualInvitation
 ```
 
 ### Parameters
@@ -1514,7 +1514,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/manualInvitation? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/manualInvitation? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=agent"
 ```
 
@@ -1544,7 +1544,7 @@ Shows the number of auto invitations sent as well as the number of auto-invitati
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/autoInvitation
+GET https://hosted.comm100.com/api/v3/livechat/reports/autoInvitation
 ```
 
 ### Parameters
@@ -1574,7 +1574,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/autoInvitation? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/autoInvitation? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=autoInvitation"
 ```
 
@@ -1585,8 +1585,8 @@ Sample response:
     {
         "sent": 13.0,
         "accepted": 9.0,
-        "autoInvitationId": 1,
-        "campaignId": 1
+        "autoInvitationId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
+        "campaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
     },
     ...
 ]
@@ -1605,7 +1605,7 @@ Shows the number of messages received from the queue and the offline message but
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/offlineMessage
+GET https://hosted.comm100.com/api/v3/livechat/reports/offlineMessage
 ```
 
 ### Parameters
@@ -1646,7 +1646,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/offlineMessage? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/offlineMessage? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&group=campaign"
 ```
 
@@ -1658,7 +1658,7 @@ Sample response:
         "messages": 6.0,
         "fromOfflineButton": 4.0,
         "fromChatQueue": 2.0,
-        "campaignId": 1
+        "campaignId": "1487fc9d-92e6-4487-a2e8-92e68d6892e6"
     },
     ...,
 ]
@@ -1677,7 +1677,7 @@ Shows how many times and by how many agents each canned message was used within 
 ### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/cannedMessage
+GET https://hosted.comm100.com/api/v3/livechat/reports/cannedMessage
 ```
 
 ### Parameters
@@ -1704,7 +1704,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/cannedMessage? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/cannedMessage? 
      timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00"
 ```
 
@@ -1738,7 +1738,7 @@ Shows the current number of chats, visitors, available agents, queue lengths, et
 #### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/realtime/rightnow
+GET https://hosted.comm100.com/api/v3/livechat/reports/realtime/rightnow
 ```
 
 #### Response
@@ -1760,7 +1760,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/rightnow"
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/rightnow"
 ```
 
 Sample response:
@@ -1785,7 +1785,7 @@ Shows data from the current day.
 #### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/realtime/today
+GET https://hosted.comm100.com/api/v3/livechat/reports/realtime/today
 ```
 
 #### Parameters
@@ -1810,7 +1810,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/realtime/today?timezone=+08:00"
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/realtime/today?timezone=+08:00"
 ```
 
 Sample response:
@@ -1838,7 +1838,7 @@ Shows custom live chat performance metrics defined by custom expressions. Availa
 #### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/realtime/today/customMetrics
+GET https://hosted.comm100.com/api/v3/livechat/reports/realtime/today/customMetrics
 ```
 
 #### Parameters
@@ -1862,7 +1862,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/realtime/today/customMetrics?timezone=+08:00"
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/realtime/today/customMetrics?timezone=+08:00"
 ```
 
 Sample response:
@@ -1870,7 +1870,7 @@ Sample response:
 ```json
 [
     {
-        "id": 1,
+        "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "value": 0.23
     },
     ...
@@ -1884,7 +1884,7 @@ Shows an overview of each agent's workload in real-time and today. Available in 
 #### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/realtime/agents
+GET https://hosted.comm100.com/api/v3/livechat/reports/realtime/agents
 ```
 
 #### Parameters
@@ -1914,7 +1914,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/realtime/agents? 
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/realtime/agents? 
      timezone=+08:00&filterName=department&filterValue=1"
 ```
 
@@ -1954,7 +1954,7 @@ Shows current queue length and visitors' wait time. Where different routing rule
 #### Path
 
 ```bash
-GET https://hosted.comm100.com/api/v2/livechat/reports/realtime/queue
+GET https://hosted.comm100.com/api/v3/livechat/reports/realtime/queue
 ```
 
 #### Parameters
@@ -1983,7 +1983,7 @@ Sample request:
 
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
-     -X GET "https://hosted.comm100.com/api/v2/livechat/reports/realtime/queue?timezone=+08:00"
+     -X GET "https://hosted.comm100.com/api/v3/livechat/reports/realtime/queue?timezone=+08:00"
 ```
 
 Sample response:
