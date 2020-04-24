@@ -2494,7 +2494,7 @@ HTTP/1.1 204 No Content
   |`value` | string  | | no | yes | | The value of the identity.|
   |`avatarURL` | string | | no | no | | The avatar used in a certain channel, like the avatar of a Facebook user. Not every channel yields an avatar, for example, SMS Numbers won't produce one.|
   |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets from the twitter identity. The info is displayed in an iframe in the agent console. Available for Twitter, Facebook, SMS, WeChat.|
-  |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp. |
+  |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp.|
   |`originalContactPageURL` | string | | no | no | | The contact profile URL on Facebook or Twitter.|
 
 ## Contact Identity Endpoints
