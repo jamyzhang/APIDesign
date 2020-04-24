@@ -918,7 +918,7 @@ Query string
 
 #### Response
 
-the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
+The response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 #### Example
 
@@ -1006,7 +1006,7 @@ example:
 
 #### Response
 
-the response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
+The response is: [Dynamic Campaign](#dynamic-campaign-object) Object.
 
 #### Example
 
@@ -2014,7 +2014,7 @@ Path Parameters
 
 #### Response
 
-the response is a [Chat](#Chat-object) object.
+The response is a [Chat](#Chat-object) object.
 
 #### Example
 
@@ -4910,7 +4910,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Language](#Language-Object) Object
+The response is: [Language](#Language-Object) Object.
 
 #### Example
 
@@ -5515,7 +5515,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure
+  The request body contains data with the [Custom Rule](#Custom-Rule-Object) structure.
 
 example:
 ```Json

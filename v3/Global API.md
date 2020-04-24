@@ -72,7 +72,7 @@
     No parameters
 #### Response
 
-  the response is [Site](#site-object) Object, just include base informations.
+  The response is [Site](#site-object) Object, just include base informations.
 
 #### Example
 Using curl
@@ -111,7 +111,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Site](#site-object) structure
+  The request body contains data with the [Site](#site-object) structure.
 
 #### Response
 
@@ -246,7 +246,7 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
 
 #### Response
 
-  The response is a [Agent List Response ](#agent-list-response-object) Object
+  The response is a [Agent List Response ](#agent-list-response-object) Object.
 
 #### Example
 Using curl
@@ -294,7 +294,7 @@ Query string
 
 #### Response
 
-The response is a [Agent](#agent-object) Object
+The response is a [Agent](#agent-object) Object.
 
 #### Example
 Using curl
@@ -337,7 +337,7 @@ Path parameters
 
 #### Response
 
-The response is a [Agent List Response](#agent-list-response-object) Object
+The response is a [Agent List Response](#agent-list-response-object) Object.
 
 #### Example
 Using curl
@@ -388,7 +388,7 @@ Content-Type:  application/json
 
 #### Response
 
-The response is a [Agent List Response](#agent-list-response-object) Object
+The response is a [Agent List Response](#agent-list-response-object) Object.
 
 #### Example
 Using curl
@@ -430,7 +430,7 @@ Content-Type:  application/json
 
 #### Response
 
-The response is an [Agent](#agent-object) Object
+The response is an [Agent](#agent-object) Object.
 
 #### Example
 Using curl
@@ -460,7 +460,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Agent](#agent-object) structure
+  The request body contains data with the [Agent](#agent-object) structure.
 
 example:
 ```json
@@ -480,7 +480,7 @@ example:
 
 #### Response
 The response is:
-  [Agent](#agent-object) Object
+  [Agent](#agent-object) Object.
 
 #### Example
 Using curl
@@ -630,7 +630,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Agent](#agent-object) structure
+  The request body contains data with the [Agent](#agent-object) structure.
 
   example:
 ```json
@@ -651,7 +651,7 @@ Request body
 
 #### Response
 The response is:
-  [Agent](#agent-object) Object
+  [Agent](#agent-object) Object.
 
 #### Example
 Using curl
@@ -697,7 +697,7 @@ Location: https://api1.comm100.io/api/v3/globalSettings/agents/68
 
 Request body
 
-  The request body contains data with the [Agent](#agent-object) structure
+  The request body contains data with the [Agent](#agent-object) structure.
 
 example:
 ```json
@@ -718,7 +718,7 @@ example:
 
 #### Response
 The response is: 
-  [Agent](#agent-object) Object
+  [Agent](#agent-object) Object.
 
 #### Example
 Using curl
@@ -919,7 +919,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Role](#role-object) structure
+  The request body contains data with the [Role](#role-object) structure.
 
   example:
 ```json
@@ -1001,7 +1001,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the  [Role](#role-object) structure
+  The request body contains data with the  [Role](#role-object) structure.
 
   example:
 ```json
@@ -1136,7 +1136,7 @@ You need the `Manage departments` permission to manage departments.
 
 #### Response
 
-  The response is a list of [Department](#department-object) Object
+  The response is a list of [Department](#department-object) Object.
 
 #### Example
 Using curl
@@ -1183,7 +1183,7 @@ Query string
 
   #### Response
 
-  The response is a [Department](#department-object) Object
+  The response is a [Department](#department-object) Object.
 
 #### Example
 Using curl
@@ -1217,7 +1217,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Department](#department-object) structure
+  The request body contains data with the [Department](#department-object) structure.
 
   example:
 ```json
@@ -1288,7 +1288,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the  [Department](#department-object) structure
+  The request body contains data with the  [Department](#department-object) structure.
 
   example:
 ```json
@@ -1307,7 +1307,7 @@ Request body
 ```
 
 #### Response
-The response is a [Department](#department-object) Object
+The response is a [Department](#department-object) Object.
 
 #### Example
 Using curl
@@ -1438,7 +1438,7 @@ Path parameters
 
 #### Response
 
-The response is a [Permission](#permission) Object
+The response is a [Permission](#permission) Object.
 
 
 #### Example
@@ -1555,7 +1555,7 @@ Request body
 ```
 
 #### Response
-the response is a role [Permission](#permission-object) Object list
+The response is a role [Permission](#permission-object) Object list.
 
 #### Example
 Using curl
@@ -1605,7 +1605,7 @@ Request body
 ```
 
 #### Response
-The response is: agent [Permission](#permission-object) Object list
+The response is: agent [Permission](#permission-object) Object list.
 
 #### Example
 Using curl
@@ -1701,7 +1701,7 @@ Query string
 
 #### Response
 
-the response is: list of [Shift](#shift-object) Objects
+The response is a list of [Shift](#shift-object) Objects
 
 #### Example
 
@@ -1777,7 +1777,7 @@ Query string
 
 #### Response
 
-the response is a [Shift](#shift-object) Object
+The response is a [Shift](#shift-object) Object.
 
 #### Example
 
@@ -1844,7 +1844,7 @@ Path Parameters
 
 #### Response
 
-the response is a [Shift](#shift-object) Object
+The response is a [Shift](#shift-object) Object.
 
 #### Example
 
@@ -1900,7 +1900,7 @@ Path Parameters
 
 #### Response
 
-the response is a [Shift](#shift-object) Object
+The response is a [Shift](#shift-object) Object.
 
 #### Example
 
@@ -1950,7 +1950,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Shift](#shift-object) structure
+  The request body contains data with the [Shift](#shift-object) structure.
 
 example:
 ```Json
@@ -1979,7 +1979,7 @@ example:
 
 #### Response
 
-the response is a [Shift](#shift-object) Object
+The response is a [Shift](#shift-object) Object.
 
 #### Example
 
@@ -2052,7 +2052,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Shift](#shift-object) structure
+  The request body contains data with the [Shift](#shift-object) structure.
 
 example:
 ```Json
@@ -2081,7 +2081,7 @@ example:
 
 #### Response
 
-the response is a [Shift](#shift-object) Object
+The response is a [Shift](#shift-object) Object.
 
 #### Example
 
@@ -2237,7 +2237,7 @@ Response
 
 
   #### Response
-  The response is a [Contact List Response](#contact-list-response-object) Object
+  The response is a [Contact List Response](#contact-list-response-object) Object.
 
 
 #### Example
@@ -2289,7 +2289,7 @@ Path parameters
 
 
 #### Response
-  The response is a [Contact](#contact-object) Object
+  The response is a [Contact](#contact-object) Object.
 
 #### Example
 Using curl
@@ -2321,7 +2321,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Contact](#contact-object) structure
+  The request body contains data with the [Contact](#contact-object) structure.
 
 example:
 ```json
@@ -2339,7 +2339,7 @@ example:
 
 #### Response
 
-The response is a [Contact](#contact-object) Object
+The response is a [Contact](#contact-object) Object.
 
 #### Example
 Using curl
@@ -2386,7 +2386,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Contact](#contact-object) structure
+  The request body contains data with the [Contact](#contact-object) structure.
 
   example:
 ```json
@@ -2403,7 +2403,7 @@ Request body
 ```
 
 #### Response
-The response is a [Contact](#contact-object) Object
+The response is a [Contact](#contact-object) Object.
 
 #### Example
 Using curl
@@ -2543,7 +2543,7 @@ Path parameters
 
 #### Response
 
-  The response is a [Contact Identity](#contact-identity-object) Object
+  The response is a [Contact Identity](#contact-identity-object) Object.
 
 #### Example
 
@@ -2578,7 +2578,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Contact Identity](#contact-identity-object) structure
+  The request body contains data with the [Contact Identity](#contact-identity-object) structure.
 
   example:
 ```json
@@ -2598,7 +2598,7 @@ Request body
 
 #### Response
 
-The response is a [Contact Identity](#contact-identity-object) Object
+The response is a [Contact Identity](#contact-identity-object) Object.
 
 #### Example
 
@@ -2651,7 +2651,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Contact Identity](#contact-identity-object) structure
+  The request body contains data with the [Contact Identity](#contact-identity-object) structure.
 
   example:
 ```json
@@ -2671,7 +2671,7 @@ Request body
 
 #### Response
 
-The response is a [Contact Identity](#contact-identity-object) Object
+The response is a [Contact Identity](#contact-identity-object) Object.
 
 #### Example
 Using curl
@@ -3278,7 +3278,7 @@ example:
 
 #### Response
 
-the response is a [Public Canned Message](#public-Canned-Message-object) Object
+The response is a [Public Canned Message](#public-Canned-Message-object) Object.
 
 #### Example
 
@@ -3321,7 +3321,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure
+  The request body contains data with the [Public Canned Message](#public-Canned-Message-object) structure.
 
 example:
 ```Json
@@ -3338,7 +3338,7 @@ example:
 
 #### Response
 
-the response is a [Public Canned Message](#public-Canned-Message-object) Object
+The response is a [Public Canned Message](#public-Canned-Message-object) Object.
 
 #### Example
 
@@ -3473,7 +3473,7 @@ Path Parameters
 
 #### Response
 
-the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
+The response is a [Private Canned Message Category](#private-Canned-Message-Category-object) Object.
 
 #### Example
 
@@ -3503,7 +3503,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Private Canned Message Category](#private-Canned-Message-Category-object) structure
+  The request body contains data with the [Private Canned Message Category](#private-Canned-Message-Category-object) structure.
 
 example:
 ```Json
@@ -3515,7 +3515,7 @@ example:
 
 #### Response
 
-the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
+The response is a [Private Canned Message Category](#private-Canned-Message-Category-object) Object.
 
 #### Example
 
@@ -3553,7 +3553,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Private Canned Message Category](#private-Canned-Message-Category-object) structure
+  The request body contains data with the [Private Canned Message Category](#private-Canned-Message-Category-object) structure.
 
 example:
 ```Json
@@ -3565,7 +3565,7 @@ example:
 
 #### Response
 
-the response is: [Private Canned Message Category](#private-Canned-Message-Category-object) Object
+The response is a [Private Canned Message Category](#private-Canned-Message-Category-object) Object.
 
 #### Example
 
@@ -3663,7 +3663,7 @@ Query string
 
 #### Response
 
-the response is: list of [Private Canned Message](#private-Canned-Message-object) Object
+The response is a list of [Private Canned Message](#private-Canned-Message-object) Object.
 
 #### Example
 
@@ -3718,7 +3718,7 @@ Query string
 
 ##### Response
 
-the response is: [Private Canned Message](#private-Canned-Message-object) Object
+The response is a [Private Canned Message](#private-Canned-Message-object) Object.
 
 #### Example
 
@@ -3758,7 +3758,7 @@ Content-Type:  application/json
 
 Request Body
 
-  The request body contains data with the [Private Canned Message](#private-Canned-Message-object) structure
+  The request body contains data with the [Private Canned Message](#private-Canned-Message-object) structure.
 
 example:
 ```Json
@@ -3775,7 +3775,7 @@ example:
 
 #### Response
 
-the response is: [Private Canned Message](#private-Canned-Message-object) Object
+The response is a [Private Canned Message](#private-Canned-Message-object) Object.
 
 #### Example
 
@@ -3827,7 +3827,7 @@ example:
 
 #### Response
 
-the response is: [Public Canned Message](#public-Canned-Message-object) Object
+The response is a [Public Canned Message](#public-Canned-Message-object) Object.
 
 #### Example
 
@@ -3869,7 +3869,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Private Canned Message](#private-Canned-Message-object) structure
+  The request body contains data with the [Private Canned Message](#private-Canned-Message-object) structure.
 
 example:
 ```Json
@@ -3886,7 +3886,7 @@ example:
 
 #### Response
 
-the response is: [Private Canned Message](#private-Canned-Message-object) Object
+The response is a [Private Canned Message](#private-Canned-Message-object) Object.
 
 #### Example
 
@@ -4107,7 +4107,7 @@ Path Parameters
 
 Request Body
 
-  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure
+  The request body contains data with the [Agent Away Status](#agent-Away-Status-object) structure.
 
 example:
 ```Json
@@ -4240,7 +4240,7 @@ Path parameters
 
 #### Response
 
-The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object.
 
 #### Example
 Using curl
@@ -4266,7 +4266,7 @@ Content-Type:  application/json
 ####  Parameters
 
 Request body
-  The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure
+  The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure.
 
   example:
 ```json
@@ -4278,7 +4278,7 @@ Request body
 
 #### Response
 
-The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object.
 
 #### Example
 
@@ -4316,7 +4316,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure
+  The request body contains data with the [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) structure.
 
   example:
 ```json
@@ -4328,7 +4328,7 @@ Request body
 
 #### Response
 
-The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object
+The response is a [Whitelisted Login IP Range](#whitelisted-login-ip-range-object) Object.
 
 #### Example
 Using curl
