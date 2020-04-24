@@ -421,7 +421,7 @@ You need `Manage Settings` permission to manage `Translation Excluded Words`.
 - `GET /api/v3/livechat/translationExcludedWords` - [Get translation excluded words](#get-translation-excluded-words)
 - `PUT /api/v3/livechat/translationExcludedWords` - [Update translation excluded words](#update-translation-excluded-words)
 
-## Translation Excluded Word Related Objects JSON Format
+## Translation Excluded Words Related Objects JSON Format
 
 ### Translation Excluded Words Object
 
@@ -429,7 +429,7 @@ You need `Manage Settings` permission to manage `Translation Excluded Words`.
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `excludedWords` |string[]  || no | yes || Content of translation excluded word.
+| `excludedWords` |string[]  || no | yes || Content of translation excluded words.
 
 ## Endpoints
 
@@ -1682,24 +1682,24 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | N/A | N/A | | Id of the session. |
-| `startTime` | datetime | | N/A | N/A |  | Time when the session started. |
-| `ip` | string |  | N/A | N/A | | The IP of the visitor. |
-| `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
-| `searchEngine` | string |  | N/A | N/A | | The search engine the visitor used to search for your website. |
-| `keywords` | string |  | N/A | N/A | | The keywords the visitor used to search for your website. |
-| `browser` | string | | N/A | N/A | | The browser the visitor is using. |
-| `flashVersion` | string |  | N/A | N/A | | The flash version of the browser the visitor is using. |
-| `language` | string |  | N/A | N/A | | The language the visitor is using. |
-| `screenResolution` | string |  | N/A | N/A | | The screen resolution of the visitor's device. |
-| `operatingSystem` | integer |  | N/A | N/A | | The operating system of the visitor's device. |
-| `timeZone` | string |  | N/A | N/A | | The time zone of the visitor. |
-| `landingPageURL` | string |  | N/A | N/A | | The URL of the first page of your website the visitor visited. |
-| `landingPageTitle` | string | | N/A | N/A | | The title of the first page of your website the visitor visited. |
-| `visitorId` | Guid | | N/A | N/A | | The id of the visitor |
-| `visitor` | [Visitor](./Global%20API.md#Visitor) | yes | N/A | N/A | | Available only when visitor is included  |
-| `contactId` | integer | | N/A | N/A | | The id of the contact  |
-| `contact` | [Contact](./Global%20API.md#Contact) | yes | N/A | N/A | | Available only when contact is included  |
+| `id` | Guid |  | yes | no | | Id of the session. |
+| `startTime` | datetime | | no | no |  | Time when the session started. |
+| `ip` | string |  | no | no | | The IP of the visitor. |
+| `referrerURL` | string |  | no | no | | The rest part of the URL will be abandoned if the URL is too long. |
+| `searchEngine` | string |  | no | no | | The search engine the visitor used to search for your website. |
+| `keywords` | string |  | no | no | | The keywords the visitor used to search for your website. |
+| `browser` | string | | no | no | | The browser the visitor is using. |
+| `flashVersion` | string |  | no | no | | The flash version of the browser the visitor is using. |
+| `language` | string |  | no | no | | The language the visitor is using. |
+| `screenResolution` | string |  | no | no | | The screen resolution of the visitor's device. |
+| `operatingSystem` | integer |  | no | no | | The operating system of the visitor's device. |
+| `timeZone` | string |  | no | no | | The time zone of the visitor. |
+| `landingPageURL` | string |  | no | no | | The URL of the first page of your website the visitor visited. |
+| `landingPageTitle` | string | | no | no | | The title of the first page of your website the visitor visited. |
+| `visitorId` | Guid | | no | no | | The id of the visitor |
+| `visitor` | [Visitor](./Global%20API.md#Visitor) | yes | no | no | | Available only when the visitor is included  |
+| `contactId` | integer | | no | no | | The id of the contact  |
+| `contact` | [Contact](./Global%20API.md#Contact) | yes | no | no | | Available only when contact is included  |
 
 ## Endpoint
 
@@ -1805,7 +1805,7 @@ Response
 | `sessionId` | Guid | | no | no |  | Id of session |
 | `session` | [Session](#session) | yes | no | no |  |  The related [Session](#session) object|
 | `botId` | Guid | | no | no |  | Id of chatbot |
-| `chatBot` | [ChatBot](./Bot%20API.md#bot-object) | yes | no | no |  |  The related [ChatBot](#chatBot) object|
+| `chatBot` | [ChatBot](./Bot%20API.md#bot-object) | yes | no | no |  |  The related [ChatBot](./Bot%20API.md#bot-object) object|
 
 ### Chat Message Object
 
