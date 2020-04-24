@@ -3326,7 +3326,7 @@ Content-Type:  application/json
 | `socialMediaLogin` | string | no | no | |  Including `none` and `facebook`. |
 | `isEnableGoogleReCAPTCHA` | boolean | no | no | | |
 | `reCAPTCHALabel` | string | no | no | |  |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 | `isVisitorInfoRecorded` | boolean | no | no | true | If remember visitor info collected from pre-chat form. |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
@@ -3502,7 +3502,7 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `isEnable` | boolean | no | no | | Whether the pot chat is enabled or not. |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 | `greetingMessage` | string | no | no | | |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
@@ -3626,7 +3626,7 @@ Content-Type:  application/json
 | `customEmailIfAddNavigationInfo` | boolean | no | no | |  |
 | `customEmailIfAddVisitorInfo` | boolean | no | no | |  |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 
 ## Campaign Offline Message Endpoints
 
@@ -4596,7 +4596,7 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 
 ## Agent Wrap-Up Endpoints
 
