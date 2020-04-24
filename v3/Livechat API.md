@@ -3574,7 +3574,7 @@ Content-Type:  application/json
   "isEnable":  false,
   "fields":  [
     {
-      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "id": "35b48bc5-3a8a-4af4-a8f5-0b8041ef66bb",
       "field": {
         "isSystem": true,
         "name": "Name",
@@ -3620,7 +3620,7 @@ example:
   "isEnable":  true,
   "fields":  [
     {
-      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "id": "35b48bc5-3a8a-4af4-a8f5-0b8041ef66bb",
       "field": {
         "isSystem": true,
         "name": "Name",
@@ -3652,7 +3652,7 @@ curl -H "Content-Type: application/json" -d '{
   "isEnable":  true,
   "fields":  [
     {
-      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "id": "35b48bc5-3a8a-4af4-a8f5-0b8041ef66bb",
       "field": {
         "isSystem": true,
         "name": "Name",
@@ -3681,7 +3681,7 @@ Content-Type:  application/json
   "isEnable":  true,
   "fields":  [
     {
-      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "id": "35b48bc5-3a8a-4af4-a8f5-0b8041ef66bb",
       "field": {
         "isSystem": true,
         "name": "Name",
@@ -3779,7 +3779,7 @@ Content-Type:  application/json
   "formFieldLayoutStyle": "leftofInput",
   "fields":  [
     {
-      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "id": "f1e012b4-a0b5-40d8-9c73-c013c2927d11",
       "field": {
         "isSystem": true,
         "name": "Name",
@@ -3836,7 +3836,7 @@ example:
   "formFieldLayoutStyle": "leftofInput",
   "fields":  [
     {
-      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "id": "f1e012b4-a0b5-40d8-9c73-c013c2927d11",
       "field": {
         "isSystem": true,
         "name": "Name",
@@ -3880,7 +3880,7 @@ curl -H "Content-Type: application/json" -d '{
   "formFieldLayoutStyle": "leftofInput",
   "fields":  [
     {
-      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "id": "f1e012b4-a0b5-40d8-9c73-c013c2927d11",
       "field": {
         "isSystem": true,
         "name": "Name",
@@ -3920,7 +3920,7 @@ Content-Type:  application/json
   "formFieldLayoutStyle": "leftofInput",
   "fields":  [
     {
-      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "id": "f1e012b4-a0b5-40d8-9c73-c013c2927d11",
       "field": {
         "isSystem": true,
         "name": "Name",
