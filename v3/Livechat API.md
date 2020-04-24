@@ -418,8 +418,8 @@ Content-Type:  application/json
 # Translation Excluded Words
 
 You need `Manage Settings` permission to manage `Translation Excluded Words`.
-- `GET /api/v3/livechat/translationExcludedWords` - [Get translation excluded words](#get-a-list-of-translation-excluded-word)
-- `PUT /api/v3/livechat/translationExcludedWords` - [Update translation excluded words](#update-a-translation-excluded-word)
+- `GET /api/v3/livechat/translationExcludedWords` - [Get translation excluded words](#get-translation-excluded-words)
+- `PUT /api/v3/livechat/translationExcludedWords` - [Update translation excluded words](#update-translation-excluded-words)
 
 ## Translation Excluded Word Related Objects JSON Format
 
@@ -499,7 +499,7 @@ curl -H "Content-Type: application/json" -d '{
     "Hello",
     "Hi"
   ]
-}' -X PUT https://api1.comm100.io/api/v3/livechat/translationExcludedWords/5587fc9d-92e6-4487-a2e8-92e68d6892c4
+}' -X PUT https://api1.comm100.io/api/v3/livechat/translationExcludedWords
 ```
 
 Response
@@ -1159,7 +1159,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Mobile Push](#mobile-push-json-format) object structure.
+  The request body contains data with the [Mobile Push](#mobile-push-json-format) structure.
 
 example:
 ```Json
@@ -1335,7 +1335,7 @@ Path parameters
 
 Request body
 
-  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) object structure.
+  The request body contains data with the [Live Chat Agent](#live-chat-agent-object) structure.
 
 example:
 ```Json
@@ -1372,7 +1372,7 @@ Content-Type:  application/json
 
 - `GET /api/v3/livechat/visitors` - [Get list of live chat visitors](#get-list-of-live-chat-visitors)
 - `GET /api/v3/livechat/visitors/{id}` - [Get a live chat visitor by id](#get-a-live-chat-visitor-by-id)  
-- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable)  
+- `PUT /api/v3/livechat/visitors/{id}` - [update a visitor's custom variable results](#update-a-visitor's-custom-variable-results)  
 
 ## Related Object JSON Format
 
@@ -1684,22 +1684,22 @@ Content-Type:  application/json
 | - | - |- | :-: | :-: | :-: | - |
 | `id` | Guid |  | N/A | N/A | | Id of the session. |
 | `startTime` | datetime | | N/A | N/A |  | Time when the session started. |
-| `ip` | string |  | N/A | N/A | |  |
+| `ip` | string |  | N/A | N/A | | The IP of the visitor. |
 | `referrerURL` | string |  | N/A | N/A | | The rest part of URL will be abandoned if the URL is too long. |
-| `searchEngine` | string |  | N/A | N/A | |  |
-| `keywords` | string |  | N/A | N/A | |  |
-| `browser` | string | | N/A | N/A | |  |
-| `flashVersion` | string |  | N/A | N/A | |  |
-| `language` | string |  | N/A | N/A | |  |
-| `screenResolution` | string |  | N/A | N/A | |  |
-| `operatingSystem` | string |  | N/A | N/A | |  |
-| `timeZone` | string |  | N/A | N/A | |  |
-| `landingPageURL` | string |  | N/A | N/A | |  |
-| `landingPageTitle` | string | | N/A | N/A | |  |
+| `searchEngine` | string |  | N/A | N/A | | The search engine the visitor used to search for your website. |
+| `keywords` | string |  | N/A | N/A | | The keywords the visitor used to search for your website. |
+| `browser` | string | | N/A | N/A | | The browser the visitor is using. |
+| `flashVersion` | string |  | N/A | N/A | | The flash version of the browser the visitor is using. |
+| `language` | string |  | N/A | N/A | | The language the visitor is using. |
+| `screenResolution` | string |  | N/A | N/A | | The screen resolution of the visitor's device. |
+| `operatingSystem` | integer |  | N/A | N/A | | The operating system of the visitor's device. |
+| `timeZone` | string |  | N/A | N/A | | The time zone of the visitor. |
+| `landingPageURL` | string |  | N/A | N/A | | The URL of the first page of your website the visitor visited. |
+| `landingPageTitle` | string | | N/A | N/A | | The title of the first page of your website the visitor visited. |
 | `visitorId` | Guid | | N/A | N/A | | The id of the visitor |
-| `visitor` | [Visitor](#visitor) | yes | N/A | N/A | | Available only when visitor is included  |
+| `visitor` | [Visitor](./Global%20API.md#Visitor) | yes | N/A | N/A | | Available only when visitor is included  |
 | `contactId` | integer | | N/A | N/A | | The id of the contact  |
-| `contact` | [Contact](#contact) | yes | N/A | N/A | | Available only when contact is included  |
+| `contact` | [Contact](./Global%20API.md#Contact) | yes | N/A | N/A | | Available only when contact is included  |
 
 ## Endpoint
 
@@ -1773,39 +1773,39 @@ Response
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | N/A | N/A | | Id of the chat. |
-| `agentIds` | integer[] |  | N/A | N/A | | Maximum four agents can join a chat. |
-| `agents` | [Agent](./Global%20API.md#agent-object)[] | yes | N/A | N/A | | Chatbot is a type of agent. |
-| `startTime` | datetime | | N/A | N/A | |  |
-| `endTime` | datetime | | N/A | N/A | |  |
-| `ifQueued` | boolean | | N/A | N/A | |  |
-| `ifAudioChatHappened` | boolean | | N/A | N/A | false |  |
-| `ifVideoChatHappened` | boolean | | N/A | N/A | false |  |
-| `messages` | [Chat Message](#Chat-Message-object)[] | | N/A | N/A |  | |
-| `status` | string | | N/A | N/A |  | Including `normal`, `refused` and `missed`. |
-| `requestingPageTitle` | string | | N/A | N/A |  |  |
-| `requestingPageURL` | string | | N/A | N/A |  | |
-| `source` | string | | N/A | N/A |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
-| `autoInvitationId` | Guid | | N/A | N/A |  | |
-| `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | N/A | N/A |  |  |
-| `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) |  | N/A | N/A |  |  |
-| `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) |  | N/A | N/A |  |  |
-| `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) |  | N/A | N/A |  |  |
-| `customVariable` | [Chat Custom Variable](#Chat-Custom-Variable-object) |  | N/A | N/A |  |  |
-| `requestedTime` | datetime | | N/A | N/A | | The time when the chat is requested. |
-| `offlineMessageId` | Guid | | N/A | N/A | |  |
-| `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | N/A | N/A |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
-| `avgResponseTime` | float | | N/A | N/A | |  |
-| `visitorMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Visitors. |
-| `agentMessagesCount` | integer | | N/A | N/A | 0 | The number of messages sent by Agents. |
-| `campaignId` | Guid | | N/A | N/A |  |  |
-| `campaign` | [Campaign](#campaign) | yes | N/A | N/A |  |  |
-| `lastMessageSentBy` | string | | N/A | N/A |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
-| `customerSegments` | [Customer Segment](#customer-segment)[] | | N/A | N/A |  | |
-| `sessionId` | Guid | | N/A | N/A |  | Id of session |
-| `session` | [Session](#session) | yes | N/A | N/A |  |  The related [Session](#session) object|
-| `botId` | Guid | | N/A | N/A |  | Id of chatbot |
-| `chatBot` | [ChatBot](#chatBot) | yes | N/A | N/A |  |  The related [ChatBot](#chatBot) object|
+| `id` | Guid |  | yes | no | | Id of the chat. |
+| `agentIds` | integer[] |  | no | no | | Maximum four agents can join a chat. |
+| `agents` | [Agent](./Global%20API.md#agent-object)[] | yes | no | no | | Chatbot is a type of agent. |
+| `startTime` | datetime | | no | no | | Time when the chat started |
+| `endTime` | datetime | | no | no | | Time when the chat ends |
+| `ifQueued` | boolean | | no | no | |  |
+| `ifAudioChatHappened` | boolean | | no | no | false |  |
+| `ifVideoChatHappened` | boolean | | no | no | false |  |
+| `messages` | [Chat Message](#Chat-Message-object)[] | | no | no |  | |
+| `status` | string | | no | no |  | Including `normal`, `refused` and `missed`. |
+| `requestingPageTitle` | string | | no | no |  |  |
+| `requestingPageURL` | string | | no | no |  | |
+| `source` | string | | no | no |  | Including `chatButton`, `autoInvitation` and `manualInvitation`. |
+| `autoInvitationId` | Guid | | no | no |  | |
+| `autoInvitation` | [Auto Invitation](#auto-invitation-object) | yes | no | no |  |  |
+| `preChat` | [Chat Pre-Chat](#Chat-Pre-Chat-object) |  | no | no |  |  |
+| `postChat` | [Chat Post Chat](#Chat-Post-Chat-object) |  | no | no |  |  |
+| `agentWrapUp` | [Chat Agent wrap-up](#Chat-agent-wrap-up-object) |  | no | no |  |  |
+| `customVariable` | [Chat Custom Variable](#field-value-json-format) |  | no | no |  |  |
+| `requestedTime` | datetime | | no | no | | The time when the chat is requested. |
+| `offlineMessageId` | Guid | | no | no | |  |
+| `offlineMessage` | [Offline Message](#Offline-Message-JSON-format) | yes | no | no |  | The Offline Message submitted after the Visitor switches from Waiting for Chat. |
+| `avgResponseTime` | float | | no | no | |  |
+| `visitorMessagesCount` | integer | | no | no | 0 | The number of messages sent by Visitors. |
+| `agentMessagesCount` | integer | | no | no | 0 | The number of messages sent by Agents. |
+| `campaignId` | Guid | | no | no |  |  |
+| `campaign` | [Campaign](#campaign) | yes | no | no |  |  |
+| `lastMessageSentBy` | string | | no | no |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
+| `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | |
+| `sessionId` | Guid | | no | no |  | Id of session |
+| `session` | [Session](#session) | yes | no | no |  |  The related [Session](#session) object|
+| `botId` | Guid | | no | no |  | Id of chatbot |
+| `chatBot` | [ChatBot](./Bot%20API.md#bot-object) | yes | no | no |  |  The related [ChatBot](#chatBot) object|
 
 ### Chat Message Object
 
@@ -1813,12 +1813,12 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `type` | string | N/A  | N/A | | Including `system`, `visitor`, `agent`, `chatbot` and `note`. |
-| `senderName` | string | N/A  | N/A | |  |
-| `sentTime` | datetime | N/A  | N/A | |  |
-| `content` | string | N/A  | N/A | | |
-| `translatedMessage` | string | N/A  | N/A | |  |
-| `attachmentUrl` | string | N/A | N/A | |  | The attachment file Url |
+| `type` | string | no  | no | | Including `system`, `visitor`, `agent`, `chatbot` and `note`. |
+| `senderName` | string | no  | no | |  |
+| `sentTime` | datetime | no  | no | |  |
+| `content` | string | no  | no | | |
+| `translatedMessage` | string | no  | no | |  |
+| `attachmentUrl` | string | no | no | |  | The attachment file Url |
 
 ### Chat Pre-Chat Object
 
@@ -1826,17 +1826,17 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `socialMediaSource` | string | N/A  | N/A | |  Including `none` and `facebook`. |
-| `socialProfileURL` | string | N/A  | N/A | |  |
-| `name` | string | N/A  | N/A   | |  |
-| `email` | string | N/A  | N/A | | |
-| `phone` | string | N/A  | N/A   | |  |
-| `company` | string | N/A  | N/A | | |
-| `productService` | string | N/A  | N/A   | |  |
-| `ticketID` | string | N/A  | N/A | | |
-| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
-| `departmentId` | Guid | N/A  | N/A | | |
-| `department` | [Department](./Global%20API.md#department-object) | N/A  | N/A | | |
+| `socialMediaSource` | string | no  | no | |  Including `none` and `facebook`. |
+| `socialProfileURL` | string | no  | no | |  |
+| `name` | string | no  | no   | |  |
+| `email` | string | no  | no | | |
+| `phone` | string | no  | no   | |  |
+| `company` | string | no  | no | | |
+| `productService` | string | no  | no   | |  |
+| `ticketID` | string | no  | no | | |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | no | no | |  |  |
+| `departmentId` | Guid | no  | no | | |
+| `department` | [Department](./Global%20API.md#department-object) | no  | no | | |
 
 ### Chat Post Chat Object
 
@@ -1855,11 +1855,11 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `categories` | string[] | N/A | N/A | |   |
-| `comment` | string | N/A | N/A | |   |
-| `lastUpdatedTime` | datetime | N/A | N/A | |   |
-| `lastUpdatedByAgentId` | int | N/A | N/A | |  Id of the agent. |
-| `fieldValues` | [Field Value](#field-value-json-format)[] | N/A | N/A | |  |  |
+| `categories` | string[] | no | no | |   |
+| `comment` | string | no | no | |   |
+| `lastUpdatedTime` | datetime | no | no | |   |
+| `lastUpdatedByAgentId` | int | no | no | |  Id of the agent. |
+| `fieldValues` | [Field Value](#field-value-json-format)[] | no | no | |  |  |
 
 ## Endpoint
 
@@ -1925,8 +1925,7 @@ Response
               "sentTime": "2019-01-05T07:17:09.89",
               "content": "test",
               "translatedMessage": "test",
-              "attachment": [file binary data],
-              "attachmentName": "comm100SDK.css"
+              "attachmentUrl": "https://api1.comm100.io/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
             },
             ...
             ],
@@ -1949,7 +1948,7 @@ Response
               "phone": "11111111111",
               "company": "test",
               "productService": "test",
-              "ticketID": "532DFB20-2A1C-BFC6-EEB5-46CACFE72EC2",
+              "ticketID": "T201",
               "fieldValues": []
             },
             "postChat": {
@@ -2041,8 +2040,7 @@ Response
     "sentTime": "2019-01-05T07:17:09.89",
     "content": "test",
     "translatedMessage": "test",
-    "attachment": [file binary data],
-    "attachmentName": "comm100SDK.css"
+    "attachmentUrl": "https://api1.comm100.io/FileService/v1/files/a2d45dad-a7c3-4b7b-ba1c-bc9eaea34f8d"
   },
   ...
   ],
@@ -2065,7 +2063,7 @@ Response
     "phone": "11111111111",
     "company": "test",
     "productService": "test",
-    "ticketID": "532DFB20-2A1C-BFC6-EEB5-46CACFE72EC2",
+    "ticketID": "T201",
     "fieldValues": []
   },
   "postChat": {
@@ -2222,8 +2220,8 @@ HTTP/1.1 204 No Content
 | `sessionId` | Guid | | no | no |  | Id of the session. |
 | `session` | [Session](#session) | yes | no | no |  | Available only when session is included. |
 | `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | An array of [Customer Segment](#customer-segment). |
-| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | Values of custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
-| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | Information of custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
+| `customFields` | [Field Value](#field-value-json-format)[] | | no | no |  | Values from custom fields entered by visitors in the offline message window. An array of [Field Value](#field-value-json-format). |
+| `customVariables` | [Field Value](#field-value-json-format)[] | | no | no |  | Information from custom variables captured from the web page visitors viewed. An array of [Field Value](#field-value-json-format). |
 | `attachment` | [Attachment](#attachment-json-format) | | no | no |  | The attachment file data. |
 
 ### Attachment JSON format
@@ -2805,7 +2803,7 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `type` | string | no | no | `adaptive` | Type of the button, including `adaptive`, `image` and `textLink`. |
+| `type` | string | no | no | `adaptive` | Type of the button, includes:`adaptive`, `image` and `textLink`. |
 | `isHideWhenOffline` | boolean | no | no | | Whether the chat button is visible when no agent is online. `True` means that button is invisible. |
 | `isDomainRestrictionEnabled` | boolean | no | no | | Whether the domain restriction is enabled or not. |
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
@@ -4698,7 +4696,7 @@ example:
 
 #### Response
 
-The response is a [Agent Wrap-Up](#Agent-Wrap-Up-Object) object
+The response is an [Agent Wrap-Up](#Agent-Wrap-Up-Object) object
 
 #### Example
 
@@ -5713,7 +5711,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  the unique id of the campaign |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -6988,7 +6986,7 @@ Response
   You need `Manage Ban List` permission to manage the ban list.
 
 - `GET /api/v3/livechat/bans` - [Get a list of bans](#get-a-list-of-bans) include visitor, agent
-- `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-ban) include visitor, agent
+- `GET /api/v3/livechat/bans/{id}` - [Get a ban by id](#get-a-single-ban) include visitor, agent
 - `POST /api/v3/livechat/bans` - [Create a ban](#create-a-ban)
 - `PUT /api/v3/livechat/bans/{id}` - [Update a ban](#update-a-ban)
 - `DELETE /api/v3/livechat/bans/{id}` - [Delete a ban](#delete-a-ban)
@@ -7004,7 +7002,7 @@ Response
 | `id` | Guid | | yes | no| | Id of the ban. |
 | `type` | string | | no | yes | |  Type of ban, including `visitor` , `ip` and `ipRange`. |
 | `visitorId` | Guid | | no | yes | | Mandatory when `type` is `visitor`. |
-| `visitor` | [Visitor](#visitor) | yes | no | no | |  Available only when visitor is included.|
+| `visitor` | [Visitor](./Global%20API.md#visitor-object) | yes | no | no | |  Available only when visitor is included.|
 | `ip` | string  |  | no | yes | | Ip address of the ban, mandatory when `type` is `ip. |
 | `ipRangeFrom` | string | | no | yes | | Mandatory when `type` is `ipRange`. |
 | `ipRangeTo` | string | | no | yes | | Mandatory when `type` is `ipRange`. |
@@ -7248,10 +7246,10 @@ HTTP/1.1 204 No Content
 
   You need `Manage Settings` permission to manage conversion action.
 
-- `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-site-campaigns) include agent
-- `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-campaign)  include agent
-- `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#get-a-campaign)
-- `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-campaign)
+- `GET /api/v3/livechat/conversionActions` - [Get a list of conversion actions](#get-a-list-of-conversion-actions) include agent
+- `GET /api/v3/livechat/conversionActions/{id}` - [Get a conversion action by id](#get-a-single-conversion-action)  include agent
+- `POST /api/v3/livechat/conversionActions` - [Create a conversion action](#create-a-new-conversion-action)
+- `PUT /api/v3/livechat/conversionActions/{id}` - [Update a conversion action](#update-a-conversion-action)
 - `POST /api/v3/livechat/conversionActions/achieved` - [Make api conversion successful](#make-api-conversion-successful)
 
 ## Related Object JSON Format
