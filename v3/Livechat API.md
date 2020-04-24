@@ -3371,38 +3371,20 @@ Content-Type:  application/json
   "reCAPTCHALabel": "Captchat",
   "fields":  [
     {
-      "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
       "field": {
-        "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
-        "isSystem": false,
-        "name": "teset",
-        "type": "textBox",
-        "options": [{
-          "value": "test",
-          "order": 1,
-        },
-        ...
-        ],
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
         "leftText": "",
         "rightText": "",
-        "optionGroups": [{
-          "name": "test",
-          "order": 1,
-          "options":[]
-        },
-        ...
-        ],
+        "optionGroups": []
       },
-      "isVisible": false,
-      "isRequired": false,
+      "isVisible": true,
+      "isRequired": true,
       "order": 1,
-      "ratingGrades": [{
-        "grade": 1,
-        "label": "",
-        "isVisible": false
-      },
-      ...
-      ]
+      "ratingGrades": []
     },
     ...
   ],
@@ -3440,7 +3422,24 @@ example:
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
   "reCAPTCHALabel": "Captchat",
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3463,7 +3462,24 @@ curl -H "Content-Type: application/json" -d '{
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
   "reCAPTCHALabel": "Captchat",
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat
@@ -3482,7 +3498,25 @@ Content-Type:  application/json
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
   "reCAPTCHALabel": "Captchat",
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3538,7 +3572,25 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "isEnable":  false,
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ],
   "greetingMessage": "",
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3566,7 +3618,24 @@ example:
 ```Json
 {
   "isEnable":  true,
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ],
   "greetingMessage": ""
 }
 ```
@@ -3581,7 +3650,24 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "isEnable":  true,
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ],
   "greetingMessage": "",
   "formFieldLayoutStyle": "leftofInput"
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
@@ -3593,7 +3679,25 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "isEnable":  true,
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ],
   "greetingMessage": "",
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3673,7 +3777,25 @@ Content-Type:  application/json
   "customEmailIfAddNavigationInfo": false,
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
-  "fields":  []
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ]
 }
 ```
 
@@ -3712,7 +3834,24 @@ example:
   "customEmailIfAddNavigationInfo": false,
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
-  "fields":  []
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ]
 }
 ```
 
@@ -3739,7 +3878,24 @@ curl -H "Content-Type: application/json" -d '{
   "customEmailIfAddNavigationInfo": false,
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
-  "fields":  []
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ]
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
 ```
 
@@ -3762,7 +3918,25 @@ Content-Type:  application/json
   "customEmailIfAddNavigationInfo": false,
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
-  "fields":  []
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ]
 }
 ```
 
@@ -4862,7 +5036,8 @@ Content-Type:  application/json
       "isRequired": false,
       "order": 2,
       "ratingGrades": []
-   }
+   },
+   ...
   ]
 }
 ```
