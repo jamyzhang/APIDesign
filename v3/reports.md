@@ -1706,7 +1706,7 @@ Sample response:
 
 ## Real Time
 
-Gives an at-a-glance view of the visitors and ongoing chats on your Website, the performance of Agents and current wait time in the queue.
+Gives an at-a-glance view of the visitors and ongoing chats on your website, the performance of agents and current wait time in the queue.
 
 <div>
 
@@ -1890,7 +1890,7 @@ Sample request:
 
 ```bash
 curl  -X GET "https://api1.comm100.io/api/v3/livechat/reports/realtime/agents? 
-     timezone=+08:00&filterName=department&filterValue=1"
+     timezone=+08:00&filterName=department&filterValue=1487fc9d-92e6-4487-a2e8-92e68d6892e6"
 ```
 
 Sample response:

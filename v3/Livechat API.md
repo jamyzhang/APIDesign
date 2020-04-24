@@ -321,7 +321,7 @@ You need `Manage Settings` permission to update `Auto Distribution`.
 
 Request body
 
-  The request body contains data with the [Auto Distribution](#auto-distribution-object) object structure
+  The request body contains data with the [Auto Distribution](#auto-distribution-object) object structure.
 
 example:
 ```Json
