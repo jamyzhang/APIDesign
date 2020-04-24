@@ -55,7 +55,7 @@ Below is a glance at what reports are available in the Business and Enterprise e
   | GET | [Workload](#workload) | /api/v3/livechat/reports/workload
   | GET | [Efficiency](#efficiency) | /api/v3/livechat/reports/efficiency
   | GET | [Rating](#rating) | /api/v3/livechat/reports/rating
-  | GET | [Post Chat Survey](#post-chat-survey) | /api/v3/livechat/reports/postChatSurvey
+  | GET | [Post-Chat Survey](#post-chat-survey) | /api/v3/livechat/reports/postChatSurvey
   | GET | [Pre-Chat Survey](#pre-chat-survey) | /api/v3/livechat/reports/prechatSurvey
   | GET | [Wrap-up](#wrap-up) | /api/v3/livechat/reports/wrapup/survey<br />/api/v3/livechat/reports/wrapup/completion
   | GET | [Conversions](#conversions) | /api/v3/livechat/reports/conversions
@@ -1218,7 +1218,7 @@ Sample request:
 ```bash
 curl -u tester@comm100.com:ef43f9362aac4f60ad428cb4d072f2c8  
      -X GET "https://hosted.comm100.com/api/v3/livechat/reports/prechatSurvey? 
-     timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&filterName=campaign&filterValue=1"
+     timeFrom=2017-12-01T00:00:00&timeTo=2018-01-01T00:00:00&timezone=+08:00&filterName=campaign&filterValue=1487fc9d-92e6-4487-a2e8-92e68d6892e6"
 ```
 
 Sample response:
@@ -1713,7 +1713,7 @@ Sample response:
 ```json
 [
     {
-        "id": 1,
+        "id": "1487fc9d-92e6-4487-a2e8-92e68d6892e6",
         "usedTimes": 32,
         "agentsUsedIt": 5
     },
