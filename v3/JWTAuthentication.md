@@ -17,7 +17,7 @@ Comm100 RESTful API must use **https** protocol. What the API requests should st
 
 ## Authentication
 
-Comm100 provides only supports 1 authentication method(New authentication method may be added in the future).
+Comm100 use JWT authentication method.
 
 - [JWT Authentication](#JWT-Authentication)
 
@@ -26,18 +26,11 @@ Comm100 provides only supports 1 authentication method(New authentication method
 <div>
 
 ## JWT Authentication
-
-  You can use JWT to authenticate all your API requests to Comm100.
-
-- [Global, Livechat & Report API JWT Authentication](#global-and-livechat-api-JWT-authentication)
-
-<div>
-
-### Global, Livechat & Report API JWT Authentication
-
   You can only use jwt authenticate to exchange an agent's email、password and siteId for an jwt token directly while calling the global, livechat or report API. This grant type is highly secured by Comm100.
 
-##### Using curl
+### How to get the jwt token?
+
+#### Using curl
 
   Params:
 
@@ -52,15 +45,82 @@ Comm100 provides only supports 1 authentication method(New authentication method
      -x POST
 ```
 
-##### Example Response
+#### Example Response
 
 ```bash
   HTTP/1.1 200 OK
   Content-Type: application/json
   {
-  ......
-  "token": "vQAQmLX8jvtsG71ItN2QAisqI_F7cDIE0yaX0FfS3RX6g-HR4gfHSVMaOukomYJiJX0Q",
-  ......
+    ......
+    "token": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiwidHlwIjoiSldUIn0.eyJqdGkiOiI1NjIzNDFjZS0zZDkyLTRlZDYtOGY3ZS0zYTQ0NTdlYjQ0OTEiLCJhZ2VudElkIjoiMSIsInNpdGVJZCI6IjEwMDAxMDAwIiwidGh1bWJwcmludCI6IjhBNjhBOThBQzg0MUI1QTc5OEQ5RkE1MTY1QUU0Nzk3NEVERkIyRjYiLCJzdWNjZXNzIjoiVHJ1ZSIsIm5iZiI6MTU4NzY5NTk4MSwiZXhwIjoxNTg3NzAzMTgxLCJpc3MiOiJwb3J0YWwxLmNvbW0xMDAuaW8ifQ.MKuNrAqkbX5HMPwGH9hT-LlZp__CrNJpavXN7UR2qwM2C5TKG1ooghriQruaEBNDFwV8d7mjuwUMcydII2ayngX5jneabirqlhEu0O3LxGitR7P8NyQMDRMEh2ssJmIIJiCKwz9Mr_IzbtNgBZ5yAJ59jQ3hZZErrs62tlhPcMDAxOvTd9wAePUsISb3_-MbUU_WM9cLIKmQi9XWAUw0U4Lvxqp2dopkTLFyynahQGKbKMP934MMwRlKDQko0GZzcjIokYMWfqhesW9iZnJHP-_JQYjbkd4YL1IGUrD2BygD_trcm6Tk2odcYQKPx8vFvR62lU2_pm8i66ECvN-sAA",
+    ......
+  }
+```
+
+##### Notes
+
+The token has an expiration time, if the token has expired, please call the API again to obtain a new token.
+
+### How to call the comm100 v3 api by the jwt token?
+You can use the jwt token to call the comm100 v3 api as follow Example.
+
+#### Example
+
+##### Using curl
+
+```bash
+    curl -H "Authorization: Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiwidHlwIjoiSldUIn0.eyJqdGkiOiI1NjIzNDFjZS0zZDkyLTRlZDYtOGY3ZS0zYTQ0NTdlYjQ0OTEiLCJhZ2VudElkIjoiMSIsInNpdGVJZCI6IjEwMDAxMDAwIiwidGh1bWJwcmludCI6IjhBNjhBOThBQzg0MUI1QTc5OEQ5RkE1MTY1QUU0Nzk3NEVERkIyRjYiLCJzdWNjZXNzIjoiVHJ1ZSIsIm5iZiI6MTU4NzY5NTk4MSwiZXhwIjoxNTg3NzAzMTgxLCJpc3MiOiJwb3J0YWwxLmNvbW0xMDAuaW8ifQ.MKuNrAqkbX5HMPwGH9hT-LlZp__CrNJpavXN7UR2qwM2C5TKG1ooghriQruaEBNDFwV8d7mjuwUMcydII2ayngX5jneabirqlhEu0O3LxGitR7P8NyQMDRMEh2ssJmIIJiCKwz9Mr_IzbtNgBZ5yAJ59jQ3hZZErrs62tlhPcMDAxOvTd9wAePUsISb3_-MbUU_WM9cLIKmQi9XWAUw0U4Lvxqp2dopkTLFyynahQGKbKMP934MMwRlKDQko0GZzcjIokYMWfqhesW9iZnJHP-_JQYjbkd4YL1IGUrD2BygD_trcm6Tk2odcYQKPx8vFvR62lU2_pm8i66ECvN-sAA" 
+         -H "Content-Type: application/json"
+      -d '{
+            "name": "livechat15293908029",
+            "color": "339FD9",
+            "isEnable": false,
+            "order": 1,
+            "description": "",
+            "conditionMetType": "all",
+            "logicalExpression": "",
+            "conditions": [
+              {
+                "field": "CurrentPageUrl",
+                "operator": "include",
+                "value": "live",
+                "order": 1
+              }
+            ],
+            "alertTo":{
+                "agentIds":[4,5],
+                "departmentIds":[]
+            }
+          }' 
+      -X POST https://api1.comm100.io/api/v3/livechat/customerSegments
+```
+
+##### Example Response
+
+```bash
+  HTTP/1.1 201 Created
+  Location: https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+  Content-Type:  application/json
+  {
+    "name": "livechat15293908029",
+    "color": "339FD9",
+    "isEnable": false,
+    "order": 1,
+    "description": "",
+    "conditionMetType": "all",
+    "logicalExpression": "",
+    "conditions": [
+      {
+        "field": "CurrentPageUrl",
+        "operator": "include",
+        "value": "live",
+        "order": 1
+      }
+    ],
+    "alertTo":{
+        "agentIds":[4,5],
+        "departmentIds":[]
+    }
   }
 ```
 
