@@ -1767,7 +1767,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The unique id of the private canned message |
+  | `id` | Guid | yes  |  The unique id of the shift |
 
 Query string
 
