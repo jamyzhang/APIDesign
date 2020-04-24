@@ -5397,6 +5397,25 @@ Content-Type:  application/json
 | `value` | string | no | no | | |
 | `order` | integer | no | no | | |
 
+  `field` is one key of the following keys:
+
+| Name | Available Operator |
+| - | :-: |
+| `CurrentPageURL` | `is`, `isNot`, `contains`, `doesnotcontain`, `regularExpression` |
+| `ReferringPageURL` | `is`, `isNot`, `contains`, `doesnotcontain`, `regularExpression`   |
+| `ChatRequestingPageURL` | `is`, `isNot`, `contains`, `doesnotcontain`, `regularExpression`   |
+| `LandingPageURL` | `is`, `isNot`, `contains`, `doesnotcontain`, `regularExpression`   |
+| `SearchEngine` | `is`, `isNot` |
+| `SearchKeywords` | `is`, `isNot`, `contains`, `doesnotcontain`, `regularExpression` |
+| `Numberofvisits` | `is`, `isLessThan`, `isMoreThan`  |
+| `Numberofchats` | `is`, `isLessThan`, `isMoreThan`   |
+| `Country/Region` | `is`, `isNot` |
+| `State/Province` | `is`, `isNot`   |
+| `City` | `is`, `isNot`   |
+| `TimeZone` | `is`, `isNot`   |
+| `Language` | `is`, `isNot`   |
+| `Segmentation` | `is`, `isNot`   |
+
 ## Routing Endpoints
 
 ### Get all Custom Rules
