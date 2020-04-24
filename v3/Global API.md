@@ -4490,7 +4490,7 @@ Content-Type:  application/json
 
 # Visitor SSO
 
-  You need `Manage Settings` permission to sso for a site.
+  You need `Manage Settings` permission to set sso for a site.
 
 - `GET /api/v3/globalSettings/visitorSSO` - [Get Visitor SSO](#get-visitor-sso)
 - `PUT /api/v3/globalSettings/visitorSSO` - [update Visitor SSO](#update-visitor-sso)
