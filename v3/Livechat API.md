@@ -3326,7 +3326,7 @@ Content-Type:  application/json
 | `socialMediaLogin` | string | no | no | |  Including `none` and `facebook`. |
 | `isEnableGoogleReCAPTCHA` | boolean | no | no | | |
 | `reCAPTCHALabel` | string | no | no | |  |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 | `isVisitorInfoRecorded` | boolean | no | no | true | If remember visitor info collected from pre-chat form. |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
@@ -3371,38 +3371,20 @@ Content-Type:  application/json
   "reCAPTCHALabel": "Captchat",
   "fields":  [
     {
-      "id": "5062B231-E0D6-AFD3-2E72-4D143792DC03",
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
       "field": {
-        "id": "EC8E372B-8456-C902-CD73-E600FD45CFE6",
-        "isSystem": false,
-        "name": "teset",
-        "type": "textBox",
-        "options": [{
-          "value": "test",
-          "order": 1,
-        },
-        ...
-        ],
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
         "leftText": "",
         "rightText": "",
-        "optionGroups": [{
-          "name": "test",
-          "order": 1,
-          "options":[]
-        },
-        ...
-        ],
+        "optionGroups": []
       },
-      "isVisible": false,
-      "isRequired": false,
+      "isVisible": true,
+      "isRequired": true,
       "order": 1,
-      "ratingGrades": [{
-        "grade": 1,
-        "label": "",
-        "isVisible": false
-      },
-      ...
-      ]
+      "ratingGrades": []
     },
     ...
   ],
@@ -3440,7 +3422,24 @@ example:
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
   "reCAPTCHALabel": "Captchat",
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3463,7 +3462,24 @@ curl -H "Content-Type: application/json" -d '{
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
   "reCAPTCHALabel": "Captchat",
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/preChat
@@ -3482,7 +3498,25 @@ Content-Type:  application/json
   "socialMediaLogin": "none",
   "isEnableGoogleReCAPTCHA": false,
   "reCAPTCHALabel": "Captchat",
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "e50cf43c-d665-4707-9c9c-098b0f6c0656",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ],
   "isVisitorInfoRecorded": false,
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3502,7 +3536,7 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `isEnable` | boolean | no | no | | Whether the pot chat is enabled or not. |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `rating`, `rating comment`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 | `greetingMessage` | string | no | no | | |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
 
@@ -3538,7 +3572,25 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "isEnable":  false,
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "35b48bc5-3a8a-4af4-a8f5-0b8041ef66bb",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ],
   "greetingMessage": "",
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3566,7 +3618,24 @@ example:
 ```Json
 {
   "isEnable":  true,
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "35b48bc5-3a8a-4af4-a8f5-0b8041ef66bb",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ],
   "greetingMessage": ""
 }
 ```
@@ -3581,7 +3650,24 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
   "isEnable":  true,
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "35b48bc5-3a8a-4af4-a8f5-0b8041ef66bb",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ],
   "greetingMessage": "",
   "formFieldLayoutStyle": "leftofInput"
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/postChat
@@ -3593,7 +3679,25 @@ HTTP/1.1 200 OK
 Content-Type:  application/json
 {
   "isEnable":  true,
-  "fields":  [],
+  "fields":  [
+    {
+      "id": "35b48bc5-3a8a-4af4-a8f5-0b8041ef66bb",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ],
   "greetingMessage": "",
   "formFieldLayoutStyle": "leftofInput"
 }
@@ -3626,7 +3730,7 @@ Content-Type:  application/json
 | `customEmailIfAddNavigationInfo` | boolean | no | no | |  |
 | `customEmailIfAddVisitorInfo` | boolean | no | no | |  |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 
 ## Campaign Offline Message Endpoints
 
@@ -3673,7 +3777,25 @@ Content-Type:  application/json
   "customEmailIfAddNavigationInfo": false,
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
-  "fields":  []
+  "fields":  [
+    {
+      "id": "f1e012b4-a0b5-40d8-9c73-c013c2927d11",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ]
 }
 ```
 
@@ -3712,7 +3834,24 @@ example:
   "customEmailIfAddNavigationInfo": false,
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
-  "fields":  []
+  "fields":  [
+    {
+      "id": "f1e012b4-a0b5-40d8-9c73-c013c2927d11",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ]
 }
 ```
 
@@ -3739,7 +3878,24 @@ curl -H "Content-Type: application/json" -d '{
   "customEmailIfAddNavigationInfo": false,
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
-  "fields":  []
+  "fields":  [
+    {
+      "id": "f1e012b4-a0b5-40d8-9c73-c013c2927d11",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    }
+  ]
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/offlineMessage
 ```
 
@@ -3762,7 +3918,25 @@ Content-Type:  application/json
   "customEmailIfAddNavigationInfo": false,
   "customEmailIfAddVisitorInfo": false,
   "formFieldLayoutStyle": "leftofInput",
-  "fields":  []
+  "fields":  [
+    {
+      "id": "f1e012b4-a0b5-40d8-9c73-c013c2927d11",
+      "field": {
+        "isSystem": true,
+        "name": "Name",
+        "type": "text",
+        "options": [],
+        "leftText": "",
+        "rightText": "",
+        "optionGroups": []
+      },
+      "isVisible": true,
+      "isRequired": true,
+      "order": 1,
+      "ratingGrades": []
+    },
+    ...
+  ]
 }
 ```
 
@@ -4596,7 +4770,7 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`.  |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 
 ## Agent Wrap-Up Endpoints
 
@@ -4862,7 +5036,8 @@ Content-Type:  application/json
       "isRequired": false,
       "order": 2,
       "ratingGrades": []
-   }
+   },
+   ...
   ]
 }
 ```
@@ -7898,9 +8073,9 @@ Content-Type:  application/json
         "fields": [
             {
                 "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
-                "name": "Card Number",
-                "type": "cardNumber",
-                "displayName": "Card Number",
+                "name": "city",
+                "type": "dropDownList",
+                "displayName": "city",
                 "isSystem": true,
                 "isVisible": false,
                 "isRequired": false,
@@ -7908,11 +8083,11 @@ Content-Type:  application/json
                 "options":[
                   {
                     "value": "beijing",
-                    "order":0,
+                    "order":1,
                   },
                   {
                     "value": "hangzhou",
-                    "order":1,
+                    "order":2,
                   }],
             },
             ...
@@ -7957,22 +8132,22 @@ Content-Type:  application/json
   "fields": [
     {
       "id": "24fc507d-55b8-4a9c-9bb1-684ee7ad3770",
-      "name": "Card Number",
-      "type": "cardNumber",
-      "displayName": "Card Number",
-      "isSystem": true,
-      "isVisible": false,
-      "isRequired": false,
-      "order": 1,
+      "type":"dropDownList",
+      "name":"city",
+      "displayName": "City",
+      "isRequired":true,
+      "isSystem": false,
+      "isVisible": true,
       "options":[
-        {
-          "value": "beijing",
-          "order":0,
-        },
-        {
-          "value": "hangzhou",
-          "order":1,
-        }
+      {
+        "value": "beijing",
+        "order":1,
+      },
+      {
+        "value": "hangzhou",
+        "order":2,
+      }],
+      "order": 1
     },
     ...
   ]
@@ -7995,12 +8170,21 @@ Request body
     "description": "",
     "fields": [
         {
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":1,
+              },
+              {
+                "value": "hangzhou",
+                "order":2,
+              }],
             "order": 1
         }
     ]
@@ -8019,15 +8203,23 @@ curl -H "Content-Type: application/json" -d '{
     "description": "",
     "fields": [
         {
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":1,
+              },
+              {
+                "value": "hangzhou",
+                "order":2,
+              }],
             "order": 1
-        },
-        ...
+        }
     ]
   }' -X POST https://api1.comm100.io/api/v3/livechat/secureForms
 ```
@@ -8044,12 +8236,21 @@ Location: https://api1.comm100.io/api/v3/livechat/secureForms/b222qa68-92e6-4487
     "fields": [
         {
             "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
+            "type":"dropDownList",
+            "name":"city",
+            "displayName": "City",
+            "isRequired":true,
+            "isSystem": false,
+            "isVisible": true,
+            "options":[
+              {
+                "value": "beijing",
+                "order":1,
+              },
+              {
+                "value": "hangzhou",
+                "order":2,
+              }],
             "order": 1
         },
         ...
@@ -8079,19 +8280,9 @@ Request body
     "name": "justfortest",
     "description": "",
     "fields": [
-        {
+      {
             //update
             "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
-            "order": 1
-        },
-        {
-            //create
             "type":"dropDownList",
             "name":"city",
             "displayName": "City",
@@ -8101,12 +8292,22 @@ Request body
             "options":[
               {
                 "value": "beijing",
-                "order":0,
+                "order":1,
               },
               {
                 "value": "hangzhou",
-                "order":1,
+                "order":2,
               }],
+            "order": 1
+        },
+        {
+            //create
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
             "order": 2
         }
     ]
@@ -8129,16 +8330,6 @@ curl -H "Content-Type: application/json" -d '{
         {
             //update
             "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
-            "order": 1
-        },
-        {
-            //create
             "type":"dropDownList",
             "name":"city",
             "displayName": "City",
@@ -8148,12 +8339,22 @@ curl -H "Content-Type: application/json" -d '{
             "options":[
               {
                 "value": "beijing",
-                "order":0,
+                "order":1,
               },
               {
                 "value": "hangzhou",
-                "order":1,
+                "order":2,
               }],
+            "order": 1
+        },
+        {
+            //create
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
             "order": 2
         }
     ]
@@ -8171,16 +8372,6 @@ Content-Type:  application/json
     "fields": [
         {
             "id": "1222qa68-92e6-4487-a2e8-8234fc9d1f48",
-            "name": "Card Number",
-            "displayName": "Card Number",
-            "type": "cardNumber",
-            "isSystem": true,
-            "isVisible": false,
-            "isRequired": false,
-            "order": 1
-        },
-        {
-            "id": "vc21qa68-92e6-4487-a2e8-8234fc9d1f48",
             "type":"dropDownList",
             "name":"city",
             "displayName": "City",
@@ -8190,12 +8381,22 @@ Content-Type:  application/json
             "options":[
               {
                 "value": "beijing",
-                "order":0,
+                "order":1,
               },
               {
                 "value": "hangzhou",
-                "order":1,
+                "order":2,
               }],
+            "order": 1
+        },
+        {
+            "id": "vc21qa68-92e6-4487-a2e8-8234fc9d1f48",
+            "name": "Card Number",
+            "displayName": "Card Number",
+            "type": "cardNumber",
+            "isSystem": true,
+            "isVisible": false,
+            "isRequired": false,
             "order": 2
         }
     ]
@@ -8230,8 +8431,8 @@ HTTP/1.1 204 No Content
 # Secure Form Field
 
 - `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Get a list of secureFormFields](#get-a-list-of-secure-form-fields)
-- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field)
-- `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#ceate-a-secure-form-field)
+- `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Get a secure form field by id](#get-a-secure-form-field-by-id)
+- `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields` - [Create a secure form field](#create-a-secure-form-field)
 - `PUT /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Update a secure form field](#update-a-secure-form-field)
 - `DELETE /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}` - [Delete a secure form field](#delete-a-secure-form-field)
 
@@ -8323,7 +8524,7 @@ Content-Type:  application/json
 ]
 ```
 
-### Get a single secure form field
+### Get a secure form field by id
 
   `GET /api/v3/livechat/secureForms/{secureFormId}/secureFormFields/{id}`
 
@@ -8373,7 +8574,7 @@ Content-Type:  application/json
 }
 ```
 
-### Create a new secure form field
+### Create a secure form field
 
   `POST /api/v3/livechat/secureForms/{secureFormId}/secureFormFields`
 
