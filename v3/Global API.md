@@ -140,7 +140,7 @@ curl -H "Content-Type: application/json" -d '{
 }' -X PUT https://api1.comm100.io/api/v3/globalSettings/site
 ```
 Response
-```json
+```json 
 HTTP/1.1 200 OK
 Content-Type:  application/json
 {
