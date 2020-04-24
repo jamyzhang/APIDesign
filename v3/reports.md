@@ -76,8 +76,8 @@ Below is a glance at what reports are available in the Business and Enterprise e
   - available when `group = hour/day/week/month/24*7Distribution/halfHourDistribution`
   - when `group = day/hour/week/month`, `time` contains `from` and `to`, in format `yyyy-MM-ddTHH:mm:ss`
   - when `group = halfHourDistribution`, `time` contains `from` and `to`, in format `hh:mm`
-  - when `group = 24*7Distribution`, `time` contains `from` and `to`, in format `ddd. hh:mm` (`ddd` is abbreviation of the day of the week)
-- When `group` is `agent`, `department` or `campaign`, each item in the response will contain `agentId`, `departmentId` or `campaignId` accordingly.
+  - when `group = 24*7Distribution`, `time` contains `from` and `to`, in format `ddd. hh:mm` (`ddd` is an abbreviation of the day of the week)
+- When the `group` is `agent`, `department` or `campaign`, each item in the response will contain `agentId`, `departmentId` or `campaignId` accordingly.
 - Only agents with **"View Reports"** permission have access to the report API resources.
 
 </div>
@@ -250,7 +250,7 @@ Shows the number of chats requested by visitors, initiated by agents manually, a
 | --- | --
 | `time` | `{from: ..., to: ...}`, each time period, available when `group` is `hour`, `day`, `week`, `month`, `24*7Distribution`, `halfHourDistribution`
 | `chats` | the number of chat sessions which occurred
-| `chatsInitialtedByVisitors` | the total number of answered chats initiated by visitors
+| `chatsInitiatedByVisitors` | the total number of answered chats initiated by visitors
 | `chatsFromManualInvitations` | the total number of chats initiated by agents' manual invitations and accepted by visitors
 | `chatsFromAutoInvitations` | the total number of chats initiated by rule-based auto invitations and accepted by visitors
 | `departmentId` | available when `group = department`
@@ -261,7 +261,7 @@ If the parameter `group` is `24*7Distribution` or `halfHourDistribution`, the da
 | --- | ---
 | `time` | `{from: ..., to: ...}`, each time period
 | `avgChats` | the average number of answered chats initiated by visitors
-| `avgChatsInitialtedByVisitors` | the average number of answered chats initiated by visitors
+| `avgChatsInitiatedByVisitors` | the average number of answered chats initiated by visitors
 | `avgChatsFromManualInvitations` | the average number of chats initiated by agents' manual invitations and accepted by visitors
 | `avgChatsFromAutoInvitations` | the average number of chats initiated by rule-based auto invitations and accepted by visitors
 
@@ -394,7 +394,7 @@ If the parameter `group` is `24*7Distribution` or `halfHourDistribution`, the da
 | `avgSwitchedToMessages` | the average number of chat requests which were switched to offline messages by visitors
 | `avgAbandonedChats` | the average number of chat requests abandoned by visitors closing the chat window while waiting
 | `avgRefusedChats` | the average number of chat requests rejected by agents within a defined time range
-| `avgMmaxQueueSize` | the average largest number of chat requests in one queue over a given time range
+| `avgmaxQueueSize` | the average largest number of chat requests in one queue over a given time range
 
 ### Example
 
@@ -1424,6 +1424,7 @@ GET https://api1.comm100.io/api/v3/livechat/reports/conversions
 | `convertedChattedVisitors` | the number of visitors who converted and also chatted with you
 | `value` | the total value of all conversions
 | `time` | the time range of all conversions
+| `conversionActionId` | available when group = conversionAction
 
 ### Example
 
