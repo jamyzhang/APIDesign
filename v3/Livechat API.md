@@ -7867,7 +7867,7 @@ You need `Manage Security` permission to manage `Secure Form`.
 
 ## Endpoint
 
-### Get a  list of secure forms
+### Get a list of secure forms
 
   `GET /api/v3/livechat/secureForms`
 
