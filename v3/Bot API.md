@@ -61,7 +61,7 @@
 
   | Name | Type | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | - | 
-  | `isChatbotEnabled` | bool  | N/A | N/A | false | if the site is enabled chatbot |
+  | `isChatbotEnabled` | bool  | N/A | N/A | false | if chatbot has been enabled under this site |
   | `totalPurchasedMessageAmount` | integer | N/A | N/A | 0 | It is the maximum available amount of the chatbot messages in this month. |
   | `startDate` | Date | N/A | N/A | | the chatbot subscription start date |
   | `nextRenewDate` | Date | N/A | N/A | | next renew date |
@@ -81,7 +81,7 @@
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: | :-: | :-: | - | 
   | `botId` | Guid  | | N/A | N/A | | id of the bot |
-  | `usedMessageAmount` | double  | | N/A | N/A | 0 | used message amount of the bot |
+  | `usedMessageAmount` | double  | | N/A | N/A | 0 | amount of used bot messages |
   | `bot` | [Bot](#bot-Object)  | yes | N/A | N/A | | Available only when bot is included |
 
 ## Endpoints
@@ -143,7 +143,7 @@ Content-Type:  application/json
 
 
 #  Chatbot Language
-  - `GET /api/v3/chatbot/languages` - [Get chatbot support languages ](#get-all-languages)
+  - `GET /api/v3/chatbot/languages` - [Get chatbot supported languages ](#get-chatbot-supported-languages)
 
 ## Language Related Objects Json Format
 ### Language Object
@@ -155,7 +155,7 @@ Content-Type:  application/json
   | `name` | string  | N/A | N/A | | name of the Language |
 
 ## Endpoints
-### Get all languages
+### Get chatbot supported languages
 
   `GET /api/v3/chatbot/languages`
 
@@ -751,7 +751,7 @@ Path parameters
 
 Request body
   - the file data to be imported.
-    you can use [Export a bot](#export-a-bot) first to get bot xml file
+    you can use [Export a bot](#export-a-bot) first to get the xml template
 
  example:
 ```json
@@ -1959,7 +1959,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
   | Name | Type | Include | Read-only For Put |Mandatory For Post | Default | Description |    
   | - | - | :-: |:-: | :-: | :-: | - | 
   |`id` | Guid  | | yes | N/A | | id of the current item. |
-  |`entityId` | Guid | | no | yes | | id of entity marked on one question. |
+  |`entityId` | Guid | | no | yes | | id of entity marked in one question. |
   |`entity` | [Entity](#entity-object) | yes | N/A  | N/A  | | Available only when entity is included |
   |`entityLabel` | string | | no | yes | | label to distinguish same entity marked on one question. |
   |`question` | string | | no | yes |  | |
@@ -1972,9 +1972,9 @@ Form is represented as simple flat json objects with the following keys:
 |Name| Type| Read-only For Put |Mandatory For Post | Default | Description     | 
 | - | - | :-: | :-: | :-: | - | 
 |`id` | Guid  | yes | N/A | | id of the current item. |
-|`message` | string | no | yes |  | this is a message that will be sent before the button.|
-|`title` | string | no | yes | | a button will be sent to visitor if bot need to collect detail information,visitor can click this button to open the form to fillout information. this is the text on this button,and also this is the title of that form.|
-|`isConfirmationRequired` | bool | no | yes | false | whether need visitor to confirm after collect all detail information that bot needed.|
+|`message` | string | no | yes |  | A separate message which is sent before the button is sent.|
+|`title` | string | no | yes | | when a button is sent to visitor, clicking this button will open a form that contains information bot wants to collect from the visitor. the title refers to the title of that form, and it is also placed on the button as a name.|
+|`isConfirmationRequired` | bool | no | yes | false | whether visitor needs to click confirm after filling out the information in a form.|
 |`fields` | [Field](#field-object)[] | no | yes | | an array of [Field](#field-object) Object |
 
 ### Field Object
@@ -1983,13 +1983,13 @@ Field is represented as simple flat json objects with the following keys:
 |Name| Type| Include | Read-only For Put |Mandatory For Post | Default | Description     | 
 | - | - | :-: | :-: | :-: | :-: | - | 
 |`id` | Guid  | | yes | N/A | | id of the current item. |
-|`type` | string | | no | yes | text | enums: `text` ,`textArea`,`radioBox` ,`checkBox` ,`dropDownList` ,`checkBoxList`, this is the type of fields appear on the form. |
-|`name` | string | | no | yes | | this is the field's name appear on the form. |
-|`entityId` | Guid | | no | no | | id of entity marked on one question. |
+|`type` | string | | no | yes | text | enums: `text` ,`textArea`,`radioBox` ,`checkBox` ,`dropDownList` ,`checkBoxList`, type refers to the different kinds of fields which can be used in a form. |
+|`name` | string | | no | yes | | a field’s name in a form. |
+|`entityId` | Guid | | no | no | | id of entity marked in one question. |
 |`entity` | [Entity](#entity-object) | yes | N/A  | N/A  | | Available only when entity is included |
 |`entityLabel` | string | | no | no | | label to distinguish same entity marked on one question. |
-|`isRequired` | bool | | no | yes | false | it marks whether the field appear on the form is required or not. |
-|`isMasked` | bool | | no | yes | false | if this is true,visitor's information will replaced by anonymous symbol in chat logs. |
+|`isRequired` | bool | | no | yes | false | to mark whether a field in a form is required or not. |
+|`isMasked` | bool | | no | yes | false | if this is true, visitor information will be masked with symbols in chat logs. |
 |`options` | string[] | | no | no | | an array of of string when the fieldType is `radioBox` ,`dropDownList` ,`checkBoxList`|
 |`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
 
@@ -1998,8 +1998,8 @@ FieldValue is represented as simple flat json objects with the following keys:
 
 |Name| Type| Read-only For Put |Mandatory For Post | Default |  Description     |
 | - | - | :-: | :-: | - |  - | 
-|`name` | string |  N/A | N/A | | this is the field's name appear on the form. |
-|`value` | string | N/A | N/A | | this is the field's value. |
+|`name` | string |  N/A | N/A | | the name of a field in a form. |
+|`value` | string | N/A | N/A | | the value of a field. |
 
 ### Response Object
 Response is represented as simple flat json objects with the following keys:
@@ -2008,14 +2008,14 @@ Response is represented as simple flat json objects with the following keys:
 | - | - | :-: | :-: | :-: | - | 
 |`id` | Guid  | yes | N/A | | id of the current item. |
 |`type` | string | no | yes | | enums: `text` ,`htmlText` ,`button`,`quickReply` ,`image` ,`video` ,`webhook`. |
-|`textVariants` | string[] | no | no | | an array of string ,Only Available when Type is `text`. |
-|`htmlTextVariants` | string[] | no | no | | an array of string ,Only Available when Type is `htmlText` |
-|`image` | [Image](#image-object)  | no | no | | [Image](#image-object) object, Only available when Type is `image`|
-|`videoUrl` | string | no | no | | Only available when Type is `video` |
-|`message` | string | no | no | | Only Available when Type is `button` or `quickReply`. It stores the messages before Buttons or Quick Reply Items. |
-|`quickReply` | [Quick Reply](#Quick-Reply-Object) | no | no | | [Quick Reply](#Quick-Reply-Object) object, Only available when Type is `quickReply`|
-|`buttons` | [Button](#button-object)[] | no | no | | an array of [Button](#button-object) object, Only available when Type is `button`  | 
-|`webhook` | [Webhook](#Webhook-object) | no | no | | [Webhook](#Webhook-object) object, Only available when Type is `webhook`  | 
+|`textVariants` | string[] | no | no | | an array of string ,only available when Type is `text`. |
+|`htmlTextVariants` | string[] | no | no | | an array of string ,only available when Type is `htmlText` |
+|`image` | [Image](#image-object)  | no | no | | [Image](#image-object) object, only available when Type is `image`|
+|`videoUrl` | string | no | no | | only available when Type is `video` |
+|`message` | string | no | no | | only available when Type is `button` or `quickReply`. It stores the messages before Buttons or Quick Reply Items. |
+|`quickReply` | [Quick Reply](#Quick-Reply-Object) | no | no | | [Quick Reply](#Quick-Reply-Object) object, only available when Type is `quickReply`|
+|`buttons` | [Button](#button-object)[] | no | no | | an array of [Button](#button-object) object, only available when Type is `button`  | 
+|`webhook` | [Webhook](#Webhook-object) | no | no | | [Webhook](#Webhook-object) object, only available when Type is `webhook`  | 
 |`order` | integer | no | yes |  | must greater than or equal 0, the order of the response, ascending sort |
 
 ### Image Object
@@ -2043,12 +2043,12 @@ Button is represented as simple flat json objects with the following keys:
 | - | - | :-: | :-: | :-: | :-: | - | 
 |`id` | Guid  | | yes | N/A | | id of the current item.  | 
 |`text` | string | | no | yes | | text on button.  | 
-|`type` | string | | no | yes | |enums contain `triggerAnIntent`,`link` and `webView` | 
+|`type` | string | | no | yes | |enums: `triggerAnIntent`,`link` and `webView` | 
 |`url` | string | | no | yes if type is `link` or `webView`| | url of the web page you want to open.  | 
-|`intentId` | Guid | | no | yes if type is `triggerAnIntent` | | id of the intent you choosed.  | 
+|`intentId` | Guid | | no | yes if type is `triggerAnIntent` | | id of the intent   | 
 |`intent` | [Intent](#intent-object) | yes | N/A  | N/A  | | Available only when intent is included |
-|`openIn` | string | | no | yes if channel is `Live Chat` and type is `link` | | enums contain `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
-|`openStyle` | string | | no | yes if channel is  `Live Chat` or `Facebook Messenger` and type is `webView` | full | enums contain `compact`,`tall` and `full`,it represents the size of the webview that will be opened.  |
+|`openIn` | string | | no | yes if channel is `Live Chat` and type is `link` | | enums : `sideWindow`,`newWindow`,`currentWindow`, it represents the way that a page will be opened.  | 
+|`openStyle` | string | | no | yes if channel is  `Live Chat` or `Facebook Messenger` and type is `webView` | full | enums: `compact`,`tall` and `full`,it represents the size of the webview that will be opened.  |
 |`order` | integer | | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### IntentScore Object
@@ -2059,7 +2059,7 @@ Button is represented as simple flat json objects with the following keys:
   | - | - | :-: | :-: | - | - | 
   |`id` | Guid | N/A | N/A | | id of the intent  | 
   |`name` | string | N/A | N/A | | name of the intent |  
-  | `score` | float  | N/A | N/A |  | the score of the intent matched, between 0.0 and 100.0 |
+  | `score` | float  | N/A | N/A |  | the score of the intent matched, value is between 0.0 and 100.0 |
 
 ## Endpoints
 ### Get intents
@@ -2079,7 +2079,7 @@ Query string
   | - | - | - | - | - | 
   | `include` | string | no  |  | Available value: `category`, `questions`, `answerInChannels` |
   | `categoryId` | Guid | no  |  | id of the category, filter by category |
-  | `keyword` | string | no  |  | search intents by intent name or question using the keyword |
+  | `keyword` | string | no  |  | keyword is used to search intents by intent name or question |
 
 #### Response
 
@@ -2704,7 +2704,7 @@ Content-Type:  application/json
 
 
 # Question
-You need `Manage Bot` permission to manage Intent and customize the settings for a Intent Question.
+You need `Manage Bot` permission to manage Intent and customize the settings for an Intent Question.
   - `Questions` - Intent Question Manage
     +  `GET /api/v3/chatbot/intents/{intentId}/questions` - [Get questions of the intent](#get-questions-of-the-intent)
     +  `POST /api/v3/chatbot/intents/{intentId}/questions` - [Create a question for the intent](#create-a-question-for-the-intent)
@@ -2720,8 +2720,8 @@ Question is represented as simple flat json objects with the following keys:
 |Name| Type| Read-only For Put | Mandatory For Post | Default | Description     | 
 | - | - | :-: | :-: | :-: | - | 
 |`id` | Guid  | yes | N/A | | id of the current item.|
-|`content` | string  | no | yes | | question you can expect from users,that will trigger this intent. |
-|`selectedKeywords` | [Question Selected Keyword](#Question-Selected-Keyword-Object)[]  | no | no | | an array of [Question Selected Keyword](#Question-Selected-Keyword-Object) that you want to mark on current question. |
+|`content` | string  | no | yes | | visitor questions that trigger this intent. |
+|`selectedKeywords` | [Question Selected Keyword](#Question-Selected-Keyword-Object)[]  | no | no | | an array of [Question Selected Keyword](#Question-Selected-Keyword-Object) that you want to mark in current question. |
 |`order` | integer | no | yes |  | must greater than or equal 0, ascending sort |
 
 ### Question Selected Keyword Object
@@ -2731,7 +2731,7 @@ Question Selected Keyword is represented as simple flat json objects with the fo
 | - | - | :-: | :-: | :-: | :-: | - | 
 |`startPosition` | integer | | no | yes | 0 | strat index  of current question you marked. |
 |`endPosition` | integer | | no | yes | 0 | end index  of current question you marked. |
-|`entityId` | Guid | | no | yes | | id of entity marked on one question. |
+|`entityId` | Guid | | no | yes | | id of entity marked in one question. |
 |`entity` | [Entity](#entity-object) | yes | N/A  | N/A  | |  Available only when entity is included  |
 |`entityLabel` | string | | no | yes | | label to distinguish same entity marked on one question. |
 
@@ -3053,8 +3053,8 @@ You need `Manage Bot` permission to manage Intent.
     +  `GET /api/v3/chatbot/intents/{intentId}/answerInChannels` - [Get AnswerInChannels of the intent](#get-answerInChannels-of-the-intent)
     +  `GET /api/v3/chatbot/answerInChannels/{id}` - [Get AnswerInChannel of the intent by id](#get-AnswerInChannel-of-the-intent-by-id)
     +  `POST /api/v3/chatbot/intents/{intentId}/answerInChannels` - [Create a AnswerInChannel for the intent](#create-a-AnswerInChannel-for-the-intent)
-    +  `PUT /api/v3/chatbot/answerInChannels/{id}` - [Update a AnswerInChannel](#update-a-AnswerInChannel)    
-    +  `DELETE /api/v3/chatbot/answerInChannels/{id}` - [Remove a AnswerInChannel](#remove-a-AnswerInChannel)
+    +  `PUT /api/v3/chatbot/answerInChannels/{id}` - [Update an AnswerInChannel](#update-an-AnswerInChannel)    
+    +  `DELETE /api/v3/chatbot/answerInChannels/{id}` - [Remove an AnswerInChannel](#remove-a-AnswerInChannel)
 
 ## AnswerInChannel Endpoints
 ### Get AnswerInChannels of the intent
@@ -3293,7 +3293,7 @@ Location: https://domain.comm100.com/api/v3/chatbot/answerInChannels/4c21fc9d-92
   }
 ```
 
-### Update a AnswerInChannel
+### Update an AnswerInChannel
 
   `PUT /api/v3/chatbot/answerInChannels/{id}`
 
@@ -3369,7 +3369,7 @@ Response
   }
 ```
 
-### Remove a AnswerInChannel
+### Remove an AnswerInChannel
 
   `DELETE /api/v3/chatbot/answerInChannels/{id}`
 
@@ -3736,7 +3736,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Form
-You need `Manage Bot` permission to manage Intent and customize the settings for a intent answer form.
+You need `Manage Bot` permission to manage Intent and customize the settings for an intent answer form.
   - `Form` - Intent Answer Form Manage
     +  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/form` - [Get Form of the answerInChannel](#get-form-of-the-answerInChannel)
     +  `POST /api/v3/chatbot/answerInChannels/{answerInChannelId}/form` - [Create a Form for the answerInChannel](#create-a-Form-for-the-answerInChannel)
@@ -4059,7 +4059,7 @@ HTTP/1.1 204 No Content
 ```
 
 # Field
-You need `Manage Bot` permission to manage Intent and customize the settings for a intent answer form fields.
+You need `Manage Bot` permission to manage Intent and customize the settings for an intent answer form fields.
   - `Form Fields` - Intent Answer Manage
     +  `GET /api/v3/chatbot/forms/{formId}/fields` - [Get all fields of the form](#get-all-fields-of-the-form)
     +  `GET /api/v3/chatbot/fields/{id}` - [Get a field by id](#Get-a-field-by-id)    
@@ -4326,7 +4326,7 @@ HTTP/1.1 204 No Content
 
 
 # Prompt
-You need `Manage Bot` permission to manage Intent and customize the settings for a intent answer prompts.
+You need `Manage Bot` permission to manage Intent and customize the settings for  intent answer prompts.
   - `Prompts` - Intent Answer Manage
     +  `GET /api/v3/chatbot/answerInChannels/{answerInChannelId}/prompts` - [Get prompts of the answerInChannel](#get-prompts-of-the-answerInChannel)
     +  `GET /api/v3/chatbot/prompts/{id}` - [Get prompt of the intent by id](#get-prompts-of-the-answerInChannel-by-id)
@@ -5233,7 +5233,7 @@ HTTP/1.1 204 No Content
   | - | - | :-: | :-: | - | - |
   | `intentId` | Guid  | N/A | N/A |  | id of the matched intent |
   | `intentName` | string  | N/A | N/A |  | name of the matched intent |
-  | `score` | float  | N/A | N/A |  | the score of the intent matched, between 0.0 and 100.0 |
+  | `score` | float  | N/A | N/A |  | the score of the intent matched, the value is beteween 0.0 and 100.0 |
   |`answer`| [AnswerInChannel](#AnswerInChannel-object) | N/A | N/A | | | N/A | N/A | | intent answer |
 
 
@@ -5255,7 +5255,7 @@ HTTP/1.1 204 No Content
   | - | - | :-: | :-: | - | - | 
   | `intentId` | Guid  | N/A | N/A |  | id of the matched intent |
   | `intentName` | string  | N/A | N/A |  | name of the matched intent |
-  | `score` | float  | N/A | N/A |  | the score of the intent matched, between 0.0 and 100.0 |
+  | `score` | float  | N/A | N/A |  | the score of the intent matched, the value is beteween 0.0 and 100.0 |
   |`answer`| [NoAnswerMessageInChannel](#NoAnswerMessageInChannel-object) | N/A | N/A | | |
 
 
@@ -5850,9 +5850,9 @@ The request body contains data with the follow structure:
   }
 ```
 #### Response
-If rate the bot as helpful , the response body is empty.
+If bot was rated helpful, the response will be empty.
 
-If rate the bot as not helpful, the response body contains data with the follow structure:
+If bot is rated not helpful, the response body contains data with the following structure:
 
   | Name | Type | Required  | Default | Description |    
   | - | - | :-: | :-: | - | 
@@ -6484,9 +6484,9 @@ Response
   | - | - | :-: | :-: | :-: | :-: | - |
   | `id` | Guid | | yes | N/A | | id of the smart trigger. |
   | `name` | string | | no | yes | |name of smart trigger. |
-  | `isEnabled` | bool | | no | no | false | smartTriggers if is enabled. the default value is false.|
+  | `isEnabled` | bool | | no | no | false | If smartTriggers is enabled or not. the default value is false.|
   | `conditionExpressionType` | string | | no | no | | the relationship between condition.  enum: `all`,`any`,`logicalExpression`|
-  | `logicalExpression` | string | | no | no | | A formula to calculate exp:(1 or 2) and 3  |
+  | `logicalExpression` | string | | no | no | | it is an Expression that uses one or more conditions, example:(1 or 2) and 3  |
   | `conditions` |  [Smart Trigger Condition](#smart-trigger-condition-object)[] |  | no | no | |  |
   | `actions` | [Smart Trigger Action](#smart-trigger-action-object)[] |  | no | no | |  |
   | `order` | integer | | no | yes |  | must greater than or equal 0, the order of the smart trigger, ascending sort . |
@@ -6509,9 +6509,9 @@ Response
   | - | - | :-: | :-: | :-: | - |
   | `id` | Guid | yes | N/A | | id of the smart trigger. |
   | `type` | string | no | yes | | the type of the action. enum:[`sendNotification`,`autoMonitor`,`transferChat`,`changeAssignee`,`addToSegment`]|
-  | `isEnabled` | bool | no | yes | false | action if is enabled. |  
+  | `isEnabled` | bool | no | yes | false | if an action is enabled. |  
   | `agentOfflineMessage` | string | no | no | | agent offlineMessage prompt message |
-  | `targetType` | string | no | yes | | The trigger action target type. enum: `department`, `agent`, `visitorSegment`. |
+  | `targetType` | string | no | yes | | the trigger action target type. enum: `department`, `agent`, `visitorSegment`. |
   | `selectedDepartments` | Guid[] | no | no | | a string array of  department id. |
   | `selectedAgents` | Guid[] | no | no | | a string  array of  agent id. |
   | `selectedVisitorSegments` | Guid[]  | no | no | | visitorSegment Id |
@@ -7368,7 +7368,7 @@ HTTP/1.1 204 No Content
   | Name | Type | Include | Read-only For Put | Mandatory For Post | Default | Description |    
   | - | - | :-: | :-: |  :-: | :-: | - | 
   | `id` | Guid  | | yes | N/A | | id of the Quick Reply |
-  | `type` | string  | | no | yes | | enum value, `custom` and `canned` |
+  | `type` | string  | | no | yes | | Available value, `custom` and `canned` |
   | `name` | string  | | no | yes | | name of the Quick Reply |
   | `items` | [QuickReplyItem](#QuickReplyItem-object)[] | | no | yes |  | |
 
@@ -7947,7 +7947,7 @@ HTTP/1.1 204 No Content
   | - | - | :-: | :-: | :-: | :-: | - | 
   | `id` | string    | | N/A | N/A | | id of Learning Question |
   | `type` | string  |   | N/A | N/A | none | enum type. `notHelpful`, `possibleAnswer`, `noAnswer`, `none` |
-  | `question` | string   |  | N/A | N/A | | user asked question |
+  | `question` | string   |  | N/A | N/A | | questions asked by visitors |
   | `topScoreIntentId` | string  |   | N/A | N/A | | id of the intent |
   |`intent` | [Intent](#intent-object) | yes | N/A | N/A | | Available only when intent is included  | 
   | `topScore` | double   | |  N/A | N/A | 0 | match score between 0.0 and 100 |
@@ -8499,11 +8499,11 @@ image file binary data
   | Name | Type |  Default | Description |    
   | - | - | :-: |  - | 
   | `averageRatingScore` | double  | 0 | average rating score |
-  | `botOnlyChatCount` | integer  |  0 | bot only chats count |
-  | `botOnlyChatsTime` | integer  |  0 | bot only chats time |
-  | `botAnswerCount` | integer  | 0 | bot answers count |
-  | `chatsFromBotToAgentCount` | integer  |  0 | transferred from bot to agent chats count |
-  | `percentageOfBotOnlyChats` | double  |  0 | helpful answers count |
+  | `botOnlyChatCount` | integer  |  0 | number of chats that are between a visitor and bot, no agent included |
+  | `botOnlyChatsTime` | integer  |  0 | time of chat that only involves bot and visitor, no agent |
+  | `botAnswerCount` | integer  | 0 | number of answers provided by bot |
+  | `chatsFromBotToAgentCount` | integer  |  0 | number of chats transferred from bot to agent |
+  | `percentageOfBotOnlyChats` | double  |  0 | percentage of chats that are between a visitor and bot, no agent included |
   | `percentageOfHighConfidenceAnswers` | double  | 0 | percentage of high confidence answers |
 
 ### DailyReport
@@ -8511,9 +8511,9 @@ image file binary data
 
   | Name | Type |  Default |Description |    
   | - | - | :-: | - | 
-  | `totalChatbotOnly` | integer  |  0 | total bot only chats count |
-  | `totalFromBotToAgent` | integer  |  0 | total transferred from bot to agent chats count |
-  | `totalPercentageOfBotOnlyChats` | double  |  0 | total percentage of bot only chats |
+  | `totalChatbotOnly` | integer  |  0 | total number of chats that are between a visitor and bot, no agent included |
+  | `totalFromBotToAgent` | integer  |  0 | total number of chats transferred from bot to agent |
+  | `totalPercentageOfBotOnlyChats` | double  |  0 | total percentage of chats that are between a visitor and bot, no agent involved |
   | `dataList` | [DailyDetailReport](#DailyDetailReport)[]  |  | list of [DailyDetailReport](#DailyDetailReport) Object  |
 
 ### DailyDetailReport
@@ -8521,10 +8521,10 @@ image file binary data
 
   | Name | Type | Default | Description |    
   | - | - | :-: |  - |
-  | `chatbotOnly` | integer  |  0 | total bot only chats count |
-  | `fromBotToAgent` | integer  |  0 | total transferred from bot to agent chats count |
+  | `chatbotOnly` | integer  |  0 | total number of chats that are between a visitor and bot, no agent included |
+  | `fromBotToAgent` | integer  |  0 | total number of chats transferred from bot to agent |
   | `dailyChatsCount` | integer  |  0 | daily chats count |
-  | `percentageOfBotOnlyChats` | double  |  0 | total percentage of bot only chats |
+  | `percentageOfBotOnlyChats` | double  |  0 | total percentage of chats that are between a visitor and bot, no agent involved |
   | `time` | datetime  |  | statistical time |
 
 ### IntentUsageByCategory
@@ -9103,16 +9103,16 @@ Content-Type:  application/json
   | `id` | Guid  | yes | N/A | | id of the agent assist |
   | `isEnabled` | bool  | no | yes | false | agent assist enable flag |
   | `language` | string  | no | yes | en | code of the Agent Assist supported language |
-  | `ifIncludeCannedMessage` | bool  | no | yes | true | suggestion source including canned message |
-  | `ifIncludeKnowledgeBase` | bool  | no | yes | false | suggestion source including knowledge base |
-  | `ifIncludeChatbot` | bool  | no | yes | false | suggestion source including ai bot |
+  | `ifIncludeCannedMessage` | bool  | no | yes | true | if canned message is included in agent assist’s suggestions source |
+  | `ifIncludeKnowledgeBase` | bool  | no | yes | false | if knowledge base is included in agent assist’s suggestions source |
+  | `ifIncludeChatbot` | bool  | no | yes | false | if chat bot is included in agent assist’s suggestions source |
   | `selectedKnowledgeBases` | Guid[]  | no | yes | | id of knowledge base array |
   | `selectedChatbots` | Guid[]  | no | yes | | id of ai bot array |
-  | `highConfidenceScore` | integer  | no | yes | 60 | Agent Assist will display suggestions only when the score of the suggested item is higher than this value. must between 1 and 100  |
-  | `maximumSuggestionNumber` | integer  | no | yes | 3 | display at most suggestions. available value: 1, 2, 3, 4, 5 |
-  | `ifAddVisitorQuestionAsSimilarQuestion` | bool  | no | yes | true | Automatically add visitor questions as similar questions of the suggested canned messages or KB articles that agents chose to send. |
-  | `textBeforeKBArticle` | string  | no | yes | Please refer to the knowledge base article | the message before knowledge base article link |
-  | `ifAddUnrecognizedQuestionsToLearning` | bool  | no | yes | false |Automatically Add Unrecognized Visitor Questions to Agent Assist Learning Section |
+  | `highConfidenceScore` | integer  | no | yes | 60 | Agent Assist will display suggestions only when the score of the suggested item is higher than this value.  value is beteween 1 and 100  |
+  | `maximumSuggestionNumber` | integer  | no | yes | 3 | the maximum number of suggestions Agent Assist can provide. available value: 1, 2, 3, 4, 5 |
+  | `ifAddVisitorQuestionAsSimilarQuestion` | bool  | no | yes | true | for suggested canned messages or kb articles that agents chose to send, agent assist can automatically add such as similar questions to improve future performance. |
+  | `textBeforeKBArticle` | string  | no | yes | Please refer to the knowledge base article | the message before a knowledge base article link |
+  | `ifAddUnrecognizedQuestionsToLearning` | bool  | no | yes | false |Automatically add Unrecognized Visitor Questions to Agent Assist Learning Section |
 
 ## Agent Assist Endpoints  
 
@@ -9510,8 +9510,8 @@ HTTP/1.1 204 No Content
   | - | - | :-: | :-: | :-: | - | 
   | `id` | Guid  | yes | N/A | | id of the Learning |
   | `type` | string  | no | yes | unidentified | enum value, `manual` and `unidentified` |
-  | `question` | string  | no | yes | | question of the Learning |
-  | `agentResponse` | string  | no | yes | | response of the Learning |
+  | `question` | string  | no | yes | | questions for bot training |
+  | `agentResponse` | string  | no | yes | | agents responses for bot training |
   | `suggestionType` | string  | no | yes | none | enum value, `cannedMessage`,`article`, `intent` and `none` |
   | `topScoreSuggestion` | object  | no | yes | | suggestion's content.<br/>when suggestionType is cannedMessage, it represents [CannedMessageContent](#canned-message-suggestion-content);<br/>when suggestionType is article ,it represents [KnowledgeBaseContent](#knowledge-base-suggestion-content);<br/>when suggestionType is intent, it represents [ChatbotSuggestionContent](#chatbot-suggestion-content). |
   | `score` | float  | no | yes | 0 | the score of the suggestion |
@@ -9531,12 +9531,12 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only For Put | Mandatory For Post |Default | Description |    
   | - | - | :-: | :-: | :-: | - | 
-  | `id` | Guid  | N/A | yes | |id of the knowledge Base |
-  | `articleId` | Guid  | N/A | yes | |articleId is the article of knowledge Base |
+  | `id` | Guid  | N/A | yes | |id of the Knowledge Base |
+  | `articleId` | Guid  | N/A | yes | |articleId is the article of Knowledge Base |
   | `title` | string  | N/A | yes | |title of the article |
   | `content` | string  | N/A | N/A | |the content of the article |
-  | `url` | string  | N/A | N/A | |the content of the article |
-  | `textBeforeKBArticle` | string  | N/A | N/A | | the message before knowledge base article link |
+  | `url` | string  | N/A | N/A | |the URL of the article |
+  | `textBeforeKBArticle` | string  | N/A | N/A | | the message which usually works as guidance for visitors before a knowledge base article link |
 
 ### Chatbot Suggestion Content
   Chatbot Suggestion Content is represented as simple flat JSON objects with the following keys:  
@@ -9559,7 +9559,7 @@ LearningQuestionsResponse is represented as simple flat JSON objects with the fo
   | `nextPage` | string | N/A | N/A | Url of the next page. |
   | `list` | [AgentAssistLearningQuestion](#agent-assist-learning-question)[] | N/A | N/A | |list of [AgentAssistLearningQuestion](#agent-assist-learning-question) Object |
 
-## Agent Assist  learning Question Endpoints
+## Agent Assist Learning Question Endpoints
 ### Get agent assist learning questions by filters
 
   `GET api/v3/agentAssist/learningQuestions`
