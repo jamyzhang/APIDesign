@@ -1,10 +1,8 @@
-# Introduction
+﻿# Introduction
 
 Welcome to the Comm100 RESTful API help guide. Our APIs make it possible for you to integrate your applications with Comm100 Live Chat to achieve seamless data sharing. It is our goal to help the business to automate and enhance their customer support with innovative projects you can create using Comm100 API.
 
 Please note that this documentation refers to the latest API version: 3.0. Please use 3 as the version number in the url. If you are looking for the previous version, check out the [API 2.0 documentation](https://www.comm100.com/doc/api/introduction.htm#/).
-
-<div>
 
 ## The Basics
 
@@ -12,18 +10,11 @@ Comm100 RESTful API must use **https** protocol. What the API requests should st
 
 - If the domain of your Control Panel is portal1.comm100.io, all API requests should start with https://api1.comm100.com/api/v3/.
 
-</div>
-<div>
-
 ## Authentication
 
 Comm100 use JWT authentication method.
 
 - [JWT Authentication](#JWT-Authentication)
-
-</div>
-
-<div>
 
 ## JWT Authentication
   You can only use jwt authenticate to exchange an agent's email、password and siteId for an jwt token directly while calling the global, livechat or report API. This grant type is highly secured by Comm100.
@@ -124,16 +115,9 @@ You can use the jwt token to call the comm100 v3 api as follow Example.
   }
 ```
 
-</div>
-</div>
-<div>
-
 ## Data Format
 
 Comm100 RESTful API returns data in [JSON](https://en.wikipedia.org/wiki/JSON) format.
-
-</div>
-<div>
 
 ## Error Handling
 
@@ -150,6 +134,3 @@ An error including `code` and `message` is returned in JSON format when an API r
 ```bash
 { code: 400000, message: "Parameter 'timeFrom' is required." }
 ```
-
-</div>
-&#32;
