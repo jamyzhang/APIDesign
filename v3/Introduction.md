@@ -21,7 +21,7 @@ Comm100 use JWT authentication method.
 
 ### How to get the jwt token?
 
-#### Using curl
+### Using curl
 
   Params:
 
@@ -55,7 +55,7 @@ The token has an expiration time, if the token has expired, please call the API 
 ### How to call the comm100 v3 api by the jwt token?
 You can use the jwt token to call the comm100 v3 api as follow Example.
 
-#### Example
+### Example
 
 ##### Using curl
 
