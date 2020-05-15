@@ -3,7 +3,7 @@
 | Object | Path |
 | - | - |
 | [Credential](#Credential) | `/partner/oauth/token` |
-| [Sites](#Sites) | `/api/v2/partner/sites` |
+| [Sites](#Sites) | `/api/v3/partner/sites` |
 
 <div>
 
@@ -29,7 +29,7 @@
 
 #### Get oauth token
 
- `GET https://hosted.comm100.com/partner/oauth/token`
+ `GET https://partner7.comm100.io/partner/oauth/token`
 
 - Parameters:
   - `grant_type` - `password`, Specify the way to get the token as password
@@ -47,7 +47,7 @@
 ```bash
  curl -X POST  
      -d "email=lizz@comm100.com&grant_type=password&password=111111"   
-     https://hosted.comm100.com/partner/oauth/token
+     https://partner7.comm100.io/partner/oauth/token
 ```
 
   Sample response:
@@ -73,11 +73,11 @@ Developers can make API calls through the `access_token` obtained above, in the 
 
 ## Sites
 
-- `GET /api/v2/partner/sites/{site_id}` - Get information about one of the current Partner sites  
-- `GET /api/v2/partner/sites` - Get site information for all customers of the current Partner
-- `POST /api/v2/partner/sites` - Open an account, create a new site
-- `PUT /api/v2/partner/sites/{site_id}` - Update site information for one of the Partner's customers
-- `PUT /api/v2/partner/sites/{site_id}/paying` - Convert the trial period account into an official account
+- `GET /api/v3/partner/sites/{site_id}` - Get information about one of the current Partner sites  
+- `GET /api/v3/partner/sites` - Get site information for all customers of the current Partner
+- `POST /api/v3/partner/sites` - Open an account, create a new site
+- `PUT /api/v3/partner/sites/{site_id}` - Update site information for one of the Partner's customers
+- `PUT /api/v3/partner/sites/{site_id}/paying` - Convert the trial period account into an official account
 
 <div>
 
@@ -85,7 +85,7 @@ Developers can make API calls through the `access_token` obtained above, in the 
 
 #### Get a Site
 
-  `Get /api/v2/partner/sites/{site_id}`
+  `Get /api/v3/partner/sites/{site_id}`
 
 - Parameters
 
@@ -135,8 +135,8 @@ Developers can make API calls through the `access_token` obtained above, in the 
 ```bash
 curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-srQbJpFxdVo1rywxm65GSw  
     YcmgNpXh7gVZX-DKcqaeUElPN9r5sj0gqsTb62qu5uOKmM-O0DI7GkiPGKcODzIO9dp0u-aY-rIjaU2iG5VctY4mTo_UVEQnng  
-    tbQeqLvYPQbT_gun6dWv8irWK098ceHuc_gMpHTUzkJdzdJmRnxQTYTeVjgeazvaLQ"   
-     https://hosted.comm100.com/api/v2/partner/sites/6000000
+    tbQeqLvYPQbT_gun6dWv8irWK098ceHuc_gMpHTUzkJdzdJmRnxQTYTeVjgeazvaLQ"
+     https://partner7.comm100.io/api/v3/partner/sites/6000000
 ```
 
   Sample response:
@@ -177,7 +177,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
 
 #### Get Sites
 
-  `GET /api/v2/partner/sites?keywords=comm100`
+  `GET /api/v3/partner/sites?keywords=comm100`
 
 - Parameters
 
@@ -205,7 +205,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
 curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-srQbJpFxdVo1rywxm65GSw  
     YcmgNpXh7gVZX-DKcqaeUElPN9r5sj0gqsTb62qu5uOKmM-O0DI7GkiPGKcODzIO9dp0u-aY-rIjaU2iG5VctY4mTo_UVEQnng  
     tbQeqLvYPQbT_gun6dWv8irWK098ceHuc_gMpHTUzkJdzdJmRnxQTYTeVjgeazvaLQ"
-     https://hosted.comm100.com/api/v2/partner/sites
+     https://partner7.comm100.io/api/v3/partner/sites
 ```
 
   Sample response:
@@ -254,7 +254,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
 
 #### Create Site
 
-  `POST /api/v2/partner/sites`
+  `POST /api/v3/partner/sites`
 
 - Parameters `JSON`
 
@@ -290,7 +290,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
      -d "{"password": "123456", "contact": {"firstName": "test", "lastName": "comm100",  
      "email": "test1@comm100.com", "phone": "123456"}, "company": "comm100", "website": "www.comm100.com",  
      "fax": "", "disabled": false, "planList": [{ "id": 1, "name": "planname", "products": 1 }]}"
-     -X POST https://hosted.comm100.com/api/v2/partner/sites
+     -X POST https://partner7.comm100.io/api/v3/partner/sites
 ```
 
   Sample response:
@@ -331,7 +331,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
 
 #### Update a Site
 
-  `PUT /api/v2/partner/sites/{site_id}`
+  `PUT /api/v3/partner/sites/{site_id}`
 
 - Parameters
 
@@ -372,7 +372,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
      -d "{"contact": {"firstName": "test", "lastName": "comm100",  
       "phone": "123456"}, "company": "comm100", "website": "www.comm100.com",
       "fax": "", "disabled": false, "planList": [{ "id": 1,"name": "planname", "products": 1 }]}"
-     -X PUT https://hosted.comm100.com/api/v2/partner/sites/6000012
+     -X PUT https://partner7.comm100.io/api/v3/partner/sites/6000012
 ```
 
   Sample response:
@@ -412,7 +412,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
 
 #### Pay a site
 
-  `PUT /api/v2/partner/sites/{site_id}/paying`
+  `PUT /api/v3/partner/sites/{site_id}/paying`
 
 - Parameters
 
@@ -431,7 +431,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
     YcmgNpXh7gVZX-DKcqaeUElPN9r5sj0gqsTb62qu5uOKmM-O0DI7GkiPGKcODzIO9dp0u-aY-rIjaU2iG5VctY4mTo_UVEQnng  
     tbQeqLvYPQbT_gun6dWv8irWK098ceHuc_gMpHTUzkJdzdJmRnxQTYTeVjgeazvaLQ"  
      -X PUT -d "site_id=6000012"   
-     https://hosted.comm100.com/api/v2/partner/sites/6000012/paying
+     https://partner7.comm100.io/api/v3/partner/sites/6000012/paying
 ```
 
   Sample response:
