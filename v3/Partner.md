@@ -76,7 +76,7 @@ Developers can make API calls through the `access_token` obtained above, in the 
 - `GET /api/v3/partner/sites/{site_id}` - Get information about one of the current Partner sites  
 - `GET /api/v3/partner/sites` - Get site information for all customers of the current Partner
 - `PUT /api/v3/partner/sites/{site_id}` - Update site information for one of the Partner's customers
-- `PUT /api/v3/partner/sites/{site_id}/paying` - Convert the trial period account into an official account
+<!-- - `PUT /api/v3/partner/sites/{site_id}/paying` - Convert the trial period account into an official account-->
 
 <div>
 
@@ -411,6 +411,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
 }
 ```
 
+<!--
 #### Pay a site
 
   `PUT /api/v3/partner/sites/{site_id}/paying`
@@ -440,7 +441,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
 ```json
 Status: 200 OK
 ```
-
+-->
 </div>
 </div>
 &#32;
