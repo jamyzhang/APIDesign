@@ -356,7 +356,7 @@ curl -H "Authorization: Bearer uUR94EXGGmOazl2-ZTjmdS_LXowa5ed0uD3f4KXkwt-uuU1H-
     - `contact.lastName` - `optional` Site contact's last name
     - `contact.email` - `optional` Site contact's email
     - `contact.phone` - `optional` Site contact's phone number
-    - `planList` - `required` Array of registered site's plan
+    - `planList` - `optional` Array of registered site's plan
 
 - Return
 
