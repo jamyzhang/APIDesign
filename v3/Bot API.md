@@ -7,6 +7,7 @@
   | 3.3 | v2 | Add Comm100 Own Bot Restful API | 2019-05-24 | Page |
   | 3.4 | v3 | update to v3 | 2019-09-29 | Davy |
   | 4.0 | v3 | xversion | 2019-10-21 | Davy |
+  | 4.1 | v3 | voice bot | 2020-05-18 | [Page] |
 
 # Summary
   - Chatbot
@@ -244,7 +245,7 @@ GreetingMessageInChannel is represented as simple flat json objects with the fol
 |Name| Type| Include | Read-only For Put |Mandatory For Post |Default | Description     | 
 | - | - | :-: | :-: | :-: | :-: | - | 
 |`id` | Guid  | | yes | N/A | | id of the current item.  | 
-| `channel` | string  | | yes | yes | | eg:  `Default`, `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+| `channel` | string  | | yes | yes | | eg:  `Default`, `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `Voice` |
 |`responses`| [Response](#response-object)[] | | no | yes | | an array of [Response](#response-object) object. |
 
 
@@ -1919,7 +1920,7 @@ AnswerInChannel is represented as simple flat json objects with the following ke
 |Name| Type| Include | Read-only For Put |Mandatory For Post | Default | Description   |
 | - | - | :-: | :-: | :-:| :-: | - | 
 | `id` | Guid  | | yes | N/A | | id of the intent |
-| `channel` | string  | |  yes | yes | | eg :  `Default`, `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+| `channel` | string  | |  yes | yes | | eg :  `Default`, `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `Voice` |
 |`responses`| [Response](#response-object)[] | yes |  no | yes | | an array of [Response](#response-object) object.  |
 |`informationCollectionType` | string |  | no | yes | none | enums :  `form`, `prompt`,`none`. | 
 |`authenticationRequest`| [AuthenticationRequest](#AuthenticationRequest-Object)| yes |  no |no | |[AuthenticationRequest](#AuthenticationRequest-Object) object. |
@@ -2007,8 +2008,9 @@ Response is represented as simple flat json objects with the following keys:
 |Name| Type| Read-only For Put |Mandatory For Post | Default | Description     | 
 | - | - | :-: | :-: | :-: | - | 
 |`id` | Guid  | yes | N/A | | id of the current item. |
-|`type` | string | no | yes | | enums: `text` ,`htmlText` ,`button`,`quickReply` ,`image` ,`video` ,`webhook`. |
+|`type` | string | no | yes | | enums: `text` ,`htmlText` ,`button`,`quickReply` ,`image` ,`video` ,`webhook` ,`ivrMenu` ,`transferCall`. |
 |`textVariants` | string[] | no | no | | an array of string ,only available when Type is `text`. |
+|`speechVariants` | string[] | no | no | | an array of string ,only available when Type is `text` and channel is `Voice`. |
 |`htmlTextVariants` | string[] | no | no | | an array of string ,only available when Type is `htmlText` |
 |`image` | [Image](#image-object)  | no | no | | [Image](#image-object) object, only available when Type is `image`|
 |`videoUrl` | string | no | no | | only available when Type is `video` |
@@ -2016,6 +2018,7 @@ Response is represented as simple flat json objects with the following keys:
 |`quickReply` | [Quick Reply](#Quick-Reply-Object) | no | no | | [Quick Reply](#Quick-Reply-Object) object, only available when Type is `quickReply`|
 |`buttons` | [Button](#button-object)[] | no | no | | an array of [Button](#button-object) object, only available when Type is `button`  | 
 |`webhook` | [Webhook](#Webhook-object) | no | no | | [Webhook](#Webhook-object) object, only available when Type is `webhook`  | 
+|`ivrMenu` | [IVRMenu](#IVRMenu-object) | no | no | | [IVRMenu](#IVRMenu-object) object, only available when Type is `ivrMenu`  | 
 |`order` | integer | no | yes |  | must greater than or equal 0, the order of the response, ascending sort |
 
 ### Image Object
@@ -2035,6 +2038,38 @@ Webhook is represented as simple flat json objects with the following keys:
 |`id` | Guid  | yes | N/A | | id of the current item. |
 |`url` | string | no | yes | | webhook request url  | 
 |`headers` | Map | no | no | | webhook request header  | 
+
+### IVRMenu Object
+IVRMenu is represented as simple flat json objects with the following keys:
+
+|Name| Type| Read-only For Put |Mandatory For Post |  Default | Description     | 
+| - | - | :-: | :-: | :-: | - | 
+|`id` | Guid  | yes | N/A | | id of the current item. |
+|`Message` | string | no | yes | | The message sent to visitor before the options.This message will be transferred to voice and read to visitor  | 
+|`InvalidInputActionRepeatTime` | Map | no | no | | How many times will this IVR Menu repeat if there is valid input   | 
+|`InvalidInputActionIntentId` | Map | no | no | | The intent to go to when no valid input for several times.    | 
+| `options` | [IVRMenuOption](#IVRMenuOption-object)[] | | no | yes |  | |
+
+### IVRMenuOption Object
+ IVRMenuOption is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Include |  Read-only For Put | Mandatory For Post | Default | Description |    
+  | - | - | :-: | :-: | :-: |  :-: | - | 
+  | `id` | Guid  | | yes | N/A | | id of option item |
+  | `text` | string  | | no | yes | | Visitor can speak the text to choose this option.This text will not be read to visitors. |
+  | `key` | string  | | no | yes | | 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, *, #. Each key can only be used once in an IVR menu. Visitor can press the key to choose the option.  |
+  | `intentId` | string  | | no | no | | The intent to go to when this option is chosen.  |
+  | `intent` | [Intent](#intent-object) | yes | N/A | N/A | | Available only when intent is included  | 
+  | `order` | integer | | no | yes |  | must greater than or equal 0,the order of the option item, ascending sort . |
+
+### IVRMenu Response Object
+IVRMenu Response is represented as simple flat json objects with the following keys:
+
+|Name| Type| Read-only For Put |Mandatory For Post |  Default | Description     | 
+| - | - | :-: | :-: | :-: | - | 
+|`id` | Guid  | yes | N/A | | id of the current item. |
+|`Message` | string | no | yes | | The message sent to visitor before the options.This message will be transferred to voice and read to visitor  | 
+|`speech` | string | no | no | | base64 string |
 
 ### Button Object
 Button is represented as simple flat json objects with the following keys:
@@ -5258,7 +5293,6 @@ HTTP/1.1 204 No Content
   | `score` | float  | N/A | N/A |  | the score of the intent matched, the value is beteween 0.0 and 100.0 |
   |`answer`| [NoAnswerMessageInChannel](#NoAnswerMessageInChannel-object) | N/A | N/A | | |
 
-
 ## Endpoints
 
 ### Chatbot greeting
@@ -5277,7 +5311,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `Voice` |
   | `botId` | Guid  | yes | | id of the bot |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. |
 
@@ -5355,9 +5389,10 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `Voice` |
   | `botId` | Guid  | yes | | id of the bot |
   | `question` | string  | yes | | visitor question |
+  | `speech` | string  | yes | | when channel is `Voice`, visitor speech |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
 
 example:
@@ -5382,9 +5417,9 @@ The response body contains data with the follow structure:
   | - | - | :-: | :-: | - | 
   | `questionId` | Guid  | N/A | N/A |  | the unique id of the question |
   | `question` | string  | N/A | N/A |  | visitor question | 
-  | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`possibleAnswer`、`noAnswer` |
+  | `type` | string  | yes | | type of the response,including `highConfidenceAnswer`、`possibleAnswer`、`noAnswer`, `authenticationRequest` |
   | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] | no |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
-  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer) |
+  | `content` | object | yes |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer); when type is `authenticationRequest`, it represents [AuthenticationRequest](#AuthenticationRequest-Object) |
 
 #### Example
 Using curl
@@ -5537,7 +5572,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
+  | `channel` | string  | yes | | eg: `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `Voice` |
   | `botId` | Guid  | yes | | id of the bot |
   | `authentication` | string  | yes | | authentication data |
   | `extra` | Map | no | | extra data, this data will be transferred to webhook. example: you can assign authentication data or location data which your webhook will use |
