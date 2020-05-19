@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Comm100 RESTful API V1</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="./resources/vue.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'Comm100 RESTful API V1',
+      themeColor: '#329fd9',
+      homepage: 'introduction.md',
+      subMaxLevel: 2,
+      search: 'auto',
+      loadSidebar: true,
+      loadSidebar: '_sidebar.md',
+      auto2top: true,
+      autoHeader: true,
+      basePath: '../',
+    };
+
+    // document.ready = function (callback) {
+    //     if (document.addEventListener) {
+    //         document.addEventListener('DOMContentLoaded', function () {
+    //             document.removeEventListener('DOMContentLoaded', arguments.callee, false);
+    //             callback();
+    //         }, false)
+    //     }
+    //     else if (document.attachEvent) {
+    //         document.attachEvent('onreadystatechange', function () {
+    //               if (document.readyState == "complete") {
+    //                         document.detachEvent("onreadystatechange", arguments.callee);
+    //                         callback();
+    //                 }
+    //         })
+    //     }
+    //     else if (document.lastChild == document.body) {
+    //         callback();
+    //     }
+    // }
+        
+    // setTimeout(function () {
+    //   var li1 = document.createElement('li');
+    //   li1.className = 'otherAPI';
+    //   li1.innerHTML = '<a href="https://hosted.comm100.com/LiveChatFunc/doc/CustomJS/index.html#/" target="_blank">Visitor Side Javascript API</a>';
+    //   document.querySelector('ul').appendChild(li1);
+    //   var li2 = document.createElement('li');
+    //   li2.className = 'otherAPI';
+    //   li2.innerHTML = '<a href="https://github.com/Comm100/agent-console-extension-sample/blob/master/doc/agent-console-api.md" target="_blank">Agent Console Javascript API</a>';
+    //   document.querySelector('ul').appendChild(li2);
+    // }, 100);
+  </script>
+  <script src="./resources/docsify.min.js"></script>  
+  <script src="./resources/search.min.js"></script>
+  <script src="./resources/prism-powershell.min.js"></script>
+  <script src="./resources/prism-json.min.js"></script>
+</body>
+</html>
