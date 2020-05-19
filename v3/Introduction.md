@@ -4,15 +4,17 @@ Welcome to the Comm100 RESTful API help guide. Our APIs make it possible for you
 
 Note: Comm100 currently has two versions of our customer engagement platform.  
 
--If you started using Comm100 on/after April 26, 2020, or you have migrated to the new platform, this is the latest API version for the platform you are on. 
-
-Please note that this documentation refers to the latest API version: 3.0. Please use 3 as the version number in the url. If you are looking for the previous version, check out the [API 2.0 documentation](https://www.comm100.com/doc/api/introduction.htm#/).
+-If you started using Comm100 on/after April 26, 2020, or you have migrated to the new platform, this is the latest API version for the platform you are on.  
+-If you started using Comm100 before April 26, 2020, you can access API 1.0 [here](https://www.comm100.com/doc/api/v1/introduction.htm#/) or the latest API version 2.0 [here](https://www.comm100.com/doc/api/introduction.htm#/).
 
 ## The Basics
 
 Comm100 RESTful API must use **https** protocol. What the API requests should start with depends on your platform domain, which can be accessed from both your Control Panel and web version Agent Console after successful login. For example:
 
 - If the domain of your Control Panel is portal1.comm100.io, all API requests should start with https://api1.comm100.io/api/v3/.
+- If the domain of your Control Panel is portal3.comm100.io, all API requests should start with https://api3.comm100.io/api/v3/.
+- If the domain of your Control Panel is portal5.comm100.io, all API requests should start with https://api5.comm100.io/api/v3/.
+- If the domain of your Control Panel is portal7.comm100.io, all API requests should start with https://api7.comm100.io/api/v3/.
 
 ## Authentication
 
