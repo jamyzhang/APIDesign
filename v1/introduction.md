@@ -1,10 +1,26 @@
 # Introduction
 Welcome to Comm100 RESTful API help guide. Our APIs enable you to integrate your applications with Comm100 Live Chat and realize the benefit of seamless data sharing. With Comm100 APIs, you can create innovative projects, achieve great practices and raise your customer satisfaction.
 
-## The Basics
-Comm100 RESTful API must use **https** access. All API requests on the Hosted platform start with https://hosted.comm100.com/api/v1/. All requests on the Enterprise platform start with https://ent.comm100.com/api/v1/.
+Note: Comm100 currently has two versions of our customer engagement platform. 
++ If you started using Comm100 before April 26, 2020, you can use API documentation version 1.0 which is the current page you are at. Or access the latest version [API 2.0 documentation](https://www.comm100.com/doc/api/v1/introduction.htm#/). 
++ If you started using Comm100 on/after April 26, 2020, or you have migrated to the new platform, you need to use the [API 3.0 documentation](https://www.comm100.com/doc/api/v3/introduction.htm#/). 
 
-Please note that the current API version is **1.0**. You need to use 1 as the version number in the url. Our latest API version is [2.0](https://www.comm100.com/doc/api/introduction.htm), with 2 as the version number in the url.
+## The Basics
+Comm100 RESTful API must use https protocol. What the API requests should start with depends on your platform domain, which can be accessed from both your Control Panel and web version Agent Console after successful login. For example:
+
++ If the domain of your Control Panel is hosted3.comm100.com, all API requests should start with https://hosted3.comm100.com/api/v1/. 
+
++ If the domain of your Control Panel is euportal.comm100.com, all API requests should start with https://euportal.comm100.com/api/v1/. 
+
++ If the domain of your Control Panel is appportal.livelyhelp.chat, all API requests should start with https://appportal.livelyhelp.chat/api/v1/. 
+
++ If the domain of your Control Panel is ent7portal.comm100.com, all API requests should start with https://ent7portal.comm100.com/api/v1/. 
+
++ If the domain of your Control Panel is enterpriseportal.comm100.com, all API requests should start with https://enterpriseportal.comm100.com/api/v1/. 
+
++ If the domain of your Control Panel is ent1portal.comm100.com, all API requests should start with https://ent1portal.comm100.com/api/v1/. 
+
++ If the domain of your Control Panel is hosted.comm100.com, all API requests should start with https://hosted.comm100.com/api/v1/. 
 
 ## Authorization
 For each method call, you must use your **email** and **API_KEY**.
