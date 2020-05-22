@@ -4,9 +4,9 @@ Welcome to the Comm100 RESTful API help guide. Our APIs make it possible for you
 
 Note: Comm100 currently has two versions of our customer engagement platform.
 
-- If you started using Comm100 before April 26, 2020, this is the latest API version: 2.0. Please use 2 as the version number in each API request url. If you are looking for the previous version, check out the [API 1.0 documentation](https://www.comm100.com/doc/api/v1/introduction.htm#/).
-- If you started using Comm100 on/after April 26, 2020, or you have migrated to the new platform, you need to use the [API 3.0 documentation](https://www.comm100.com/doc/api/v3/introduction.htm#/).
-  
+- If you started using Comm100 on/after April 26, 2020, or you have migrated to the new platform, this is the latest API version for the platform you are on.
+- If you started using Comm100 before April 26, 2020, you can access API 1.0 [here](https://www.comm100.com/doc/api/v1/introduction.htm#/) or the latest API version 2.0 [here](https://www.comm100.com/doc/api/introduction.htm#/).
+
 <div>
 
 ## The Basics
