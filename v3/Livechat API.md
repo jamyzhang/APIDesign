@@ -2826,6 +2826,10 @@ Content-Type:  application/json
 | `imageButtonOfflineImageOnMobile` | Guid | yes | no | | The image file key on mobile device when no agent is online. |
 | `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
 | `textLinkButtonText` | string | no | no | | The content of the text link, available when `type` is `textLink`. |
+| `adaptiveButtonRightOffset` | integer | no | no | 25 | Offset from right: XX Pixcels. |
+| `adaptiveButtonBottomOffset` | integer | no | no | 25 | Offset from botton: XX Pixcels. |
+| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 25 | Offset from right: XX Pixcels. |
+| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 25 | Offset from botton: XX Pixcels. |
 
 ## Chat Button Endpoints
 
@@ -2880,7 +2884,11 @@ Content-Type:  application/json
   "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "test"
+  "textLinkButtonText": "test",
+  "adaptiveButtonRightOffset": 25,
+  "adaptiveButtonBottomOffset": 25,
+  "adaptiveButtonRightOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25
 }
 ```
 
