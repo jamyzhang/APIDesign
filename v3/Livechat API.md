@@ -2826,10 +2826,10 @@ Content-Type:  application/json
 | `imageButtonOfflineImageOnMobile` | Guid | yes | no | | The image file key on mobile device when no agent is online. |
 | `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
 | `textLinkButtonText` | string | no | no | | The content of the text link, available when `type` is `textLink`. |
-| `adaptiveButtonRightOffset` | integer | no | no | 0 | Offset from right: XX Pixcels. |
-| `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX Pixcels. |
-| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX Pixcels. |
-| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX Pixcels. |
+| `adaptiveButtonRightOffset` | integer | no | no | 0 | Offset from right: XX Pixels. |
+| `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
+| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX Pixels. |
+| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
 
 ## Chat Button Endpoints
 
@@ -2885,10 +2885,10 @@ Content-Type:  application/json
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
   "textLinkButtonText": "test",
-  "adaptiveButtonRightOffset": 25,
-  "adaptiveButtonBottomOffset": 25,
-  "adaptiveButtonRightOffsetOnMobile": 25,
-  "adaptiveButtonBottomOffsetOnMobile": 25
+  "adaptiveButtonRightOffset": 0,
+  "adaptiveButtonBottomOffset": 0,
+  "adaptiveButtonRightOffsetOnMobile": 0,
+  "adaptiveButtonBottomOffsetOnMobile": 0
 }
 ```
 
@@ -2960,7 +2960,11 @@ curl -H "Content-Type: application/json" -d '{
   "imageButtonColorOnMobile": "#329fd9",
   "imageButtonTextColorOnMobile": "#329fd9",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "tset111111"
+  "textLinkButtonText": "tset111111",
+  "adaptiveButtonRightOffset": 0,
+  "adaptiveButtonBottomOffset": 0,
+  "adaptiveButtonRightOffsetOnMobile": 0,
+  "adaptiveButtonBottomOffsetOnMobile": 0
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatButton
 ```
 
