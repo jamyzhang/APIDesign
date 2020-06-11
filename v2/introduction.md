@@ -16,7 +16,7 @@ Comm100 RESTful API must use https protocol. What the API requests should st
 
 - If the domain of your Control Panel is hosted3.comm100.com, all API requests should start with https://hosted3.comm100.com/api/v2/.
 - If the domain of your Control Panel is euportal.comm100.com, all API requests should start with https://euportal.comm100.com/api/v2/.
-- If the domain of your Control Panel is Appportal.comm100.chat, all API requests should start with https://Appportal.comm100.chat/api/v2/.
+- If the domain of your Control Panel is appportal.livelyhelp.chat, all API requests should start with https://appportal.livelyhelp.chat/api/v2/.
 - If the domain of your Control Panel is ent7portal.comm100.com, all API requests should start with https://ent7portal.comm100.com/api/v2/.
 - If the domain of your Control Panel is enterpriseportal.comm100.com, all API requests should start with https://enterpriseportal.comm100.com/api/v2/.
 - If the domain of your Control Panel is ent1portal.comm100.com, all API requests should start with https://ent1portal.comm100.com/api/v2/.
@@ -66,7 +66,7 @@ For each method call, you must use your email and API_KEY.Authentication to the 
 ```bash
     curl https://hosted.comm100.com/oauth/token -H "Content-Type:application/x-www-form-urlencoded"  
      -d 'grant_type=password&email={comm100_agent_email}&password={comm100_agent_password}'  
-     -x POST
+     -X POST
 ```
 
 ##### Example Response
@@ -97,7 +97,7 @@ For each method call, you must use your email and API_KEY.Authentication to the 
 ```bash
     curl https://hosted.comm100.com/partner/oauth/token -H "Content-Type:application/x-www-form-urlencoded"  
      -d 'grant_type=password&email={comm100_parnter_email}&password={comm100_partner_password}'  
-     -x POST
+     -X POST
 ```
 
 #### Example Response
