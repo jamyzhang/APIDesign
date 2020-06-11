@@ -2130,7 +2130,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x -DELETE https://hosted.comm100.com/api/v2/livechat/campaigns/1/routingrule/customrules/6
+     -X -DELETE https://hosted.comm100.com/api/v2/livechat/campaigns/1/routingrule/customrules/6
 ```
 
 Sample response:

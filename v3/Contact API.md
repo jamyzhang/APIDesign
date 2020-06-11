@@ -264,7 +264,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x PUT -H "Content-Type: application/json"  
+     -X PUT -H "Content-Type: application/json"  
      -d "{"name": 'jason',"alias": 'my alias'}"    
      https://hosted.comm100.com/api/v3/contact/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
 ```
@@ -323,7 +323,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE https://hosted.comm100.com/api/v3/contact/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+     -X DELETE https://hosted.comm100.com/api/v3/contact/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
 ```
 
 Sample response:
@@ -517,7 +517,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x PUT -H "Content-Type: application/json"  
+     -X PUT -H "Content-Type: application/json"  
      -d "{"value": '987654321'}"    
      https://hosted.comm100.com/api/v3/contact/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
 ```
@@ -557,7 +557,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE https://hosted.comm100.com/api/v3/contact/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
+     -X DELETE https://hosted.comm100.com/api/v3/contact/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
 ```
 
 Sample response:
