@@ -149,7 +149,7 @@ For each method call, you must use your email and API_KEY.Authentication to the 
 ```bash
     curl https://hosted.comm100.com/oauth/token -H "Content-Type:application/x-www-form-urlencoded"  
      -d 'grant_type=password&email={comm100_agent_email}&password={comm100_agent_password}'  
-     -x POST
+     -X POST
 ```
 
 ##### Example Response
@@ -219,7 +219,7 @@ For each method call, you must use your email and API_KEY.Authentication to the 
 ```bash
     curl https://hosted.comm100.com/partner/oauth/token -H "Content-Type:application/x-www-form-urlencoded"  
      -d 'grant_type=password&email={comm100_parnter_email}&password={comm100_partner_password}'  
-     -x POST
+     -X POST
 ```
 
 #### Example Response

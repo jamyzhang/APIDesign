@@ -2,7 +2,7 @@
 Welcome to Comm100 RESTful API help guide. Our APIs enable you to integrate your applications with Comm100 Live Chat and realize the benefit of seamless data sharing. With Comm100 APIs, you can create innovative projects, achieve great practices and raise your customer satisfaction.
 
 Note: Comm100 currently has two versions of our customer engagement platform. 
-+ If you started using Comm100 before April 26, 2020, you can use API documentation version 1.0 which is the current page you are at, or access the latest version [API 2.0 documentation](https://www.comm100.com/doc/api/v1/introduction.htm#/). 
++ If you started using Comm100 before April 26, 2020, you can use API documentation version 1.0 which is the current page you are at, or access the latest version [API 2.0 documentation](https://www.comm100.com/doc/api/introduction.htm#/). 
 + If you started using Comm100 on/after April 26, 2020, or you have migrated to the new platform, you need to use the [API 3.0 documentation](https://www.comm100.com/doc/api/v3/introduction.htm#/). 
 
 ## The Basics

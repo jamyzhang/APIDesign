@@ -39,7 +39,7 @@ Comm100 use JWT authentication method.
 ```bash
   curl https://x.comm100.com/adminwebservice/api/jwttoken/generate -H "Content-Type:application/json"  
   -d '{"LoginType":"Password","Username":{comm100_agent_email},"Password":{comm100_agent_password},"SiteId":{siteId}}'  
-  -x POST
+  -X POST
 ```
 
 #### Example Response
