@@ -2960,11 +2960,7 @@ curl -H "Content-Type: application/json" -d '{
   "imageButtonColorOnMobile": "#329fd9",
   "imageButtonTextColorOnMobile": "#329fd9",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "tset111111",
-  "adaptiveButtonRightOffset": 0,
-  "adaptiveButtonBottomOffset": 0,
-  "adaptiveButtonRightOffsetOnMobile": 0,
-  "adaptiveButtonBottomOffsetOnMobile": 0
+  "textLinkButtonText": "tset111111"
   }' -X PUT https://api1.comm100.io/api/v3/livechat/campaigns/FAE531BE-8CAD-207D-57B9-493BBCC6E585/chatButton
 ```
 
@@ -2995,7 +2991,11 @@ Content-Type:  application/json
   "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "test111111"
+  "textLinkButtonText": "test111111",  
+  "adaptiveButtonRightOffset": 0,
+  "adaptiveButtonBottomOffset": 0,
+  "adaptiveButtonRightOffsetOnMobile": 0,
+  "adaptiveButtonBottomOffsetOnMobile": 0
 }
 ```
 
