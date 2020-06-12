@@ -2885,10 +2885,10 @@ Content-Type:  application/json
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
   "textLinkButtonText": "test",
-  "adaptiveButtonRightOffset": 0,
-  "adaptiveButtonBottomOffset": 0,
-  "adaptiveButtonRightOffsetOnMobile": 0,
-  "adaptiveButtonBottomOffsetOnMobile": 0
+  "adaptiveButtonRightOffset": 25,
+  "adaptiveButtonBottomOffset": 25,
+  "adaptiveButtonRightOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25
 }
 ```
 
