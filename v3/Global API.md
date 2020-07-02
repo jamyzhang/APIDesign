@@ -4503,9 +4503,10 @@ Content-Type:  application/json
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `isEnabled` | bool  | | no | no | false | |
-  | `loginURL` | string  | | no | yes | | |
-  | `certificate` | string  | | no | yes | | Base64 data of certificate file. |
-  | `certificateFileName` | string  | | no | yes | | |
+  | `loginUrl` | string  | | no | yes | | |
+  | `artifactResolutionService` | string  | | no | no | | |
+  | `signOutUrl` | string  | | no | no | | |
+  | `SAMLCertificate` | string  | | no | yes | | Base64 data of certificate file. |
   | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | no | | |
   | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | no | | |
 
@@ -4528,6 +4529,8 @@ Visitor SSO Campaign is represented as simple flat JSON objects with the followi
   | `campaign` | [Campaign](./Livechat%20API.md#campaign-object)  | yes | no | no | | Available only when campaign is included  |
   | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
   | `isPrechatFromSkipped` | bool |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
+  | `ifOpenSignInPageEmbeddedWindow` | bool |  | no | no | true | Whether the SSO sign-in is in embedded window. |
+
 
 ## Visitor SSO Endpoints
 
@@ -4561,9 +4564,10 @@ Content-Type:  application/json
 
 {
     "isEnabled": true,
-    "loginURL": "http://www.xzcs11ffffffff1a",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateFileName": "r.txt",
+    "loginUrl": "http://www.xzcs11ffffffff1a",
+    "artifactResolutionService":"",
+    "signOutUrl":"",
+    "SAMLCertificate": "amdoamdoaGdmcnRk",
     "fieldMappings": [
         {
             "attribute": "test999",
@@ -4583,7 +4587,8 @@ Content-Type:  application/json
                 ...
             },
             "signInOption": "noSignIn",
-            "isPrechatFromSkipped": false
+            "isPrechatFromSkipped": false,
+            "ifOPenSignInPageEmbeddedWindow":true
         }
     ]
 }
@@ -4603,9 +4608,10 @@ example:
 ```Json
   {
     "isEnabled": true,
-    "loginURL": "http://www.xzcs11ffffffff1a",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateFileName": "r.txt",
+    "loginUrl": "http://www.xzcs11ffffffff1a",
+    "artifactResolutionService":"",
+    "signOutUrl":"",
+    "SAMLCertificate": "amdoamdoaGdmcnRk",
     "fieldMappings": [
         {
             "attribute": "test999",
@@ -4620,7 +4626,8 @@ example:
         {
             "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
             "signInOption": "noSignIn",
-            "isPrechatFromSkipped": false
+            "isPrechatFromSkipped": false,
+            "ifOPenSignInPageEmbeddedWindow":true
         }
     ]
   }
@@ -4635,9 +4642,10 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "isEnabled": true,
-    "loginURL": "http://www.xzcs11ffffffff1a",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateFileName": "r.txt",
+    "loginUrl": "http://www.xzcs11ffffffff1a",
+    "artifactResolutionService":"",
+    "signOutUrl":"",
+    "SAMLCertificate": "amdoamdoaGdmcnRk",
     "fieldMappings": [
         {
             "attribute": "test999",
@@ -4652,7 +4660,8 @@ curl -H "Content-Type: application/json" -d '{
         {
             "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
             "signInOption": "noSignIn",
-            "isPrechatFromSkipped": false
+            "isPrechatFromSkipped": false,
+            "ifOPenSignInPageEmbeddedWindow":true
         }
     ]
   }' -X PUT https://api1.comm100.io/api/v3/globalSettings/visitorSSO
@@ -4664,9 +4673,10 @@ Response
 
   {
     "isEnabled": true,
-    "loginURL": "http://www.xzcs11ffffffff1a",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateFileName": "r.txt",
+    "loginUrl": "http://www.xzcs11ffffffff1a",
+    "artifactResolutionService":"",
+    "signOutUrl":"",
+    "SAMLCertificate": "amdoamdoaGdmcnRk",
     "fieldMappings": [
         {
             "attribute": "test999",
@@ -4681,7 +4691,8 @@ Response
         {
             "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
             "signInOption": "noSignIn",
-            "isPrechatFromSkipped": false
+            "isPrechatFromSkipped": false,
+            "ifOPenSignInPageEmbeddedWindow":true
         }
     ]
   }
