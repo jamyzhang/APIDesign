@@ -23,7 +23,7 @@ Comm100 use JWT authentication method.
 - [JWT Authentication](#JWT-Authentication)
 
 ## JWT Authentication
-  You can only use jwt authenticate to exchange an agent's email, password and siteId for an jwt token directly while calling the global, livechat or report API. This grant type is highly secured by Comm100.
+  You can only use jwt authenticate to exchange an agent's email, password and siteId for a jwt token directly while calling the global, livechat or report API. This grant type is highly secured by Comm100.
 
 ### How to get the jwt token?
 
