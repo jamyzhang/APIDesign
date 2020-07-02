@@ -4715,8 +4715,8 @@ Response
   |`actionType` | string | | no  | no  | | [action types for different applications](#action-types-for-different-applications) |
   |`actionSummary` | string| | no  | no  | |  |
   |`actionDetails` | string| | no  | no  | |  |
-  |`createdBy` | integer | | no  | no  | | id of oprator agent |
-  |`agent` | [Agent](#agent) | yes | no  | no  | | the oprator agent |
+  |`createdBy` | integer | | no  | no  | | Identifier of the oprator agent. |
+  |`agent` | [Agent](#agent) | yes | no  | no  | | The oprator agent. |
 
 ### Audit Log List Response Object
 
@@ -4724,10 +4724,10 @@ Response
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`count` | integer  | no | yes | no | | The total count of the query  |
-  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
-  |`auditLogs`| [AuditLog](#audit-log-object)[]| no | yes| 0 | | a list of Audit Log. |
+  |`count` | integer  | no | yes | no | | The total count of the query.  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query.  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query.  |
+  |`auditLogs`| [AuditLog](#audit-log-object)[]| no | yes| 0 | | A list of Audit Log. |
 
 ### Action types for different applications
 
@@ -4766,13 +4766,13 @@ Response
   | - | - | - | - | - |
   |`dateFrom`|DateTime|no||The date from which agent did the action, format as yyyy-MM-ddTHH:mm:ss. |
   |`dateTo`|DateTime|no||The date when an agent ended the action, format as yyyy-MM-ddTHH:mm:ss. |
-  |`category`|string|no||The category which the action belongs to |
+  |`category`|string|no||The category, which the action belongs to |
   |`actionType`|string|no||The action type. |
-  |`agentId`|integer |no||id of the agent who did the action. |
-  |`keywords`|string|no||The key words associated with the action. |
+  |`agentId`|integer |no|| Identifier of the agent who did the action. |
+  |`keywords`|string|no||The keywords associated with the action. |
   |`pageIndex`|integer|no| 1 | The page index of the query. |
   |`pageSize`|integer|no| 10 |The page size of the query. |
-  |`include`|string|no||Available value: `agent` |
+  |`include`|string|no||Available value: `agent`. |
 
 
 #### Response
