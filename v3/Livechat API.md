@@ -2808,7 +2808,10 @@ Content-Type:  application/json
 | `isDomainRestrictionEnabled` | boolean | no | no | | Whether the domain restriction is enabled or not. |
 | `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
 | `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
-| `adaptiveButtonIconType` | integer | no | no | | Type of the chat button icon, including `1`, `2` , `3` and `4`, available when `type` is `adaptive`. |
+| `adaptiveButtonRightOffset` | integer | no | no | 0 | Offset from right: XX Pixels. |
+| `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
+| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX Pixels. |
+| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
 | `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
 | `imageButtonPosition` | string | no | no | | Position of the image button. Including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
 | `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
@@ -2826,10 +2829,7 @@ Content-Type:  application/json
 | `imageButtonOfflineImageOnMobile` | Guid | yes | no | | The image file key on mobile device when no agent is online. |
 | `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
 | `textLinkButtonText` | string | no | no | | The content of the text link, available when `type` is `textLink`. |
-| `adaptiveButtonRightOffset` | integer | no | no | 0 | Offset from right: XX Pixels. |
-| `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
-| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX Pixels. |
-| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
+
 
 ## Chat Button Endpoints
 
@@ -2867,7 +2867,10 @@ Content-Type:  application/json
   "isDomainRestrictionEnabled": false,
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
-  "adaptiveButtonIconType": 1,
+  "adaptiveButtonRightOffset": 25,
+  "adaptiveButtonBottomOffset": 25,
+  "adaptiveButtonRightOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25,
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2884,11 +2887,7 @@ Content-Type:  application/json
   "imageButtonOnlineImageOnMobile": "ED1CDD86-57D8-E479-0B39-45089E9A77E8",
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
-  "textLinkButtonText": "test",
-  "adaptiveButtonRightOffset": 25,
-  "adaptiveButtonBottomOffset": 25,
-  "adaptiveButtonRightOffsetOnMobile": 25,
-  "adaptiveButtonBottomOffsetOnMobile": 25
+  "textLinkButtonText": "test"
 }
 ```
 
@@ -2918,7 +2917,10 @@ example:
   "isDomainRestrictionEnabled": false,
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
-  "adaptiveButtonIconType": 1,
+    "adaptiveButtonRightOffset": 25,
+  "adaptiveButtonBottomOffset": 25,
+  "adaptiveButtonRightOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25,
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2948,7 +2950,10 @@ curl -H "Content-Type: application/json" -d '{
   "isDomainRestrictionEnabled": false,
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
-  "adaptiveButtonIconType": 1,
+  "adaptiveButtonRightOffset": 25,
+  "adaptiveButtonBottomOffset": 25,
+  "adaptiveButtonRightOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25,
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2974,7 +2979,10 @@ Content-Type:  application/json
   "isDomainRestrictionEnabled": false,
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
-  "adaptiveButtonIconType": 1,
+  "adaptiveButtonRightOffset": 25,
+  "adaptiveButtonBottomOffset": 25,
+  "adaptiveButtonRightOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25,
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
