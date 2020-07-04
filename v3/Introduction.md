@@ -14,7 +14,7 @@ Comm100 RESTful API must use **https** protocol. What the API requests should st
 - If the domain of your Control Panel is portal1.comm100.io, all API requests should start with https://api1.comm100.io/api/v3/.
 - If the domain of your Control Panel is portal3.comm100.io, all API requests should start with https://api3.comm100.io/api/v3/.
 - If the domain of your Control Panel is portal5.comm100.io, all API requests should start with https://api5.comm100.io/api/v3/.
-- If the domain of your Control Panel is portal7.comm100.io, all API requests should start with https://api 7.comm100.io/api/v3/.
+- If the domain of your Control Panel is portal7.comm100.io, all API requests should start with https://api7.comm100.io/api/v3/.
 
 ## Authentication
 
