@@ -14,7 +14,7 @@ Comm100 RESTful API must use **https** protocol. What the API requests should st
 - If the domain of your Control Panel is portal1.comm100.io, all API requests should start with https://api1.comm100.io/api/v3/.
 - If the domain of your Control Panel is portal3.comm100.io, all API requests should start with https://api3.comm100.io/api/v3/.
 - If the domain of your Control Panel is portal5.comm100.io, all API requests should start with https://api5.comm100.io/api/v3/.
-- If the domain of your Control Panel is portal7.comm100.io, all API requests should start with https://api7.comm100.io/api/v3/.
+- If the domain of your Control Panel is portal7.comm100.io, all API requests should start with https://api 7.comm100.io/api/v3/.
 
 ## Authentication
 
@@ -23,7 +23,7 @@ Comm100 use JWT authentication method.
 - [JWT Authentication](#JWT-Authentication)
 
 ## JWT Authentication
-  You can only use jwt authenticate to exchange an agent's email, password and siteId for a jwt token directly while calling the global, livechat or report API. This grant type is highly secured by Comm100.
+  You can only use JWT authentication to exchange an agent's email, password, and siteId for a JWT token directly while calling the global, livechat, or report API. This grant type is highly secured by Comm100. Ensure that while generating a JWT token, the API request should start with https://portal1.comm100.io/api/v3 domain.
 
 ### How to get the jwt token?
 
@@ -87,16 +87,16 @@ You can use the jwt token to call the comm100 v3 api as follow Example.
             "alertTo":{
                 "agentIds":[4,5],
                 "departmentIds":[]
-            }
+              }
           }' 
-      -X POST https://api1.comm100.io/api/v3/livechat/customerSegments
+      -X POST https://portal1.comm100.io/api/v3/livechat/customerSegments
 ```
 
 ##### Example Response
 
 ```bash
   HTTP/1.1 201 Created
-  Location: https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+  Location: https://portal1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
   Content-Type:  application/json
   {
     "name": "livechat15293908029",
