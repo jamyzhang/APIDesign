@@ -2272,7 +2272,7 @@ The response body contains data with the follow structure:
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
 | `total` | integer | no | no | Total count of the list. |
-| `previousPage` | string | no | no | URL of the previous page. |
+| `previousPage` | string | no | no | Url of the previous page. |
 | `nextPage` | string | no | no | Url of the next page. |
 | `offlineMessages` | [Offline Message](#offline-message-json-format)[] | no | no | An array of [Offline Message](#offline-message-json-format). |
 
@@ -2366,7 +2366,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The identifier of the offline message.  |
+| `id` | Guid | yes  |  Identifier of the offline message.  |
 
 Query string
 
@@ -2454,7 +2454,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  The identifier of the offline message.  |
+| `id` | Guid | yes  |  Identifier of the offline message.  |
 
 
 #### Response
@@ -2524,7 +2524,7 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-|`id` | Guid | yes | no | | Id of the current item.  |
+|`id` | Guid | yes | no | | Identifier of the current item.  |
 | `name` | string  | no | yes | `Default Plan` | |
 | `description` | string  | no | no | | |
 | `language` | string | no | no | `English` | The languages are defined in cpanel.  |
