@@ -804,7 +804,7 @@ You need the `Manage Agent & Agent Roles` permission to manage roles.
   |`type` | string | | yes | no | custom | Options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
   |`agentIds` | int[] | | no | no | NULL | The selected agents for this role. |
   |`agents` | [Agent](#agent)[] | yes | no | no | | The selected agents for this role.|
-  |`permissionIds` | int[] | | no | no | NULL | The list of permission ids assigned to this role.|
+  |`permissionIds` | int[] | | no | no | NULL | The list of permission identifiers assigned to this role.|
   |`permissions` | [Permission](#permission)[] | yes | no | no | | Permissions assigned to this role.|
 
 
