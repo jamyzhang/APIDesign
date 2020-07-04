@@ -543,7 +543,7 @@ You need `Manage Settings` permission to manage `Customer Segment`.
   | `conditionMetType` |string  || no | no |all| Met type of condtion, including `all`,`any`,`logicalExpression`. |
   | `logicalExpression` |string  || no | no || The logical expression for conditions. |
   | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || An array of [Live Chat Condition](#live-chat-condition-object) object. |
-  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent id or department id.|
+  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent identifier or department identifier.|
 
 ### Alert To Segment Object
 
@@ -551,8 +551,8 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentIds` |int[]  || no | no|| An array of department id.|
-| `agentIds` |Guid[]  || no | no || An array of agent id.|
+| `departmentIds` |int[]  || no | no|| An array of department identifier.|
+| `agentIds` |Guid[]  || no | no || An array of agent identifier.|
 
 ### Live Chat Condition object
 
@@ -560,10 +560,10 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
   | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `field` |String  | no | yes || The name of visitor field. |
+  | `field` |String  | no | yes || The name of a visitor field. |
   | `Operator` |String  | no | yes || Type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`. |
   | `value` |String  | no | yes || The value of a visitor field.|
-  | `order` |int  | no | no|maximum order + 1| The order of visitor field. |
+  | `order` |int  | no | no|maximum order + 1| The order of a visitor field. |
 
 ## Endpoint
 
@@ -628,7 +628,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of customer segment.   |
+| `id` | Guid | yes  |  Identifier of the customer segment.   |
 
 #### Response
 
@@ -851,7 +851,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of customer segment. |
+| `id` | Guid | yes  |  Identifier of the   customer segment. |
 
 #### Response
 
