@@ -1698,7 +1698,7 @@ Content-Type:  application/json
 | `landingPageTitle` | string | | no | no | | The title of the first page of your website the visitor visited. |
 | `visitorId` | Guid | | no | no | | Identifier of the visitor. |
 | `visitor` | [Visitor](./Global%20API.md#Visitor) | yes | no | no | | Available only when the visitor is included.  |
-| `contactId` | integer | | no | no | | The id of the contact  |
+| `contactId` | integer | | no | no | | Identifier of the contact.  |
 | `contact` | [Contact](./Global%20API.md#Contact) | yes | no | no | | Available only when contact is included.  |
 
 ## Endpoint
