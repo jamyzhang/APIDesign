@@ -2804,30 +2804,30 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `type` | string | no | no | `adaptive` | Type of the button, includes:`adaptive`, `image` and `textLink`. |
-| `isHideWhenOffline` | boolean | no | no | | Whether the chat button is visible when no agent is online. `True` means that button is invisible. |
+| `isHideWhenOffline` | boolean | no | no | | Whether the Chat button is visible when no agent is online. `True` means that button is invisible. |
 | `isDomainRestrictionEnabled` | boolean | no | no | | Whether the domain restriction is enabled or not. |
-| `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
-| `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
-| `adaptiveButtonRightOffset` | integer | no | no | 0 | Offset from right: XX Pixels. |
-| `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
-| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX Pixels. |
-| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
-| `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
-| `imageButtonPosition` | string | no | no | | Position of the image button. Including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
-| `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
+| `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the Chat button is visible. |
+| `adaptiveButtonColor` | string | no | no | | The theme color of the Chat button, available when `type` is `adaptive`. |
+| `adaptiveButtonRightOffset` | integer | no | no | 0 | Offset from right: XX pixels. |
+| `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX pixels. |
+| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX pixels. |
+| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX pixels. |
+| `isImageButtonFloating` | boolean | no | no | | Whether the Image button is float or not, available when `type` is `image`. |
+| `imageButtonPosition` | string | no | no | | Position of the Image button, including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
+| `imageButtonPositionMode` | string | no | no | | Position mode of the Image button, including `Basic` and `Advanced`, available when `type` is `image`. |
 | `isImageButtonXOffsetByPixel` | boolean | no | no | | Available when `type` is `image`. |
-| `imageButtonXOffset` | integer | no | no | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate, available when `type` is `image`. |
+| `imageButtonXOffset` | integer | no | no | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate. Available when `type` is `image`. |
 | `isImageButtonYOffsetByPixel` | boolean | no | no | | Available when `type` is `image`. |
-| `imageButtonYOffset` | integer | no | no | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate, available when `type` is `image`. |
+| `imageButtonYOffset` | integer | no | no | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate. Available when `type` is `image`. |
 | `imageButtonImageSource` | string | yes | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
 | `imageButtonOnlineImage` | Guid | yes | no | | Image file key of online button, available when `type` is `image`. |
 | `imageButtonOfflineImage` | Guid | yes | no | | Image file key of offline button, available when `type` is `image`. |
 | `imageButtonTypeOnMobile` | string | no | no | | The type of button on mobile device, including `text` and `image`. |
 | `imageButtonColorOnMobile` | string | no | no | | |
-| `imageButtonTextColorOnMobile` | string | no | no | | The theme color of chatbutton on mobile device. |
+| `imageButtonTextColorOnMobile` | string | no | no | | The theme color of the Chat button on mobile device. |
 | `imageButtonOnlineImageOnMobile` | Guid | yes | no | | The Image file key on mobile device when any agents is online. |
 | `imageButtonOfflineImageOnMobile` | Guid | yes | no | | The image file key on mobile device when no agent is online. |
-| `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
+| `imageButtonPositionOnMobile` | string | no | no | | Position of the Chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
 | `textLinkButtonText` | string | no | no | | The content of the text link, available when `type` is `textLink`. |
 
 
@@ -3022,7 +3022,7 @@ Content-Type:  application/json
 | - | - | :-: | :-: | :-: | - |
 | `style` | string | no | no | |  Style of the window's theme, including `classic`, `circle` and `bubble`. |
 | `color` | string | no | no | |  Color of the window's theme. |
-| `type` | string | no | no | | Type of the chat window, including `embedded` and `popup`. |
+| `type` | string | no | no | | Type of the Chat window, including `embedded` and `popup`. |
 | `headerType` | string | no | no | |  Type of the header, including `agentInfo`, `bannerImage` and `avatarAndLogo` when `style` is `classic`. |
 | `isAvatarDisplayed` | boolean | no | no | | Whether the avatar of the agent is visible or not, available when  `headerType` is `agentInfo` or `avatarAndLogo`. |
 | `isTitleDisplayed` | boolean | no | no | | Whether the title of the agent is visible or not, available when `headerType` is `agentInfo`. |
