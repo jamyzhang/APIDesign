@@ -4158,7 +4158,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  The unique id of the campaign |
+| `campaignId` | Guid | yes  |  Unique identifer of the campaign. |
 
 #### Response
 
@@ -4790,7 +4790,7 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These system fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 
 ## Agent Wrap-Up Endpoints
 
