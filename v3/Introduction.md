@@ -23,7 +23,7 @@ Comm100 use JWT authentication method.
 - [JWT Authentication](#JWT-Authentication)
 
 ## JWT Authentication
-  You can only use JWT authentication to exchange an agent's email, password, and siteId for a JWT token directly while calling the global, livechat, or report API. This grant type is highly secured by Comm100. Ensure that while generating a JWT token, the API request should start with https://portal1.comm100.io/api/v3 domain.
+  You can only use JWT authentication to exchange an agent's email, password, and siteId for a JWT token directly while calling the global, livechat, or report API. This grant type is highly secured by Comm100. Ensure that while generating a JWT token, the API request should start with https://portal1.comm100.io domain.
 
 ### How to get the jwt token?
 
@@ -37,7 +37,7 @@ Comm100 use JWT authentication method.
 - SiteId - the site which the agent belongs to.
 
 ```bash
-  curl https://x.comm100.com/adminwebservice/api/jwttoken/generate -H "Content-Type:application/json"  
+  curl https://portal1.comm100.io/adminwebservice/api/jwttoken/generate -H "Content-Type:application/json"  
   -d '{"LoginType":"Password","Username":{comm100_agent_email},"Password":{comm100_agent_password},"SiteId":{siteId}}'  
   -X POST
 ```
@@ -89,14 +89,14 @@ You can use the jwt token to call the comm100 v3 api as follow Example.
                 "departmentIds":[]
               }
           }' 
-      -X POST https://portal1.comm100.io/api/v3/livechat/customerSegments
+      -X POST https://api1.comm100.io/api/v3/livechat/customerSegments
 ```
 
 ##### Example Response
 
 ```bash
   HTTP/1.1 201 Created
-  Location: https://portal1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
+  Location: https://api1.comm100.io/api/v3/livechat/customerSegments/1487fc9d-92e6-4487-a2e8-92e68d6892e6
   Content-Type:  application/json
   {
     "name": "livechat15293908029",
