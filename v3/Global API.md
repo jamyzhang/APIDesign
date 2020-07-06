@@ -2509,7 +2509,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`contactId` | integer | yes  |  Identifier of the contact of contact Identities belong|
+  |`contactId` | integer | yes  | Identifier of the contact, which Contact Identities belong to.|
 
 
 #### Response
