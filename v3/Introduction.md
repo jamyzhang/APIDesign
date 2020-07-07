@@ -23,7 +23,14 @@ Comm100 use JWT authentication method.
 - [JWT Authentication](#JWT-Authentication)
 
 ## JWT Authentication
-  You can only use JWT authentication to exchange an agent's email, password, and siteId for a JWT token directly while calling the global, livechat, or report API. This grant type is highly secured by Comm100. Ensure that while generating a JWT token, the API request should start with https://portal1.comm100.io domain.
+  You can only use JWT authentication to exchange an agent's email, password, and siteId for a JWT token directly while calling the global, livechat, or report API. This grant type is highly secured by Comm100. Ensure that while generating a JWT token, the API request should start with the domain of your Control Panel, such as https://portal1.comm100.io. For example:
+  
+- If the domain of your Control Panel is portal1.comm100.io, API request generating JWT token should start with https://portal1.comm100.io/.
+- If the domain of your Control Panel is portal3.comm100.io, API request generating JWT token should start with https://portal3.comm100.io/.
+- If the domain of your Control Panel is portal5.comm100.io, API request generating JWT token should start with https://portal5.comm100.io/.
+- If the domain of your Control Panel is portal7.comm100.io, API request generating JWT token should start with https://portal7.comm100.io/.
+  
+  
 
 ### How to get the jwt token?
 
