@@ -11,10 +11,10 @@ Note: Comm100 currently has two versions of our customer engagement platform.
 
 Comm100 RESTful API must use **https** protocol. What the API requests should start with depends on your platform domain, which can be accessed from both your Control Panel and web version Agent Console after successful login. For example:
 
-- If the domain of your Control Panel is portal1.comm100.io, all API requests should start with https://api1.comm100.io/api/v3/.
-- If the domain of your Control Panel is portal3.comm100.io, all API requests should start with https://api3.comm100.io/api/v3/.
-- If the domain of your Control Panel is portal5.comm100.io, all API requests should start with https://api5.comm100.io/api/v3/.
-- If the domain of your Control Panel is portal7.comm100.io, all API requests should start with https://api7.comm100.io/api/v3/.
+- If your Control Panel domain is portal1.comm100.io, all API requests (except for the API request in generating the JWT token) should start with https://api1.comm100.io/api/v3/. 
+- If your Control Panel domain is portal3.comm100.io, all API requests (except for the API request in generating the JWT token) should start with https://api3.comm100.io/api/v3/.
+- If your Control Panel domain is portal5.comm100.io, all API requests (except for the API request in generating the JWT token) should start with https://api5.comm100.io/api/v3/.
+- If your Control Panel domain is portal7.comm100.io, all API requests (except for the API request in generating the JWT token) should start with https://api7.comm100.io/api/v3/.
 
 ## Authentication
 
@@ -23,14 +23,14 @@ Comm100 use JWT authentication method.
 - [JWT Authentication](#JWT-Authentication)
 
 ## JWT Authentication
-  You can only use JWT authentication to exchange an agent's email, password, and siteId for a JWT token directly while calling the global, livechat, or report API. This grant type is highly secured by Comm100. Ensure that while generating a JWT token, the API request should start with the domain of your Control Panel, such as https://portal1.comm100.io. For example:
+  You can only use JWT authentication to exchange an agent's email, password, and siteId for a JWT token directly while calling the global, livechat, or report API. This grant type is highly secured by Comm100. 
   
-- If the domain of your Control Panel is portal1.comm100.io, API request generating JWT token should start with https://portal1.comm100.io/.
-- If the domain of your Control Panel is portal3.comm100.io, API request generating JWT token should start with https://portal3.comm100.io/.
-- If the domain of your Control Panel is portal5.comm100.io, API request generating JWT token should start with https://portal5.comm100.io/.
-- If the domain of your Control Panel is portal7.comm100.io, API request generating JWT token should start with https://portal7.comm100.io/.
+  Note that while generating a JWT token, the API request should start with your platform domain, which is different from the other API requests. For example:
   
-  
+- If your Control Panel domain is portal1.comm100.io, the API requests should start with https://portal1.comm100.io/.
+- If your Control Panel domain is portal3.comm100.io, the API requests should start with https://portal3.comm100.io/.
+- If your Control Panel domain is portal5.comm100.io, the API requests should start with https://portal5.comm100.io/.
+- If your Control Panel domain is portal7.comm100.io, the API requests should start with https://portal7.comm100.io/.
 
 ### How to get the jwt token?
 
