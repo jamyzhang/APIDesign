@@ -2,13 +2,19 @@
 
 Welcome to the Comm100 RESTful API help guide. Our APIs make it possible for you to integrate your applications with Comm100 Live Chat to achieve seamless data sharing. It is our goal to help the business to automate and enhance their customer support with innovative projects you can create using Comm100 API.
 
-Please note that this documentation refers to the latest API version: 3.0. Please use 3 as the version number in the url. If you are looking for the previous version, check out the [API 2.0 documentation](https://www.comm100.com/doc/api/introduction.htm#/).
+Note: Comm100 currently has two versions of our customer engagement platform.  
+
+- If you started using Comm100 on/after April 26, 2020, or you have migrated to the new platform, this is the latest API version for the platform you are on.  
+- If you started using Comm100 before April 26, 2020, you can access API 1.0 [here](https://www.comm100.com/doc/api/v1/introduction.htm#/) or the latest API version 2.0 [here](https://www.comm100.com/doc/api/introduction.htm#/).
 
 ## The Basics
 
 Comm100 RESTful API must use **https** protocol. What the API requests should start with depends on your platform domain, which can be accessed from both your Control Panel and web version Agent Console after successful login. For example:
 
-- If the domain of your Control Panel is portal1.comm100.io, all API requests should start with https://api1.comm100.com/api/v3/.
+- If your Control Panel domain is portal1.comm100.io, all API requests (except for the API request in generating the JWT token) should start with https://api1.comm100.io/api/v3/. 
+- If your Control Panel domain is portal3.comm100.io, all API requests (except for the API request in generating the JWT token) should start with https://api3.comm100.io/api/v3/.
+- If your Control Panel domain is portal5.comm100.io, all API requests (except for the API request in generating the JWT token) should start with https://api5.comm100.io/api/v3/.
+- If your Control Panel domain is portal7.comm100.io, all API requests (except for the API request in generating the JWT token) should start with https://api7.comm100.io/api/v3/.
 
 ## Authentication
 
@@ -17,7 +23,14 @@ Comm100 use JWT authentication method.
 - [JWT Authentication](#JWT-Authentication)
 
 ## JWT Authentication
-  You can only use jwt authenticate to exchange an agent's email、password and siteId for an jwt token directly while calling the global, livechat or report API. This grant type is highly secured by Comm100.
+  You can only use JWT authentication to exchange an agent's email, password, and siteId for a JWT token directly while calling the global, livechat, or report API. This grant type is highly secured by Comm100. 
+  
+  Note that while generating a JWT token, the API request should start with your platform domain, which is different from the other API requests. For example:
+  
+- If your Control Panel domain is portal1.comm100.io, the API requests should start with https://portal1.comm100.io/.
+- If your Control Panel domain is portal3.comm100.io, the API requests should start with https://portal3.comm100.io/.
+- If your Control Panel domain is portal5.comm100.io, the API requests should start with https://portal5.comm100.io/.
+- If your Control Panel domain is portal7.comm100.io, the API requests should start with https://portal7.comm100.io/.
 
 ### How to get the jwt token?
 
@@ -25,15 +38,15 @@ Comm100 use JWT authentication method.
 
   Params:
 
-- loginType - specify `password` as the value.
-- userName - the email of the agent account.
-- password - the password of the agent account.
-- siteId - the site which the agent belongs to.
+- LoginType - specify `password` as the value.
+- Username - the email of the agent account.
+- Password - the password of the agent account.
+- SiteId - the site which the agent belongs to.
 
 ```bash
-    curl https://x.comm100.com/adminwebservice/api/jwttoken/generate -H "Content-Type:application/x-www-form-urlencoded"  
-     -d 'loginType=password&userName={comm100_agent_email}&password={comm100_agent_password}&siteId={siteId}'  
-     -x POST
+  curl https://portal1.comm100.io/adminwebservice/api/jwttoken/generate -H "Content-Type:application/json"  
+  -d '{"LoginType":"Password","Username":{comm100_agent_email},"Password":{comm100_agent_password},"SiteId":{siteId}}'  
+  -X POST
 ```
 
 #### Example Response
@@ -81,7 +94,7 @@ You can use the jwt token to call the comm100 v3 api as follow Example.
             "alertTo":{
                 "agentIds":[4,5],
                 "departmentIds":[]
-            }
+              }
           }' 
       -X POST https://api1.comm100.io/api/v3/livechat/customerSegments
 ```

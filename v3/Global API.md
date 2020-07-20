@@ -33,7 +33,7 @@
 
 
 # Site
-  You need the `Manage Site` permission to manage site
+  You need the `Manage Site` permission to manage site.
 
   + `GET /api/v3/globalSettings/site` - [Get profile of a site](#get-profile-of-a-site)
   + `PUT /api/v3/globalSettings/site` - [Update profile of a site](#update-profile-of-a-site)
@@ -42,13 +42,13 @@
 ## Site Related Object JSON format
 
 ### Site Object
-  Each Comm100 account is treated as a Site and has a unique Site ID.
+  Each Comm100 account is treated as a Site and has a unique Site Id.
 
  | Name | Type | Include | Read-only | Mandatory | Default | Description |
  | - | - | :-: | :-: | :-: | :-: | - |
- |`id` | integer  | | yes | no |  |Site ID.|
- |`dateTimeFormat` | string| | no | no  | 'MM-dd-yyyy HH:mm:ss'|Date & Time Format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss |
- |`timeZone` | string| | no | yes  |  | Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids. |
+ |`id` | integer  | | yes | no |  |Site identifier.|
+ |`dateTimeFormat` | string| | no | no  | 'MM-dd-yyyy HH:mm:ss'|Date & Time format of site, value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss. |
+ |`timeZone` | string| | no | yes  |  | Time zone of site. Value include all [Time Zone Option](#time-zone-options) identifers. |
  |`company` | string | | no | yes  | |Company name.|
  |`companySize` | string| | no | no  |  |The number of staff of the company, value options include: 1-20, 21-50, 51-100, 101-180, 181-310, 311-600, Above 600. |
  |`website` | string  | | no | yes  | |Company website. |
@@ -189,28 +189,28 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer  | | yes | no |  |  |
-  |`email` | string| | yes | yes | | Agent login email address, can not be changed |
+  |`email` | string| | yes | yes | | Agent login email address. Cannot be changed. |
   |`displayName` | string  | | no | no | | Different Agents can have the same Display Name. If not offered, will set by first name.|
-  |`firstName` | string  | | no | yes | | The first name of the agent|
-  |`lastName` | string  | | no | yes | | The last name of agent|
+  |`firstName` | string  | | no | yes | | The first name of the agent.|
+  |`lastName` | string  | | no | yes | | The last name of agent.|
   |`isAdmin` | bool| | no | no | false | Whether the agent is an administrator or not.|
   |`isActive` | bool| | no | no | true | Whether the agent is active or not.|
   |`phone` | string | | no | no | | Mobile phone number of the agent.|
   |`title` | string  | | no | no | | The title of the agent.|
   |`bio` | string  | | no | no | | The bio info of the agent.|
-  |`timeZone` | string| | no | no |  | Time zone of the agent. Value includes all [Time Zone Option](#time-zone-options) Ids, if not offered, will use the site time zone.|
-  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date & Time Format selected by agents to display on the site, Value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss|
+  |`timeZone` | string| | no | no |  | Time zone of the agent. Value includes all [Time Zone Option](#time-zone-options) identifiers, if not offered, will use the site time zone.|
+  |`datetimeFormat` | string| | no | no |  'MM-dd-yyyy HH:mm:ss' | Date & Time format selected by agents to display on the site. Value options include : MM-dd-yyy HH:mm:ss, MM/dd/yyyy HH:mm:ss, dd-MM-yyyy HH:mm:ss, dd/MM/yyyy HH:mm:ss, yyyy-MM-dd HH:mm:ss, yyyy/MM/dd HH:mm:ss.|
   |`createdTime` | DateTime | | no | no | UTC | The create time of the agent.|
   |`isLocked` | bool| | yes | no | false | Account will be locked after several failed login attempts.|
   |`lockedTime` | DateTime | | no | no | UTC | When the agent was locked.|
   |`lastLoginTime` | DateTime | | no | no | UTC | The time of the last login to Comm100 account (Control Panel or Agent Console).|
-  |`permissionIds` | integer[]  |  | no | no | NULL | The list of permission ids.|
+  |`permissionIds` | integer[]  |  | no | no | NULL | The list of permission identifiers.|
   |`permissions` | [Permission](#permission)[]  | yes| no | no | | Agent permission settings. |
-  |`roleIds` | Guid[]  |  | no | no | NULL | The list of the role ids which the agent belongs to. If not offered, will use role id of "All Agents" as default. |
-  |`roles` | [Role](#role)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
-  |`departmentIds` | Guid[]  |  | no | no | NULL | The list of the department ids which the agent belongs to.|
-  |`departments` | [Department](#department)[]  |yes | no | no | | The list of the roles which the agent belongs to.|
-  |`shiftIds` | Guid[]  |  | no | no | NULL | The list of the shift ids which the agent belongs to.|
+  |`roleIds` | Guid[]  |  | no | no | NULL | The list of the role identifiers, which the agent belongs to. If not offered, will use role identifier of "All Agents" as default. |
+  |`roles` | [Role](#role)[]  |yes | no | no | | The list of the roles, which the agent belongs to.|
+  |`departmentIds` | Guid[]  |  | no | no | NULL | The list of the department identifiers, which the agent belongs to.|
+  |`departments` | [Department](#department)[]  |yes | no | no | | The list of the roles, which the agent belongs to.|
+  |`shiftIds` | Guid[]  |  | no | no | NULL | The list of the shift identifiers, which the agent belongs to.|
   |`shifts` | [Shift](#shift)[]  | yes | no | no  | | The list of shifts which the agent belongs to.|
 
 
@@ -221,9 +221,9 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`count` | integer  | no | yes | no | | The total count of queries |
-  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
+  |`count` | integer  | no | yes | no | | The total count of queries. |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query.  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query.  |
   |`agents`|   [Agent](#agent-object)[]| no | yes| no | | A list of agents. |
 
 
@@ -239,7 +239,7 @@ You need the `Manage Agent & Agent Roles` permission to manage agents.
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
   |`include`|string|no||Available value:`department`,`role`,`permission`,`shift`  |
-  |`keywords` | string | no  |  | Filter by keywords in agent display name, email address. |
+  |`keywords` | string | no  |  | Filter by keywords in agent display name and email address. |
   |`pageIndex`|integer|no| 1 | The page index of the query. |
   |`pageSize`|integer|no| 10 | The page size of the query. |
 
@@ -284,7 +284,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-|`id` | integer | yes  |  the id of the agent |
+|`id` | integer | yes  |  Identifier of the agent. |
 
 Query string
 
@@ -325,7 +325,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`roleId` | Guid | yes  |  The id of the role |
+  |`roleId` | Guid | yes  |  Identifier of the role. |
 
    Query string
 
@@ -375,13 +375,13 @@ Content-Type:  application/json
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`departmentId` | Guid | yes  |  The id of the department |
+  |`departmentId` | Guid | yes  |  Identifier of the department. |
 
    Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`| string | no ||Available value:`department`,`role`,`permission`,`shift` |
+  |`include`| string | no || Available value:`department`,`role`,`permission`,`shift`. |
   |`pageIndex`| integer | no | 1 |The page index of the query. |
   |`pageSize`| integer | no | 10 |The page size of the query. |
 
@@ -426,7 +426,7 @@ Content-Type:  application/json
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`department`,`role`,`permission`,`shift` |
+  |`include`|string|no||Available value:`department`,`role`,`permission`,`shift`. |
 
 #### Response
 
@@ -527,7 +527,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  The id of the agent |
+  |`id` | integer | yes  |  Identifier of the agent. |
 
 #### Response
 HTTP/1.1 204 No Content
@@ -550,13 +550,13 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  The id of the agent |
+  |`id` | integer | yes  |  Identifier of the agent. |
 
 Request body
 
   | Name  | Type | Required | Default | Description |
   | - | - | - | - | - |
-  | `password` | string | yes  |  | The new password of agent |
+  | `password` | string | yes  |  | New password of the agent. |
 
   example:
   ```json
@@ -589,8 +589,8 @@ Request body
 
   | Name  | Type | Required | Default | Description |
   | - | - | - | - | - |
-  | `currentPassword` | string | yes  |  | The current password of agent |
-  | `newPassword` | string | yes  |  | The new password of agent |
+  | `currentPassword` | string | yes  |  | Current password of the agent. |
+  | `newPassword` | string | yes  |  | New password of the agent. |
 
   example:
   ```json
@@ -626,7 +626,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  The id of the agent |
+  |`id` | integer | yes  |  Identifier of the agent. |
 
 Request body
 
@@ -767,7 +767,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  the agent id |
+  |`id` | integer | yes  |  Identifier of the agent. |
 
 #### Response
 HTTP/1.1 204 No Content
@@ -804,7 +804,7 @@ You need the `Manage Agent & Agent Roles` permission to manage roles.
   |`type` | string | | yes | no | custom | Options: administrator, agent, custom; administrator and agent are the system role types. They cannot be deleted. |
   |`agentIds` | int[] | | no | no | NULL | The selected agents for this role. |
   |`agents` | [Agent](#agent)[] | yes | no | no | | The selected agents for this role.|
-  |`permissionIds` | int[] | | no | no | NULL | The list of permission ids assigned to this role.|
+  |`permissionIds` | int[] | | no | no | NULL | The list of permission identifiers assigned to this role.|
   |`permissions` | [Permission](#permission)[] | yes | no | no | | Permissions assigned to this role.|
 
 
@@ -865,13 +865,13 @@ Content-Type:  application/json
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  The id of the role |
+  |`id` | Guid | yes  |  Identifier of the role. |
 
   Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`|string|no|| Available value:`agent`,`permission` |
+  |`include`|string|no|| Available value:`agent`,`permission`. |
 
 #### Response
 
@@ -997,7 +997,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  The id of the role |
+  |`id` | Guid | yes  |  Identifier of the role. |
 
 Request body
 
@@ -1082,7 +1082,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  The role id |
+  |`id` | Guid | yes  |  Identifier of the role. |
 
 #### Response
 HTTP/1.1 204 No Content
@@ -1137,7 +1137,7 @@ You need the `Manage departments` permission to manage departments.
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`agent`,`shift` |
+  |`include`|string|no||Available value:`agent`,`shift`. |
 
 #### Response
 
@@ -1179,13 +1179,13 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  The id of the department |
+  |`id` | Guid | yes  |  Identifier of the department. |
 
 Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include`|string|no||Available value:`agent`,`shift` |
+  |`include`|string|no||Available value:`agent`,`shift`. |
 
   #### Response
 
@@ -1294,7 +1294,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  The id of the department |
+  |`id` | Guid | yes  |  Identifier of the department. |
 
 Request body
 
@@ -1367,7 +1367,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  the department id |
+  |`id` | Guid | yes  |  Identifier of the department.|
 
 #### Response
 HTTP/1.1 204 No Content
@@ -1404,7 +1404,7 @@ HTTP/1.1 204 No Content
   |`id` | long | | no | no |  |  |
   |`name` | string| | yes | no | |  |
   |`description` | string| | yes | no | |  |
-  |`category` | string | | yes | no | |The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase|
+  |`category` | string | | yes | no | |The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase.|
 
 ## Permission Endpoints
 
@@ -1447,7 +1447,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`roleId` | Guid | yes  |  The id of the role |
+  |`roleId` | Guid | yes  |  Identifier of the role. |
 
 #### Response
 
@@ -1482,7 +1482,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`agentId` | integer | yes  |  The id of the agent |
+  |`agentId` | integer | yes  |  Identifier of the agent. |
 
   #### Response
 
@@ -1517,11 +1517,11 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`agentId` | integer | yes  |  The id of the agent |
+  |`agentId` | integer | yes  |  Identifier of the agent. |
 
   #### Response
 
-  The response is a list of [Permission](#permission) Objects
+  The response is a list of [Permission](#permission) Objects.
 
 
   #### Example
@@ -1552,7 +1552,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`roleId` | Guid | yes  |  The id of the role |
+  |`roleId` | Guid | yes  |  Identifier of the role. |
 
 Request body
 
@@ -1602,7 +1602,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`agentId` | integer | yes  |  The id of the agent |
+  |`agentId` | integer | yes  |  Identifier of the agent. |
 
 Request body
 
@@ -1666,9 +1666,9 @@ You need `Manage Security` permission to set shift for a site.
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid | | yes | no | | Id of the current item.  |
+  | `id` | Guid | | yes | no | | Identifier of the current item.  |
   | `name` | string  | | no | yes | | Name of the shift. |
-  | `timeZone` | string  | | no | no | | Time zone of shift. value include all [Time Zone Option](#time-zone-options) Ids. |
+  | `timeZone` | string  | | no | no | | Time zone of shift. Value include all [Time Zone Option](#time-zone-options) identifiers. |
   | `ifAutoDetectDayLight` | boolean  | | no | no | |  |
   | `holidays` | [Holiday](#holiday-object)[]  | | no | no | | |
   | `agentIds` | int[] | | yes | no | NULL | |
@@ -1683,8 +1683,8 @@ You need `Manage Security` permission to set shift for a site.
 
   | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `name` | string  | no | yes | | The name of holiday. |
-  | `date` | DateTime  | no | yes | | The date of the holiday. |
+  | `name` | string  | no | yes | | Name of the holiday. |
+  | `date` | DateTime  | no | yes | | Date of the holiday. |
 
 
 ### Working Hours Object
@@ -1710,7 +1710,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `department`, `agent` |
+  | `include` | string | no  |  | Available value: `department`, `agent`. |
 
 #### Response
 
@@ -1780,13 +1780,13 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The unique id of the shift |
+  | `id` | Guid | yes  |  Unique identifier of the shift. |
 
 Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `department`, `agent` |
+  | `include` | string | no  |  | Available value: `department`, `agent`. |
 
 #### Response
 
@@ -1853,7 +1853,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `departmentId` | Guid | yes  |  The id of the department |
+  | `departmentId` | Guid | yes  |  Identifier of the department. |
 
 #### Response
 
@@ -1909,7 +1909,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `agentId` | integer | yes  |  the unique Id of the agent |
+  | `agentId` | integer | yes  |  Unique identifier of the agent. |
 
 #### Response
 
@@ -2061,7 +2061,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the shift |
+  | `id` | Guid | yes  |  Unique identifier of the shift. |
 
 Request Body
 
@@ -2162,7 +2162,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the shift |
+  | `id` | Guid | yes  |  Unique identifier of the shift. |
 
 #### Response
 
@@ -2208,7 +2208,7 @@ Response
   |`stateOrProvince` | string  | | no | no | |  |
   |`countryOrRegion` | string  | | no | no | |  |
   |`postalOrZipCode` | string  | | no | no | |  |
-  |`timeZone` | string | | no | no | |  Time zone of contact. value includes all [Time Zone Option](#time-zone-options) Ids.|
+  |`timeZone` | string | | no | no | |  Time zone of contact. Value includes all [Time Zone Option](#time-zone-options) identifiers.|
   |`createdTime` | DateTime | | no | no | | When the contact is created.|
   |`lastUpdatedTime` | DateTime | | no | no | |  |
   |`contactIdentities` | [ContactIdentity](#Contact-Identity)[] | yes | no | no | | Contact Identities. |
@@ -2219,9 +2219,9 @@ Response
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`count` | integer  | no | yes | no | | The total count of the query  |
-  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
+  |`count` | integer  | no | yes | no | | Total count of the query.  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query.  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query.  |
   |`contacts`|   [Contact](#contact-object)[]| no | yes| no | | A list of contacts. |
 
 
@@ -2239,9 +2239,9 @@ Response
   | - | - | - | - | - |
   |`name` | string | no  |  | Contact name. |
   |`company`|string|no|  | Contact company. |
-  |`contactIdentityName` | string | no  |  | Contact identity name. |
-  |`contactIdentityValue` | string | no  |  | Contact identity value. |
-  |`contactIdentityType` | string | no  |  | Contact identity type. |
+  |`contactIdentityName` | string | no  |  | Name of the contact identity. |
+  |`contactIdentityValue` | string | no  |  | Value of the contact identity. |
+  |`contactIdentityType` | string | no  |  | Type of the contact identity. |
   |`keywords` | string | no  |  | Search scope includes: name, company, identity value, alias. |
   |`include` | string | no  |  | Available value: `contactIdentity` |
   |`pageIndex`|integer|no| 1 | The page index of the query. |
@@ -2292,13 +2292,13 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  The id of the contact |
+  |`id` | integer | yes  |  Identifier of the contact. |
 
    Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  |`include` | string | no  |  | Available value: `contactIdentity` |
+  |`include` | string | no  |  | Available value: `contactIdentity`. |
 
 
 #### Response
@@ -2395,7 +2395,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  The id of the contact |
+  |`id` | integer | yes  |  Identifier of the contact. |
 
 Request body
 
@@ -2458,7 +2458,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  | The contact id |
+  |`id` | integer | yes  | Identifier of the contact. |
 
 #### Response
 HTTP/1.1 204 No Content
@@ -2489,11 +2489,11 @@ HTTP/1.1 204 No Content
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer| | yes | no | |  |
   |`contactId` | integer| | no | yes | | Mandatory when post by contact identity api. |
-  |`name` | string | | no | no | | The name used for a specific channel, like the name of a Facebook user. Not every channel will yield a name, for example, SMS Numbers will display a number instead of a name.|
+  |`name` | string | | no | no | | The name used for a specific channel, like the name of a Facebook user. Not every channel will yield a name. For example, SMS numbers will display a number instead of a name.|
   |`type` | string| | no | yes | | The options for the value are: visitor, email, SMS, Facebook, Twitter, WeChat, ssoid, externalid, Whatsapp, inphase.|
   |`value` | string  | | no | yes | | The value of the identity.|
-  |`avatarURL` | string | | no | no | | The avatar used in a certain channel, like the avatar of a Facebook user. Not every channel yields an avatar, for example, SMS Numbers won't produce one.|
-  |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers, tweets from the twitter identity. The info is displayed in an iframe in the agent console. Available for Twitter, Facebook, SMS, WeChat.|
+  |`avatarURL` | string | | no | no | | The avatar used in a certain channel, like the avatar of a Facebook user. Not every channel yields an avatar. For example, SMS Numbers won't produce one.|
+  |`infoURL` | string  | | no | no | | Contact information from the channels. Such as the number of Twitter followers and tweets from the twitter identity. The info is displayed in an iframe in the agent console. Available for Twitter, Facebook, SMS, and WeChat.|
   |`screenName` | string | | no | no | | Twitter only. Like @Comm100Corp.|
   |`originalContactPageURL` | string | | no | no | | The contact profile URL on Facebook or Twitter.|
 
@@ -2509,12 +2509,12 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`contactId` | integer | yes  |  The id of the contact of contact Identities belong|
+  |`contactId` | integer | yes  | Identifier of the contact, which Contact Identities belong to.|
 
 
 #### Response
 
-  The response is a list of [Contact Identity](#contact-identity-object) Objects
+  The response is a list of [Contact Identity](#contact-identity-object) Objects.
 
 #### Example
 Using curl
@@ -2550,7 +2550,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  The id of the contact Identitie |
+  |`id` | integer | yes  |  Identifier of the contact identity |
 
 #### Response
 
@@ -2650,7 +2650,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  The id of the contact Identitie |
+  |`id` | integer | yes  |  Identifier of the contact identity. |
 
 Request body
 
@@ -2715,7 +2715,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | integer | yes  |  the contact identity id |
+  |`id` | integer | yes  |  Identifier of the contact identity.|
 
 #### Response
 HTTP/1.1 204 No Content
@@ -2745,7 +2745,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | no | | Id of the current item.  |
+  | `id` | Guid | yes | no | | Identifier of the current item.  |
   | `name` | string  | no | no | | Name of the visitor. |
   | `email` | string  | no | no | | Email of the visitor. |
   | `numberOfVisits` | integer  | no | no | | The total number of web pages the visitor viewed on your website. |
@@ -2767,7 +2767,7 @@ Query string
 | `requestedTime` | datetime | no  | today |  The time range of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
-| `keywords` | string | no  |  | Filter by keywords in visitor name, email address. |
+| `keywords` | string | no  |  | Filter by keywords in visitor name and email address. |
 
 #### Response
 
@@ -2820,7 +2820,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes |  The id of the visitor |
+  | `id` | Guid | yes |  Identifier of the visitor. |
 
 #### Response
 
@@ -2867,9 +2867,9 @@ Content-Type:  application/json
 
   | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | no | | Id of the current item.  |
+  | `id` | Guid | yes | no | | Identifier of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
-  | `parentId` | Guid | no | yes | | Id of the public canned message category. If it does not have parent category, parentId is '00000000-0000-0000-0000-000000000000'|
+  | `parentId` | Guid | no | yes | | Identifier of the public canned message category. If it does not have parent category, parentId is '00000000-0000-0000-0000-000000000000'.|
 
 ## Public Canned Message Endpoints
 
@@ -2918,7 +2918,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The id of the public canned message category. |
+  | `id` | Guid | yes  |  Identifier of the public canned message category. |
 
 #### Response
 
@@ -2999,7 +2999,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The unique Id of the public canned message category. |
+  | `id` | Guid | yes  | Unique identiifer of the public canned message category. |
 
 Request Body
 
@@ -3049,7 +3049,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The unique Id of the public canned message category.|
+  | `id` | Guid | yes  | Unique identifier of the public canned message category.|
 
 #### Response
 
@@ -3085,7 +3085,7 @@ HTTP/1.1 204 No Content
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid | | yes | no | | Id of the canned message.  |
+  | `id` | Guid | | yes | no | | Identifier of the canned message.  |
   | `name` | string | | no | yes | | Name of the canned message. |
   | `message` | string | | no | yes | | |
   | `IfSetHtmlMessageForEmail` | boolean  | | no | no | false | |
@@ -3156,13 +3156,13 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The unique Id of the public canned message. |
+  | `id` | Guid | yes  |  Unique identifier of the public canned message. |
 
 Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `publicCannedMessageCategory` |
+  | `include` | string | no  |  | Available value: `publicCannedMessageCategory`. |
 
 #### Response
 
@@ -3314,7 +3314,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the public canned message |
+  | `id` | Guid | yes  |  Unique identifier of the public canned message. |
 
 Request Body
 
@@ -3379,7 +3379,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the public canned message |
+  | `id` | Guid | yes  |  Unique identifier of the public canned message. |
 
 #### Response
 
@@ -3415,7 +3415,7 @@ You need `Manage Private Canned Messages` permission to manage the canned messag
 
   | Name | Type | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | no | | Id of the current item.  |
+  | `id` | Guid | yes | no | | Identifier of the current item.  |
   | `name` | string  | no | yes | | Name of the canned message category. |
   | `parentId` | Guid  | no | yes | | Parent of the canned message category. |
 
@@ -3466,7 +3466,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the private canned message category |
+  | `id` | Guid | yes  |  Unique identifier of the private canned message category. |
 
 #### Response
 
@@ -3546,7 +3546,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the private canned message category |
+  | `id` | Guid | yes  |  Unique identifier of the private canned message category. |
 
 Request Body
 
@@ -3608,7 +3608,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the private canned message category |
+  | `id` | Guid | yes  |  Unique identifier of the private canned message category. |
 
 #### Response
 
@@ -3633,13 +3633,13 @@ You need `Manage Private Canned Messages` permission to manage the canned messag
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `id` | Guid | | yes | no | | Id of the current item.  |
+  | `id` | Guid | | yes | no | | Identifier of the current item.  |
   | `name` | string  | | no | no | | Name of the canned message. |
   | `message` | string  | | no | no | | |
   | `IfSetHtmlMessageForEmail` | bool | | no | no | false | |
   | `htmlMessage` | string  | | no | no | | |
   | `categoryId` | Guid | | no | no | | |
-  | `category` | [Private Canned Message Category](#private-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Please note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
+  | `category` | [Private Canned Message Category](#private-Canned-Message-Category-object)  | yes | no | no | |  Category can be blank. Note that this is different from Intent Category and Article Category. Available only when `privateCannedMessageCategory` is included. |
   | `shortcuts` | string  | | no | no | | Whether the custom away status is system or not. |
   | `similarQuestions` | string[]  | | no | no | | Available when Agent Assist is enabled. |
 
@@ -3656,7 +3656,7 @@ Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `privateCannedMessageCategory` |
+  | `include` | string | no  |  | Available value: `privateCannedMessageCategory`. |
 
 #### Response
 
@@ -3705,13 +3705,13 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the private canned message |
+  | `id` | Guid | yes  | Unique identifier of the private canned message. |
 
 Query string
 
   | Name  | Type | Required  | Default | Description |
   | - | - | - | - | - |
-  | `include` | string | no  |  | Available value: `privateCannedMessageCategory` |
+  | `include` | string | no  |  | Available value: `privateCannedMessageCategory`. |
 
 ##### Response
 
@@ -3862,7 +3862,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the private canned message |
+  | `id` | Guid | yes  |  Unique identifier of the private canned message. |
 
 Request Body
 
@@ -3927,7 +3927,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  the unique Id of the private canned message |
+  | `id` | Guid | yes  |  Unique identifier of the private canned message. |
 
 #### Response
 
@@ -3964,7 +3964,7 @@ Response
 
   | Name | Type | Read-only | Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `id` | Guid | yes | no | | Id of the current item.  |
+  | `id` | Guid | yes | no | | Identifier of the current item.  |
   | `name` | string  | no | yes | | Name of the agent away status. |
   | `isSystem` | boolean  | yes | no | false | Whether the agent away status is system or not. |
   | `order` | integer  | yes | no | | The order of the agent away status. |
@@ -4017,7 +4017,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The unique Id of the agent away status. |
+  | `id` | Guid | yes  |  Unique identifer of the agent away status. |
 
 #### Response
 
@@ -4100,7 +4100,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The unique Id of the agent away status.|
+  | `id` | Guid | yes  |  Unique identifier of the agent away status.|
 
 Request Body
 
@@ -4151,7 +4151,7 @@ Path Parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  | `id` | Guid | yes  |  The unique Id of the agent away status.|
+  | `id` | Guid | yes  |  Unique identifier of the agent away status.|
 
 #### Response
 
@@ -4233,7 +4233,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  The id of the whitelisted Login IP Ranges |
+  |`id` | Guid | yes  |  Identifer of the whitelisted Login IP Ranges. |
 
 #### Response
 
@@ -4309,7 +4309,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  The id of the whitelisted Login IP Range |
+  |`id` | Guid | yes  |  Identifier of the whitelisted Login IP Range. |
 
 Request body
 
@@ -4357,7 +4357,7 @@ Path parameters
 
   | Name  | Type | Required  | Description |
   | - | - | - | - |
-  |`id` | Guid | yes  |  the whitelisted Login IP Range id |
+  |`id` | Guid | yes  |  Identifier of the whitelisted Login IP Range.|
 
 #### Response
 HTTP/1.1 204 No Content
@@ -4503,9 +4503,10 @@ Content-Type:  application/json
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
   | `isEnabled` | bool  | | no | no | false | |
-  | `loginURL` | string  | | no | yes | | |
-  | `certificate` | string  | | no | yes | | Base64 data of certificate file. |
-  | `certificateFileName` | string  | | no | yes | | |
+  | `loginUrl` | string  | | no | yes | | |
+  | `artifactResolutionService` | string  | | no | no | | |
+  | `signOutUrl` | string  | | no | no | | |
+  | `SAMLCertificate` | string  | | no | yes | | Base64 data of certificate file. |
   | `fieldMappings` | [Field Mapping](#field-Mapping-object)[]  | | no | no | | |
   | `perCampaign` | [Visitor SSO Campaign](#visitor-SSO-Campaign-object)[]  |  | no | no | | |
 
@@ -4524,10 +4525,12 @@ Visitor SSO Campaign is represented as simple flat JSON objects with the followi
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - |- | :-: | :-: | :-: | - |
-  | `campaignId` | Guid |  | no | yes | | Id of the campaign. |
-  | `campaign` | [Campaign](./Livechat%20API.md#campaign-object)  | yes | no | no | | Available only when campaign is included  |
+  | `campaignId` | Guid |  | no | yes | | Identifier of the campaign.|
+  | `campaign` | [Campaign](./Livechat%20API.md#campaign-object)  | yes | no | no | | Available only when campaign is included. |
   | `signInOption` | string |  | no | no | `noSignIn` | Type of the sign in, including `noSignIn`, `signInOptional` and `signInRequired`. |
   | `isPrechatFromSkipped` | bool |  | no | no | true | Whether the pre-chat form is skipped when visitors sign in. |
+  | `ifOpenSignInPageEmbeddedWindow` | bool |  | no | no | true | Whether the SSO sign-in is in embedded window. |
+
 
 ## Visitor SSO Endpoints
 
@@ -4541,7 +4544,7 @@ Query string
 
   | Name  | Type | Required | Default | Description |
   | - | - | :-: | :-: | - |
-  | `include` | string | no  | |  Available value: `campaign` |
+  | `include` | string | no  | |  Available value: `campaign`.|
 
 #### Response
 
@@ -4561,9 +4564,10 @@ Content-Type:  application/json
 
 {
     "isEnabled": true,
-    "loginURL": "http://www.xzcs11ffffffff1a",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateFileName": "r.txt",
+    "loginUrl": "http://www.xzcs11ffffffff1a",
+    "artifactResolutionService":"",
+    "signOutUrl":"",
+    "SAMLCertificate": "amdoamdoaGdmcnRk",
     "fieldMappings": [
         {
             "attribute": "test999",
@@ -4583,7 +4587,8 @@ Content-Type:  application/json
                 ...
             },
             "signInOption": "noSignIn",
-            "isPrechatFromSkipped": false
+            "isPrechatFromSkipped": false,
+            "ifOPenSignInPageEmbeddedWindow":true
         }
     ]
 }
@@ -4603,9 +4608,10 @@ example:
 ```Json
   {
     "isEnabled": true,
-    "loginURL": "http://www.xzcs11ffffffff1a",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateFileName": "r.txt",
+    "loginUrl": "http://www.xzcs11ffffffff1a",
+    "artifactResolutionService":"",
+    "signOutUrl":"",
+    "SAMLCertificate": "amdoamdoaGdmcnRk",
     "fieldMappings": [
         {
             "attribute": "test999",
@@ -4620,7 +4626,8 @@ example:
         {
             "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
             "signInOption": "noSignIn",
-            "isPrechatFromSkipped": false
+            "isPrechatFromSkipped": false,
+            "ifOPenSignInPageEmbeddedWindow":true
         }
     ]
   }
@@ -4635,9 +4642,10 @@ Using curl
 ```
 curl -H "Content-Type: application/json" -d '{
     "isEnabled": true,
-    "loginURL": "http://www.xzcs11ffffffff1a",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateFileName": "r.txt",
+    "loginUrl": "http://www.xzcs11ffffffff1a",
+    "artifactResolutionService":"",
+    "signOutUrl":"",
+    "SAMLCertificate": "amdoamdoaGdmcnRk",
     "fieldMappings": [
         {
             "attribute": "test999",
@@ -4652,7 +4660,8 @@ curl -H "Content-Type: application/json" -d '{
         {
             "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
             "signInOption": "noSignIn",
-            "isPrechatFromSkipped": false
+            "isPrechatFromSkipped": false,
+            "ifOPenSignInPageEmbeddedWindow":true
         }
     ]
   }' -X PUT https://api1.comm100.io/api/v3/globalSettings/visitorSSO
@@ -4664,9 +4673,10 @@ Response
 
   {
     "isEnabled": true,
-    "loginURL": "http://www.xzcs11ffffffff1a",
-    "certificate": "amdoamdoaGdmcnRk",
-    "certificateFileName": "r.txt",
+    "loginUrl": "http://www.xzcs11ffffffff1a",
+    "artifactResolutionService":"",
+    "signOutUrl":"",
+    "SAMLCertificate": "amdoamdoaGdmcnRk",
     "fieldMappings": [
         {
             "attribute": "test999",
@@ -4681,7 +4691,8 @@ Response
         {
             "campaignId": "cdab2038-1d6c-4fa0-bbf0-17be2e5b39ec",
             "signInOption": "noSignIn",
-            "isPrechatFromSkipped": false
+            "isPrechatFromSkipped": false,
+            "ifOPenSignInPageEmbeddedWindow":true
         }
     ]
   }
@@ -4699,13 +4710,13 @@ Response
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
   |`id` | integer | | yes | no | |  |
-  |`category` | string| | no | no | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, knowledgeBase |
+  |`category` | string| | no | no | | The value options include: liveChat, ticketingAndMessaging, bot, globalSettings, and knowledge base.|
   |`actionTime` | DateTime | | no | no |  |  |
   |`actionType` | string | | no  | no  | | [action types for different applications](#action-types-for-different-applications) |
   |`actionSummary` | string| | no  | no  | |  |
   |`actionDetails` | string| | no  | no  | |  |
-  |`createdBy` | integer | | no  | no  | | the id of oprator agent |
-  |`agent` | [Agent](#agent) | yes | no  | no  | | the oprator agent |
+  |`createdBy` | integer | | no  | no  | | Identifier of the oprator agent. |
+  |`agent` | [Agent](#agent) | yes | no  | no  | | The oprator agent. |
 
 ### Audit Log List Response Object
 
@@ -4713,10 +4724,10 @@ Response
 
   | Name | Type | Include | Read-only | Mandatory | Default | Description |
   | - | - | :-: | :-: | :-: | :-: | - |
-  |`count` | integer  | no | yes | no | | The total count of the query  |
-  |`nextPage` | string  | no | yes | no | | The next page url of the query  |
-  |`previousPage` | string  | no | yes | no | | The previous page url of the query  |
-  |`auditLogs`| [AuditLog](#audit-log-object)[]| no | yes| 0 | | a list of Audit Log. |
+  |`count` | integer  | no | yes | no | | The total count of the query.  |
+  |`nextPage` | string  | no | yes | no | | The next page url of the query.  |
+  |`previousPage` | string  | no | yes | no | | The previous page url of the query.  |
+  |`auditLogs`| [AuditLog](#audit-log-object)[]| no | yes| 0 | | A list of Audit Log. |
 
 ### Action types for different applications
 
@@ -4755,13 +4766,13 @@ Response
   | - | - | - | - | - |
   |`dateFrom`|DateTime|no||The date from which agent did the action, format as yyyy-MM-ddTHH:mm:ss. |
   |`dateTo`|DateTime|no||The date when an agent ended the action, format as yyyy-MM-ddTHH:mm:ss. |
-  |`category`|string|no||The category which the action belongs to |
+  |`category`|string|no||The category, which the action belongs to |
   |`actionType`|string|no||The action type. |
-  |`agentId`|integer |no||id of the agent who did the action. |
-  |`keywords`|string|no||The key words associated with the action. |
+  |`agentId`|integer |no|| Identifier of the agent who did the action. |
+  |`keywords`|string|no||The keywords associated with the action. |
   |`pageIndex`|integer|no| 1 | The page index of the query. |
   |`pageSize`|integer|no| 10 |The page size of the query. |
-  |`include`|string|no||Available value: `agent` |
+  |`include`|string|no||Available value: `agent`. |
 
 
 #### Response

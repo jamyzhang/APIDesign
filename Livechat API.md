@@ -1,10 +1,10 @@
 ﻿# Live Chat Restful API
 
-Comm100 Live Chat API allows you to pull the raw live chat data from the Comm100 Live Chat into your systems.
+Comm100 Live Chat API allows you to pull the raw livechat data from the Comm100 Live Chat into your own systems.
 
 | Change Version | API Version | Change note | Change Date | Author |
 | - | - | - | - | - |
-| 1.0 | v3 |  | 2020-02-17 | Grubby, Michael, Davy |
+| 1.0 | v3 |  | 2020-02-17 | Grubby,Michael,Davy |
 
 # Summary
 
@@ -61,7 +61,7 @@ Comm100 Live Chat API allows you to pull the raw live chat data from the Comm100
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `siteId` |integer  || yes | no || Identifier of the site which the configuration belongs to.|
+| `siteId` |integer  || yes | no || Id of the site which the configuration belongs to.|
 | `isMultipleCampaignEnabled` |boolean || no | yes || Whether multiple campaigns are enabled or not in the site.|
 |`isAutoDistributionEnabled` |boolean || no | yes || Whether auto distribution is enabled or not in the site.|
 | `isCustomAwayStatusEnabled` |boolean || no | yes || Whether custom away status is enabled or not in the site.|
@@ -128,7 +128,7 @@ Content-Type:  application/json
 
 ### Update settings of a site
 
-You need `Manage Settings`, `Manage Custom Variable`, and `Manage Integration` permissions to update `Settings` of a site.
+You need `Manage Settings`, `Manage Custom Variable`, `Manage Integration` permissions to update `Settings` of a site.
 
   `PUT /api/v3/livechat/settings`
 
@@ -229,7 +229,7 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `autoDistributionMethod` | string || no | yes || Method of auto distribution, including `loadBanlancing` , `roundRobin`, and `capabilityWeighted`. |
+| `autoDistributionMethod` | string || no | yes || Method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted`. |
 | `isLastChattedAgentPreferred` | boolean || no | yes || Whether the last-chatted agent is preferred or not. |
 | `isLimitMaxConcurrentChatsForAllAgents` | boolean || no | yes || Whether to set the same maximum number of chats for all agents. |
 | `maxConcurrentChatsForAllAgents` | integer || no | yes || Maximum number of chats for all agents. |
@@ -244,10 +244,10 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentId` | Guid ||  yes| yes|| Identifier of department. |
-| `autoDistributionMethod` | string || no | no || Method of auto distribution, including `loadBanlancing` , `roundRobin`, and `capabilityWeighted`. |
-| `isLastChattedAgentPreferred` | boolean||  no| no|  | Whether last-chatted agent is preferred or not. |
-| `backupDepartmentId` | Guid ||  no| no|| Identifier of backup department. |
+| `departmentId` | Guid ||  yes| yes|| Id of department |
+| `autoDistributionMethod` | string || no | no || Method of auto distribution, including `loadBanlancing` , `roundRobin` and `capabilityWeighted` |
+| `isLastChattedAgentPreferred` | boolean||  no| no|  | Whether last-chatted agent is preferred or not |
+| `backupDepartmentId` | Guid ||  no| no|| Id of backup department |
 
 ### Agent Auto Distribution Object
 
@@ -255,7 +255,7 @@ HTTP/1.1 200 OK
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `agentId` | integer ||  yes| yes|| Identifier of agent. |
+| `agentId` | integer ||  yes| yes|| Id of agent. |
 | `ifAutoAcceptChat` | boolean||  no| no|| If agent can auto accept chat.|
 | `maxConcurrentChats` | int ||  no| no|| Maximum concurrent chats, available when  `ifAutoAcceptChat` is true.|
 
@@ -429,7 +429,7 @@ You need `Manage Settings` permission to manage `Translation Excluded Words`.
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `excludedWords` |string[]  || no | yes || Content of translation excluded words.|
+| `excludedWords` |string[]  || no | yes || Content of translation excluded words.
 
 ## Endpoints
 
@@ -534,16 +534,16 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
   | Name | Type | Include | Read-only| Mandatory| Default | Description |
   | - | - | - | :-: | :-: | :-: | - |
-  | `id` |Guid  || yes | no || Identifier of the customer segment.|
-  | `name` |string  || no | yes || Name of the customer segment. |
-  | `color` |string  || no | no |'339FD9'| Color of the customer segment.|
-  | `isEnabled` |boolean  || no | no |false| Whether the customer segment is enabled or not. |
-  | `order` |int  || no | no |maximum order + 1 | Order of the customer segment. |
-  | `description` |string  || no | no || Description of the customer segment. |
-  | `conditionMetType` |string  || no | no |all| Met type of condtion, including `all`,`any`,`logicalExpression`. |
-  | `logicalExpression` |string  || no | no || The logical expression for conditions. |
+  | `id` |Guid  || yes | no || Id of the customer segment.
+  | `name` |string  || no | yes || Name of the customer segment.
+  | `color` |string  || no | no |'339FD9'| Color of the customer segment.
+  | `isEnabled` |boolean  || no | no |false| Whether the customer segment is enabled or not.
+  | `order` |int  || no | no |maximum order + 1 | Order of the customer segment.
+  | `description` |string  || no | no || Description of the customer segment.
+  | `conditionMetType` |string  || no | no |all| Met type of condtion , including `all`,`any`,`logicalExpression`.
+  | `logicalExpression` |string  || no | no || The logical expression for conditions.
   | `conditions` |[Live Chat Condition](#conditions-json-format)[]  || no | yes || An array of [Live Chat Condition](#live-chat-condition-object) object. |
-  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent identifier or department identifier.|
+  | `alertTo`| [Alert To](#alert-to)  || no | no | |An array of agent id or department id.|
 
 ### Alert To Segment Object
 
@@ -551,8 +551,8 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `departmentIds` |int[]  || no | no|| An array of department identifier.|
-| `agentIds` |Guid[]  || no | no || An array of agent identifier.|
+| `departmentIds` |int[]  || no | no|| An array of department id.|
+| `agentIds` |Guid[]  || no | no || An array of agent id.|
 
 ### Live Chat Condition object
 
@@ -560,10 +560,10 @@ You need `Manage Settings` permission to manage `Customer Segment`.
 
   | Name | Type | Read-only| Mandatory| Default | Description |
   | - | - | :-: | :-: | :-: | - |
-  | `field` |String  | no | yes || The name of a visitor field. |
-  | `Operator` |String  | no | yes || Type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`. |
-  | `value` |String  | no | yes || The value of a visitor field.|
-  | `order` |int  | no | no|maximum order + 1| The order of a visitor field. |
+  | `field` |String  | no | yes || The name of visitor field.
+  | `Operator` |String  | no | yes || Type of operator, including `is`,`isNot`,`contains`,`doesNotContain`,`isMoreThan`, `isNotMoreThan`, `isLessThan`, `isNotLessThan`, `regularExpression`.
+  | `value` |String  | no | yes || The value of a visitor field .
+  | `order` |int  | no | no|maximum order + 1| The order of visitor field.
 
 ## Endpoint
 
@@ -628,7 +628,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the customer segment.   |
+| `id` | Guid | yes  |  Id of customer segment.   |
 
 #### Response
 
@@ -778,7 +778,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the customer segment.  |
+| `id` | Guid | yes  |  Id of the customer segment.  |
 
 #### Response
 
@@ -851,7 +851,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the   customer segment. |
+| `id` | Guid | yes  |  Id of customer segment. |
 
 #### Response
 
@@ -883,9 +883,9 @@ Dynamic Campaign is represented as simple flat JSON objects with the following k
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `defaultCampaignId` |Guid || no | no || Identifier of the default campaign.|
-| `defaultCampaign` |[Campaign](#campaign-object)  |yes| no | no || The default [Campaign](#campaign-object).|
-| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | no || This list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).|
+| `defaultCampaignId` |Guid || no | no || id of the default campaign.|
+| `defaultCampaign` |[Campaign](#campaign-object)  |yes| no | no || the default [Campaign](#campaign-object).|
+| `dynamicCampaignRules` | [Dynamic Campaign Rule](#dynamic-campaign-rule-object)[] || no | no || this list of [Dynamic Campaign Rule](#dynamic-campaign-rule-object).|
 
 ### Dynamic Campaign Rule Object
 
@@ -893,14 +893,14 @@ Dynamic Campaign Rule is represented as simple flat JSON objects with the follow
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `name` |string || no | yes || Name of the dynamic campaign rule.|
-| `isEnabled` |boolean || no | yes ||If this rule is enabled.|
-| `conditionMetType` |String || no | yes || Including `all`, `any`, and `logicalExpression`.|
-| `logicalExpression` |String || no | no || The logical expression for conditions.|
-| `targetCampaignId` |Guid || no | yes|| Identifier of target [Campaign](#campaign-object).|
-| `targetCampaign` |[Campaign](#campaign-object) |yes| no | no ||The target [Campaign](#campaign-object) object.|
-| `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no || An array of [Live Chat Condition](#live-chat-condition-object) object. 
-| `order` |integer|| no | yes || The order of this rule .|
+| `name` |string || no | yes || name of the dynamic campaign rule.|
+| `isEnabled` |boolean || no | yes ||if this rule is enabled.|
+| `conditionMetType` |String || no | yes ||including `all`, `any` and `logicalExpression`.|
+| `logicalExpression` |String || no | no ||the logical expression for conditions.|
+| `targetCampaignId` |Guid || no | yes||the id of target [Campaign](#campaign-object).|
+| `targetCampaign` |[Campaign](#campaign-object) |yes| no | no ||the target [Campaign](#campaign-object) object.|
+| `conditions` |[Live Chat Condition](#live-chat-condition-object)[] || no | no ||an array of [Live Chat Condition](#live-chat-condition-object) object. .|
+| `order` |integer|| no | yes ||the order of this rule|
 
 ## Endpoint
 
@@ -974,7 +974,7 @@ Content-Type:  application/json
 
 Request body
 
-  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) Object structure.
+  The request body contains data with the [Dynamic Campaign](#dynamic-campaign-object) Object structure
 
 example:
 ```Json
@@ -1088,23 +1088,23 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `iosType` | string |  | no | yes  | |Type of ios include `APNS`,`thirdParty`. |
-| `iosProductionCertificateFileName` | string |  | no | yes | | Name of ios production certificate file.|
-| `iosProductionCertificateFileData` | string |  | no | yes  | | Data of ios production certificate file. |
-| `iosProductionCertificatePassword` | string |  | no | yes  | | Password of ios production certificate. |
-| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | Name of ios development certificate file. |
-| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | Data of ios development certificate file. |
-| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | Password of ios development certificate. |
-| `iosApnsPayloadFormat` | string |  | no | yes  | | Format of ios Apns payload, mandatory when `iostype` is `thirdParty`.|
-| `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL, mandatory when `iostype` is `thirdParty`.|
+| `iosType` | string |  | no | yes  | |Type of ios include `APNS`,`thirdParty` |
+| `iosProductionCertificateFileName` | string |  | no | yes | | Name of ios production certificate file|
+| `iosProductionCertificateFileData` | string |  | no | yes  | | Data of ios production certificate file|
+| `iosProductionCertificatePassword` | string |  | no | yes  | | Password of ios production certificate|
+| `iosDevelopmentCertificateFileName` | string |  | no | yes  | | Name of ios development certificate file|
+| `iosDevelopmentCertificateFileData` | string |  | no | yes  | | Data of ios development certificate file|
+| `iosDevelopmentCertificatePassword` | string |  | no | yes  | | Password of ios development certificate|
+| `iosApnsPayloadFormat` | string |  | no | yes  | | Format of ios Apns payload,mandatory when `iostype` is `thirdParty`.|
+| `iosThirdPartyURL` | string |  | no | yes  | | ios third party URL,mandatory when `iostype` is `thirdParty`.|
 | `iosThirdPartyRequestHeaders` | string |  | no | yes  | | ios third party request headers,mandatory when `iostype` is `thirdParty`.|
 | `iosThirdPartyBody` | string |  | no | yes  | | ios third party Body,ymandatory when `iostype` is `thirdParty`.|
-| `androidType` | string |  | no |yes  | |Type of android include `GCM`,`thirdParty`. |
+| `androidType` | string |  | no |yes  | |Type of android include `GCM`,`thirdParty` |
 | `androidGcmAPIKey` | string |  | no | yes  | |Android gcm API key,mandatory when `andriodType` is `GCM`.|
 | `androidGcmExtraData` | string |  | no| yes  | |Android gcm extra data,mandatory when `andriodType` is `GCM`. |
-| `androidThirdPartyURL` | string |  | no | yes  | |Android third party URL, mandatory when `andriodType` is `thirdParty`. | |
-| `androidThirdPartyRequestHeaders` | string |  | no | yes | | Android third party request headers,mandatory when `andriodType` is `thirdParty`. |
-| `androidThirdPartyRequestBody` | string |  | no | yes  | |Android Third Party Request Body, mandatory when `andriodType` is `thirdParty`. |
+| `androidThirdPartyURL` | string |  | no | yes  | |Android third party URL,mandatory when `andriodType` is `thirdParty`. | |
+| `androidThirdPartyRequestHeaders` | string |  | no | yes | | Android third party request headers,mandatory when `andriodType` is `thirdParty`|
+| `androidThirdPartyRequestBody` | string |  | no | yes  | |Android Third Party Request Body,mandatory when `andriodType` is `thirdParty` |
 
 ## Endpoint
 
@@ -1248,7 +1248,7 @@ You need `Manage Agent & Agent Roles` permission to manage `Live Chat Agent`.
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | integer |  |  yes| N/A | | Identifier of the live chat agent. |
+| `id` | integer |  |  yes| N/A | | Id of the live chat agent. |
 | `status` | String |  | no | yes | | Status of the agent, including `Online`, `Away`, `Offline` and custom away status defined by site. |
 | `ongoingChats` | integer|  | yes | no | | Total number of ongoing chats the agent has. |
 
@@ -1296,7 +1296,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  Identifier of live chat agent.   |
+| `id` | integer | yes  |  Id of live chat agent   |
 
 #### Response
 
@@ -1331,7 +1331,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | integer | yes  |  Identifier of live chat agent.   |
+| `id` | integer | yes  |  Id of live chat agent   |
 
 Request body
 
@@ -1382,10 +1382,10 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| no | | Identifier of the visitor. |
+| `id` | Guid |  |  yes| no | | Id of the visitor. |
 | `name` | string |  |  yes| no | | Name of the visitor. |
 | `email` | string |  | yes | no | | Email of the visitor.|
-| `status` | string|  | yes | no| |Status of the visitor. including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`, `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing`. |
+| `status` | string|  | yes | no| |Status of the visitor . including `waitingForChat`, `chatting`, `preChat`, `manuallyInvited`,  `autoInvited`,  `offlineMessage`,   `refusedByOperator`, `refusedByVisitor`,  `chatEnded`, `inSite`, `outOfSite`, `transferring`, `mannullyInvitedByWindow`, `systemProcessing` |
 | `pageViews` | integer|  | yes | no | |The total number of web pages the visitor viewed on your website. |
 | `browser` | string|  | yes | no | |The browser the visitor is using. |
 | `chats` | integer|  | yes | no | |The total times of chats a visitor has made on your website from the first time to present. |
@@ -1409,9 +1409,9 @@ Content-Type:  application/json
 | `screenResolution` | string|  | yes | no| |The screen resolution of the visitor's device.|
 | `searchEngine` | string|  | yes | no | |The search engine the visitor used to search for your website.|
 | `state` | string|  | yes | no | |The state of the visitor.|
-| `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) identifiers.|
+| `timeZone` | string|  | yes | no | |Time zone of site. value include all [Time Zone Option](#time-zone-options) Ids.|
 | `visitTime` | datetime|  | yes | no | |The starting time when this visitor visits your website this session.|
-| `visits` | integer|  | yes | no | |The total number of visits a visitor has made on your website from the first time to present.|
+| `visits` | integer|  | yes | no | |The total number of visits a visitor has made on your website from the first time to present|
 
 
 ### Custom Field Object
@@ -1420,7 +1420,7 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  |  yes| no | | Identifier of the custom field.|
+| `id` | Guid |  |  yes| no | | Id of the custom field.|
 | `name` | string |  |  yes| no | | Name of the custom field.|
 | `value` | string |  |  yes| no | | Value of the custom field.|
 
@@ -1432,7 +1432,7 @@ Content-Type:  application/json
 | - | - |- | :-: | :-: | :-: | - |
 | `name` | string |  |  yes| no | | Name of the custom variable.|
 | `value` | string |  |  no| no | | Value of the custom variable.|
-| `url` | string |  | yes| no | | URL of the custom variable.|
+| `url` | string |  | yes| no | | Url of the custom variable.|
 
 ## Endpoints
 
@@ -1447,7 +1447,7 @@ Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `status` |string| no  | | Status of this chat. |
+| `status` |string| no  | |  Status of this chat |
 
 #### Response
 
@@ -1517,7 +1517,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of live chat visitor. |
+| `id` | Guid | yes  |  Id of live chat visitor|
 
 
 #### Response
@@ -1585,7 +1585,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  | Identifier of online visitor. |
+| `id` | Guid | yes  |  Id of online visitor|
 
 Request body 
 
@@ -1682,7 +1682,7 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | yes | no | | Identifier of the session. |
+| `id` | Guid |  | yes | no | | Id of the session. |
 | `startTime` | datetime | | no | no |  | Time when the session started. |
 | `ip` | string |  | no | no | | The IP of the visitor. |
 | `referrerURL` | string |  | no | no | | The rest part of the URL will be abandoned if the URL is too long. |
@@ -1696,10 +1696,10 @@ Content-Type:  application/json
 | `timeZone` | string |  | no | no | | The time zone of the visitor. |
 | `landingPageURL` | string |  | no | no | | The URL of the first page of your website the visitor visited. |
 | `landingPageTitle` | string | | no | no | | The title of the first page of your website the visitor visited. |
-| `visitorId` | Guid | | no | no | | Identifier of the visitor. |
-| `visitor` | [Visitor](./Global%20API.md#Visitor) | yes | no | no | | Available only when the visitor is included.  |
-| `contactId` | integer | | no | no | | Identifier of the contact.  |
-| `contact` | [Contact](./Global%20API.md#Contact) | yes | no | no | | Available only when contact is included.  |
+| `visitorId` | Guid | | no | no | | The id of the visitor |
+| `visitor` | [Visitor](./Global%20API.md#Visitor) | yes | no | no | | Available only when the visitor is included  |
+| `contactId` | integer | | no | no | | The id of the contact  |
+| `contact` | [Contact](./Global%20API.md#Contact) | yes | no | no | | Available only when contact is included  |
 
 ## Endpoint
 
@@ -1712,13 +1712,13 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Integer | yes  |  Identifier of the session. |
+| `id` | Integer | yes  |  The id of the session  |
 
 Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value: `visitor`, `contact`. |
+| `include` | string | no  | |  Available value: `visitor`, `contact` |
 
 #### Response
 
@@ -1773,11 +1773,11 @@ Response
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | yes | no | | Identifier of the chat. |
+| `id` | Guid |  | yes | no | | Id of the chat. |
 | `agentIds` | integer[] |  | no | no | | Maximum four agents can join a chat. |
 | `agents` | [Agent](./Global%20API.md#agent-object)[] | yes | no | no | | Chatbot is a type of agent. |
-| `startTime` | datetime | | no | no | | Time when the chat started. |
-| `endTime` | datetime | | no | no | | Time when the chat ends. |
+| `startTime` | datetime | | no | no | | Time when the chat started |
+| `endTime` | datetime | | no | no | | Time when the chat ends |
 | `ifQueued` | boolean | | no | no | |  |
 | `ifAudioChatHappened` | boolean | | no | no | false |  |
 | `ifVideoChatHappened` | boolean | | no | no | false |  |
@@ -1802,10 +1802,10 @@ Response
 | `campaign` | [Campaign](#campaign) | yes | no | no |  |  |
 | `lastMessageSentBy` | string | | no | no |  | Including `visitor`, `agent`, `chatbot` and `system`.  |
 | `customerSegments` | [Customer Segment](#customer-segment)[] | | no | no |  | |
-| `sessionId` | Guid | | no | no |  | Identifier of session. |
-| `session` | [Session](#session) | yes | no | no |  | The related [Session](#session) object.|
-| `botId` | Guid | | no | no |  | Identifier of chatbot. |
-| `chatBot` | [ChatBot](./Bot%20API.md#bot-object) | yes | no | no |  | The related [ChatBot](./Bot%20API.md#bot-object) object.|
+| `sessionId` | Guid | | no | no |  | Id of session |
+| `session` | [Session](#session) | yes | no | no |  |  The related [Session](#session) object|
+| `botId` | Guid | | no | no |  | Id of chatbot |
+| `chatBot` | [ChatBot](./Bot%20API.md#bot-object) | yes | no | no |  |  The related [ChatBot](./Bot%20API.md#bot-object) object|
 
 ### Chat Message Object
 
@@ -1818,7 +1818,7 @@ Response
 | `sentTime` | datetime | no  | no | |  |
 | `content` | string | no  | no | | |
 | `translatedMessage` | string | no  | no | |  |
-| `attachmentUrl` | string | no | no | |  | The attachment file URL. |
+| `attachmentUrl` | string | no | no | |  | The attachment file Url |
 
 ### Chat Pre-Chat Object
 
@@ -1858,7 +1858,7 @@ Response
 | `categories` | string[] | no | no | |   |
 | `comment` | string | no | no | |   |
 | `lastUpdatedTime` | datetime | no | no | |   |
-| `lastUpdatedByAgentId` | int | no | no | |  Identifier of the agent. |
+| `lastUpdatedByAgentId` | int | no | no | |  Id of the agent. |
 | `fieldValues` | [Field Value](#field-value-json-format)[] | no | no | |  |  |
 
 ## Endpoint
@@ -1874,7 +1874,7 @@ Query string
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`, `chatbot`, `autoInvitation`, `session`,`offlineMessage`. |
-| `timeFrom` | datetime | no  | today | The beginning of the query time, defaults to today, format is `yyyy-MM-ddTHH:mm:ss`. |
+| `timeFrom` | datetime | no  | today |  The beginning of the query time, defaults to today, format is `yyyy-MM-ddTHH:mm:ss`. |
 | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format is `yyyy-MM-ddTHH:mm:ss`. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size.  |
@@ -1892,8 +1892,8 @@ The response body contains data with the follow structure:
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
 | `totalCount` | integer | no | no | Total count of the list. |
-| `previousPage` | string | no | no | URL of the previous page. |
-| `nextPage` | string | no | no | URL of the next page. |
+| `previousPage` | string | no | no | Url of the previous page. |
+| `nextPage` | string | no | no | Url of the next page. |
 | `chats` | [Chat](#Chat-Object)[] | no | no |  |
 
 #### Example
@@ -2010,7 +2010,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  | Unique identifier of the chat. |
+| `id` | Guid | yes  |  The unique id of the chat. |
 
 #### Response
 
@@ -2124,7 +2124,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  | Unique identifer of the chat. |
+| `id` | Guid | yes  |  The unique id of the chat |
 
 #### Response
 
@@ -2196,9 +2196,9 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid |  | yes | no | | Identifier of the offline message. |
+| `id` | Guid |  | yes | no | | Id of the offline message. |
 | `createdTime` | datetime | | no | no | | Time of this offline message submitted. |
-| `ssoUserId` | string | | no | no |  | SSO identifier of visitor. |
+| `ssoUserId` | string | | no | no |  | SSO id of visitor. |
 | `name` | string | | no | no |  | Name of the visitor. |
 | `email` | string | | no | no |  | Email of the visitor. |
 | `phone` | string | | no | no |  | Phone of the visitor. |
@@ -2207,14 +2207,14 @@ HTTP/1.1 204 No Content
 | `department` | [Department](./Global%20API.md#department-object) | yes | no | no |  | Available only when department is included. |
 | `agentId` | integer | | no | no |  | The Agent whom the Offline Message belongs to. |
 | `agent` | [Agent](./Global%20API.md#agent-object) | yes | no | no |  | Available only when agent is included. |
-| `ticketId` | integer | yes | no | no |  | Identifier of the related ticket. |
+| `ticketId` | integer | yes | no | no |  | Id of the related ticket. |
 | `subject` | string | | no | no |  | The subject of this offline message.|
 | `message` | string | | no | no | | The content of this offline message. |
 | `requestingPageTitle` | string | | no | no |  |  |
 | `requestingPageURL` | string | | no | no |  |  |
 | `source` | string | | no | no |  | Including `chatButton` and `autoInvitation` |
-| `autoInvitationId` | Guid | | no | no |  | Available when source is `autoInvitation`. |
-| `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | no | no |  | Available only when autoInvitation is included. |
+| `autoInvitationId` | Guid | | no | no |  | Available when source is `autoInvitation` |
+| `autoInvitation` | [Auto Invitation](#auto-invitation) | yes | no | no |  | Available only when autoInvitation is included |
 | `campaignId` | Guid | | no | no |  | Id of the campaign. |
 | `campaign` | [Campaign](#campaign) | yes | no | no |  | Available only when campaign is included. |
 | `sessionId` | Guid | | no | no |  | Id of the session. |
@@ -2230,8 +2230,8 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `name` | string |  | no | no | | File name of this attachment. |
-| `uri` | string | | no | no |  | Uri for download this attachment. |
+| `name` | string |  | no | no | | File name of this attachment |
+| `uri` | string | | no | no |  | Uri for download this attachment |
 
 ### Field Value JSON format
 
@@ -2257,10 +2257,10 @@ Query string
 | `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session`. |
 | `timeFrom` | datetime | no  | today |  The beginning of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`.|
 | `timeTo` | datetime | no  | today |  The end of query time, defaults to today, format as `yyyy-MM-ddTHH:mm:ss`.|
-| `campaignId` | guid | no  |  | Identifier of the campaign which the offline message. |
-| `departmentId` | guid | no  |  | Identifier of the department which the offline message belongs to. |
-| `agentId` | integer | no  |  | Identifier of the agent that this offline message belongs to. |
-| `visitorSegmentId` | guid | no  |  | Identifier of the visitor segment which the visitor belongs to. |
+| `campaignId` | guid | no  |  | Id of the campaign which the offline message. |
+| `departmentId` | guid | no  |  | Id of the department which the offline message belongs to. |
+| `agentId` | integer | no  |  | Id of the agent that this offline message belongs to. |
+| `visitorSegmentId` | guid | no  |  | Id of the visitor segment which the visitor belongs to. |
 | `keywords` | string | no  |  | Search subject or message by keywords. |
 | `pageIndex` | integer | no  | 1 | The page index of query. |
 | `pageSize` | integer | no  | 50 | Page size. |
@@ -2271,7 +2271,7 @@ The response body contains data with the follow structure:
 
 | Name | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `total` | integer | no | no | Total count of the list. |
+| `total` | integer | no | no | total count of the list. |
 | `previousPage` | string | no | no | Url of the previous page. |
 | `nextPage` | string | no | no | Url of the next page. |
 | `offlineMessages` | [Offline Message](#offline-message-json-format)[] | no | no | An array of [Offline Message](#offline-message-json-format). |
@@ -2366,13 +2366,13 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the offline message.  |
+| `id` | Guid | yes  |  The id of the offline message  |
 
 Query string
 
 | Name  | Type | Required | Default | Description |
 | - | - | :-: | :-: | - |
-| `include` | string | no  | |  Available value: `department`, `agent`, `campaign`, `autoInvitation`, `session`. |
+| `include` | string | no  | |  Available value: `department`,`agent`, `campaign`,`autoInvitation`, `session` |
 
 #### Response
 
@@ -2454,7 +2454,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the offline message.  |
+| `id` | Guid | yes  |  The id of the offline message.  |
 
 
 #### Response
@@ -2524,7 +2524,7 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-|`id` | Guid | yes | no | | Identifier of the current item.  |
+|`id` | Guid | yes | no | | Id of the current item.  |
 | `name` | string  | no | yes | `Default Plan` | |
 | `description` | string  | no | no | | |
 | `language` | string | no | no | `English` | The languages are defined in cpanel.  |
@@ -2576,7 +2576,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2664,7 +2664,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -2718,7 +2718,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2762,7 +2762,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -2804,30 +2804,30 @@ Content-Type:  application/json
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
 | `type` | string | no | no | `adaptive` | Type of the button, includes:`adaptive`, `image` and `textLink`. |
-| `isHideWhenOffline` | boolean | no | no | | Whether the Chat button is visible when no agent is online. `True` means that button is invisible. |
+| `isHideWhenOffline` | boolean | no | no | | Whether the chat button is visible when no agent is online. `True` means that button is invisible. |
 | `isDomainRestrictionEnabled` | boolean | no | no | | Whether the domain restriction is enabled or not. |
-| `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the Chat button is visible. |
-| `adaptiveButtonColor` | string | no | no | | The theme color of the Chat button, available when `type` is `adaptive`. |
-| `adaptiveButtonRightOffset` | integer | no | no | 0 | Offset from right: XX pixels. |
-| `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX pixels. |
-| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX pixels. |
-| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX pixels. |
-| `isImageButtonFloating` | boolean | no | no | | Whether the Image button is float or not, available when `type` is `image`. |
-| `imageButtonPosition` | string | no | no | | Position of the Image button, including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
-| `imageButtonPositionMode` | string | no | no | | Position mode of the Image button, including `Basic` and `Advanced`, available when `type` is `image`. |
+| `allowedDomains` | string[] | no | no | | An array of `domains` or `urls`, on which the chat button is visible. |
+| `adaptiveButtonColor` | string | no | no | | The theme color of the chat button, available when `type` is `adaptive`. |
+| `adaptiveButtonRightOffset` | integer | no | no | 0 | Offset from right: XX Pixels. |
+| `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
+| `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX Pixels. |
+| `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX Pixels. |
+| `isImageButtonFloating` | boolean | no | no | | Whether the image button is float or not, available when `type` is `image`. |
+| `imageButtonPosition` | string | no | no | | Position of the image button. Including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
+| `imageButtonPositionMode` | string | no | no | | Position mode of the image button, including `Basic` and `Advanced`, available when `type` is `image`. |
 | `isImageButtonXOffsetByPixel` | boolean | no | no | | Available when `type` is `image`. |
-| `imageButtonXOffset` | integer | no | no | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate. Available when `type` is `image`. |
+| `imageButtonXOffset` | integer | no | no | |  If Is XOffset By Pixel is True, it represents the offset pixel value of the X coordinate. If Is XOffset By Pixel is False, it represents the offset percentage value of the X coordinate, available when `type` is `image`. |
 | `isImageButtonYOffsetByPixel` | boolean | no | no | | Available when `type` is `image`. |
-| `imageButtonYOffset` | integer | no | no | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate. Available when `type` is `image`. |
+| `imageButtonYOffset` | integer | no | no | |  If Is YOffset By Pixel is True, it represents the offset pixel value of the Y coordinate. If Is YOffset By Pixel is False, it represents the offset percentage value of the Y coordinate, available when `type` is `image`. |
 | `imageButtonImageSource` | string | yes | no | |  Type of the image source, including `fromGallery` and `fromMyComputer` |
 | `imageButtonOnlineImage` | Guid | yes | no | | Image file key of online button, available when `type` is `image`. |
 | `imageButtonOfflineImage` | Guid | yes | no | | Image file key of offline button, available when `type` is `image`. |
 | `imageButtonTypeOnMobile` | string | no | no | | The type of button on mobile device, including `text` and `image`. |
 | `imageButtonColorOnMobile` | string | no | no | | |
-| `imageButtonTextColorOnMobile` | string | no | no | | The theme color of the Chat button on mobile device. |
+| `imageButtonTextColorOnMobile` | string | no | no | | The theme color of chatbutton on mobile device. |
 | `imageButtonOnlineImageOnMobile` | Guid | yes | no | | The Image file key on mobile device when any agents is online. |
 | `imageButtonOfflineImageOnMobile` | Guid | yes | no | | The image file key on mobile device when no agent is online. |
-| `imageButtonPositionOnMobile` | string | no | no | | Position of the Chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
+| `imageButtonPositionOnMobile` | string | no | no | | Position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `topLeft`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`. |
 | `textLinkButtonText` | string | no | no | | The content of the text link, available when `type` is `textLink`. |
 
 
@@ -2843,7 +2843,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -2888,6 +2888,7 @@ Content-Type:  application/json
   "imageButtonOfflineImageOnMobile": "BC5CAA90-C7BB-5BEA-9811-D72AD73F2047",
   "imageButtonPositionOnMobile": "bottomLeft",
   "textLinkButtonText": "test"
+
 }
 ```
 
@@ -2903,7 +2904,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -2917,10 +2918,10 @@ example:
   "isDomainRestrictionEnabled": false,
   "allowedDomains": [],
   "adaptiveButtonColor": "#329fd9",
-    "adaptiveButtonRightOffset": 25,
+  "adaptiveButtonRightOffset": 25,
   "adaptiveButtonBottomOffset": 25,
   "adaptiveButtonRightOffsetOnMobile": 25,
-  "adaptiveButtonBottomOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2953,7 +2954,7 @@ curl -H "Content-Type: application/json" -d '{
   "adaptiveButtonRightOffset": 25,
   "adaptiveButtonBottomOffset": 25,
   "adaptiveButtonRightOffsetOnMobile": 25,
-  "adaptiveButtonBottomOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2982,7 +2983,7 @@ Content-Type:  application/json
   "adaptiveButtonRightOffset": 25,
   "adaptiveButtonBottomOffset": 25,
   "adaptiveButtonRightOffsetOnMobile": 25,
-  "adaptiveButtonBottomOffsetOnMobile": 25,
+  "adaptiveButtonBottomOffsetOnMobile": 25
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -3022,7 +3023,7 @@ Content-Type:  application/json
 | - | - | :-: | :-: | :-: | - |
 | `style` | string | no | no | |  Style of the window's theme, including `classic`, `circle` and `bubble`. |
 | `color` | string | no | no | |  Color of the window's theme. |
-| `type` | string | no | no | | Type of the Chat window, including `embedded` and `popup`. |
+| `type` | string | no | no | | Type of the chat window, including `embedded` and `popup`. |
 | `headerType` | string | no | no | |  Type of the header, including `agentInfo`, `bannerImage` and `avatarAndLogo` when `style` is `classic`. |
 | `isAvatarDisplayed` | boolean | no | no | | Whether the avatar of the agent is visible or not, available when  `headerType` is `agentInfo` or `avatarAndLogo`. |
 | `isTitleDisplayed` | boolean | no | no | | Whether the title of the agent is visible or not, available when `headerType` is `agentInfo`. |
@@ -3085,7 +3086,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3164,7 +3165,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3362,7 +3363,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3425,7 +3426,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3572,7 +3573,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3628,7 +3629,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3750,7 +3751,7 @@ Content-Type:  application/json
 | `customEmailIfAddNavigationInfo` | boolean | no | no | |  |
 | `customEmailIfAddVisitorInfo` | boolean | no | no | |  |
 | `formFieldLayoutStyle` | string | no | no | | Including `leftOfInput` and `aboveInput`. Available for Post Chat and Offline Message forms.  |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`. Note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `name`, `email`, `phone`, `company`, `product service`, `department`, `ticket id`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 
 ## Campaign Offline Message Endpoints
 
@@ -3764,7 +3765,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -3831,7 +3832,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -3973,7 +3974,7 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | yes | no | | Identifier of the current item. |
+| `id` | Guid | yes | no | | Id of the current item. |
 | `style` | string | no | no | | Including `bubble`, `popup` and `chatWindow` when chat button's style is adaptive, otherwise including `popup` and `chatWindow` only. |
 | `autoInvitations` | [Auto Invitation](#Auto-Invitation-Object)[] | no | no | | |
 | `manualInvitations` | [Manual Invitation](#Manual-Invitation-Object) | no | no | | |
@@ -3990,7 +3991,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4080,7 +4081,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -4158,7 +4159,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifer of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4209,7 +4210,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -4304,7 +4305,7 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | yes | no | | Identifier of the current item. |
+| `id` | Guid | yes | no | | Id of the current item. |
 | `name` | string | no | yes | | |
 | `isEnable` | boolean | no | no | | Whether the auto invitation is enabled or not. |
 | `isDisplayedOnceInOneSession` | boolean | no | no | | |
@@ -4342,7 +4343,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4410,8 +4411,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
-| `id` | Guid | yes  |  Unique identifier of the auto invitation. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
+| `id` | Guid | yes  |  The unique id of the auto invitation |
 
 #### Response
 
@@ -4481,7 +4482,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -4620,8 +4621,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
-| `id` | Guid | yes  |  Unique identifier of the auto invitation. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
+| `id` | Guid | yes  |  The unique id of the auto invitation. |
 
 Request Body
 
@@ -4758,8 +4759,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
-| `id` | Guid | yes  |  Unique identifier of the auto invitation. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
+| `id` | Guid | yes  |  The unique id of the auto invitation |
 
 #### Response
 
@@ -4790,7 +4791,7 @@ Response
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These system fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
+| `fields` | [Campaign Form Field](#Campaign-Form-Field-Object)[] | no | no | | These System Fields are prebuilt and can’t be deleted: `agent wrap-up category`, `agent wrap-up comments`. Please note that if the passed field parameters are not the same as before, non-system fields will be deleted if they are not passed. |
 
 ## Agent Wrap-Up Endpoints
 
@@ -4804,7 +4805,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -4889,7 +4890,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -5101,7 +5102,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -5142,7 +5143,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Request Body
 
@@ -5234,7 +5235,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -5308,7 +5309,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -5392,7 +5393,7 @@ Content-Type:  application/json
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - |- | :-: | :-: | :-: | - |
-| `id` | Guid | yes | | no | | Identifier of the current item. |
+| `id` | Guid | yes | | no | | Id of the current item. |
 | `isEnable` | boolean | | no | no | | Whether the custom rule is enabled or not. |
 | `name` | string | | no | no | | |
 | `order` | integer | | no | no | | |
@@ -5448,7 +5449,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 Query string
 
@@ -5519,8 +5520,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the custom rule. |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -5590,7 +5591,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 Request Body
 
@@ -5724,8 +5725,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the custom rule. |
-| `campaignId` | Guid | yes  |  Unique identifier of the custom rule. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 Request Body
 
@@ -5857,8 +5858,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the custom rule. |
-| `campaignId` | Guid | yes  |  Unique identifier of the custom rule. |
+| `id` | Guid | yes  |  The unique id of the custom rule. |
+| `campaignId` | Guid | yes  |  The unique id of the custom rule. |
 
 #### Response
 
@@ -5911,7 +5912,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Query string
 
@@ -5986,7 +5987,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6075,7 +6076,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -6116,7 +6117,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6191,10 +6192,10 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | yes | no | | Identifier of the current item. |
+| `id` | Guid | yes | no | | Id of the current item. |
 | `field` | [Live Chat Field](#Live-Chat-Field-Object) | no | no | | |
 | `isVisible` | boolean | no | no | | Whether the field is visible or not. |
-| `isRequired` | boolean | no | no | | Whether the field is required or not when submitting the form. |
+| `isRequired` | boolean | no | no | | Whether the field is required or not when submitting the form |
 | `order` | integer | no | no | | The order of the field. |
 | `ratingGrades` | [Rating Grade](#Rating-Grade-Object)[] | no | no | | Always 5 grades. Available whey Type of Live Chat Field is Rating. |
 
@@ -6214,8 +6215,8 @@ Content-Type:  application/json
 
 | Name | Type | Read-only | Mandatory | Default | Description |
 | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | yes | no | | Identifier of the current item. |
-| `isSystem` | boolean | no | no | | Whether the field is system or not. |
+| `id` | Guid | yes | no | | Id of the current item. |
+| `isSystem` | boolean | no | no | | whether the field is system or not. |
 | `name` | string | no | no | | |
 | `type` | string | no | no | | The [Live Chat Field Type](#Live-Chat-Field-Type) of the field. |
 | `options` | [Live Chat Field Option](#Live-Chat-Field-Option-Object)[] | no | no | | Live Chat Field Option, available whey Type is `radioBox`, `dropdownList`, `checkboxList`. |
@@ -6292,7 +6293,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign |
 
 #### Response
 
@@ -6361,7 +6362,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6499,7 +6500,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6568,7 +6569,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6706,7 +6707,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6775,7 +6776,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -6913,7 +6914,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -6982,7 +6983,7 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -7120,8 +7121,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the campaign form fields. |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -7187,8 +7188,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the campaign form fields. |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 Request Body
 
@@ -7326,8 +7327,8 @@ Path Parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the campaign form fields. |
-| `campaignId` | Guid | yes  |  Unique identifier of the campaign. |
+| `id` | Guid | yes  |  The unique id of the campaign form fields. |
+| `campaignId` | Guid | yes  |  The unique id of the campaign. |
 
 #### Response
 
@@ -7363,7 +7364,7 @@ Response
 
 | Name | Type | Include | Read-only For Put | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | | yes | no| | Identifier of the ban. |
+| `id` | Guid | | yes | no| | Id of the ban. |
 | `type` | string | | no | yes | |  Type of ban, including `visitor` , `ip` and `ipRange`. |
 | `visitorId` | Guid | | no | yes | | Mandatory when `type` is `visitor`. |
 | `visitor` | [Visitor](./Global%20API.md#visitor-object) | yes | no | no | |  Available only when visitor is included.|
@@ -7439,7 +7440,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the ban.  |
+| `id` | Guid | yes  |  The id of the ban.  |
 
 Query string
 
@@ -7538,7 +7539,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the ban. |
+| `id` | Guid | yes  |  The id of the ban. |
 
 Request body
 
@@ -7590,7 +7591,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the ban.|
+| `id` | Guid | yes  |  The id of the ban.|
 
 
 #### Response
@@ -7624,7 +7625,7 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | guid | | yes | no | | Identifier of the conversion action. |
+| `id` | guid | | yes | no | | Id of the conversion action. |
 | `name` | string | | no | yes |  | Name of the conversion action. |
 | `isEnable` | boolean | | no | no | | Whether the conversion action is enabled or not. |
 | `type` | string | | no | yes | | Type of the conversion action, including `url`, `customVariable` and `api`. |
@@ -7634,13 +7635,13 @@ HTTP/1.1 204 No Content
 | `isCaseSensitive` | boolean | | no | no | | Whether the conversion action is case sensitive or not, available when `type` is `url`. |
 | `isValueAssignedToConversion` | boolean | | no | no |  | Whether a value is assigned for the conversion action or not. |
 | `valueSource` | string | | no | no |  | Including `inputAValue`, `getFromCustomVariable` |
-| `assignedValueFromInputting` | integer | | no | no |  | The value assigned for the conversion action, between 1 and 999999999. |
-| `assignedValueFromCustomVariable` | string | | no | no |  | The value comes from the custom variable. |
+| `assignedValueFromInputting` | integer | | no | no |  | The value assigned for the conversion action, between 1 and 999999999 |
+| `assignedValueFromCustomVariable` | string | | no | no |  | The value comes from the custom variable |
 | `chatAssociatedWithConversion` | string | | no | no |  | Including `theFirstChat`, `theLastChat` |
 | `isChatInLastCertainDaysConsidered` | boolean | | no | no |  |  |
-| `chatInLastDays` | integer | | no | no |   | Between 1 and 30. |
+| `chatInLastDays` | integer | | no | no |   | Between 1 and 30 |
 | `isChatWithAtLeastCertainVisitorMessagesConsidered` | boolean | | no | no | |  |
-| `visitorMessagesAtLeast` | integer | | no | no | | Between 1 and 999.  |
+| `visitorMessagesAtLeast` | integer | | no | no | | Between 1 and 999  |
 | `isVariableIncludedInTranscript` | boolean | | no | no |  |  |
 | `appendFieldList` | string[] | | no | no |  |  |
 | `createdTime` | datetime | | N/A | N/A |  |  |
@@ -7658,7 +7659,7 @@ HTTP/1.1 204 No Content
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
 | `conversionName` | string | | no | yes | | Name of the conversion action. |
-| `visitorId` | Guid | | no | yes | | Identifier of visitor, visitor must be online. |
+| `visitorId` | Guid | | no | yes | | Id of visitor, visitor must be online. |
 | `value` | double | | no| yes | | The value of this conversion.|
 
 
@@ -7747,7 +7748,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the conversion action.|
+| `id` | Guid | yes  |  The id of the conversion action.|
 
 Query string
 
@@ -7919,7 +7920,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the conversion action.|
+| `id` | Guid | yes  |  The id of the conversion action.|
 
 Request body 
 
@@ -8074,7 +8075,7 @@ You need `Manage Security` permission to manage `Secure Form`.
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid  | | yes | no | | Identifier of the secure form. |
+| `id` | Guid  | | yes | no | | Id of the secure form. |
 | `name` | string  | | no | yes | | Name of the secure form. |
 | `description` | string |  | no | no | |Description of the secure form. |
 | `fields` | [Secure Form Field](#secure-form-field-json-format)[] | | no | no | | An array of [Secure Form Field](#secure-form-field-json-format). |
@@ -8306,7 +8307,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the secure form.|
+| `id` | Guid | yes  |  The id of the secure form.|
 
 Request body
 
@@ -8482,7 +8483,7 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid | | yes | no | | Identifier of the field. |
+| `id` | Guid | | yes | no | | Id of the field. |
 | `name` | string | | no | yes | | Name of the field. |
 | `displayName` | string | | no | yes | | Dispaly name of the field. |
 | `type` | string | | no | yes | | Including `text`, `textArea`, `radioBox`, `checkbox`, `dropdownList`, `checkboxList`, `datePicker` |
@@ -8498,7 +8499,7 @@ HTTP/1.1 204 No Content
 
 | Name | Type | Include | Read-only | Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `value` | string | | no | yes | | | Value of this field. |
+| `value` | string | | no | yes | | | Value of this field.
 | `order` | integer | | no | no |1  | The order of the field. |
 
 ## Endpoint
@@ -8511,7 +8512,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `secureFormId` | Guid | yes  |  Identifier of the secure form.  |
+| `secureFormId` | Guid | yes  |  The id of the secure form  |
 
 
 #### Response
@@ -8572,8 +8573,8 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the secure form field. |
-| `secureFormId` | Guid | yes  |  Identifier of the secure form.  |
+| `id` | Guid | yes  |  The id of the secure form field. |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 #### Response
 
@@ -8622,7 +8623,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `secureFormId` | Guid | yes  | Identifier of the secure form.  |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 Request body
 
@@ -8686,8 +8687,8 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the secure form field.  |
-| `secureFormId` | Guid | yes  |  Identifier of the secure form.  |
+| `id` | Guid | yes  |  The id of the secure form field.  |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 Request body
 
@@ -8751,8 +8752,8 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the secure form field. |
-| `secureFormId` | Guid | yes  |  Identifier of the secure form.  |
+| `id` | Guid | yes  |  The id of the secure form field. |
+| `secureFormId` | Guid | yes  |  The id of the secure form.  |
 
 #### Response
 HTTP/1.1 204 No Content
@@ -8785,7 +8786,7 @@ You need `Manage Integration` permission to manage `Webhook`.
 
 | Name | Type | Include | Read-only| Mandatory| Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | guid  || yes | no | | Identifier of the webhook. |
+| `id` | guid  || yes | no | | Id of the webhook |
 | `event` | string  || no | yes | | Event of webhook, including `offlineMessageSubmitted`, `agentStatusChanges`,`chatStarts`, `chatEnds`, `chatWrappedUp`, `chatRequested` and `chatTransferred`. |
 | `targetUrl` | string  || no | yes | | Target url of the webhook. |
 
@@ -8835,7 +8836,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the webhook.  |
+| `id` | Guid | yes  |  Id of the webhook  |
 
 #### Response
 
@@ -8917,7 +8918,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Unique identifier of the webhook.|
+| `id` | Guid | yes  |  The unique id of the webhook.|
 
 Request body
 
@@ -8968,7 +8969,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the webhook.|
+| `id` | Guid | yes  |  Id of the webhook.|
 
 #### Response
 HTTP/1.1 204 No Content
@@ -9003,7 +9004,7 @@ You need `Manage Custom Variable` permission to manage custom variables.
 
 | Name | Type | Include | Read-only| Mandatory | Default | Description |
 | - | - | - | :-: | :-: | :-: | - |
-| `id` | Guid  || yes | no || Identifier of the custom variable. |
+| `id` | Guid  || yes | no || Id of the custom variable. |
   | `name` | string  || no | yes || Name of the custom variable. |
   | `type` | string  || no | yes || Type of the custom variable, including `text`, `integer` and `decimal`. |
   | `value` | string  || no | no || Value of the custom variable. |
@@ -9058,7 +9059,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the custom variable. |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 #### Response
 
@@ -9146,7 +9147,7 @@ Content-Type:  application/json
 Path parameters
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the custom variable.  |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 Request body
 
@@ -9203,7 +9204,7 @@ Path parameters
 
 | Name  | Type | Required  | Description |
 | - | - | - | - |
-| `id` | Guid | yes  |  Identifier of the custom variable.  |
+| `id` | Guid | yes  |  Id of the custom variable.  |
 
 #### Response
 
