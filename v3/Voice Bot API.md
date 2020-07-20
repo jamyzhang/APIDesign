@@ -14,7 +14,7 @@
 
 ## Related Object Json Format
 
-### ChatbotSession Object
+#### ChatbotSession Object
   ChatbotSession Object is represented as simple flat JSON objects with the following keys:  
 
   |Name| Type | Default | Description     | 
@@ -35,7 +35,7 @@
   | `type` | string  |  | type of the response,including `greetingMessage`、 `highConfidenceAnswer`、`possibleAnswer`、`noAnswer`, `authenticationRequest` |
   | `content` | object |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer-object); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer-object);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer-object);when type is `greetingMessage`,it represents [GreetingMessage](#GreetingMessage-Object); when type is `authenticationRequest`, it represents [AuthenticationRequest](#AuthenticationRequest-Object);|
 
-##### HighConfidenceAnswer Object
+#### HighConfidenceAnswer Object
 
   HighConfidenceAnswer is represented as simple flat JSON objects with the following keys:  
 
@@ -46,7 +46,7 @@
   | `score` | float  |  | the score of the intent matched, the value is beteween 0.0 and 100.0 |
   |`responses`| [ChatbotResponse](#Chatbot-Response-Object)[] |  | an array of [ChatbotResponse](#Chatbot-Response-Object) object. |
 
-##### PossibleAnswer Object
+#### PossibleAnswer Object
 
   PossibleAnswer is represented as simple flat JSON objects with the following keys:  
 
@@ -56,7 +56,7 @@
   |`message` | string | | Text of the Possible Answer message | 
   |`audio` | string |  | base64 string, convert the message text to speech |  
 
-##### NoAnswer Object
+#### NoAnswer Object
 
   NoAnswer is represented as simple flat JSON objects with the following keys:  
 
@@ -68,14 +68,14 @@
   |`message` | string |  | text of the No Answer message  |
   |`audio` | string |  | base64 string, convert the message text to speech |   
 
-##### GreetingMessage Object
+#### GreetingMessage Object
   GreetingMessage is represented as simple flat json objects with the following keys:
 
   |Name| Type | Default | Description     | 
   | - | - | :-: | - | 
   |`responses`| [ChatbotResponse](#Chatbot-Response-Object)[] | | an array of [ChatbotResponse](#Chatbot-Response-Object) object. |
 
-##### AuthenticationRequest Object
+#### AuthenticationRequest Object
 
   AuthenticationRequest is represented as simple flat JSON objects with the following keys:  
 
@@ -84,7 +84,7 @@
   | `signInMessage` | string  |  | message of the sign in |
   |`audio` | string |  | base64 string, convert the signInMessage text to speech |   
 
-### Chatbot Response Object
+#### Chatbot Response Object
   Response is represented as simple flat json objects with the following keys:
 
   |Name| Type| Default | Description     | 
@@ -117,7 +117,7 @@
   | - | - | :-: | - | 
   |`targetNumber` | string |  | phone number. |
 
-### IntentScore Object
+#### IntentScore Object
 
   IntentScore is represented as simple flat JSON objects with the following keys:  
 
