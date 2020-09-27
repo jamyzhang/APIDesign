@@ -42,6 +42,7 @@
   | `authentication` | string  | | authentication data |
   | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
   | `formValues` | [FieldValue](#FieldValue-object)[] |  | an array of [FieldValue](#FieldValue-object) objects |
+  | `lastIntentReturn` | Object  | |  |
   | `customData` | Object  |   | Custom data |
 
 ### FieldValue Object
