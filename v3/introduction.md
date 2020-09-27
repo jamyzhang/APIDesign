@@ -12,7 +12,6 @@ Note: Comm100 currently has two versions of our customer engagement platform.
 Comm100 RESTful API must use **https** protocol. What the API requests should start with depends on your platform domain, which can be accessed from both your Control Panel and web version Agent Console after successful login. For example:
 
 - If your Control Panel domain is portal1.comm100.io, all API requests (except for the API request in generating the access token) should start with https://api1.comm100.io/api/v3/. 
-- If your Control Panel domain is portal2.comm100.io, all API requests (except for the API request in generating the access token) should start with https://api2.comm100.io/api/v3/.
 - If your Control Panel domain is portal3.comm100.io, all API requests (except for the API request in generating the access token) should start with https://api3.comm100.io/api/v3/.
 - If your Control Panel domain is portal5.comm100.io, all API requests (except for the API request in generating the access token) should start with https://api5.comm100.io/api/v3/.
 - If your Control Panel domain is portal7.comm100.io, all API requests (except for the API request in generating the access token) should start with https://api7.comm100.io/api/v3/.
@@ -43,7 +42,6 @@ Note:Comm100 recommends using OAuth authentication even though it supports the A
   Note that while generating an access token, the API request should start with your platform domain, which is different from the other API requests. For example:
   
 - If your Control Panel domain is portal1.comm100.io, the API requests should start with https://portal1.comm100.io/.
-- If your Control Panel domain is portal2.comm100.io, the API requests should start with https://portal2.comm100.io/.
 - If your Control Panel domain is portal3.comm100.io, the API requests should start with https://portal3.comm100.io/.
 - If your Control Panel domain is portal5.comm100.io, the API requests should start with https://portal5.comm100.io/.
 - If your Control Panel domain is portal7.comm100.io, the API requests should start with https://portal7.comm100.io/.
