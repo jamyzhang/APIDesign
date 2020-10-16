@@ -238,12 +238,12 @@ Response
                 "items": [
                     {
                         "type": "goToIntent",// goToIntent, contactAgent or text.
-                        "name": "click to trigger test-intent-name",
+                        "text": "click to trigger test-intent-name",
                         "intentId": 111
                     },
                     {
                         "type": "contactAgent",
-                        "name": "click to contact agent"
+                        "text": "click to contact agent"
                     }
                 ]
             },
