@@ -109,6 +109,12 @@ Path parameters
   | - | - | - | - | 
   | `sessionId` | Guid | yes  |  id of the chat |
 
+Query String
+
+  | Name  | Type | Required  | Description |     
+  | - | - | - | - | 
+  | `siteId` | int | yes  |  id of the site |
+
 Request body
 
 The request body contains data with the follow structure: 
@@ -157,7 +163,7 @@ curl -H "Authorization: Basic test@comm100.com:e07cce30b1b145e99049bf201f302239"
             "disableChatInputArea": true
         },
     ]
-  }' -X POST https://domain.comm100.com/api/v2/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:sendMessage
+  }' -X POST https://domain.comm100.com/botapi/api/v2/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:sendMessage?siteId=10000
 ```
 Response
 ```Json
