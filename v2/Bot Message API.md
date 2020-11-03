@@ -1,7 +1,7 @@
 
   | Change Version | API Version | Change Notes | Change Date | Author |
   | - | - | - | - | - |
-  | 1.0 | v3 | Chatbot Message Restful API | 2020-10-30 | Davy | 
+  | 1.0 | v2 | Chatbot Message Restful API | 2020-10-15 | Davy | 
 
 # Summary
   - Chatbot Message RESTful API
@@ -12,7 +12,7 @@
 For each method call, you must use your email and API_KEY.Authentication to the API is done via HTTP Basic Auth. Provide your email as the basic auth username and API_KEY as the password. You must authenticate for API requests.
 
 # Session
-  - `POST /api/v3/bot/sessions/{sessionId}:sendMessage` - [Send Message](#send-message)
+  - `POST /api/v2/bot/sessions/{sessionId}:sendMessage` - [Send Message](#send-message)
 
 ## Related Object Json Format
 
@@ -75,7 +75,7 @@ ChatbotMessage is represented as simple flat json objects with the following key
   | - | - | - | - | 
   | `type` | string  | yes | it is an enum value with options: goToIntent, contactAgent and text|
   | `text`| string  | yes | text on quick reply |
-  | `intentId`| GUID  | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
+  | `intentId`| int  | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
 
 #### ButtonResponse
   ButtonResponse is represented as simple flat JSON objects with the following keys:  
@@ -93,14 +93,14 @@ ChatbotMessage is represented as simple flat json objects with the following key
   | `type` | string  | yes | it is an enum value with options: hyperlink,webview and goToIntent|
   | `text`| string  | yes | text on button |
   | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink or webview, it is mandatory, otherwise not |
-  | `intentId`| GUID  | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
+  | `intentId`| int  | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
   | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
   | `webviewOpenStyle` | enums | no | it is an enum value with options: compact, tall and full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
 
 
 ## Endpoints
 ### Send Message
-`POST /api/v3/bot/sessions/{sessionId}:sendMessage`
+`POST /api/v2/bot/sessions/{sessionId}:sendMessage`
 
 #### Parameters
 Path parameters
@@ -121,7 +121,7 @@ The request body contains data with the follow structure:
 
   | Name | Type | Required | Default | Description |    
   | - | - | :-: | :-: | - | 
-  | `botId` | Guid  | yes | | id of the chatbot|
+  | `botId` | int  | yes | | id of the chatbot|
   | `visitorId` | Guid  | yes | | id of the visitor  |
   | `messages` | [ChatbotMessage](#ChatbotMessage)[] | yes | | max 10 messages in the list and only 1 quickreply type message in the list  |
 
@@ -129,7 +129,7 @@ The request body contains data with the follow structure:
 example:
 ```Json 
   {
-    "botId": "44f88d68-92e6-4487-a2e8-8234fc9d1f48",
+    "botId": 257,
     "visitorId": "a9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "messages": [
         {
@@ -152,7 +152,7 @@ Using curl
 ```
 curl -H "Authorization: Basic test@comm100.com:e07cce30b1b145e99049bf201f302239"
 -H "Content-Type: application/json" -d '{
-    "botId": "44f88d68-92e6-4487-a2e8-8234fc9d1f48",
+    "botId": 257,
     "visitorId": "a9928d68-92e6-4487-a2e8-8234fc9d1f48",
     "messages": [
         {
@@ -163,7 +163,7 @@ curl -H "Authorization: Basic test@comm100.com:e07cce30b1b145e99049bf201f302239"
             "disableChatInputArea": true
         },
     ]
-  }' -X POST https://api2.comm100.io/botapi/api/v3/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:sendMessage?siteId=10000
+  }' -X POST https://domain.comm100.com/botapi/api/v2/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:sendMessage?siteId=10000
 ```
 Response
 ```Json
@@ -220,7 +220,7 @@ Response
                     {
                         "type": "goToIntent",// goToIntent, hyperlink or webview.
                         "text": "click to trigger test-intent-name",
-                        "intentId": "00000000-0000-0000-0000-000000001111"
+                        "intentId": 111
                     },
                     {
                         "type": "hyperlink",
@@ -245,7 +245,7 @@ Response
                     {
                         "type": "goToIntent",// goToIntent, contactAgent or text.
                         "text": "click to trigger test-intent-name",
-                        "intentId": "00000000-0000-0000-0000-000000001111"
+                        "intentId": 111
                     },
                     {
                         "type": "contactAgent",
