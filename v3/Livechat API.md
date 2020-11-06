@@ -2812,6 +2812,8 @@ Content-Type:  application/json
 | `adaptiveButtonBottomOffset` | integer | no | no | 0 | Offset from bottom: XX pixels. |
 | `adaptiveButtonRightOffsetOnMobile` | integer | no | no | 0 | Offset from right: XX pixels. |
 | `adaptiveButtonBottomOffsetOnMobile` | integer | no | no | 0 | Offset from bottom: XX pixels. |
+| `isCustomizedAdaptiveButtonUsed` | boolean | no | no | | Whether the customized adaptive button is used in this Chat button. |
+| `customizedAdaptiveButtonIcon` | string | no | no | | The SVG content of the customized adaptive button icon.|
 | `isImageButtonFloating` | boolean | no | no | | Whether the Image button is float or not, available when `type` is `image`. |
 | `imageButtonPosition` | string | no | no | | Position of the Image button, including `bottomRight`, `static`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Basic`. Including `centered`, `topLeft`, `topMiddle`, `topRight`, `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle` and `rightMiddle`, when `type` is `image` and `imageButtonPositionMode` is `Advanced`. |
 | `imageButtonPositionMode` | string | no | no | | Position mode of the Image button, including `Basic` and `Advanced`, available when `type` is `image`. |
@@ -2871,6 +2873,8 @@ Content-Type:  application/json
   "adaptiveButtonBottomOffset": 25,
   "adaptiveButtonRightOffsetOnMobile": 25,
   "adaptiveButtonBottomOffsetOnMobile": 25,
+  "isCustomizedAdaptiveButtonUsed":false,
+  "customizedAdaptiveButtonIcon":"",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2921,6 +2925,8 @@ example:
   "adaptiveButtonBottomOffset": 25,
   "adaptiveButtonRightOffsetOnMobile": 25,
   "adaptiveButtonBottomOffsetOnMobile": 25,
+  "isCustomizedAdaptiveButtonUsed":false,
+  "customizedAdaptiveButtonIcon":"",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2954,6 +2960,8 @@ curl -H "Content-Type: application/json" -d '{
   "adaptiveButtonBottomOffset": 25,
   "adaptiveButtonRightOffsetOnMobile": 25,
   "adaptiveButtonBottomOffsetOnMobile": 25,
+  "isCustomizedAdaptiveButtonUsed":false,
+  "customizedAdaptiveButtonIcon":"",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
@@ -2983,6 +2991,8 @@ Content-Type:  application/json
   "adaptiveButtonBottomOffset": 25,
   "adaptiveButtonRightOffsetOnMobile": 25,
   "adaptiveButtonBottomOffsetOnMobile": 25,
+  "isCustomizedAdaptiveButtonUsed":false,
+  "customizedAdaptiveButtonIcon":"",
   "isImageButtonFloating": false,
   "imageButtonPosition": "centered",
   "imageButtonPositionMode": "Basic",
