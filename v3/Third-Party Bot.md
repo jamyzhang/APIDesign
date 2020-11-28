@@ -10,10 +10,13 @@ When we received a response whose event type is chatJoined, we will pass this ac
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
-  | `chatId` | string | yes | id of the chat |
-  | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables |
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
+  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
+  | `chatId` | GUID | yes | id of the chat |
+  | `botId` | GUID | yes | id of the chat |
+  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
+  | `extra` | object | no |  |
   
  #### Response Data Format
 
@@ -33,11 +36,18 @@ response so that we can give visitor an answer base on your response through liv
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
-  | `chatId` | string | yes | | id of the chat |
-  | `campaignId` | int | yes | id of the campaign in comm100 live chat |
+    | Name | Type | Mandatory | Description |    
+  | - | - | - | - | 
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
+  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
+  | `chatId` | GUID | yes | id of the chat |
+  | `botId` | GUID | yes | id of the chat |
+  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
+  | `extra` | object | no |  |
   | `question` | string | yes | the question that Bot received from visitor.  |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables |
+  | `authentication` | string | no | the authentication info.  |
+  | `location` | string | no | the location info.  |
 
   #### Response Data Format
 
@@ -51,11 +61,16 @@ If the answer we give to visitor contains link/button/quickreply which point to 
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
-  | `chatId` | string | yes | | id of the chat |
-  | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `intentId` | string | yes | the intent that visitor clicked. |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables |
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
+  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
+  | `chatId` | GUID | yes | id of the chat |
+  | `botId` | GUID | yes | id of the chat |
+  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
+  | `extra` | object | no |  |
+  | `intentId` | Guid | yes | the question that Bot received from visitor.  |
+  | `authentication` | string | no | the authentication info.  |
+  | `location` | string | no | the location info.  |
 
   #### Response Data Format
 
@@ -69,11 +84,16 @@ When we received a response whose event type is locationShared, we will display 
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
-  | `chatId` | string | yes | | id of the chat |
-  | `campaignId` | int | yes | id of the campaign in comm100 live chat |
-  | `intentId` | string | yes |  the intent that required visitor location. |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables and also the visitor location |
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
+  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
+  | `chatId` | GUID | yes | id of the chat |
+  | `botId` | GUID | yes | id of the chat |
+  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
+  | `extra` | object | no |  |
+  | `intentId` | Guid | yes | the question that Bot received from visitor.  |
+  | `authentication` | string | no | the authentication info.  |
+  | `location` | string | no | the location info.  |
   
   #### Response Data Format
 
@@ -87,11 +107,17 @@ When we received a response whose event type is formSubmitted, we will display a
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |   
-  | `chatId` | string | yes | | id of the chat |
-  | `campaignId` | int | yes | id of the campaign in comm100 live chat |
+  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
+  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
+  | `chatId` | GUID | yes | id of the chat |
+  | `botId` | GUID | yes | id of the chat |
+  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
+  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
+  | `extra` | object | no |  |
+  | `intentId` | Guid | yes | the question that Bot received from visitor.  |
+  | `authentication` | string | no | the authentication info.  |
+  | `location` | string | no | the location info.  |
   | `formValues` | array of [Field Value](#form-value) | yes |  |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | yes | the visitor information with pre-chat fields, custom variables |
   
   #### Response Data Format
 
@@ -106,6 +132,8 @@ Response is represented as simple flat json objects with the following keys:
 | - | - | - | - | 
 |`type` | string | yes |it is a enum value with options: text,image,video, quickreply, button, location and form.  | 
 |`content` | object | yes |response's content.<br/>when type is text, it represents [TextResponse](#textresponse);<br/>when type is image ,it represents [ImageResponse](#imageresponse);<br/>when type is video, it represents [VideoResponse](#videoresponse);<br/>when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse);<br/>when type is button, it represents [ButtonResponse](#buttonresponse);<br/>when type is location, it represents [LocationRequireResponse](#LocationRequireResponse);<br/>when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
+|`disableChatInputArea` | bool | no | default value is `false` |
+|`delayTime` | decimal | 1 | how many seconds delay to show  |
 
 #### TextResponse
   TextResponse is represented as simple flat JSON objects with the following keys:
@@ -120,13 +148,12 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `type` | enums | yes | it is an enum value with options: hyperlink and goToIntent |
+  | `type` | enums | yes | it is an enum value with options: hyperlink |
   | `startPosition` | int | yes | start index of text which contains link info |
   | `endPosition` | int | yes | end index of text which contains link info |
-  | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory, otherwise not |
-  | `intentId` | string| no | id of the intent in the intent link. When the type is goToIntent, it is mandatory, otherwise not  |
-  | `displayText` | string | no | display text of goToIntent link. When the type is goToIntent, it is mandatory, otherwise not |
-  | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory, otherwise not |
+  | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory, otherwise not |  
+  | `ifPushPage` | bool | no | auto open url in the side window |   
+  | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened. |
 
 #### ImageResponse
   ImageResponse is represented as simple flat JSON objects with the following keys:  
@@ -158,7 +185,7 @@ Response is represented as simple flat json objects with the following keys:
   | - | - | - | - | 
   | `type` | string  | yes | it is an enum value with options: goToIntent, contactAgent and text|
   | `text`| string  | yes | text on quick reply |
-  | `intentId`| string  | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
+  | `intentId`| GUID  | no  | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |  
 
 #### ButtonResponse
   ButtonResponse is represented as simple flat JSON objects with the following keys:  
@@ -176,7 +203,7 @@ Response is represented as simple flat json objects with the following keys:
   | `type` | string  | yes | it is an enum value with options: hyperlink,webview and goToIntent|
   | `text`| string  | yes | text on button |
   | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink or webview, it is mandatory, otherwise not |
-  | `intentId`| string  | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
+  | `intentId`| GUID  | no | id of the intent which current quickreply point to. When the type is goToIntent, it is mandatory, otherwise not |
   | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
   | `webviewOpenStyle` | enums | no | it is an enum value with options: compact, tall and full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
 
@@ -198,6 +225,9 @@ Response is represented as simple flat json objects with the following keys:
   | `text` | string  | yes | text on the button which can be clicked to open a webview to collection information|
   | `ifNeedConfirm` | bool  | yes | whether need the visitor to double confirm the form field values |
   | `fields` | array of [Field](#field)  | yes | fields displayed on webview|
+  |`submitButtonText` | string |   | |
+  |`cancelButtonText` | string |   | |
+  |`confirmButtonText` | string |   | |
 
 #### Field
 
@@ -207,7 +237,7 @@ Response is represented as simple flat json objects with the following keys:
   | - | - | - | - | 
   | `name` | string  | yes | name of the field|
   | `value` | string  | yes | value of the field item |
-  | `type` | string  | yes | it is an enum value with options: text, textArea, radio, checkBox, dropDownList and checkBoxList |
+  | `type` | string  | yes | it is an enum value with options: text, textArea, radio, checkBox, dropDownList, checkBoxList and email |
   | `ifRequired` | bool  | yes | when it is true, visitor have to input a value in the field before submit |
   | `ifMasked` | bool  | yes | when it is true, information collected will replaced by * in chat log for security |
   | `options` | an array of string  | no | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose. When the type is dropDownList or checkBoxList, it is mandatory, otherwise not |
@@ -293,7 +323,7 @@ Response is represented as simple flat json objects with the following keys:
             "content": {
                 "message": "this is a web link message",
                 "link": [{
-                    "type": "hypelink",// hypelink or goToIntent.
+                    "type": "hypelink",
                     "startPosition": 10,
                     "endPosition": 17,
                     "ifPushPage": true,
@@ -301,20 +331,7 @@ Response is represented as simple flat json objects with the following keys:
                     "openIn": "currentWindow"// currentWindow, sideWindow or newWindow.
                 }]
             }
-        },
-        {
-            "type": "text",
-            "content": {
-                "message": "this is a go to intent message",
-                "link": [{
-                    "type": "goToIntent",
-                    "startPosition": 10,
-                    "endPosition": 17,
-                    "intentId": "test-intent-id",
-                    "displayText": "test-displayText"
-                }]
-            }
-        },
+        },        
         {
             "type": "image",
             "content": {
@@ -336,7 +353,7 @@ Response is represented as simple flat json objects with the following keys:
                     {
                         "type": "goToIntent",// goToIntent, contactAgent or text.
                         "name": "click to trigger test-intent-name",
-                        "intentId": "test-intent-id"
+                        "intentId": "d3f5b968-ad51-42af-b759-64c0afc40b84",
                     },
                     {
                         "type": "contactAgent",
@@ -353,7 +370,7 @@ Response is represented as simple flat json objects with the following keys:
                     {
                         "type": "goToIntent",// goToIntent, hyperlink or webview.
                         "text": "click to trigger test-intent-name",
-                        "intentId": "test-intent-id"
+                        "intentId": "d3f5b968-ad51-42af-b759-64c0afc40b84",
                     },
                     {
                         "type": "hyperlink",
@@ -372,7 +389,10 @@ Response is represented as simple flat json objects with the following keys:
         },
         {
             "type": "location",
-            "content": null
+            "content": {
+              "message": "Please share your location first:",
+              "buttonText": "share",
+            }
         },
         {
             "type": "form",

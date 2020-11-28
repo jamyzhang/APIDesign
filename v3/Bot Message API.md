@@ -24,6 +24,7 @@ ChatbotMessage is represented as simple flat json objects with the following key
 |`type` | string | yes |it is a enum value with options: text,image,video, quickreply, button.  | 
 |`content` | object | yes |response's content.<br/>when type is text, it represents [TextResponse](#textresponse);<br/>when type is image ,it represents [ImageResponse](#imageresponse);<br/>when type is video, it represents [VideoResponse](#videoresponse);<br/>when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse);<br/>when type is button, it represents [ButtonResponse](#buttonresponse);<br/>|
 |`disableChatInputArea` | bool | no | default value is `false` |
+|`delayTime` | decimal | 1 | how many seconds delay to show  |
 
 #### TextResponse
   TextResponse is represented as simple flat JSON objects with the following keys:
@@ -43,7 +44,7 @@ ChatbotMessage is represented as simple flat json objects with the following key
   | `endPosition` | int | yes | end index of text which contains link info |
   | `url` | string | no | url of the web resource,including web forms,articles,images,video,etc. When the type is hyperlink, it is mandatory, otherwise not | 
   | `ifPushPage` | bool | no | auto open url in the side window |   
-  | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened. When the type is goToIntent, it is mandatory, otherwise not |
+  | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened.|
 
 #### ImageResponse
   ImageResponse is represented as simple flat JSON objects with the following keys:  
