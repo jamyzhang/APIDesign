@@ -124,6 +124,7 @@ The request body contains data with the follow structure:
   | - | - | :-: | :-: | - | 
   | `botId` | Guid  | yes | | id of the chatbot|
   | `visitorId` | Guid  | yes | | id of the visitor  |
+  | `intentId` | Guid  | no | | id of the intent  |
   | `messages` | [ChatbotMessage](#ChatbotMessage)[] | yes | | max 10 messages in the list and only 1 quickreply type message in the list  |
 
 

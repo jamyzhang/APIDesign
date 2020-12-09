@@ -11,14 +11,14 @@
 
 
 # Session
-  - `POST /api/v3/bot/chatbots/{chatbotId}/sessions` - [Create session](#create-session)
-  - `POST /api/v3/bot/sessions/{sessionId}:detectIntent` - [Detect intent](#detect-intent)
-  - `POST /api/v3/bot/sessions/{sessionId}:triggerAnIntent` - [Trigger an intent](#trigger-an-intent)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitForm` - [Submit Form](#Submit-Form)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitAuthentication` -  [Submit Authentication](#Submit-Authentication)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitLocation` - [Submit Location](#submit-location)
-  - `POST /api/v3/bot/sessions/{sessionId}:submitIVRKey` - [Submit IVRKey](#Submit-IVRKey)
-  - `POST /api/v3/bot/sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
+  - `POST /chatbots/{chatbotId}/sessions` - [Create session](#create-session)
+  - `POST /sessions/{sessionId}:detectIntent` - [Detect intent](#detect-intent)
+  - `POST /sessions/{sessionId}:triggerAnIntent` - [Trigger an intent](#trigger-an-intent)
+  - `POST /sessions/{sessionId}:submitForm` - [Submit Form](#Submit-Form)
+  - `POST /sessions/{sessionId}:submitAuthentication` -  [Submit Authentication](#Submit-Authentication)
+  - `POST /sessions/{sessionId}:submitLocation` - [Submit Location](#submit-location)
+  - `POST /sessions/{sessionId}:submitIVRKey` - [Submit IVRKey](#Submit-IVRKey)
+  - `POST /sessions/{sessionId}:rate` - [Rate the bot answer as helpful or not helpful](#rate-the-bot-answer-as-helpful-or-not-helpful)
 
 ## Related Object Json Format
 
@@ -66,6 +66,9 @@ FieldValue is represented as simple flat json objects with the following keys:
   | `content` | object |  | response's content. when type is `highConfidenceAnswer`, it represents [HighConfidenceAnswer](#HighConfidenceAnswer-object); when type is `possibleAnswer`,it represents [PossibleAnswer](#PossibleAnswer-object);when type is `noAnswer`,it represents [NoAnswer](#NoAnswer-object);when type is `greetingMessage`,it represents [GreetingMessage](#GreetingMessage-Object); when type is `authenticationRequest`, it represents [AuthenticationRequest](#AuthenticationRequest-Object);when type is `locationRequest`, it represents [LocationRequest](#LocationRequest-Object);when type is `formRequest`, it represents [FormRequest](#FormRequest-Object);when type is `prompt`, it represents [Prompt](#Prompt-Object);when type is `notHelpfulMessage`, it represents [NotHelpfulMessage](#NotHelpfulMessage-Object);|
   | `disableChatInputArea` | bool  | false | Only available when channel is  `Live Chat`. |
   | `smartTriggerActions` | [SmartTriggerAction](#smart-trigger-action-object)[] |  | an array of [SmartTriggerAction](#smart-trigger-action-object) objects. |
+  | `intentId` | Guid  | | id of the matched intent |
+  | `intentName` | string  |  | name of the matched intent |
+  | `score` | float  |  | the score of the intent matched, the value is beteween 0.0 and 100.0 |
 
 
 ###  Smart Trigger Action Object
@@ -96,9 +99,6 @@ FieldValue is represented as simple flat json objects with the following keys:
   | Name | Type | Default | Description |    
   | - | - | - | - |  
   | `responses`| [ChatbotResponse](#Chatbot-Response-Object)[] |  | an array of [ChatbotResponse](#Chatbot-Response-Object) object. |
-  | `intentId` | Guid  | | id of the matched intent |
-  | `intentName` | string  |  | name of the matched intent |
-  | `score` | float  |  | the score of the intent matched, the value is beteween 0.0 and 100.0 |
 
 ### PossibleAnswer Object
 
@@ -140,9 +140,6 @@ FieldValue is represented as simple flat json objects with the following keys:
   | - | - | - | - | 
   |`message` | string |  | text of the No Answer message  |
   |`audio` | string |  | base64 string, convert the message text to speech | 
-  | `intentId` | Guid  |  | id of the matched intent |
-  | `intentName` | string  |   | name of the matched intent |
-  | `score` | float  | | the score of the intent matched, the value is beteween 0.0 and 100.0 |  
   | `ifIncludeContactAgentOption` | bool  |  |  |
 
 
@@ -307,7 +304,7 @@ QuickReplyResponse is represented as simple flat json objects with the following
 ## Endpoints
 
 ### Create session
-`POST /api/v3/bot/chatbots/{chatbotId}/sessions`
+`POST /chatbots/{chatbotId}/sessions`
 
 #### Parameters
 Path parameters
@@ -358,7 +355,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     }
-  }' -X POST https://domain.comm100.com/api/v3/bot/chatbots/a9928d68-92e6-4487-a2e8-8234fc9d1f48/sessions
+  }' -X POST https://domain.comm100.com/chatbots/a9928d68-92e6-4487-a2e8-8234fc9d1f48/sessions
 ```
 Response
 ```Json
@@ -403,7 +400,7 @@ Response
 ```
 
 ### Detect intent
-`POST /api/v3/bot/sessions/{sessionId}:detectIntent`
+`POST /sessions/{sessionId}:detectIntent`
 
 #### Parameters
 Path parameters
@@ -455,7 +452,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     },
-  }' -X POST https://domain.comm100.com/api/v3/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:detectIntent
+  }' -X POST https://domain.comm100.com/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:detectIntent
 ```
 Response
 ```Json
@@ -503,7 +500,7 @@ Response
 ```
 
 ### Trigger an intent
-`POST /api/v3/bot/sessions/{sessionId}:triggerAnIntent`
+`POST /sessions/{sessionId}:triggerAnIntent`
 
 #### Parameters
 Path parameters
@@ -555,7 +552,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     }
-  }' -X POST https://domain.comm100.com/api/v3/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:triggerAnIntent
+  }' -X POST https://domain.comm100.com/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:triggerAnIntent
 ```
 Response
 ```Json
@@ -588,7 +585,7 @@ Response
 ```
 
 ### Submit Authentication
-`POST /api/v3/bot/sessions/{sessionId}:submitAuthentication`
+`POST /sessions/{sessionId}:submitAuthentication`
 
 #### Parameters
 Path parameters
@@ -643,7 +640,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     }
-  }' -X POST https://domain.comm100.com/api/v3/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitAuthentication
+  }' -X POST https://domain.comm100.com/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitAuthentication
 ```
 Response
 ```Json
@@ -675,7 +672,7 @@ Response
 ```
 
 ### Submit Location
-`POST /api/v3/bot/sessions/{sessionId}:submitLocation`
+`POST /sessions/{sessionId}:submitLocation`
 
 #### Parameters
 Path parameters
@@ -732,7 +729,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     }
-  }' -X POST https://domain.comm100.com/api/v3/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitLocation
+  }' -X POST https://domain.comm100.com/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitLocation
 ```
 Response
 ```Json
@@ -783,7 +780,7 @@ Response
 ```
 
 ### Submit Form
-`POST /api/v3/bot/sessions/{sessionId}:submitForm`
+`POST /sessions/{sessionId}:submitForm`
 
 #### Parameters
 Path parameters
@@ -859,7 +856,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     }
-  }' -X POST https://domain.comm100.com/api/v3/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitForm
+  }' -X POST https://domain.comm100.com/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitForm
 ```
 Response
 ```Json
@@ -916,7 +913,7 @@ Response
 ```
 
 ### Submit IVRKey
-`POST /api/v3/bot/sessions/{sessionId}:submitIVRKey`
+`POST /sessions/{sessionId}:submitIVRKey`
 
 #### Parameters
 Path parameters
@@ -967,7 +964,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     }
-  }' -X POST https://domain.comm100.com/api/v3/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitIVRKey
+  }' -X POST https://domain.comm100.com/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:submitIVRKey
 ```
 Response
 ```Json
@@ -1017,7 +1014,7 @@ Response
 
 ### Rate the bot answer as helpful or not helpful
 
-  `POST /api/v3/bot/sessions/{sessionId}:rate`
+  `POST /sessions/{sessionId}:rate`
 
 #### Parameters
 Path parameters
@@ -1073,7 +1070,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     }
-  }' -X POST https://domain.comm100.com/api/v3/bot/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:rate
+  }' -X POST https://domain.comm100.com/sessions/f9928d68-92e6-4487-a2e8-8234fc9d1f48:rate
 ```
   Response
 ```Json
@@ -1126,7 +1123,7 @@ curl -H "Content-Type: application/json" -d '{
         "phone":"123-4355-212",
       }
     }
-  }' -X POST https://domain.comm100.com/api/v3/bot/sessions/1487fc9d-92e6-4487-a2e8-92e68d6892e6:rate
+  }' -X POST https://domain.comm100.com/sessions/1487fc9d-92e6-4487-a2e8-92e68d6892e6:rate
 ```
   Response
 ```Json
