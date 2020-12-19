@@ -43,6 +43,8 @@
   | `location` | string  | | the longitude and latitude of the location, e.g. "-39.900000,116.300000" |
   | `formValues` | [FieldValue](#FieldValue-object)[] |  | an array of [FieldValue](#FieldValue-object) objects |
   | `isFormSubmitted` | bool  | false |  |
+  | `consecutiveTimesOfPossibleAnswers` | int  | 0 |  |
+  | `invalidInputTimes` | int  | 0 |  |
   | `latestMessage` | [ChatbotMessage](#ChatbotMessage-Object) Object  | |  |
   | `customData` | Object  |   | Custom data |
 
@@ -195,12 +197,12 @@ Field is represented as simple flat json objects with the following keys:
 
 |Name| Type| Default | Description     | 
 | - | - | :-: | - | 
-|`type` | string | | enums: `text` ,`textArea`,`radioBox` ,`checkBox` ,`dropDownList` ,`checkBoxList`,`email` type refers to the different kinds of fields which can be used in a form. |
+|`type` | string | | enums: `text` ,`textArea`,`radio` ,`checkBox` ,`dropDownList` ,`checkBoxList`,`email` type refers to the different kinds of fields which can be used in a form. |
 |`name` | string |  | a field’s name in a form. |
 |`defaultValue` | string | | a field’s value |
 |`isRequired` | bool |  | to mark whether a field in a form is required or not. |
 |`isMasked` | bool |  | if this is true, visitor information will be masked with symbols in chat logs. |
-|`options` | string[] |  | an array of of string when the fieldType is `radioBox` ,`dropDownList` ,`checkBoxList`|
+|`options` | string[] |  | an array of of string when the fieldType is `radio` ,`dropDownList` ,`checkBoxList`|
 |`order` | integer |  | must greater than or equal 0, ascending sort |
 
 ### NotHelpfulMessage Object
@@ -1145,7 +1147,7 @@ HTTP/1.1 200 OK
 
 
 # Agent Assist Suggestion
-  + `POST /api/v3/agentAssist/questionSuggestions` -[Query question suggestions by agent assist](#query-question-suggestions-by-agent-assist)
+  + `POST /agentAssist/questionSuggestions` -[Query question suggestions by agent assist](#query-question-suggestions-by-agent-assist)
 
 ## Agent Assist Suggestion Related Object Json Format
 
@@ -1176,7 +1178,7 @@ HTTP/1.1 200 OK
   | Name | Type |  Default | Description |    
   | - | - | :-: | - | 
   | `id` | Guid  |  |id of the Canned Message |
-  | `name` | string  |  |title of the Canned Message |
+  | `title` | string  |  |title of the Canned Message |
   | `content` | string  |  |the content of the Canned Message |
 
 ### KB Article Suggestion Content
@@ -1184,7 +1186,8 @@ HTTP/1.1 200 OK
 
   | Name | Type | Default | Description |    
   | - | - | :-: |  - | 
-  | `id` | Guid  |  |id of the Knowledge Base article |
+  | `id` | Guid  |  |id of the Knowledge Base  |
+  | `articleId` | Guid  |  |id of the article |
   | `title` | string  ||title of the article |
   | `content` | string  |  |the content of the article |
   | `url` | string  |  |the URL of the article |
@@ -1195,15 +1198,16 @@ HTTP/1.1 200 OK
 
   | Name | Type | Default |Description |    
   | - | - | :-: | - | 
-  | `id` | Guid  |  |id of the intent |
-  | `name` | string  |  |name of the intent |
+  | `id` | Guid  |  |id of the chatbot |
+  | `intentId` | Guid  |  |id of the intent |
+  | `intentName` | string  |  |name of the intent |
   | `content` | string  |  |the content of the intent answers |
 
 
 ## Agent Assist Suggestion Endpoints
 ### Query question suggestions by agent assist
 
-  `POST /api/v3/agentAssist/questionSuggestions`
+  `POST /agentAssist/questionSuggestions`
  
 #### Parameters
 
@@ -1251,7 +1255,7 @@ curl -H "Content-Type: application/json" -d '[
       "question": "what is comm100 livechat about?",
       "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
     }
-  ]' -X POST https://domain.comm100.com/api/v3/agentAssist/questionSuggestions
+  ]' -X POST https://domain.comm100.com/bot/agentAssist/questionSuggestions
 ```
 Response
 ```json
@@ -1265,10 +1269,10 @@ Content-Type:  application/json
     "ifMatch": false,
     "suggestions": [
       {
-        "type": "intent",
+        "type": "publicCannedMessage",
         "content": {
           "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
-          "name": "comm100 livechat",
+          "title": "comm100 livechat",
           "content":""
         },
         "score": 10
@@ -1281,10 +1285,11 @@ Content-Type:  application/json
     "ifMatch": true,
     "suggestions": [
       {
-        "type": "intent",
+        "type": "chatbotIntent",
         "content": {
           "id": "f9928d68-92e6-4487-a2e8-8234fc9d1f48",
-          "name": "comm100 livechat",
+          "intentId": "8d68f992-92e6-4487-a2e8-8234fc9d1f48",
+          "intentName": "comm100 livechat",
           "content":""
         },
         "score": 88.5
