@@ -36,8 +36,6 @@ response so that we can give visitor an answer base on your response through liv
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-    | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
   | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
   | `chatId` | GUID | yes | id of the chat |
