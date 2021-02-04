@@ -12,7 +12,7 @@ When we received a response whose event type is chatJoined, we will pass this ac
   | - | - | - | - | 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
   | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat |
+  | `chatId` | GUID | yes | id of the chat or ticket |
   | `botId` | GUID | yes | id of the chat |
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
@@ -38,7 +38,7 @@ response so that we can give visitor an answer base on your response through liv
   | - | - | - | - | 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
   | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat |
+  | `chatId` | GUID | yes | id of the chat or ticket |
   | `botId` | GUID | yes | id of the chat |
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
@@ -61,7 +61,7 @@ If the answer we give to visitor contains link/button/quickreply which point to 
   | - | - | - | - | 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
   | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat |
+  | `chatId` | GUID | yes | id of the chat or ticket |
   | `botId` | GUID | yes | id of the chat |
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
@@ -84,7 +84,7 @@ When we received a response whose event type is locationShared, we will display 
   | - | - | - | - | 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
   | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat |
+  | `chatId` | GUID | yes | id of the chat or ticket |
   | `botId` | GUID | yes | id of the chat |
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
@@ -107,7 +107,7 @@ When we received a response whose event type is formSubmitted, we will display a
   | - | - | - | - | 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
   | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat |
+  | `chatId` | GUID | yes | id of the chat or ticket |
   | `botId` | GUID | yes | id of the chat |
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
