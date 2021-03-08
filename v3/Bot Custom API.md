@@ -1159,6 +1159,8 @@ HTTP/1.1 200 OK
   | - | - | :-: | - |
   | `id` | string  |  | the unique id of the question |
   | `question` | string  |  | the question visitor asked. |
+  | `campaignId` | Guid | no | | the campaign id |
+  | `channel` | string | no | `Live Chat` | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
   | `ifMatch` | bool  | false | if the suggestion score greater than highConfidenceScore then true, otherwise false |
   | `suggestions` | [Suggestion](#suggestion)[] |  | array of [Suggestion](#suggestion) Object |
 
@@ -1220,7 +1222,7 @@ The request body contains data with the list of the follow structure:
   | `id` | string  | yes | | the unique id of the question  |
   | `question` | string  | yes | | the question visitor asked. |
   | `campaignId` | Guid | no | | the campaign id |
-
+  | `channel` | string | no | `Live Chat` | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
 
 example:
   ```json
@@ -1228,12 +1230,14 @@ example:
     {
       "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
       "question": "how to use livechat?",
-      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
+      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
+      "channel": "Live Chat"
     },
     {
       "id": "fff4sad2-92e6-4487-a2e8-8234fc9d1f48",
       "question": "what is comm100 livechat about?",
-      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
+      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
+      "channel": "Live Chat"
     }
   ]
 ```
@@ -1248,12 +1252,14 @@ curl -H "Content-Type: application/json" -d '[
     {
       "id": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
       "question": "how to use livechat?",
-      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
+      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
+      "channel": "Live Chat"
     },
     {
       "id": "fff4sad2-92e6-4487-a2e8-8234fc9d1f48",
       "question": "what is comm100 livechat about?",
-      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48"
+      "campaignId": "w124sad2-92e6-4487-a2e8-8234fc9d1f48",
+      "channel": "Live Chat"
     }
   ]' -X POST https://domain.comm100.com/bot/agentAssist/questionSuggestions
 ```
