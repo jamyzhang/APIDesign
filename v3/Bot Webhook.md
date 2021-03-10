@@ -1,10 +1,8 @@
 
 
-## Third-Party Bot Webhook Event
+## Bot Webhook
 
- ### Chat Joined Event
-
-When we received a response whose event type is chatJoined, we will pass this action to this webhook, You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
+When using webhook in bot intent answers, we will pass data to this webhook, You need process data within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat or other social channels.
 
   #### Request Data Format
 
@@ -17,6 +15,11 @@ When we received a response whose event type is chatJoined, we will pass this ac
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
   | `extra` | object | no |  |
+  | `question` | string | no | the question that Bot received from visitor.  |
+  | `intentId` | Guid | no | the intent id that Bot received from visitor click the intent link or intent button or quickreply.  |
+  | `authentication` | string | no | the authentication info.  |
+  | `location` | string | no | the location info.  |
+  | `formValues` | array of [Field Value](#field-value) | no | the form info in `Live Chat` channel |
   
  #### Response Data Format
 
@@ -26,110 +29,16 @@ When we received a response whose event type is chatJoined, we will pass this ac
 
 Here is a sample of response json: [sample](#response-sample-json)
 
-### Question Asked Event
-
-When visitor sent a message through live chat, we will pass this message and other information we defined to this webhook. 
-You need process this message and information within this webhook using your own bot engine and give us a formatted 
-response so that we can give visitor an answer base on your response through live chat. 
-
-  #### Request Data Format
-
-  | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
-  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat or ticket |
-  | `botId` | GUID | yes | id of the chat |
-  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
-  | `extra` | object | no |  |
-  | `question` | string | yes | the question that Bot received from visitor.  |
-  | `authentication` | string | no | the authentication info.  |
-  | `location` | string | no | the location info.  |
-
-  #### Response Data Format
-
-The same as Chat Joined Event
   
-  ### Intent Clicked Event
-
-If the answer we give to visitor contains link/button/quickreply which point to an intent, when visitor click this link/button/quickreply, we will pass this action to this webhook with intent id and other information we defined. You need process this action within this webhook and give us a formatted response so than we can give an answer to visitor base on your response through live chat.
-
-  #### Request Data Format
-
-  | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
-  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat or ticket |
-  | `botId` | GUID | yes | id of the chat |
-  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
-  | `extra` | object | no |  |
-  | `intentId` | Guid | no | the intent id that Bot received from visitor click the intent link or intent button or quickreply.  |
-  | `authentication` | string | no | the authentication info.  |
-  | `location` | string | no | the location info.  |
-
-  #### Response Data Format
-
-The same as Chat Joined Event
-  
-  ### Location Shared Event
-
-When we received a response whose event type is locationShared, we will display an webview for visitor to collect his/her location, when visitor shared his/her location to us, we will pass these information to this webhook and you can give us a response base on nformation we provided through this webhook.
-
-  #### Request Data Format
-
-  | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
-  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat or ticket |
-  | `botId` | GUID | yes | id of the chat |
-  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
-  | `extra` | object | no |  |
-  | `intentId` | Guid | no | the intent id that Bot received from visitor click the intent link or intent button or quickreply.  |
-  | `authentication` | string | no | the authentication info.  |
-  | `location` | string | no | the location info.  |
-  
-  #### Response Data Format
-
-The same as Chat Joined Event
-  
-  ### Form Submitted Event
-
-When we received a response whose event type is formSubmitted, we will display an webview for visitor to collect more information about him/her, when visitor filled out webview, we will pass these information to this webhook, and you can give us a response based on information we provided through this webhook.
-
-  #### Request Data Format
-
-  | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
-  | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
-  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
-  | `chatId` | GUID | yes | id of the chat or ticket |
-  | `botId` | GUID | yes | id of the chat |
-  | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
-  | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
-  | `extra` | object | no |  |
-  | `intentId` | Guid | no | the intent id that Bot received from visitor click the intent link or intent button or quickreply.  |
-  | `authentication` | string | no | the authentication info.  |
-  | `location` | string | no | the location info.  |
-  | `formValues` | array of [Field Value](#field-value) | yes |  |
-  
-  #### Response Data Format
-
-The same as Chat Joined Event
-  
-### Third-Party Bot webhook Related Object Json Format
+### Bot webhook Related Object Json Format
 
 #### Response
 Response is represented as simple flat json objects with the following keys:
 
 |Name| Type    |Mandatory | Description     | 
 | - | - | - | - | 
-|`type` | string | yes |it is a enum value with options: text,image,video, quickreply, button, location and form.  | 
-|`content` | object | yes |response's content.<br/>when type is text, it represents [TextResponse](#textresponse);<br/>when type is image ,it represents [ImageResponse](#imageresponse);<br/>when type is video, it represents [VideoResponse](#videoresponse);<br/>when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse);<br/>when type is button, it represents [ButtonResponse](#buttonresponse);<br/>when type is location, it represents [LocationRequireResponse](#LocationRequireResponse);<br/>when type is form, it represents [CollectFormValueResponse](#collectformvalueresponse)| 
+|`type` | string | yes |it is a enum value with options: text,image,video, quickreply, button  | 
+|`content` | object | yes |response's content.<br/>when type is text, it represents [TextResponse](#textresponse);<br/>when type is image ,it represents [ImageResponse](#imageresponse);<br/>when type is video, it represents [VideoResponse](#videoresponse);<br/>when type is quickreply, it represents [QuickReplyResponse](#quickreplyresponse);<br/>when type is button, it represents [ButtonResponse](#buttonresponse);<br/>| 
 |`disableChatInputArea` | bool | no | default value is `false` |
 |`delayTime` | decimal | 1 | how many seconds delay to show  |
 
@@ -205,41 +114,6 @@ Response is represented as simple flat json objects with the following keys:
   | `openIn` | enums | no | it is an enum value with options: currentWindow,sideWindow and newWindow. This field defined the way that webpage will be opened. When the type is hyperlink, it is mandatory, otherwise not |
   | `webviewOpenStyle` | enums | no | it is an enum value with options: compact, tall and full. This field defined the way that webview will be opened. When the type is webview, it is mandatory, otherwise not |
 
-### LocationRequireResponse
-
-  LocationRequireResponse is represented as simple flat JSON objects with the following keys:  
-
-  | Name | Type  | Default | Description |    
-  | - | - | :-: | - | 
-  | `message` | string  |  | message of the location sharing |
-  | `buttonText` | string  |  | text of the location sharing link button |
-
-#### CollectFormValueResponse
-  CollectFormValueResponse is represented as simple flat JSON objects with the following keys:  
-  
-  | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
-  | `message` | string  | yes | message of the response which will be displayed above the button|
-  | `text` | string  | yes | text on the button which can be clicked to open a webview to collection information|
-  | `ifNeedConfirm` | bool  | yes | whether need the visitor to double confirm the form field values |
-  | `fields` | array of [Field](#field)  | yes | fields displayed on webview|
-  |`submitButtonText` | string |   | |
-  |`cancelButtonText` | string |   | |
-  |`confirmButtonText` | string |   | |
-
-#### Field
-
-  Field is represented as simple flat JSON objects with the following keys:  
-  
-  | Name | Type | Mandatory | Description |    
-  | - | - | - | - | 
-  | `name` | string  | yes | name of the field|
-  | `value` | string  | yes | value of the field item |
-  | `type` | string  | yes | it is an enum value with options: text, textArea, radio, checkBox, dropDownList, checkBoxList and email |
-  | `ifRequired` | bool  | yes | when it is true, visitor have to input a value in the field before submit |
-  | `ifMasked` | bool  | yes | when it is true, information collected will replaced by * in chat log for security |
-  | `options` | an array of string  | no | values displayed in the field when type is dropDownList, checkBoxList for visitor to choose. When the type is dropDownList or checkBoxList, it is mandatory, otherwise not |
- 
 #### Field Value
 
   Field Value is represented as simple flat JSON objects with the following keys:  
@@ -383,42 +257,6 @@ Response is represented as simple flat json objects with the following keys:
                     }
                 ]
             }
-        },
-        {
-            "type": "location",
-            "content": {
-              "message": "Please share your location first:",
-              "buttonText": "share",
-            }
-        },
-        {
-            "type": "form",
-            "content": {
-                "text": "book ticket",
-                "message": "please fill the form below",
-                "ifNeedConfirm": true,
-                "fields": [
-                    {
-                        "type": "text",// text, textArea, radio, checkBox, dropDownList or checkBoxList
-                        "name": "field-1",
-                        "value": "field-value-1",
-                        "ifRequired": true,
-                        "ifMasked": true
-                    },
-                    {
-                        "type": "dropDownList",
-                        "name": "field-2",
-                        "value": "field-value-2",
-                        "ifRequired": true,
-                        "ifMasked": true,
-                        "options": [
-                            "value": "field-1-value",
-                            "value": "field-2-value",
-                            "value": "field-3-value"
-                        ]
-                    }
-                ]
-            }
-        }
+        }        
     ]
 ```
