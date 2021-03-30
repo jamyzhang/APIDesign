@@ -255,7 +255,7 @@ Response is represented as simple flat json objects with the following keys:
 
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
-  | `id` | string | yes | id of the visitor |
+  | `id` | GUID | yes | id of the visitor |
   | `name` | string | yes | name of the visitor |
   | `language` | string | yes | language |
   | `email` | string | yes | email of the visitor |
