@@ -223,12 +223,12 @@ Response is represented as simple flat json objects with the following keys:
                 "items": [
                     {
                         "type": "goToIntent",// goToIntent, contactAgent or text.
-                        "name": "click to trigger test-intent-name",
+                        "text": "click to trigger test-intent-name",
                         "intentId": "d3f5b968-ad51-42af-b759-64c0afc40b84",
                     },
                     {
                         "type": "contactAgent",
-                        "name": "click to contact agent"
+                        "text": "click to contact agent"
                     }
                 ]
             }
