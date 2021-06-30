@@ -1,6 +1,6 @@
 
 
-## Third-Party Bot Webhook Event
+## Bot Webhook Event
 
  ### Chat Joined Event
 
@@ -121,7 +121,7 @@ When we received a response whose event type is formSubmitted, we will display a
 
 The same as Chat Joined Event
   
-### Third-Party Bot webhook Related Object Json Format
+### Bot webhook Related Object Json Format
 
 #### Response
 Response is represented as simple flat json objects with the following keys:
