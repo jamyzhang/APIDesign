@@ -9,7 +9,6 @@ When using webhook in bot intent answers, we will pass data to this webhook, You
   | Name | Type | Mandatory | Description |    
   | - | - | - | - | 
   | `event` | string | yes | it is a enum value with options: questionAsked / intentClicked / locationShared / formSubmitted / chatJoined |  
-  | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS`, `IVR` |
   | `chatId` | GUID | yes | id of the chat or ticket |
   | `botId` | GUID | yes | id of the chat |
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
@@ -17,17 +16,14 @@ When using webhook in bot intent answers, we will pass data to this webhook, You
   | `extra` | object | no |  |
   | `question` | string | no | the question that Bot received from visitor.  |
   | `intentId` | Guid | no | the intent id that Bot received from visitor click the intent link or intent button or quickreply.  |
-  | `authentication` | string | no | the authentication info.  |
-  | `location` | string | no | the location info.  |
   | `formValues` | array of [Field Value](#field-value) | no | the form info in `Live Chat` channel |
   
  #### Response Data Format
 
-|Name| Type    |Mandatory | Description     | 
-| - | - | - | - | 
-|`answer` | array of [Response](#response) | yes | An asnwer is composed of one or more responses, regardless of their type.  | 
+  Array of [Response](#response) 
+  An asnwer is composed of one or more responses, regardless of their type. 
 
-Here is a sample of response json: [sample](#response-sample-json)
+  Here is a sample of response json: [sample](#response-sample-json)
 
   
 ### Bot webhook Related Object Json Format
