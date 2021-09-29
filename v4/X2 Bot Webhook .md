@@ -12,7 +12,7 @@ When using webhook action in bot intent answers, we will pass data to this webho
   | `question` | string | no | the question that Bot received from visitor.  |
   | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `chatId` | GUID | yes | id of the chat or ticket |
-  | `ChatId` | GUID | yes | <font color=red size=5>Deprecated</font>, use chatId instead |
+  | `ChatId` | GUID | yes | <b color=red>Deprecated</b>, use chatId instead |
   | `botId` | GUID | yes | id of the chat |
   | `BotId` | GUID | yes | <font color=#FF0000><b>Deprecated</b></font>, use botId instead |
   | `visitorId` | GUID | yes | id of the visitor |
