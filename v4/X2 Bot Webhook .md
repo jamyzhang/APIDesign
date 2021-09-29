@@ -14,7 +14,7 @@ When using webhook action in bot intent answers, we will pass data to this webho
   | `chatId` | GUID | yes | id of the chat or ticket |
   | `ChatId` | GUID | yes | <font color=red><b>Deprecated</b></font>, use chatId instead |
   | `botId` | GUID | yes | id of the chat |
-  | `BotId` | GUID | yes | <font color=red><b>Deprecated</b></font>, use botId instead |
+  | `BotId` | GUID | yes | <font color=#FF0000><b>Deprecated</b></font>, use botId instead |
   | `visitorId` | GUID | yes | id of the visitor |
   | `VisitorId` | GUID | yes | <font color=red><b><font color=red><b>Deprecated</b></font></b></font>, use visitorId instead |
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
