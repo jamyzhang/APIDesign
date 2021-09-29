@@ -12,16 +12,18 @@ When using webhook action in bot intent answers, we will pass data to this webho
   | `question` | string | no | the question that Bot received from visitor.  |
   | `channel` | string  | | e.g.,  `Live Chat`, `Facebook Messenger`, `Twitter Direct Message`, `WeChat`, `WhatsApp`, `SMS` |
   | `chatId` | GUID | yes | id of the chat or ticket |
-  | `ChatId` | GUID | yes | <b color=red>Deprecated</b>, use chatId instead |
+  | `ChatId` | GUID | yes | <font color=red><b>Deprecated</b></font>, use chatId instead |
   | `botId` | GUID | yes | id of the chat |
-  | `BotId` | GUID | yes | <font color=#FF0000><b>Deprecated</b></font>, use botId instead |
+  | `BotId` | GUID | yes | <font color=red><b>Deprecated</b></font>, use botId instead |
   | `visitorId` | GUID | yes | id of the visitor |
   | `VisitorId` | GUID | yes | <font color=red><b><font color=red><b>Deprecated</b></font></b></font>, use visitorId instead |
   | `campaignId` | GUID | no | id of the campaign in comm100 live chat |
   | `visitorInfo` | [VisitorInfo](#visitorinfo) | no | the visitor information with pre-chat fields, custom variables |
   | `Visitor` | [VisitorInfo](#visitorinfo) | no | <font color=red><b>Deprecated</b></font>, use visitorInfo instead |
-  | `intentName` | string | no | the name of the intent.  |
-  | `intentId` | Guid | no | the intent id that Bot received from visitor click the intent link or intent button or quickreply.  |
+  | `intentName` | string | no | the name of the current intent.  |
+  | `intentId` | Guid | no | the current intent id.  |
+  | `previousIntentName` | string | no | the name of the previous intent.  |
+  | `previousIntentId` | Guid | no | the previous intent id.  |
   | `IntentId` | Guid | no | <font color=red><b>Deprecated</b></font>, use intentId instead |
   | `FormValues` | array of [Field Value](#field-value) | no | <font color=red><b>Deprecated</b></font>, use variables instead |
   | `variables` | object | no | The variable data that Bot collected |
@@ -93,6 +95,8 @@ When using webhook action in bot intent answers, we will pass data to this webho
     "IntentId": "00000000-0000-0000-0000-000000000000",
     "intentId": "00000000-0000-0000-0000-000000000000",
     "intentName": "",
+    "previousIntentId": "7737e334-ae46-4731-b103-b6f03b7b2911",
+    "previousIntentName": "haha",
     "FormValues": [
         {
             "label": "pizza-thickness",
@@ -112,9 +116,6 @@ When using webhook action in bot intent answers, we will pass data to this webho
         }
     ],
     "variables": {
-        "previousIntentId": "7737e334-ae46-4731-b103-b6f03b7b2911",
-        "previousIntentName": "haha",
-        "currentIntentName": "pizza order",
         "{!Variable.pizza-size}": "Large",
         "{!Variable.sys-any}": "gift box",
         "{!Variable.pizza-thickness}": "thin crust",
